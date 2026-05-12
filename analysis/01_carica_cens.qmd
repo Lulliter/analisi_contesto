@@ -461,7 +461,7 @@ Obiettivo, aggregare i dati di cui sopra, ma AGGREGATI per provincia (`COD_PROV`
 # 0) Cosa ho già= output SDMX a livello comunale in forma lunga (REF_AREA = "034001", ecc.)
 
 # ----SOLO PARMA 
-#istat_pop_com_PR_2023 <- readRDS("~/Github/parma-dash/data/data_out/istat_pop_com_PR_2023.rds")
+#istat_pop_com_PR_2023 <- readRDS("~/Github_CRP/analisi_contesto/data/data_out/istat_pop_com_PR_2023.rds")
 
 # ------TUTTA EMILIA-ROMAGNA
 # istat_pop_com_ER_2023 <- readRDS(here("data", "data_out", "istat_pop_com_ER_2023.rds"))

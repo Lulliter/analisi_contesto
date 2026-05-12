@@ -82,7 +82,7 @@ er_comuni_sf       <-  readRDS( here("data","data_out","ER_shp","er_comuni_sf.rd
 # Fonte ISTAT: Caratteristiche dei comuni (2025)
 
 # Carica altre caratteristiche comuni Ita
-comuni_ita_info_redux_sf <- readRDS("~/Github/parma-dash/data/data_out/comuni_ita_info_redux_sf.rds")
+comuni_ita_info_redux_sf <- readRDS("~/Github_CRP/analisi_contesto/data/data_out/comuni_ita_info_redux_sf.rds")
 ```
 
 

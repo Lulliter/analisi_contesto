@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://lulliter.github.io/parma-dash/index.html</loc>
+    <loc>https://lulliter.github.io/analisi_contesto/index.html</loc>
     <lastmod>2026-04-19T15:11:37.164Z</lastmod>
   </url>
   <url>
-    <loc>https://lulliter.github.io/parma-dash/dashboard/non_autosufficienza/index.html</loc>
+    <loc>https://lulliter.github.io/analisi_contesto/dashboard/non_autosufficienza/index.html</loc>
     <lastmod>2025-12-07T18:03:54.948Z</lastmod>
   </url>
   <url>
-    <loc>https://lulliter.github.io/parma-dash/dashboard/demographic_trends/index.html</loc>
+    <loc>https://lulliter.github.io/analisi_contesto/dashboard/demographic_trends/index.html</loc>
     <lastmod>2025-12-22T11:22:21.958Z</lastmod>
   </url>
   <url>
-    <loc>https://lulliter.github.io/parma-dash/dashboard/bes/index.html</loc>
+    <loc>https://lulliter.github.io/analisi_contesto/dashboard/bes/index.html</loc>
     <lastmod>2026-04-19T15:16:03.879Z</lastmod>
   </url>
   <url>
-    <loc>https://lulliter.github.io/parma-dash/dashboard/disability/index.html</loc>
+    <loc>https://lulliter.github.io/analisi_contesto/dashboard/disability/index.html</loc>
     <lastmod>2025-12-02T09:21:56.149Z</lastmod>
   </url>
   <url>
-    <loc>https://lulliter.github.io/parma-dash/dashboard/serv_soc/index.html</loc>
+    <loc>https://lulliter.github.io/analisi_contesto/dashboard/serv_soc/index.html</loc>
     <lastmod>2025-12-07T19:04:34.493Z</lastmod>
   </url>
 </urlset>

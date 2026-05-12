@@ -15,9 +15,16 @@ website:
   bread-crumbs: true   
   title: "Parma analisi di contesto"
   description: "A dashboard for Parma, Italy"
-  site-url: "https://lulliter.github.io/parma-dash/"
+  site-url: "https://lulliter.github.io/analisi_contesto/"
   # favicon: assets/favicon.ico
-  
+    # favicon: images/net2.png
+  search: false # no magnifier on navbar
+  announcement:
+    icon: cone-striped
+    dismissable: true
+    content: "Sito acessibile solo dalla intranet di Fondazione CRP [https://analisi04.fondazionecrp.it/](https://analisi04.fondazionecrp.it/)"
+    type: warning
+    position: below-navbar
   page-footer:
     left: |
       {{< fa brands creative-commons >}}
@@ -25,7 +32,7 @@ website:
       [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) <br> [Luisa M. Mimmi](mailto:mimmi@fondazionecrp.it)
     right: |
       Made with {{< fa brands r-project >}} and [Quarto](https://quarto.org/) <br>
-      [Code at {{< fa brands github >}} GitHub](https://github.com/Lulliter/parma-dash)
+      [Code at {{< fa brands github >}} GitHub](https://github.com/Lulliter/analisi_contesto)
 #      Made with {{< fa brands r-project >}} and ![]({{< var quarto-icon >}}){width=75px} <br> 
     background: "#E5EBEE"
   
@@ -49,7 +56,7 @@ website:
     right:
       - icon: github
         aria-label: github
-        href: https://github.com/Lulliter/parma-dash
+        href: https://github.com/Lulliter/analisi_contesto
 
 # --- Default options for all pages
 format:

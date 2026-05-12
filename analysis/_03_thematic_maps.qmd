@@ -125,7 +125,7 @@ Posso usare invece il pacchetto `rsdmx` che consente più specifiche.
 Faccio la richiesta con lo script in `R/scarica_dati_parma.R`
 
 ```{r}
-#istat_pop_com_PR_2023 <- readRDS("~/Github/parma-dash/data/data_out/istat_pop_com_PR_2023.rds")
+#istat_pop_com_PR_2023 <- readRDS("~/Github_CRP/analisi_contesto/data/data_out/istat_pop_com_PR_2023.rds")
 istat_pop_com_PR_2023 <- readr::read_csv(here("data/data_out/istat_pop_com_PR_2023.csv"))
 istat_pop_com_PR_2023_s <- istat_pop_com_PR_2023 |> 
   select(
