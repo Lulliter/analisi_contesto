@@ -19,13 +19,13 @@ website:
   # favicon: assets/favicon.ico
     # favicon: images/net2.png
   search: false # no magnifier on navbar
-  # BANNER (icone vedi https://icons.getbootstrap.com/)
-  announcement:
-    icon: lock # info-circle | lightbulb | megaphone | lock | cone-striped | calendar | mega | exclamation-triangle
-    dismissable: true
-    content: "Sito acessibile solo dalla intranet di Fondazione Cariparma: [https://analisidati.fondazionecrp.it/](https://analisidati.fondazionecrp.it/)"
-    type: warning #info
-    position: below-navbar
+  # # BANNER (icone vedi https://icons.getbootstrap.com/)
+  # announcement:
+  #   icon: lock # info-circle | lightbulb | megaphone | lock | cone-striped | calendar | mega | exclamation-triangle
+  #   dismissable: true
+  #   content: "Sito acessibile solo dalla intranet di Fondazione Cariparma: [https://analisidati.fondazionecrp.it/](https://analisidati.fondazionecrp.it/)"
+  #   type: warning #info
+  #   position: below-navbar
   # Footer
   page-footer:
     left: |
@@ -56,6 +56,9 @@ website:
         href: dashboard/bes/index.qmd
 
     right:
+      - text: "Progetti Osservatorio"
+        icon: database-fill-up #info-circle
+        href: https://osservatorio.fondazionecrp.it/      
       - icon: github
         aria-label: github
         href: https://github.com/Lulliter/analisi_contesto
