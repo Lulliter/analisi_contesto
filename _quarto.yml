@@ -40,6 +40,7 @@ website:
   
 # --- Structure of the navbar (opzione A: temi direttamente in navbar)
   navbar:
+    search: false
     pinned: true
     left:
       - text: Home
