@@ -33,9 +33,9 @@ REPO="$(basename "$SCRIPT_DIR")"
 SRC="$SCRIPT_DIR/docs/"
 DST="$DESTINAZIONE/$REPO/docs/"
 
-# Controlla che il volume Windows sia montato
-if [[ ! -d "$DESTINAZIONE" ]]; then
-    echo "ERRORE: volume Windows non trovato in $DESTINAZIONE"
+# Controlla che il volume Windows sia REALMENTE montato (non una cartella fantasma)
+if ! mount | grep -q "/Volumes/areacomuneatutti"; then
+    echo "ERRORE: volume Windows non montato. Connettiti prima alla rete aziendale."
     exit 1
 fi
 
