@@ -33,6 +33,10 @@ REPO="$(basename "$SCRIPT_DIR")"
 SRC="$SCRIPT_DIR/docs/"
 DST="$DESTINAZIONE/$REPO/docs/"
 
+# Sveglia il volume SMB (macOS lo riattiva al primo accesso)
+ls "$DESTINAZIONE" &>/dev/null 2>&1
+sleep 1
+
 # Controlla che il volume Windows sia REALMENTE montato (non una cartella fantasma)
 if ! mount | grep -q "/Volumes/areacomuneatutti"; then
     echo "ERRORE: volume Windows non montato. Connettiti prima alla rete aziendale."
@@ -81,5 +85,5 @@ echo "Sincronizzazione completata: $REPO/docs/ → $DST"
 echo ""
 echo "------------------------------------------------------"
 echo "PROMEMORIA: avvisa Alberto di sincronizzare"
-echo "analisi_contesto"
+echo "$REPO"
 echo "------------------------------------------------------"
