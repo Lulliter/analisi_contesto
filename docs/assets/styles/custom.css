@@ -1,0 +1,108 @@
+/* Override Bootstrap code color variable */
+:root {
+  --bs-code-color: #17717f !important;  /* teal color for inline code */
+}
+
+/* Direct override for inline code elements */
+code {
+  color: #17717f !important;
+}
+
+/* Value box styling */
+.bg-vb-success {
+  color: var(--bs-success);
+  background-color: rgba(var(--bs-success-rgb), 0.1);
+  border-color: rgba(var(--bs-success-rgb), 0.3);
+}
+
+.bg-vb-info {
+  color: var(--bs-info);
+  background-color: rgba(var(--bs-info-rgb), 0.1);
+  border-color: rgba(var(--bs-info-rgb), 0.3);
+}
+
+.bg-vb-warning {
+  color: var(--bs-warning);
+  background-color: rgba(var(--bs-warning-rgb), 0.1);
+  border-color: rgba(var(--bs-warning-rgb), 0.3);
+}
+
+.bg-vb-danger {
+  color: var(--bs-danger);
+  background-color: rgba(var(--bs-danger-rgb), 0.1);
+  border-color: rgba(var(--bs-danger-rgb), 0.3);
+}
+
+.bg-vb-primary {
+  color: var(--bs-primary);
+  background-color: rgba(var(--bs-primary-rgb), 0.1);
+  border-color: rgba(var(--bs-primary-rgb), 0.3);
+}
+
+.bg-vb-secondary {
+  color: var(--bs-secondary);
+  background-color: rgba(var(--bs-secondary-rgb), 0.1);
+  border-color: rgba(var(--bs-secondary-rgb), 0.3);
+}
+
+.card {
+  --bs-card-cap-bg: rgba(var(--bs-body-color-rgb), 0.03);
+  --bs-card-bg: var(--bs-body-bg);
+}
+
+/* Hide titles with .notitle class */
+section.notitle h1,
+section.notitle h2,
+section.notitle h3,
+section.notitle h4,
+section.notitle h5,
+section.notitle h6 {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+section.level3.notitle h3 {
+  display: none !important;
+}
+
+h1.notitle, h2.notitle, h3.notitle, h4.notitle, h5.notitle, h6.notitle {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* TOC styling - override Quarto defaults with theme colors */
+div.sidebar-item-container nav[role=doc-toc] ul li a {
+  color: #5C2129 !important;
+}
+
+div.sidebar-item-container nav[role=doc-toc] ul li a:hover {
+  color: #9f7d35 !important;
+}
+
+div.sidebar-item-container nav[role=doc-toc] ul li a.active {
+  color: #9f7d35 !important;
+  font-weight: 600;
+  border-left-color: #9f7d35 !important;
+}
+
+#quarto-margin-sidebar nav[role=doc-toc] ul li a,
+#quarto-sidebar-toc nav ul li a {
+  color: #5C2129 !important;
+}
+
+#quarto-margin-sidebar nav[role=doc-toc] ul li a:hover,
+#quarto-sidebar-toc nav ul li a:hover {
+  color: #9f7d35 !important;
+}
+
+#quarto-margin-sidebar nav[role=doc-toc] ul li a.active,
+#quarto-sidebar-toc nav ul li a.active {
+  color: #9f7d35 !important;
+  font-weight: 600;
+}
