@@ -8,6 +8,7 @@ project:
     - "!zzz/**/*.qmd"   # e NON uelli cdella sottocartella zzz/
     - "!**/zzz/**/*.qmd"  # per escludere qualsiasi zzz/ a qualunque profondità !!!!
     - "!source/**/*.qmd"   # source/ contiene doc interna sulle fonti, non pagine del sito
+    - "!presentazione/**/*.qmd"   # slide standalone (revealjs), non pagine del sito
     # NB: i file che iniziano con "_" (es. R/_fonts.qmd) sono partial di Quarto e
     #     non vengono renderizzati per convenzione.
 
@@ -82,4 +83,4 @@ tbl-cap-location: top
 # --- Important bc Pandoc’s default resource-path is the directory of each input file
 # Let pages see files in the project root (.) and the bib folder explicitly
 resource-path: [".", "bib"]
-#bibliography: bib/CRP_dash.bib
+#bibliography: bib/CRP_analisi_contesto.bib

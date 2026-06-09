@@ -1,0 +1,266 @@
+/*-- scss:defaults --*/
+
+// Importa Google Font
+@import url('https://fonts.googleapis.com/css2?family=Century+Gothic&display=swap'); // brand but sucks
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap'); // narrow parts
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Roboto+Condensed:wght@400;700&display=swap");
+
+// Palette di colori disponibili
+$blu_ist_sc: #012432;
+$blu_ist_md: #2C5F8D; // primary & aside
+$blu_ist_lg: #5582A7; // footer
+$grn_sc: #246864;
+$grn_md: #539d90;     // accent
+$grn_lg: #8eb9b1;
+$pur_sc: #553c64;
+$pur_md: #805f95;
+$pur_lg: #9a8da3;
+$ylw_sc: #9f7d35;     // caption
+$ylw_md: #d9b942;
+$ylw_lg: #f7da7b;
+$red_sc: #9f4136;
+$red_md: #e55b4f;     // secondary
+$red_lg: #f18b83;
+$grey_lg: #FDFBF7;
+$grey_md: #d3d3d3;
+$grey_sc: #a9a9a9;
+$grey_SC: #333333;    // testo scuro
+$background-color: #FFFFFF;
+
+
+// Font corpo
+$font-family-sans-serif: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+// Font titoli (solo per le heading, xchè da problemi di accenti)
+$presentation-heading-font: "Century Gothic", "CenturyGothic", AppleGothic,
+                            -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+// Font codice
+$font-family-monospace: "Fira Mono", monospace;
+// Dimensione base
+$presentation-font-size-root: 36px;
+
+
+/* ---------- scss:rules ---------- */
+
+/* Variabili Reveal: mettile in alto nel file */
+.reveal-viewport {
+  --r-heading1-size: 1.6em;
+  --r-heading2-size: 1.3em;  // titolo slide (##)
+  --r-heading3-size: 1.1em;
+}
+
+// Smaller tit slides
+.reveal .slides section h1 { font-size: var(--r-heading1-size) !important; }
+.reveal .slides section h2 { font-size: var(--r-heading2-size) !important; }
+.reveal .slides section h3 { font-size: var(--r-heading3-size) !important; }
+
+// Elementi di testo (body)
+.reveal {
+  color: $grey_SC;
+  font-weight: 400; // Regular
+}
+// Strong and Bold styling
+.reveal strong, .reveal b {
+  color: $blu_ist_md !important;
+  font-weight: 700; // Bold
+}
+// Emphasis and Italic styling
+.reveal em, .reveal i {
+  font-style: italic; // Italic
+}
+// titoli styling
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  color: $blu_ist_md !important;
+  font-weight: 700; // Bold per i titoli
+}
+// Nascondi solo il titolo h2 con classe .notitle
+.reveal section.notitle h2 {
+  display: none;
+}
+
+// Slide divider (background blu CRP): inverti i colori per leggibilità
+.reveal section[data-background-color="#2C5F8D"] h1,
+.reveal section[data-background-color="#2C5F8D"] h2,
+.reveal section[data-background-color="#2C5F8D"] h3,
+.reveal section[data-background-color="#2C5F8D"] p,
+.reveal section[data-background-color="#2C5F8D"] li,
+.reveal section[data-background-color="#2C5F8D"] strong,
+.reveal section[data-background-color="#2C5F8D"] b {
+  color: white !important;
+}
+.reveal section[data-background-color="#2C5F8D"] a,
+.reveal section[data-background-color="#2C5F8D"] a:visited {
+  color: $ylw_lg !important;
+  text-decoration: underline;
+}
+
+// Sottopunti più piccoli
+.reveal ul ul,    // lista non ordinata dentro lista non ordinata
+.reveal ol ol,    // lista ordinata dentro lista ordinata
+.reveal ul ol,    // lista ordinata dentro lista non ordinata
+.reveal ol ul {   // lista non ordinata dentro lista ordinata
+  font-size: 85%;
+}
+
+/* ---- Aside & Footnote styling ---- */
+// Aside styling - Regular Italic
+.reveal aside:not(.aside-footnotes) {
+  font-style: italic;
+  color: $blu_ist_md !important;
+  font-weight: 400; // Regular
+}
+// Footnote styling - grigio, piccolo e normale
+.reveal .aside-footnotes,
+.reveal .aside-footnotes li,
+.reveal .aside-footnotes p {
+  font-family: "Roboto Condensed", sans-serif !important;
+  font-style: normal !important;
+  font-size: 1em !important; // o 0.9 se vuoi ancora più piccolo
+  color: $grey_sc !important;
+  font-weight: 400 !important;
+  line-height: 1.4;
+}
+// Numero della footnote nel testo principale
+.reveal sup a {
+  color: $grey_sc !important;
+  font-size: 0.7em !important;
+}
+
+/* ---- Link styling ---- */
+// Exclude slide numbers from link styling
+.reveal a {
+  color: $red_md !important;
+  text-decoration: none;
+}
+.reveal a:visited {
+  color: $red_md !important;
+}
+.reveal a:hover {
+  color: darken($red_md, 10%) !important;
+  text-decoration: underline;
+}
+.reveal a:active {
+  color: $red_md !important;
+}
+
+/* --- Figure caption styling --- */
+.reveal figcaption,
+.reveal .figure-caption {
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 500; // Bold
+  font-size: 0.85em;
+  color: $ylw_sc;
+  margin-top: -0.5em;
+}
+
+/* --- Code styling (inline + blocchi) --- */
+code,
+pre,
+.reveal code,
+.reveal pre,
+.reveal .code,
+.reveal .sourceCode {
+  font-family: $font-family-monospace !important;
+  font-size: 0.85em;     /* facoltativo: riduce un po' la dimensione */
+  line-height: 1.25;     /* leggibilità migliore */
+  color: $ylw_sc !important; /* colore del testo del codice */
+}
+
+/* ---- Footer styling ---- */
+// Footer styling
+.reveal .footer {
+  font-family: "Roboto Condensed", sans-serif;
+  color: rgba($blu_ist_lg, 0.75) !important;
+  font-size: 0.5em;
+}
+
+// Logo styling - spostato un po' più a destra
+.reveal .slide-logo {
+  height: 100px;
+  width: auto;
+  position: fixed;
+  bottom: 20px;
+  right: 40px;  // dal margine destro
+}
+// Slide number styling - dimensione normale e posizione corretta
+.reveal .slide-number {
+ // font-family: "Roboto Condensed", sans-serif;
+ color: $grey_sc !important;
+ // background-color: transparent !important;
+ // font-size: 0.5em !important;
+ // font-weight: 300 !important; // Regular
+  position: fixed !important;
+  bottom: 8px !important;
+  left: 80px !important;
+  top: auto !important;  // Forza a non stare in alto
+}
+
+// Forza anche quando è un link
+.reveal .slide-number a {
+  color: $grey_sc !important;
+}
+
+
+// Fix per layout 2-col (::: columns / ::: .column): impedisce che una colonna
+// "cada sotto" quando il contenuto naturale dell'altra (es. un'immagine grande
+// dentro un chunk R) tenta di allargarsi oltre il suo width%.
+//   - flex-wrap: nowrap  → le column restano sempre sulla stessa riga
+//   - min-width: 0       → annulla min-width: auto di default sui flex item,
+//                          permettendo al column di restringersi sotto il
+//                          contenuto naturale
+.reveal .columns {
+  flex-wrap: nowrap !important;
+}
+.reveal .columns > .column {
+  min-width: 0;
+}
+
+// Callout SENZA titolo interno → nasconde la barra "Note/Tip/..." in alto
+// (Quarto aggiunge .callout-titled solo se c'è un titolo: usiamo :not per
+// matchare i callout "puri" — box e bordo restano).
+.reveal div.callout-note:not(.callout-titled) .callout-header,
+.reveal div.callout-tip:not(.callout-titled) .callout-header,
+.reveal div.callout-important:not(.callout-titled) .callout-header,
+.reveal div.callout-warning:not(.callout-titled) .callout-header,
+.reveal div.callout-caution:not(.callout-titled) .callout-header {
+  display: none !important;
+}
+
+// MArk per certe parole
+mark {
+  background-color: transparent;  // niente giallo di default
+  color: $grn_sc;                 // il tuo colore CRP
+  font-weight: 700 !important;// Bold
+//  text-decoration: underline;
+//  text-underline-offset: 2px;
+}
+
+/*-- end:defaults --*/
+
+
+
+/* ================================================================== */
+/*  DISCLAIMER RIBBON — inizio                                        */
+/*  Banner discreto in alto a destra, visibile su tutte le slide.     */
+/*  PER DISATTIVARE: commenta l'intero blocco (Cmd+/ in RStudio).     */
+/* ================================================================== */
+.reveal::before {
+  content: "Rielaborazione interna — non per divulgazione";
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 3px 10px;
+  background: rgba(159, 65, 54, 0.65);  // $red_sc desaturato (più tenue)
+  color: white;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 0.45em;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border-bottom-left-radius: 5px;
+  opacity: 0.85;
+  pointer-events: none;  // non blocca click/hover sulle slide
+}
+/* ================================================================== */
+/*  DISCLAIMER RIBBON — fine                                          */
+/* ================================================================== */

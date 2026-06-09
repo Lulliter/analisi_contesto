@@ -70,13 +70,13 @@ data <- indicatori_di_struttura |>
   dplyr::mutate(
     highlight = territorio %in%
       c("Parma", "Emilia-Romagna", "NORD-EST", "ITALIA"),
-    territorio_display = ifelse(highlight, territorio, "Altro")
+    territorio_display = ifelse(highlight, territorio, "Altre provincie ER")
   ) |>
   #maintain
   dplyr::mutate(
     territorio_display = factor(
       territorio_display,
-      levels = c("Parma", "Emilia-Romagna", "NORD-EST", "ITALIA", "Altro")
+      levels = c("Parma", "Emilia-Romagna", "NORD-EST", "ITALIA", "Altre provincie ER")
     ),
     highlight = factor(highlight)
   )
@@ -96,7 +96,7 @@ CAP <- "Fonte: Istat, Demografia in cifre, Nov. 2025 | Rielaborazione: Fondazion
 # Plot: p01_e_m [= Età Media]  ----
 p01_e_m <- data |>
   dplyr::filter(indicatore == INDICATORE) |>
-  filter(territorio != "NORD-EST", territorio != "Altro") |>
+  filter(territorio != "NORD-EST", territorio != "Altre provincie ER") |>
   # plot
   ggplot(aes(
     x = anno,
@@ -200,7 +200,11 @@ plot_indicatore_demografico <- function(
 
   # Genera title e subtitle se non forniti
   if (is.null(title)) {
-    title <- glue("Trend demografici: {indicatore}")
+    # Riformatta il nome dell'indicatore per il titolo (es. "quoziente_di_natalità"
+    # → "Quoziente di natalità"). Non incide sul filter, che usa il valore raw.
+    indicatore_pretty <- stringr::str_replace_all(indicatore, "_", " ") |>
+      stringr::str_to_sentence()
+    title <- glue("Trend demografici: {indicatore_pretty}")
   }
   if (is.null(subtitle)) {
     # Use str_wrap to wrap subtitle based on character count
@@ -213,7 +217,7 @@ plot_indicatore_demografico <- function(
   # Crea il plot
   p <- dataset |>
     dplyr::filter(indicatore == !!indicatore) |>
-    filter(territorio != "NORD-EST", territorio != "Altro") |>
+    filter(territorio != "NORD-EST", territorio != "Altre provincie ER") |>
     # plot
     ggplot(aes(
       x = anno,
@@ -251,7 +255,7 @@ plot_indicatore_demografico <- function(
         "Emilia-Romagna" = grn_md,
         "NORD-EST" = blu_lg,
         "ITALIA" = blu_md,
-        "Altro" = "grey50"
+        "Altre provincie ER" = "grey50"
       )
     ) +
     theme_minimal(base_size = 13) +
@@ -371,13 +375,13 @@ data2 <- indicatori_struttura_pop |>
   dplyr::mutate(
     highlight = territorio %in%
       c("Parma", "Emilia-Romagna", "NORD-EST", "ITALIA"),
-    territorio_display = ifelse(highlight, territorio, "Altro")
+    territorio_display = ifelse(highlight, territorio, "Altre provincie ER")
   ) |>
   #maintain
   dplyr::mutate(
     territorio_display = factor(
       territorio_display,
-      levels = c("Parma", "Emilia-Romagna", "NORD-EST", "ITALIA", "Altro")
+      levels = c("Parma", "Emilia-Romagna", "NORD-EST", "ITALIA", "Altre provincie ER")
     ),
     highlight = factor(highlight)
   )
@@ -490,12 +494,12 @@ load_and_prepare_rds <- function(
     dplyr::filter(territorio %in% territori_filtro) |>
     dplyr::mutate(
       highlight = territorio %in% territori_highlight,
-      territorio_display = ifelse(highlight, territorio, "Altro")
+      territorio_display = ifelse(highlight, territorio, "Altre provincie ER")
     ) |>
     dplyr::mutate(
       territorio_display = factor(
         territorio_display,
-        levels = c(territori_highlight, "Altro")
+        levels = c(territori_highlight, "Altre provincie ER")
       ),
       highlight = factor(highlight)
     )
@@ -535,13 +539,13 @@ load_and_prepare_rds <- function(
 #   dplyr::mutate(
 #     highlight = territorio %in%
 #       c("Parma", "Emilia-Romagna", "NORD-EST", "ITALIA"),
-#     territorio_display = ifelse(highlight, territorio, "Altro")
+#     territorio_display = ifelse(highlight, territorio, "Altre provincie ER")
 #   ) |>
 #   #maintain
 #   dplyr::mutate(
 #     territorio_display = factor(
 #       territorio_display,
-#       levels = c("Parma", "Emilia-Romagna", "NORD-EST", "ITALIA", "Altro")
+#       levels = c("Parma", "Emilia-Romagna", "NORD-EST", "ITALIA", "Altre provincie ER")
 #     ),
 #     highlight = factor(highlight)
 #   )

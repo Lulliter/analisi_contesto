@@ -78,6 +78,9 @@ mkdir -p "$DST"
 # --delete = rimuove nella destinazione i file eliminati nell'origine
 rsync -av --delete "$SRC" "$DST"
 
+# Rimuove il flag "hidden" che macOS aggiunge sui volumi SMB
+chflags -R nohidden "$DST"
+
 echo ""
 echo "Sincronizzazione completata: $REPO/docs/ → $DST"
 

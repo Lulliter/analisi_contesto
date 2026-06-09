@@ -48,7 +48,7 @@ Studying mission-relevant socio-economic data on Fondazione Cariparma's area of 
   - `utilities.R`: General utilities (save dataframes, etc.)
 
 - `bib/`: Bibliography files for citations
-  - `CRP_dash.bib`: Reference bibliography linked to Zotero
+  - `CRP_analisi_contesto.bib`: Reference bibliography linked to Zotero
 
 - `source/`: Documentation on data sources and methodologies (NOT rendered in website — doc interna)
   - `demog-disab-data.qmd`: Documentation on demographic and disability data sources

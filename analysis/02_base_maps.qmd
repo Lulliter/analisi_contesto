@@ -23,7 +23,7 @@ execute:
   error: false
   output: false
   
-bibliography: bib/CRP_dash.bib
+bibliography: bib/CRP_analisi_contesto.bib
 suppress-bibliography: false
 ---
 
