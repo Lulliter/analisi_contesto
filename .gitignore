@@ -17,17 +17,34 @@
 
 #----------------- VSCODE
 .vscode/
-.claude/
+
+# ----------------- AI
+CLAUDE.md
+.claude/**/*
+.positai
 
 # ----------------- QUARTO WEBSITE
+.quarto/
+/.quarto/
 _site/
 _freeze/
-.quarto/
 _quarto/
-/.quarto/
-# Artefatti generati da quarto_render() sul README
-README.html
-README_files/
+*_files/
+
+# ----------------- OLD
+ZZZ_old/*
+dashboard/ZZZ_old/*
+analysis/ZZZ_old/*
+analysis/**/*_OLD.qmd
+
+# ----------------- Personal
+# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
+.httr-oauth
+
+# Root outputs
+*.html
+*.docx
+
 
 # ----------------- DATA FILES
 
@@ -59,9 +76,5 @@ data/data_out/**/*
 .httr-oauth
 
 # ----------------- Unnecessary
-zzz/**/*.*
-*/zzz/**/*.*
-CLAUDE.md
-.positai
-
+ZZZ_old/**/*.*
 **/*.quarto_ipynb

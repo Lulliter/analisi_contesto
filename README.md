@@ -4,6 +4,117 @@
 
 Studying mission-relevant socio-economic data on Fondazione Cariparma's area of reach: Parma and it province.
 
++ Obiettivo di fondo per Piano Strategico del 2028? (da fare nel 2027):
+
+  > D.A.: Quali sono delle criticità che emergono oggi che il PS 2024-27 non aveva? (Tenendo sotto controllo i 10 assi tematici dello strategico)
+
+## TODO
+ 
++ Riorganizzazione del sito/progetto 
+  + C'e' un po' casino perche quello che e' `data_output/` poi diventa `data_input/`, poi magari c'e' un plot che viene generato in analysis/ e salvato in plots/ e poi richiamato in dashboard/...
+  + Rivedere generazione dei grafici
+
+
++ Ridefinizione di TEMI / DIMENSIONI / INDICATORI
+(Inspo vedi [`CRP_analisi_contesto.bib`](./bib/CRP_analisi_contesto.bib): 
+  1. Eurispes (Rapporto italia 2026)
+  2. Intesa per il Sociale (MONITOR PER LA GEOGRAFIA DELLE FRAGILITÀ E DELLE DISUGUAGLIANZE)
+  3. Welforum 
+  4. Bocconi ecc )
+
++ OIS sintesi posizionamento Prov PR su assi tematici (as of Dicembre 2025)
+  
+  + 🟢 demografia
+  + 🟢 economia
+  + 🟡 servizi sociali-disabilità
+  + 🟡 servizi sociali-anziani
+  + 🟡 condizione abitativa
+  + 🟡 cultura e patrimonio
+  + 🟡 biblioteche
+  + 🟢 ambiente
+  + 🟢 istruzione
+  + 🟢 prima infanzia
+  + 🔴 ricerca innovazione
+  + 🟢 terzo settore
+
+[Legenda: Criticità bassa 🟢 | Criticità media 🟡 | Criticità alta 🔴]
+  
+
+
+### Revision ex Intesa SanPaolo 
+
++ OIS sintesi posizionamento Prov PR su assi tematici (as of Dicembre 2025)
+
+CAPITALE NATURALE
+
+  + 🟢 **ambiente e nuove fonti energetiche**   
+    + Caratteristiche ambientali e cambiamenti climatici
+    + Qualità dell’ambiente e dei servizi ambientali
+    + Sicurezza ambientale
+    + Utilizzo di fonti rinnovabili
+
+CAPITALE UMANO
+
+  + 🟢 **Popolazione e trend demografici**
+    + Andamento demografico
+    + Mortalità non per vecchiaia
+  + 🟢 **istruzione (e formazione)**
+    + Livello d'istruzione
+    + Processi formativi 
+  
+  
+CAPITALE SOCIALE
+
+  + ➡️ **Mercato del lavoro** ( _"uno dei cardini x la sfida delle disuguaglianze"_ )
+    + uomini
+    + donne
+    + giovani
+    + [immigrati/badanti]
+  + **Redditi, ricchezza e consumi**
+    + Consumi
+    + reddito ( _"working poor"_ )
+    + patrimonio
+  + ➡️ **Legalità e sicurezza** ( _"PArma messa male?/ Atlante di Genere?"_ )
+    + Istituti di pena
+    + Reati
+    + Sicurezza
+    + Microcriminalità
+  + **Presenza dell’economia sociale e capitale relazionale**
+    + Capitale relazionale
+    + civismo e (partecipazione alla vita) politica
+    + 🟢 (organizzazioni del) terzo settore
+  + ➡️ **Inclusione sociale e vulnerabilità** ( _"incrociare dimensioni di esclusione e povertà"_)
+    + disabilità
+    + migranti
+    + povertà abitativa (🟡 condizione abitativa)
+    + povertà educativa
+    + povertà materiale
+    + sostegni economici alla fragilità
+
+CAPITALE ECONOMICO-ISTITUZIONALE
+
+  + **Qualità e accesso ai servizi**
+    + Servizi sanitari
+    + Servizi non sanitari
+      + 🟡 cultura e patrimonio
+      + 🟡 biblioteche
+    + servizi scolastici    
+      + 🟢 prima infanzia
+    + Trasporti pubblici e mobilità sostenibile
+  + **Risorse pubbliche, assistenza e servizi alle categorie fragili**
+    + Risorse delle amministrazioni locali ( _capacità di spesa e dotazioni_  )
+    + 🟡 servizi sociali-disabilità
+    + 🟡 servizi sociali-anziani
+  
+  + 🟢 **Economia (Tessuto economico e aziende)**
+    + 🔴 Ricerca innovazione
+    - internazionalizzazione
+    - competitività turismo
+    - [startup innovative]
+    - [AI e automazione]
+
+
+
 ## Organizzazione del progetto
 [core content files]
 
@@ -54,27 +165,9 @@ Studying mission-relevant socio-economic data on Fondazione Cariparma's area of 
   - `demog-disab-data.qmd`: Documentation on demographic and disability data sources
   - `istat-data.qmd`: Documentation on ISTAT data sources and APIs
 
-## TODO
-
-### Continuità info sui 10 assi dello strategico 24-27
-
-  > ...quelli andranno tenuti sotto controll 
-
-+ 🔴 servizi sociali-disabilità
-+ 🟠 servizi sociali-anziani
-+ 🔴 ricerca innovazione
-+ ...
-
-#### Rivedere struttura e generazione dei grafici
-
-+ C'e' un po' casino perche quello che e' `data_output/` poi diventa `data_input/`, poi magari c'e' un plot che viene generato in analysis/ e salvato in plots/ e poi richiamato in dashboard/...
-
-### Obiettivo di fondo per Piano Strategico del 2028 (da fare nel 2027)
-
-  > D.A.: Quali sono delle criticità che emergono oggi che il PS 2024-27 non aveva? 
 
 
-### Temi
+## Temi
 
 #### DISABILITA'
 > OIS: L’Assegno Unico Universale (AUU) è un sostegno economico per le famiglie con figli a carico, garantito a tutti i nuclei indipendentemente dalla condizione: (...) **per i figli con disabilità, il beneficio è senza limiti di età**  
