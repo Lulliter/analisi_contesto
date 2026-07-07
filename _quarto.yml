@@ -5,6 +5,7 @@ project:
     - "/**/*.qmd"    # tutti i file .qmd (root or subfolders)
     - "!assets/parma_colours.qmd"
     - "!analysis/**/*.qmd"   # ma NON quelli nella sottocartella analysis/ xche sono intermedi
+    - "!ZZZ_old/**/*.qmd"   # e NON uelli cdella sottocartella zzz/
     - "!zzz/**/*.qmd"   # e NON uelli cdella sottocartella zzz/
     - "!**/zzz/**/*.qmd"  # per escludere qualsiasi zzz/ a qualunque profondità !!!!
     - "!source/**/*.qmd"   # source/ contiene doc interna sulle fonti, non pagine del sito

@@ -42,8 +42,8 @@ analysis/**/*_OLD.qmd
 .httr-oauth
 
 # Root outputs
-*.html
-*.docx
+/*.html
+/*.docx
 
 
 # ----------------- DATA FILES

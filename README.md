@@ -2,7 +2,7 @@
 
 ## Purpose of the project
 
-Studying mission-relevant socio-economic data on Fondazione Cariparma's area of reach: Parma and it province.
+Studying mission-relevant socio-economic data on Fondazione Cariparma's area of reach: Parma and its province.
 
 + Obiettivo di fondo per Piano Strategico del 2028? (da fare nel 2027):
 
@@ -45,14 +45,6 @@ Studying mission-relevant socio-economic data on Fondazione Cariparma's area of 
 
 + OIS sintesi posizionamento Prov PR su assi tematici (as of Dicembre 2025)
 
-CAPITALE NATURALE
-
-  + 🟢 **ambiente e nuove fonti energetiche**   
-    + Caratteristiche ambientali e cambiamenti climatici
-    + Qualità dell’ambiente e dei servizi ambientali
-    + Sicurezza ambientale
-    + Utilizzo di fonti rinnovabili
-
 CAPITALE UMANO
 
   + 🟢 **Popolazione e trend demografici**
@@ -61,7 +53,6 @@ CAPITALE UMANO
   + 🟢 **istruzione (e formazione)**
     + Livello d'istruzione
     + Processi formativi 
-  
   
 CAPITALE SOCIALE
 
@@ -74,7 +65,14 @@ CAPITALE SOCIALE
     + Consumi
     + reddito ( _"working poor"_ )
     + patrimonio
-  + ➡️ **Legalità e sicurezza** ( _"PArma messa male?/ Atlante di Genere?"_ )
+  + ➡️ **Inclusione sociale e vulnerabilità** ( _"incrociare dimensioni di esclusione e povertà"_)
+    + disabilità
+    + migranti
+    + povertà abitativa (🟡 condizione abitativa)
+    + povertà educativa
+    + povertà materiale
+    + sostegni economici alla fragilità
+  + ➡️ **Legalità e sicurezza** ( _"Parma messa male?/ Atlante di Genere?"_ )
     + Istituti di pena
     + Reati
     + Sicurezza
@@ -83,13 +81,7 @@ CAPITALE SOCIALE
     + Capitale relazionale
     + civismo e (partecipazione alla vita) politica
     + 🟢 (organizzazioni del) terzo settore
-  + ➡️ **Inclusione sociale e vulnerabilità** ( _"incrociare dimensioni di esclusione e povertà"_)
-    + disabilità
-    + migranti
-    + povertà abitativa (🟡 condizione abitativa)
-    + povertà educativa
-    + povertà materiale
-    + sostegni economici alla fragilità
+
 
 CAPITALE ECONOMICO-ISTITUZIONALE
 
@@ -107,11 +99,21 @@ CAPITALE ECONOMICO-ISTITUZIONALE
     + 🟡 servizi sociali-anziani
   
   + 🟢 **Economia (Tessuto economico e aziende)**
+    + Tessuto economico
     + 🔴 Ricerca innovazione
-    - internazionalizzazione
-    - competitività turismo
+    - Internazionalizzazione
+    - Competitività turismo
     - [startup innovative]
     - [AI e automazione]
+
+  
+CAPITALE NATURALE
+
+  + 🟢 **ambiente e nuove fonti energetiche**   
+    + Caratteristiche ambientali e cambiamenti climatici
+    + Qualità dell’ambiente e dei servizi ambientali
+    + Sicurezza ambientale
+    + Utilizzo di fonti rinnovabili
 
 
 
