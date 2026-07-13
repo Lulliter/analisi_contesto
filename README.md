@@ -8,7 +8,7 @@ Studying mission-relevant socio-economic data on Fondazione Cariparma's area of 
 
   > D.A.: Quali sono delle criticità che emergono oggi che il PS 2024-27 non aveva? (Tenendo sotto controllo i 10 assi tematici dello strategico)
 
-## TODO
+# TODO
  
 + Riorganizzazione del sito/progetto 
   + C'e' un po' casino perche quello che e' `data_output/` poi diventa `data_input/`, poi magari c'e' un plot che viene generato in analysis/ e salvato in plots/ e poi richiamato in dashboard/...
@@ -23,7 +23,8 @@ Studying mission-relevant socio-economic data on Fondazione Cariparma's area of 
   4. Bocconi ecc )
 
 + OIS sintesi posizionamento Prov PR su assi tematici (as of Dicembre 2025)
-  
+  [Legenda: Criticità bassa 🟢 | Criticità media 🟡 | Criticità alta 🔴]
+
   + 🟢 demografia
   + 🟢 economia
   + 🟡 servizi sociali-disabilità
@@ -37,13 +38,70 @@ Studying mission-relevant socio-economic data on Fondazione Cariparma's area of 
   + 🔴 ricerca innovazione
   + 🟢 terzo settore
 
-[Legenda: Criticità bassa 🟢 | Criticità media 🟡 | Criticità alta 🔴]
-  
++ OIS sintesi posizionamento Prov PR su assi tematici (as of Dicembre 2025)
 
+
+# Temi `interni`
+
++ **la valutazione d'impatto** 
+  1. in generale nel terzo settore
+  2. FCRPR 
+  3. i nostri Enti
+  
++ **AI e privacy**
+  1. in generale nel terzo settore
+  2. FCRPR 
+  3. i nostri Enti
+  
+ 
+## Temi `esterni` 
+
+#### TREND DEMOGRAFICI 
++ **piramide età** `data/data_out/istat_pop_com_ER_2023_AGE.rds`(FACETED x comune di ER) [https://rfortherestofus.com/2024/07/population-pyramid-part-1](https://rfortherestofus.com/2024/07/population-pyramid-part-1)
+
++ Territori marginalizzati // Mappe di ....
+  + 🟦 aggiungo layer `aree interne`
+  + 🟦 aggiungo layer `comunità montane`
+  + aggiungo layer `Distretti`
+
+> Andrea: però OKKIO perchè se vuoi mostrare la corrispondenza tra bisogni e territori, devi tener presente che molto di quelli che diamo a Parma (e.g. Ospedale, Università) poi serve in realtà tutta la prov. quindi non ci sarà una corrispondenza... 
+
+
+#### DISABILITA'
+> OIS: L’Assegno Unico Universale (AUU) è un sostegno economico per le famiglie con figli a carico, garantito a tutti i nuclei indipendentemente dalla condizione: (...) **per i figli con disabilità, il beneficio è senza limiti di età**  
+▪ L’importo dell’assegno associato alla presenza di figli con disabilità risulta più contenuto rispetto al dato nazionale**i nuclei con figli con disabilità, percepiscono un importo medio mensile inferiore a quello nazionale e regionale**
+
+
++ è vero che qui non c'è la presa in carico? (Elena Saccenti)
+  + [ReportER] ADI (x distretto)
+  + [ReportER] SMAC Disabili ≠ SMAC Anziani 
+  + [Inps] AUU - spaccato per "figli disabili"  
+  + [Istat Esplora Dati] https://esploradati.istat.it/databrowser/#/it/dw/categories/IT1,Z0800SSW,1.0/SSW_SOCSE/DCIS_SPESESERSOC1
+
+#### SANITA'
++ mobilità sanitaria
+  + fetta di stranieri
+  + in realta prima venivano di più di adesso... 
++ qualità 
++ liste d'attesa?
++ medici e infermieri? 
++ badanti che mancano dopo questa generazione non si troverannno più neanche quelle
+
+#### POVERTÀ ABITATIVA
+- case dlel'ospedale adesso vuote?
+- è un problema sia di quantità che di qualità
+
+#### LAVORO POVERO
+
+
+#### Imprenditorialità 
+
+- startup innovative
+- imprese sociali
+- AI e automazione
 
 ### Revision ex Intesa SanPaolo 
 
-+ OIS sintesi posizionamento Prov PR su assi tematici (as of Dicembre 2025)
 
 CAPITALE UMANO
 
@@ -117,6 +175,7 @@ CAPITALE NATURALE
 
 
 
+
 ## Organizzazione del progetto
 [core content files]
 
@@ -167,50 +226,4 @@ CAPITALE NATURALE
   - `demog-disab-data.qmd`: Documentation on demographic and disability data sources
   - `istat-data.qmd`: Documentation on ISTAT data sources and APIs
 
-
-
-## Temi
-
-#### DISABILITA'
-> OIS: L’Assegno Unico Universale (AUU) è un sostegno economico per le famiglie con figli a carico, garantito a tutti i nuclei indipendentemente dalla condizione: (...) **per i figli con disabilità, il beneficio è senza limiti di età**  
-▪ L’importo dell’assegno associato alla presenza di figli con disabilità risulta più contenuto rispetto al dato nazionale**i nuclei con figli con disabilità, percepiscono un importo medio mensile inferiore a quello nazionale e regionale**
-
-
-+ è vero che qui non c'è la presa in carico? (Elena Saccenti)
-  + [ReportER] ADI (x distretto)
-  + [ReportER] SMAC Disabili ≠ SMAC Anziani 
-  + [Inps] AUU - spaccato per "figli disabili"  
-  + [Istat Esplora Dati] https://esploradati.istat.it/databrowser/#/it/dw/categories/IT1,Z0800SSW,1.0/SSW_SOCSE/DCIS_SPESESERSOC1
-
-#### TREND DEMOGRAFICI 
-+ **piramide età** `data/data_out/istat_pop_com_ER_2023_AGE.rds`(FACETED x comune di ER) [https://rfortherestofus.com/2024/07/population-pyramid-part-1](https://rfortherestofus.com/2024/07/population-pyramid-part-1)
-
-+ Territori marginalizzati // Mappe di ....
-  + 🟦 aggiungo layer `aree interne`
-  + 🟦 aggiungo layer `comunità montane`
-  + aggiungo layer `Distretti`
-
-> Andrea: però OKKIO perchè se vuoi mostrare la corrispondenza tra bisogni e territori, devi tener presente che molto di quelli che diamo a Parma (e.g. Ospedale, Università) poi serve in realtà tutta la prov. quindi non ci sarà una corrispondenza... 
-
-#### SANITA'
-+ mobilità sanitaria
-  + fetta di stranieri
-  + in realta prima venivano di più di adesso... 
-+ qualità 
-+ liste d'attesa?
-+ medici e infermieri? 
-+ badanti che mancano dopo questa generazione non si troverannno più neanche quelle
-
-#### POVERTÀ ABITATIVA
-- case dlel'ospedale adesso vuote?
-- è un problema sia di quantità che di qualità
-
-#### LAVORO POVERO
-
-
-#### Imprenditorialità 
-
-- startup innovative
-- imprese sociali
-- AI e automazione
 

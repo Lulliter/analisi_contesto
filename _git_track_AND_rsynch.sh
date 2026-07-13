@@ -14,7 +14,7 @@
 # Rendi script eseguibile (una volta sola):
 #   chmod +x _git_track_AND_rsynch.sh
 #
-# Poi ogni volta, dalla cartella del repo:
+# ➡️ Poi ogni volta, dalla cartella del repo: ⬅️
 #   ./_git_track_AND_rsynch.sh
 
 # ── VARIABILI (modifica qui se cambia la destinazione) ────────────────
@@ -77,6 +77,18 @@ mkdir -p "$DST"
 # -a = preserva permessi e timestamp, -v = verbose
 # --delete = rimuove nella destinazione i file eliminati nell'origine
 rsync -av --delete "$SRC" "$DST"
+
+# ── Verifica integrità: confronta checksum origine/destinazione ──────
+echo ""
+echo "── verifica integrità copia ──"
+if rsync -rnc --out-format='%n' "$SRC" "$DST" | grep -v '/$' | grep -q .; then
+    echo "ATTENZIONE: file diversi tra origine e destinazione dopo la copia:"
+    rsync -rnc --out-format='%n' "$SRC" "$DST" | grep -v '/$'
+    echo "Rilancia lo script o ricopia i file elencati."
+    exit 1
+else
+    echo "OK: tutti i file verificati (checksum identici)."
+fi
 
 # Rimuove il flag "hidden" che macOS aggiunge sui volumi SMB
 chflags -R nohidden "$DST"
