@@ -20,61 +20,48 @@
 
 # ----------------- AI
 CLAUDE.md
+CLAUDE_TODO.md
 .claude/**/*
 .positai
 
 # ----------------- QUARTO WEBSITE
 .quarto/
-/.quarto/
 _site/
 _freeze/
-_quarto/
 *_files/
+# ...ma il sito renderizzato in docs/ va tracciato TUTTO (GitHub Pages)
+!docs/**
 
-# ----------------- OLD
-ZZZ_old/*
-dashboard/ZZZ_old/*
-analysis/ZZZ_old/*
-analysis/**/*_OLD.qmd
-
-# ----------------- Personal
-# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
-.httr-oauth
-
-# Root outputs
+# Root outputs (render di README.md ecc.)
 /*.html
 /*.docx
 
-
-# ----------------- DATA FILES
-
-# ----- INPUT data
-# Ignore everything under data_in bc may be very BIG ...
-data/data_in/**/*
-# ...BUT Keep Markdown and PDF files anywhere inside data_in
-!data/data_in/**/*.md
-!data/data_in/**/*.pdf
+# ----------------- DATI (vedi CLAUDE_TODO.md)
+# grezzi: ignora file grandi, tieni note md/pdf e .gitkeep
+dati/grezzi/**/*
+!dati/grezzi/**/*.md
+!dati/grezzi/**/*.pdf
+!dati/grezzi/**/.gitkeep
+# puliti: ignora rds grandi, tieni note md e .gitkeep
+dati/puliti/**/*
+!dati/puliti/**/*.md
+!dati/puliti/**/.gitkeep
+# moduli/*/output/: si tracciano png/csv/blurb (leggeri), NON i .rds
+# (oggetti ggplot/sf con dentro i dati: 4+ MB l'uno, rigenerabili dagli script)
+moduli/*/output/*.rds
 # OKKIO:
-# ------ `/**/*.md` matches Markdown files at ANY depth under data/data_in/
-# ------ `/*.md` matches Markdown files at 1st level under data/data_in/
+# ------ `/**/*.md` matches Markdown files at ANY depth
+# ------ `/*.md` matches Markdown files at 1st level only
 
-# ----- OUTPUT data
-# Ignore everything under data/data_out/ bc may be very BIG ...
-data/data_out/**/*
-# ...BUT Keep Markdown and PDF files anywhere inside data_in
-!data/data_out/**/*.md
-!data/data_out/**/*.pdf
-
-
-# ----- OUTPUT objects for DASHBOARD (keep)
-!data/maps/**/*
-!data/plots/**/*
-
+# ----------------- Archivio (se ricreato durante la migrazione)
+ZZZ_old/
+**/ZZZ_old/
 
 # ----------------- Personal
 # OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
 .httr-oauth
 
 # ----------------- Unnecessary
-ZZZ_old/**/*.*
 **/*.quarto_ipynb
+
+/.quarto/

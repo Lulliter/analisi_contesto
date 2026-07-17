@@ -1,4 +1,18 @@
 # Parma Colours ----
+#
+# CONVENZIONE SEMANTICA (decisa 2026-07-17, usare coerentemente nei grafici):
+#   verde   = giovani / minori
+#   rosso   = anziani / invecchiamento
+#   viola   = stranieri / migrazioni
+#   blu     = densità, popolazione totale, temi neutri
+#   arancio = disponibile (non ancora assegnato)
+#   bordeaux (burg_*) = evidenziazione Parma
+#   piramidi: maschi = azzurro pallido, femmine = rosa (stile repo pre-2026;
+#             hex approssimati — sostituire qui se si ritrovano gli originali)
+
+sesso_m_pal <- "#a8c6df"   # azzurro pallido (Maschi)
+sesso_f_pal <- "#f2b8c6"   # rosa (Femmine)
+blu_piramide <- "#a8c6df"  # azzurro per eventuali piramidi monocrome
 
 blu_sc <- "#033c55"
 blu_md <- "#005d82"
@@ -16,6 +30,8 @@ ylw_sc <- "#9f7d35"
 ylw_md <- "#d9b942"
 ylw_lg <- "#f7da7b"
 
+
+blu_piramide <- "#6B8FAD"   # blu tenue delle piramidi d'età (da input_bilancio_missione)
 
 grey_extrlight <- "#FDFBF7"
 grey_m <- "#d3d3d3"
@@ -74,6 +90,18 @@ seq_factor_purple <- c(
   '#807dba',
   '#6a51a3',
   '#4a1486'
+)
+
+seq_dummy_orange <- c('#fee6ce', '#fdae6b', '#e6550d')
+seq_factor_orange <- c(
+  '#fff5eb',
+  '#fee6ce',
+  '#fdd0a2',
+  '#fdae6b',
+  '#fd8d3c',
+  '#f16913',
+  '#d94801',
+  '#8c2d04'
 )
 
 seq_dummy_grey <- c('#f0f0f0', '#bdbdbd', '#636363')

@@ -32,18 +32,10 @@ execute:
 
 Ogni pagina rappresenta **un modulo tematico** in cui si approfondisce un aspetto rilevante per avere una visione più completa dei bisogni del territorio.
 
-In questa sezione si osservano:
 
-1. L'analisi dei `trend demografici` (**ISTAT 2002-2025**), integrata con i dati comunali del **Censimento 2023** e gli `indici sintetici di fragilità` (Calcolati dalla **Regione ER**), mostra come Parma abbia un profilo demografico piuttosto distintivo rispetto alla media regionale e nazionale, con alcune implicazioni rilevanti per la programmazione dei servizi sociali.  
-
-2. Analisi (**ISTAT e EHIS**) su specifici indicatori di `fragilità negli anziani`:
-  + a) Indicatore sulla `disabilità` ≈ _GALI_ (_Global Activity Limitation Indicator_) è una misura più generale di disabilità
-  + b) Indicatori sulla `non autosufficienza in attività quotidiane` ≈ _ADL /IADL_ (_Activities of Daily Living_ / _Instrumental Activities of Daily Living_) sono misure più specifiche (e operative)  delle limitazioni nelle attività quotidiane di cura della persona e/o di interazione con la realtà e la comunità.
-   
 ::: {.callout-important  collapse="true"}
 ## Nota
-I dati sulla domanda di servizi sociali e sanitari sono spesso frammentati, non aggiornati e/o non disponibili a livello comunale.
-
+cccccc
 <!-- I dati raccolti fin qui sono disponibili **solo a livello regionale**, ma, sulla base dei trend demografici provinciali, dove Parma mostra una popolazione anziana leggermente inferiore alla media regionale, è ragionevole ipotizzare che l'incidenza della disabilità a Parma possa essere **leggermente inferiore alla media regionale**.  -->
 
 <!-- Tuttavia, **sono necessari dati locali più specifici** (es. AUSL Parma, certificazioni L.104) per quantificare con precisione la domanda assistenziale sul territorio parmense. -->

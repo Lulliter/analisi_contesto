@@ -2,24 +2,20 @@ project:
   type: website
   output-dir: docs # to publish website on GithubPages
   render:
-    - "/**/*.qmd"    # tutti i file .qmd (root or subfolders)
-    - "!assets/parma_colours.qmd"
-    - "!analysis/**/*.qmd"   # ma NON quelli nella sottocartella analysis/ xche sono intermedi
-    - "!ZZZ_old/**/*.qmd"   # e NON uelli cdella sottocartella zzz/
-    - "!zzz/**/*.qmd"   # e NON uelli cdella sottocartella zzz/
-    - "!**/zzz/**/*.qmd"  # per escludere qualsiasi zzz/ a qualunque profondità !!!!
-    - "!source/**/*.qmd"   # source/ contiene doc interna sulle fonti, non pagine del sito
-    - "!presentazione/**/*.qmd"   # slide standalone (revealjs), non pagine del sito
+    # Lista esplicita ("whitelist"): si renderizza SOLO la home e le pagine di sito/
+    - index.qmd
+    - "sito/**/*.qmd"
+    # NB: dashboard/ (vecchia struttura, in migrazione verso moduli/ + sito/) e
+    #     moduli/ (script R + blurb.md, niente qmd) restano fuori dal sito.
     # NB: i file che iniziano con "_" (es. R/_fonts.qmd) sono partial di Quarto e
     #     non vengono renderizzati per convenzione.
 
 website:
-  bread-crumbs: true   
+  bread-crumbs: true
   title: "Parma analisi di contesto"
   description: "A dashboard for Parma, Italy"
   site-url: "https://lulliter.github.io/analisi_contesto/"
   # favicon: assets/favicon.ico
-    # favicon: images/net2.png
   search: false # no magnifier on navbar
   # # BANNER (icone vedi https://icons.getbootstrap.com/)
   # announcement:
@@ -37,31 +33,24 @@ website:
     right: |
       Made with {{< fa brands r-project >}} and [Quarto](https://quarto.org/) <br>
       [Code at {{< fa brands github >}} GitHub](https://github.com/Lulliter/analisi_contesto)
-#      Made with {{< fa brands r-project >}} and ![]({{< var quarto-icon >}}){width=75px} <br> 
     background: "#E5EBEE"
-  
-# --- Structure of the navbar (opzione A: temi direttamente in navbar)
+
+# --- Navbar: Home + una voce per tema, da aggiungere man mano che sito/temi/ si popola
   navbar:
     search: false
     pinned: true
     left:
       - text: Home
         href: index.qmd
-      - text: "Trend Demografici"
-        href: dashboard/demographic_trends/index.qmd
-      - text: "Disabilità"
-        href: dashboard/disability/index.qmd
-      - text: "Non autosufficienza"
-        href: dashboard/non_autosufficienza/index.qmd
-      - text: "Servizi Sociali"
-        href: dashboard/serv_soc/index.qmd
-      - text: "BES"
-        href: dashboard/bes/index.qmd
-
+      # Voci da riattivare quando le pagine esistono, es.:
+      # - text: "Trend Demografici"
+      #   href: sito/temi/trend_demografici.qmd
+      # - text: "Disabilità"
+      #   href: sito/temi/disabilita.qmd
     right:
       - text: "Progetti Osservatorio"
         icon: database-fill-up #info-circle
-        href: https://osservatorio.fondazionecrp.it/      
+        href: https://osservatorio.fondazionecrp.it/
       - icon: github
         aria-label: github
         href: https://github.com/Lulliter/analisi_contesto
@@ -72,7 +61,6 @@ format:
     toc: true
     css: assets/styles/custom.css
     # theme: cosmo
-    # # theme: styles/parma-theme.scss
     # highlight-style: github
     # mainfont: "Lato"
     # monofont: "Fira Mono"
@@ -80,7 +68,7 @@ format:
 # --- Default options for tbl and fig captions location (top)
 fig-cap-location: top
 tbl-cap-location: top
-      
+
 # --- Important bc Pandoc’s default resource-path is the directory of each input file
 # Let pages see files in the project root (.) and the bib folder explicitly
 resource-path: [".", "bib"]
