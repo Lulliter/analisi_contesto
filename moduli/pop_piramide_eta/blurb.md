@@ -2,7 +2,7 @@
 
 **Fonte:** ISTAT — Censimento permanente della popolazione, edizione 2024
 (singole età aggregate in classi quinquennali; via API SDMX, vedi
-`dati/grezzi/istat_cens/_meta.md`)
+`dati/grezzi/istat_cens/_metadati.md`)
 **Anno dati:** 2024
 **Ultimo aggiornamento:** 2026-07-17
 **Output principali:** `output/piramide_pr_vs_er|pr_vs_it|er_vs_it.png/.rds`

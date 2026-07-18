@@ -73,7 +73,7 @@ istat_shp_get <- function(istat_sh_path, anno = "2026", generalizzata = TRUE) {
   mancanti <- paths[!file.exists(paths)]
   if (length(mancanti) > 0) {
     stop("File shapefile non trovati:\n", paste("-", mancanti, collapse = "\n"),
-         "\nControlla anno/versione o scarica l'annata (vedi _meta.md).")
+         "\nControlla anno/versione o scarica l'annata (vedi _metadati.md).")
   }
 
   comuni_ita       <- read_shp_utf8(comuni_path)

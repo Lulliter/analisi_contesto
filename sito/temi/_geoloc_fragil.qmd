@@ -1,0 +1,184 @@
+---
+title: "Geolocalizzazione della fragilità sul territorio provinciale"
+# subtitle: "(Dati aggiornati a Luglio 2026, estratti da ISTAT)"
+date: last-modified
+date-format: "DD-MMMM-YYYY"
+lang: it
+
+format:
+  html:
+    # theme: flatly
+    toc: true
+    toc-depth: 2
+    toc-location: left
+    # toc-title: "Indice"
+    include-in-header:
+      - text: |
+          <style>
+          section.level3.notitle h3 {
+            display: none !important;
+          }
+          </style>
+
+execute:
+  eval: true
+  echo: false # x mostrare codice anche in file docx
+  warning: false
+  error: false
+  output: false
+  
+# bibliography: ../../bib/CRP_analisi_contesto.bib
+# suppress-bibliography: false
+---
+
+<!-- BOZZA migrazione 2026-07-18: adattata da dashboard/demographic_trends/index.qmd
+     (vecchio repo, fino alla sezione "Indici sintetici" esclusa).
+     I plot rds vengono da moduli/demo_trend_indicatori/output/. -->
+
+```{r}
+#| label: setup
+library(here)
+library(dplyr)
+library(tibble)
+library(flextable)
+library(glue)
+library(ggplot2)
+library(ggiraph)
+library(ggtext) # registra element_textbox usato nel theme dei plot dei moduli
+library(DT)     # tabelle interattive con bottoni di download
+library(tidyr)  # pivot_wider per la vista "larga"
+
+# Tabella "larga" (territori in riga, anni in colonna) dal csv salvato dal
+# modulo, con bottoni Copy/CSV/Excel. Il csv resta "lungo" in output/.
+f_tabella_dati <- function(nome_plot) {
+  csv_path <- here::here("moduli", "demo_trend_indicatori", "output",
+                         paste0(nome_plot, ".csv"))
+  read.csv(csv_path, check.names = FALSE) |>
+    tidyr::pivot_wider(id_cols = territorio, names_from = anno,
+                       values_from = valore) |>
+    DT::datatable(
+      rownames = FALSE,
+      extensions = "Buttons",
+      options = list(
+        dom = "Bt", # solo bottoni + tabella (niente barra di ricerca)
+        buttons = c("copy", "csv", "excel"),
+        scrollX = TRUE,
+        paging = FALSE
+      )
+    )
+}
+```
+
+<!-- # Introduzione -->
+
+<!-- ::: {.callout-warning} -->
+
+<!-- DA RIVEDERE...  -->
+
+<!--   -   nesso con PS 2024-2027: -->
+<!--   -   Linee Azione ....... -->
+
+<!-- ::: -->
+
+
+<!-- > lo spirito generale era spostarsi da beneficienza a filantropia (investimento su una visione) -->
+
+<!-- che però non può che non partire dal bisogno reale -->
+
+
+# Geolocalizzazione della fragilità sul territorio provinciale
+
+::: {.callout-warning}
+## Sezione in migrazione
+Le mappe di questa sezione (over70/under30 per grado di urbanizzazione e zona
+altimetrica) non sono ancora state migrate a un modulo (candidati:
+`pop_mappe_tematiche` o il futuro `mappe_territori`). I chunk sono `eval: false`
+finché i rds non saranno rigenerati.
+:::
+
+
+<!-- OKKIO: queste mappe sono generate in `analysis/02_base_maps.qmd` -->
+
+Il quadro demografico provinciale evidenzia alcune peculiarità rispetto alla media regionale e nazionale, ma può nascondere alcune significative differenze interne al territorio.  
+Di seguito sono presentati alcuni dati provenienti dall'ultimo censimento della popolazione (2023), osservati a livello comunale e incrociati con delle classificazioni territoriali (zona altimetrica e grado di urbanizzazione).
+
+### map_urb_over60 [% over60 v grado urbanizz] {.notitle}
+
+```{r}
+#| label: map_urb_over60
+#| eval: false
+#| output: true
+#| fig-width: 9
+#| fig-height: 7
+
+map_urb_Over70 <- readRDS(
+  file = here::here("data", "maps", "map_urb_Over70.rds")
+)
+
+map_urb_over70_interactive <- girafe(ggobj = map_urb_Over70)
+map_urb_over70_interactive
+```
+
+::: {.callout-note collapse="true"}
+## Osservazioni
+
+**La distribuzione territoriale della popolazione anziana** (over 70 anni) mostra una significativa **eterogeneità tra i comuni della provincia**. I comuni di montagna e collina presentano generalmente percentuali più elevate di popolazione anziana, evidenziando aree di potenziale fragilità che richiedono servizi socio-sanitari dedicati.
+::: 
+
+### Popolazione giovane (under 30) {.notitle}
+```{r}
+#| label: map_urb_Under30
+#| eval: false
+#| output: true
+#| fig-width: 9
+#| fig-height: 7
+
+map_urb_Under30 <- readRDS(
+  file = here::here("data", "maps", "map_urb_Under30.rds")
+)
+
+map_urb_Under30_interactive <- girafe(ggobj = map_urb_Under30)
+map_urb_Under30_interactive
+```
+
+::: {.callout-note collapse="true"}
+## Osservazioni
+
+**La popolazione giovane** (under 30 anni) presenta una **distribuzione territoriale speculare rispetto agli anziani**. I comuni urbani e di pianura tendono ad avere percentuali più elevate di giovani, mentre le aree interne mostrano un progressivo svuotamento della componente giovanile. Questo squilibrio generazionale rappresenta una sfida per la sostenibilità demografica ed economica delle comunità montane e collinari.
+:::
+
+***
+
+### Confronto geografico per zona altimetrica {.notitle}
+
+```{r}
+#| label: map_alt_under30_fac
+#| eval: false
+#| output: true
+#| fig-width: 9
+#| fig-height: 14
+
+
+map_alt_over70_fac <- readRDS(
+  file = here::here("data", "maps", "map_alt_over70_fac.rds")
+)
+map_alt_under30_fac <- readRDS(
+  file = here::here("data", "maps", "map_alt_under30_fac.rds")
+)
+
+library(patchwork)
+# Combine ggplot objects BEFORE converting to girafe
+combined_maps <- map_alt_over70_fac / map_alt_under30_fac
+
+# Convert combined plot to interactive
+girafe(ggobj = combined_maps)
+
+```
+
+::: {.callout-note collapse="true"}
+## Osservazioni
+**Il confronto per zona altimetrica** evidenzia chiaramente come **la geografia condizioni la struttura demografica**. Le zone montane presentano percentuali di anziani significativamente superiori e percentuali di giovani inferiori rispetto alle zone di pianura. Questa **doppia fragilità demografica** (invecchiamento e denatalità) delle aree montane richiede politiche territoriali mirate per contrastare lo spopolamento e sostenere i servizi essenziali nelle comunità più isolate.
+
+:::
+
+***

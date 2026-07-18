@@ -10,6 +10,9 @@ project:
     # NB: i file che iniziano con "_" (es. R/_fonts.qmd) sono partial di Quarto e
     #     non vengono renderizzati per convenzione.
 
+execute:
+  freeze: auto # ri-esegue solo le pagine modificate (risultati in _freeze/)
+
 website:
   bread-crumbs: true
   title: "Parma analisi di contesto"
@@ -42,9 +45,11 @@ website:
     left:
       - text: Home
         href: index.qmd
-      # Voci da riattivare quando le pagine esistono, es.:
-      # - text: "Trend Demografici"
-      #   href: sito/temi/trend_demografici.qmd
+      - text: "Trend Demografici"
+        href: sito/temi/trend_demogr.qmd
+      - text: "Scuola e istruzione"
+        href: sito/temi/scuola.qmd
+     # Voci da riattivare quando le pagine esistono, es.:
       # - text: "Disabilità"
       #   href: sito/temi/disabilita.qmd
     right:

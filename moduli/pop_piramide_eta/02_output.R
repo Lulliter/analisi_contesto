@@ -16,13 +16,14 @@ library(scales)
 library(stringr)
 
 source(here("R", "_parma_colors.R"))
+source(here("R", "f_caption_fonte.R"))
 
 # Parametri ---------------------------------------------------------------
 dir_mod <- here("moduli", "pop_piramide_eta")
 
 piramidi_df <- readRDS(file.path(dir_mod, "output", "piramidi_df.rds"))
 
-FONTE <- "Fonte: ISTAT, Censimento permanente della popolazione 2024"
+FONTE <- f_caption_fonte("ISTAT, Censimento permanente della popolazione 2024")
 COL_SESSO <- c(Maschi = sesso_m_pal, Femmine = sesso_f_pal)  # azzurro pallido / rosa (da _parma_colors.R)
 FILL_PIRAMIDE <- blu_piramide   # monocroma, come le piramidi storiche di Luisa
 
@@ -52,7 +53,9 @@ f_piramide <- function(cod_target, cod_confronto) {
     geom_col(data = df_c, fill = NA, colour = "grey35",
              linewidth = 0.35, width = 0.85) +
     geom_vline(xintercept = 0, colour = "white", linewidth = 0.2) +
-    scale_x_continuous(labels = function(x) percent(abs(x), accuracy = 0.5),
+    # scales:: esplicito: il plot salvato come rds deve stampare anche in
+    # sessioni dove scales non è caricato (es. render delle pagine di sito)
+    scale_x_continuous(labels = function(x) scales::percent(abs(x), accuracy = 0.5),
                        breaks = breaks_pretty(n = 9)) +
     scale_fill_manual(values = COL_SESSO, name = NULL) +
     labs(
@@ -60,13 +63,13 @@ f_piramide <- function(cod_target, cod_confronto) {
       subtitle = paste0("Barre piene: ", lbl_t, " · Contorno: ", lbl_c),
       x = "% della popolazione del territorio", y = NULL, caption = FONTE
     ) +
-    theme_minimal() +
+    theme_minimal(base_size = 13) +
     theme(
       panel.grid.major.y = element_blank(),
       panel.grid.minor   = element_blank(),
       legend.position    = "top",
-      plot.subtitle      = element_text(size = 9, colour = "grey30"),
-      plot.caption       = element_text(hjust = 0, size = 7, colour = "grey30")
+      plot.subtitle      = element_text(size = 10, colour = "grey30"),
+      plot.caption       = element_text(hjust = 0, size = 8, colour = "grey30")
     )
 }
 
@@ -85,7 +88,7 @@ f_piramide_cittadinanza <- function(cod_territorio) {
     geom_col(aes(fill = sesso_lbl), width = 0.85) +
     geom_vline(xintercept = 0, colour = "white", linewidth = 0.2) +
     facet_wrap(vars(cittadinanza_lbl), nrow = 1) +
-    scale_x_continuous(labels = function(x) percent(abs(x), accuracy = 1),
+    scale_x_continuous(labels = function(x) scales::percent(abs(x), accuracy = 1),
                        breaks = breaks_pretty(n = 6)) +
     scale_fill_manual(values = COL_SESSO, name = NULL) +
     labs(
@@ -93,14 +96,14 @@ f_piramide_cittadinanza <- function(cod_territorio) {
       subtitle = "Si confrontano le forme, non le taglie",
       x = "% della popolazione di ciascun gruppo", y = NULL, caption = FONTE
     ) +
-    theme_minimal() +
+    theme_minimal(base_size = 13) +
     theme(
       panel.grid.major.y = element_blank(),
       panel.grid.minor   = element_blank(),
       legend.position    = "top",
-      plot.subtitle      = element_text(size = 9, colour = "grey30"),
+      plot.subtitle      = element_text(size = 10, colour = "grey30"),
       strip.text         = element_text(face = "bold"),
-      plot.caption       = element_text(hjust = 0, size = 7, colour = "grey30")
+      plot.caption       = element_text(hjust = 0, size = 8, colour = "grey30")
     )
 }
 

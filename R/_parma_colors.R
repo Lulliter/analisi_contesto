@@ -6,37 +6,42 @@
 #   viola   = stranieri / migrazioni
 #   blu     = densità, popolazione totale, temi neutri
 #   arancio = disponibile (non ancora assegnato)
-#   bordeaux (burg_*) = evidenziazione Parma
-#   piramidi: maschi = azzurro pallido, femmine = rosa (stile repo pre-2026;
-#             hex approssimati — sostituire qui se si ritrovano gli originali)
+#   bordeaux (burg_*) = evidenziazione Parma (mappe)
+#   serie territoriali (trend): Parma = ylw_lg, ER = grn_md, Italia = blu_md
+#   piramidi: maschi = azzurro, femmine = rosa antico
+#
+# NB 2026-07-18: hex allineati alla palette del repo BILANCIO DI MISSIONE
+# (gialli e grigi aggiornati; maschi/femmine sono gli hex originali che
+# la nota pre-2026 chiedeva di ritrovare)
 
-sesso_m_pal <- "#a8c6df"   # azzurro pallido (Maschi)
-sesso_f_pal <- "#f2b8c6"   # rosa (Femmine)
-blu_piramide <- "#a8c6df"  # azzurro per eventuali piramidi monocrome
+maschi <- "#6B8FAD"        # azzurro (Maschi)
+femmine <- "#C47A87"       # rosa antico (Femmine)
+sesso_m_pal <- maschi      # alias usati da pop_piramide_eta
+sesso_f_pal <- femmine
+blu_piramide <- "#6B8FAD"  # azzurro per eventuali piramidi monocrome
 
 blu_sc <- "#033c55"
-blu_md <- "#005d82"
+blu_md <- "#005d82"        # territorio = "Italia"
 blu_lg <- "#5582a7"
 
 grn_sc <- "#246864"
-grn_md <- "#539d90"
+grn_md <- "#539d90"        # territorio = "Emilia-Romagna"
 grn_lg <- "#8eb9b1"
 
 pur_sc <- "#553c64"
 pur_md <- "#805f95"
 pur_lg <- "#9a8da3"
 
-ylw_sc <- "#9f7d35"
-ylw_md <- "#d9b942"
-ylw_lg <- "#f7da7b"
+ylw_sc <- "#b27d2c"
+ylw_md <- "#d9a44a"
+ylw_lg <- "#f0c166"        # territorio = "Parma"
 
-
-blu_piramide <- "#6B8FAD"   # blu tenue delle piramidi d'età (da input_bilancio_missione)
-
+grey_extra_sc <- "#4F4F4F"
+grey_sc <- "#808080"
+grey_md1 <- "#A9A9A9"
+grey_md2 <- "#D3D3D3"
+grey_m <- "#d3d3d3"        # alias storico di grey_md2 (usato nelle mappe)
 grey_extrlight <- "#FDFBF7"
-grey_m <- "#d3d3d3"
-grey_sc <- "#a9a9a9"
-
 
 burg_sc <- "#5C2129"
 burg_md <- "#873C4A"

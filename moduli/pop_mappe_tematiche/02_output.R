@@ -20,6 +20,12 @@ library(ggplot2)
 library(scales)
 
 source(here("R", "_parma_colors.R"))
+source(here("R", "f_caption_fonte.R"))
+# funzioni-mappa promosse a R/ il 2026-07-18 (2° utilizzatore: scuola_iscritti)
+source(here("R", "f_aggiungi_classe.R"))
+source(here("R", "f_disegna_mappa.R"))
+source(here("R", "f_salva_mappa.R"))
+source(here("R", "f_pal5.R"))
 
 # Parametri ---------------------------------------------------------------
 dir_mod <- here("moduli", "pop_mappe_tematiche")
@@ -28,18 +34,11 @@ pop_mappe_sf    <- readRDS(file.path(dir_mod, "output", "pop_mappe_sf.rds"))
 er_provincie_sf <- readRDS(here("dati", "puliti", "istat_shp", "ER_provincie_sf.rds"))
 parma_prov_sf   <- filter(er_provincie_sf, COD_PROV %in% c("34", 34))
 
-FONTE <- paste0("Fonte: ISTAT, Censimento permanente della popolazione 2024;\n",
-                "confini ISTAT al 01/01/2026 (versione generalizzata)")
+FONTE <- f_caption_fonte(paste0("ISTAT, Censimento permanente della popolazione 2024;\n",
+                                "confini ISTAT al 01/01/2026 (versione generalizzata)"))
 
 # --- 1) Classi a quintili calcolate sull'ER ----------------------------------
-f_aggiungi_classe <- function(df_sf, var, label_fun) {
-  brks <- quantile(df_sf[[var]], probs = seq(0, 1, 0.2), na.rm = TRUE)
-  df_sf |>
-    mutate("classe_{var}" := cut(
-      .data[[var]], breaks = brks, include.lowest = TRUE,
-      labels = paste(label_fun(head(brks, -1)), label_fun(tail(brks, -1)),
-                     sep = " – ")))
-}
+# (f_aggiungi_classe: ora in R/)
 
 lab_pct <- label_percent(accuracy = 0.1)
 lab_num <- label_number(accuracy = 1, big.mark = ".")
@@ -67,36 +66,18 @@ if (file.exists(file_dett)) {
 pr_bordo_sf <- pr_comuni_sf |> summarise()
 
 # --- 2) Funzioni di disegno ---------------------------------------------------
-# base comune (usata da f_mappa_er e f_mappa_pr)
-f_disegna_mappa <- function(df_comuni, df_prov, var, titolo, palette5,
-                          sottotitolo = NULL, caption = FONTE,
-                          df_evidenzia = parma_prov_sf) {
-  ggplot() +
-    geom_sf(data = df_comuni, aes(fill = .data[[paste0("classe_", var)]]),
-            color = grey_sc, linewidth = 0.1) +
-    geom_sf(data = df_prov, fill = NA, color = "#525252", linewidth = 0.2) +
-    geom_sf(data = df_evidenzia, fill = NA, color = burg_md, linewidth = 0.6) +
-    scale_fill_manual(values = palette5, na.value = grey_m,
-                      name = NULL, drop = FALSE) +
-    labs(title = titolo, subtitle = sottotitolo, caption = caption) +
-    theme_minimal() +
-    theme(
-      axis.text    = element_blank(),
-      axis.title   = element_blank(),
-      axis.ticks   = element_blank(),
-      panel.grid   = element_blank(),
-      plot.caption = element_text(hjust = 0, size = 7, colour = "grey30")
-    )
-}
+# (f_disegna_mappa: ora in R/; qui restano solo i wrapper er/pr)
 
 # versione ER: tutti i comuni, tutte le province
 f_mappa_er <- function(var, titolo, palette5) {
   f_disegna_mappa(
     df_comuni = pop_mappe_sf,
     df_prov   = er_provincie_sf,
-    var       = var,
-    titolo    = paste0(titolo, " — comuni ER"),
-    palette5  = palette5
+    var          = var,
+    titolo       = paste0(titolo, " — comuni ER"),
+    palette5     = palette5,
+    caption      = FONTE,
+    df_evidenzia = parma_prov_sf
   )
 }
 
@@ -108,22 +89,16 @@ f_mappa_pr <- function(var, titolo, palette5) {
     var          = var,
     titolo       = paste0(titolo, " — provincia di Parma"),
     palette5     = palette5,
+    caption      = FONTE,
     sottotitolo  = "Classi calcolate sui quintili dell'Emilia-Romagna",
     df_evidenzia = pr_bordo_sf
   )
 }
 
-# salvataggio (png per riuso rapido + rds per ricomposizione nel sito)
-f_salva_mappa <- function(mappa, nome_file) {
-  ggsave(file.path(dir_mod, "output", paste0(nome_file, ".png")),
-         mappa, width = 8, height = 6, dpi = 300, bg = "white")
-  saveRDS(mappa, file.path(dir_mod, "output", paste0(nome_file, ".rds")))
-  message("Salvata: ", nome_file)
-}
+# (f_salva_mappa: ora in R/)
 
 # --- 3) Definizione degli indicatori -----------------------------------------
-# palette a 5 colori estratte dalle sequenziali di _parma_colors.R
-f_pal5 <- function(seq8) seq8[c(2, 3, 5, 6, 8)]
+# palette a 5 colori: f_pal5 ora in R/
 
 indicatori <- tibble::tribble(
   ~var,              ~titolo,                                            ~palette5,
@@ -138,5 +113,5 @@ indicatori <- tibble::tribble(
 mappe_er <- indicatori |> pmap(f_mappa_er) |> set_names(indicatori$var)
 mappe_pr <- indicatori |> pmap(f_mappa_pr) |> set_names(indicatori$var)
 
-iwalk(mappe_er, function(m, nm) f_salva_mappa(m, paste0("mappa_", nm, "_er")))
-iwalk(mappe_pr, function(m, nm) f_salva_mappa(m, paste0("mappa_", nm, "_pr")))
+iwalk(mappe_er, function(m, nm) f_salva_mappa(m, paste0("mappa_", nm, "_er"), dir_out = file.path(dir_mod, "output")))
+iwalk(mappe_pr, function(m, nm) f_salva_mappa(m, paste0("mappa_", nm, "_pr"), dir_out = file.path(dir_mod, "output")))

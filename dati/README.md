@@ -17,11 +17,11 @@ Il terzo livello ("data_out") non esiste come cartella centrale: ogni modulo in
   L'anno nel nome solo per edizioni chiuse (censimenti, survey), mai per serie correnti.
 - File grezzi: **mai rinominati, mai modificati a mano** — tengono il nome originale
   del download; le correzioni le fa il codice del modulo.
-- Ogni cartella ha un `_meta.md` (copiare [`grezzi/_template_meta.md`](grezzi/_template_meta.md)):
+- Ogni cartella ha un `_metadati.md` (copiare [`grezzi/_template_metadati.md`](grezzi/_template_metadati.md)):
   fonte, URL, come riscaricare, data download, periodo, note/insidie, storico.
   I file grossi sono gitignorati, gli `.md` no → i metadati sono l'unica memoria
   versionata di cosa c'è (e come riottenerlo).
 - Aggiornamento annuale: nuovo rilascio che sostituisce la serie → sovrascrivi il file;
   annata che si aggiunge → il nuovo file convive col vecchio. In entrambi i casi
-  aggiornare "Storico aggiornamenti" nel `_meta.md`.
+  aggiornare "Storico aggiornamenti" nel `_metadati.md`.
 

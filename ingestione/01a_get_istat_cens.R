@@ -9,7 +9,7 @@
 #         (stessa ricetta, ~10x righe): se servono, scrivere un 01c che punta lì.
 #
 # NB storico (2026-07-17): il tentativo col dataflow "popolazione residente"
-# 22_289_DF_DCIS_POPRES1_24 è un vicolo cieco — vedi dati/grezzi/istat_cens/_meta.md.
+# 22_289_DF_DCIS_POPRES1_24 è un vicolo cieco — vedi dati/grezzi/istat_cens/_metadati.md.
 #
 # Output: dati/grezzi/istat_cens/istat_cens_pop_com_er_<anno>.rds (grezzo API)
 # Quando: una volta l'anno → aggiornare ANNO_CENS e rilanciare

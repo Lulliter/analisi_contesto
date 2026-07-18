@@ -1,0 +1,308 @@
+---
+title: "Scuola e formazione nella provincia di Parma"
+subtitle: "Iscritti, presenze straniere e geografia scolastica (dati MIM, a.s. 2015/16-2024/25)"
+date: last-modified
+date-format: "DD-MMMM-YYYY"
+lang: it
+
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+    include-in-header:
+      - text: |
+          <style>
+          section.level3.notitle h3 {
+            display: none !important;
+          }
+          </style>
+
+execute:
+  eval: true
+  echo: false
+  warning: false
+  error: false
+  output: false
+---
+
+<!-- BOZZA 2026-07-18: pagina del tema Scuola, composta dagli output del modulo
+     scuola_iscritti. Qui si aggiungeranno le stime sugli studenti con
+     disabilità (modulo scuola_disab); NEET/abbandoni/formazione continua
+     andranno su una pagina propria (modulo istruz_formaz_neet). -->
+
+```{r}
+#| label: setup
+library(here)
+library(dplyr)
+library(ggplot2)
+library(ggiraph)
+library(ggtext)    # registra element_textbox usato nei temi dei plot
+library(scales)    # percent() nelle etichette dei plot salvati
+library(patchwork) # il grafico statali/paritarie è un patchwork
+library(glue)
+library(DT)
+
+dir_scuola <- here::here("moduli", "scuola_iscritti", "output")
+
+# Tabella interattiva (formato lungo) dal csv salvato dal modulo, con
+# filtri e bottoni Copy/CSV/Excel per scaricare i dati del grafico
+f_tabella_dati <- function(nome_tabella, modulo = "scuola_iscritti") {
+  csv_path <- here::here("moduli", modulo, "output", paste0(nome_tabella, ".csv"))
+  read.csv(csv_path, check.names = FALSE) |>
+    DT::datatable(
+      rownames = FALSE,
+      extensions = "Buttons",
+      filter = "top",
+      options = list(
+        dom = "Btp", # bottoni + tabella + paginazione
+        buttons = c("copy", "csv", "excel"),
+        pageLength = 10,
+        scrollX = TRUE
+      )
+    )
+}
+
+# ggiraph con tooltip nello stile delle altre pagine
+f_girafe <- function(ggobj) {
+  girafe(
+    ggobj = ggobj,
+    options = list(
+      opts_tooltip(
+        css = "background-color:#333; color:white; padding:8px; border-radius:4px; font-size:12px;"
+      )
+    )
+  )
+}
+```
+
+> Le scuole della provincia di Parma (statali e paritarie, esclusa l'infanzia)
+> contano quasi 52 mila iscritti nell'a.s. 2024/25. Quasi un alunno su quattro
+> ha cittadinanza non italiana, con punte comunali molto più alte (Langhirano
+> ~49%, Busseto ~39%): la scuola è il primo luogo dove si vede la Parma che
+> cambia. La scuola paritaria della provincia accoglie soprattutto i bambini dell’infanzia: 
+> dei 104 plessi paritari, 80 sono scuole dell’infanzia, presenti in 21 comuni
+
+<!-- nota dal blurb di moduli/scuola_iscritti;
+     TODO: verificare i numeri dopo il collaudo del modulo (il 52 mila è
+     da confermare: 49.570 sono le sole statali) -->
+
+## Gli iscritti: quanti sono e come cambiano
+
+### plot_iscritti_ordine_pr {.notitle}
+```{r}
+#| label: plot_iscritti_ordine_pr
+#| output: true
+#| fig-width: 9
+#| fig-height: 7
+
+f_girafe(readRDS(file.path(dir_scuola, "plot_iscritti_ordine_pr.rds")))
+```
+
+::: {.callout-note collapse="true"}
+## Osservazioni
+
+<!-- TODO: da scrivere dopo il collaudo (calo della primaria? tenuta superiori?) -->
+Il trend degli iscritti (scuole statali + paritarie) mostra un trend calante negli ultimi 5 anni nella primaria e secondaria di I grado, mentre gli ultimi 2/3 anni indicano un aumento degli iscritti alla secondaria di II grado. 
+:::
+
+::: {.callout-tip collapse="true"}
+## Dati
+
+```{r}
+#| label: tab_iscritti_trend_pr
+#| output: true
+f_tabella_dati("iscritti_trend_pr")
+```
+
+:::
+
+### plot_iscritti_ordine_gestione_pr {.notitle}
+```{r}
+#| label: plot_iscritti_ordine_gestione_pr
+#| output: true
+#| fig-width: 9
+#| fig-height: 8
+
+f_girafe(readRDS(file.path(dir_scuola, "plot_iscritti_ordine_gestione_pr.rds")))
+```
+
+::: {.callout-note collapse="true"}
+## Osservazioni
+
+<!-- TODO: statali vs paritarie, da scrivere dopo il collaudo -->
+Il numero di iscritti alle scuole paritarie è relativamente più alto nella fascia 6-11 anni (primaria) - o forse ancora più nell'infanzia (qui non rappresentata) - mentre cala all'avanzare dell'ordine di scuola.
+:::
+
+## Gli alunni con cittadinanza non italiana
+
+### plot_stranieri_prov_er {.notitle}
+```{r}
+#| label: plot_stranieri_prov_er
+#| output: true
+#| fig-width: 9
+#| fig-height: 7
+
+f_girafe(readRDS(file.path(dir_scuola, "plot_stranieri_prov_er.rds")))
+```
+
+::: {.callout-note collapse="true"}
+## Osservazioni
+
+<!-- TODO: Parma vs media ER, da scrivere dopo il collaudo -->
+:::
+
+::: {.callout-tip collapse="true"}
+## Dati
+
+```{r}
+#| label: tab_stranieri_trend_prov_er
+#| output: true
+f_tabella_dati("stranieri_trend_prov_er")
+```
+
+:::
+
+### plot_stranieri_comuni_pr {.notitle}
+```{r}
+#| label: plot_stranieri_comuni_pr
+#| output: true
+#| fig-width: 9
+#| fig-height: 9
+
+f_girafe(readRDS(file.path(dir_scuola, "plot_stranieri_comuni_pr.rds")))
+```
+
+<br>
+
+### plot_stranieri_comuni_pr_min {.notitle}
+```{r}
+#| label: plot_stranieri_comuni_pr_min
+#| output: true
+#| fig-width: 9
+#| fig-height: 10
+
+f_girafe(readRDS(file.path(dir_scuola, "plot_stranieri_comuni_pr_min.rds")))
+```
+
+::: {.callout-note collapse="true"}
+## Osservazioni
+
+<!-- TODO: eterogeneità comunale (Langhirano, Busseto, Colorno...) vs code basse -->
+:::
+
+::: {.callout-tip collapse="true"}
+## Dati
+
+```{r}
+#| label: tab_scuola_comuni_pr
+#| output: true
+f_tabella_dati("scuola_comuni_pr")
+```
+
+:::
+
+## La geografia scolastica dei comuni
+
+Le tre mappe leggono insieme dove stanno le scuole (plessi), quanti alunni
+servono e dove si concentrano le presenze straniere.
+
+### mappa_n_plessi_comuni_pr {.notitle}
+```{r}
+#| label: mappa_n_plessi_comuni_pr
+#| output: true
+#| fig-width: 8
+#| fig-height: 6
+
+f_girafe(readRDS(file.path(dir_scuola, "mappa_n_plessi_comuni_pr.rds")))
+```
+
+### mappa_alunni_comuni_pr {.notitle}
+```{r}
+#| label: mappa_alunni_comuni_pr
+#| output: true
+#| fig-width: 8
+#| fig-height: 6
+
+f_girafe(readRDS(file.path(dir_scuola, "mappa_alunni_comuni_pr.rds")))
+```
+
+### mappa_quota_stranieri_comuni_pr {.notitle}
+```{r}
+#| label: mappa_quota_stranieri_comuni_pr
+#| output: true
+#| fig-width: 8
+#| fig-height: 6
+
+f_girafe(readRDS(file.path(dir_scuola, "mappa_quota_stranieri_comuni_pr.rds")))
+```
+
+### mappa_paritarie_plessi_pr {.notitle}
+```{r}
+#| label: mappa_paritarie_plessi_pr
+#| output: true
+#| fig-width: 9
+#| fig-height: 8
+
+f_girafe(readRDS(file.path(dir_scuola, "mappa_paritarie_plessi_pr.rds")))
+```
+
+::: {.callout-tip collapse="true"}
+## Dati (plessi, infanzia inclusa)
+
+```{r}
+#| label: tab_paritarie_plessi_comuni_pr
+#| output: true
+f_tabella_dati("paritarie_plessi_comuni_pr")
+```
+
+:::
+
+### mappa_paritarie_iscritti_pr {.notitle}
+```{r}
+#| label: mappa_paritarie_iscritti_pr
+#| output: true
+#| fig-width: 9
+#| fig-height: 8
+
+f_girafe(readRDS(file.path(dir_scuola, "mappa_paritarie_iscritti_pr.rds")))
+```
+
+::: {.callout-note collapse="true"}
+## Osservazioni
+
+**La scuola paritaria della provincia vive quasi tutta nell'infanzia**: dei 104
+plessi paritari, 80 sono scuole dell'infanzia, presenti in 21 comuni — le
+storiche materne paritarie (in gran parte parrocchiali/FISM) sono l'unico
+segmento capillare. Negli altri ordini la paritaria è un fenomeno concentrato:
+24 plessi in soli 5 comuni (Parma 15, Salsomaggiore 4, Fidenza 3, Busseto e
+Traversetolo 1), per circa 2.700 iscritti nell'a.s. 2024/25. Nota di metodo:
+questa mappa usa l'**anagrafe delle scuole** (conta i plessi, e include
+l'infanzia); i grafici sugli iscritti invece non possono includere l'infanzia,
+perché l'Anagrafe Nazionale degli Studenti la esclude. Per gli iscritti
+all'infanzia la fonte da acquisire è l'anagrafe studenti della Regione ER.
+:::
+
+::: {.callout-tip collapse="true"}
+## Dati (iscritti, senza infanzia)
+
+```{r}
+#| label: tab_paritarie_comuni_pr
+#| output: true
+f_tabella_dati("paritarie_comuni_pr")
+```
+
+:::
+
+## Studenti con disabilità
+
+<!-- SEGNAPOSTO: qui arriveranno gli output del modulo scuola_disab
+     (tavole ISTAT regionali già in dati/grezzi/istat_alunni_disab +
+     dettaglio provinciale USR-ER). Vedi CLAUDE_TODO, tema Scuola. -->
+
+::: {.callout-warning}
+## Sezione in preparazione
+
+I dati sugli alunni con disabilità (ISTAT e USR Emilia-Romagna) saranno
+aggiunti con il modulo `scuola_disab`.
+:::

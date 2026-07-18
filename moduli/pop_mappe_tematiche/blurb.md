@@ -1,7 +1,7 @@
 # Mappe tematiche della popolazione (comuni ER)
 
 **Fonte:** ISTAT — Censimento permanente della popolazione, edizione 2024
-(via API SDMX, vedi `dati/grezzi/istat_cens/_meta.md`); confini ISTAT al
+(via API SDMX, vedi `dati/grezzi/istat_cens/_metadati.md`); confini ISTAT al
 01/01/2026, versione generalizzata
 **Anno dati:** 2024 (popolazione); 2026 (confini — nessuna variazione di comuni ER dal 2019)
 **Ultimo aggiornamento:** 2026-07-17
