@@ -101,9 +101,7 @@ f_girafe(readRDS(file.path(dir_scuola, "plot_iscritti_ordine_pr.rds")))
 
 ::: {.callout-note collapse="true"}
 ## Osservazioni
-
-<!-- TODO: da scrivere dopo il collaudo (calo della primaria? tenuta superiori?) -->
-Il trend degli iscritti (scuole statali + paritarie) mostra un trend calante negli ultimi 5 anni nella primaria e secondaria di I grado, mentre gli ultimi 2/3 anni indicano un aumento degli iscritti alla secondaria di II grado. 
+Il calo demografico è entrato in classe dal basso: primaria e secondaria di I grado perdono iscritti negli ultimi 5 anni, mentre la secondaria di II grado cresce ancora (l'onda dei nati fino al 2010 che risale i cicli). 
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -130,8 +128,51 @@ f_girafe(readRDS(file.path(dir_scuola, "plot_iscritti_ordine_gestione_pr.rds")))
 ::: {.callout-note collapse="true"}
 ## Osservazioni
 
-<!-- TODO: statali vs paritarie, da scrivere dopo il collaudo -->
 Il numero di iscritti alle scuole paritarie è relativamente più alto nella fascia 6-11 anni (primaria) - o forse ancora più nell'infanzia (qui non rappresentata) - mentre cala all'avanzare dell'ordine di scuola.
+:::
+
+::: {.callout-tip collapse="true"}
+## Dati
+
+```{r}
+#| label: tab_iscritti_trend_gestione_pr
+#| output: true
+# stessa tabella del grafico precedente (contiene anche la colonna gestione)
+f_tabella_dati("iscritti_trend_pr")
+```
+
+:::
+
+### plot_plessi_ordine_gestione_pr {.notitle}
+```{r}
+#| label: plot_plessi_ordine_gestione_pr
+#| output: true
+#| fig-width: 9
+#| fig-height: 8
+
+# i PLESSI (dall'anagrafe) includono l'infanzia e mostrano aperture/chiusure
+f_girafe(readRDS(file.path(dir_scuola, "plot_plessi_ordine_gestione_pr.rds")))
+```
+
+::: {.callout-note collapse="true"}
+## Osservazioni
+
+La rete dei plessi è rimasta **stabile per tutto il decennio** (la serie,
+dall'anagrafe scuole, include l'infanzia e arriva all'a.s. 2026/27): le statali
+sono quasi immobili, con un lieve calo di primarie e superiori dal 2022, e le
+~80 materne paritarie sono costanti. Il calo degli iscritti, per ora, non si è
+tradotto in chiusure di scuole.
+:::
+
+::: {.callout-tip collapse="true"}
+## Dati
+
+```{r}
+#| label: tab_plessi_trend_pr
+#| output: true
+f_tabella_dati("plessi_trend_pr")
+```
+
 :::
 
 ## Gli alunni con cittadinanza non italiana
@@ -149,7 +190,10 @@ f_girafe(readRDS(file.path(dir_scuola, "plot_stranieri_prov_er.rds")))
 ::: {.callout-note collapse="true"}
 ## Osservazioni
 
-<!-- TODO: Parma vs media ER, da scrivere dopo il collaudo -->
+L'incidenza degli alunni con cittadinanza non italiana è **cresciuta lungo
+tutto il decennio** in tutta la regione, e Parma si colloca nella fascia alta
+delle province. <!-- TODO: confermare il valore PR 2024/25 e il confronto con
+la media ER leggendo il grafico (nota: 22,7% misurato sulle sole statali) -->
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -188,7 +232,10 @@ f_girafe(readRDS(file.path(dir_scuola, "plot_stranieri_comuni_pr_min.rds")))
 ::: {.callout-note collapse="true"}
 ## Osservazioni
 
-<!-- TODO: eterogeneità comunale (Langhirano, Busseto, Colorno...) vs code basse -->
+L'eterogeneità comunale è fortissima: nei comuni della pedecollina e della
+bassa a forte domanda di lavoro l'incidenza supera di molto la soglia del 20%
+(Langhirano ~49%, Busseto ~39%, Colorno ~32%), mentre le code basse si trovano
+soprattutto nei comuni dell'Appennino.
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -237,6 +284,28 @@ f_girafe(readRDS(file.path(dir_scuola, "mappa_alunni_comuni_pr.rds")))
 f_girafe(readRDS(file.path(dir_scuola, "mappa_quota_stranieri_comuni_pr.rds")))
 ```
 
+::: {.callout-note collapse="true"}
+## Osservazioni
+
+La geografia scolastica ricalca quella demografica: plessi e alunni si
+concentrano su Parma città e sui comuni maggiori, mentre in montagna la rete si
+dirada — **Bore e Valmozzola non hanno scuole primarie o secondarie** e i loro
+ragazzi si spostano altrove. La mappa della % stranieri ripropone su base
+scolastica le concentrazioni già viste nelle mappe demografiche.
+:::
+
+::: {.callout-tip collapse="true"}
+## Dati
+
+```{r}
+#| label: tab_scuola_comuni_pr_mappe
+#| output: true
+# la tabella comunale dietro le tre mappe (plessi, alunni, % stranieri)
+f_tabella_dati("scuola_comuni_pr")
+```
+
+:::
+
 ### mappa_paritarie_plessi_pr {.notitle}
 ```{r}
 #| label: mappa_paritarie_plessi_pr
@@ -276,11 +345,16 @@ plessi paritari, 80 sono scuole dell'infanzia, presenti in 21 comuni — le
 storiche materne paritarie (in gran parte parrocchiali/FISM) sono l'unico
 segmento capillare. Negli altri ordini la paritaria è un fenomeno concentrato:
 24 plessi in soli 5 comuni (Parma 15, Salsomaggiore 4, Fidenza 3, Busseto e
-Traversetolo 1), per circa 2.700 iscritti nell'a.s. 2024/25. Nota di metodo:
+Traversetolo 1), per circa 2.700 iscritti nell'a.s. 2024/25.   
+
+_Nota di metodo_:
 questa mappa usa l'**anagrafe delle scuole** (conta i plessi, e include
 l'infanzia); i grafici sugli iscritti invece non possono includere l'infanzia,
 perché l'Anagrafe Nazionale degli Studenti la esclude. Per gli iscritti
 all'infanzia la fonte da acquisire è l'anagrafe studenti della Regione ER.
+In diversi comuni le paritarie restano comunque un **presidio importante** —
+soprattutto per l'infanzia, dove in alcuni casi sono l'unica o la principale
+offerta locale (si vedano i comuni in classe "oltre 50%" nella mappa dei plessi).
 :::
 
 ::: {.callout-tip collapse="true"}

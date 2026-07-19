@@ -1,34 +1,48 @@
 # ------------------------------------------------------------------------
 # Ingestione: MIM open data (studenti + anagrafi scuole) → dati/puliti/mim_iscritti/
-# Fonte:  dati/grezzi/mim_open_data/ (vedi _metadati.md; download 2026-07-18)
-# Input:  SCUANAGRAFESTAT|PAR (a.s. 2024/25, per il join scuola → comune/provincia)
+# Fonte:  dati/grezzi/mim_open_data/ + dati/grezzi/istat_codici_comuni/
+#         (vedi i rispettivi _metadati.md)
+# Input:  SCUANAGRAFESTAT|PAR (a.s. 2024/25, per il join scuola → comune/provincia
+#         + TUTTI gli a.s. presenti per lo storico dei plessi, 2015/16 → 2026/27)
 #         ALUCORSOETASTA|PAR e ALUITASTRACITSTA|PAR, a.s. 2015/16 → 2024/25
-# Output: dati/puliti/mim_iscritti/scuole_anagrafe_er.rds (plessi ER, statali+paritarie)
+#         Elenco-comuni-italiani.csv (ISTAT, per la transcodifica catastale→ISTAT)
+# Output: dati/puliti/mim_iscritti/scuole_anagrafe_er.rds (plessi ER, a.s. 2024/25)
+#         dati/puliti/mim_iscritti/scuole_anagrafe_storico_er.rds (plessi ER,
+#             tutti gli a.s. scaricati — per il trend aperture/chiusure)
 #         dati/puliti/mim_iscritti/scuole_iscritti_er.rds
 #         dati/puliti/mim_iscritti/scuole_iscritti_cittadinanza_er.rds
 #         (nome file = nome oggetto R; consumati dal modulo scuola_iscritti)
 # NB: gli iscritti MIM NON coprono la scuola dell'infanzia; il comune arriva
-#     dall'anagrafe (nome + codice catastale) e viene transcodificato a
-#     PRO_COM_T ISTAT via join sul nome normalizzato coi comuni ER (sf)
+#     dall'anagrafe e viene transcodificato a PRO_COM_T ISTAT via join sul
+#     CODICE CATASTALE con l'Elenco comuni ISTAT (dati/grezzi/istat_codici_comuni/)
 # ------------------------------------------------------------------------
 
+library(here)
 library(readr)
 library(dplyr)
 library(stringr)
 library(purrr)
 library(janitor)
-library(here)
-library(sf) # solo per leggere ER_comuni_sf e buttare la geometria
 
 # Parametri ---------------------------------------------------------------
 dir_in <- here("dati", "grezzi", "mim_open_data")
 dir_out <- here("dati", "puliti", "mim_iscritti")
-ANAGRAFE_AS <- "20242520250831" # a.s. dell'anagrafe usata per il join
-
 if (!dir.exists(dir_out)) dir.create(dir_out, recursive = TRUE)
+
+# Pezzo della stringa per decidere quale dei 12 csv di Anagrage usare 
+        # read_csv(file.path(dir_in, paste0("SCUANAGRAFESTAT", ANAGRAFE_AS, ".csv")))
+        # [Sarà da aggiornare se  esce l'anagrafe con gli iscritti 2025/26]
+ANAGRAFE_AS <- "20242520250831"
+# NB: A.S. dell'anagrafe usata per il join scuola → comune/provincia: quello
+# dell'ULTIMO file iscritti. Verificato il 2026-07-19 contro le anagrafi
+# storiche: nessun alunno ER 2015/16-2024/25 resta fuori (i codici dei plessi
+# cessati restano in anagrafe), quindi il join con l'anagrafe unica è esatto
+
 
 # Funzioni locali ----------------------------------------------------------
 
+# [DEPRECATA 2026-07-19: il join comuni ora usa il codice catastale — tenuta
+#  come riferimento se servisse altrove un match per nome]
 # Normalizza un nome comune per il join MIM ↔ ISTAT (maiuscole, niente
 # accenti/apostrofi/punteggiatura, spazi singoli)
 # NB: accenti sostituiti in modo esplicito — iconv(//TRANSLIT) su macOS
@@ -78,53 +92,81 @@ scuole_anagrafe_er <- bind_rows(
          grado = descrizionetipologiagradoistruzionescuola,
          gestione)
 
-# 2. Transcodifica comune → PRO_COM_T ISTAT (join sul nome normalizzato) ---
-comuni_er_lookup <- readRDS(here("dati", "puliti", "istat_shp", "ER_comuni_sf.rds")) |>
-  st_drop_geometry() |>
-  transmute(comune_norm = f_norm_nome(COMUNE), pro_com_t = PRO_COM_T)
+# checks
+tabyl(scuole_anagrafe_er, gestione) |> adorn_totals("row")  # 2026-07-19: 2.091 statali + 1.042 paritarie = 3.133 plessi ER)
+tabyl(scuole_anagrafe_er, provincia) |> adorn_totals("row")
+tabyl(scuole_anagrafe_er, codice_catastale) |> adorn_totals("row")
+n_distinct(scuole_anagrafe_er$codice_catastale)
+n_distinct(scuole_anagrafe_er$comune)
 
-# 2a. join esatto sul nome normalizzato
-scuole_anagrafe_er <- scuole_anagrafe_er |>
-  mutate(comune_norm = f_norm_nome(comune)) |>
-  left_join(comuni_er_lookup, by = "comune_norm")
 
-# 2b. ripiego per i nomi MIM TRONCATI (il campo comune taglia a ~30 caratteri,
-# es. "CASTROCARO TERME E TERRA DEL S"): aggancio per prefisso, accettato solo
-# se il prefisso identifica UN solo comune ISTAT
-prefissi_na <- scuole_anagrafe_er |>
-  filter(is.na(pro_com_t)) |>
-  distinct(comune_norm) |>
-  pull(comune_norm)
-
-if (length(prefissi_na) > 0) {
-  match_prefisso <- prefissi_na |>
-    map(function(p) {
-      hit <- comuni_er_lookup |> filter(str_starts(comune_norm, p))
-      if (nrow(hit) == 1) {
-        tibble(comune_norm = p, pro_com_t_fb = hit$pro_com_t)
-      } else {
-        NULL # 0 o >1 candidati: resta NA e finisce nel controllo sotto
-      }
-    }) |>
-    list_rbind()
-
-  if (nrow(match_prefisso) > 0) {
-    scuole_anagrafe_er <- scuole_anagrafe_er |>
-      left_join(match_prefisso, by = "comune_norm") |>
-      mutate(pro_com_t = coalesce(pro_com_t, pro_com_t_fb)) |>
-      select(-pro_com_t_fb)
-  }
+# 2. Transcodifica comune → PRO_COM_T ISTAT (join sul CODICE CATASTALE) ----
+# PROBLEMA: il MIM identifica il comune con il nome (troncato a ~30 caratteri)
+# e con il codice CATASTALE (es. E438); al repo serve il codice ISTAT
+# (PRO_COM_T, es. "034027") per geometrie sf, mappe e censimento.
+# SOLUZIONE (2026-07-19, sostituisce il vecchio join per nome normalizzato +
+# ripiego per prefisso): join ESATTO sul codice catastale con l'"Elenco dei
+# comuni italiani" ISTAT (dati/grezzi/istat_codici_comuni/), che contiene
+# entrambi i codici e il nome ufficiale. Niente nomi, niente ambiguità.
+file_elenco_comuni <- here("dati", "grezzi", "istat_codici_comuni",
+                    "Elenco-comuni-italiani.csv")
+if (!file.exists(file_elenco_comuni)) {
+  stop("Manca l'Elenco comuni ISTAT: scaricarlo seguendo ",
+       "dati/grezzi/istat_codici_comuni/_metadati.md e rilanciare")
 }
 
-scuole_anagrafe_er <- scuole_anagrafe_er |> select(-comune_norm)
+# csv ISTAT: separatore ";", encoding latin1
+# NB: se una futura edizione cambia i nomi colonna, la select fallisce →
+#     aggiornare i nomi qui (e nel _metadati.md della fonte)
+comuni_lookup <- read_csv2(file_elenco_comuni,
+                           locale = locale(encoding = "latin1"),
+                           col_types = cols(.default = col_character())) |>
+  clean_names() |>
+  select(codice_catastale = codice_catastale_del_comune,
+         pro_com_t = codice_comune_formato_alfanumerico,
+         comune_istat = denominazione_in_italiano)
 
-# controllo: comuni MIM non agganciati ai codici ISTAT (da sistemare a mano
-# in comuni_er_lookup se ne compaiono)
-non_matchati <- scuole_anagrafe_er |> filter(is.na(pro_com_t)) |> distinct(comune)
+# Join sul codice catastale (non sul nome, che può essere troncato o ambiguo)
+scuole_anagrafe_er <- scuole_anagrafe_er |>
+  left_join(comuni_lookup, by = "codice_catastale") |>
+  # nome ufficiale ISTAT come `comune`; quello MIM (troncato) resta in comune_mim
+  mutate(comune_mim = comune,
+         comune = coalesce(comune_istat, comune)) |>
+  select(-comune_istat)
+
+# controllo: plessi senza aggancio (catastale assente o non in elenco)
+non_matchati <- scuole_anagrafe_er |>
+  filter(is.na(pro_com_t)) |>
+  distinct(comune, codice_catastale)
+non_matchati
 if (nrow(non_matchati) > 0) {
   message("ATTENZIONE - comuni senza PRO_COM_T: ",
           paste(non_matchati$comune, collapse = ", "))
 }
+
+# 2c. Anagrafi STORICHE: tutti gli a.s. presenti in grezzi ------------------
+# Per il trend dei PLESSI (aperture/chiusure, infanzia inclusa). Usa tutti i
+# file SCUANAGRAFESTAT/PAR trovati (v. _metadati.md per la lista completa da
+# scaricare) e segnala quanti a.s. ha in mano.
+files_anagrafe <- list.files(dir_in, pattern = "^SCUANAGRAFE(STAT|PAR)\\d",
+                             full.names = TRUE)
+
+scuole_anagrafe_storico_er <- files_anagrafe |>
+  set_names() |>
+  map(function(f) read_csv(f, col_types = cols(.default = col_character()))) |>
+  list_rbind(names_to = "file") |>
+  mutate(gestione = if_else(str_detect(file, "SCUANAGRAFEPAR"), "paritaria", "statale")) |>
+  select(-file) |>
+  clean_names() |>
+  filter(regione == "EMILIA ROMAGNA") |>
+  mutate(anno_inizio = as.integer(annoscolastico) %/% 100) |>
+  select(anno_inizio, codice_scuola = codicescuola, gestione, provincia,
+         comune = descrizionecomune,
+         grado = descrizionetipologiagradoistruzionescuola)
+
+message("Anagrafi storiche: ",
+        dplyr::n_distinct(scuole_anagrafe_storico_er$anno_inizio),
+        " a.s. trovati (", length(files_anagrafe), " file)")
 
 # 3. Iscritti (anno di corso e fascia d'età), tutti gli a.s. ---------------
 scuole_iscritti_er <- f_read_mim("ALUCORSOETASTA", "ALUCORSOETAPAR") |>
@@ -158,6 +200,7 @@ scuole_iscritti_cittadinanza_er <- f_read_mim("ALUITASTRACITSTA", "ALUITASTRACIT
 
 # 5. Salva in dati/puliti/mim_iscritti/ ---------------------------------------------
 saveRDS(scuole_anagrafe_er, file.path(dir_out, "scuole_anagrafe_er.rds"))
+saveRDS(scuole_anagrafe_storico_er, file.path(dir_out, "scuole_anagrafe_storico_er.rds"))
 saveRDS(scuole_iscritti_er, file.path(dir_out, "scuole_iscritti_er.rds"))
 saveRDS(scuole_iscritti_cittadinanza_er, file.path(dir_out, "scuole_iscritti_cittadinanza_er.rds"))
 
@@ -168,6 +211,8 @@ message("Salvati in dati/puliti/mim_iscritti/: scuole_anagrafe_er (", nrow(scuol
 # Verifiche rapide (da eseguire a mano) ------------------------------------
 scuole_iscritti_er |> filter(provincia == "PARMA", anno_inizio == 2024) |>
   summarise(alunni = sum(alunni))                       # atteso ~49.570 statali+paritarie
+
 scuole_iscritti_er |> count(anno_inizio)                        # 10 a.s.
 scuole_iscritti_cittadinanza_er |> filter(provincia == "PARMA") |>
-  summarise(pct = sum(alunni_stranieri) / sum(alunni))   # ~22-23% (solo statali era 22,7%)
+  summarise(pct = sum(alunni_stranieri) / sum(alunni))   # ~19% (solo statali era 22,7%)
+

@@ -52,13 +52,24 @@ library(tidyr)  # pivot_wider per la vista "larga"
 # Tabella "larga" (territori in riga, anni in colonna) dal csv salvato dal
 # modulo, con bottoni Copy/CSV/Excel. Il csv resta "lungo" in output/.
 f_tabella_dati <- function(nome_plot) {
-  csv_path <- here::here("moduli", "demo_trend_indicatori", "output",
-                         paste0(nome_plot, ".csv"))
-  read.csv(csv_path, check.names = FALSE) |>
+  dir_out <- here::here("moduli", "demo_trend_indicatori", "output")
+
+  # didascalia (titolo + fonte) LETTA dal rds del grafico omonimo:
+  # unica fonte di verità, si aggiorna da sola se cambia nel modulo
+  p <- readRDS(file.path(dir_out, paste0(nome_plot, ".rds")))
+  didascalia <- paste(
+    gsub("\n", " ", p$labels$title %||% ""),
+    "—",
+    gsub("\n", " · ", p$labels$caption %||% "")
+  )
+
+  read.csv(file.path(dir_out, paste0(nome_plot, ".csv")),
+           check.names = FALSE) |>
     tidyr::pivot_wider(id_cols = territorio, names_from = anno,
                        values_from = valore) |>
     DT::datatable(
       rownames = FALSE,
+      caption = didascalia,
       extensions = "Buttons",
       options = list(
         dom = "Bt", # solo bottoni + tabella (niente barra di ricerca)
@@ -88,10 +99,8 @@ f_tabella_dati <- function(nome_plot) {
 
 # Trend demografici
 
-> Parma invecchia più lentamente della regione e dell'Italia (età media +1 anno
-> nel periodo, contro +2.2 dell'Emilia-Romagna e +4.9 dell'Italia), con una
-> crescita naturale negativa compensata dal saldo migratorio, in particolare
-> con l'estero.
+> Parma invecchia più lentamente della regione e dell'Italia (l'età media è salita di +1 anno nel periodo, contro +2.2 dell'Emilia-Romagna e +4.9 dell'Italia).
+> La crescita naturale negativa, ma compensata dal saldo migratorio, in particolare con l'estero, strutturalmente sopra la media nazionale.
 
 <!-- frase dal blurb di moduli/demo_trend_indicatori;
      TODO: riverificare i numeri dopo la rigenerazione con le serie 2002-2025 -->
@@ -459,9 +468,8 @@ f_tabella_dati("p17_tasso_di_crescita_totale")
 
 ## La struttura per età oggi (piramidi)
 
-La piramide dell'età di Parma "sborda" dal profilo di Emilia-Romagna e Italia
-negli strati più giovani, seppur di poco; tra i residenti stranieri gli over 65
-sono il 6% contro il 27% degli italiani, i minori di 15 anni il 18% contro l'11%.
+**Parma è appena più giovane del profilo regionale**: rispetto al contorno ER la piramide parmense "sborda" leggermente nelle classi giovani e giovani-adulte (25-44) ed è un filo più snella in quelle anziane. 
+Se confrontate in termini relativi, le distribuzioni per età mostrano che gli italiani si concentrano nella fascia 50-64, mentre, per gli stranieri in Provincia, la distribuzione si concentra di più nella fascia 30-49. 
 
 <!-- frasi dal blurb di moduli/pop_piramide_eta (Censimento 2024) -->
 
@@ -989,3 +997,8 @@ f_tabella_dati("p14_saldo_migratorio_con_l_estero")
 
 :::
 
+
+::: {.callout-warning collapse="true"}
+## Nota di metodo
+Gli indicatori di FLUSSO (natalità, saldi, fecondità…) si riferiscono all'anno solare e arrivano al 2025*; quelli di STRUTTURA (età media, indici, classi di età) sono fotografie al 1° gennaio e arrivano al 2026* — per questo gli assi non finiscono tutti nello stesso punto (l'intervallo è nel titolo di ciascun grafico).
+:::

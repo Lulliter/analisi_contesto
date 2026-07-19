@@ -1,17 +1,21 @@
 # ------------------------------------------------------------------------
 # Modulo: scuola_iscritti
-# Scopo:  trend iscritti PR (totale e facet statale|paritaria); % stranieri
-#         per provincia ER e per comune PR; 3 mappe comunali PR
-#         (plessi, alunni, % stranieri)
+# Scopo:  trend iscritti PR (totale e pannelli statale|paritaria); trend dei
+#         PLESSI per gestione (infanzia inclusa, dalle anagrafi storiche);
+#         % stranieri per provincia ER e per comune PR (top e code basse);
+#         3 mappe comunali PR (plessi, alunni, % stranieri) + 2 mappe faceted
+#         sulla scuola paritaria (% plessi con infanzia; % iscritti senza)
 # Input:  output/*.rds (da 01_dati.R)
-# Output: output/plot_*.rds (ggplot; girafe() si applica nella pagina di sito)
+# Output: output/plot_*.rds e mappa_*.rds (ggplot; girafe() nella pagina di sito)
 #         + .png per riuso rapido (nome file = oggetto)
-# NB: niente scuola dell'infanzia (limite fonte MIM)
+# NB: gli ISCRITTI non coprono la scuola dell'infanzia (limite fonte MIM);
+#     i conteggi di PLESSI dall'anagrafe invece sì
 # ------------------------------------------------------------------------
 
 library(here)
 library(dplyr)
 library(stringr)
+library(purrr) # pmap/set_names/reduce/iwalk
 library(glue)
 library(ggplot2)
 library(ggiraph)
@@ -32,6 +36,8 @@ source(here("R", "f_pal5.R"))
 dir_mod <- here("moduli", "scuola_iscritti", "output")
 
 CAP <- f_caption_fonte("MIM, Portale unico dei dati della scuola (no scuola dell'infanzia)")
+# per i prodotti basati sull'ANAGRAFE scuole (che l'infanzia la include)
+CAP_ANAGRAFE <- f_caption_fonte("MIM, anagrafe scuole (tutti gli ordini, infanzia inclusa)")
 
 ANNO_PRIMO <- 2015  # primo a.s. della serie (2015/16)
 ANNO_ULTIMO <- 2024 # a.s. 2024/25, per il grafico dei comuni
@@ -149,6 +155,60 @@ plot_iscritti_ordine_gestione_pr <-
 
 plot_iscritti_ordine_gestione_pr
 
+# Plot: trend dei PLESSI, facet statale | paritaria (infanzia inclusa) ----
+# Come il grafico degli iscritti per gestione, ma conta i PLESSI in anagrafe:
+# fa vedere aperture/chiusure di scuole, e qui l'infanzia C'È (e la serie
+# arriva all'a.s. 2026/27, oltre gli iscritti).
+
+## dati
+plessi_trend_pr <- readRDS(file.path(dir_mod, "plessi_trend_pr.rds"))
+
+ordini_plessi_lbl <- c("Infanzia", "Primaria", "Secondaria I grado", "Secondaria II grado")
+
+## un pannello per gestione (stesso schema del grafico iscritti, ma 4 ordini)
+f_pannello_plessi <- function(gest, pal4) {
+  df <- plessi_trend_pr |>
+    filter(gestione == gest) |>
+    mutate(ordine_scuola = factor(ordine_scuola, levels = ordini_plessi_lbl))
+
+  df |>
+    ggplot(aes(x = anno_inizio, y = n_plessi,
+               color = ordine_scuola, group = ordine_scuola)) +
+    geom_line_interactive(aes(tooltip = ordine_scuola, data_id = paste(gest, ordine_scuola)),
+                          linewidth = rel(1.1)) +
+    geom_point_interactive(aes(tooltip = n_plessi), size = 1.6) +
+    scale_x_continuous(breaks = seq(min(df$anno_inizio), max(df$anno_inizio))) +
+    scale_color_manual(values = c(
+      "Infanzia"            = pal4[1],
+      "Primaria"            = pal4[2],
+      "Secondaria I grado"  = pal4[3],
+      "Secondaria II grado" = pal4[4]
+    )) +
+    f_theme_scuola() +
+    theme(legend.position = "bottom", # come i pannelli iscritti
+          plot.subtitle = ggtext::element_textbox_simple(
+            face = "bold", size = rel(0.95), margin = margin(b = 10)
+          )) +
+    labs(subtitle = str_to_sentence(gest), x = "", y = "")
+}
+
+## composizione dei due pannelli
+plot_plessi_ordine_gestione_pr <-
+  (f_pannello_plessi("statale", seq_factor_blue[c(2, 4, 6, 8)]) /
+     f_pannello_plessi("paritaria", seq_factor_orange[c(2, 4, 6, 8)])) +
+  patchwork::plot_annotation(
+    title = str_wrap("Plessi scolastici a Parma: statali e paritarie (infanzia inclusa)", 55),
+    subtitle = "Numero di sedi in anagrafe per a.s.; scale y diverse tra i pannelli",
+    caption = CAP_ANAGRAFE,
+    theme = theme(
+      plot.title = element_text(size = rel(1.3), face = "bold"),
+      plot.subtitle = ggtext::element_textbox_simple(size = rel(0.95), colour = "grey30"),
+      plot.caption = element_text(hjust = 0, size = 8, colour = "grey30")
+    )
+  )
+
+plot_plessi_ordine_gestione_pr
+
 # Plot: % alunni stranieri per provincia ER, Parma evidenziata ----
 # prep separata dal grafico (convenzione <nome>_prep)
 stranieri_prov_prep <- stranieri_trend_prov_er |>
@@ -165,16 +225,21 @@ stranieri_prov_prep <- stranieri_trend_prov_er |>
     )
   )
 
+stranieri_prov_prep
+
 plot_stranieri_prov_er <- stranieri_prov_prep |>
   ggplot(aes(x = anno_inizio, y = quota_stranieri,
              color = provincia_display, alpha = highlight, group = provincia)) +
   geom_line_interactive(aes(tooltip = provincia, data_id = provincia),
                         linewidth = rel(0.8)) +
+  # pallini piccoli su TUTTE le linee (ereditano l'alpha: sulle grigie
+  # restano tenui); su Parma/ER si sovrappongono quelli grandi qui sotto
+  # geom_point_interactive(aes(tooltip = provincia, data_id = provincia),
+  #                        size = 1) +
   geom_line_interactive(
     data = function(df) df |> filter(highlight),
     aes(tooltip = provincia, data_id = provincia), linewidth = rel(1.5)
   ) +
-  # pallini solo sulla linea evidenziata (su tutte farebbero confusione)
   geom_point_interactive(
     data = function(df) df |> filter(highlight),
     aes(tooltip = scales::percent(quota_stranieri, accuracy = 0.1)), size = 1.8
@@ -213,7 +278,7 @@ plot_stranieri_comuni_pr <- scuola_comuni_pr |>
   ) +
   # linea di riferimento (soglia nei Parametri)
   geom_vline(xintercept = SOGLIA_RIF_STRANIERI, color = ylw_md,
-             linetype = "dashed", linewidth = 0.6) +
+             linetype = "dashed", linewidth = 0.85) +
   scale_x_continuous(labels = function(x) scales::percent(x, accuracy = 1)) +
   f_theme_scuola() +
   theme(axis.text.x = element_text(angle = 0, hjust = 0.5)) +
@@ -241,7 +306,7 @@ plot_stranieri_comuni_pr_min <- scuola_comuni_pr |>
   ) +
   # stessa linea di riferimento del grafico "top", per confronto immediato
   geom_vline(xintercept = SOGLIA_RIF_STRANIERI, color = ylw_md,
-             linetype = "dashed", linewidth = 0.6) +
+             linetype = "dashed", linewidth = 0.85) +
   scale_x_continuous(labels = function(x) scales::percent(x, accuracy = 1)) +
   f_theme_scuola() +
   theme(axis.text.x = element_text(angle = 0, hjust = 0.5)) +
@@ -253,11 +318,13 @@ plot_stranieri_comuni_pr_min <- scuola_comuni_pr |>
     y = ""
   )
 
+plot_stranieri_comuni_pr_min
+
 # 3. Mappe comunali PR (ultimo a.s.) ---------------------------------------
 
 ## Scelta risoluzione sf  ------------------------------------------------
-# dettaglio PR se disponibile (da ingestione/00b), altrimenti generalizzato
 file_dett <- here("dati", "puliti", "istat_shp", "PR_comuni_dettaglio_sf.rds")
+# dettaglio PR se disponibile (da ingestione/00b), altrimenti generalizzato
 if (file.exists(file_dett)) {
   pr_comuni_sf <- readRDS(file_dett) |> select(PRO_COM_T, COMUNE)
 } else {
@@ -281,7 +348,6 @@ mappa_comuni_prep <- pr_comuni_sf |>
 ## 3b. Gli indicatori da mappare: 1 riga = 1 mappa --------------------------
 lab_pct <- label_percent(accuracy = 0.1)
 lab_num <- label_number(accuracy = 1, big.mark = ".", decimal.mark = ",")
-
 
 ### Lista mappe -------------------------------------------------------------
 # PER AGGIUNGERE UNA MAPPA basta una riga nella tabella `mappe_indicatori` (3b):
@@ -442,7 +508,7 @@ mappa_paritarie_plessi_pr <- ggplot() +
       "% di plessi paritari sul totale plessi del comune; classi fisse; ",
       "in grigio i comuni senza plessi dell'ordine"
     ), 90),
-    caption = CAP
+    caption = CAP_ANAGRAFE # infanzia inclusa: caption coerente
   ) +
   theme_minimal(base_size = 14) +
   theme(
@@ -529,14 +595,17 @@ lista_plot <- list(
   plot_iscritti_ordine_gestione_pr = plot_iscritti_ordine_gestione_pr,
   plot_stranieri_prov_er = plot_stranieri_prov_er,
   plot_stranieri_comuni_pr = plot_stranieri_comuni_pr,
-  plot_stranieri_comuni_pr_min = plot_stranieri_comuni_pr_min
+  plot_stranieri_comuni_pr_min = plot_stranieri_comuni_pr_min,
+  plot_plessi_ordine_gestione_pr = plot_plessi_ordine_gestione_pr
 )
 
 purrr::iwalk(lista_plot, function(p, nome) {
-  # il facet verticale ha bisogno di più altezza
-  altezza <- if (nome == "plot_iscritti_ordine_gestione_pr") 8 else 6
+  # i grafici a doppio pannello hanno bisogno di più altezza
+  altezza <- if (nome %in% c("plot_iscritti_ordine_gestione_pr",
+                             "plot_plessi_ordine_gestione_pr")) 8 else 6
   saveRDS(p, file.path(dir_mod, paste0(nome, ".rds")))
   ggsave(file.path(dir_mod, paste0(nome, ".png")), p,
          width = 9, height = altezza, dpi = 300)
   message("Salvato: ", nome, " (.rds + .png)")
 })
+
