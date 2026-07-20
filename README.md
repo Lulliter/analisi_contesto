@@ -9,7 +9,7 @@ Studiare e mettere a disposizione dati socio-economici rilevanti per la missione
   
   > D.A.: Quali sono delle criticità che emergono oggi che il PS 2024-27 non aveva? (Tenendo sotto controllo i 10 assi tematici dello strategico)
 
-# Metordo ristrutturazione repo 
+# Metodo ristrutturazione repo 
 Passare da una struttura organizzata per macro-temi (con confini poco netti tra dati,
 analisi e presentazione) a una struttura modulare a due strati:
 
@@ -46,8 +46,19 @@ analisi_contesto/
     └── temi/               # una pagina per tema, ricombinabile a piacere
 ```
 
+# Note riproducibilità
+
+I dati **non sono sul repo remoto**: `dati/grezzi/` e `dati/puliti/` contengono
+file pesanti esclusi via `.gitignore`. Versionati solo i `_metadati.md` (uno per
+fonte in `dati/grezzi/`: URL, come riscaricare, periodo, insidie) e i `.gitkeep`.
+
+Per ricostruire i dati: segui i `_metadati.md` per riscaricare i grezzi, poi
+rigenera `puliti/` e gli `output/` dei moduli con i rispettivi script.
+
+> Convenzioni e aggiornamento fonti: [`dati/README.md`](dati/README.md).
+
 # TODO
 
-+ 🔨 Migrazione per temain corso... `...TODO.md`
++ 🔨 Migrazione per tema in corso... `...TODO.md`
 
 ----------

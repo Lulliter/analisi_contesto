@@ -39,13 +39,19 @@ _freeze/
 # ----------------- DATI (vedi CLAUDE_TODO.md)
 # grezzi: ignora file grandi, tieni note md/pdf e .gitkeep
 dati/grezzi/**/*
+# OKKIO!!!!!  re-includi le sottocartelle (MA NO FILE), altrimenti git non ci entra e le negazioni sotto non valgono  
+!dati/grezzi/**/
 !dati/grezzi/**/*.md
 !dati/grezzi/**/*.pdf
 !dati/grezzi/**/.gitkeep
+
 # puliti: ignora rds grandi, tieni note md e .gitkeep
 dati/puliti/**/*
+# OKKIO!!!!!  re-includi le sottocartelle (MA NO FILE), altrimenti git non ci entra e le negazioni sotto non valgono  
+!dati/puliti/**/
 !dati/puliti/**/*.md
 !dati/puliti/**/.gitkeep
+
 # moduli/*/output/: si tracciano png/csv/blurb (leggeri), NON i .rds
 # (oggetti ggplot/sf con dentro i dati: 4+ MB l'uno, rigenerabili dagli script)
 moduli/*/output/*.rds

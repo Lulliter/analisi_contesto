@@ -47,7 +47,11 @@ f_piramide <- function(cod_target, cod_confronto) {
   lbl_c <- as.character(unique(df_c$territorio_lbl))
   anno  <- unique(df_t$anno)
 
-  ggplot(df_t, aes(x = quota_s, y = classe5_lbl)) +
+  # dati esportabili: target + confronto impilati (per il bottone di download)
+  dati <- bind_rows(df_t, df_c) |>
+    select(anno, territorio_lbl, cittadinanza_lbl, classe5_lbl, sesso_lbl, popolazione, quota)
+
+  g <- ggplot(df_t, aes(x = quota_s, y = classe5_lbl)) +
     geom_col(aes(fill = sesso_lbl), width = 0.85) +
     # territorio di confronto: barre VUOTE sovrapposte (solo contorno)
     geom_col(data = df_c, fill = NA, colour = "grey35",
@@ -71,6 +75,8 @@ f_piramide <- function(cod_target, cod_confronto) {
       plot.subtitle      = element_text(size = 10, colour = "grey30"),
       plot.caption       = element_text(hjust = 0, size = 8, colour = "grey30")
     )
+  attr(g, "dati") <- dati
+  g
 }
 
 # piramidi per cittadinanza: tre pannelli affiancati (Totale | Italiani |
@@ -84,7 +90,11 @@ f_piramide_cittadinanza <- function(cod_territorio) {
   lbl_t <- as.character(unique(df_t$territorio_lbl))
   anno  <- unique(df_t$anno)
 
-  ggplot(df_t, aes(x = quota_s, y = classe5_lbl)) +
+  # dati esportabili per il bottone di download
+  dati <- df_t |>
+    select(anno, territorio_lbl, cittadinanza_lbl, classe5_lbl, sesso_lbl, popolazione, quota)
+
+  g <- ggplot(df_t, aes(x = quota_s, y = classe5_lbl)) +
     geom_col(aes(fill = sesso_lbl), width = 0.85) +
     geom_vline(xintercept = 0, colour = "white", linewidth = 0.2) +
     facet_wrap(vars(cittadinanza_lbl), nrow = 1) +
@@ -105,6 +115,8 @@ f_piramide_cittadinanza <- function(cod_territorio) {
       strip.text         = element_text(face = "bold"),
       plot.caption       = element_text(hjust = 0, size = 8, colour = "grey30")
     )
+  attr(g, "dati") <- dati
+  g
 }
 
 # salvataggio (png + rds)
@@ -112,6 +124,12 @@ f_salva_piramide <- function(grafico, nome_file, larghezza = 7) {
   ggsave(file.path(dir_mod, "output", paste0(nome_file, ".png")),
          grafico, width = larghezza, height = 6, dpi = 300, bg = "white")
   saveRDS(grafico, file.path(dir_mod, "output", paste0(nome_file, ".rds")))
+  # csv dei dati del grafico (per il bottone di download nelle pagine di sito/)
+  dati <- attr(grafico, "dati")
+  if (!is.null(dati)) {
+    write.csv(dati, file.path(dir_mod, "output", paste0(nome_file, ".csv")),
+              row.names = FALSE)
+  }
   message("Salvata: ", nome_file)
 }
 

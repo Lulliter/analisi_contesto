@@ -1,0 +1,85 @@
+"anno","territorio_lbl","cittadinanza_lbl","classe5_lbl","sesso_lbl","popolazione","quota"
+2024,"Provincia di Parma","Totale","100+","Femmine",176,0.000386207986166732
+2024,"Provincia di Parma","Totale","0-4","Femmine",7924,0.017388136831734
+2024,"Provincia di Parma","Totale","10-14","Femmine",10126,0.0222201253859337
+2024,"Provincia di Parma","Totale","15-19","Femmine",10507,0.0230561779014424
+2024,"Provincia di Parma","Totale","20-24","Femmine",10321,0.022648026279698
+2024,"Provincia di Parma","Totale","25-29","Femmine",11661,0.0255884734471038
+2024,"Provincia di Parma","Totale","30-34","Femmine",12964,0.0284477291628722
+2024,"Provincia di Parma","Totale","35-39","Femmine",13587,0.0298148176593602
+2024,"Provincia di Parma","Totale","40-44","Femmine",14268,0.0313091792421985
+2024,"Provincia di Parma","Totale","45-49","Femmine",16479,0.0361609170684181
+2024,"Provincia di Parma","Totale","5-9","Femmine",9142,0.0200608716450924
+2024,"Provincia di Parma","Totale","50-54","Femmine",18435,0.0404530921874074
+2024,"Provincia di Parma","Totale","55-59","Femmine",18558,0.0407229989050126
+2024,"Provincia di Parma","Totale","60-64","Femmine",16574,0.0363693816064058
+2024,"Provincia di Parma","Totale","65-69","Femmine",13955,0.0306223434486179
+2024,"Provincia di Parma","Totale","70-74","Femmine",12166,0.0266966270437754
+2024,"Provincia di Parma","Totale","75-79","Femmine",11796,0.0258847125274021
+2024,"Provincia di Parma","Totale","80-84","Femmine",9684,0.0212502166934013
+2024,"Provincia di Parma","Totale","85-89","Femmine",7489,0.016433588684106
+2024,"Provincia di Parma","Totale","90-94","Femmine",3708,0.00813670007219456
+2024,"Provincia di Parma","Totale","95-99","Femmine",1092,0.00239624500507995
+2024,"Provincia di Parma","Totale","100+","Maschi",37,8.11914516373244e-05
+2024,"Provincia di Parma","Totale","0-4","Maschi",8465,0.0185752875164852
+2024,"Provincia di Parma","Totale","10-14","Maschi",10815,0.0237320418772341
+2024,"Provincia di Parma","Totale","15-19","Maschi",11494,0.0252220147329569
+2024,"Provincia di Parma","Totale","20-24","Maschi",11633,0.0255270312674863
+2024,"Provincia di Parma","Totale","25-29","Maschi",13157,0.028871241329521
+2024,"Provincia di Parma","Totale","30-34","Maschi",13842,0.0303743803665904
+2024,"Provincia di Parma","Totale","35-39","Maschi",13947,0.0306047885401558
+2024,"Provincia di Parma","Totale","40-44","Maschi",14612,0.0320640403060698
+2024,"Provincia di Parma","Totale","45-49","Maschi",16781,0.0368236148628633
+2024,"Provincia di Parma","Totale","5-9","Maschi",9834,0.0215793712270662
+2024,"Provincia di Parma","Totale","50-54","Maschi",18424,0.040428954188272
+2024,"Provincia di Parma","Totale","55-59","Maschi",18445,0.0404750358229851
+2024,"Provincia di Parma","Totale","60-64","Maschi",16161,0.0354631094570486
+2024,"Provincia di Parma","Totale","65-69","Maschi",12739,0.027953997362375
+2024,"Provincia di Parma","Totale","70-74","Maschi",10540,0.0231285918988486
+2024,"Provincia di Parma","Totale","75-79","Maschi",10040,0.0220314101199659
+2024,"Provincia di Parma","Totale","80-84","Maschi",7233,0.015871831613318
+2024,"Provincia di Parma","Totale","85-89","Maschi",4872,0.0106909392534336
+2024,"Provincia di Parma","Totale","90-94","Maschi",1716,0.00376552786512564
+2024,"Provincia di Parma","Totale","95-99","Maschi",314,0.000689030157138374
+2024,"Emilia-Romagna","Totale","100+","Femmine",1638,0.000367100119722151
+2024,"Emilia-Romagna","Totale","0-4","Femmine",72367,0.0162185191477002
+2024,"Emilia-Romagna","Totale","10-14","Femmine",98159,0.0219988892868173
+2024,"Emilia-Romagna","Totale","15-19","Femmine",103402,0.0231739234307142
+2024,"Emilia-Romagna","Totale","20-24","Femmine",102067,0.0228747301096953
+2024,"Emilia-Romagna","Totale","25-29","Femmine",108098,0.0242263667531899
+2024,"Emilia-Romagna","Totale","30-34","Femmine",118676,0.0265970536069268
+2024,"Emilia-Romagna","Totale","35-39","Femmine",124550,0.0279135042194102
+2024,"Emilia-Romagna","Totale","40-44","Femmine",135912,0.0304598971133559
+2024,"Emilia-Romagna","Totale","45-49","Femmine",163360,0.0366114014394448
+2024,"Emilia-Romagna","Totale","5-9","Femmine",84940,0.0190363151216114
+2024,"Emilia-Romagna","Totale","50-54","Femmine",185920,0.0416674323923946
+2024,"Emilia-Romagna","Totale","55-59","Femmine",183334,0.0410878713975219
+2024,"Emilia-Romagna","Totale","60-64","Femmine",169436,0.0379731232510638
+2024,"Emilia-Romagna","Totale","65-69","Femmine",144712,0.0324321077687619
+2024,"Emilia-Romagna","Totale","70-74","Femmine",126998,0.0284621373653686
+2024,"Emilia-Romagna","Totale","75-79","Femmine",122992,0.0275643332874645
+2024,"Emilia-Romagna","Totale","80-84","Femmine",97374,0.0218229591317612
+2024,"Emilia-Romagna","Totale","85-89","Femmine",76525,0.0171503886823795
+2024,"Emilia-Romagna","Totale","90-94","Femmine",38361,0.00859726965363947
+2024,"Emilia-Romagna","Totale","95-99","Femmine",11306,0.00253384246250222
+2024,"Emilia-Romagna","Totale","100+","Maschi",340,7.6199048049775e-05
+2024,"Emilia-Romagna","Totale","0-4","Maschi",76781,0.017207762083264
+2024,"Emilia-Romagna","Totale","10-14","Maschi",104087,0.0233274421010498
+2024,"Emilia-Romagna","Totale","15-19","Maschi",112722,0.0252626738066669
+2024,"Emilia-Romagna","Totale","20-24","Maschi",114907,0.0257523647478103
+2024,"Emilia-Romagna","Totale","25-29","Maschi",121865,0.0273117558546642
+2024,"Emilia-Romagna","Totale","30-34","Maschi",127326,0.0285356470352519
+2024,"Emilia-Romagna","Totale","35-39","Maschi",127525,0.0285802458898458
+2024,"Emilia-Romagna","Totale","40-44","Maschi",136601,0.0306143122430803
+2024,"Emilia-Romagna","Totale","45-49","Maschi",162521,0.0364233690826397
+2024,"Emilia-Romagna","Totale","5-9","Maschi",90329,0.0202440700332004
+2024,"Emilia-Romagna","Totale","50-54","Maschi",184788,0.0414137343853583
+2024,"Emilia-Romagna","Totale","55-59","Maschi",180237,0.0403937877157273
+2024,"Emilia-Romagna","Totale","60-64","Maschi",160108,0.0358825799563335
+2024,"Emilia-Romagna","Totale","65-69","Maschi",132444,0.0296826668232482
+2024,"Emilia-Romagna","Totale","70-74","Maschi",110006,0.0246539778816575
+2024,"Emilia-Romagna","Totale","75-79","Maschi",103099,0.023106016632011
+2024,"Emilia-Romagna","Totale","80-84","Maschi",73745,0.016527349407149
+2024,"Emilia-Romagna","Totale","85-89","Maschi",49878,0.011178400348902
+2024,"Emilia-Romagna","Totale","90-94","Maschi",19010,0.00426042324537124
+2024,"Emilia-Romagna","Totale","95-99","Maschi",3552,0.000796055937272944

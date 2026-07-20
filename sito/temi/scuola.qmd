@@ -26,6 +26,14 @@ execute:
   output: false
 ---
 
+```{r}
+#| eval: false
+# Anteprima: renderizza e apre nel browser (lancia a mano, ignorato nel render)
+pagina <- "scuola"   # nome pagina, senza estensione
+quarto::quarto_render(here::here("sito", "temi", paste0(pagina, ".qmd")))
+browseURL(here::here("docs", "sito", "temi", paste0(pagina, ".html")))
+```
+
 <!-- BOZZA 2026-07-18: pagina del tema Scuola, composta dagli output del modulo
      scuola_iscritti. Qui si aggiungeranno le stime sugli studenti con
      disabilità (modulo scuola_disab); NEET/abbandoni/formazione continua
