@@ -111,15 +111,15 @@ f_plot_indicatore_demografico <- function(
       aes(tooltip = territorio, data_id = gsub("'", "", territorio)),
       linewidth = rel(0.8)
     ) +
-    # linea più spessa per Parma ed Emilia-Romagna
+    # linea più spessa per TUTTI i territori evidenziati (Parma, ER, Italia, ...)
     geom_line_interactive(
-      data = function(df) df |> dplyr::filter(territorio %in% c("Parma", "Emilia-Romagna")),
+      data = function(df) df |> dplyr::filter(territorio_display != "Altre provincie ER"),
       aes(tooltip = territorio, data_id = gsub("'", "", territorio)),
       linewidth = rel(1.5)
     ) +
     # standard "linea + pallino": punti solo sulle linee evidenziate
     geom_point_interactive(
-      data = function(df) df |> dplyr::filter(territorio %in% c("Parma", "Emilia-Romagna")),
+      data = function(df) df |> dplyr::filter(territorio_display != "Altre provincie ER"),
       aes(tooltip = valore, data_id = gsub("'", "", territorio)),
       size = 1.6
     ) +

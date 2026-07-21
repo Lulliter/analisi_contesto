@@ -49,39 +49,16 @@ library(ggtext)    # registra element_textbox usato nei temi dei plot
 library(scales)    # percent() nelle etichette dei plot salvati
 library(patchwork) # il grafico statali/paritarie è un patchwork
 library(glue)
-library(DT)
+library(downloadthis) # per i bottoni di scarico dati
 
 dir_scuola <- here::here("moduli", "scuola_iscritti", "output")
 
-# Tabella interattiva (formato lungo) dal csv salvato dal modulo, con
-# filtri e bottoni Copy/CSV/Excel per scaricare i dati del grafico
-f_tabella_dati <- function(nome_tabella, modulo = "scuola_iscritti") {
-  csv_path <- here::here("moduli", modulo, "output", paste0(nome_tabella, ".csv"))
-  read.csv(csv_path, check.names = FALSE) |>
-    DT::datatable(
-      rownames = FALSE,
-      extensions = "Buttons",
-      filter = "top",
-      options = list(
-        dom = "Btp", # bottoni + tabella + paginazione
-        buttons = c("copy", "csv", "excel"),
-        pageLength = 10,
-        scrollX = TRUE
-      )
-    )
-}
-
-# ggiraph con tooltip nello stile delle altre pagine
-f_girafe <- function(ggobj) {
-  girafe(
-    ggobj = ggobj,
-    options = list(
-      opts_tooltip(
-        css = "background-color:#333; color:white; padding:8px; border-radius:4px; font-size:12px;"
-      )
-    )
-  )
-}
+# Scarico dati: bottoni CSV + Excel sotto ogni grafico (funzioni generali in R/;
+# titolo e fonte del grafico finiscono nel foglio "Metadati" dell'Excel).
+# Piu' grafici possono condividere lo stesso csv: si passa il grafico in `rds`
+source(here::here("R", "f_scarica_dati.R"))
+source(here::here("R", "f_bottoni_dati.R"))
+source(here::here("R", "f_girafe.R"))  # girafe standard: tooltip + hover bordeaux
 ```
 
 > Le scuole della provincia di Parma (statali e paritarie, esclusa l'infanzia)
@@ -107,20 +84,17 @@ f_girafe <- function(ggobj) {
 f_girafe(readRDS(file.path(dir_scuola, "plot_iscritti_ordine_pr.rds")))
 ```
 
+::: {.text-end}
+```{r}
+#| label: dl_plot_iscritti_ordine_pr
+#| output: true
+f_bottoni_dati("iscritti_trend_pr", dir_scuola, rds = "plot_iscritti_ordine_pr")
+```
+:::
+
 ::: {.callout-note collapse="true"}
 ## Osservazioni
 Il calo demografico è entrato in classe dal basso: primaria e secondaria di I grado perdono iscritti negli ultimi 5 anni, mentre la secondaria di II grado cresce ancora (l'onda dei nati fino al 2010 che risale i cicli). 
-:::
-
-::: {.callout-tip collapse="true"}
-## Dati
-
-```{r}
-#| label: tab_iscritti_trend_pr
-#| output: true
-f_tabella_dati("iscritti_trend_pr")
-```
-
 :::
 
 ### plot_iscritti_ordine_gestione_pr {.notitle}
@@ -133,22 +107,18 @@ f_tabella_dati("iscritti_trend_pr")
 f_girafe(readRDS(file.path(dir_scuola, "plot_iscritti_ordine_gestione_pr.rds")))
 ```
 
+::: {.text-end}
+```{r}
+#| label: dl_plot_iscritti_ordine_gestione_pr
+#| output: true
+f_bottoni_dati("iscritti_trend_pr", dir_scuola, rds = "plot_iscritti_ordine_gestione_pr")
+```
+:::
+
 ::: {.callout-note collapse="true"}
 ## Osservazioni
 
 Il numero di iscritti alle scuole paritarie è relativamente più alto nella fascia 6-11 anni (primaria) - o forse ancora più nell'infanzia (qui non rappresentata) - mentre cala all'avanzare dell'ordine di scuola.
-:::
-
-::: {.callout-tip collapse="true"}
-## Dati
-
-```{r}
-#| label: tab_iscritti_trend_gestione_pr
-#| output: true
-# stessa tabella del grafico precedente (contiene anche la colonna gestione)
-f_tabella_dati("iscritti_trend_pr")
-```
-
 :::
 
 ### plot_plessi_ordine_gestione_pr {.notitle}
@@ -162,6 +132,14 @@ f_tabella_dati("iscritti_trend_pr")
 f_girafe(readRDS(file.path(dir_scuola, "plot_plessi_ordine_gestione_pr.rds")))
 ```
 
+::: {.text-end}
+```{r}
+#| label: dl_plot_plessi_ordine_gestione_pr
+#| output: true
+f_bottoni_dati("plessi_trend_pr", dir_scuola, rds = "plot_plessi_ordine_gestione_pr")
+```
+:::
+
 ::: {.callout-note collapse="true"}
 ## Osservazioni
 
@@ -170,17 +148,6 @@ dall'anagrafe scuole, include l'infanzia e arriva all'a.s. 2026/27): le statali
 sono quasi immobili, con un lieve calo di primarie e superiori dal 2022, e le
 ~80 materne paritarie sono costanti. Il calo degli iscritti, per ora, non si è
 tradotto in chiusure di scuole.
-:::
-
-::: {.callout-tip collapse="true"}
-## Dati
-
-```{r}
-#| label: tab_plessi_trend_pr
-#| output: true
-f_tabella_dati("plessi_trend_pr")
-```
-
 :::
 
 ## Gli alunni con cittadinanza non italiana
@@ -195,6 +162,14 @@ f_tabella_dati("plessi_trend_pr")
 f_girafe(readRDS(file.path(dir_scuola, "plot_stranieri_prov_er.rds")))
 ```
 
+::: {.text-end}
+```{r}
+#| label: dl_plot_stranieri_prov_er
+#| output: true
+f_bottoni_dati("stranieri_trend_prov_er", dir_scuola, rds = "plot_stranieri_prov_er")
+```
+:::
+
 ::: {.callout-note collapse="true"}
 ## Osservazioni
 
@@ -202,17 +177,6 @@ L'incidenza degli alunni con cittadinanza non italiana è **cresciuta lungo
 tutto il decennio** in tutta la regione, e Parma si colloca nella fascia alta
 delle province. <!-- TODO: confermare il valore PR 2024/25 e il confronto con
 la media ER leggendo il grafico (nota: 22,7% misurato sulle sole statali) -->
-:::
-
-::: {.callout-tip collapse="true"}
-## Dati
-
-```{r}
-#| label: tab_stranieri_trend_prov_er
-#| output: true
-f_tabella_dati("stranieri_trend_prov_er")
-```
-
 :::
 
 ### plot_stranieri_comuni_pr {.notitle}
@@ -224,6 +188,14 @@ f_tabella_dati("stranieri_trend_prov_er")
 
 f_girafe(readRDS(file.path(dir_scuola, "plot_stranieri_comuni_pr.rds")))
 ```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_stranieri_comuni_pr
+#| output: true
+f_bottoni_dati("scuola_comuni_pr", dir_scuola, rds = "plot_stranieri_comuni_pr")
+```
+:::
 
 <br>
 
@@ -237,6 +209,14 @@ f_girafe(readRDS(file.path(dir_scuola, "plot_stranieri_comuni_pr.rds")))
 f_girafe(readRDS(file.path(dir_scuola, "plot_stranieri_comuni_pr_min.rds")))
 ```
 
+::: {.text-end}
+```{r}
+#| label: dl_plot_stranieri_comuni_pr_min
+#| output: true
+f_bottoni_dati("scuola_comuni_pr", dir_scuola, rds = "plot_stranieri_comuni_pr_min")
+```
+:::
+
 ::: {.callout-note collapse="true"}
 ## Osservazioni
 
@@ -244,17 +224,6 @@ L'eterogeneità comunale è fortissima: nei comuni della pedecollina e della
 bassa a forte domanda di lavoro l'incidenza supera di molto la soglia del 20%
 (Langhirano ~49%, Busseto ~39%, Colorno ~32%), mentre le code basse si trovano
 soprattutto nei comuni dell'Appennino.
-:::
-
-::: {.callout-tip collapse="true"}
-## Dati
-
-```{r}
-#| label: tab_scuola_comuni_pr
-#| output: true
-f_tabella_dati("scuola_comuni_pr")
-```
-
 :::
 
 ## La geografia scolastica dei comuni
@@ -272,6 +241,14 @@ servono e dove si concentrano le presenze straniere.
 f_girafe(readRDS(file.path(dir_scuola, "mappa_n_plessi_comuni_pr.rds")))
 ```
 
+::: {.text-end}
+```{r}
+#| label: dl_mappa_n_plessi_comuni_pr
+#| output: true
+f_bottoni_dati("scuola_comuni_pr", dir_scuola, rds = "mappa_n_plessi_comuni_pr")
+```
+:::
+
 ### mappa_alunni_comuni_pr {.notitle}
 ```{r}
 #| label: mappa_alunni_comuni_pr
@@ -281,6 +258,14 @@ f_girafe(readRDS(file.path(dir_scuola, "mappa_n_plessi_comuni_pr.rds")))
 
 f_girafe(readRDS(file.path(dir_scuola, "mappa_alunni_comuni_pr.rds")))
 ```
+
+::: {.text-end}
+```{r}
+#| label: dl_mappa_alunni_comuni_pr
+#| output: true
+f_bottoni_dati("scuola_comuni_pr", dir_scuola, rds = "mappa_alunni_comuni_pr")
+```
+:::
 
 ### mappa_quota_stranieri_comuni_pr {.notitle}
 ```{r}
@@ -292,6 +277,14 @@ f_girafe(readRDS(file.path(dir_scuola, "mappa_alunni_comuni_pr.rds")))
 f_girafe(readRDS(file.path(dir_scuola, "mappa_quota_stranieri_comuni_pr.rds")))
 ```
 
+::: {.text-end}
+```{r}
+#| label: dl_mappa_quota_stranieri_comuni_pr
+#| output: true
+f_bottoni_dati("scuola_comuni_pr", dir_scuola, rds = "mappa_quota_stranieri_comuni_pr")
+```
+:::
+
 ::: {.callout-note collapse="true"}
 ## Osservazioni
 
@@ -300,18 +293,6 @@ concentrano su Parma città e sui comuni maggiori, mentre in montagna la rete si
 dirada — **Bore e Valmozzola non hanno scuole primarie o secondarie** e i loro
 ragazzi si spostano altrove. La mappa della % stranieri ripropone su base
 scolastica le concentrazioni già viste nelle mappe demografiche.
-:::
-
-::: {.callout-tip collapse="true"}
-## Dati
-
-```{r}
-#| label: tab_scuola_comuni_pr_mappe
-#| output: true
-# la tabella comunale dietro le tre mappe (plessi, alunni, % stranieri)
-f_tabella_dati("scuola_comuni_pr")
-```
-
 :::
 
 ### mappa_paritarie_plessi_pr {.notitle}
@@ -324,15 +305,12 @@ f_tabella_dati("scuola_comuni_pr")
 f_girafe(readRDS(file.path(dir_scuola, "mappa_paritarie_plessi_pr.rds")))
 ```
 
-::: {.callout-tip collapse="true"}
-## Dati (plessi, infanzia inclusa)
-
+::: {.text-end}
 ```{r}
-#| label: tab_paritarie_plessi_comuni_pr
+#| label: dl_mappa_paritarie_plessi_pr
 #| output: true
-f_tabella_dati("paritarie_plessi_comuni_pr")
+f_bottoni_dati("paritarie_plessi_comuni_pr", dir_scuola, rds = "mappa_paritarie_plessi_pr")
 ```
-
 :::
 
 ### mappa_paritarie_iscritti_pr {.notitle}
@@ -344,6 +322,14 @@ f_tabella_dati("paritarie_plessi_comuni_pr")
 
 f_girafe(readRDS(file.path(dir_scuola, "mappa_paritarie_iscritti_pr.rds")))
 ```
+
+::: {.text-end}
+```{r}
+#| label: dl_mappa_paritarie_iscritti_pr
+#| output: true
+f_bottoni_dati("paritarie_comuni_pr", dir_scuola, rds = "mappa_paritarie_iscritti_pr")
+```
+:::
 
 ::: {.callout-note collapse="true"}
 ## Osservazioni
@@ -363,17 +349,6 @@ all'infanzia la fonte da acquisire è l'anagrafe studenti della Regione ER.
 In diversi comuni le paritarie restano comunque un **presidio importante** —
 soprattutto per l'infanzia, dove in alcuni casi sono l'unica o la principale
 offerta locale (si vedano i comuni in classe "oltre 50%" nella mappa dei plessi).
-:::
-
-::: {.callout-tip collapse="true"}
-## Dati (iscritti, senza infanzia)
-
-```{r}
-#| label: tab_paritarie_comuni_pr
-#| output: true
-f_tabella_dati("paritarie_comuni_pr")
-```
-
 :::
 
 ## Studenti con disabilità

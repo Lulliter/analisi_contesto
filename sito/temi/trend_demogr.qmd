@@ -34,7 +34,11 @@ execute:
 ```{r}
 #| label: anteprima
 #| eval: false
-# Anteprima: renderizza e apre nel browser (lancia a mano, ignorato nel render)
+
+# --- [se serve] Ricreare i grafici
+# source(here::here("moduli", "demo_trend_indicatori", "02_output.R"))
+
+# --- Anteprima: renderizza e apre nel browser (lancia a mano, ignorato nel render)
 pagina <- "trend_demogr"   # nome pagina, senza estensione
 quarto::quarto_render(here::here("sito", "temi", paste0(pagina, ".qmd")))
 browseURL(here::here("docs", "sito", "temi", paste0(pagina, ".html")))
@@ -55,18 +59,13 @@ library(scales) # percent() nelle etichette delle piramidi salvate come rds
 library(downloadthis) # per i bottoni di scarico dati     
 library(tidyr)  # pivot_wider per la vista "larga"
 
-# Scarico dati: dal csv salvato dal modulo, produce i 2 bottoni CSV + Excel
-# (funzione generale in R/, riusabile su tutte le pagine di sito/)
+# Scarico dati: bottoni CSV + Excel sotto ogni grafico (funzioni generali in R/;
+# titolo e fonte del grafico finiscono nel foglio "Metadati" dell'Excel)
 source(here::here("R", "f_scarica_dati.R"))
+source(here::here("R", "f_bottoni_dati.R"))
+source(here::here("R", "f_girafe.R"))  # girafe standard: tooltip + hover bordeaux
 dir_demo  <- here::here("moduli", "demo_trend_indicatori", "output")
 dir_piram <- here::here("moduli", "pop_piramide_eta", "output")
-f_dl <- function(nome, dir = dir_demo) {
-  df <- read.csv(file.path(dir, paste0(nome, ".csv")), check.names = FALSE)
-  p  <- readRDS(file.path(dir, paste0(nome, ".rds")))   # titolo + fonte dal grafico
-  df$titolo <- gsub("\n", " ", p$labels$title   %||% "")
-  df$fonte  <- gsub("\n", " ", p$labels$caption %||% "")
-  f_scarica_dati(df)
-}
 ```
 
 <!-- # Introduzione -->
@@ -104,28 +103,14 @@ L'analisi mette a confronto la provincia di Parma con le altre province della re
 #| fig-width: 9
 #| fig-height: 7
 
-library(ggiraph)
-
-p01_e_m <- readRDS(file = here::here("moduli", "demo_trend_indicatori", "output", "p01_e_m.rds"))
-
-# Convertirlo in interattivo con tooltip più piccolo
-p01_e_m_interact <- girafe(
-  ggobj = p01_e_m,
-  options = list(
-    opts_tooltip(
-      css = "background-color:#333; color:white; padding:8px; border-radius:4px; font-size:12px;"
-    )
-  )
-)
-
-p01_e_m_interact
+f_girafe(readRDS(file.path(dir_demo, "p01_e_m.rds")))
 ```
 
 ::: {.text-end}
 ```{r}
 #| label: dl_p01_e_m
 #| output: true
-f_dl("p01_e_m")
+f_bottoni_dati("p01_e_m", dir_demo)
 ```
 :::
 
@@ -145,27 +130,14 @@ f_dl("p01_e_m")
 #| fig-width: 9
 #| fig-height: 7
 
-p06_0_14_anni <- readRDS(
-  file = here::here("moduli", "demo_trend_indicatori", "output", "p06_0_14_anni.rds")
-)
-
-p06_0_14_anni_interact <- girafe(
-  ggobj = p06_0_14_anni,
-  options = list(
-    opts_tooltip(
-      css = "background-color:#333; color:white; padding:8px; border-radius:4px; font-size:12px;"
-    )
-  )
-)
-
-p06_0_14_anni_interact
+f_girafe(readRDS(file.path(dir_demo, "p06_0_14_anni.rds")))
 ```
 
 ::: {.text-end}
 ```{r}
 #| label: dl_p06_0_14_anni
 #| output: true
-f_dl("p06_0_14_anni")
+f_bottoni_dati("p06_0_14_anni", dir_demo)
 ```
 :::
 
@@ -185,27 +157,14 @@ f_dl("p06_0_14_anni")
 #| fig-width: 9
 #| fig-height: 7
 
-p06_15_64_anni <- readRDS(
-  file = here::here("moduli", "demo_trend_indicatori", "output", "p06_15_64_anni.rds")
-)
-
-p06_15_64_anni_interact <- girafe(
-  ggobj = p06_15_64_anni,
-  options = list(
-    opts_tooltip(
-      css = "background-color:#333; color:white; padding:8px; border-radius:4px; font-size:12px;"
-    )
-  )
-)
-
-p06_15_64_anni_interact
+f_girafe(readRDS(file.path(dir_demo, "p06_15_64_anni.rds")))
 ```
 
 ::: {.text-end}
 ```{r}
 #| label: dl_p06_15_64_anni
 #| output: true
-f_dl("p06_15_64_anni")
+f_bottoni_dati("p06_15_64_anni", dir_demo)
 ```
 :::
 
@@ -225,27 +184,14 @@ f_dl("p06_15_64_anni")
 #| fig-width: 9
 #| fig-height: 7
 
-p06_65piu_anni <- readRDS(
-  file = here::here("moduli", "demo_trend_indicatori", "output", "p06_65piu_anni.rds")
-)
-
-p06_65piu_anni_interact <- girafe(
-  ggobj = p06_65piu_anni,
-  options = list(
-    opts_tooltip(
-      css = "background-color:#333; color:white; padding:8px; border-radius:4px; font-size:12px;"
-    )
-  )
-)
-
-p06_65piu_anni_interact
+f_girafe(readRDS(file.path(dir_demo, "p06_65piu_anni.rds")))
 ```
 
 ::: {.text-end}
 ```{r}
 #| label: dl_p06_65piu_anni
 #| output: true
-f_dl("p06_65piu_anni")
+f_bottoni_dati("p06_65piu_anni", dir_demo)
 ```
 :::
 
@@ -267,27 +213,14 @@ f_dl("p06_65piu_anni")
 #| fig-width: 9
 #| fig-height: 7
 
-p10_quoziente_di_natalità <- readRDS(
-  file = here::here("moduli", "demo_trend_indicatori", "output", "p10_quoziente_di_natalità.rds")
-)
-
-p10_quoziente_di_natalità_interact <- girafe(
-  ggobj = p10_quoziente_di_natalità,
-  options = list(
-    opts_tooltip(
-      css = "background-color:#333; color:white; padding:8px; border-radius:4px; font-size:12px;"
-    )
-  )
-)
-
-p10_quoziente_di_natalità_interact
+f_girafe(readRDS(file.path(dir_demo, "p10_quoziente_di_natalità.rds")))
 ```
 
 ::: {.text-end}
 ```{r}
 #| label: dl_p10_quoziente_di_natalità
 #| output: true
-f_dl("p10_quoziente_di_natalità")
+f_bottoni_dati("p10_quoziente_di_natalità", dir_demo)
 ```
 :::
 
@@ -307,27 +240,14 @@ f_dl("p10_quoziente_di_natalità")
 #| fig-width: 9
 #| fig-height: 7
 
-p09_quoziente_di_mortalità <- readRDS(
-  file = here::here("moduli", "demo_trend_indicatori", "output", "p09_quoziente_di_mortalità.rds")
-)
-
-p09_quoziente_di_mortalità_interact <- girafe(
-  ggobj = p09_quoziente_di_mortalità,
-  options = list(
-    opts_tooltip(
-      css = "background-color:#333; color:white; padding:8px; border-radius:4px; font-size:12px;"
-    )
-  )
-)
-
-p09_quoziente_di_mortalità_interact
+f_girafe(readRDS(file.path(dir_demo, "p09_quoziente_di_mortalità.rds")))
 ```
 
 ::: {.text-end}
 ```{r}
 #| label: dl_p09_quoziente_di_mortalità
 #| output: true
-f_dl("p09_quoziente_di_mortalità")
+f_bottoni_dati("p09_quoziente_di_mortalità", dir_demo)
 ```
 :::
 
@@ -348,27 +268,14 @@ f_dl("p09_quoziente_di_mortalità")
 #| fig-width: 9
 #| fig-height: 7
 
-p07_crescita_naturale <- readRDS(
-  file = here::here("moduli", "demo_trend_indicatori", "output", "p07_crescita_naturale.rds")
-)
-
-p07_crescita_naturale_interact <- girafe(
-  ggobj = p07_crescita_naturale,
-  options = list(
-    opts_tooltip(
-      css = "background-color:#333; color:white; padding:8px; border-radius:4px; font-size:12px;"
-    )
-  )
-)
-
-p07_crescita_naturale_interact
+f_girafe(readRDS(file.path(dir_demo, "p07_crescita_naturale.rds")))
 ```
 
 ::: {.text-end}
 ```{r}
 #| label: dl_p07_crescita_naturale
 #| output: true
-f_dl("p07_crescita_naturale")
+f_bottoni_dati("p07_crescita_naturale", dir_demo)
 ```
 :::
 
@@ -388,27 +295,14 @@ f_dl("p07_crescita_naturale")
 #| fig-width: 9
 #| fig-height: 7
 
-p17_tasso_di_crescita_totale <- readRDS(
-  file = here::here("moduli", "demo_trend_indicatori", "output", "p17_tasso_di_crescita_totale.rds")
-)
-
-p17_tasso_di_crescita_totale_interact <- girafe(
-  ggobj = p17_tasso_di_crescita_totale,
-  options = list(
-    opts_tooltip(
-      css = "background-color:#333; color:white; padding:8px; border-radius:4px; font-size:12px;"
-    )
-  )
-)
-
-p17_tasso_di_crescita_totale_interact
+f_girafe(readRDS(file.path(dir_demo, "p17_tasso_di_crescita_totale.rds")))
 ```
 
 ::: {.text-end}
 ```{r}
 #| label: dl_p17_tasso_di_crescita_totale
 #| output: true
-f_dl("p17_tasso_di_crescita_totale")
+f_bottoni_dati("p17_tasso_di_crescita_totale", dir_demo)
 ```
 :::
 
@@ -442,7 +336,7 @@ readRDS(here::here("moduli", "pop_piramide_eta", "output", "piramide_pr_vs_er.rd
 ```{r}
 #| label: dl_piramide_pr_vs_er
 #| output: true
-f_dl("piramide_pr_vs_er", dir_piram)
+f_bottoni_dati("piramide_pr_vs_er", dir_piram)
 ```
 :::
 
@@ -460,7 +354,7 @@ readRDS(here::here("moduli", "pop_piramide_eta", "output", "piramide_pr_vs_it.rd
 ```{r}
 #| label: dl_piramide_pr_vs_it
 #| output: true
-f_dl("piramide_pr_vs_it", dir_piram)
+f_bottoni_dati("piramide_pr_vs_it", dir_piram)
 ```
 :::
 
@@ -478,7 +372,7 @@ readRDS(here::here("moduli", "pop_piramide_eta", "output", "piramide_pr_cittadin
 ```{r}
 #| label: dl_piramide_pr_cittadinanza
 #| output: true
-f_dl("piramide_pr_cittadinanza", dir_piram)
+f_bottoni_dati("piramide_pr_cittadinanza", dir_piram)
 ```
 :::
 
@@ -496,28 +390,14 @@ Istat propone diversi indici sintetici per valutare la struttura demografica e l
 #| fig-width: 9
 #| fig-height: 7
 
-library(ggiraph)
-
-p02_i_v <- readRDS(file = here::here("moduli", "demo_trend_indicatori", "output", "p02_i_v.rds"))
-
-# Convertirlo in interattivo con tooltip più piccolo
-p02_i_v_interact <- girafe(
-  ggobj = p02_i_v,
-  options = list(
-    opts_tooltip(
-      css = "background-color:#333; color:white; padding:8px; border-radius:4px; font-size:12px;"
-    )
-  )
-)
-
-p02_i_v_interact
+f_girafe(readRDS(file.path(dir_demo, "p02_i_v.rds")))
 ```
 
 ::: {.text-end}
 ```{r}
 #| label: dl_p02_i_v
 #| output: true
-f_dl("p02_i_v")
+f_bottoni_dati("p02_i_v", dir_demo)
 ```
 :::
 
@@ -536,26 +416,14 @@ f_dl("p02_i_v")
 #| output: true
 #| fig-width: 9
 #| fig-height: 7
-p03_i_d_s <- readRDS(file = here::here("moduli", "demo_trend_indicatori", "output", "p03_i_d_s.rds"))
-
-# Converti in interattivo con tooltip più piccolo
-p03_i_d_s_interact <- girafe(
-  ggobj = p03_i_d_s,
-  options = list(
-    opts_tooltip(
-      css = "background-color:#333; color:white; padding:8px; border-radius:4px; font-size:12px;"
-    )
-  )
-)
-
-p03_i_d_s_interact
+f_girafe(readRDS(file.path(dir_demo, "p03_i_d_s.rds")))
 ```
 
 ::: {.text-end}
 ```{r}
 #| label: dl_p03_i_d_s
 #| output: true
-f_dl("p03_i_d_s")
+f_bottoni_dati("p03_i_d_s", dir_demo)
 ```
 :::
 
@@ -575,26 +443,14 @@ f_dl("p03_i_d_s")
 #| fig-width: 9
 #| fig-height: 7
 #|
-p04_i_d_a <- readRDS(file = here::here("moduli", "demo_trend_indicatori", "output", "p04_i_d_a.rds"))
-
-# Converti in interattivo con tooltip più piccolo
-p04_i_d_a_interact <- girafe(
-  ggobj = p04_i_d_a,
-  options = list(
-    opts_tooltip(
-      css = "background-color:#333; color:white; padding:8px; border-radius:4px; font-size:12px;"
-    )
-  )
-)
-
-p04_i_d_a_interact
+f_girafe(readRDS(file.path(dir_demo, "p04_i_d_a.rds")))
 ```
 
 ::: {.text-end}
 ```{r}
 #| label: dl_p04_i_d_a
 #| output: true
-f_dl("p04_i_d_a")
+f_bottoni_dati("p04_i_d_a", dir_demo)
 ```
 :::
 
@@ -616,27 +472,14 @@ f_dl("p04_i_d_a")
 #| fig-width: 9
 #| fig-height: 7
 
-p11_quoziente_di_nuzialità <- readRDS(
-  file = here::here("moduli", "demo_trend_indicatori", "output", "p11_quoziente_di_nuzialità.rds")
-)
-
-p11_quoziente_di_nuzialità_interact <- girafe(
-  ggobj = p11_quoziente_di_nuzialità,
-  options = list(
-    opts_tooltip(
-      css = "background-color:#333; color:white; padding:8px; border-radius:4px; font-size:12px;"
-    )
-  )
-)
-
-p11_quoziente_di_nuzialità_interact
+f_girafe(readRDS(file.path(dir_demo, "p11_quoziente_di_nuzialità.rds")))
 ```
 
 ::: {.text-end}
 ```{r}
 #| label: dl_p11_quoziente_di_nuzialità
 #| output: true
-f_dl("p11_quoziente_di_nuzialità")
+f_bottoni_dati("p11_quoziente_di_nuzialità", dir_demo)
 ```
 :::
 
@@ -657,27 +500,14 @@ f_dl("p11_quoziente_di_nuzialità")
 #| fig-width: 9
 #| fig-height: 7
 
-p08_età_media_al_parto <- readRDS(
-  file = here::here("moduli", "demo_trend_indicatori", "output", "p08_età_media_al_parto.rds")
-)
-
-p08_età_media_al_parto_interact <- girafe(
-  ggobj = p08_età_media_al_parto,
-  options = list(
-    opts_tooltip(
-      css = "background-color:#333; color:white; padding:8px; border-radius:4px; font-size:12px;"
-    )
-  )
-)
-
-p08_età_media_al_parto_interact
+f_girafe(readRDS(file.path(dir_demo, "p08_età_media_al_parto.rds")))
 ```
 
 ::: {.text-end}
 ```{r}
 #| label: dl_p08_età_media_al_parto
 #| output: true
-f_dl("p08_età_media_al_parto")
+f_bottoni_dati("p08_età_media_al_parto", dir_demo)
 ```
 :::
 
@@ -698,27 +528,14 @@ f_dl("p08_età_media_al_parto")
 #| fig-width: 9
 #| fig-height: 7
 
-p18_tasso_di_fecondità_totale <- readRDS(
-  file = here::here("moduli", "demo_trend_indicatori", "output", "p18_tasso_di_fecondità_totale.rds")
-)
-
-p18_tasso_di_fecondità_totale_interact <- girafe(
-  ggobj = p18_tasso_di_fecondità_totale,
-  options = list(
-    opts_tooltip(
-      css = "background-color:#333; color:white; padding:8px; border-radius:4px; font-size:12px;"
-    )
-  )
-)
-
-p18_tasso_di_fecondità_totale_interact
+f_girafe(readRDS(file.path(dir_demo, "p18_tasso_di_fecondità_totale.rds")))
 ```
 
 ::: {.text-end}
 ```{r}
 #| label: dl_p18_tasso_di_fecondità_totale
 #| output: true
-f_dl("p18_tasso_di_fecondità_totale")
+f_bottoni_dati("p18_tasso_di_fecondità_totale", dir_demo)
 ```
 :::
 
@@ -740,27 +557,14 @@ f_dl("p18_tasso_di_fecondità_totale")
 #| fig-width: 9
 #| fig-height: 7
 
-p15_speranza_di_vita_0 <- readRDS(
-  file = here::here("moduli", "demo_trend_indicatori", "output", "p15_speranza_di_vita_0.rds")
-)
-
-p15_speranza_di_vita_0_interact <- girafe(
-  ggobj = p15_speranza_di_vita_0,
-  options = list(
-    opts_tooltip(
-      css = "background-color:#333; color:white; padding:8px; border-radius:4px; font-size:12px;"
-    )
-  )
-)
-
-p15_speranza_di_vita_0_interact
+f_girafe(readRDS(file.path(dir_demo, "p15_speranza_di_vita_0.rds")))
 ```
 
 ::: {.text-end}
 ```{r}
 #| label: dl_p15_speranza_di_vita_0
 #| output: true
-f_dl("p15_speranza_di_vita_0")
+f_bottoni_dati("p15_speranza_di_vita_0", dir_demo)
 ```
 :::
 
@@ -780,27 +584,14 @@ f_dl("p15_speranza_di_vita_0")
 #| fig-width: 9
 #| fig-height: 7
 
-p16_speranza_di_vita_65 <- readRDS(
-  file = here::here("moduli", "demo_trend_indicatori", "output", "p16_speranza_di_vita_65.rds")
-)
-
-p16_speranza_di_vita_65_interact <- girafe(
-  ggobj = p16_speranza_di_vita_65,
-  options = list(
-    opts_tooltip(
-      css = "background-color:#333; color:white; padding:8px; border-radius:4px; font-size:12px;"
-    )
-  )
-)
-
-p16_speranza_di_vita_65_interact
+f_girafe(readRDS(file.path(dir_demo, "p16_speranza_di_vita_65.rds")))
 ```
 
 ::: {.text-end}
 ```{r}
 #| label: dl_p16_speranza_di_vita_65
 #| output: true
-f_dl("p16_speranza_di_vita_65")
+f_bottoni_dati("p16_speranza_di_vita_65", dir_demo)
 ```
 :::
 
@@ -822,27 +613,14 @@ f_dl("p16_speranza_di_vita_65")
 #| fig-width: 9
 #| fig-height: 7
 
-p12_saldo_migratorio_totale <- readRDS(
-  file = here::here("moduli", "demo_trend_indicatori", "output", "p12_saldo_migratorio_totale.rds")
-)
-
-p12_saldo_migratorio_totale_interact <- girafe(
-  ggobj = p12_saldo_migratorio_totale,
-  options = list(
-    opts_tooltip(
-      css = "background-color:#333; color:white; padding:8px; border-radius:4px; font-size:12px;"
-    )
-  )
-)
-
-p12_saldo_migratorio_totale_interact
+f_girafe(readRDS(file.path(dir_demo, "p12_saldo_migratorio_totale.rds")))
 ```
 
 ::: {.text-end}
 ```{r}
 #| label: dl_p12_saldo_migratorio_totale
 #| output: true
-f_dl("p12_saldo_migratorio_totale")
+f_bottoni_dati("p12_saldo_migratorio_totale", dir_demo)
 ```
 :::
 
@@ -861,27 +639,14 @@ f_dl("p12_saldo_migratorio_totale")
 #| fig-width: 9
 #| fig-height: 7
 
-p13_saldo_migratorio_interno <- readRDS(
-  file = here::here("moduli", "demo_trend_indicatori", "output", "p13_saldo_migratorio_interno.rds")
-)
-
-p13_saldo_migratorio_interno_interact <- girafe(
-  ggobj = p13_saldo_migratorio_interno,
-  options = list(
-    opts_tooltip(
-      css = "background-color:#333; color:white; padding:8px; border-radius:4px; font-size:12px;"
-    )
-  )
-)
-
-p13_saldo_migratorio_interno_interact
+f_girafe(readRDS(file.path(dir_demo, "p13_saldo_migratorio_interno.rds")))
 ```
 
 ::: {.text-end}
 ```{r}
 #| label: dl_p13_saldo_migratorio_interno
 #| output: true
-f_dl("p13_saldo_migratorio_interno")
+f_bottoni_dati("p13_saldo_migratorio_interno", dir_demo)
 ```
 :::
 
@@ -901,27 +666,14 @@ f_dl("p13_saldo_migratorio_interno")
 #| fig-width: 9
 #| fig-height: 7
 
-p14_saldo_migratorio_con_l_estero <- readRDS(
-  file = here::here("moduli", "demo_trend_indicatori", "output", "p14_saldo_migratorio_con_l_estero.rds")
-)
-
-p14_saldo_migratorio_con_l_estero_interact <- girafe(
-  ggobj = p14_saldo_migratorio_con_l_estero,
-  options = list(
-    opts_tooltip(
-      css = "background-color:#333; color:white; padding:8px; border-radius:4px; font-size:12px;"
-    )
-  )
-)
-
-p14_saldo_migratorio_con_l_estero_interact
+f_girafe(readRDS(file.path(dir_demo, "p14_saldo_migratorio_con_l_estero.rds")))
 ```
 
 ::: {.text-end}
 ```{r}
 #| label: dl_p14_saldo_migratorio_con_l_estero
 #| output: true
-f_dl("p14_saldo_migratorio_con_l_estero")
+f_bottoni_dati("p14_saldo_migratorio_con_l_estero", dir_demo)
 ```
 :::
 

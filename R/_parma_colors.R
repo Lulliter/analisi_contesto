@@ -6,7 +6,7 @@
 #   viola   = stranieri / migrazioni
 #   blu     = densità, popolazione totale, temi neutri
 #   arancio = disponibile (non ancora assegnato)
-#   bordeaux (burg_*) = evidenziazione Parma (mappe)
+#   bordeaux (burg_*) = evidenziazione Parma (mappe) + hover interattivo (R/f_girafe.R usa burg_md)
 #   serie territoriali (trend): Parma = ylw_lg, ER = grn_md, Italia = blu_md
 #   piramidi: maschi = azzurro, femmine = rosa antico
 #
