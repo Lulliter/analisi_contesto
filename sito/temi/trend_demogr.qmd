@@ -693,5 +693,5 @@ Gli indicatori di FLUSSO (natalità, saldi, fecondità…) si riferiscono all'an
 
 ::: {.callout-tip}
 ## E in futuro?
-La pagina [**Previsioni 2050**](trend_demogr_previs.qmd) prosegue questi trend con le previsioni ISTAT della popolazione 2024-2050 (scenario mediano): popolazione attesa, piramide dell'età, quota e numero di anziani, dipendenza e saldo naturale.
+La pagina [**Previsioni al 2050**](trend_demogr_previs.qmd) prosegue questi trend con le previsioni ISTAT della popolazione 2024-2050 (scenario mediano): popolazione attesa, piramide dell'età, quota e numero di anziani, dipendenza e saldo naturale.
 :::

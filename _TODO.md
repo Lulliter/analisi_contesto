@@ -139,7 +139,7 @@ I macro temi corrispondono + o - alle pagine del `sito/`. GLi item elencati corr
 **Pagine `sito/temi/`**: 
 
 - [ ] (DA ARRICCHIRE) `sito/temi/trend_demogr.qmd`
-- [ ] (DA FARE) `sito/temi/trend_demogr_previs.qmd`
+- [ ] (DA ARRICCHIRE) `sito/temi/trend_demogr_previs.qmd`
  
 ## 2.a Scuola e formazione (c'è un inizio; arricchire con fonti LOCALI)
 > Non affrontato nello strategico PS 2024-2027, ma da presentare come "Driver di crescita e realizzazione delle persone" 
@@ -223,7 +223,10 @@ ISTAT ASIA (imprese/addetti), CCIAA/Excelsior (domanda di lavoro).
 
 **Ricognizione/Aggiornamento FONTI**: 
 
-- [ ] xxxx
+- [ ] RE-R Statistica 2026 (gia premasticati) `Emilia-Romagna terza regione italiana per reddito medio complessivo nell'anno di imposta 2024` [qui](https://statistica.regione.emilia-romagna.it/studi-analisi/2026/redditi-irpef-emilia-romagna-anno-imposta-2024)
+- [ ] RE-R Statistica 2026 (gia premasticati) `Povertà ed esclusione sociale in Emilia-Romagna nel 2025`
+[qui](https://statistica.regione.emilia-romagna.it/studi-analisi/2026/rischio-poverta-esclusione-sociale-2025)
+
 
 **Ripensamento MODULI (connessi a fonti)**:
 

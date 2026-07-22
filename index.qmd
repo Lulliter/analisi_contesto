@@ -1,5 +1,5 @@
 ---
-title: "Organizzazione per temi"
+title: "Organizzazione del sito"
 # subtitle: "Materiale intermedio su dati geografici con R"
 # date: last-modified
 # date-format: "DD-MMMM-YYYY"
@@ -27,7 +27,7 @@ execute:
 # suppress-bibliography: false
 ---
 
-Ogni pagina rappresenta **un modulo tematico** in cui si approfondisce un aspetto rilevante per avere una visione più completa dei bisogni del territorio.
+Ad ogni **pagina** corrisponde **un modulo tematico** che concorre a offrire una visione completa dei bisogni del territorio.
 
 
 <!-- ::: {.callout-important  collapse="true"} -->
