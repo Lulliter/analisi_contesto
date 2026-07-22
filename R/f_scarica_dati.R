@@ -21,17 +21,20 @@ f_scarica_dati <- local({
     nome <- paste0(pagina, "_", n)
 
     csv_tmp <- file.path(tempdir(), paste0(nome, ".csv"))
+    # la fonte arriva dalla caption del grafico e di solito inizia gia' con
+    # "Fonte: " (vedi f_caption_fonte): tolgo il prefisso per non duplicarlo
+    fonte_txt <- sub("^\\s*Fonte:\\s*", "", fonte)
     # titolo e fonte come righe di commento "#" in testa (convenzione dei
     # portali dati: in R si rileggono con read_csv(..., comment = "#"));
     # "\ufeff" e' il BOM UTF-8 e deve essere il primo carattere del file
-    intestazione <- paste0("# Titolo: ", titolo, "\n# Fonte: ", fonte, "\n#\n")
+    intestazione <- paste0("# Titolo: ", titolo, "\n# Fonte: ", fonte_txt, "\n#\n")
     readr::write_file(paste0("\ufeff", intestazione, readr::format_csv(df)), csv_tmp)
 
     # Excel a 2 fogli (Dati + Metadati) scritto direttamente con writexl
     # (equivalente a download_this() con lista, ma esplicito e verificabile)
     metadati <- data.frame(
       campo  = c("Titolo", "Fonte"),
-      valore = c(titolo, fonte)
+      valore = c(titolo, fonte_txt)
     )
     xlsx_tmp <- file.path(tempdir(), paste0(nome, ".xlsx"))
     writexl::write_xlsx(list(Dati = df, Metadati = metadati), xlsx_tmp)

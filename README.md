@@ -48,12 +48,11 @@ analisi_contesto/
 
 # Note riproducibilità
 
-I dati **non sono sul repo remoto**: `dati/grezzi/` e `dati/puliti/` contengono
-file pesanti esclusi via `.gitignore`. Versionati solo i `_metadati.md` (uno per
-fonte in `dati/grezzi/`: URL, come riscaricare, periodo, insidie) e i `.gitkeep`.
+I dati **non sono sul repo remoto**: `dati/grezzi/` e `dati/puliti/` contengono file pesanti esclusi via `.gitignore`. Versionati solo i `_metadati.md` (uno per fonte in `dati/grezzi/`: URL, come riscaricare, periodo, insidie) e i `.gitkeep`.
 
-Per ricostruire i dati: segui i `_metadati.md` per riscaricare i grezzi, poi
-rigenera `puliti/` e gli `output/` dei moduli con i rispettivi script.
+Per ricostruire i dati: segui i `_metadati.md` per riscaricare i grezzi, poi rigenera `puliti/` e gli `output/` dei moduli con i rispettivi script.
+
+Scorciatoia: `source("build.R")` rigenera gli `output/` di tutti i moduli e invalida `_freeze/sito` (necessario perché `freeze:auto` guarda solo i `.qmd`), poi si lancia `quarto::quarto_render()`.
 
 > Convenzioni e aggiornamento fonti: [`dati/README.md`](dati/README.md).
 
