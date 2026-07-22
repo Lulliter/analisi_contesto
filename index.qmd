@@ -27,16 +27,22 @@ execute:
 # suppress-bibliography: false
 ---
 
-<!-- [ ⚠️ Work in progress ... ⚠️ ] -->
-
-
 Ogni pagina rappresenta **un modulo tematico** in cui si approfondisce un aspetto rilevante per avere una visione più completa dei bisogni del territorio.
 
 
-::: {.callout-important  collapse="true"}
-## Nota
-cccccc
-<!-- I dati raccolti fin qui sono disponibili **solo a livello regionale**, ma, sulla base dei trend demografici provinciali, dove Parma mostra una popolazione anziana leggermente inferiore alla media regionale, è ragionevole ipotizzare che l'incidenza della disabilità a Parma possa essere **leggermente inferiore alla media regionale**.  -->
+<!-- ::: {.callout-important  collapse="true"} -->
+<!-- ## Nota -->
 
-<!-- Tuttavia, **sono necessari dati locali più specifici** (es. AUSL Parma, certificazioni L.104) per quantificare con precisione la domanda assistenziale sul territorio parmense. -->
-:::
+<!-- ::: -->
+
+
+
+#### ⚠️ Pagine attualmente in costruzione: ⚠️ 
+
+
+<!-- + **Trend demografico: previsioni al 2050**  -->
+<!-- + **Scuola e popolazione scolastica** -->
++ Formazione professionale e innovazione
++ Lavoro e redditi
++ Fragilità e distribuzione dei bisogni sul territorio
++ Capitale istituzionale e sociale

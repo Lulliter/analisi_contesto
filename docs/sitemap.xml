@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://lulliter.github.io/analisi_contesto/sito/temi/trend_demogr.html</loc>
-    <lastmod>2026-07-21T10:58:28.706Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lulliter.github.io/analisi_contesto/index.html</loc>
-    <lastmod>2026-07-17T13:38:52.647Z</lastmod>
+    <loc>https://lulliter.github.io/analisi_contesto/sito/temi/trend_demogr_previs.html</loc>
+    <lastmod>2026-07-22T08:43:05.552Z</lastmod>
   </url>
   <url>
     <loc>https://lulliter.github.io/analisi_contesto/sito/temi/scuola.html</loc>
     <lastmod>2026-07-21T10:52:18.067Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lulliter.github.io/analisi_contesto/index.html</loc>
+    <lastmod>2026-07-22T08:51:33.317Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lulliter.github.io/analisi_contesto/sito/temi/trend_demogr.html</loc>
+    <lastmod>2026-07-22T08:42:58.723Z</lastmod>
   </url>
 </urlset>

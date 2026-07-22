@@ -59,6 +59,6 @@ rigenera `puliti/` e gli `output/` dei moduli con i rispettivi script.
 
 # TODO
 
-+ 🔨 Migrazione per tema in corso... `...TODO.md`
++ 🔨 Migrazione per tema in corso... [`_TODO.md`](_TODO.md)
 
 ----------

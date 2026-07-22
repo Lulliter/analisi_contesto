@@ -689,3 +689,9 @@ f_bottoni_dati("p14_saldo_migratorio_con_l_estero", dir_demo)
 ## Nota di metodo
 Gli indicatori di FLUSSO (natalità, saldi, fecondità…) si riferiscono all'anno solare e arrivano al 2025*; quelli di STRUTTURA (età media, indici, classi di età) sono fotografie al 1° gennaio e arrivano al 2026* — per questo gli assi non finiscono tutti nello stesso punto (l'intervallo è nel titolo di ciascun grafico).
 :::
+
+
+::: {.callout-tip}
+## E in futuro?
+La pagina [**Previsioni 2050**](trend_demogr_previs.qmd) prosegue questi trend con le previsioni ISTAT della popolazione 2024-2050 (scenario mediano): popolazione attesa, piramide dell'età, quota e numero di anziani, dipendenza e saldo naturale.
+:::

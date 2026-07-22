@@ -1,8 +1,8 @@
 # ==========================================================================
 # Modulo: pop_piramide_eta — 02_output.R
 # Scopo:  piramidi d'età (classi quinquennali) con territorio di CONFRONTO
-#         in overlay (profilo scuro sopra le barre): PR vs ER, PR vs Italia,
-#         ER vs Italia
+#         in overlay (barra semitrasparente nel colore territoriale:
+#         verde = ER, blu = Italia): PR vs ER, PR vs Italia, ER vs Italia
 # Input:  output/piramidi_df.rds                (da 01_dati.R)
 #         R/_parma_colors.R                     (palette)
 # Output: output/piramide_<target>_vs_<confronto>.png/.rds
@@ -27,14 +27,20 @@ FONTE <- f_caption_fonte("ISTAT, Censimento permanente della popolazione 2024")
 COL_SESSO <- c(Maschi = sesso_m_pal, Femmine = sesso_f_pal)  # azzurro pallido / rosa (da _parma_colors.R)
 FILL_PIRAMIDE <- blu_piramide   # monocroma, come le piramidi storiche di Luisa
 
+# territorio di confronto in overlay: barra semitrasparente nel colore
+# "territoriale" standard (verde = ER, blu = Italia, come nei trend) —
+# più leggibile del contorno grigio e coerente col resto del sito
+COL_OVERLAY <- c(ITD5 = grn_md, IT = blu_md, ITD52 = ylw_lg)
+ALPHA_OVERLAY <- 0.35
+
 # --- 1) Funzioni --------------------------------------------------------------
 # quota con segno: maschi a sinistra (negativi), femmine a destra
 f_quota_segno <- function(df) {
   mutate(df, quota_s = if_else(sesso_lbl == "Maschi", -quota, quota))
 }
 
-# piramide: barre = territorio target, contorno = territorio di confronto
-# (popolazione totale: cittadinanza "Totale")
+# piramide: barre = territorio target, overlay semitrasparente = territorio
+# di confronto (popolazione totale: cittadinanza "Totale")
 f_piramide <- function(cod_target, cod_confronto) {
   df_t <- piramidi_df |>
     filter(territorio == cod_target, cittadinanza_lbl == "Totale") |>
@@ -53,9 +59,10 @@ f_piramide <- function(cod_target, cod_confronto) {
 
   g <- ggplot(df_t, aes(x = quota_s, y = classe5_lbl)) +
     geom_col(aes(fill = sesso_lbl), width = 0.85) +
-    # territorio di confronto: barre VUOTE sovrapposte (solo contorno)
-    geom_col(data = df_c, fill = NA, colour = "grey35",
-             linewidth = 0.35, width = 0.85) +
+    # territorio di confronto: barre semitrasparenti sovrapposte, colore
+    # territoriale standard (COL_OVERLAY: verde = ER, blu = Italia)
+    geom_col(data = df_c, fill = COL_OVERLAY[[cod_confronto]],
+             alpha = ALPHA_OVERLAY, width = 0.85) +
     geom_vline(xintercept = 0, colour = "white", linewidth = 0.2) +
     # scales:: esplicito: il plot salvato come rds deve stampare anche in
     # sessioni dove scales non è caricato (es. render delle pagine di sito)
@@ -64,7 +71,8 @@ f_piramide <- function(cod_target, cod_confronto) {
     scale_fill_manual(values = COL_SESSO, name = NULL) +
     labs(
       title    = paste0("Piramide dell'età — ", lbl_t, " (", anno, ")"),
-      subtitle = paste0("Barre piene: ", lbl_t, " · Contorno: ", lbl_c),
+      subtitle = paste0("Barre piene: ", lbl_t,
+                        " · Barra semitrasparente in overlay: ", lbl_c),
       x = "% della popolazione del territorio", y = NULL, caption = FONTE
     ) +
     theme_minimal(base_size = 13) +

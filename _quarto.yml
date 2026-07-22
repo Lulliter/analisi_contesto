@@ -47,6 +47,8 @@ website:
         href: index.qmd
       - text: "Trend Demografici"
         href: sito/temi/trend_demogr.qmd
+      - text: "Previsioni al 2050"
+        href: sito/temi/trend_demogr_previs.qmd
       - text: "Scuola e istruzione"
         href: sito/temi/scuola.qmd
      # Voci da riattivare quando le pagine esistono, es.:

@@ -1,0 +1,61 @@
+---
+title: "Posizionamento Osservatorio Dati"
+subtitle: "Input per DPP 2027 e/o revisione PS 2028"
+date: last-modified
+date-format: "DD-MMMM-YYYY"
+lang: it
+
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+    include-in-header:
+      - text: |
+          <style>
+          section.level3.notitle h3 {
+            display: none !important;
+          }
+          </style>
+
+execute:
+  eval: true
+  echo: false
+  warning: false
+  error: false
+  output: false
+---
+
+```{r}
+#| eval: false
+# Anteprima: renderizza e apre nel browser (lancia a mano, ignorato nel render)
+pagina <- "strategia_osservatorio"   # nome pagina, senza estensione
+quarto::quarto_render(here::here( paste0(pagina, ".qmd")))
+browseURL(here::here("docs",  paste0(pagina, ".html")))
+```
+
+
+
+# Analisi del contesto territoriale 
+(in collaborazione con centri di ricerca e consulenti esterni)
+
+
++ Raccolta e aggiornamento periodico di dati statistici ufficiali (ISTAT, BES, Inps, Regione E-R, ecc.) con un focus sul territorio della provincia di Parma. Il lavoro è finalizza alla comprensione di dei bisogni della popolazione, identificazione di criticità e risorse, ed al supporto alla definizione di strategie e priorità di intervento.
+ 
+  + Vedi Sito dedicato in aggiornamento / Dossier socio-economico annuale sulla La congiuntura e l’andamento degli indicatori territoriali 
+ 
++ Indagini di approfondimento specifico di alcuni aspetti del contesto territoriale (e.g. trasporto sociale), per contribuire alla definizione e alla analisi di fattibilità di alcuni interventi della Fondazione.
+
+  + Vedi Sito dedicato e presentazione
+
+
+# Monitoraggio e rendicontazoine dei progetti sostenuti 
+(in collaborazione con l'Area Erogativa) 
+
+
+# Attività di valutazione dell'impatto sociale del Piano Strategico 2024-2027
+(in collaborazione con consulenti esterni)
+
+
+
+# AI Act? 

@@ -1,0 +1,290 @@
+---
+title: "Demografia: previsioni al 2050 per anticipare l'evoluzione dei bisogni"
+subtitle: "(Previsioni ISTAT 2024-2050, scenario mediano — estratte a Luglio 2026)"
+date: last-modified
+date-format: "DD-MMMM-YYYY"
+lang: it
+
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+    include-in-header:
+      - text: |
+          <style>
+          section.level3.notitle h3 {
+            display: none !important;
+          }
+          </style>
+
+execute:
+  eval: true
+  echo: false
+  warning: false
+  error: false
+  output: false
+---
+
+```{r}
+#| label: anteprima
+#| eval: false
+
+#| label: anteprima
+#| eval: false
+
+# --- [se serve] Ricreare i grafici
+# source(here::here("moduli", "demo_trend_previs", "01_dati.R"))
+# source(here::here("moduli", "demo_trend_indicatori", "02_output.R"))
+
+# --- Anteprima: renderizza e apre nel browser (lancia a mano, ignorato nel render)
+pagina <- "trend_demogr_previs"   # nome pagina, senza estensione
+quarto::quarto_render(here::here("sito", "temi", paste0(pagina, ".qmd")))
+browseURL(here::here("docs", "sito", "temi", paste0(pagina, ".html")))
+```
+
+```{r}
+#| label: setup
+library(here)
+library(dplyr)
+library(ggplot2)
+library(ggiraph)
+library(ggtext) # registra element_textbox usato nel theme dei plot dei moduli
+library(scales) # percent() nelle etichette della piramide salvata come rds
+
+# Scarico dati: bottoni CSV + Excel sotto ogni grafico (funzioni generali in R/;
+# titolo e fonte del grafico finiscono nel foglio "Metadati" dell'Excel)
+source(here::here("R", "f_scarica_dati.R"))
+source(here::here("R", "f_bottoni_dati.R"))
+source(here::here("R", "f_girafe.R"))  # girafe standard: tooltip + hover bordeaux
+dir_previs <- here::here("moduli", "demo_trend_previs", "output")
+```
+
+# Previsioni demografiche al 2050
+
+> Parma è prevista in crescita (+6,9% di abitanti al 2050), in controtendenza rispetto all'Italia (-7,3%); ma l'invecchiamento accelera: al 2050 quasi 1 abitante su 3 avrà 65 anni o più.
+
+<!-- frasi dal blurb di moduli/demo_trend_previs -->
+
+I dati di questa pagina vengono dalle **previsioni ISTAT della popolazione 2024-2050** (base 1.1.2024, solo scenario mediano), a livello provinciale. L'analisi confronta la provincia di Parma con le altre province della regione, con l'Emilia-Romagna e con l'Italia. Come tutte le proiezioni, l'incertezza cresce allontanandosi dall'anno base. Le serie storiche osservate (2002-2026) sono nella pagina [**Trend Demografici**](trend_demogr.qmd).
+
+### p01_pop_indice [ = Popolazione prevista, 2024=100] {.notitle}
+```{r}
+#| label: p01_pop_indice
+#| output: true
+#| fig-width: 9
+#| fig-height: 7
+
+f_girafe(readRDS(file.path(dir_previs, "p01_pop_indice.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_p01_pop_indice
+#| output: true
+f_bottoni_dati("p01_pop_indice", dir_previs)
+```
+:::
+
+::: {.callout-note collapse="true"}
+## Osservazioni
+
+**Parma in crescita, controtendenza rispetto all'Italia**: al 2050 la provincia arriverebbe a circa **486mila abitanti (+6,9% sul 2024)**, la crescita più alta tra le province ER (seconda: Bologna, +4,6%); l'Emilia-Romagna nel complesso +2,7%, mentre l'Italia perderebbe il **7,3%** della popolazione.
+:::
+
+
+***
+
+### p02_pop_totale [ = Popolazione prevista, valori assoluti] {.notitle}
+```{r}
+#| label: p02_pop_totale
+#| output: true
+#| fig-width: 9
+#| fig-height: 7
+
+f_girafe(readRDS(file.path(dir_previs, "p02_pop_totale.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_p02_pop_totale
+#| output: true
+f_bottoni_dati("p02_pop_totale", dir_previs)
+```
+:::
+
+
+***
+
+### p03_piramide_pr [ = Piramide dell'età 2050 vs 2024] {.notitle}
+```{r}
+#| label: p03_piramide_pr
+#| output: true
+#| fig-width: 9
+#| fig-height: 7
+
+# piramide statica (non ggiraph)
+readRDS(file.path(dir_previs, "p03_piramide_pr.rds"))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_p03_piramide_pr
+#| output: true
+f_bottoni_dati("p03_piramide_pr", dir_previs)
+```
+:::
+
+::: {.callout-note collapse="true"}
+## Osservazioni
+
+**La piramide si sbilancia verso l'alto**: le coorti dei _baby boomer_ si spostano nelle classi 75-85+ mentre le classi 0-29 si assottigliano ulteriormente — implicazioni dirette per non autosufficienza e servizi socio-sanitari.
+:::
+
+
+***
+
+### p04_quota_anziani [ = Quota 65+ e 80+] {.notitle}
+```{r}
+#| label: p04_quota_anziani
+#| output: true
+#| fig-width: 9
+#| fig-height: 7
+
+f_girafe(readRDS(file.path(dir_previs, "p04_quota_anziani.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_p04_quota_anziani
+#| output: true
+f_bottoni_dati("p04_quota_anziani", dir_previs)
+```
+:::
+
+::: {.callout-note collapse="true"}
+## Osservazioni
+
+**L'invecchiamento accelera ovunque**: a Parma i 65+ passerebbero dal 23,4% al **31,8%** della popolazione e gli 80+ dall'8,0% al **12,2%**. Parma resterebbe comunque un po' "più giovane" di Emilia-Romagna (32,9%) e Italia (34,6%).
+:::
+
+
+***
+
+### p05_anziani_assoluti [ = 65+ e 80+ in valore assoluto, Parma / ER / Italia] {.notitle}
+```{r}
+#| label: p05a_anziani_parma
+#| output: true
+#| fig-width: 9
+#| fig-height: 7
+
+f_girafe(readRDS(file.path(dir_previs, "p05a_anziani_parma.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_p05a_anziani_parma
+#| output: true
+f_bottoni_dati("p05a_anziani_parma", dir_previs)
+```
+:::
+
+```{r}
+#| label: p05b_anziani_er
+#| output: true
+#| fig-width: 9
+#| fig-height: 7
+
+f_girafe(readRDS(file.path(dir_previs, "p05b_anziani_er.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_p05b_anziani_er
+#| output: true
+f_bottoni_dati("p05b_anziani_er", dir_previs)
+```
+:::
+
+```{r}
+#| label: p05c_anziani_italia
+#| output: true
+#| fig-width: 9
+#| fig-height: 7
+
+f_girafe(readRDS(file.path(dir_previs, "p05c_anziani_italia.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_p05c_anziani_italia
+#| output: true
+f_bottoni_dati("p05c_anziani_italia", dir_previs)
+```
+:::
+
+::: {.callout-note collapse="true"}
+## Osservazioni
+
+**La platea della non autosufficienza si dimensiona in valore assoluto**: a Parma gli 80+ passerebbero da **~36mila a ~59mila persone (+64%)** e i 65+ da ~106mila a ~154mila (+45%) — è su questi *numeri*, più che sulle quote, che vanno dimensionati servizi domiciliari, residenzialità e caregiving. Le traiettorie sono simili anche in Emilia-Romagna (80+: da ~370mila a ~587mila) e in Italia (da ~4,5 a ~7,5 milioni): ogni grafico ha la propria scala.
+:::
+
+
+***
+
+### p06_dipendenza_anziani [ = Indice di dipendenza anziani] {.notitle}
+```{r}
+#| label: p06_dipendenza_anziani
+#| output: true
+#| fig-width: 9
+#| fig-height: 7
+
+f_girafe(readRDS(file.path(dir_previs, "p06_dipendenza_anziani.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_p06_dipendenza_anziani
+#| output: true
+f_bottoni_dati("p06_dipendenza_anziani", dir_previs)
+```
+:::
+
+::: {.callout-note collapse="true"}
+## Osservazioni
+
+**Il carico sul sistema di welfare cresce di ~20 punti**: a Parma l'indice di dipendenza anziani passerebbe da **36,6 a 56,1** persone 65+ ogni 100 in età attiva — meglio dell'Emilia-Romagna (59,0) e soprattutto dell'Italia (63,6), ma comunque un cambio di scala per welfare e mercato del lavoro (nel 2050 ~2 persone 65+ ogni 4 in età attiva, oggi ~1,5).
+:::
+
+
+***
+
+### p07_nati_morti [ = Nati e morti previsti] {.notitle}
+```{r}
+#| label: p07_nati_morti
+#| output: true
+#| fig-width: 9
+#| fig-height: 7
+
+f_girafe(readRDS(file.path(dir_previs, "p07_nati_morti.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_p07_nati_morti
+#| output: true
+f_bottoni_dati("p07_nati_morti", dir_previs)
+```
+:::
+
+::: {.callout-note collapse="true"}
+## Osservazioni
+
+**Il saldo naturale resta strutturalmente negativo**: nei comuni parmensi ≥ 5.000 abitanti i morti passerebbero da ~4.300 a ~5.700 l'anno mentre i nati risalirebbero solo lievemente (da ~2.850 a ~3.150): il deficit naturale quasi **raddoppia (da -1.400 a -2.550 l'anno)** — la crescita prevista di Parma poggia interamente sui flussi migratori.
+:::
+
+
+::: {.callout-warning collapse="true"}
+## Nota di metodo
+Previsioni ISTAT base 1.1.2024, **solo scenario mediano** (i file pubblicati per comuni e province non riportano gli scenari alternativi). Gli aggregati Emilia-Romagna e Italia sono somme delle province (i file ISTAT non contengono totali). I dati comunali esistono solo per i comuni con almeno 5.000 abitanti (22 su 44 in provincia di Parma) e non sono usati in questa pagina.
+:::
