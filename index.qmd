@@ -1,11 +1,13 @@
 ---
-title: "Organizzazione del sito"
+title: "Struttura del sito"
 # subtitle: "Materiale intermedio su dati geografici con R"
 # date: last-modified
 # date-format: "DD-MMMM-YYYY"
 lang: it
 
 format: html
+toc: false
+
   # html:
   #   theme: flatly #spacelab
     # css: utils/style.css
@@ -27,9 +29,6 @@ execute:
 # suppress-bibliography: false
 ---
 
-Ad ogni **pagina** corrisponde **un modulo tematico** che concorre a offrire una visione completa dei bisogni del territorio.
-
-
 <!-- ::: {.callout-important  collapse="true"} -->
 <!-- ## Nota -->
 
@@ -37,12 +36,26 @@ Ad ogni **pagina** corrisponde **un modulo tematico** che concorre a offrire una
 
 
 
-#### ⚠️ Pagine attualmente in costruzione: ⚠️ 
+<!-- Ad ogni **pagina** corrisponde **un modulo tematico** che concorre a offrire una visione completa dei bisogni del territorio. -->
+
+
+### ⚠️ Pagine attualmente in aggiornamento ⚠️ 
+
+
+Ad ogni pagina corrisponde un _modulo tematico_ presentato in forma di grafici, tabelle e mappe che descrivono bisogni e risorse del territorio.  
 
 
 <!-- + **Trend demografico: previsioni al 2050**  -->
 <!-- + **Scuola e popolazione scolastica** -->
-+ Formazione professionale e innovazione
 + Lavoro e redditi
 + Fragilità e distribuzione dei bisogni sul territorio
++ Tessuto economico e imprenditoriale + innovazione
 + Capitale istituzionale e sociale
+
+### 📣 Nuovi approfondimenti nel 2026/2027 📣 
+
+In aggiunta, sono previste alcune pagine di approfondimento su:
+
++ Dispersione scolastica e NEET
++ Orientamento dei giovani e formazione professionale e transizione scuola-lavoro
++ Il ruolo della scuola come sussidio al welfare territoriale

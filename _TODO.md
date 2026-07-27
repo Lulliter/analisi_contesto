@@ -147,6 +147,11 @@ I macro temi corrispondono + o - alle pagine del `sito/`. GLi item elencati corr
 **Ricognizione/Aggiornamento FONTI**: 
 Fonti in casa: `istat_alunni_disab` (a.s. 2024-25, dettaglio max REGIONE) ✓.
 
++ [ ] Abbandono scolastico [Eurostat? / Openpolis](https://www.openpolis.it/labbandono-scolastico-un-problema-in-crescita-per-alcuni-paesi-ue/)
++ [ ] Dispersione scolastica e NEET [Studio IPRASE Trentino ma bello](https://www.iprase.tn.it/news/comunicati/dispersione-scolastica-e-giovani-neet-presentati-i-risultati-della-ricerca-sullalto)
++ [ ] Orientamento dei giovani e formazione professionale e transizione scuola-lavoro - Istituto Giuseppe TOniolo 
++ [ ] Il ruolo della scuola come sussidio al welfare territoriale
+
 **Ripensamento MODULI (connessi a fonti)**: (bisogni Fondazione: trend generali + fragilità:
 abbandoni, NEET, formazione continua, % stranieri per comune, studenti disabili;
 mismatch domanda-formazione rimandato → fonte Excelsior, ponte col tema Lavoro):
@@ -252,7 +257,7 @@ Fonti candidate: INPS (AUU, ADI/sostegni), MEF IRPEF (distribuzione, redditi bas
 
 **Ricognizione/Aggiornamento FONTI**: 
 
-- [ ] xxxx
+- [ ] povertà educativa [Indagine 2026 ISTAT - livello regionale](https://www.istat.it/evento/misurare-la-poverta-educativa-risultati-e-prospettive-di-lavoro-della-commissione-scientifica-interistituzionale/)
 
 **Ripensamento MODULI (connessi a fonti)**:
 
