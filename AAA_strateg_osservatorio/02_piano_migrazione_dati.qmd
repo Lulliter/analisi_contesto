@@ -1,0 +1,381 @@
+---
+title: "Migrazione e integrazione dei sistemi di monitoraggio progetti"
+subtitle: "Piano di lavoro operativo"
+date: "2026-08-27"
+date-format: "DD-MMMM-YYYY"
+lang: it
+
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+  docx:
+    toc: false
+    toc-depth: 3
+    toc-title: "Indice"
+    highlight-style: tango
+    embed-resources: true
+    page-width: 9
+  pdf:
+    toc: false
+    papersize: a4
+    geometry:
+      - top=25mm
+      - bottom=25mm
+      - left=25mm
+      - right=25mm
+    fontsize: 11pt
+    linestretch: 1.15
+    colorlinks: true
+
+execute:
+  eval: true
+  echo: false
+  warning: false
+  error: false
+  output: false
+---
+
+```{r}
+#| eval: false
+# Anteprima: renderizza e apre nel browser (lancia a mano, ignorato nel render)
+pagina <- "_piano_migrazione_dati"   # nome pagina, senza estensione
+quarto::quarto_render(here::here(paste0(pagina, ".qmd")))
+browseURL(here::here("docs", paste0(pagina, ".html")))
+```
+
+```{r}
+#| label: setup
+library(dplyr)
+source(here::here("R", "formatting.R")) # core tabelle (f_ft ecc.)
+```
+
+<!--
+NOTA D'USO (solo per me):
+- Questo documento è il MIO piano di lavoro, non il materiale per il CdA.
+- Le parti tra commenti HTML sono considerazioni sensibili: non compaiono nel render.
+- Quando il quadro sarà completo, decideremo come e a chi presentare cosa.
+-->
+
+# Perché questo lavoro
+
+La Fondazione rileva oggi le informazioni sugli Enti beneficiari con strumenti nati in tempi diversi e archiviati su piattaforme distinte, per lo più gestite da terzi. Nello specifico: il gestionale `SIME` (storico enti e progetti), `MO.V.O.T` per i questionari di monitoraggio e `OIS Impact Call` per i questionari della valutazione d'impatto. 
+
+Questa frammentazione produce quattro problemi concreti:
+
+1. **Lavoro duplicato**: le stesse informazioni vengono inserite, estratte e riconciliate a mano più volte per ciclo di rilevazione, con costi in ore/persona che si sommano ai canoni dei tre fornitori.
+2. **Onere ingiustificato sugli Enti**: i due questionari (`MO.V.O.T` e `OIS Impact Call`), sono in larga parte sovrapponibili per contenuti e tempistiche — sollecitati entrambe sia ex ante che ex post.
+3. **Accesso limitato ai nostri stessi dati**: per due sistemi su tre (`SIME` e `OIS Impact Call`) non abbiamo, ad oggi, accesso diretto alla base dati, ma solo tramite interfaccia applicativa. 
+4. **Base informativa non pronta per l'IA**: senza accesso diretto, formati portabili e metadati documentati, non possiamo sfruttare gli strumenti di analisi che stanno diventando lo standard.
+
+La **finestra di opportunità** è adesso: il passaggio del gestionale a `SIME EROWEB`, previsto per il 2027 e non più differibile, obbliga comunque a rimettere mano all'architettura informativa. 
+Il **criterio guida** è assicurare l'accesso diretto ai dati, con formati portabili, metadati documentati.  
+
+<!-- Questo piano organizza il lavoro istruttorio — ricognizione, requisiti, esplorazione del mercato, pilota — per arrivare alla decisione con numeri veri e una soluzione già verificata. -->
+
+# Obiettivo e perimetro
+
+<!-- **Delimitazione importante**: la transizione `SIME` → `SIME EROWEB` è governata altrove (fornitore fisso, coinvolge Area Amministrativa e direzione) e **non è oggetto di questo piano**: resta sullo sfondo come *vincolo* — tutto ciò che costruiamo va agganciato alle sue chiavi — non come cantiere da presidiare. Il perimetro attivo di questo lavoro è l'**unificazione dei due questionari** (`MO.V.O.T` + `OIS`). -->
+
+Il passaggio `SIME` → `SIME EROWEB` (grossi vincoli, fornitore invariato: Struttura Informatica, ecc.) è comunque l'occasione per valutare condizioni di **accesso diretto alla base dati**.
+
++ La migrazione porterà inevitabili costi/rallentamenti che potrebbero pesare sul flusso di lavoro. **Mitigare _disruptions_** per Area Erogativa?
+
++ Durante la transizione deve essere definita in ogni momento **un'unica fonte master** delle pratiche (con data di _cutover_ esplicita = quando diventa EROWEB il riiferimento?)  
+
+Di converso, nel corso del 2027, le due rilevazioni periodiche verso gli Enti beneficiari — monitoraggio (`MO.V.O.T`, dal ????) e valutazione d'impatto (`OIS` di Open Impact) — potrebbero ragionevolmente **confluire in un unico sistema**, armonizzato nei contenuti e integrato con il gestionale. 
+
++ Qui c'è più margine di scelta (altri fornitori?), salvo il principio vincolante sull'aggancio dei questionari **alle chiavi SIME** (richiedente + richiesta). 
+
+
+<!--
+Considerazione sensibile: il perimetro vero include anche ridurre la dipendenza
+da Open Impact e Infor come "custodi" dei nostri dati. Non lo scrivo così
+nei documenti condivisi: il frame pubblico è "razionalizzazione e riduzione
+dell'onere per gli Enti", non "uscita dal lock-in dei fornitori".
+-->
+
+# Fasi di lavoro e scadenze
+
+## Fase 0 — Ricognizione (settembre–ottobre 2026)
+
+Obiettivo: sapere esattamente cosa abbiamo, cosa paghiamo, cosa ci vincola. Nessuna decisione, solo raccolta.
+
+### Contratti e vincoli
+
+Cose da verificare sullo sfondo del prolungamento del PS sul periodo 2028-29:
+```{r}
+#| label: contratti_prep
+dom_contratti <- tibble::tribble(
+  ~domanda, ~fonte, ~fatto,
+  "Quando e come **scadono contratti** MO.V.O.T (Infor) e OIS (Open Impact)? Rinnovo tacito? Preavviso disdetta?",
+    "...", FALSE,
+  "Ci sono **penali** di recesso anticipato o vincoli di durata minima residua?",
+    "...", FALSE,
+  "Costo per **pezzo della pipeline**: raccolta, stoccaggio, accesso/export, interpretazione?",
+    "...", FALSE,
+  "**Pezzi proprietari/**non cedibili (schema database, metodologia...)?",
+    "...", FALSE,
+  "**Titolarità dei dati** da contratto?",
+    "...", FALSE,
+  "**GDPR**: DPA/nomina a responsabile con i tre fornitori? Dove risiedono fisicamente i dati personali degli enti?",
+    "...", FALSE,
+  "Cosa prevederà il contratto **SIME sul passaggio a EROWEB?** Costi? Tempi?",
+    "...", FALSE
+)
+```
+
+```{r}
+#| label: contratti_ft
+#| output: true
+dom_contratti_ft <- dom_contratti |>
+  mutate(step = row_number(), # numeratore automatico: segue l'ordine delle righe
+         fatto = if_else(fatto, "☑", "☐")) |>
+  relocate(step) |>
+  f_ft() |>
+  ftExtra::colformat_md(j = "domanda") |> # interpreta **grassetto** nelle celle
+  set_header_labels(step = "Step",
+                    domanda = "Domanda",
+                    fonte = "Fonte / Responsabile",
+                    fatto = "Fatto") |>
+  align(j = c("step", "fatto"), align = "center", part = "all") |>
+  f_ft_titolo_note("Fase 0 — Contratti e vincoli")
+dom_contratti_ft
+```
+
+### Inventario dati
+
+Informazioni necessarie a costruire la **matrice dei requisiti** della Fase 1.
+
+```{r}
+#| label: inventario_prep
+dom_inventario <- tibble::tribble(
+  ~filone, ~azione, ~output, ~fatto,
+
+  # A - CHIEDERE (partire subito: i fornitori hanno tempi lunghi)
+    "CHIEDERE",
+    "A **Infor**: come funziona l'accesso diretto a MO.V.O.T (connessione, credenziali, schema, interrogabilità da R); **export integrale dei dati grezzi** (2024-oggi)",
+    "Nota tecnica + dump integrale", FALSE,
+  "CHIEDERE",
+    "A **OIS**, per iscritto: schema dati documentato, calendario rilevazioni, **export integrale dei dati grezzi** (2024-oggi)",
+    "Documenti + dump integrale", FALSE,
+  "CHIEDERE",
+    "A **Struttura Informatica**: regola di raccordo chiavi SIME-EROWEB (documento scritto); export in blocco dati tabellari e allegati PDF con indice chiave-file",
+    "Documento + nota su export massivo", FALSE,
+
+  "CHIEDERE",
+    "A chi governa la transizione: **sincronizzazione e cutover** (frequenza, conflitti, fonte master)",
+    "Risposta scritta; aggiornare Vincoli e costi", FALSE,
+
+  # B - ANALIZZARE in autonomia (nel frattempo) 
+  "ANALIZZARE",
+    "Estrarre i **conteggi**: record e questionari per sistema dal 2024, rilevazioni per anno, allegati PDF in EROWEB",
+    "Tabella riepilogo numerica", FALSE,
+  "ANALIZZARE",
+    "Archiviare i dump integrali come **copia di sicurezza** datata (prima di qualunque negoziato)",
+    "Backup versionato in archivio nostro", FALSE,
+
+  # B - ANALIZZARE (quando A e B consegnano)
+  "ANALIZZARE",
+    "Costruire **matrice di sovrapposizione** dei 2 questionari MO.V.O.T e OIS (core, moduli extra? domande mancanti?)",
+    "Matrice: base del futuro questionario unificato", FALSE,
+  "ANALIZZARE",
+    "**Testare il raccordo chiavi** su un campione di pratiche: riconciliare MO.V.O.T e OIS con SIME in R",
+    "Script R + % di aggancio riuscito", FALSE,
+  
+    # C - DEFINIRE (quando A e B consegnano)
+  "DEFINIRE / RINEGOZIARE",
+    "Definire **questionario unificato** (core + moduli extra), tempistiche (agganciato in autonomia alle fasi del progetto) e architettura dati (chiavi, formati, metadati)",
+    "Documento di sintesi con schema dati e tempistiche", FALSE,
+  
+  "DEFINIRE / RINEGOZIARE",
+    "Rinegoziare **condizioni contrattuali** con i fornitori (chi fa cosa,ecc.)",
+    "Documento di sintesi con condizioni contrattuali", FALSE
+  
+)
+```
+
+```{r}
+#| label: inventario_ft
+#| output: true
+dom_inventario_ft <- dom_inventario |>
+  mutate(step = row_number(), # numeratore automatico: segue l'ordine delle righe
+         fatto = if_else(fatto, "☑", "☐")) |>
+  relocate(filone, step) |> # ordine colonne: Filone, Step, Azione, ...
+  f_ft() |>
+  ftExtra::colformat_md(j = "azione") |> # interpreta **grassetto** nelle celle
+  merge_v(j = "filone") |> # celle unite per blocco
+  valign(j = "filone", valign = "top") |>
+  set_header_labels(step = "Step",
+                    filone = "Filone",
+                    azione = "Azione",
+                    output = "Output atteso",
+                    fatto = "Fatto") |>
+  align(j = c("step", "fatto"), align = "center", part = "all") |>
+  f_ft_titolo_note("Fase 0 — Inventario dati",
+                   "Le risposte acquisite si accumulano nella sezione Vincoli e costi.")
+dom_inventario_ft
+```
+
+### Vincoli e costi da avere presente
+
+**Chi ha mandato** di rinegoziare e approvare i contratti con i fornitori e con quale budget?
+<!-- Prerequisito trasversale: concordare con Dona **mandato** (o raccordo con chi ha titolarità) sui contratti con i fornitori. -->
+
+**Vincoli tecnici** acquisiti o futuri (in base a input sopra):
+
+- SIME = fonte di riferimento; EROWEB è DB separato, sync bidirezionale (frequenza?), chiavi riconducibili 1:1.
+- Al cutover i ruoli si invertono: presidiare chi è master in ogni momento (rischio 5).
+- Allegati PDF solo in EROWEB: accesso da negoziare lì.
+- ...
+
+**Costi da quantificare (da fare):**
+
+1. Canoni annui dei tre sistemi (in base a input sopra) → **tabella baseline**: canoni + ore = costo attuale del sistema frammentato.
+2. Interviste Area Erogativa (traccia `IT content`) → **ore/persona per ciclo** di rilevazione (doppia immissione, riconciliazione, estrazioni manuali).
+3. **Calendario rilevazioni 2026-27-28?** → vincolo di pianificazione: nessuna transizione a cavallo di un ciclo di raccolta.
+
+<!--
+Sensibile — gestione dei colleghi dell'Area Erogativa:
+- Sono i principali gestori dei dati e alleati naturali FINCHÉ il loro flusso non si interrompe. Le interviste della Fase 0 servono anche a questo: farli sentire esperti consultati, non utenti a cui verrà imposto un cambio.
+- Regola: ogni requisito che raccolgo da loro entra visibilmente nella matrice dei requisiti (Fase 1), così la soluzione finale è anche "loro".
+- Non usare mai con loro parole come API, data warehouse, lock-in. Vocabolario: "archivio unico", "basta inserire due volte", "estrazioni pronte".
+- Rischio da presidiare: la territorialità. Antidoto: prevedere nel nuovo sistema referenti/viste per area, non centralizzare tutto su di me.
+- SensibilISSIMO: il tecnico IT Mai scavalcarlo (relazioni e credenziali sono sue: un bypass lo rende oppositore permanente). Strategia: lui = canale, io = contenuto. Le richieste del filone A gliele preparo scritte e precise, lui le inoltra: ruolo visibile e riconosciuto a lui, controllo del merito a me. Chiedergli aiuto esplicitamente ("tu li conosci: come glielo chiediamo?") trasforma il guardiano in complice.
+- Rischio: filtra, ammorbidisce o lascia cadere le richieste. Antidoto: richieste scritte con scadenza e capa in copia; il mandato (Vincoli e costi) deve dire chi firma e chi inoltra - è lì che si previene il conflitto di territorio, non a valle.
+-->
+
+## Fase 1 — Requisiti (novembre–dicembre 2026)
+
+Obiettivo: una **matrice dei requisiti** (must / nice-to-have) scritta PRIMA di guardare i prodotti, condivisa con l'Area Erogativa e validata dalla direzione.
+
+Requisiti *must* già chiari (da integrare con quanto emerge dalla Fase 0):
+
+1. **Accesso diretto ai dati**, nell'ordine di preferenza già definito nel foglio `definizioni`: API REST documentate > DB read-only > dump programmati. Il solo accesso via interfaccia applicativa è squalificante.
+2. **Chiave univoca coerente con SIME** (richiedente + richiesta): i questionari devono agganciarsi automaticamente alle pratiche, senza riconciliazione manuale.
+3. **Export in formati aperti** (CSV) senza moduli a pagamento; clausola contrattuale di restituzione integrale dei dati a fine rapporto.
+4. **Hosting UE / GDPR**, autenticazione seria, ruoli e permessi per area.
+5. Attivazione automatica dei questionari dalle pratiche (riduzione del lavoro ripetitivo ad ogni lancio — è il beneficio principale per l'Area Erogativa).
+
+Test di compatibilità con il modo di lavorare dell'Osservatorio (da mettere per iscritto nella RFI):
+
+> Posso collegarmi da R (`httr2` o `DBI`) e rigenerare un report Quarto **senza un solo passaggio manuale**? Se no, il sistema non è idoneo, qualunque sia la demo.
+
+## Fase 2 — Esplorazione del mercato (gennaio–marzo 2027)
+
+1. **RFI leggera** (*Request for Information*: richiesta scritta di informazioni preliminari, non vincolante, per scremare i candidati) — 2 pagine a 3–5 fornitori: in gran parte le colonne del foglio `IT arch` (modalità di accesso, dove vivono i dati, chi li gestisce) più i requisiti della Fase 1.
+   + **Opzione da valutare esplicitamente: costruire il questionario armonizzato DENTRO EROWEB.** Vantaggi: aggancio nativo alle pratiche (integrazione gratis per costruzione), fonte master unica, un fornitore in meno da coordinare. Svantaggi: ancora più lock-in con Struttura Informatica (che già custodisce il gestionale), qualità del modulo questionari tutta da verificare, e l'accesso diretto ai dati andrebbe comunque negoziato. Va trattata come un candidato alla pari: stessa matrice requisiti, stesso test di riproducibilità — niente sconti per la comodità dell'integrazione.
+2. **Referenze tra pari**: sentire 2–3 fondazioni simili (rete Assifero, ACRI) su cosa usano per il monitoraggio degli enti e cosa rimpiangono.
+3. **Opzione "componibile" come termine di paragone**: strumento questionari standard (es. LimeSurvey, KoboToolbox) + PostgreSQL + pipeline R/Quarto. Anche solo per rendere visibile quanto si paga la comodità "chiavi in mano".
+4. **Demo con i nostri dati**, non con quelli del fornitore: usare i dump integrali già acquisiti in Fase 0 per verificare il test di riproducibilità di persona sui candidati.
+5. **Negoziato parallelo con Struttura Informatica**: porre l'accesso dati (API o dump programmati) come condizione del passaggio a EROWEB. La leva negoziale è massima ora, prima di firmare il passaggio.
+
+<!--
+Sensibile — negoziati con i fornitori:
+- Con Struttura Informatica non esplicitare che stiamo valutando alternative
+  per i questionari finché non serve: prima ottenere le condizioni su EROWEB.
+- Con Open Impact e Infor: la richiesta di export/dump di prova è legittima
+  ("verifiche interne sulla qualità dei dati") e ci dice subito quanto
+  costerà davvero uscire. La resistenza a fornirlo è essa stessa un dato.
+-->
+
+## Fase 3 — Pilota e decisione (primavera–estate 2027)
+
+1. Pilota **prima del contratto definitivo** (prassi normale: *proof of concept* gratuito o contratto pilota limitato di 3-6 mesi con uscita libera; chi lo rifiuta si auto-squalifica) su **un solo questionario e un solo ciclo** con il candidato migliore: dalla pratica SIME all'invio, alla raccolta, al report Quarto generato automaticamente. Il sistema vecchio resta acceso su quel ciclo.
+2. Confronto pilota vs. processo attuale: ore impiegate, errori, qualità del dato.
+3. Documento di sintesi costi/benefici con i numeri veri (baseline Fase 0 vs. pilota) e proposta di adozione.
+4. Piano di migrazione dello storico 2024–2026 e periodo di doppio esercizio (quanto teniamo vivi MO.V.O.T e OIS in parallelo, chi presidia cosa).
+
+<!--
+Sensibile — come arrivare al CdA (per dopo, non è oggetto di questo piano):
+- Non chiedere mai "approvate la migrazione": chiedere prima l'approvazione
+  di una fase di studio piccola e reversibile (di fatto le Fasi 0-2), poi
+  arrivare con il pilota già funzionante.
+- Frame per il CdA: rischio e responsabilità (dati dell'ente in mano a terzi,
+  gestionale COBOL con competenze che invecchiano, costi duplicati), non tecnologia.
+- Tre numeri su una pagina: costo annuo attuale (canoni + ore), costo della
+  transizione, punto di pareggio.
+- Se possibile: testimonianza di una fondazione pari e/o revisore a supporto.
+-->
+
+# Persone da coinvolgere
+
+```{r}
+#| label: persone_prep
+persone <- tibble::tribble(
+  ~chi, ~ruolo, ~quando,
+  "Capa",
+    "Sponsor; validare perimetro e matrice requisiti",
+    "Avvio Fase 0; fine Fase 1",
+  "Colleghi Area Erogativa",
+    "Esperti dei flussi; co-autori dei requisiti; utenti del pilota",
+    "Interviste in Fase 0; validazione Fase 1; pilota Fase 3",
+  "Tecnico IT interno",
+    "Canale verso i fornitori: coinvolto su tutte le richieste del filone A",
+    "Fase 0 in poi",
+  "Amministrazione",
+    "Contratti, canoni, scadenze",
+    "Fase 0",
+  "Alessandro Francini (Struttura Informatica, tecnico)",
+    "Chiavi e struttura dati SIME; fattibilità aggancio questionari a EROWEB",
+    "Fase 0; Fase 2",
+  "Silvia Mucci (Struttura Informatica, commerciale)",
+    "Condizioni EROWEB e accesso dati",
+    "Fase 0; Fase 2",
+  "Diego De Cao (Open Impact, CTO)",
+    "Schema dati OIS, export, chiavi",
+    "Fase 0",
+  "Infor (MO.V.O.T)",
+    "Perimetro dell'accesso diretto esistente; export",
+    "Fase 0",
+  "2-3 fondazioni pari (Assifero/ACRI)",
+    "Referenze su sistemi in uso",
+    "Fase 2"
+)
+```
+
+```{r}
+#| label: persone_ft
+#| output: true
+persone_ft <- persone |>
+  f_ft() |>
+  ftExtra::colformat_md(j = "ruolo") |> # interpreta **grassetto** nelle celle
+  set_header_labels(chi = "Chi",
+                    ruolo = "Ruolo nel piano",
+                    quando = "Quando") |>
+  f_ft_titolo_note("Persone da coinvolgere")
+persone_ft
+```
+
+# Rischi principali
+
+1. **Nuovo lock-in**: il sistema unico può ricreare il problema che risolve. Antidoto: requisiti 1 e 3 della Fase 1 come condizioni contrattuali, non promesse commerciali.
+2. **Perdita o degrado dello storico 2024–2026** in migrazione. Antidoto: dump completo di verifica prima di qualunque disdetta; riconciliazione dei totali su R.
+3. **Interruzione del flusso dell'Area Erogativa** durante la transizione. Antidoto: doppio esercizio pianificato e pilota su un ciclo solo.
+4. **Tempi dei fornitori**: le risposte su contratti ed export possono richiedere settimane. Antidoto: partire dalle richieste scritte subito, in Fase 0.
+5. **Ambiguità sulla fonte master durante la transizione SIME → EROWEB**: doppia scrittura, chiavi ri-generate, questionari agganciati alla copia sbagliata. Antidoto: chiarire l'architettura in Fase 0 (Inventario dati) e vincolare per contratto la data di cutover prima di attivare i questionari sul nuovo sistema.
+
+::: {.callout-tip title="Prossime 3 azioni concrete" collapse="false"}
+
+1. Recuperare i contratti MO.V.O.T e OIS e segnare scadenze/preavvisi (Fase 0, Contratti).
+2. Fissare le interviste con i colleghi dell'Area Erogativa sulla traccia `IT content` (Fase 0, Vincoli e costi).
+3. Chiedere per iscritto a Open Impact e Infor l'export integrale dei dati grezzi 2024-oggi (Fase 0, Inventario).
+
+:::
+
+# ANNEX 
+### 🟡 1) Contratti Struttura Informatica, Infor, OIS
+
+- Date e costi della parte database ETL
+
+### 🟡 2) Calendario rilevazioni OIS
+
+# Riferimenti 
+
+<!-- Vedi /outputs/* -->
++ **Posizionamento Osservatorio Dati** - Input per DPP 2027 e per Appendice al Piano Strategico sul periodo 2028-29, 25 luglio 2026
+  + `Proposte_posizionamento_Osservatorio_25lug2026.pdf`
++ **Mappatura dei sistemi informativi** - file Excel di lavoro con i fogli `IT arch` (mappa dei sistemi), `IT content` (domande sui flussi) e `definizioni` (accesso ai dati, lock-in), agosto 2026
+  + `<nome_file>.xlsx` <!-- TODO: completare con nome/percorso del file -->
+

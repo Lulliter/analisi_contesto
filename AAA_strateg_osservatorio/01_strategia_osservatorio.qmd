@@ -1,0 +1,145 @@
+---
+title: "Posizionamento Osservatorio Dati"
+subtitle: "Input per DPP 2027 e per Appendice al Piano Strategico sul periodo 2028-29"
+date: "2026-07-25"
+date-format: "DD-MMMM-YYYY"
+lang: it
+
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+    include-in-header:
+      - text: |
+          <style>
+          section.level3.notitle h3 {
+            display: none !important;
+          }
+          </style>
+  docx:
+    toc: false
+    toc-depth: 3
+    toc-title: "Indice"
+    highlight-style: tango
+    embed-resources: true
+    page-width: 9
+    fig-width: 8
+    fig-height: 6
+    dpi: 300
+  pdf:
+    toc: false
+    papersize: a4
+    geometry:
+      - top=25mm
+      - bottom=25mm
+      - left=25mm
+      - right=25mm
+    fontsize: 11pt
+    linestretch: 1.15
+    colorlinks: true
+    fig-width: 8
+    fig-height: 6
+    dpi: 300
+
+execute:
+  eval: true
+  echo: false
+  warning: false
+  error: false
+  output: false
+---
+
+```{r}
+#| eval: false
+# Anteprima: renderizza e apre nel browser (lancia a mano, ignorato nel render)
+pagina <- "posizionamento_osservatorio_25lug2026"   # nome pagina, senza estensione
+quarto::quarto_render(here::here(paste0(pagina, ".qmd")))
+browseURL(here::here("docs", paste0(pagina, ".html")))
+```
+
+# Input per (eventuale) aggiunta a DPP 2027
+
+Si potrebbe inserire un paragrafo dopo questa frase:
+
+> _"(…) Tali priorità sono state identificate sulla base dell'**osservazione e dell'ascolto del territorio**, valutando i bisogni e le opportunità delle comunità rispetto allo scenario socio-economico."_ [DPP 2026 Cap. 2 Sistema di programmazione p.7]
+
+Nel corso del 2025, la Fondazione ha avviato un Osservatorio dei Dati Sociali, come funzione conoscitiva interna. Attraverso di esso, la Fondazione analizza il contesto socio-economico del territorio di Parma e provincia, mediante rilevazioni e studi originali, da integrare con i dati di monitoraggio dei progetti sostenuti. L'Osservatorio svolge inoltre un ruolo di raccordo nel percorso di valutazione degli esiti complessivi del Piano Strategico 2024-2027, in via di realizzazione col supporto di un team di professionisti esterni.
+
+{{< pagebreak >}}
+
+# Proposte in vista dell'APPENDICE al Piano Strategico 2024-2027 (2028-2029)
+
+_[Da rivedere e concordare]_
+
+## Mandato dell'Osservatorio
+
+L'Osservatorio dei Dati Sociali è la funzione conoscitiva interna della Fondazione: contribuisce a costruire e mantenere la base informativa su cui si fondano le scelte di indirizzo, e a restituirne gli esiti al territorio. La sua attività si svolge su due fronti. Il primo è l'analisi del **contesto** di riferimento: lo scenario socio-economico, i bisogni che emergono e le risorse del territorio di Parma e provincia. Il secondo è l'**azione della Fondazione** stessa: gli enti beneficiari, i progetti sostenuti, e gli esiti rilevati. Una lettura integrata di queste due componenti contribuisce a indirizzare la strategia della Fondazione e a verificarne l'efficacia.
+
+## Attività previste nel periodo (2027) 2028-2029
+
+Le attività dell'Osservatorio, avviate nel 2025, verranno consolidate e ampliate nel periodo di piano. Il lavoro è articolato su quattro linee principali: (1) la costruzione e la restituzione pubblica dell'analisi di contesto; (2) la definizione di strumenti per raccogliere e gestire i dati sull'attività della Fondazione (in collaborazione con l'Area Erogativa); (3) la valutazione degli esiti dell'azione filantropica; (4) la produzione di pubblicazioni e contributi analitici, sia ad uso interno sia destinati alla condivisione esterna. Di seguito alcune proposte concrete:
+
+### Linea 1 — Analisi di contesto e restituzione pubblica
+
+Assicurare il consolidamento e l'aggiornamento periodico degli indicatori di contesto rilevanti per il Piano Strategico. Predisporre approfondimenti tematici su fenomeni specifici, anche basati su dati originali[^trasp] o sul patrimonio di conoscenza del territorio detenuto dagli Enti beneficiari e generato dai progetti di ricerca sostenuti. Per quanto possibile, in coerenza con la linea strategica della Fondazione[^ps], l'Osservatorio deve offrire dati e analisi in forma aperta, accessibile e riutilizzabile[^bdc]. Alcuni possibili output: un dossier annuale sul territorio, quaderni tematici e *policy brief*, visualizzazioni interattive di dati (qualche esempio nel Box 1 in Appendice).
+
+[^trasp]: E.g. [Indagine sul trasporto sociale nel territorio comunale](https://trasporto_sociale.fondazionecrp.it/) svolta nel 2026 (link protetto).
+
+[^ps]: _"Promuovere la cultura del dato e la creazione di **informazioni accurate, accessibili e trasparenti** permette agli individui e alle organizzazioni di comprendere le questioni complesse e di partecipare attivamente alle decisioni"_ (Piano Strategico 2024-2027 p.11)
+
+[^bdc]: Un prototipo di base dati di contesto, aggiornata e documentata è già disponibile come sito interno: [Parma: analisi di contesto](https://analisi_contesto.fondazionecrp.it/) (link protetto). L'accessibilità al pubblico è un'ipotesi per il futuro.
+
+### Linea 2 — Strumenti di rilevazione e sistemi informativi
+
+Ad oggi, la Fondazione rileva le informazioni attraverso strumenti distinti, sviluppati in tempi diversi e archiviati su diverse piattaforme, non tutti facilmente interoperabili. Il piano di migrazione del sistema gestionale verso un ambiente web (previsto per il 2027 e non più differibile) rappresenta un'opportunità unica per **ripensare la base informativa**, rendendola più accessibile e predisposta a sfruttare le potenzialità che si aprono con l'IA.
+
+In raccordo con l'Area Erogativa – che presidia il rapporto con gli enti beneficiari e il ciclo di vita dei contributi – l'Osservatorio può promuovere una razionalizzazione dell'architettura informativa, in grado di sbloccare nuove possibilità e guadagnare margini di efficienza:
+
+1. **Recuperare il possesso (o l'accesso diretto) della propria base dati**: è il presupposto per poter testare e adottare strumenti agili per l'estrazione, la manipolazione e l'interpretazione dei dati – cruciale per sfruttare le potenzialità dell'IA (vedi Box 2 in Appendice).
+
+2. **Ridurre l'onere di reporting in capo agli Enti beneficiari**: esiste una reale opportunità di integrare in un unico strumento i due questionari attualmente in uso (per monitoraggio e per valutazione d'impatto), in larga parte sovrapponibili per contenuti e tempistiche di sollecitazione.
+
+    + Unificando le due rilevazioni in un'unica piattaforma (`SIME` in versione web o un software interoperabile), si attiverebbero i questionari in modo automatico dalle pratiche di riferimento, riducendo il lavoro ripetitivo della struttura ad ogni lancio delle rilevazioni.
+
+3. **Potenziare l'esplorazione e l'analisi del patrimonio di dati "non strutturati"**, già in possesso della Fondazione, come le migliaia di documenti – richieste di finanziamento, relazioni, allegati PDF – oggi leggibili solo uno per uno.
+
+    + Ad esempio, le tecniche di NLP (*Natural Language Processing*), oggi potenziate dai modelli linguistici di grandi dimensioni, permetterebbero di trattare questi testi come una base dati interrogabile: temi ricorrenti, evoluzioni nel tempo, differenze tra tipologie di enti e aree del territorio.
+
+### Linea 3 — Valutazione di impatto
+
+La Fondazione prosegue il percorso di valutazione avviato con il Piano Strategico vigente, in coerenza con i criteri già previsti dalla Carta delle Fondazioni (sostenibilità, capacità di catalizzare altre risorse, propensione a mettersi in rete, presenza di meccanismi di monitoraggio). L'Osservatorio svolge un ruolo di presidio metodologico interno e di raccordo con il patrimonio informativo della Fondazione.
+
+Il contributo dell'Osservatorio su questo fronte è da definire meglio in base agli esiti del percorso di valutazione attivato con il Piano Strategico 2024-2027 e all'indirizzo espresso dagli organi direttivi in merito alla conferma o revisione dell'incarico ai professionisti esterni.
+
+### Linea 4 — Produzione scientifica e relazioni con la ricerca
+
+Pubblicare e far circolare (anche all'esterno) il lavoro dell'Osservatorio, e coltivare il confronto con chi svolge funzioni analoghe presso altre fondazioni, università ed enti di ricerca territoriali. Predisporre uno o due contributi originali all'anno[^temi], in forma autonoma o in collaborazione con enti di ricerca, anche valorizzando le rilevazioni condotte sul territorio. A titolo di esempio, sono state avviate interlocuzioni per esplorare spazi di collaborazione con Intesa Sanpaolo per il Sociale, che ha lanciato nel giugno 2026 il Monitor per la Geografia delle Fragilità e delle Disuguaglianze, in collaborazione con altri enti di ricerca[^blogm].
+
+[^temi]: Per il 2027 si potrebbe pianificare un lavoro che rifletta l'indirizzo strategico di focalizzarsi su giovani, scuola e inclusione; i temi effettivi per il 2028/29 seguiranno le priorità che gli organi definiranno per il periodo.
+
+[^blogm]: Breve descrizione sul blog interno dell'Osservatorio: [Monitor per la Geografia delle Fragilità e delle Disuguaglianze](https://blog_osservatorio.fondazionecrp.it/posts/05_SanPaolo_monitor_fragilita/) (link protetto).
+
+{{< pagebreak >}}
+
+# Appendice — Dettagli, esempi e fonti d'ispirazione
+
+::: {.callout-tip title="Box 1 — Esempi di pubblicazioni sull'analisi di contesto" collapse="false"}
+
+1. **Report annuale sul territorio** per offrire una sintesi a cadenza fissa sull'evoluzione dei principali fenomeni provinciali – ad esempio, la pubblicazione annuale di Fondazione CRC [Dossier Socio-Economico Cuneo](https://fondazionecrc.it/categorie_documenti/dossier-socio-economici/)
+
+2. **Quaderni tematici** e/o **_Policy brief_** come approfondimenti monografici, pubblicati quando l'analisi raggiunge maturità sufficiente – ad esempio, questo lavoro di Openpolis [L'abbandono scolastico nei paesi Ue](https://www.openpolis.it/labbandono-scolastico-un-problema-in-crescita-per-alcuni-paesi-ue/)
+
+3. **_Data tools_**, ovvero strumenti di visualizzazione e interrogazione dei dati su un tema specifico – ad esempio, l'[Eduscopio](https://eduscopio.it/) di Fondazione Agnelli e Centro di Ricerca Interuniversitario per i Servizi di Pubblica utilità per l'orientamento degli studenti.
+
+:::
+
+::: {.callout-note title="Box 2 — Il nesso tra IA e la \"sovranità digitale\"" collapse="false"}
+
+Nell'attuale, incalzante evoluzione tecnologica legata all'IA si può cogliere almeno un punto fermo: lungo la _data pipeline_ (cfr. schema semplificato sotto), la componente che aggiunge maggior valore si è spostata, paradossalmente, più a monte. Se finora era conveniente affidare a fornitori specializzati la preparazione, l'analisi e la restituzione grafica dei dati, queste operazioni saranno presto alla portata di qualunque utente dotato di adeguati strumenti di IA. Il valore deriverà soprattutto dall'accesso diretto alla propria base dati (step 1), poi dalla "portabilità" dei formati e dalla qualità di metadati e documentazione (step 2), garantendo la sicurezza dei dati archiviati (step 3).
+
+Su questi presupposti, l'estrazione e l'analisi dei dati (step 4) diventano più facili e adattabili ai casi d'uso e alle preferenze di ciascun utente. Per altro, assetti contrattuali che precludono o scoraggiano l'accesso e la manipolazione diretta dei propri dati (_vendor lock-in_), o propongono estrazioni e visualizzazioni preconfigurate da accettare a scatola chiusa, rappresenteranno uno svantaggio.
+
+![](pipeline.png){width=100%}
+
+:::

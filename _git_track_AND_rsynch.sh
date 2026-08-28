@@ -67,7 +67,7 @@ if [[ -n "$(git status --porcelain)" ]]; then
     git commit -m "$msg" || { echo "ERRORE: git commit fallito"; exit 1; }
 fi
 
-# Push (anche se non c'erano modifiche nuove: utile per commit locali non pushati)
+# Push (anche se non c'erano modifiche nuove: utile per commit locali non pushed)
 git push || { echo "ERRORE: git push fallito"; exit 1; }
 
 # ── Sync docs/ sul volume Windows ─────────────────────────────────────
