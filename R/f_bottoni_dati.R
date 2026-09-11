@@ -9,8 +9,12 @@ f_bottoni_dati <- function(nome, dir, rds = nome) {
   df <- read.csv(file.path(dir, paste0(nome, ".csv")), check.names = FALSE)
   p  <- readRDS(file.path(dir, paste0(rds, ".rds")))
   # titolo/fonte: nei ggplot stanno in labs() -> p$labels; nei patchwork
-  # in plot_annotation() -> p$patches$annotation
-  if (inherits(p, "patchwork")) {
+  # in plot_annotation() -> p$patches$annotation; nelle flextable nella riga
+  # titolo (f_ft_titolo_note) e nella prima nota a pie' di tabella
+  if (inherits(p, "flextable")) {
+    titolo <- p$header$dataset[1, 1]
+    fonte  <- if (nrow(p$footer$dataset) > 0) p$footer$dataset[1, 1] else ""
+  } else if (inherits(p, "patchwork")) {
     ann    <- p$patches$annotation
     titolo <- ann$title   %||% ""
     fonte  <- ann$caption %||% ""

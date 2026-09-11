@@ -40,6 +40,7 @@ library(ggtext)    # element_textbox nei temi dei plot salvati
 library(scales)
 library(glue)
 library(sf)        # la mappa è un ggplot con geom_sf
+library(flextable) # le tabelle salvate in rds si stampano solo col pacchetto caricato
 library(downloadthis)
 
 dir_disp <- here::here("moduli", "scuola_abband_neet", "output")
@@ -51,7 +52,9 @@ source(here::here("R", "f_girafe.R"))
 
 ## In sintesi
 
-+ Nel 2024 **circa un giovane su nove** (10,9% dei 15-29enni) in provincia di Parma non studia e non lavora: meno che in Italia (15,2%), poco sopra la media regionale (9,6%), e quasi la metà rispetto al picco pandemico.
++ Nel 2024 **circa un giovane su nove** (10,9% dei 15-29enni) in provincia di Parma non studia e non lavora (i cosiddetti _NEET_): meno che in Italia (15,2%), poco sopra la media regionale (9,6%), e quasi la metà rispetto al picco pandemico.
+
++ L'abbandono scolastico vero e proprio (_ELET_: chi ha lasciato senza diploma né qualifica) è ormai una quota piccola, in Emilia-Romagna il 6% dei 18-24enni, sotto l'obiettivo europeo: **il grosso dei giovani fermi non ha lasciato la scuola, ma ha finito di studiare e non è entrato nel lavoro**. E si rileva una differenza di genere: lasciano la scuola più i ragazzi, restano fuori dal lavoro più le ragazze.
 
 + L'uscita dalla **terza media è un momento cruciale**, dove si possono vedere le prime avvisaglie del rischio dispersione/abbandono: quattro studenti su dieci non raggiungono un livello adeguato in italiano (39%) e in matematica (41%), più della media regionale e in crescita dal 2018.
 
@@ -87,6 +90,50 @@ A Parma circa **un giovane su nove non studia e non lavora**, una quota simile a
 
 _NB: I NEET sono i 15-29enni né occupati né in istruzione o formazione. Il dato è una stima campionaria ISTAT (Rilevazione sulle forze di lavoro): le oscillazioni di Parma da un anno all'altro, compreso l'apparente rimbalzo del 2024, stanno dentro il margine di errore; utile per il trend, non per i decimali._
 <!-- Il messaggio è che il problema esiste, riguarda migliaia di giovani della provincia, ma ha dimensione contenuta nel confronto nazionale. -->
+:::
+
+### NEET ed ELET: due misure diverse
+
+I NEET contano chi è fermo adesso, qualunque titolo abbia; gli ELET chi ha lasciato il sistema senza un diploma o una qualifica, che lavori o no. In Emilia-Romagna l'abbandono è ormai una quota piccola: il grosso dei NEET è fatto di chi ha finito di studiare e non è entrato nel lavoro.
+
+```{r}
+#| label: tab_neet
+#| output: true
+readRDS(file.path(dir_disp, "neet_tab_ft.rds"))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_tab_neet
+#| output: true
+f_bottoni_dati("bes_istruzione_prov_er", dir_disp, rds = "neet_tab_ft")
+```
+:::
+
+```{r}
+#| label: tab_elet
+#| output: true
+readRDS(file.path(dir_disp, "elet_tab_ft.rds"))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_tab_elet
+#| output: true
+f_bottoni_dati("bes_istruzione_reg", dir_disp, rds = "elet_tab_ft")
+```
+:::
+
+::: {.callout-note collapse="true"}
+### Osservazioni
+
+**Perché guardarli insieme.** L'abbandono (ELET) in Emilia-Romagna è sceso dall'11% del 2019 al 6% del 2025, già sotto l'obiettivo europeo del 9%; i NEET sono ancora quasi uno su dieci. Il problema dei giovani fermi non nasce a scuola, nasce dopo: nella transizione dal titolo di studio al lavoro.
+
+**Il genere va in direzioni opposte.** Lasciano la scuola più i ragazzi (ELET 6,9% contro 5,1% in regione), restano fuori dal lavoro più le ragazze (NEET 12,5% contro 6,8%, quasi il doppio). Le ragazze arrivano più lontano nel percorso formativo, ma poi entrano meno nel mondo del lavoro: due problemi diversi, che chiedono risposte diverse.
+
+**Parma.** Sui NEET la provincia è in linea con la regione (10,9% contro 9,6%, differenza dentro il margine di errore) e il calo dal 2019 va di pari passo con l'occupazione giovanile, salita dal 36% al 44%: è il mercato del lavoro che assorbe, non la scuola che trattiene di più.
+
+_NB: Entrambe sono stime campionarie ISTAT (Rilevazione sulle forze di lavoro) riprese nel Bes: leggere il trend, non i decimali. NEET dal Bes dei territori (provinciale, fino al 2024), ELET dal Bes nazionale (regionale, fino al 2025): il dato provinciale dell'abbandono non esiste._
 :::
 
 ## Quali segnali anticipano la dispersione scolastica
@@ -212,8 +259,9 @@ _NB: Il comune è quello della scuola, non della residenza; la mappa riguarda le
 
 Le domande a cui questa pagina non risponde ancora, e su cui l'Osservatorio intende lavorare:
 
-1. Chi abbandona davvero: quanti ragazzi lasciano la scuola prima del diploma o della qualifica, e quanti dei 5 mila che entrano in prima superiore arrivano in fondo.
+1. Chi abbandona davvero: quanti ragazzi lasciano la scuola prima del diploma o della qualifica, e quanti dei 5 mila che entrano in prima superiore arrivano in fondo. Il dato ufficiale sull'uscita precoce esiste solo a livello regionale: per Parma servono altre fonti.
 2. La dispersione implicita: quanti arrivano al diploma senza le competenze di base, secondo le prove INVALSI di fine superiori.
 3. Ritardo e origine: quanto del ritardo scolastico dipende dagli inserimenti di ragazzi arrivati dall'estero, e quanto dalle bocciature; e perché alle medie Parma è risalita più della regione dopo la pandemia.
 4. La seconda chance: chi rientra in formazione attraverso corsi serali, centri per adulti e percorsi professionali, e con quali esiti.
 5. Il territorio: dove il rischio di dispersione si concentra, in relazione alla fragilità economica e sociale dei comuni.
+6. Chi sono i NEET: quanti hanno un diploma o una laurea e quanti si sono fermati prima, e perché le giovani donne restano fuori dal lavoro più dei coetanei; è il ponte con la pagina sul passaggio dalla scuola al lavoro.

@@ -8,8 +8,8 @@
 #         cambiare sono i .rds a monte, percio' va svuotata la cache.
 # Uso:    source("build.R")   oppure   Rscript build.R
 # Prima:  se sono cambiati i dati GREZZI di una fonte multi-modulo, lanciare a
-#         mano il relativo script di ingestione/ (00-04: shp/SITUAS, censimento,
-#         MIM studenti, previsioni ISTAT, BES dei territori) — build.R parte
+#         mano il relativo script di ingestione/ (00-05: shp/SITUAS, censimento,
+#         MIM studenti, previsioni ISTAT, BES dei territori, BES nazionale) — build.R parte
 #         dai dati/puliti/ e non li rigenera
 # ----------------------------------------------------------------------
 

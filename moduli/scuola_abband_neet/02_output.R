@@ -6,7 +6,8 @@
 #         PR vs ER (l'accumulo lungo il percorso); ritardo per ordine nel tempo
 #         PR vs ER; mappa comunale PR del ritardo alle medie
 # Input:  output/*.rds (da 01_dati.R); dati/puliti/istat_shp/ (geometrie)
-# Output: output/plot_*.rds, mappa_*.rds (ggplot; girafe() nella pagina) + .png
+# Output: output/plot_*.rds, mappa_*.rds (ggplot; girafe() nella pagina) + .png;
+#         output/*_ft.rds (flextable, riletta tal quale nella pagina)
 # ------------------------------------------------------------------------
 
 library(here)
@@ -21,6 +22,7 @@ library(scales)
 library(ggtext)
 library(sf)
 
+source(here("R", "formatting.R")) # f_ft, f_ft_titolo_note (tabelle)
 source(here("R", "_parma_colors.R"))
 source(here("R", "f_caption_fonte.R"))
 source(here("R", "f_theme_scuola.R"))
@@ -36,11 +38,15 @@ dir_mod <- here("moduli", "scuola_abband_neet", "output")
 CAP_BES <- f_caption_fonte("ISTAT, Bes dei territori (ed. 2025)")
 CAP_NEET <- f_caption_fonte("ISTAT, Bes dei territori (ed. 2025); NEET = stima campionaria")
 # Stime da indagine campionarie RCFL (Rilevazione sulle forze di lavoro)".
+CAP_BES_NAZ <- "ISTAT, Bes (aggiornamento intermedio 2026); stima campionaria"
 CAP_MIM <- f_caption_fonte("MIM, Portale unico dei dati della scuola (statali + paritarie, no infanzia, esclusi serali/CPIA)")
 
 ANNO_PRIMO <- 2015   # primo a.s. serie MIM (2015/16)
 ANNO_ULTIMO <- 2024  # a.s. 2024/25 (MIM) e anno 2024 (BES)
 ANNO_BES_PRIMO <- 2018
+ANNI_TAB_NEET <- c(2019, 2022, 2024) # colonne tabella NEET (Bes dei territori: ultimo anno 2024)
+ANNI_TAB_ELET <- c(2019, 2022, 2025) # colonne tabella ELET (Bes nazionale: ultimo anno 2025)
+TERRITORI_BES <- c("Emilia-Romagna", "Nord-est", "Italia") # ordine righe delle tabelle
 
 # etichette degli ordini di scuola (nomi MIM → brevi) e dei territori
 ORDINI_LBL <- c("SCUOLA PRIMARIA" = "Primaria",
@@ -54,6 +60,7 @@ ritardo_trend_prov_er <- readRDS(file.path(dir_mod, "ritardo_trend_prov_er.rds")
 ritardo_corso_prov_er <- readRDS(file.path(dir_mod, "ritardo_corso_prov_er.rds"))
 ritardo_comuni_pr <- readRDS(file.path(dir_mod, "ritardo_comuni_pr.rds"))
 bes_istruzione_prov_er <- readRDS(file.path(dir_mod, "bes_istruzione_prov_er.rds"))
+bes_istruzione_reg <- readRDS(file.path(dir_mod, "bes_istruzione_reg.rds"))
 
 # territorio "display" per colori e legenda (BES: nomi già in forma leggibile)
 f_territorio_display <- function(territorio) {
@@ -130,6 +137,53 @@ plot_competenze_prov_er <- competenze_prep |>
   )
 
 plot_competenze_prov_er
+
+# 2b. Tabelle gemelle NEET / ELET: totale in 3 anni + maschi e femmine nell'ultimo ----
+# NEET (15-29 né occupati né in formazione) dal Bes dei territori, quindi con Parma;
+# ELET (18-24 con al più la licenza media e fuori da ogni corso) solo regionale, dal Bes nazionale
+# Input:  rds BES in forma lunga (indicatore × sesso × territorio × anno); dati_sesso =
+#         da dove prendere maschi/femmine se il rds principale ha solo il Totale
+#         (NEET: Bes dei territori solo Totale → M/F dal Bes nazionale, Parma resta N.D.)
+# Output: flextable con header a due righe ("Totale" | "<ultimo anno> per sesso")
+f_tab_bes <- function(dati, cod, territori, anni, titolo, note, dati_sesso = dati) {
+  prep <- bind_rows(
+    dati |> filter(cod_indicatore == cod, territorio %in% territori, sesso == "Totale", anno %in% anni),
+    dati_sesso |> filter(cod_indicatore == cod, territorio %in% territori, sesso != "Totale", anno == max(anni))
+  ) |>
+    mutate(colonna = if_else(sesso == "Totale", as.character(anno), sesso),
+           territorio = factor(territorio, levels = territori)) |>
+    select(territorio, colonna, valore) |>
+    tidyr::pivot_wider(names_from = colonna, values_from = valore) |>
+    # ordine colonne esplicito: add_header_row unisce le celle per posizione
+    select(territorio, all_of(as.character(anni)), Maschi, Femmine) |>
+    arrange(territorio) |>
+    mutate(territorio = as.character(territorio))
+  prep |>
+    f_ft() |>
+    set_header_labels(territorio = "") |>
+    add_header_row(values = c("", "Totale", glue("{max(anni)} per sesso")), colwidths = c(1, 3, 2)) |>
+    align(align = "center", part = "header") |>
+    bg(j = c("Maschi", "Femmine"), bg = seq_teal[1], part = "all") |> # blocco per sesso distinto dal trend
+    f_ft_titolo_note(titolo = titolo, note = note)
+}
+
+neet_tab_ft <- f_tab_bes(
+  bes_istruzione_prov_er, cod = "02IST006-N22",
+  territori = c("Parma", TERRITORI_BES), anni = ANNI_TAB_NEET, dati_sesso = bes_istruzione_reg,
+  titolo = "NEET: giovani di 15-29 anni che non studiano e non lavorano (%)",
+  note = c("Fonte: ISTAT, Bes dei territori (ed. 2025); stima campionaria (Rilevazione sulle forze di lavoro).",
+           "NEET = Not in Education, Employment or Training: né occupati né in istruzione o formazione, qualunque titolo di studio. Per sesso: dato regionale (Bes nazionale), non disponibile per Parma. Leggere il trend, non i decimali.")
+)
+neet_tab_ft
+
+elet_tab_ft <- f_tab_bes(
+  bes_istruzione_reg, cod = "02IST005-N22",
+  territori = TERRITORI_BES, anni = ANNI_TAB_ELET,
+  titolo = "ELET: giovani di 18-24 anni usciti presto da istruzione e formazione (%)",
+  note = c(glue("Fonte: {CAP_BES_NAZ} (Rilevazione sulle forze di lavoro)."),
+           "ELET = Early Leavers from Education and Training: al più la licenza media e fuori da ogni corso, occupati o no. Obiettivo UE 2030: sotto il 9%. Il dato non esiste a livello provinciale.")
+)
+elet_tab_ft
 
 # 3. Grafici ritardo scolastico (MIM) --------------------------------------
 
@@ -248,3 +302,7 @@ purrr::iwalk(lista_plot, function(p, nome) {
 })
 
 f_salva_mappa(mappa_ritardo_sec1_comuni_pr, "mappa_ritardo_sec1_comuni_pr", dir_out = dir_mod)
+
+# tabelle: solo rds (i dati per i bottoni sono il csv dell'oggetto di 01_dati.R)
+saveRDS(neet_tab_ft, file.path(dir_mod, "neet_tab_ft.rds"))
+saveRDS(elet_tab_ft, file.path(dir_mod, "elet_tab_ft.rds"))

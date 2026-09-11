@@ -7,6 +7,7 @@
 # Input:  dati/puliti/mim_iscritti/scuole_iscritti_er.rds
 #         dati/puliti/mim_iscritti/scuole_anagrafe_er.rds (caratteristica: esclusione serali ecc.)
 #         dati/puliti/istat_bes/bes_territori.rds
+#         dati/puliti/istat_bes/bes_regioni.rds (Bes nazionale, via ingestione/05)
 # Output: moduli/scuola_abband_neet/output/<oggetto>.rds + .csv (nome file = oggetto):
 #         ritardo_trend_prov_er   (anno × provincia ER × ordine: alunni, in ritardo, quota;
 #                                  + righe EMILIA-ROMAGNA)
@@ -15,6 +16,9 @@
 #         ritardo_comuni_pr       (anno × comune PR × ordine, con pro_com_t per le mappe)
 #         bes_istruzione_prov_er  (indicatori BES dominio Istruzione: province ER,
 #                                  ER, Nord-est, Italia; per sesso e anno)
+#         bes_istruzione_reg      (indicatori BES nazionale dominio Istruzione: ER, Nord-est,
+#                                  Italia per sesso e anno; qui c'è l'uscita precoce 18-24,
+#                                  che NON esiste a livello provinciale)
 # NB: ritardo = età superiore a quella regolare per l'anno di corso (età al 31/12:
 #     verificato sui dati nazionali, 92% dei bambini di 1ª primaria ha "6 anni").
 #     Include ripetenze e inserimenti in classi inferiori (es. alunni arrivati
@@ -52,6 +56,7 @@ CARATT_ESCLUSE <- c("PERCORSO II LIVELLO", "CPIA", "SPEC. PER CARCERARI", "C/O I
 scuole_iscritti_er <- readRDS(here("dati", "puliti", "mim_iscritti", "scuole_iscritti_er.rds"))
 scuole_anagrafe_er <- readRDS(here("dati", "puliti", "mim_iscritti", "scuole_anagrafe_er.rds"))
 bes_territori <- readRDS(here("dati", "puliti", "istat_bes", "bes_territori.rds"))
+bes_regioni <- readRDS(here("dati", "puliti", "istat_bes", "bes_regioni.rds"))
 
 # 2. Ritardo scolastico ---------------------------------------------------
 # fascia_eta è testo: "12 anni", "< di 11 anni", "> di 13 anni" → età numerica
@@ -129,12 +134,20 @@ bes_istruzione_prov_er <- bes_territori |>
   select(cod_indicatore, indicatore, sesso, territorio, livello, anno, valore, unita_misura, fonte)
 bes_istruzione_prov_er
 
+# 3b. BES nazionale: dominio Istruzione, ER + territori di confronto ----------
+# (cornice regionale: uscita precoce 18-24, formazione continua ecc., fino al 2025)
+bes_istruzione_reg <- bes_regioni |>
+  filter(str_starts(dominio, "Istruzione"), territorio %in% TERRITORI_BES) |>
+  select(cod_indicatore, indicatore, sesso, territorio, livello, anno, valore, poco_signif, unita_misura, fonte)
+bes_istruzione_reg
+
 # 4. Salva nel proprio output/ (rds + csv, nome file = oggetto) ------------
 lista_out <- list(
   ritardo_trend_prov_er = ritardo_trend_prov_er,
   ritardo_corso_prov_er = ritardo_corso_prov_er,
   ritardo_comuni_pr = ritardo_comuni_pr,
-  bes_istruzione_prov_er = bes_istruzione_prov_er
+  bes_istruzione_prov_er = bes_istruzione_prov_er,
+  bes_istruzione_reg = bes_istruzione_reg
 )
 
 iwalk(lista_out, function(df, nome) {
@@ -146,7 +159,11 @@ iwalk(lista_out, function(df, nome) {
 # Verifiche rapide (da eseguire a mano) ------------------------------------
 iscritti_ritardo |> count(ordine_scuola, anno_corso, fascia_eta, in_ritardo) |> filter(anno_corso == 1) # sanity check della regola
 iscritti_ritardo |> count(caratteristica, wt = alunni) # devono restare solo NORMALE, convitti, DI MONTAGNA, NA (paritarie)
+# double check (Se vuoi essere sicura che gli NA siano tutti paritarie e non statali con anagrafe mancante, un controllo rapido in console:)
+iscritti_ritardo |> count(gestione, is.na(caratteristica), wt = alunni)
 ritardo_trend_prov_er |> filter(provincia %in% c("PARMA", "EMILIA-ROMAGNA"), anno_inizio == 2024) # attesi: primaria ~2-3%, sec I ~7-9%, sec II ~18-20% (era 21,3% coi serali)
 ritardo_corso_prov_er |> filter(provincia == "PARMA") |> select(ordine_scuola, anno_corso, quota_ritardo) # crescente lungo il percorso
 ritardo_comuni_pr |> filter(anno_inizio == 2024, ordine_scuola == "SCUOLA SECONDARIA II GRADO") |> arrange(desc(quota_ritardo))
 bes_istruzione_prov_er |> distinct(cod_indicatore, indicatore)
+bes_istruzione_reg |> filter(cod_indicatore == "02IST005-N22", sesso == "Totale", anno == 2025) # uscita precoce: ER 6,0; Nord-est 6,8; Italia 8,2
+
