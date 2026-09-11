@@ -12,6 +12,7 @@
 # Adattato da: analysis/00_carica_shp_situas.qmd (repo pre-ristrutturazione)
 # ==========================================================================
 
+# Setup -------------------------------------------------------------------
 library(here)
 library(sf)
 library(dplyr, warn.conflicts = FALSE)

@@ -8,13 +8,16 @@
 # Origine codice: dashboard/demographic_trends/visualizations.R (vecchio repo)
 # ------------------------------------------------------------------------
 
+# Setup -------------------------------------------------------------------
+library(here)
 library(dplyr)
+library(readr)
 library(stringr)
 library(glue)
 library(ggplot2)
 library(ggtext)
 library(ggiraph)
-library(here)
+ 
 # + ggtext (via ::) per il sottotitolo che va a capo da solo:
 #   se manca: install.packages("ggtext"), poi renv::snapshot()
 
@@ -190,6 +193,7 @@ p01_e_m <- f_plot_indicatore_demografico(
   save_plot = TRUE,
   file_name = "p01_e_m.rds"
 )
+p01_e_m
 
 # Plot: p02_i_v [= Indice di vecchiaia] ----
 p02_i_v <- f_plot_indicatore_demografico(
@@ -199,6 +203,7 @@ p02_i_v <- f_plot_indicatore_demografico(
   save_plot = TRUE,
   file_name = "p02_i_v.rds"
 )
+p02_i_v
 
 # Plot: p03_i_d_s [= Indice di dipendenza strutturale] ----
 p03_i_d_s <- f_plot_indicatore_demografico(
@@ -208,6 +213,7 @@ p03_i_d_s <- f_plot_indicatore_demografico(
   save_plot = TRUE,
   file_name = "p03_i_d_s.rds"
 )
+p03_i_d_s
 
 # Plot: p04_i_d_a [= Indice di dipendenza anziani] ----
 p04_i_d_a <- f_plot_indicatore_demografico(
@@ -217,6 +223,7 @@ p04_i_d_a <- f_plot_indicatore_demografico(
   save_plot = TRUE,
   file_name = "p04_i_d_a.rds"
 )
+p04_i_d_a
 
 # 2. Classi di età (dataset: indicatori_struttura_popolazione) ------------
 data2 <- f_load_and_prepare_rds("indicatori_struttura_popolazione")
@@ -229,6 +236,7 @@ p06_0_14_anni <- f_plot_indicatore_demografico(
   save_plot = TRUE,
   file_name = "p06_0_14_anni.rds"
 )
+p06_0_14_anni
 
 # Plot: p06_15_64_anni ----
 p06_15_64_anni <- f_plot_indicatore_demografico(
@@ -238,6 +246,7 @@ p06_15_64_anni <- f_plot_indicatore_demografico(
   save_plot = TRUE,
   file_name = "p06_15_64_anni.rds"
 )
+p06_15_64_anni
 
 # Plot: p06_65piu_anni ----
 p06_65piu_anni <- f_plot_indicatore_demografico(
@@ -247,6 +256,7 @@ p06_65piu_anni <- f_plot_indicatore_demografico(
   save_plot = TRUE,
   file_name = "p06_65piu_anni.rds"
 )
+p06_65piu_anni
 
 # 3. Indicatori singoli (un rds ciascuno, da 01_dati.R) -------------------
 
@@ -258,6 +268,7 @@ p07_crescita_naturale <- f_plot_indicatore_demografico(
   save_plot = TRUE,
   file_name = "p07_crescita_naturale.rds"
 )
+p07_crescita_naturale
 
 # Plot: p08_età_media_al_parto ----
 p08_età_media_al_parto <- f_plot_indicatore_demografico(
@@ -267,6 +278,7 @@ p08_età_media_al_parto <- f_plot_indicatore_demografico(
   save_plot = TRUE,
   file_name = "p08_età_media_al_parto.rds"
 )
+p08_età_media_al_parto
 
 # Plot: p09_quoziente_di_mortalità ----
 p09_quoziente_di_mortalità <- f_plot_indicatore_demografico(
@@ -276,6 +288,7 @@ p09_quoziente_di_mortalità <- f_plot_indicatore_demografico(
   save_plot = TRUE,
   file_name = "p09_quoziente_di_mortalità.rds"
 )
+p09_quoziente_di_mortalità
 
 # Plot: p10_quoziente_di_natalità ----
 p10_quoziente_di_natalità <- f_plot_indicatore_demografico(
@@ -285,6 +298,7 @@ p10_quoziente_di_natalità <- f_plot_indicatore_demografico(
   save_plot = TRUE,
   file_name = "p10_quoziente_di_natalità.rds"
 )
+p10_quoziente_di_natalità
 
 # Plot: p11_quoziente_di_nuzialità ----
 p11_quoziente_di_nuzialità <- f_plot_indicatore_demografico(
@@ -294,6 +308,7 @@ p11_quoziente_di_nuzialità <- f_plot_indicatore_demografico(
   save_plot = TRUE,
   file_name = "p11_quoziente_di_nuzialità.rds"
 )
+p11_quoziente_di_nuzialità
 
 # Plot: p12_saldo_migratorio_totale ----
 p12_saldo_migratorio_totale <- f_plot_indicatore_demografico(
@@ -303,6 +318,7 @@ p12_saldo_migratorio_totale <- f_plot_indicatore_demografico(
   save_plot = TRUE,
   file_name = "p12_saldo_migratorio_totale.rds"
 )
+p12_saldo_migratorio_totale
 
 # Plot: p13_saldo_migratorio_interno ----
 p13_saldo_migratorio_interno <- f_plot_indicatore_demografico(
@@ -312,6 +328,7 @@ p13_saldo_migratorio_interno <- f_plot_indicatore_demografico(
   save_plot = TRUE,
   file_name = "p13_saldo_migratorio_interno.rds"
 )
+p13_saldo_migratorio_interno
 
 # Plot: p14_saldo_migratorio_con_l_estero ----
 p14_saldo_migratorio_con_l_estero <- f_plot_indicatore_demografico(
@@ -321,6 +338,7 @@ p14_saldo_migratorio_con_l_estero <- f_plot_indicatore_demografico(
   save_plot = TRUE,
   file_name = "p14_saldo_migratorio_con_l_estero.rds"
 )
+p14_saldo_migratorio_con_l_estero
 
 # Plot: p15_speranza_di_vita_0 ----
 p15_speranza_di_vita_0 <- f_plot_indicatore_demografico(
@@ -330,6 +348,7 @@ p15_speranza_di_vita_0 <- f_plot_indicatore_demografico(
   save_plot = TRUE,
   file_name = "p15_speranza_di_vita_0.rds"
 )
+p15_speranza_di_vita_0
 
 # Plot: p16_speranza_di_vita_65 ----
 p16_speranza_di_vita_65 <- f_plot_indicatore_demografico(
@@ -339,6 +358,7 @@ p16_speranza_di_vita_65 <- f_plot_indicatore_demografico(
   save_plot = TRUE,
   file_name = "p16_speranza_di_vita_65.rds"
 )
+p16_speranza_di_vita_65
 
 # Plot: p17_tasso_di_crescita_totale ----
 p17_tasso_di_crescita_totale <- f_plot_indicatore_demografico(
@@ -348,6 +368,7 @@ p17_tasso_di_crescita_totale <- f_plot_indicatore_demografico(
   save_plot = TRUE,
   file_name = "p17_tasso_di_crescita_totale.rds"
 )
+p17_tasso_di_crescita_totale
 
 # Plot: p18_tasso_di_fecondità_totale ----
 p18_tasso_di_fecondità_totale <- f_plot_indicatore_demografico(
@@ -357,4 +378,15 @@ p18_tasso_di_fecondità_totale <- f_plot_indicatore_demografico(
   save_plot = TRUE,
   file_name = "p18_tasso_di_fecondità_totale.rds"
 )
+p18_tasso_di_fecondità_totale
 
+# Verifiche per BLURB  -----
+
+
+# 1. Età media 2002 → ultimo anno, Parma vs ER vs Italia (blurb demo_trend_indicatori)
+eta_media <- read_csv(here("moduli", "demo_trend_indicatori", "output", "p01_e_m.csv"))
+eta_media |>
+  filter(territorio %in% c("Parma", "Emilia-Romagna", "ITALIA"),
+         anno %in% c(2002, 2024, 2025, 2026)) |>
+  tidyr::pivot_wider(names_from = anno, values_from = valore) |>
+  mutate(delta_02_25 = `2025` - `2002`)  # attesi: Parma +1,0; ER +2,2; Italia +5,0

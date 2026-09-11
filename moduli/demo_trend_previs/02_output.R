@@ -10,6 +10,7 @@
 # Output: output/pNN_<nome>.rds (ggplot; girafe() si applica in sito/) + csv
 # ==========================================================================
 
+# Setup -------------------------------------------------------------------
 library(here)
 library(dplyr, warn.conflicts = FALSE)
 library(tidyr)
@@ -258,6 +259,9 @@ f_p05_territorio <- function(terr) {
 p05a_anziani_parma  <- f_p05_territorio("Parma")
 p05b_anziani_er     <- f_p05_territorio("Emilia-Romagna")
 p05c_anziani_italia <- f_p05_territorio("Italia")
+p05a_anziani_parma
+p05b_anziani_er
+p05c_anziani_italia
 
 # 6. p06: indice di dipendenza anziani ---------------------------------------
 # (65+ ogni 100 persone in età attiva 15-64: confrontabile col p04 storico)
@@ -300,6 +304,7 @@ p06_dipendenza_anziani <- df_p06 |>
                     "previsioni Istat, scenario mediano."),
     caption = CAP, x = "", y = ""
   )
+p06_dipendenza_anziani
 
 # 7. p07: nati e morti previsti — Parma e ER ---------------------------------
 # (somma dei soli comuni >= 5.000 ab.: vedi 01_dati.R)
@@ -329,6 +334,7 @@ p07_nati_morti <- df_p07 |>
                     "di Parma, 195 in ER); previsioni Istat, scenario mediano."),
     caption = CAP, x = "", y = ""
   )
+p07_nati_morti
 
 # 8. Salva rds + csv dei dati (per i bottoni di download in sito/) -----------
 salva_plot <- list(

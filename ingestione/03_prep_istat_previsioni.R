@@ -21,6 +21,7 @@
 #       readr legge i .zip direttamente senza scompattarli
 # ------------------------------------------------------------------------
 
+# Setup -------------------------------------------------------------------
 library(here)
 library(readr)
 library(dplyr)

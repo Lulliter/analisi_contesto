@@ -12,6 +12,7 @@
 #     i conteggi di PLESSI dall'anagrafe invece sì
 # ------------------------------------------------------------------------
 
+# Setup -------------------------------------------------------------------
 library(here)
 library(dplyr)
 library(stringr)
@@ -23,7 +24,7 @@ library(scales) # percent nelle etichette (con scales:: esplicito nei plot salva
 library(ggtext) # titoli/sottotitoli che vanno a capo da soli (element_textbox)
 library(sf)        # per le mappe comunali
 library(patchwork) # per impilare i pannelli statale/paritaria (operatore /)
-
+library(readr)
 
 source(here("R", "_parma_colors.R"))
 source(here("R", "f_caption_fonte.R"))
@@ -436,6 +437,7 @@ mappe_comuni_pr <- mappe_indicatori |>
   pmap(f_mappa_scuola_pr) |>
   set_names(paste0("mappa_", mappe_indicatori$var, "_comuni_pr"))
 
+mappe_comuni_pr$mappa_quota_stranieri_comuni_pr # anteprima di una; tutte: mappe_comuni_pr
 purrr::iwalk(mappe_comuni_pr, function(m, nome) {
   f_salva_mappa(m, nome, dir_out = dir_mod)
 })
@@ -504,6 +506,7 @@ mappa_paritarie_plessi_pr <- ggplot() +
     plot.caption = element_text(hjust = 0, size = 8, colour = "grey30")
   )
 
+mappa_paritarie_plessi_pr
 f_salva_mappa(mappa_paritarie_plessi_pr, "mappa_paritarie_plessi_pr",
               dir_out = dir_mod, width = 9, height = 8)
 
@@ -570,6 +573,7 @@ mappa_paritarie_iscritti_pr <- ggplot() +
     plot.caption = element_text(hjust = 0, size = 8, colour = "grey30")
   )
 
+mappa_paritarie_iscritti_pr
 f_salva_mappa(mappa_paritarie_iscritti_pr, "mappa_paritarie_iscritti_pr",
               dir_out = dir_mod, width = 9, height = 8)
 
@@ -593,3 +597,13 @@ purrr::iwalk(lista_plot, function(p, nome) {
   message("Salvato: ", nome, " (.rds + .png)")
 })
 
+# Verifiche per BLURB  -----
+
+
+# 2. % alunni stranieri 2024/25, Parma vs media ER, statali + paritarie (blurb scuola_iscritti)
+stranieri <- read_csv(here("moduli", "scuola_iscritti", "output", "stranieri_trend_prov_er.csv"))
+stranieri |>
+  filter(anno_inizio == 2024) |>
+  mutate(quota = round(100 * quota_stranieri, 1)) |>
+  arrange(desc(quota)) |>
+  select(provincia, alunni, alunni_stranieri, quota)  # attesi: Parma 21,7 (2ª dopo Piacenza 25,3); ER 18,8

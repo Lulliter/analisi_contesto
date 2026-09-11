@@ -19,10 +19,11 @@ alunni, % stranieri) + `mappa_paritarie_plessi_pr` + `mappa_paritarie_iscritti_p
   grado cresce ancora (l'onda dei nati fino al 2010 che risale i cicli).
   Totale provincia 2024/25: ~52 mila iscritti (no infanzia).
 - **La scuola è il luogo dove si vede la Parma che cambia**: nelle statali gli
-  alunni con cittadinanza non italiana sono il 22,7% (2024/25), con punte
+  alunni con cittadinanza non italiana sono il 22,7% (2024/25); contando anche
+  le paritarie sono il 21,7% (11.354 su 52.276), contro il 18,8% della media
+  regionale: Parma è seconda in Emilia-Romagna dopo Piacenza (25,3%). Punte
   comunali molto più alte — Langhirano ~49%, Busseto ~39%, Colorno ~32% — e
-  code basse nei comuni dell'Appennino. <!-- TODO: % complessiva con paritarie
-  e confronto con la media ER, da leggere sul grafico province -->
+  code basse nei comuni dell'Appennino. (Verificato 2026-09-11 su `stranieri_trend_prov_er`, statali + paritarie.)
 - **La paritaria è quasi solo infanzia**: 80 dei 104 plessi paritari sono
   scuole dell'infanzia, presenti in 21 comuni; negli altri ordini è un fenomeno
   concentrato (24 plessi in 5 comuni, ~2.700 iscritti, ~5% del totale). In

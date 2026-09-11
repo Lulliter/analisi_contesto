@@ -8,6 +8,7 @@
 # Origine codice: dashboard/demographic_trends/data_load.R (vecchio repo)
 # ------------------------------------------------------------------------
 
+# Setup -------------------------------------------------------------------
 library(readxl)
 library(dplyr)
 library(tidyr)

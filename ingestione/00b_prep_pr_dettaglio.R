@@ -10,6 +10,7 @@
 # Quando: dopo ogni nuovo download dei confini non generalizzati (annuale)
 # ==========================================================================
 
+# Setup -------------------------------------------------------------------
 library(here)
 library(sf)
 library(dplyr, warn.conflicts = FALSE)

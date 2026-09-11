@@ -17,6 +17,7 @@
 #     CODICE CATASTALE con l'Elenco comuni ISTAT (dati/grezzi/istat_codici_comuni/)
 # ------------------------------------------------------------------------
 
+# Setup -------------------------------------------------------------------
 library(here)
 library(readr)
 library(dplyr)

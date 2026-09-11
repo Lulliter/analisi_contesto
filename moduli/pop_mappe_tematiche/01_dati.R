@@ -10,6 +10,7 @@
 #         pop_tot, quota_stranieri, dens_km2, quota_65p, quota_0_14, quota_minorenni
 # ==========================================================================
 
+# Setup -------------------------------------------------------------------
 library(here)
 library(dplyr, warn.conflicts = FALSE)
 library(sf)

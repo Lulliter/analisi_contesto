@@ -15,6 +15,7 @@
 # Nota: il censimento viene aggiornato ogni anno, ma c'è un lag di tipo 1 anno e mezzo
 # ==========================================================================
 
+# Setup -------------------------------------------------------------------
 library(here)
 library(dplyr, warn.conflicts = FALSE)
 library(stringr)

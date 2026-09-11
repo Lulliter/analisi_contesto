@@ -21,6 +21,7 @@
 #     i conteggi di PLESSI dall'anagrafe invece sì
 # ------------------------------------------------------------------------
 
+# Setup -------------------------------------------------------------------
 library(here)
 library(dplyr)
 library(stringr) # str_detect in f_classifica_ordine

@@ -5,6 +5,7 @@
 # Output: output/*.png | *.rds (ggplot object) | *.csv
 # ------------------------------------------------------------------------
 
+# Setup -------------------------------------------------------------------
 library(dplyr)
 library(ggplot2)
 library(here)
@@ -24,6 +25,8 @@ source(here("R", "_parma_colors.R"))
 # plot_x <- df_pronto |>
 #   ggplot(aes(...)) +
 #   geom_...()
+# plot_x   # SEMPRE: riga nuda con il nome dopo ogni output, per vederlo oltre a salvarlo
+#          # (se è una lista di grafici, basta un elemento: lista$nome oppure lista[[1]])
 
 # 3. Salva (sia png per riuso rapido, sia rds se il sito deve ricomporlo) --
 # ggsave(here("moduli", "<nome_modulo>", "output", "plot_x.png"),

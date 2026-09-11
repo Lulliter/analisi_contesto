@@ -14,7 +14,7 @@ nuzialità/fecondità, speranza di vita, saldi migratori) + tabelle csv omonime
 
 # Messaggio
 
-- **Parma invecchia più lentamente di regione e Italia**: nell'arco 2002-2025 l'età media è salita di circa un anno (≈45,3 → 46,3), contro ~+2 dell'Emilia- Romagna e ~+5 dell'Italia; la provincia resta un po' più giovane della media regionale. <!-- TODO: riverificare i decimali sulle serie nuove -->
+- **Parma invecchia più lentamente di regione e Italia**: nell'arco 2002-2026 l'età media è salita di circa un anno (45,3 → 46,4), contro +2,4 dell'Emilia-Romagna (44,9 → 47,3) e +5,2 dell'Italia (41,9 → 47,1); la provincia resta un po' più giovane della media regionale. (Decimali verificati 2026-09-11 su `p01_e_m`: al 2025 Parma 46,3, ER 47,1, Italia 46,9.)
 - **La crescita è tutta migratoria**: la crescita naturale è negativa lungo quasi tutto il periodo, compensata dai saldi migratori — in particolare quello con l'estero, strutturalmente sopra la media nazionale.
 - **I segnali recenti vanno letti sui flussi**: natalità e fecondità continuano a scendere anche negli ultimi anni; l'ultimo anno di ogni serie è una stima provvisoria ISTAT e va preso con cautela.
 

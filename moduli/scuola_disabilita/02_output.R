@@ -9,6 +9,7 @@
 # NB: fonte USR-ER = solo scuole STATALI, infanzia inclusa
 # ------------------------------------------------------------------------
 
+# Setup -------------------------------------------------------------------
 library(here)
 library(dplyr)
 library(stringr)

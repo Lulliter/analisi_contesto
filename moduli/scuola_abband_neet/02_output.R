@@ -10,6 +10,7 @@
 #         output/*_ft.rds (flextable, riletta tal quale nella pagina)
 # ------------------------------------------------------------------------
 
+# Setup -------------------------------------------------------------------
 library(here)
 library(dplyr)
 library(stringr)

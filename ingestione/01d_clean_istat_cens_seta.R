@@ -15,6 +15,7 @@
 #     adeguare i nomi qui sotto.
 # ==========================================================================
 
+# Setup -------------------------------------------------------------------
 library(here)
 library(dplyr, warn.conflicts = FALSE)
 library(stringr)

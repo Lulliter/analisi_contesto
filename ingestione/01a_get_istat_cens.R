@@ -16,6 +16,7 @@
 # Durata: ~33 blocchi x 20 sec ≈ 12-15 minuti (il rate limit ISTAT è severo)
 # ==========================================================================
 
+# Setup -------------------------------------------------------------------
 library(here)
 
 source(here("R", "f_istat_scarica_cens.R"))   # f_scarica_istat_blocchi() (usa httr + rsdmx)

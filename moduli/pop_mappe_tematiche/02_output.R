@@ -12,6 +12,7 @@
 # Stile:  come f_make_dummy_map: tema pulito, linee province, Parma in bordeaux
 # ==========================================================================
 
+# Setup -------------------------------------------------------------------
 library(here)
 library(dplyr, warn.conflicts = FALSE)
 library(purrr)
@@ -112,6 +113,56 @@ indicatori <- tibble::tribble(
 # --- 4) Genera e salva (purrr) ------------------------------------------------
 mappe_er <- indicatori |> pmap(f_mappa_er) |> set_names(indicatori$var)
 mappe_pr <- indicatori |> pmap(f_mappa_pr) |> set_names(indicatori$var)
+mappe_er$quota_stranieri # anteprima di una; tutte: mappe_er
+mappe_pr$quota_stranieri # idem: mappe_pr
 
 iwalk(mappe_er, function(m, nm) f_salva_mappa(m, paste0("mappa_", nm, "_er"), dir_out = file.path(dir_mod, "output")))
 iwalk(mappe_pr, function(m, nm) f_salva_mappa(m, paste0("mappa_", nm, "_pr"), dir_out = file.path(dir_mod, "output")))
+
+# Verifiche rapide (da eseguire a mano) ------------------------------------
+# I numeri del blurb (Messaggio, 2026-09-11): quintili ER, Parma vs ER, comuni PR agli estremi
+pop_com <- st_drop_geometry(pop_mappe_sf) |>
+  mutate(is_pr = COD_PROV %in% c("34", 34))
+
+# quintili ER (le soglie delle classi delle mappe) per ogni indicatore
+pop_com |>
+  select(quota_stranieri, dens_km2, quota_65p, quota_0_14, quota_minorenni) |>
+  summarise(across(everything(), function(x) list(round(quantile(x, c(.2, .4, .6, .8)), 3)))) |>
+  tidyr::pivot_longer(everything(), names_to = "indicatore", values_to = "soglie") |>
+  tidyr::unnest_wider(soglie) # attesi (in %): stranieri 7,9|9,9|11,6|13,9; 65+ 22,8|24,4|26,2|30,6; 0-14 9,8|11,3|12,1|12,9; dens 39|100|180|292
+
+# Parma vs ER: quote sul totale dei residenti (non media dei comuni)
+pop_com |>
+  summarise(pop = sum(pop_tot), sup = sum(sup_km2),
+            stranieri = sum(pop_stranieri) / pop, anziani = sum(pop_65p) / pop,
+            bambini = sum(pop_0_14) / pop, minorenni = sum(minorenni) / pop, dens = pop / sup,
+            .by = is_pr) # attesi PR: 456 mila, stranieri 14,8%, 65+ 23,6%, 0-14 12,4%, 132 ab/km2; ER: 12,7%, 24,9%, 11,8%, 198
+
+# comuni PR per quintile ER (colonne classe_<var> create da f_aggiungi_classe): quanti nel quinto più basso e più alto
+pop_com |>
+  filter(is_pr) |>
+  select(COMUNE, starts_with("classe_")) |>
+  tidyr::pivot_longer(starts_with("classe_"), names_to = "indicatore", values_to = "classe") |>
+  mutate(quintile = as.integer(classe)) |> # 1 = più basso … 5 = più alto
+  count(indicatore, quintile) |>
+  tidyr::pivot_wider(names_from = quintile, values_from = n, values_fill = 0) # attesi: dens 18 nel 1° e 1 nel 5°; 65+ 12 nel 1° e 14 nel 5°; stranieri 12 nel 5°
+
+# popolazione PR nei comuni meno densi (1° quintile ER) e nel capoluogo
+pop_com |>
+  filter(is_pr) |>
+  summarise(pop_q1 = sum(pop_tot[dens_km2 <= quantile(pop_com$dens_km2, .2)]),
+            pop_parma = pop_tot[COMUNE == "Parma"], pop_tot = sum(pop_tot)) # attesi: 28 mila (6%) e 199 mila (44%) su 456 mila
+
+# comuni PR agli estremi di ogni indicatore (i nomi citati nel blurb)
+f_estremi <- function(var, n = 5) {
+  pop_com |>
+    filter(is_pr) |>
+    select(COMUNE, pop_tot, valore = all_of(var)) |>
+    arrange(desc(valore)) |>
+    (function(d) bind_rows(head(d, n) |> mutate(estremo = "alto"), tail(d, n) |> mutate(estremo = "basso")))()
+}
+f_estremi("quota_stranieri") # alto: Calestano 20,7; Langhirano 20,6; Parma 17,1 — basso: Albareto 3,3; Monchio 3,9
+f_estremi("quota_65p")       # alto: Bore 47; Monchio 44; Tornolo 42; Palanzano 41 — basso: Torrile 18,3; Colorno 20,6
+f_estremi("quota_0_14")      # alto: San Secondo 14,4; Langhirano 14,0; Colorno/Fidenza 13,7 — basso: Bore 3,7; Tornolo 3,8
+f_estremi("dens_km2")        # alto: Parma 764; Fidenza 289 — basso: Valmozzola 8; Bardi 10
+

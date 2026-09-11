@@ -8,6 +8,7 @@
 # Output: output/piramide_<target>_vs_<confronto>.png/.rds
 # ==========================================================================
 
+# Setup -------------------------------------------------------------------
 library(here)
 library(dplyr, warn.conflicts = FALSE)
 library(purrr)
@@ -154,6 +155,7 @@ piramidi <- coppie |>
   pmap(f_piramide) |>
   set_names(coppie$nome_file)
 
+piramidi$piramide_pr_vs_er # anteprima di una; tutte: piramidi
 iwalk(piramidi, function(g, nm) f_salva_piramide(g, nm))
 
 # --- 3) Piramidi per cittadinanza (Totale | Italiani | Stranieri) -------------
@@ -162,4 +164,5 @@ territori_citt <- c(piramide_pr_cittadinanza = "ITD52",
 
 piramidi_citt <- map(territori_citt, f_piramide_cittadinanza)
 
+piramidi_citt$piramide_pr_cittadinanza # anteprima di una; tutte: piramidi_citt
 iwalk(piramidi_citt, function(g, nm) f_salva_piramide(g, nm, larghezza = 11))
