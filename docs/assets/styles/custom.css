@@ -106,3 +106,24 @@ div.sidebar-item-container nav[role=doc-toc] ul li a.active {
   color: #9f7d35 !important;
   font-weight: 600;
 }
+
+/* Navbar: un colore per gruppo tematico (palette Cariparma, vedi parma-theme.scss).
+   La navbar e' scura (#517699, default Quarto): servono le tinte CHIARE (_lg) della palette.
+   NB: l'id delle tendine e' generato da Quarto dal testo della voce
+   (es. "Scuola" -> #nav-menu-scuola): se rinomini una voce, aggiorna qui.
+
+   Come aggiungere un nuovo gruppo tematico:
+   1. in _quarto.yml (website > navbar > left) crea la voce, con o senza `menu:`.
+      Per il testo delle voci di gruppo evita lettere accentate (l'id resta prevedibile);
+   2. scegli una tinta chiara: le _lg della palette in parma-theme.scss sono poco
+      contrastate su questo sfondo (contrasto < 2.5), meglio schiarirle un po' come
+      fatto per il verde qui sotto; controlla il contrasto (es. contrast-ratio.com);
+   3. aggiungi qui una riga:
+      - voce con tendina  -> #nav-menu-<testo-in-minuscolo-con-trattini> { color: ...; }
+        es. "Giovani e lavoro" -> #nav-menu-giovani-e-lavoro
+      - voce singola      -> .navbar a[href$="<nome_file>.html"] { color: ...; }
+   4. piu' voci dello stesso tema = stesso colore (come Scuola + Giovani qui sotto);
+   5. se non sei sicura dell'id, aprilo da docs/index.html cercando "nav-menu-". */
+#nav-menu-demografia { color: #f7da7b; }                   /* demografia: ylw_lg */
+#nav-menu-scuola,
+.navbar a[href$="giovani_lavoro.html"] { color: #b7e4d0; } /* scuola + giovani: verde menta (grn_lg schiarito, contrasto ~3.4) */

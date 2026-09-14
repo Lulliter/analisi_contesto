@@ -1,0 +1,109 @@
+---
+title: "Crescere al tempo dell'IA: bambini e ragazzi nella provincia di Parma"
+subtitle: "Un approfondimento su cosa cambia per chi cresce con l'intelligenza artificiale: potenzialità, rischi e il ruolo di chi educa"
+date: last-modified
+date-format: "DD-MMMM-YYYY"
+lang: it
+
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+
+execute:
+  eval: true
+  echo: false
+  warning: false
+  error: false
+  output: false
+---
+
+```{r}
+#| eval: false
+# Anteprima: renderizza e apre nel browser (lancia a mano, ignorato nel render)
+pagina <- "_educ_ia"   # nome pagina, senza estensione
+quarto::quarto_render(here::here("sito", "temi", paste0(pagina, ".qmd")))
+browseURL(here::here("docs", "sito", "temi", paste0(pagina, ".html")))
+```
+
+<!-- OUTLINE 2026-09-14 (tema Scuola, approfondimento su cosa vuol dire crescere al tempo dell'IA).
+     Pagina ancora senza dati: struttura, messaggi attesi e contenuti previsti.
+     Moduli previsti: da definire. -->
+
+```{r}
+#| label: setup
+library(here)
+library(dplyr)
+library(ggplot2)
+library(ggiraph)
+library(ggtext)
+library(scales)
+library(glue)
+library(downloadthis)
+
+source(here::here("R", "f_scarica_dati.R"))
+source(here::here("R", "f_bottoni_dati.R"))
+source(here::here("R", "f_girafe.R"))
+```
+
+::: {.callout-warning}
+## Pagina in costruzione
+Questa pagina raccoglie le domande e la struttura dell'approfondimento su cosa vuol dire crescere al tempo dell'intelligenza artificiale. I dati e le fonti arriveranno nei prossimi mesi.
+:::
+
+## In sintesi
+
+<!-- 3-4 messaggi, da scrivere quando ci sono i dati. -->
+
+## Le potenzialità per bambini e ragazzi
+
+Cosa l'IA può offrire a chi cresce: apprendimento personalizzato, accessibilità per chi ha bisogni specifici, creatività, orientamento.
+
+<!-- grafici / contenuti previsti:
+- uso di strumenti di IA per fascia d'età e per scopo (indagini nazionali/europee, da cercare)
+- esperienze nelle scuole del territorio (da raccogliere)
+- evidenze dalla letteratura sugli effetti sull'apprendimento (da selezionare) -->
+
+<!-- ::: {.callout-note collapse="true"} -->
+<!-- ### Osservazioni -->
+<!-- commento dettagliato + _NB_ di metodo -->
+<!-- ::: -->
+
+## I rischi per bambini e ragazzi
+
+Cosa l'IA mette a rischio: attenzione e autonomia di giudizio, relazioni, benessere, dati personali, divari tra chi ha strumenti e accompagnamento e chi no.
+
+<!-- grafici / contenuti previsti:
+- tempo e modalità d'uso, dipendenza, esposizione a contenuti (indagini, da cercare)
+- percezioni di famiglie e docenti (da cercare)
+- divari per condizione socio-economica e territorio (da cercare) -->
+
+<!-- ::: {.callout-note collapse="true"} -->
+<!-- ### Osservazioni -->
+<!-- ::: -->
+
+## Governare il processo: il ruolo dei corpi intermedi e delle realtà educanti
+
+Cosa devono fare scuole, famiglie, terzo settore, enti locali e fondazioni per accompagnare il cambiamento invece di subirlo: formazione, regole d'uso, alleanze educative.
+
+<!-- contenuti previsti:
+- mappa delle realtà educanti e delle iniziative sull'IA nel territorio (da costruire)
+- formazione dei docenti e degli educatori: quanta, quale (da cercare)
+- esempi e linee guida da altri territori/paesi (da selezionare) -->
+
+<!-- ::: {.callout-note collapse="true"} -->
+<!-- ### Osservazioni -->
+<!-- ::: -->
+
+## Fonti e riferimenti
+
+Qui sotto alcune fonti selezionate da analizzare per dati e spunti di ispirazione:
+
+- 
+
+## Possibili approfondimenti
+
+Le domande su cui l'Osservatorio intende lavorare:
+
+1. 

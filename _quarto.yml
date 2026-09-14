@@ -45,19 +45,27 @@ website:
     left:
       - text: Home
         href: index.qmd
-      - text: "Trend Demografici"
-        href: sito/temi/trend_demogr.qmd
-      - text: "Previsioni al 2050"
-        href: sito/temi/trend_demogr_previs.qmd
-      - text: "Scuola e istruzione"
-        href: sito/temi/scuola.qmd
-      - text: "Rischio dispersione scolastica"
-        href: sito/temi/scuola_dispersione.qmd
+      - text: "Demografia"
+        menu:
+          - text: "Trend demografici"
+            href: sito/temi/trend_demogr.qmd
+          - text: "Previsioni al 2050"
+            href: sito/temi/trend_demogr_previs.qmd
+      - text: "Educazione"
+        menu:
+          - text: "Scuola e istruzione"
+            href: sito/temi/scuola.qmd
+          - text: "Rischio dispersione"
+            href: sito/temi/scuola_dispersione.qmd
+          - text: "Crescere con l'IA"
+            href: sito/temi/educ_IA.qmd
       - text: "Giovani e lavoro"
         href: sito/temi/giovani_lavoro.qmd
       # Voci da riattivare quando le pagine esistono, es.:
-      # - text: "Disabilità"
-      #   href: sito/temi/disabilita.qmd
+      # - text: "Fragilità"
+      #   menu:
+      #     - text: "Disabilità"
+      #       href: sito/temi/disabilita.qmd
     right:
       - text: "Progetti Osservatorio"
         icon: database-fill-up #info-circle

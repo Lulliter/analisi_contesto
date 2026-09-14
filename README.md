@@ -56,6 +56,8 @@ Per ricostruire i dati: segui i `_metadati.md` per riscaricare i grezzi, poi rig
 
 Scorciatoia: `source("build.R")` rigenera gli `output/` di tutti i moduli e invalida `_freeze/sito` (necessario perché `freeze:auto` guarda solo i `.qmd`), poi si lancia `quarto::quarto_render()`.
 
+Aspetto del sito: il tema è quello di default di Quarto/Bootstrap; le personalizzazioni (TOC, callout, colori navbar) stanno in `assets/styles/custom.css`. Il file `assets/styles/parma-theme.scss` contiene la palette Cariparma ma **non è collegato** in `_quarto.yml` (tema spento, ereditato da un altro progetto): serve solo come riferimento per i codici colore.
+
 > Convenzioni e aggiornamento fonti: [`dati/README.md`](dati/README.md).
 
 # TODO

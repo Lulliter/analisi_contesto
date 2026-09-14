@@ -189,7 +189,7 @@ I macro temi corrispondono + o - alle pagine del `sito/`. GLi item elencati corr
 ___
 
  
-## 2.a Scuola e formazione (c'è un inizio; arricchire con fonti LOCALI)
+## 2.a Educazione (c'è un inizio; arricchire con fonti LOCALI)
 > Non affrontato nello strategico PS 2024-2027, ma da presentare come "Driver di crescita e realizzazione delle persone" 
 
 **Ripensamento MODULI (connessi a fonti)**: (bisogni Fondazione: trend generali + fragilità:
@@ -237,10 +237,25 @@ abbandoni, NEET, formazione continua, % stranieri per comune, studenti disabili;
 - [x] 2026-09-10 modulo collaudato: ritardo scolastico (MIM per età, serali/CPIA esclusi) + NEET e competenze non adeguate (BES dei territori, via `ingestione/04_prep_istat_bes.R` → `dati/puliti/istat_bes/`); 4 grafici + mappa; pagina `sito/temi/_scuola_dispersione.qmd`
 - [ ] Approfondimenti (le domande sono in pagina; qui le fonti): ELET/abbandono provinciale → anagrafe studenti RER (regolarità, successo) o esiti scrutini per scuola nel catalogo MIM (da verificare); dispersione implicita → INVALSI grado 13: il file in casa (`Traguardi_MS2026.xlsx`, solo regionale) ha SOLO i gradi 2, 5 e 10; i pacchetti completi 2-5-10 e 8-13 sono in casa dall'11/9 (csv), ma per i gradi 8 e 13 il trend è solo per macroarea e i livelli regionali solo 2025/26 (vedi `dati/grezzi/invalsi/_metadati.md`); la dispersione implicita vera e propria è solo nel Rapporto 2026 come grafico regionale; nella presentazione 2026 c'è anche una mappa "Tasso di ELET per provincia, biennio 2024-25" (elaborazioni INVALSI su microdati ISTAT): unico dato provinciale sull'uscita precoce, da recuperare (chiedere i dati al Servizio statistico?); ritardo × cittadinanza e dopo-Covid alle medie → incrocio per plesso di `scuole_iscritti_er` (età) con `scuole_iscritti_cittadinanza_er`; coorti → anagrafe RER + iscritti IeFP (`rer_formaz_lavoro`); seconda chance → modulo `formaz_rientri`
  
+### modulo `educ_ia` (idea 2026-09-14)
+(approfondimento "crescere al tempo dell'IA": potenzialità e rischi per bambini/ragazzi, ruolo dei corpi intermedi e delle realtà educanti; più qualitativo/documentale che statistico, dati locali da costruire)
+
+**Ricognizione/Aggiornamento FONTI**: 
+
+- [ ] _Potenzialità_: xxxx (es. indagini su uso dell'IA per fascia d'età; esperienze nelle scuole del territorio; letteratura su effetti sull'apprendimento)
+- [ ] _Rischi_: xxxx (es. tempo/modalità d'uso e benessere; percezioni di famiglie e docenti; divari per condizione socio-economica)
+- [ ] _Governare il processo_: xxxx (es. mappa delle realtà educanti e iniziative sull'IA a Parma; formazione docenti/educatori; linee guida da altri territori/paesi)
+
+**Moduli/output previsti**: 
+
+- [ ] da definire (se serve un modulo dati, o solo testo + fonti in pagina)
+
 #### sito  
 
 - [x] (Fatto) `sito/temi/scuola.qmd` (incluso outputs da 1) `moduli/scuola_iscritti` + 2) `moduli/scuola_disabilita`)
-- [ ] (Da completare?) aggiungere risultati (e.g. INVALSI)? 
+  - [ ] (Da completare?) aggiungere risultati (e.g. INVALSI)? 
+- [x] (Fatto) `scuola_dispersione.qmd` (include outputs da `moduli/scuola_abband_neet`)
+- [ ] (Bozza) `sito/temi/_educ_ia.qmd`  
   
 
 ## 2.b ...formazione GIOVANI (lavoro e innovazione)
