@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: docs # to publish website on GithubPages
+  resources:
+    - CNAME # dominio personalizzato (datiparma.it): copiato in docs/ a ogni render
   render:
     # Lista esplicita ("whitelist"): si renderizza SOLO la home e le pagine di sito/
     - index.qmd
@@ -17,7 +19,7 @@ website:
   bread-crumbs: true
   title: "Parma analisi di contesto"
   description: "A dashboard for Parma, Italy"
-  site-url: "https://lulliter.github.io/analisi_contesto/"
+  site-url: "https://datiparma.it/"
   # favicon: assets/favicon.ico
   search: false # no magnifier on navbar
   # # BANNER (icone vedi https://icons.getbootstrap.com/)
