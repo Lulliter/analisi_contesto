@@ -50,7 +50,7 @@ source(here::here("R", "f_girafe.R"))
 
 ::: {.callout-warning}
 ## Pagina in costruzione
-Questa pagina raccoglie le domande e la struttura dell'analisi sul passaggio dalla formazione al lavoro. I dati arriveranno nei prossimi mesi; la pagina sui [giovani a rischio dispersione](scuola_dispersione.qmd) ne è il punto di partenza.
+Questa pagina raccoglie le domande e la struttura dell'analisi sul passaggio dalla formazione al lavoro. Segue logicamente la pagina sui [giovani a rischio dispersione](scuola_dispersione.qmd).
 :::
 
 ## In sintesi
