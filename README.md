@@ -60,6 +60,10 @@ Aspetto del sito: il tema è quello di default di Quarto/Bootstrap; le personali
 
 > Convenzioni e aggiornamento fonti: [`dati/README.md`](dati/README.md).
 
+# Licenza
+
+Testi, grafici, tabelle e dati derivati: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) (la dicitura è inclusa nei CSV/Excel scaricabili, via `R/f_scarica_dati.R`). Codice: MIT (file `LICENSE`). Dati grezzi: restano soggetti alla licenza della fonte, indicata nel `_metadati.md` di ciascuna cartella di `dati/grezzi/`.
+
 # TODO
 
 🔨 Migrazione per tema in corso. Il diario di lavoro — piano, regole, convenzioni di codifica e stato tema per tema — sta in [`_TODO.qmd`](_TODO.qmd), che si renderizza a mano (`_TODO.html`) e resta fuori dal sito.

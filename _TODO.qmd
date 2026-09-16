@@ -110,6 +110,8 @@ analisi_contesto/
   Scioglie l'ambiguità "fonte/indicatore". La FONTE sta nel blurb e negli header degli script; l'aggiornamento per fonte si rintraccia via ingestione/ e blurb
   + In ogni `moduli/*/blurb.md`: fonte, anno dei dati, data ultimo aggiornamento — così l'aggiornamento annuale si riduce a "quali moduli hanno dati nuovi?" (qui ci sarà da capire un modo migliore, ma TBD)
 + I **temi** (instabili per costruzione) esistono solo in `sito/` 
++ **Licenza** (deciso 2026-09-15: contenuti CC BY 4.0, codice MIT, v. README): per ogni nuova fonte/modulo verificare la licenza dei dati grezzi e annotarla nel `_metadati.md`; se non è "solo attribuzione" (CC BY / IODL) va valutato prima se e come ripubblicare i dati derivati (la dicitura nei CSV/Excel scaricabili sta in `R/f_scarica_dati.R`)
++ **Home** (`index.qmd`): quando si aggiunge o promuove una pagina in `sito/temi/` (o si cambia un gruppo della navbar), aggiornare anche l'elenco dei temi e il callout "in preparazione" nella home. Nelle pagine di `sito/temi/` niente `date: last-modified`: il campo `description` del YAML dice fonti, anni dei dati e mese di estrazione, e va aggiornato quando si aggiornano i moduli della pagina
 + Le **funzioni** sono organizzate secondo logica della promozione dei dati: una funzione nasce LOCALE nello script che la usa; si promuove a generale (`R/`) alla seconda chiamata da uno script diverso (o se palesemente generica). Nel trasloco si ripulisce: tutto via argomenti, `R/` non conosce i moduli.
     + Mai `source()` orizzontali tra moduli: se serve a due, si promuove. In `R/`: 1 file = 1 funzione, nome file = nome funzione (prefissi: `istat_*` fonti, `f_*` helper viz/formato, `utilities.R` briciole) 
     + Così `R/` contiene solo funzioni con ≥2 utilizzatori, tutte vive
@@ -237,18 +239,78 @@ abbandoni, NEET, formazione continua, % stranieri per comune, studenti disabili;
 - [x] 2026-09-10 modulo collaudato: ritardo scolastico (MIM per età, serali/CPIA esclusi) + NEET e competenze non adeguate (BES dei territori, via `ingestione/04_prep_istat_bes.R` → `dati/puliti/istat_bes/`); 4 grafici + mappa; pagina `sito/temi/_scuola_dispersione.qmd`
 - [ ] Approfondimenti (le domande sono in pagina; qui le fonti): ELET/abbandono provinciale → anagrafe studenti RER (regolarità, successo) o esiti scrutini per scuola nel catalogo MIM (da verificare); dispersione implicita → INVALSI grado 13: il file in casa (`Traguardi_MS2026.xlsx`, solo regionale) ha SOLO i gradi 2, 5 e 10; i pacchetti completi 2-5-10 e 8-13 sono in casa dall'11/9 (csv), ma per i gradi 8 e 13 il trend è solo per macroarea e i livelli regionali solo 2025/26 (vedi `dati/grezzi/invalsi/_metadati.md`); la dispersione implicita vera e propria è solo nel Rapporto 2026 come grafico regionale; nella presentazione 2026 c'è anche una mappa "Tasso di ELET per provincia, biennio 2024-25" (elaborazioni INVALSI su microdati ISTAT): unico dato provinciale sull'uscita precoce, da recuperare (chiedere i dati al Servizio statistico?); ritardo × cittadinanza e dopo-Covid alle medie → incrocio per plesso di `scuole_iscritti_er` (età) con `scuole_iscritti_cittadinanza_er`; coorti → anagrafe RER + iscritti IeFP (`rer_formaz_lavoro`); seconda chance → modulo `formaz_rientri`
  
-### modulo `educ_ia` (idea 2026-09-14)
+### ⬜ modulo `educ_ia` (idea 2026-09-14)
 (approfondimento "crescere al tempo dell'IA": potenzialità e rischi per bambini/ragazzi, ruolo dei corpi intermedi e delle realtà educanti; più qualitativo/documentale che statistico, dati locali da costruire)
 
-**Ricognizione/Aggiornamento FONTI**: 
+**Ricognizione/Aggiornamento FONTI** — organizzata per INDICATORE (traccia decisa 2026-09-15). NB: dati PROVINCIALI su giovani e IA non esistono; regionali pochi (HBSC, Bes, PISA con sovracampionamento ER); l'unico indicatore dove Parma è raggiungibile è l'accesso ai servizi NPIA (Regione/AUSL). Cornice: l'IA è l'ultimo capitolo di ~15 anni di vita digitale degli adolescenti; i paesi arrivati prima (USA, UK, Nord Europa) fanno da anteprima.
 
-- [ ] _Potenzialità_: xxxx (es. indagini su uso dell'IA per fascia d'età; esperienze nelle scuole del territorio; letteratura su effetti sull'apprendimento)
-- [ ] _Rischi_: xxxx (es. tempo/modalità d'uso e benessere; percezioni di famiglie e docenti; divari per condizione socio-economica)
-- [ ] _Governare il processo_: xxxx (es. mappa delle realtà educanti e iniziative sull'IA a Parma; formazione docenti/educatori; linee guida da altri territori/paesi)
+_1. Uso dell'IA per fascia d'età e per SCOPO (compiti, informazione, compagnia/confidenze — il "per cosa" conta più del "quanti")_:
 
-**Moduli/output previsti**: 
+- [ ] ISTAT, Cittadini e ICT: oltre al dato IA 2025, servono le SERIE LUNGHE per età (uso quotidiano di internet, uso dei social; dal ~2010) per la sezione di inquadramento "L'adozione delle tecnologie negli ultimi quindici anni" (tutti vs giovani) → fonte multi-modulo, ingestione in `ingestione/`
+- [ ] ISTAT, Cittadini e ICT 2025 (apr 2026): PRIMA rilevazione dell'uso di IA generativa (14+). Italia 17,8%; 14-19 anni 51,2% (F 53,3, M 49,1); 20-24 anni 43,1%. DA SCARICARE le tavole e VERIFICARE se l'indicatore IA c'è per regione (ER) → fonte stabile, annuale, candidata a modulo. [Istat](https://www.istat.it/comunicato-stampa/cittadini-e-ict-anno-2025/)
+- [ ] INDIRE + Festival Innovazione Scolastica, indagine nazionale IA e studenti (14 set 2026): 5.342 studenti medie+superiori (campione autoselezionato in classe, NON confrontabile con Pew); 94% usa l'IA, 84% per compiti/studio, 62% almeno settimanale, 53% per confidarsi su problemi personali, 44% teme di pensare meno autonomamente. Rapporto non ancora online; CHIEDERE a INDIRE il dettaglio regionale. [Indire](https://www.indire.it/2026/09/04/festival-dellinnovazione-scolastica-i-risultati-dellindagine-nazionale-ia-e-studenti-a-cura-di-indire-e-festival/)
+- [ ] Telefono Azzurro + Ipsos Doxa 2025 (12-18 anni): 35% usa strumenti IA, 34% ha chiesto consigli personali a un chatbot, 40% teme riduzione del pensiero critico. Non ufficiale. [Vita.it](https://www.vita.it/un-adolescente-su-tre-usa-i-chatbot-assistente-per-i-compiti-ma-anche-amico/)
+- [ ] Eurostat, IA generativa 16-19 anni (2025): Italia 51,9% vs UE 66,4%. Solo nazionale
+- [ ] _Anteprima USA_: Pew Research, Teens, Social Media and AI Chatbots (dic 2025, rappresentativo 13-17): 64% usa chatbot, 30% ogni giorno, 40% online "quasi costantemente". [Pew](https://www.pewresearch.org/internet/2025/12/09/teens-social-media-and-ai-chatbots-2025/); Common Sense Media, "Talk, Trust and Trade-Offs" (lug 2025): 72% ha usato "compagni IA", oltre metà regolarmente. [Common Sense](https://www.commonsensemedia.org/research/talk-trust-and-trade-offs-how-and-why-teens-use-ai-companions)
+- [ ] ITT Rondani (Parma), indagine interna giovani e IA (mag 2025): una sola scuola, non rappresentativa; unico dato parmense trovato, spunto per una rilevazione propria. [Casco Learning](https://cascolearning.it/magazine/2025/05/12/giovani-e-intelligenza-artificiale-una-indagine-allitt-rondani-di-parma/)
 
-- [ ] da definire (se serve un modulo dati, o solo testo + fonti in pagina)
+_2. Ore di schermo e uso problematico dei social (proxy della dipendenza)_:
+
+- [ ] ISS, HBSC Emilia-Romagna 2022 (11-17 anni, ~1.200 per età, quadriennale, regionale, no province): 60,8% >3h di schermo al giorno; uso problematico dei videogiochi (M 27% a 11 anni); indicatore "uso problematico dei social" (~11% in Europa). Niente IA nel 2022; controllare se l'onda 2026 la include. [Epicentro ER](https://www.epicentro.iss.it/hbsc/indagine-2022-emilia-romagna)
+- [ ] OCSE, "How's Life for Children in the Digital Age?" (2025): rapporto di riferimento per la SELEZIONE degli indicatori di benessere digitale dei minori (cross-nazionale). [OECD](https://www.oecd.org/en/publications/how-s-life-for-children-in-the-digital-age_0854b900-en.html)
+
+_3. Rendimento scolastico in relazione ai device (non il QI, non l'"attention span")_:
+
+- [ ] OCSE PISA 2022, "Students, digital devices and success" (15enni, triennale; l'Italia ha sovracampionamento regionale → ER c'è): fino a 1h/giorno di svago sui device nessun effetto, oltre il punteggio in matematica cala in modo monotono (5-7h vs <1h: −49 punti, più di un anno di scuola); 65% distratto dai device in classe; ~45% nervoso senza telefono (e questi hanno meno soddisfazione di vita e controllo emotivo). Correlazione robusta, non causa. [OECD pdf](https://eeb2.be/swfiles/files/OECD-Report-2024.pdf)
+- [ ] INVALSI: perdita di apprendimento 2021 (lockdown) — recuperare il dato nel Rapporto (regionale)
+- [ ] NON usare: inversione dell'effetto Flynn (Bratsberg & Rogeberg 2018, Norvegia: il calo del QI inizia con i nati dopo il 1975, prima degli smartphone) e "attention span da 2,5 min a 47 sec" (lab. Gloria Mark: adulti in ufficio, non ragazzi). Al loro posto: rendimento + distrazione in classe
+
+_4. Benessere mentale 14-19 e il lockdown come punto di svolta (accelerazione di un processo iniziato ~2012 altrove)_:
+
+- [ ] ISTAT Bes, indice di salute mentale 14-19 anni (annuale, regionale; serie dal 2019): 73,9 (2020) → 70,3 (2021), nel 2022 non ancora recuperato; F 69,8 vs M 75,4. GIÀ IN CASA? verificare in `dati/puliti/istat_bes/` (bes_eta_sesso.rds). [Openpolis](https://www.openpolis.it/la-salute-mentale-di-bambini-e-ragazzi-dopo-la-pandemia/)
+- [ ] ISS, HBSC Italia 2022 vs 2018: "sostanziale peggioramento" di tutti gli indicatori di malessere, soprattutto ragazze più grandi (>80% delle 15-17enni con ≥2 sintomi settimanali). [Epicentro](https://www.epicentro.iss.it/hbsc/indagine-2022-benessere); articolo Healthcare 2025 sull'impatto Covid nell'HBSC 2021/22 [doi](https://doi.org/10.3390/healthcare13162035)
+- [ ] _Dibattito internazionale_ (per l'inquadramento, non per i dati): Twenge/Haidt (peggioramento del benessere delle adolescenti dal ~2012, con gli smartphone) vs Orben & Przybylski (effetti piccoli; contestano la dimensione, non la tempistica). Limite italiano: HBSC quadriennale e Bes minori dal 2019 → non sappiamo se il 2012 c'è stato anche da noi
+  - UnHerd Podcast, 2026-07-07, "Jonathan Haidt: Why Big Tech wants your children" [link](https://open.spotify.com/episode/3gOoCudFSEYE0N64PBqkGGa)
+  - Libro Jonathan Haidt, "The Anxious Generation: How the Modern World is Damaging Our Children and What We Can Do About It", 2024 
+
+_5. Accessi ai servizi di neuropsichiatria infantile (UNICO indicatore con Parma raggiungibile: dato di flusso Regione/AUSL)_:
+
+- [ ] Nazionale: Bambino Gesù (Roma) accessi in PS neuropsichiatrici 155 (2011) → 1.824 (2021); +40% dopo la pandemia, 70% per autolesionismo/tentato suicidio (fonte: Vicari, Sole 24 Ore 2023, via Openpolis)
+- [ ] DA CHIEDERE: Regione ER / AUSL Parma, accessi NPIA e PS per età, serie 2015→ (flussi SDO/PS; verificare cosa pubblica il Servizio statistico regionale sulla salute mentale dei minori)
+
+_6. Governare il processo: le risposte dei paesi arrivati prima + la mappa locale_:
+
+- [ ] Politiche (DA VERIFICARE nel dettaglio prima di scriverle in pagina): divieto smartphone a scuola (Italia circolare 2024 medie, 2025 superiori; Danimarca; Francia), ritorno ai libri di carta in Svezia (2023), divieto social sotto i 16 anni in Australia (dic 2025); MIM linee guida IA (ago 2025) come cornice normativa
+- [ ] _Evidenza sperimentale "l'effetto dipende dal disegno"_ (argomento per il ruolo dei corpi intermedi: IA come sostituto dello sforzo fa male, IA come tutor con vincoli dentro una relazione educativa può aiutare). Citati A MEMORIA il 2026-09-15, DA VERIFICARE (autori, anno, numeri) prima di scriverli in pagina:
+  - Bastani et al. 2024, "Generative AI can harm learning" (RCT in licei turchi): accesso libero a GPT → meglio negli esercizi, PEGGIO all'esame senza lo strumento; la versione "GPT Tutor" (indizi, non soluzioni) non produce il danno
+  - Kestin et al. 2024 (Harvard, corso di fisica): tutor IA strutturato > lezione tradizionale/active learning
+  - Banca Mondiale 2024, pilota in Nigeria: doposcuola con IA (GPT-4) per 6 settimane, guadagni di apprendimento grandi
+  - Filone a parte, più solido: accessibilità per DSA e disabilità
+  - Conseguenza per la pagina: sezione "potenzialità" CORTA e CONDIZIONALE (benefici solo sotto certe condizioni, che oggi a Parma quasi nessuno garantisce; la versione che i ragazzi usano davvero, ChatGPT gratuito senza vincoli, è quella con l'evidenza peggiore)
+- [ ] Regione ER / Agenda digitale, Report Observa "L'IA in Emilia-Romagna" (apr 2026): 500 adulti, percezioni; 50% approva l'IA nell'istruzione, 18-24enni i più aperti. Solo regionale, solo adulti. [pdf](https://digitale.regione.emilia-romagna.it/dati/report-nuova-ader-2025-2029/report-observa-ai-emilia-romagna.pdf/@@download/file)
+- [ ] Openpolis, "Intelligenza artificiale: una sfida educativa" (2026): cornice + proxy comunale (aule informatiche da open data MIM edilizia scolastica → possibile dato per comune anche per PR). [Openpolis](https://www.openpolis.it/intelligenza-artificiale-una-sfida-educativa/) Accessed 14 Sept 2026
+- [ ] Mappa locale delle realtà educanti: Comune di Parma, catalogo "Progetti in Comune 2026" per le scuole (cercare le iniziative sull'IA) [Newsistruzione](https://www.newsistruzione.it/2026/09/10/parma-catalogo-progetti-in-comune-2026); Corecom ER, educazione ai media (12 laboratori IA nell'ultimo anno) [Assemblea ER](https://www.assemblea.emr.it/comunicati-stampa/diritti-corecom-in-campo-per-leducazione-ai-media-in-un-anno-112-incontri-nelle-scuole-12-laboratori-sullia-e-27-contro-fake-news-e-cyberbullismo); USR-ER: solo materiali per docenti, nessun dato
+
+**Moduli/output previsti** (deciso 2026-09-15: DUE moduli per domanda, non uno per fonte):
+
+- [ ] Cruscotto piccolo (5-6 indicatori), ciascuno con fonte, cadenza e livello territoriale DICHIARATI: 1) uso IA per età e scopo; 2) ore di schermo + uso problematico social; 3) rendimento vs device (PISA); 4) salute mentale 14-19 (Bes); 5) accessi NPIA (Regione/AUSL, provinciale); 6) risposte dei paesi (tabella qualitativa nel testo)
+
+#### ⬜🟩🟨🟦 _AVANZAMENTO `sito/temi/educ_ia`] 
+<!-- (stato al 2026-09-15 — ricostruire da qui l'elenco di avanzamento a inizio sessione):** -->
+
+<!-- Prossimo passo tuo, quando riprendi: lanciare moduli/giovani_benessere/02_output.R e l'anteprima di _educ_ia.qmd, poi 06a per lo scarico ISTAT. Da committare: _quarto.yml, custom.css, index.qmd, README.md, LICENSE, CNAME, R/f_scarica_dati.R, le pagine di sito/temi/, moduli/giovani_benessere/, ingestione/06a_*, dati/grezzi/istat_cittadini_ict/_metadati.md, _TODO.qmd. -->
+
+
+- [x] Modulo `giovani_benessere` (come stanno: Bes salute mentale + amici + vita + prospettive, 14-19/20-24 per sesso, Italia): `01_dati.R` collaudato, `02_output.R` scritto (2 grafici: `plot_salute_mentale_14_19`, `plot_amici_14_19`, caption in textbox ggtext, fascia "pandemia"), blurb con messaggio; sezione in `_educ_ia.qmd` ("Come stanno i ragazzi: il punto di partenza", dentro Rischi) con bottoni e Osservazioni
+- [ ] RENDER DI PROVA: lanciare `02_output.R` e l'anteprima di `_educ_ia.qmd`; controllare caption textbox, etichetta "pandemia", asse x (21 anni), bottoni; rileggere le Osservazioni
+- [ ] Modulo `giovani_digitale` (quanto e come: internet/pc per età + IA + HBSC) — 3 passi:
+  - [ ] 1/3 ISTAT: lanciare `ingestione/06a_get_istat_avq_ict.R` (scritto, NON lanciato; verificare chiave e codici ITD5/ITD) → poi scrivere `06b_prep_istat_avq_ict.R` → `dati/puliti/istat_ict/` (formato lungo). Trascrivere a mano da pdf `ict_ia_2025_eta_sesso.csv`. Social per età: recuperare id API del dataflow `DCCV_ICT` dal browser (tipo di dato `PARTSOCIA`)
+  - [ ] 2/3 HBSC ER 2022: scaricare pdf in `dati/grezzi/iss_hbsc/` + `_metadati.md`, trascrivere csv (ore schermo, uso problematico social/videogiochi, 11-17 per età e sesso, ER vs Italia)
+  - [ ] 3/3 modulo: `01_dati.R`, `02_output.R` (internet tutti i giorni per età vs totale, trend 2001-2025; pc vs internet; IA 2025 per età e sesso; HBSC), blurb; sezione "L'adozione delle tecnologie negli ultimi quindici anni" in `_educ_ia.qmd` (già predisposta con i grafici previsti nei commenti)
+- [ ] Testo delle sezioni potenzialità / rischi / governare: numeri delle indagini ad hoc (INDIRE, Telefono Azzurro, Pew, Common Sense) nel testo; VERIFICARE gli studi citati a memoria (Bastani 2024, Kestin 2024, Banca Mondiale Nigeria; Twenge/Haidt/Orben/Odgers, commentati in pagina) e le politiche dei paesi; tabella qualitativa "risposte dei paesi" nella sezione Governare
+- [ ] Chiudere la pagina: In sintesi (3-4 messaggi), Possibili approfondimenti, `description` YAML; poi promozione (togliere underscore, href navbar nel gruppo Educazione, aggiornare `index.qmd`)
+- [ ] Secondo giro, da decidere: PISA 2022 device/rendimento con valori ER trascritti (Rapporto INVALSI, volume OCSE) → in `giovani_digitale`
+- [ ] Richieste dati esterne (Luisa): Regione ER / AUSL accessi NPIA e PS per età, serie 2015→ (unico dato con Parma); INDIRE dettaglio regionale dell'indagine IA e studenti
 
 #### sito  
 

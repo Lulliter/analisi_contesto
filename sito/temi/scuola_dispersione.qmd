@@ -1,8 +1,7 @@
 ---
 title: "Giovani a rischio: dispersione scolastica e NEET nella provincia di Parma"
-subtitle: "Un affondo su chi rischia di lasciare la scuola o resta fuori da studio e lavoro: quanti sono, quali segnali li anticipano, dove sono"
-date: last-modified
-date-format: "DD-MMMM-YYYY"
+# subtitle: "Un affondo su chi rischia di lasciare la scuola o resta fuori da studio e lavoro: quanti sono, quali segnali li anticipano, dove sono"
+description: "Dati ISTAT Bes (2018-2024, nazionale fino al 2025) e MIM (a.s. 2015/16-2024/25), estratti a settembre 2026"
 lang: it
 
 format:
@@ -54,7 +53,7 @@ source(here::here("R", "f_girafe.R"))
 
 + Nel 2024 **circa un giovane su nove** (10,9% dei 15-29enni) in provincia di Parma non studia e non lavora (i cosiddetti _NEET_): meno che in Italia (15,2%), poco sopra la media regionale (9,6%), e quasi la metà rispetto al picco pandemico.
 
-+ L'abbandono scolastico vero e proprio (_ELET_: chi ha lasciato senza diploma né qualifica) è ormai una quota piccola, in Emilia-Romagna il 6% dei 18-24enni, sotto l'obiettivo europeo: **il grosso dei giovani fermi non ha lasciato la scuola, ma ha finito di studiare e non è entrato nel lavoro**. E si rileva una differenza di genere: lasciano la scuola più i ragazzi, restano fuori dal lavoro più le ragazze.
++ L'abbandono scolastico vero e proprio (_ELET_: chi ha lasciato senza diploma né qualifica) è ormai una quota piccola, in Emilia-Romagna il 6% dei 18-24enni, sotto l'obiettivo europeo (9% entro il 2030): **il grosso dei giovani fermi non ha lasciato la scuola, ma ha finito di studiare e non è entrato nel lavoro**. E si rileva una differenza di genere: lasciano la scuola più i ragazzi, restano fuori dal lavoro più le ragazze.
 
 + L'uscita dalla **terza media è un momento cruciale**, dove si possono vedere le prime avvisaglie del rischio dispersione/abbandono: quattro studenti su dieci non raggiungono un livello adeguato in italiano (39%) e in matematica (41%), più della media regionale e in crescita dal 2018.
 
@@ -259,7 +258,7 @@ _NB: Il comune è quello della scuola, non della residenza; la mappa riguarda le
 
 Le domande a cui questa pagina non risponde ancora, e su cui l'Osservatorio intende lavorare:
 
-1. Chi abbandona davvero: quanti ragazzi lasciano la scuola prima del diploma o della qualifica, e quanti dei 5 mila che entrano in prima superiore arrivano in fondo. Il dato ufficiale sull'uscita precoce esiste solo a livello regionale: per Parma servono altre fonti.
+1. Chi abbandona davvero: quanti ragazzi lasciano la scuola prima del diploma o della qualifica, e quanti dei 5 mila che entrano in prima superiore arrivano in fondo. Vedi considerazioni in [questo articolo di Openpolis](https://www.openpolis.it/labbandono-scolastico-in-italia-in-europa-e-nelle-citta/).  Il dato ufficiale sull'uscita precoce esiste solo a livello regionale: per Parma servono altre fonti.
 2. La dispersione implicita: quanti arrivano al diploma senza le competenze di base, secondo le prove INVALSI di fine superiori.
 3. Ritardo e origine: quanto del ritardo scolastico dipende dagli inserimenti di ragazzi arrivati dall'estero, e quanto dalle bocciature; e perché alle medie Parma è risalita più della regione dopo la pandemia.
 4. La seconda chance: chi rientra in formazione attraverso corsi serali, centri per adulti e percorsi professionali, e con quali esiti.

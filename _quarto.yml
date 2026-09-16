@@ -33,8 +33,8 @@ website:
   page-footer:
     left: |
       {{< fa brands creative-commons >}}
-      {{< fa brands creative-commons-by >}} {{< fa brands creative-commons-nc >}} {{< fa brands creative-commons-sa >}}
-      [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) <br> [Luisa M. Mimmi](mailto:mimmi@fondazionecrp.it)
+      {{< fa brands creative-commons-by >}}
+      [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) <br> [Luisa M. Mimmi](mailto:mimmi@fondazionecrp.it)
     right: |
       Made with {{< fa brands r-project >}} and [Quarto](https://quarto.org/) <br>
       [Code at {{< fa brands github >}} GitHub](https://github.com/Lulliter/analisi_contesto)
@@ -59,8 +59,8 @@ website:
             href: sito/temi/scuola.qmd
           - text: "Rischio dispersione"
             href: sito/temi/scuola_dispersione.qmd
-          - text: "Crescere con l'IA"
-            href: sito/temi/educ_IA.qmd
+          # - text: "Crescere con l'IA"
+          #   href: sito/temi/educ_IA.qmd
       - text: "Giovani e lavoro"
         href: sito/temi/giovani_lavoro.qmd
       # Voci da riattivare quando le pagine esistono, es.:
@@ -68,13 +68,13 @@ website:
       #   menu:
       #     - text: "Disabilità"
       #       href: sito/temi/disabilita.qmd
-    right:
-      - text: "Progetti Osservatorio"
-        icon: database-fill-up #info-circle
-        href: https://osservatorio.fondazionecrp.it/
-      - icon: github
-        aria-label: github
-        href: https://github.com/Lulliter/analisi_contesto
+    # right:
+    #   - text: "Progetti Osservatorio"
+    #     icon: database-fill-up #info-circle
+    #     href: https://osservatorio.fondazionecrp.it/
+    #   - icon: github
+    #     aria-label: github
+    #     href: https://github.com/Lulliter/analisi_contesto
 
 # --- Default options for all pages
 format:

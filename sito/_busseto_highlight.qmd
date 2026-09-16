@@ -1,0 +1,54 @@
+---
+title: "Busseto in cifre: popolazione, bambini e ragazzi, scuola"
+# subtitle: "Dati pubblici ISTAT, Regione Emilia-Romagna e Ministero dell'Istruzione, aggiornati a settembre 2026"
+date: last-modified
+lang: it
+format:
+  html:
+    toc: false
+  docx:
+    toc: false
+---
+
+## Quanti sono
+
+**Busseto ha circa 6.900 residenti e un profilo "a due punte": più bambini e più anziani della media provinciale.** Al Censimento permanente 2024 i residenti sono 6.885 (6.950 in anagrafe al 1° gennaio 2026). I minori di 15 anni sono il 12,9% (provincia di Parma 12,4%, Emilia-Romagna 11,8%), gli over 65 il 25,4% (provincia 23,6%, regione 24,9%), gli over 80 l'8,7%. I 15-24enni sono il 9,2%, un po' meno che in provincia e regione.
+
+In termini di bacini di utenza dei servizi educativi, al 1° gennaio 2026 vivono a Busseto 148 bambini di 0-2 anni, 139 di 3-5, 322 di 6-10, 196 di 11-13, 371 ragazzi di 14-18 e 310 giovani di 19-23.
+
+`Fonte: ISTAT, Censimento permanente della popolazione 2024; Regione Emilia-Romagna, popolazione residente al 1° gennaio 2026`
+
+## Cittadinanza straniera
+
+**Gli stranieri sono il 15% dei residenti, ma quasi il 30% dei bambini sotto i 6 anni.** I residenti con cittadinanza straniera sono 1.038, il 15,1% (provincia 14,8%, regione 12,7%). La differenza si concentra nelle età più giovani: tra i bambini di 0-5 anni gli stranieri sono il 29,3% (provincia 23,6%, regione 19,8%), tra i 6-13enni il 21,6%, tra i 14-18enni il 13%. La popolazione straniera è fatta soprattutto di adulti tra i 30 e i 49 anni (475 su 1.038), cioè famiglie giovani con figli. Il dato riguarda la cittadinanza, non l'origine: i nati in Italia da genitori stranieri contano come stranieri finché non acquisiscono la cittadinanza.
+
+`Fonte: ISTAT, Censimento permanente della popolazione 2024`
+
+## Scuola
+
+**Alla primaria di Busseto quattro alunni su dieci hanno cittadinanza straniera, contro poco più di uno su quattro in provincia.** Nel comune operano un istituto comprensivo statale (primaria e secondaria di primo grado) e tre scuole paritarie (due dell'infanzia e una secondaria di primo grado). Nell'anno scolastico 2024/25 le scuole di Busseto contano 269 alunni alla primaria e 274 alla secondaria di primo grado; la primaria è stabile da dieci anni, le medie sono cresciute fino al 2021-23 e ora rientrano. Gli iscritti alle medie superano i residenti di 11-13 anni: le scuole di Busseto accolgono anche ragazzi dei comuni vicini.
+
+Gli alunni stranieri alla primaria sono il 40,9% nel 2024/25 (27,1% in provincia); erano il 29% nel 2015/16 e il salto è avvenuto tra il 2019/20 e il 2021/22. Alle medie la quota è del 22,6%, in linea con la provincia (23,7%) ma in crescita rispetto all'anno precedente (16,6%).
+
+Il ritardo scolastico, cioè gli alunni con un'età superiore a quella regolare per la classe, segnale precoce di rischio di dispersione, riguarda il 7,7% degli alunni delle medie (sotto la media provinciale dell'8,6%, in lento calo dal 9% del 2015/16) e il 3,7% della primaria (sopra la media provinciale del 2,8%). 
+<!-- Su numeri così piccoli contano gli ordini di grandezza, non le variazioni annuali: Busseto non è tra i comuni della provincia con ritardo elevato. -->
+
+`Fonte: Ministero dell'Istruzione e del Merito, Portale unico dei dati della scuola, a.s. 2015/16-2024/25 (ritardo scolastico: elaborazione dai dati per anno di corso e fascia d'età)`
+
+## Verso il 2050
+
+**La popolazione tiene (−3% al 2050), ma i bambini calano di un quarto già entro il 2035.** Le proiezioni ISTAT (scenario mediano) indicano un lieve calo, da 6.821 residenti nel 2024 a 6.606 nel 2050, con un saldo naturale nettamente negativo (circa 42 nati e 92 morti l'anno) compensato solo in parte dalle iscrizioni dall'estero. Cambia soprattutto la composizione: i bambini sotto i 15 anni passano da circa 900 a 700 già entro il 2035, i 15-19enni da 320 a 250 nel 2050, gli over 65 salgono dal 25% al 32% e l'età media da 47 a quasi 50 anni.
+
+`Fonte: ISTAT, Previsioni della popolazione residente 2024-2050, scenario mediano, comuni con almeno 5.000 abitanti`
+
+## Fonti
+
+Popolazione, età e cittadinanza: ISTAT, Censimento permanente della popolazione, edizione 2024, dati per comune ([esploradati.istat.it](https://esploradati.istat.it/databrowser/#/it/censpop)).
+
+Residenti al 1° gennaio 2026 per classi di età: Regione Emilia-Romagna, Statistica, popolazione residente per comune ([statistica.regione.emilia-romagna.it](https://statistica.regione.emilia-romagna.it/)).
+
+Proiezioni al 2050: ISTAT, Previsioni della popolazione residente e delle famiglie, base 1° gennaio 2024, scenario mediano, dati per i comuni con almeno 5.000 abitanti ([demo.istat.it](https://demo.istat.it/)).
+
+Iscritti, cittadinanza e ritardo scolastico: Ministero dell'Istruzione e del Merito, Portale unico dei dati della scuola, open data su alunni per scuola, anni scolastici 2015/16-2024/25 ([dati.istruzione.it](https://dati.istruzione.it/opendata/)); il ritardo scolastico è un'elaborazione dai dati per anno di corso e fascia d'età (scuole statali e paritarie, esclusi corsi serali e CPIA).
+
+Non disponibili a livello comunale nelle fonti pubbliche: iscritti a nidi e scuole dell'infanzia, abbandoni ed esiti scolastici, NEET e occupazione giovanile (stime campionarie, solo provinciali).

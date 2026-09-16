@@ -1,8 +1,7 @@
 ---
-title: "Dalla scuola al lavoro: i giovani della provincia di Parma"
-subtitle: "Cosa funziona nel passaggio tra formazione e lavoro, cosa non funziona, e chi resta fuori"
-date: last-modified
-date-format: "DD-MMMM-YYYY"
+title: "Dalla scuola al lavoro"
+# subtitle: "Cosa funziona nel passaggio tra formazione e lavoro, cosa non funziona, e chi resta fuori"
+description: "Pagina in costruzione: struttura dell'analisi e fonti individuate, dati in arrivo"
 lang: it
 
 format:

@@ -1,8 +1,7 @@
 ---
 title: "Demografia: previsioni al 2050 per anticipare l'evoluzione dei bisogni"
-subtitle: "(Previsioni ISTAT 2024-2050, scenario mediano — estratte a Luglio 2026)"
-date: last-modified
-date-format: "DD-MMMM-YYYY"
+# subtitle: "Cosa dicono le proiezioni su popolazione, anziani e saldo naturale nei prossimi 25 anni"
+description: "Dati ISTAT, previsioni della popolazione 2024-2050 (scenario mediano), estratti a luglio 2026"
 lang: it
 
 format:

@@ -1,64 +1,32 @@
 ---
-title: "Descrizione del sito"
-# subtitle: "Materiale intermedio su dati geografici con R"
-# date: last-modified
-# date-format: "DD-MMMM-YYYY"
+#title: "Il sito in breve"
 lang: it
-engine: knitr # serve per il codice inline (nessun chunk nel file)
+engine: knitr
 
 format: html
 toc: false
 
-  # html:
-  #   theme: flatly #spacelab
-    # css: utils/style.css
-    # code-fold: true # redundant bc echo false 
-    # toc-depth: 3
-    # toc_float: true
-    # toc-location: left
-    # toc-title: Indice
-    # embed-resources: true # external dependencies embedded (Not in ..._files/)
-
 execute:
   eval: true
-  echo: false # x mostrare codice anche in file docx
+  echo: false
   warning: false
   error: false
   output: false
-#   
-# bibliography: bib/CRP_analisi_contesto.bib
-# suppress-bibliography: false
 ---
 
-<!-- ::: {.callout-important  collapse="true"} -->
-<!-- ## Nota -->
+Questo sito, curato dall'Osservatorio dei Dati Sociali di Fondazione Cariparma, offre una raccolta ragionata di dati pubblici sulla provincia di Parma, confrontata con l'Emilia-Romagna e con l'Italia, come strumento per chi opera nel sociale, nella scuola e nelle istituzioni locali. I dati sono prevalentemente tratti da fonti ufficiali, sempre citate (ISTAT, Ministero dell'Istruzione, Regione Emilia Romagna, ecc.).
 
-<!-- ::: -->
+Ad ogni pagina corrisponde un modulo tematico presentato in forma di grafici, tabelle e mappe che descrivono bisogni e risorse del territorio:
 
++ **Demografia.** Andamento della popolazione e previsioni al 2050.
 
++ **Educazione.** Popolazione scolastica, alunni con disabilità, giovani a rischio dispersione e NEET.
 
-<!-- Ad ogni **pagina** corrisponde **un modulo tematico** che concorre a offrire una visione completa dei bisogni del territorio. -->
++ **Giovani e lavoro.** Dalla formazione al lavoro: pagina in costruzione, per ora struttura e fonti.
 
+::: {.callout-note appearance="simple"}
+Il sito è in sviluppo: alcune pagine sono complete, altre ancora in costruzione. In preparazione: crescere al tempo dell'intelligenza artificiale, lavoro e redditi, fragilità economiche e territoriali.
+:::
 
-### ⚠️ Pagine attualmente in aggiornamento ⚠️ 
-
-
-Ad ogni pagina corrisponde un _modulo tematico_ presentato in forma di grafici, tabelle e mappe che descrivono bisogni e risorse del territorio.  
-
-Ad oggi `r format(Sys.Date(), "%d/%m/%Y")` il sito è in corso di revisione
-<!-- + Trend demografici e previsioni al 2050 -->
-<!-- + **Scuola e popolazione scolastica** -->
-<!-- + Lavoro e redditi -->
-<!-- + Fragilità e distribuzione dei bisogni sul territorio -->
-<!-- + Tessuto economico e imprenditoriale + innovazione -->
-<!-- + Capitale istituzionale e sociale -->
-
-### 📣 Nuovi approfondimenti nel 2026/2027 📣 
-
-Attualmente in costruzione alcune pagine di approfondimento su:
-
-+ Scuola e popolazione scolastica**
-+ Dispersione scolastica e NEET
-+ Orientamento professinoale dei giovani e transizione scuola-lavoro
-+ ...
-<!-- + Il ruolo della scuola come sussidio al welfare territoriale -->
+<br><br>
+Testi, grafici e tabelle con licenza CC BY 4.0 (i dati di origine restano soggetti alle licenze delle rispettive fonti); codice sorgente e contatti a piè di pagina.

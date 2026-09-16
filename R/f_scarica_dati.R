@@ -10,6 +10,9 @@
 f_scarica_dati <- local({
   pagina_corr <- NULL
   n <- 0L
+  # Licenza delle elaborazioni (grafici, tabelle, dati derivati); i dati di
+  # origine restano soggetti alla licenza della fonte (vedi _metadati.md)
+  licenza_txt <- "Elaborazione Osservatorio dei Dati Sociali, Fondazione Cariparma, CC BY 4.0. I dati di origine restano soggetti alla licenza della fonte citata."
   function(df, titolo = "", fonte = "") {
     pagina <- knitr::current_input()
     pagina <- if (is.null(pagina)) "tabella" else tools::file_path_sans_ext(basename(pagina))
@@ -27,14 +30,15 @@ f_scarica_dati <- local({
     # titolo e fonte come righe di commento "#" in testa (convenzione dei
     # portali dati: in R si rileggono con read_csv(..., comment = "#"));
     # "\ufeff" e' il BOM UTF-8 e deve essere il primo carattere del file
-    intestazione <- paste0("# Titolo: ", titolo, "\n# Fonte: ", fonte_txt, "\n#\n")
+    intestazione <- paste0("# Titolo: ", titolo, "\n# Fonte: ", fonte_txt,
+                           "\n# Licenza: ", licenza_txt, "\n#\n")
     readr::write_file(paste0("\ufeff", intestazione, readr::format_csv(df)), csv_tmp)
 
     # Excel a 2 fogli (Dati + Metadati) scritto direttamente con writexl
     # (equivalente a download_this() con lista, ma esplicito e verificabile)
     metadati <- data.frame(
-      campo  = c("Titolo", "Fonte"),
-      valore = c(titolo, fonte_txt)
+      campo  = c("Titolo", "Fonte", "Licenza"),
+      valore = c(titolo, fonte_txt, licenza_txt)
     )
     xlsx_tmp <- file.path(tempdir(), paste0(nome, ".xlsx"))
     writexl::write_xlsx(list(Dati = df, Metadati = metadati), xlsx_tmp)

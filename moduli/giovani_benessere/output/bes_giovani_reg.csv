@@ -1,0 +1,550 @@
+cod_indicatore,indicatore_breve,indicatore,territorio,livello,sesso,anno,valore,poco_signif,unita_misura,fonte
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Femmine,2005,26.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Femmine,2006,27.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Femmine,2007,30.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Femmine,2008,30.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Femmine,2009,26.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Femmine,2010,29.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Femmine,2011,30.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Femmine,2012,29.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Femmine,2013,24.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Femmine,2014,28.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Femmine,2015,26.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Femmine,2016,26,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Femmine,2017,27.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Femmine,2018,26.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Femmine,2019,24.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Femmine,2020,26.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Femmine,2021,22.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Femmine,2022,25,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Femmine,2023,24.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Femmine,2024,23.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Femmine,2025,25.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Maschi,2005,29.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Maschi,2006,31.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Maschi,2007,33,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Maschi,2008,32.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Maschi,2009,31.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Maschi,2010,29.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Maschi,2011,27.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Maschi,2012,28.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Maschi,2013,27.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Maschi,2014,28,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Maschi,2015,30.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Maschi,2016,28.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Maschi,2017,29.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Maschi,2018,26.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Maschi,2019,26.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Maschi,2020,26.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Maschi,2021,21.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Maschi,2022,25.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Maschi,2023,27,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Maschi,2024,25.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Maschi,2025,25.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Totale,2005,28.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Totale,2006,29.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Totale,2007,31.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Totale,2008,31.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Totale,2009,29.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Totale,2010,29.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Totale,2011,28.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Totale,2012,28.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Totale,2013,25.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Totale,2014,28.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Totale,2015,28.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Totale,2016,27.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Totale,2017,28.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Totale,2018,26.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Totale,2019,25.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Totale,2020,26.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Totale,2021,22.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Totale,2022,25,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Totale,2023,25.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Totale,2024,24.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Emilia-Romagna,regione,Totale,2025,25.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Femmine,2005,23.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Femmine,2006,22.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Femmine,2007,23,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Femmine,2008,24.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Femmine,2009,24.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Femmine,2010,24.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Femmine,2011,23.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Femmine,2012,25.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Femmine,2013,23.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Femmine,2014,23.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Femmine,2015,24.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Femmine,2016,23,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Femmine,2017,22.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Femmine,2018,22.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Femmine,2019,22,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Femmine,2020,21.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Femmine,2021,18,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Femmine,2022,20.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Femmine,2023,21.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Femmine,2024,21.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Femmine,2025,22.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Maschi,2005,25.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Maschi,2006,24.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Maschi,2007,24.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Maschi,2008,26.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Maschi,2009,26.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Maschi,2010,26.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Maschi,2011,25.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Maschi,2012,27.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Maschi,2013,24.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Maschi,2014,24.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Maschi,2015,25.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Maschi,2016,24.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Maschi,2017,23.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Maschi,2018,23.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Maschi,2019,24.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Maschi,2020,23,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Maschi,2021,19.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Maschi,2022,22.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Maschi,2023,23.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Maschi,2024,23.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Maschi,2025,23.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Totale,2005,24.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Totale,2006,23.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Totale,2007,23.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Totale,2008,25.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Totale,2009,25.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Totale,2010,25.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Totale,2011,24.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Totale,2012,26.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Totale,2013,23.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Totale,2014,23.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Totale,2015,24.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Totale,2016,23.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Totale,2017,23.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Totale,2018,23.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Totale,2019,23,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Totale,2020,22.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Totale,2021,18.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Totale,2022,21.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Totale,2023,22.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Totale,2024,22.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Italia,italia,Totale,2025,23.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Femmine,2005,27.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Femmine,2006,27.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Femmine,2007,28.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Femmine,2008,29.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Femmine,2009,27.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Femmine,2010,28.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Femmine,2011,29.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Femmine,2012,31.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Femmine,2013,28.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Femmine,2014,27.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Femmine,2015,28.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Femmine,2016,28,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Femmine,2017,26.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Femmine,2018,26.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Femmine,2019,23.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Femmine,2020,26.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Femmine,2021,21.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Femmine,2022,24.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Femmine,2023,25,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Femmine,2024,24.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Femmine,2025,27,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Maschi,2005,28.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Maschi,2006,28.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Maschi,2007,29.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Maschi,2008,29.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Maschi,2009,30.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Maschi,2010,29.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Maschi,2011,28.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Maschi,2012,31.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Maschi,2013,27.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Maschi,2014,28.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Maschi,2015,29.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Maschi,2016,28,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Maschi,2017,28.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Maschi,2018,26.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Maschi,2019,25.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Maschi,2020,27.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Maschi,2021,21.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Maschi,2022,27,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Maschi,2023,25.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Maschi,2024,25.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Maschi,2025,27.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Totale,2005,28.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Totale,2006,28.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Totale,2007,29,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Totale,2008,29.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Totale,2009,29,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Totale,2010,28.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Totale,2011,29.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Totale,2012,31.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Totale,2013,27.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Totale,2014,28.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Totale,2015,29,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Totale,2016,28,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Totale,2017,27.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Totale,2018,26.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Totale,2019,24.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Totale,2020,26.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Totale,2021,21.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Totale,2022,25.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Totale,2023,25.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Totale,2024,24.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+05REL002,amici,Soddisfazione per le relazioni amicali,Nord-est,ripartizione,Totale,2025,27.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Femmine,2012,23.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Femmine,2013,24.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Femmine,2014,27,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Femmine,2015,28.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Femmine,2016,24.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Femmine,2017,28.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Femmine,2018,29.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Femmine,2019,25.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Femmine,2020,26.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Femmine,2021,31.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Femmine,2022,26.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Femmine,2023,28.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Femmine,2024,28.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Femmine,2025,29.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Maschi,2012,24.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Maschi,2013,29,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Maschi,2014,31.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Maschi,2015,32.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Maschi,2016,28.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Maschi,2017,30.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Maschi,2018,34.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Maschi,2019,31,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Maschi,2020,31.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Maschi,2021,34.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Maschi,2022,29.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Maschi,2023,34.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Maschi,2024,32,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Maschi,2025,34,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Totale,2012,24,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Totale,2013,26.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Totale,2014,29.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Totale,2015,30.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Totale,2016,26.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Totale,2017,29.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Totale,2018,32.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Totale,2019,28.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Totale,2020,28.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Totale,2021,33,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Totale,2022,27.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Totale,2023,31.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Totale,2024,30.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Emilia-Romagna,regione,Totale,2025,31.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Femmine,2012,23.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Femmine,2013,22.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Femmine,2014,25.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Femmine,2015,26.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Femmine,2016,25.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Femmine,2017,25.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Femmine,2018,27.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Femmine,2019,28.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Femmine,2020,26.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Femmine,2021,30,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Femmine,2022,27.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Femmine,2023,28.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Femmine,2024,29.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Femmine,2025,29.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Maschi,2012,25.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Maschi,2013,25.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Maschi,2014,28.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Maschi,2015,29.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Maschi,2016,27.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Maschi,2017,29.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Maschi,2018,31,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Maschi,2019,32,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Maschi,2020,30.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Maschi,2021,34,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Maschi,2022,31.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Maschi,2023,32.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Maschi,2024,32.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Maschi,2025,32.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Totale,2012,24.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Totale,2013,24,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Totale,2014,27.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Totale,2015,28.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Totale,2016,26.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Totale,2017,27.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Totale,2018,29,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Totale,2019,30.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Totale,2020,28.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Totale,2021,31.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Totale,2022,29.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Totale,2023,30.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Totale,2024,30.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Italia,italia,Totale,2025,30.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Femmine,2012,26,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Femmine,2013,25.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Femmine,2014,27.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Femmine,2015,29.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Femmine,2016,26.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Femmine,2017,27,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Femmine,2018,29.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Femmine,2019,26.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Femmine,2020,27.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Femmine,2021,30.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Femmine,2022,26.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Femmine,2023,29.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Femmine,2024,29.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Femmine,2025,29.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Maschi,2012,26.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Maschi,2013,28.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Maschi,2014,31,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Maschi,2015,32.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Maschi,2016,29.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Maschi,2017,30.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Maschi,2018,34.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Maschi,2019,31.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Maschi,2020,31,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Maschi,2021,34.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Maschi,2022,30.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Maschi,2023,33.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Maschi,2024,33,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Maschi,2025,34.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Totale,2012,26.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Totale,2013,26.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Totale,2014,29.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Totale,2015,31,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Totale,2016,28,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Totale,2017,28.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Totale,2018,31.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Totale,2019,28.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Totale,2020,29,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Totale,2021,32.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Totale,2022,28.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Totale,2023,31.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Totale,2024,31.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO003,prospettive,Giudizio positivo sulle prospettive future,Nord-est,ripartizione,Totale,2025,31.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Femmine,2016,68.9,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Femmine,2017,67.9,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Femmine,2018,65.6,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Femmine,2019,66,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Femmine,2020,67.8,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Femmine,2021,66.3,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Femmine,2022,67.6,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Femmine,2023,67.3,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Femmine,2024,66.3,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Femmine,2025,66.4,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Maschi,2016,72.2,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Maschi,2017,71.1,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Maschi,2018,70.1,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Maschi,2019,70.4,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Maschi,2020,72.2,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Maschi,2021,71.5,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Maschi,2022,71.8,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Maschi,2023,72.4,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Maschi,2024,70.1,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Maschi,2025,70.7,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Totale,2016,70.5,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Totale,2017,69.4,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Totale,2018,67.8,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Totale,2019,68.2,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Totale,2020,69.9,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Totale,2021,68.8,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Totale,2022,69.6,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Totale,2023,69.8,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Totale,2024,68.2,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Emilia-Romagna,regione,Totale,2025,68.5,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Femmine,2016,66.3,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Femmine,2017,65.9,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Femmine,2018,66.2,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Femmine,2019,66.6,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Femmine,2020,66.5,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Femmine,2021,66,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Femmine,2022,67,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Femmine,2023,66.6,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Femmine,2024,66.5,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Femmine,2025,66.7,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Maschi,2016,69.9,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Maschi,2017,69.2,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Maschi,2018,69.6,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Maschi,2019,70.3,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Maschi,2020,71.2,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Maschi,2021,70.9,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Maschi,2022,71,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Maschi,2023,70.9,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Maschi,2024,70.9,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Maschi,2025,70.8,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Totale,2016,68.1,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Totale,2017,67.5,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Totale,2018,67.8,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Totale,2019,68.4,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Totale,2020,68.8,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Totale,2021,68.4,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Totale,2022,69,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Totale,2023,68.7,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Totale,2024,68.7,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Italia,italia,Totale,2025,68.7,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Femmine,2016,68.3,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Femmine,2017,66.8,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Femmine,2018,66.4,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Femmine,2019,66.5,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Femmine,2020,67.7,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Femmine,2021,66.6,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Femmine,2022,67.1,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Femmine,2023,67.9,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Femmine,2024,67,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Femmine,2025,67.2,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Maschi,2016,71.7,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Maschi,2017,71,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Maschi,2018,70.6,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Maschi,2019,70.9,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Maschi,2020,72.4,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Maschi,2021,72,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Maschi,2022,71.5,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Maschi,2023,72,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Maschi,2024,71.2,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Maschi,2025,71.6,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Totale,2016,70,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Totale,2017,68.8,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Totale,2018,68.4,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Totale,2019,68.6,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Totale,2020,70,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Totale,2021,69.3,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Totale,2022,69.3,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Totale,2023,69.9,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Totale,2024,69,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+01SAL003,salute_mentale,Indice di salute mentale (MH),Nord-est,ripartizione,Totale,2025,69.3,FALSE,Punteggi medi standardizzati,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Femmine,2010,46.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Femmine,2011,47.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Femmine,2012,39.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Femmine,2013,36.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Femmine,2014,39.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Femmine,2015,37.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Femmine,2016,43.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Femmine,2017,43.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Femmine,2018,44.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Femmine,2019,42.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Femmine,2020,47.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Femmine,2021,46.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Femmine,2022,48.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Femmine,2023,46.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Femmine,2024,45.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Femmine,2025,45.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Maschi,2010,47.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Maschi,2011,50.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Maschi,2012,38.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Maschi,2013,34.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Maschi,2014,41.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Maschi,2015,40.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Maschi,2016,46.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Maschi,2017,44.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Maschi,2018,47.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Maschi,2019,45.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Maschi,2020,48.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Maschi,2021,49,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Maschi,2022,49.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Maschi,2023,46.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Maschi,2024,48.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Maschi,2025,46.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Totale,2010,47,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Totale,2011,48.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Totale,2012,39,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Totale,2013,35.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Totale,2014,40.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Totale,2015,38.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Totale,2016,44.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Totale,2017,44,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Totale,2018,46,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Totale,2019,44.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Totale,2020,48.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Totale,2021,47.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Totale,2022,48.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Totale,2023,46.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Totale,2024,47,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Emilia-Romagna,regione,Totale,2025,45.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Femmine,2010,42.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Femmine,2011,44.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Femmine,2012,34.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Femmine,2013,34.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Femmine,2014,34.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Femmine,2015,34.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Femmine,2016,40,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Femmine,2017,38.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Femmine,2018,40.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Femmine,2019,42,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Femmine,2020,43.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Femmine,2021,44.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Femmine,2022,44.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Femmine,2023,44.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Femmine,2024,45,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Femmine,2025,46.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Maschi,2010,44.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Maschi,2011,46.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Maschi,2012,36,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Maschi,2013,35.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Maschi,2014,36,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Maschi,2015,35.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Maschi,2016,42.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Maschi,2017,40.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Maschi,2018,42.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Maschi,2019,44.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Maschi,2020,45.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Maschi,2021,47.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Maschi,2022,47.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Maschi,2023,48.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Maschi,2024,47.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Maschi,2025,48.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Totale,2010,43.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Totale,2011,45.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Totale,2012,35.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Totale,2013,35,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Totale,2014,35.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Totale,2015,35.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Totale,2016,41,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Totale,2017,39.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Totale,2018,41.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Totale,2019,43.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Totale,2020,44.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Totale,2021,46,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Totale,2022,46.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Totale,2023,46.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Totale,2024,46.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Italia,italia,Totale,2025,47.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Femmine,2010,48.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Femmine,2011,48.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Femmine,2012,41.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Femmine,2013,39.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Femmine,2014,41.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Femmine,2015,41.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Femmine,2016,45.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Femmine,2017,44.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Femmine,2018,46.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Femmine,2019,43.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Femmine,2020,48.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Femmine,2021,48.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Femmine,2022,47.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Femmine,2023,47.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Femmine,2024,47.2,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Femmine,2025,48.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Maschi,2010,48.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Maschi,2011,49.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Maschi,2012,40.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Maschi,2013,40.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Maschi,2014,42.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Maschi,2015,42.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Maschi,2016,47,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Maschi,2017,46.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Maschi,2018,49.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Maschi,2019,48.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Maschi,2020,50.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Maschi,2021,50.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Maschi,2022,50.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Maschi,2023,50,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Maschi,2024,50.5,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Maschi,2025,50.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Totale,2010,48.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Totale,2011,48.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Totale,2012,41,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Totale,2013,40.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Totale,2014,41.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Totale,2015,42,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Totale,2016,46,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Totale,2017,45.3,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Totale,2018,47.9,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Totale,2019,45.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Totale,2020,49.6,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Totale,2021,49.4,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Totale,2022,49.1,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Totale,2023,48.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Totale,2024,48.8,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana
+08BSO001,vita,Soddisfazione per la propria vita,Nord-est,ripartizione,Totale,2025,49.7,FALSE,Valori percentuali,Istat - Indagine multiscopo sugli aspetti della vita quotidiana

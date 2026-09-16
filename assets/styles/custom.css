@@ -122,8 +122,8 @@ div.sidebar-item-container nav[role=doc-toc] ul li a.active {
       - voce con tendina  -> #nav-menu-<testo-in-minuscolo-con-trattini> { color: ...; }
         es. "Giovani e lavoro" -> #nav-menu-giovani-e-lavoro
       - voce singola      -> .navbar a[href$="<nome_file>.html"] { color: ...; }
-   4. piu' voci dello stesso tema = stesso colore (come Scuola + Giovani qui sotto);
+   4. piu' voci dello stesso tema = stesso colore (come Educazione + Giovani qui sotto);
    5. se non sei sicura dell'id, aprilo da docs/index.html cercando "nav-menu-". */
-#nav-menu-demografia { color: #f7da7b; }                   /* demografia: ylw_lg */
-#nav-menu-scuola,
-.navbar a[href$="giovani_lavoro.html"] { color: #b7e4d0; } /* scuola + giovani: verde menta (grn_lg schiarito, contrasto ~3.4) */
+#nav-menu-demografia                   { color: #f7da7b; } /* demografia: ylw_lg */
+#nav-menu-educazione                   { color: #b7e4d0; } /* educazione: verde menta (grn_lg schiarito, contrasto ~3.4) */
+.navbar a[href$="giovani_lavoro.html"] { color: #b7e4d0; } /* giovani e lavoro: stesso verde (stesso gruppo tematico) */

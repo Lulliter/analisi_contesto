@@ -1,8 +1,7 @@
 ---
 title: "La realtà della scuola nella provincia di Parma"
-subtitle: "Iscritti, geografia scolastica, alunni con potenziale fragilità..."
-date: last-modified
-date-format: "DD-MMMM-YYYY"
+# subtitle: "Iscritti, geografia scolastica, alunni con potenziale fragilità..."
+description: "Dati MIM (iscritti a.s. 2015/16-2024/25) e USR Emilia-Romagna (alunni con disabilità fino al 2024/25), estratti a luglio e settembre 2026"
 lang: it
 
 format:
