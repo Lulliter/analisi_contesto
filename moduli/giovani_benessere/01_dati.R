@@ -1,4 +1,4 @@
-# ------------------------------------------------------------------------
+# ________________________________________________________________________
 # Modulo: giovani_benessere
 # Fonte:  ISTAT Bes nazionale, aggiornamento 2026 (via ingestione/05 →
 #         dati/puliti/istat_bes/): indicatori per età e sesso dall'indagine
@@ -14,7 +14,7 @@
 #     campione: commentare ordini di grandezza e trend, non i decimali.
 #     Il salto della soddisfazione per la vita tra 2011 e 2012 (57 → 47 nei 14-19)
 #     va verificato: possibile cambio di metodo dell'indagine.
-# ------------------------------------------------------------------------
+# ________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(here)

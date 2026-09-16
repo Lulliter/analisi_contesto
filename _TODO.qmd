@@ -44,7 +44,7 @@ browseURL(here::here("_TODO.html"))
 ::: {.callout-note collapse="true"}
 #### Come si usa questo file
 
-Creato: 2026-07-17 — Questo file è l'indice della migrazione: spuntare le caselle man mano.
+Creato: 2026-07-17 — Questo file è l'indice della migrazione: spuntare le caselle man mano. Le voci chiuse (con tutte le sottovoci spuntate) si spostano in `_toDONE.qmd`.
 NB 2026-07-17: pulizia già fatta — rimossi `_targets/`, `presentazione/`, `ZZZ_old/`,
 `source/`, `analysis/`, `data/`, `_data_GDrive/` (tutto nel backup e/o in git history).
 Della vecchia struttura resta solo `dashboard/` (5 temi) come materiale da migrare.
@@ -124,7 +124,6 @@ analisi_contesto/
 ### a) Automatizzazione flusso
 
 - [ ] Esisteva una parziale `_targets.R` (nel repo vecchio) ma sarà da ripensare — targets o semplici script di ingestione — almeno per scarico di dati da aggiornare periodicamente (IStat, SITUAS, ecc.)
-+ [x] Per la creazione di un modulo, seguo un template: `_template_modulo/` (copiato in `moduli/<nome_modulo>/` e rinominato). Contiene 01_dati.R, 02_output.R, blurb.md, output/ (vuoto).
 + [ ] Una volta fatto ol modulo, da lì posso prendere spunto per inserire nel relativo file `sito/temi/....qmd` del sito. Il tema è un file qmd che legge i moduli e li combina in una pagina.
 
 
@@ -165,14 +164,6 @@ I macro temi corrispondono + o - alle pagine del `sito/`. GLi item elencati corr
 
 **Ripensamento MODULI (connessi a fonti)**:
 
-- [x] `ingestione/00_*.R` usate per preparare confini, shp per mappe ecc
-- [x] `ingestione/01a_*.R` - `ingestione/01d_*.R` usate per preparare i dati censimento (decennali e singole età)  
-- [x] `ingestione/02*.R` usate per preparare i dati del ministero istruzione 
-- [x] `ingestione/00b_prep_pr_dettaglio.R` per Confini dettagliati per gli zoom PR: Com01012026 non generalizzato in
-      grezzi ✓; 
-- [x] Modulo `moduli/pop_mappe_tematiche`: % stranieri, densità (superficie SITUAS), % 65+, % 0-14 per comune
-- [x] Modulo `moduli/pop_piramide_eta`: COLLAUDATO 2026-07-19 (PR vs ER/IT, ER vs IT con profilo in overlay + pannelli per cittadinanza; colori M/F originali)
-- [x] Modulo `moduli/demo_trend_indicatori` (serie storiche): ricostruiti grafici con trend popolazione e indicatori totale, stranieri, 65+, 0-14, densità (superficie SITUAS) per PR vs ER/IT; blurb scritto coi findings
 - [x] Creare modulo con Dati IStat su popolazione forecast (ci sono gia in `dati/grezzi/istat_trend_demog/PREVISIONI_*` — ATTENZIONE: solo scenario MEDIANO, niente scenari alternativi; comuni solo >= 5.000 ab.)  
   - [x] prima ingestione: `ingestione/03_prep_istat_previsioni.R` → `dati/puliti/istat_previsioni/` (5 rds)
   - [x] poi modulo: `moduli/demo_trend_previs/` (p01 indice 2024=100, p02 assoluti province ER, p03 piramide PR 2050 vs 2024, p04 quota 65+/80+) + blurb
@@ -184,8 +175,8 @@ I macro temi corrispondono + o - alle pagine del `sito/`. GLi item elencati corr
   - [ ] SPERANZA DI VITA PREVISTA al 2050: non è nei file scaricati; esiste tra le ipotesi delle previsioni ISTAT ma a livello REGIONALE → nuovo download da demo.istat.it (la storica è già nei trend, p15/p16)
 
 #### sito  
-- [x] `sito/temi/trend_demogr.qmd`
-- [x] `sito/temi/trend_demogr_previs.qmd`
+
+_(voci chiuse in `_toDONE.qmd`)_
  
  
 ___
@@ -203,9 +194,6 @@ abbandoni, NEET, formazione continua, % stranieri per comune, studenti disabili;
 
 **Ricognizione/Aggiornamento FONTI**: 
 
-- [x] Open data MIM (dati.istruzione.it, IODL, CSV per SINGOLA SCUOLA): SCARICATO in `dati/grezzi/mim_open_data/` (64 csv: iscritti + cittadinanza 2015/16→2024/25, anagrafi 2015/16→2026/27) e ingerito; URL e percorso leggibile in `_metadati.md`
-- [x] `ingestione/02_prep_mim_studenti.R` ESEGUITO e collaudato (2026-07-19): produce `dati/puliti/mim_iscritti/` (scuole_anagrafe_er, scuole_anagrafe_storico_er, scuole_iscritti_er, scuole_iscritti_cittadinanza_er); transcodifica comuni sul codice catastale (327/327), nome comune ufficiale ISTAT
-- [x] Studenti disabili (dettaglio provinciale, USR-ER): FATTO nel modulo `scuola_disabilita` (2026-09-10)
 - [ ] I totali iscritti includono i corsi serali ("PERCORSO II LIVELLO"), CPIA, sedi carcerarie e ospedaliere (a Parma ~530 alunni nei serali, 2024/25): decidere se escluderli come fa `scuola_abband_neet` (colonna `caratteristica` in `scuole_anagrafe_er`, dal 2026-09-10)
 - [ ] _Fonte da acquisire_: iscritti scuola dell'INFANZIA (il MIM non li rileva; l'anagrafe studenti Regione ER sì) — servono per completare trend e quote paritarie, che nell'infanzia sono il segmento capillare
 - [ ] _Fonte da acquisire_:  Risultati test invalsi e grado di scolarizzazione   
@@ -215,8 +203,6 @@ abbandoni, NEET, formazione continua, % stranieri per comune, studenti disabili;
 (regionale, dati in casa + USR-ER prov.)
 **Ricognizione/Aggiornamento FONTI**: 
 
-- [x] Fonti in casa: `dati/grezzi/istat_alunni_disab` (a.s. 2024-25, dettaglio max REGIONE) ✓. Usata la Tavola 1 (serie nazionale) e i numeri regionali sul sostegno nel testo
-- [x] USR-ER: fact sheet annuali alunni con disabilità con dettaglio provinciale (2017/18 → 2024/25) SCARICATI e trascritti in `usr_er_alunni_disab.csv` (2026-09-10); modulo `scuola_disabilita` collaudato: 3 grafici + blurb, sezione in `sito/temi/_scuola.qmd`. (Nel catalogo MIM un dataset disabilità per scuola NON è stato trovato con certezza — verificare col motore interno)
 - [ ] Al prossimo fact sheet USR-ER (uscita ~settembre): aggiungere le righe al csv (nuovo a.s. = provvisorio, precedente = definitivo), aggiornare `ANNO_ULTIMO` in `02_output.R` e il blurb
 - [ ] Approfondimenti sulle ipotesi del blurb: disabilità × cittadinanza (fonte da trovare: MIM/ISTAT non incrociano a livello provinciale) ed effetto post-pandemia (confrontare con la serie ISTAT nazionale per ordine)
 - [ ] Regione ER anagrafe studenti: successo/regolarità per provincia + iscritti INFANZIA (validazione e completamento) → DA ACQUISIRE: https://scuola.regione.emilia-romagna.it/anagrafi-regionali
@@ -230,13 +216,11 @@ abbandoni, NEET, formazione continua, % stranieri per comune, studenti disabili;
 
 **Ricognizione/Aggiornamento FONTI**: 
 
-- [x] ISTAT BES dei territori (ed. 2025): SCARICATO in `dati/grezzi/istat_bes_territori/` (2026-09-10, tavola unica tutti i domini, province per sesso, 2004→2024; l'uscita precoce NON è provinciale) → ingerito con `ingestione/04_prep_istat_bes.R`; fonte MULTI-modulo: https://www.istat.it/statistiche-per-temi/focus/benessere-e-sostenibilita/bes-dei-territori/
 + [ ] Abbandono scolastico [Eurostat? / Openpolis](https://www.openpolis.it/labbandono-scolastico-un-problema-in-crescita-per-alcuni-paesi-ue/)
 + [ ] Dispersione scolastica e NEET [Studio IPRASE Trentino ma bello](https://www.iprase.tn.it/news/comunicati/dispersione-scolastica-e-giovani-neet-presentati-i-risultati-della-ricerca-sullalto)
 
 + [ ] Il ruolo della scuola come sussidio al welfare territoriale
 
-- [x] 2026-09-10 modulo collaudato: ritardo scolastico (MIM per età, serali/CPIA esclusi) + NEET e competenze non adeguate (BES dei territori, via `ingestione/04_prep_istat_bes.R` → `dati/puliti/istat_bes/`); 4 grafici + mappa; pagina `sito/temi/_scuola_dispersione.qmd`
 - [ ] Approfondimenti (le domande sono in pagina; qui le fonti): ELET/abbandono provinciale → anagrafe studenti RER (regolarità, successo) o esiti scrutini per scuola nel catalogo MIM (da verificare); dispersione implicita → INVALSI grado 13: il file in casa (`Traguardi_MS2026.xlsx`, solo regionale) ha SOLO i gradi 2, 5 e 10; i pacchetti completi 2-5-10 e 8-13 sono in casa dall'11/9 (csv), ma per i gradi 8 e 13 il trend è solo per macroarea e i livelli regionali solo 2025/26 (vedi `dati/grezzi/invalsi/_metadati.md`); la dispersione implicita vera e propria è solo nel Rapporto 2026 come grafico regionale; nella presentazione 2026 c'è anche una mappa "Tasso di ELET per provincia, biennio 2024-25" (elaborazioni INVALSI su microdati ISTAT): unico dato provinciale sull'uscita precoce, da recuperare (chiedere i dati al Servizio statistico?); ritardo × cittadinanza e dopo-Covid alle medie → incrocio per plesso di `scuole_iscritti_er` (età) con `scuole_iscritti_cittadinanza_er`; coorti → anagrafe RER + iscritti IeFP (`rer_formaz_lavoro`); seconda chance → modulo `formaz_rientri`
  
 ### ⬜ modulo `educ_ia` (idea 2026-09-14)
@@ -255,7 +239,6 @@ _1. Uso dell'IA per fascia d'età e per SCOPO (compiti, informazione, compagnia/
 - [ ] ITT Rondani (Parma), indagine interna giovani e IA (mag 2025): una sola scuola, non rappresentativa; unico dato parmense trovato, spunto per una rilevazione propria. [Casco Learning](https://cascolearning.it/magazine/2025/05/12/giovani-e-intelligenza-artificiale-una-indagine-allitt-rondani-di-parma/)
 
 _2. Ore di schermo e uso problematico dei social (proxy della dipendenza)_:
-
 - [ ] ISS, HBSC Emilia-Romagna 2022 (11-17 anni, ~1.200 per età, quadriennale, regionale, no province): 60,8% >3h di schermo al giorno; uso problematico dei videogiochi (M 27% a 11 anni); indicatore "uso problematico dei social" (~11% in Europa). Niente IA nel 2022; controllare se l'onda 2026 la include. [Epicentro ER](https://www.epicentro.iss.it/hbsc/indagine-2022-emilia-romagna)
 - [ ] OCSE, "How's Life for Children in the Digital Age?" (2025): rapporto di riferimento per la SELEZIONE degli indicatori di benessere digitale dei minori (cross-nazionale). [OECD](https://www.oecd.org/en/publications/how-s-life-for-children-in-the-digital-age_0854b900-en.html)
 
@@ -264,6 +247,7 @@ _3. Rendimento scolastico in relazione ai device (non il QI, non l'"attention sp
 - [ ] OCSE PISA 2022, "Students, digital devices and success" (15enni, triennale; l'Italia ha sovracampionamento regionale → ER c'è): fino a 1h/giorno di svago sui device nessun effetto, oltre il punteggio in matematica cala in modo monotono (5-7h vs <1h: −49 punti, più di un anno di scuola); 65% distratto dai device in classe; ~45% nervoso senza telefono (e questi hanno meno soddisfazione di vita e controllo emotivo). Correlazione robusta, non causa. [OECD pdf](https://eeb2.be/swfiles/files/OECD-Report-2024.pdf)
 - [ ] INVALSI: perdita di apprendimento 2021 (lockdown) — recuperare il dato nel Rapporto (regionale)
 - [ ] NON usare: inversione dell'effetto Flynn (Bratsberg & Rogeberg 2018, Norvegia: il calo del QI inizia con i nati dopo il 1975, prima degli smartphone) e "attention span da 2,5 min a 47 sec" (lab. Gloria Mark: adulti in ufficio, non ragazzi). Al loro posto: rendimento + distrazione in classe
+- [ ] [Futuri probabili](https://www.futuriprobabili.it/manifesto-allenarsi-al-futuro)
 
 _4. Benessere mentale 14-19 e il lockdown come punto di svolta (accelerazione di un processo iniziato ~2012 altrove)_:
 
@@ -301,8 +285,6 @@ _6. Governare il processo: le risposte dei paesi arrivati prima + la mappa local
 <!-- Prossimo passo tuo, quando riprendi: lanciare moduli/giovani_benessere/02_output.R e l'anteprima di _educ_ia.qmd, poi 06a per lo scarico ISTAT. Da committare: _quarto.yml, custom.css, index.qmd, README.md, LICENSE, CNAME, R/f_scarica_dati.R, le pagine di sito/temi/, moduli/giovani_benessere/, ingestione/06a_*, dati/grezzi/istat_cittadini_ict/_metadati.md, _TODO.qmd. -->
 
 
-- [x] Modulo `giovani_benessere` (come stanno: Bes salute mentale + amici + vita + prospettive, 14-19/20-24 per sesso, Italia): `01_dati.R` collaudato, `02_output.R` scritto (2 grafici: `plot_salute_mentale_14_19`, `plot_amici_14_19`, caption in textbox ggtext, fascia "pandemia"), blurb con messaggio; sezione in `_educ_ia.qmd` ("Come stanno i ragazzi: il punto di partenza", dentro Rischi) con bottoni e Osservazioni
-- [ ] RENDER DI PROVA: lanciare `02_output.R` e l'anteprima di `_educ_ia.qmd`; controllare caption textbox, etichetta "pandemia", asse x (21 anni), bottoni; rileggere le Osservazioni
 - [ ] Modulo `giovani_digitale` (quanto e come: internet/pc per età + IA + HBSC) — 3 passi:
   - [ ] 1/3 ISTAT: lanciare `ingestione/06a_get_istat_avq_ict.R` (scritto, NON lanciato; verificare chiave e codici ITD5/ITD) → poi scrivere `06b_prep_istat_avq_ict.R` → `dati/puliti/istat_ict/` (formato lungo). Trascrivere a mano da pdf `ict_ia_2025_eta_sesso.csv`. Social per età: recuperare id API del dataflow `DCCV_ICT` dal browser (tipo di dato `PARTSOCIA`)
   - [ ] 2/3 HBSC ER 2022: scaricare pdf in `dati/grezzi/iss_hbsc/` + `_metadati.md`, trascrivere csv (ore schermo, uso problematico social/videogiochi, 11-17 per età e sesso, ER vs Italia)
@@ -316,7 +298,6 @@ _6. Governare il processo: le risposte dei paesi arrivati prima + la mappa local
 
 - [x] (Fatto) `sito/temi/scuola.qmd` (incluso outputs da 1) `moduli/scuola_iscritti` + 2) `moduli/scuola_disabilita`)
   - [ ] (Da completare?) aggiungere risultati (e.g. INVALSI)? 
-- [x] (Fatto) `scuola_dispersione.qmd` (include outputs da `moduli/scuola_abband_neet`)
 - [ ] (Bozza) `sito/temi/_educ_ia.qmd`  
   
 
@@ -349,7 +330,7 @@ _6. Governare il processo: le risposte dei paesi arrivati prima + la mappa local
 
 #### sito  
 
-- [x] 2026-09-10 outline `sito/temi/_giovani_lavoro.qmd` (dopo la scuola → cosa funziona → cosa non funziona → chi resta fuori; grafici previsti nei commenti). Fonti da acquisire per riempirla: Excelsior (difficoltà di reperimento per profilo, PR), AlmaLaurea/AlmaDiploma o Regione ER (esiti occupazionali per percorso), ITS e IeFP iscritti (Regione ER), INPS Osservatori (contratti giovani), ISTAT cancellazioni per l'estero 20-34 per provincia; già in casa dal BES: passaggio all'università, laureati 25-39, formazione continua, NEET per sesso, occupazione giovanile (dominio Lavoro)
+- [ ] Acquisire le fonti per `sito/temi/_giovani_lavoro.qmd`: Excelsior (difficoltà di reperimento per profilo, PR), AlmaLaurea/AlmaDiploma o Regione ER (esiti occupazionali per percorso), ITS e IeFP iscritti (Regione ER), INPS Osservatori (contratti giovani), ISTAT cancellazioni per l'estero 20-34 per provincia; già in casa dal BES: passaggio all'università, laureati 25-39, formazione continua, NEET per sesso, occupazione giovanile (dominio Lavoro)
 ___
 
 

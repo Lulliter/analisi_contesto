@@ -1,0 +1,110 @@
+---
+title: "Voci chiuse del piano di lavoro"
+subtitle: "Archivio delle voci spuntate in _TODO.qmd"
+date: last-modified
+date-format: "DD-MMMM-YYYY"
+lang: it
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    toc-expand: 2
+    embed-resources: true   # niente cartella _TODO_files/
+  docx:
+    toc: true
+    toc-depth: 3
+    toc-title: "Indice"
+    highlight-style: tango
+    page-width: 9
+
+execute:
+  eval: true
+  echo: false
+  warning: false
+  error: false
+  output: false
+---
+
+# Setup 
+
+```{r}
+#| label: anteprima
+#| eval: false
+
+# --- Anteprima: renderizza e apre nel browser (lancio a mano, ignorato nel render)
+quarto::quarto_render(here::here("_toDONE.qmd"), output_format = "html")
+browseURL(here::here("_toDONE.html"))
+```
+
+
+# Intro
+
+
+## Steps del processo
+
+
+### a) Automatizzazione flusso
+
++ [x] Per la creazione di un modulo, seguo un template: `_template_modulo/` (copiato in `moduli/<nome_modulo>/` e rinominato). Contiene 01_dati.R, 02_output.R, blurb.md, output/ (vuoto).
+
+# Temi
+
+
+## 1. Trend demografici (quasi fatto: si aggiorna/salva dal vecchio repo)
+
+- [x] `ingestione/00_*.R` usate per preparare confini, shp per mappe ecc
+- [x] `ingestione/01a_*.R` - `ingestione/01d_*.R` usate per preparare i dati censimento (decennali e singole età)  
+- [x] `ingestione/02*.R` usate per preparare i dati del ministero istruzione 
+- [x] `ingestione/00b_prep_pr_dettaglio.R` per Confini dettagliati per gli zoom PR: Com01012026 non generalizzato in
+      grezzi ✓; 
+- [x] Modulo `moduli/pop_mappe_tematiche`: % stranieri, densità (superficie SITUAS), % 65+, % 0-14 per comune
+- [x] Modulo `moduli/pop_piramide_eta`: COLLAUDATO 2026-07-19 (PR vs ER/IT, ER vs IT con profilo in overlay + pannelli per cittadinanza; colori M/F originali)
+- [x] Modulo `moduli/demo_trend_indicatori` (serie storiche): ricostruiti grafici con trend popolazione e indicatori totale, stranieri, 65+, 0-14, densità (superficie SITUAS) per PR vs ER/IT; blurb scritto coi findings
+
+#### sito
+
+- [x] `sito/temi/trend_demogr.qmd`
+- [x] `sito/temi/trend_demogr_previs.qmd`
+
+## 2.a Educazione (c'è un inizio; arricchire con fonti LOCALI)
+
+
+### modulo `scuola_iscritti`
+
+- [x] Open data MIM (dati.istruzione.it, IODL, CSV per SINGOLA SCUOLA): SCARICATO in `dati/grezzi/mim_open_data/` (64 csv: iscritti + cittadinanza 2015/16→2024/25, anagrafi 2015/16→2026/27) e ingerito; URL e percorso leggibile in `_metadati.md`
+- [x] `ingestione/02_prep_mim_studenti.R` ESEGUITO e collaudato (2026-07-19): produce `dati/puliti/mim_iscritti/` (scuole_anagrafe_er, scuole_anagrafe_storico_er, scuole_iscritti_er, scuole_iscritti_cittadinanza_er); transcodifica comuni sul codice catastale (327/327), nome comune ufficiale ISTAT
+- [x] Studenti disabili (dettaglio provinciale, USR-ER): FATTO nel modulo `scuola_disabilita` (2026-09-10)
+
+### modulo `scuola_disabilita`
+
+- [x] Fonti in casa: `dati/grezzi/istat_alunni_disab` (a.s. 2024-25, dettaglio max REGIONE) ✓. Usata la Tavola 1 (serie nazionale) e i numeri regionali sul sostegno nel testo
+- [x] USR-ER: fact sheet annuali alunni con disabilità con dettaglio provinciale (2017/18 → 2024/25) SCARICATI e trascritti in `usr_er_alunni_disab.csv` (2026-09-10); modulo `scuola_disabilita` collaudato: 3 grafici + blurb, sezione in `sito/temi/_scuola.qmd`. (Nel catalogo MIM un dataset disabilità per scuola NON è stato trovato con certezza — verificare col motore interno)
+
+### modulo `scuola_abband_neet`
+
+- [x] ISTAT BES dei territori (ed. 2025): SCARICATO in `dati/grezzi/istat_bes_territori/` (2026-09-10, tavola unica tutti i domini, province per sesso, 2004→2024; l'uscita precoce NON è provinciale) → ingerito con `ingestione/04_prep_istat_bes.R`; fonte MULTI-modulo: https://www.istat.it/statistiche-per-temi/focus/benessere-e-sostenibilita/bes-dei-territori/
+- [x] 2026-09-10 modulo collaudato: ritardo scolastico (MIM per età, serali/CPIA esclusi) + NEET e competenze non adeguate (BES dei territori, via `ingestione/04_prep_istat_bes.R` → `dati/puliti/istat_bes/`); 4 grafici + mappa; pagina `sito/temi/_scuola_dispersione.qmd`
+
+### ⬜ modulo `educ_ia` (idea 2026-09-14)
+
+
+#### ⬜🟩🟨🟦 _AVANZAMENTO `sito/temi/educ_ia`]
+
+- [x] Modulo `giovani_benessere` (come stanno: Bes salute mentale + amici + vita + prospettive, 14-19/20-24 per sesso, Italia): `01_dati.R` collaudato, `02_output.R` scritto (6 grafici: `plot_salute_mentale_14_19` / `_20_24` / `_totale`, `plot_amici_14_19` / `_20_24` / `_totale`, caption in textbox ggtext, fascia "pandemia"), blurb con messaggio; sezione in `_educ_ia.qmd` ("Come stanno i ragazzi: il punto di partenza", dentro Rischi) con bottoni e Osservazioni
+- [x] RENDER DI PROVA: lanciare `02_output.R` e l'anteprima di `_educ_ia.qmd`; controllare caption textbox, etichetta "pandemia", asse x (21 anni), bottoni; rileggere le Osservazioni
+
+#### sito
+
+- [x] (Fatto) `scuola_dispersione.qmd` (include outputs da `moduli/scuola_abband_neet`)
+
+## 2.b ...formazione GIOVANI (lavoro e innovazione)
+
+
+### modulo `formaz_e_match_lavoro` (idea 2026-09-10)`
+
+
+#### sito
+
+- [x] 2026-09-10 outline `sito/temi/_giovani_lavoro.qmd` (dopo la scuola → cosa funziona → cosa non funziona → chi resta fuori; grafici previsti nei commenti). Fonti da acquisire per riempirla: Excelsior (difficoltà di reperimento per profilo, PR), AlmaLaurea/AlmaDiploma o Regione ER (esiti occupazionali per percorso), ITS e IeFP iscritti (Regione ER), INPS Osservatori (contratti giovani), ISTAT cancellazioni per l'estero 20-34 per provincia; già in casa dal BES: passaggio all'università, laureati 25-39, formazione continua, NEET per sesso, occupazione giovanile (dominio Lavoro)

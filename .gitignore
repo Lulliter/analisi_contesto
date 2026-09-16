@@ -21,7 +21,7 @@
 # ----------------- AI
 CLAUDE.md
 CLAUDE_TODO.md
-Claude outputs/**/*
+claude_outputs/**/*
 .claude/**/*
 .positai
 

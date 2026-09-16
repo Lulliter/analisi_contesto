@@ -56,7 +56,7 @@ Questa pagina raccoglie le domande e la struttura dell'approfondimento su cosa v
 ## In sintesi
 
 <!-- 3-4 messaggi, da scrivere quando ci sono i dati. -->
-L'IA può essere definita come un _"amplificatore"_, sia in senso positivo che negativo. Per chi sta crescendo, può potenziare l'accesso alle informazioni, l'apprendimento e la produttività, ma può anche accrescere l'esposizione a rischi che, in realtà, avevano già iniziato ad emergere con la diffusione degli smart phone e dei social media a partire dagli anni 2000. Gli effetti di tali dinamiche sono già da tempo riconosciuti: isolamento e impoverimento delle relazioni sociali; deficit di sonno; calo delle capacità cognitive e dell'attenzione; dipendenza e peggioramento della salute mentale. 
+L'IA può essere definita come un _"amplificatore"_, sia in senso positivo che negativo. Per chi sta crescendo, può potenziare l'accesso alle informazioni, l'apprendimento e la produttività, ma può anche accrescere l'esposizione a rischi che, in realtà, preoccupano sin dai primi anni 2000, relativi alla diffusione di smart phone e social media. Gli effetti di tali dinamiche sono già da tempo riconosciuti: isolamento e impoverimento delle relazioni sociali; deficit di sonno; calo delle capacità cognitive e dell'attenzione; dipendenza e peggioramento della salute mentale. 
 
 Cosa possono fare i corpi intermedi della società (scuole, famiglie, terzo settore, enti locali e fondazioni) per accompagnare la crescita dei ragazzi immersi in questo contesto?
  
@@ -103,7 +103,11 @@ Cosa l'IA mette a rischio: attenzione e autonomia di giudizio, relazioni, beness
 
 ### Come stanno i ragazzi: il punto di partenza
 
-L'IA arriva su una generazione che non sta bene come quella di dieci anni fa: il benessere psicologico dei 14-19enni è calato con la pandemia e non è tornato ai livelli precedenti, soprattutto tra le ragazze.
+L'IA arriva su una generazione che ha subito uno shock negli ultimi dieci anni: il benessere psicologico dei 14-19enni è calato con la pandemia e non è tornato ai livelli precedenti, soprattutto tra le ragazze.
+
+::: {.panel-tabset}
+
+#### 14-19 anni
 
 ```{r}
 #| label: plot_salute_mentale_14_19
@@ -122,15 +126,60 @@ f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_salute_mentale_14_1
 ```
 :::
 
+#### 20-24 anni
+
+```{r}
+#| label: plot_salute_mentale_20_24
+#| output: true
+#| fig-width: 9
+#| fig-height: 7
+
+f_girafe(readRDS(file.path(dir_ben, "plot_salute_mentale_20_24.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_salute_mentale_20_24
+#| output: true
+f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_salute_mentale_20_24")
+```
+:::
+
+#### Tutta la popolazione
+
+```{r}
+#| label: plot_salute_mentale_totale
+#| output: true
+#| fig-width: 9
+#| fig-height: 7
+
+f_girafe(readRDS(file.path(dir_ben, "plot_salute_mentale_totale.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_salute_mentale_totale
+#| output: true
+f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_salute_mentale_totale")
+```
+:::
+
+:::
+
 ::: {.callout-note collapse="true"}
 ### Osservazioni
 
-Il 2021 è un crollo netto, e nel 2025 il livello del 2019 non è ancora recuperato. Per le ragazze il calo è più profondo e il recupero più lento, con un divario stabile di cinque-sei punti rispetto ai ragazzi. Due cose che il grafico non mostra: la pandemia ha colpito i giovani, non tutti, perché l'indice dell'intera popolazione nel 2021 non si muove; e la coorte del lockdown si porta dietro il segno, perché i 20-24enni di oggi, che allora avevano 15-19 anni, stanno ancora peggio che nel 2019 e non mostrano recupero. Il dato è nazionale: per l'Emilia-Romagna esiste solo il valore sull'intera popolazione, allineato a quello italiano.
+Il 2021 è un crollo netto, soprattutto per le ragazze. <!-- Per loro il calo è più profondo e il primo rimbalzo più rapido, ma poi il recupero si ferma: i ragazzi sono tornati ai livelli di prima, le ragazze non ancora. --> Il divario, di circa quattro punti prima della pandemia, si allarga nel 2021 e resta un po' più ampio di allora.   
+Il confronto con le altre età dice due cose. La pandemia ha colpito i più giovani, non tutti: l'indice dell'intera popolazione nel 2021 non si muove. E i 20-24enni, che all'epoca del lockdown avevano 15-19 anni, non hanno avuto la stessa buca ma da allora scendono lentamente e nel 2025 restano un po' sotto i livelli del 2019. Il dato è nazionale: per l'Emilia-Romagna esiste solo il valore sull'intera popolazione, allineato a quello italiano.
 
 _NB: L'indice di salute mentale è un punteggio 0-100 costruito dall'ISTAT da cinque domande sull'umore delle ultime quattro settimane (nervosismo, tristezza, serenità, scoraggiamento, felicità): misura il benessere psicologico autoriferito, non una diagnosi. Stima campionaria: leggere il trend, non i decimali._
 :::
 
-Le relazioni con gli amici raccontano una storia più lunga: la pandemia è il minimo, ma per le ragazze la soddisfazione scende da oltre dieci anni.
+Le relazioni con gli amici raccontano una storia più lunga: la pandemia è il punto più basso, ma per le ragazze il peggioramento era cominciato prima.
+
+::: {.panel-tabset}
+
+#### 14-19 anni
 
 ```{r}
 #| label: plot_amici_14_19
@@ -149,10 +198,50 @@ f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_amici_14_19")
 ```
 :::
 
+#### 20-24 anni
+
+```{r}
+#| label: plot_amici_20_24
+#| output: true
+#| fig-width: 9
+#| fig-height: 7
+
+f_girafe(readRDS(file.path(dir_ben, "plot_amici_20_24.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_amici_20_24
+#| output: true
+f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_amici_20_24")
+```
+:::
+
+#### Tutta la popolazione
+
+```{r}
+#| label: plot_amici_totale
+#| output: true
+#| fig-width: 9
+#| fig-height: 7
+
+f_girafe(readRDS(file.path(dir_ben, "plot_amici_totale.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_amici_totale
+#| output: true
+f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_amici_totale")
+```
+:::
+
+:::
+
 ::: {.callout-note collapse="true"}
 ### Osservazioni
 
-Il 2021 è il punto più basso della serie per tutti, e il recupero successivo è solo parziale. Ma il dato che colpisce è la traiettoria delle ragazze, che precede la pandemia: la quota cala di dieci punti tra il 2012 e il 2018 e da allora non risale, mentre per i ragazzi la serie resta stabile fino al 2020. È una tendenza compatibile con quanto osservato in altri paesi sul benessere delle adolescenti nell'ultimo decennio, ma con questi dati non si può attribuirla a una causa: negli stessi anni l'Italia attraversava anche la crisi economica.
+Il 2021 è il punto più basso della serie a tutte le età, non solo tra i giovani: il lockdown ha tolto le relazioni a tutti, mentre sulla salute mentale la buca riguarda soprattutto i ragazzi. Nel 2025 tutte le classi di età sono tornate ai livelli del 2019. Il dato che colpisce è che, per le 14-19enni, quel livello era già basso: fino al 2017 la quota oscilla intorno al 42-46%, dal 2018 scende sotto il 39% e non risale; per i ragazzi la serie è altalenante ma senza un calo di fondo. Tra le 20-24enni e nella popolazione adulta lo stesso calo non si vede: sembra riguardare le adolescenti, anche se con serie così variabili va letto con prudenza. È una tendenza compatibile con quanto osservato in altri paesi sul benessere delle adolescenti nell'ultimo decennio, ma con questi dati non si può attribuirla a una causa: negli stessi anni l'Italia attraversava anche la crisi economica.
 <!-- Fonti del parallelo internazionale (da rivedere prima di citarle in pagina):
 - Twenge J.M. (2017), iGen, Atria Books; Twenge et al. (2018), "Increases in depressive symptoms, suicide-related outcomes, and suicide rates among U.S. adolescents after 2010", Clinical Psychological Science 6(1)
 - Haidt J. (2024), The Anxious Generation, Penguin Press (tesi: peggioramento del benessere delle adolescenti dal ~2012, USA/UK/Nord Europa, con smartphone e social)
