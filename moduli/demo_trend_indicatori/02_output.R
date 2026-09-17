@@ -1,4 +1,4 @@
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 # Modulo: demo_trend_indicatori
 # Scopo:  18 grafici di trend (linee interattive ggiraph) che confrontano
 #         Parma vs province ER, Emilia-Romagna e Italia, 2002-2024
@@ -6,7 +6,7 @@
 # Output: output/pNN_<indicatore>.rds (oggetti ggplot; girafe() si applica
 #         nella pagina di sito/ che li usa)
 # Origine codice: dashboard/demographic_trends/visualizations.R (vecchio repo)
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(here)

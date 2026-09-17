@@ -1,4 +1,4 @@
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 # Ingestione: ISTAT, Bes nazionale (Rapporto Bes 2024, aggiornamento intermedio 2026) — tutti i domini
 # Input:  dati/grezzi/istat_bes/Bes_2024_dati_agg2026/
 #           indicatori_regione_sesso.xlsx            (indicatore × sesso × regione/ripartizione/Italia)
@@ -10,7 +10,7 @@
 #         formato lungo come bes_territori: 1 riga = indicatore × dimensioni × anno
 # NB: fonte MULTI-modulo, solo regionale/nazionale: la cornice per i dati provinciali del
 #     Bes dei territori (04_prep_istat_bes.R). I moduli filtrano da qui, non rileggono gli xlsx
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(here)

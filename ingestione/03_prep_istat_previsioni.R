@@ -1,4 +1,4 @@
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 # Ingestione: previsioni demografiche ISTAT 2024-2050 (scenario mediano)
 #             → dati/puliti/istat_previsioni/
 # Fonte:  dati/grezzi/istat_trend_demog/ (demo.istat.it, download 2026-07-18,
@@ -19,7 +19,7 @@
 #       195 comuni ER, 22 su 44 in provincia di Parma
 #     - csv: separatore ";", virgola decimale, 1a riga = titolo (skip = 1);
 #       readr legge i .zip direttamente senza scompattarli
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(here)

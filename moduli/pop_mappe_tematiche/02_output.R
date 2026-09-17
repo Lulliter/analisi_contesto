@@ -1,4 +1,4 @@
-# ==========================================================================
+# ___________________________________________________________________________
 # Modulo: pop_mappe_tematiche — 02_output.R
 # Scopo:  mappe tematiche comunali a quintili, in DUE versioni: ER e solo PR.
 #         Indicatori: % stranieri, densità ab/km2, % 65+, % 0-14, % minorenni
@@ -10,7 +10,7 @@
 # Output: output/mappa_<indicatore>_er.png/.rds
 #         output/mappa_<indicatore>_pr.png/.rds
 # Stile:  come f_make_dummy_map: tema pulito, linee province, Parma in bordeaux
-# ==========================================================================
+# ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(here)

@@ -1,10 +1,10 @@
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 # Modulo: demo_trend_indicatori — funzioni locali di import xlsx ISTAT
 # Origine: ZZZ_old/R/istat_xlsx_import.R (riesumato 2026-07-18);
 #          funzioni rinominate con prefisso f_ (convenzione repo).
 # NB: locali al modulo (unico utilizzatore); si promuovono a R/ alla
 #     seconda chiamata da uno script diverso (regola 6).
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 
 # Packages ----
 library(readxl)

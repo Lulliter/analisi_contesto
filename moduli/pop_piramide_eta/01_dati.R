@@ -1,11 +1,11 @@
-# ==========================================================================
+# ___________________________________________________________________________
 # Modulo: pop_piramide_eta — 01_dati.R
 # Fonte:  ISTAT censimento permanente 2024 (singole età)
 # Input:  dati/puliti/istat_cens/pop_confronti_eta_2024.rds
 #         (territori di confronto: IT, ITD5 = ER, ITD52 = prov. Parma)
 # Output: output/piramidi_df.rds — quote di popolazione per
 #         territorio × sesso (M/F) × classe d'età quinquennale
-# ==========================================================================
+# ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(here)

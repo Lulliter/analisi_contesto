@@ -1,4 +1,4 @@
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 # Modulo: scuola_iscritti
 # Fonte:  MIM open data (via ingestione/02_prep_mim_studenti.R → dati/puliti/mim_iscritti/)
 # Input:  dati/puliti/mim_iscritti/scuole_iscritti_er.rds
@@ -19,7 +19,7 @@
 #                                   dalle anagrafi storiche, infanzia inclusa)
 # NB: gli ISCRITTI non coprono la scuola dell'infanzia (limite fonte MIM);
 #     i conteggi di PLESSI dall'anagrafe invece sì
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(here)

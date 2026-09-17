@@ -90,10 +90,6 @@ browseURL(here::here("_toDONE.html"))
 ### ⬜ modulo `educ_ia` (idea 2026-09-14)
 
 
-#### ⬜🟩🟨🟦 _AVANZAMENTO `sito/temi/educ_ia`]
-
-- [x] Modulo `giovani_benessere` (come stanno: Bes salute mentale + amici + vita + prospettive, 14-19/20-24 per sesso, Italia): `01_dati.R` collaudato, `02_output.R` scritto (6 grafici: `plot_salute_mentale_14_19` / `_20_24` / `_totale`, `plot_amici_14_19` / `_20_24` / `_totale`, caption in textbox ggtext, fascia "pandemia"), blurb con messaggio; sezione in `_educ_ia.qmd` ("Come stanno i ragazzi: il punto di partenza", dentro Rischi) con bottoni e Osservazioni
-- [x] RENDER DI PROVA: lanciare `02_output.R` e l'anteprima di `_educ_ia.qmd`; controllare caption textbox, etichetta "pandemia", asse x (21 anni), bottoni; rileggere le Osservazioni
 
 #### sito
 

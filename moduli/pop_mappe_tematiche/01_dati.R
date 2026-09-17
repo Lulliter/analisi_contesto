@@ -1,4 +1,4 @@
-# ==========================================================================
+# ___________________________________________________________________________
 # Modulo: pop_mappe_tematiche — 01_dati.R
 # Fonte:  ISTAT censimento permanente 2024 + confini ISTAT 01/01/2026 (generalizzati)
 # Input:  dati/puliti/istat_shp/ER_comuni_sf.rds
@@ -8,7 +8,7 @@
 #         dati/puliti/istat_cens/pop_com_er_minorenni_2024.rds  (0-17 anni)
 # Output: output/pop_mappe_sf.rds — sf dei 330 comuni ER con indicatori:
 #         pop_tot, quota_stranieri, dens_km2, quota_65p, quota_0_14, quota_minorenni
-# ==========================================================================
+# ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(here)

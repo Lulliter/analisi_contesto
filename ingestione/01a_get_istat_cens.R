@@ -1,4 +1,4 @@
-# ==========================================================================
+# ___________________________________________________________________________
 # ingestione/01a_get_istat_cens.R
 # SOLO DOWNLOAD: censimento permanente popolazione per i comuni ER
 # (età, sesso, cittadinanza) via API SDMX — RICETTA COLLAUDATA del vecchio repo:
@@ -14,7 +14,7 @@
 # Output: dati/grezzi/istat_cens/istat_cens_pop_com_er_<anno>.rds (grezzo API)
 # Quando: una volta l'anno → aggiornare ANNO_CENS e rilanciare
 # Durata: ~33 blocchi x 20 sec ≈ 12-15 minuti (il rate limit ISTAT è severo)
-# ==========================================================================
+# ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(here)
@@ -25,17 +25,17 @@ source(here("R", "f_istat_scarica_cens.R"))   # f_scarica_istat_blocchi() (usa h
 ANNO_CENS  <- 2024   # anno di riferimento del censimento (verificato disponibile il 2026-07-17)
 DATASET_ID <- "IT1,DF_DCSS_POP_DEMCITMIG_TV_2,1.0"
 
-dir_out  <- here("dati", "grezzi", "istat_cens")
-file_out <- file.path(dir_out, paste0("istat_cens_pop_com_er_", ANNO_CENS, ".rds"))
-dir.create(dir_out, recursive = TRUE, showWarnings = FALSE)
+dir_raw  <- here("dati", "grezzi", "istat_cens")
+file_raw <- file.path(dir_raw, paste0("istat_cens_pop_com_er_", ANNO_CENS, ".rds"))
+dir.create(dir_raw, recursive = TRUE, showWarnings = FALSE)
 
 # Comuni ER: vettore creato da ingestione/00_prep_shp_situas.R
 source(here("dati", "puliti", "istat_shp", "lista_PRO_COM_T_er_vec.R"))
 # -> CODICI_COMUNI_ER (330 codici)
 
 # --- Download (con cache: se il file c'è già, non riscaricare) --------------
-if (file.exists(file_out)) {
-  message("Già presente, salto il download: ", basename(file_out))
+if (file.exists(file_raw)) {
+  message("Già presente, salto il download: ", basename(file_raw))
 } else {
 
   dati_grezzi <- f_scarica_istat_blocchi(
@@ -57,17 +57,17 @@ if (file.exists(file_out)) {
             " — rilancia lo script: i blocchi falliti verranno ritentati.")
   }
 
-  saveRDS(dati_grezzi, file_out)
-  message("Salvato: ", file_out, " (", nrow(dati_grezzi), " righe)")
+  saveRDS(dati_grezzi, file_raw)
+  message("Salvato: ", file_raw, " (", nrow(dati_grezzi), " righe)")
 }
 
 # --- Territori di confronto: Italia, Nord-Est, ER, province ER (NUTS) --------
 # Verificato il 2026-07-17: i codici NUTS esistono in questo flow (ITD52 = Parma)
 AGGREGATI     <- c("IT", "ITD", "ITD5", paste0("ITD5", 1:9))
-file_out_conf <- file.path(dir_out, paste0("istat_cens_pop_confronti_", ANNO_CENS, ".rds"))
+file_raw_conf <- file.path(dir_raw, paste0("istat_cens_pop_confronti_", ANNO_CENS, ".rds"))
 
-if (file.exists(file_out_conf)) {
-  message("Già presente, salto il download: ", basename(file_out_conf))
+if (file.exists(file_raw_conf)) {
+  message("Già presente, salto il download: ", basename(file_raw_conf))
 } else {
   grezzi_conf <- f_scarica_istat_blocchi(
     codici_territorio   = AGGREGATI,
@@ -77,6 +77,6 @@ if (file.exists(file_out_conf)) {
     codici_per_blocco   = 12,     # un blocco unico
     pausa_tra_richieste = 20
   )
-  saveRDS(grezzi_conf, file_out_conf)
-  message("Salvato: ", file_out_conf, " (", nrow(grezzi_conf), " righe)")
+  saveRDS(grezzi_conf, file_raw_conf)
+  message("Salvato: ", file_raw_conf, " (", nrow(grezzi_conf), " righe)")
 }

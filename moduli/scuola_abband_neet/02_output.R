@@ -1,4 +1,4 @@
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 # Modulo: scuola_abband_neet
 # Scopo:  giovani a rischio dispersione / NEET nella provincia di Parma:
 #         NEET per provincia ER (trend BES); competenze non adeguate in III media
@@ -8,7 +8,7 @@
 # Input:  output/*.rds (da 01_dati.R); dati/puliti/istat_shp/ (geometrie)
 # Output: output/plot_*.rds, mappa_*.rds (ggplot; girafe() nella pagina) + .png;
 #         output/*_ft.rds (flextable, riletta tal quale nella pagina)
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(here)

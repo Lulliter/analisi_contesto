@@ -1,4 +1,4 @@
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 # Modulo: scuola_iscritti
 # Scopo:  trend iscritti PR (totale e pannelli statale|paritaria); trend dei
 #         PLESSI per gestione (infanzia inclusa, dalle anagrafi storiche);
@@ -10,7 +10,7 @@
 #         + .png per riuso rapido (nome file = oggetto)
 # NB: gli ISCRITTI non coprono la scuola dell'infanzia (limite fonte MIM);
 #     i conteggi di PLESSI dall'anagrafe invece sì
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(here)

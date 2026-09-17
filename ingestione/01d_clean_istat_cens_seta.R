@@ -1,4 +1,4 @@
-# ==========================================================================
+# ___________________________________________________________________________
 # ingestione/01d_clean_istat_cens_seta.R
 # PULIZIA: censimento per SINGOLE ETÀ (grezzo da 01c) → dati/puliti/
 #
@@ -13,7 +13,7 @@
 #     identica al flow gemello di 01b (stessa famiglia DSD). Se al primo run
 #     uno stopifnot esplode, guardare dplyr::glimpse(dati_grezzi_seta) e
 #     adeguare i nomi qui sotto.
-# ==========================================================================
+# ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(here)

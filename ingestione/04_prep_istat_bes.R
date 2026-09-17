@@ -1,4 +1,4 @@
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 # Ingestione: ISTAT, Bes dei territori (edizione 2025) — tutti i domini
 # Input:  dati/grezzi/istat_bes_territori/Bes_dei_territori_indic_per_prov_sesso_ed2025.xlsx
 #         (tavola unica: dominio × indicatore × sesso × territorio; anni in colonne V2004..V2024)
@@ -7,7 +7,7 @@
 #         regioni, ripartizioni, Italia — così serve a più moduli)
 # NB: fonte MULTI-modulo (istruzione, salute, lavoro, redditi, servizi...):
 #     i moduli filtrano da qui, non rileggono l'xlsx
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(here)

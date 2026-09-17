@@ -1,4 +1,4 @@
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 # Modulo: scuola_disabilita
 # Scopo:  % alunni con disabilità: trend per provincia ER (Parma evidenziata),
 #         confronto Parma vs ER per grado di scuola nell'ultimo a.s., e numeri
@@ -7,7 +7,7 @@
 # Output: output/plot_*.rds (ggplot; girafe() nella pagina di sito) + .png
 #         (nome file = oggetto)
 # NB: fonte USR-ER = solo scuole STATALI, infanzia inclusa
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(here)

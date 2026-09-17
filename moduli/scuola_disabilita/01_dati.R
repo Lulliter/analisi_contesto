@@ -1,4 +1,4 @@
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 # Modulo: scuola_disabilita
 # Fonte:  USR Emilia-Romagna, fact sheet "Studenti e studenti con disabilità"
 #         (scuola STATALE, organico di fatto), trascritti in csv;
@@ -13,7 +13,7 @@
 #         disab_trend_italia    (anno × ordine di scuola: % alunni con disabilità, ISTAT)
 # NB: USR-ER = solo scuole STATALI (infanzia inclusa); ISTAT = statali + paritarie.
 #     I due numeri non sono direttamente confrontabili.
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(here)

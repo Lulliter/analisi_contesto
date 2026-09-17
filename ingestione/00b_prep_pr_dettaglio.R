@@ -1,4 +1,4 @@
-# ==========================================================================
+# ___________________________________________________________________________
 # ingestione/00b_prep_pr_dettaglio.R
 # Confini comunali NON generalizzati per gli zoom sulla provincia di Parma
 # (il generalizzato va bene a scala ER, ma a scala provinciale si vede troppo)
@@ -8,7 +8,7 @@
 # Output: dati/puliti/istat_shp/PR_comuni_dettaglio_sf.rds   (44 comuni, dettaglio)
 #
 # Quando: dopo ogni nuovo download dei confini non generalizzati (annuale)
-# ==========================================================================
+# ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(here)

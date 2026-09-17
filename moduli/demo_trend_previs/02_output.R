@@ -1,4 +1,4 @@
-# ==========================================================================
+# ___________________________________________________________________________
 # Modulo: demo_trend_previs — 02_output.R
 # Scopo:  7 grafici dalle previsioni ISTAT 2024-2050 (scenario mediano):
 #         p01 pop totale indicizzata (2024=100), p02 pop totale assoluta
@@ -8,7 +8,7 @@
 #         anziani, p07 nati e morti previsti (PR/ER)
 # Input:  output/previs_*.rds (da 01_dati.R)
 # Output: output/pNN_<nome>.rds (ggplot; girafe() si applica in sito/) + csv
-# ==========================================================================
+# ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(here)

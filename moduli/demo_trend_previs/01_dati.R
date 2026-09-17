@@ -1,4 +1,4 @@
-# ==========================================================================
+# ___________________________________________________________________________
 # Modulo: demo_trend_previs — 01_dati.R
 # Fonte:  ISTAT, previsioni demografiche 2024-2050, SOLO scenario mediano,
 #         base 1.1.2024 (demo.istat.it; download 2026-07-18)
@@ -19,7 +19,7 @@
 #           per i 22 comuni PR >= 5.000 ab. (nomi colonna abbreviati)
 # NB: i file ISTAT province NON hanno aggregati: ER e Italia sono somme delle
 #     province (verificato: 107 province, nessun totale)
-# ==========================================================================
+# ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(here)

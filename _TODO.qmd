@@ -1,6 +1,6 @@
 ---
-title: "Piano di ristrutturazione del repo"
-subtitle: "Indice della migrazione e appunti di lavoro in corso"
+title: "Diario di lavoro"
+subtitle: "Stato tema per tema, fonti da acquisire, prossimi passi"
 date: last-modified
 date-format: "DD-MMMM-YYYY"
 lang: it
@@ -13,7 +13,7 @@ format:
     toc-expand: 2
     embed-resources: true   # niente cartella _TODO_files/
   docx:
-    toc: true
+    toc: false
     toc-depth: 3
     toc-title: "Indice"
     highlight-style: tango
@@ -44,7 +44,7 @@ browseURL(here::here("_TODO.html"))
 ::: {.callout-note collapse="true"}
 #### Come si usa questo file
 
-Creato: 2026-07-17 — Questo file è l'indice della migrazione: spuntare le caselle man mano. Le voci chiuse (con tutte le sottovoci spuntate) si spostano in `_toDONE.qmd`.
+Creato: 2026-07-17 — Diario di lavoro per tema: spuntare le caselle man mano. Le voci chiuse (con tutte le sottovoci spuntate) si spostano in `_toDONE.qmd`. Obiettivo, struttura del repo e regole stanno nel README; convenzioni di codifica in `CLAUDE.md`.
 NB 2026-07-17: pulizia già fatta — rimossi `_targets/`, `presentazione/`, `ZZZ_old/`,
 `source/`, `analysis/`, `data/`, `_data_GDrive/` (tutto nel backup e/o in git history).
 Della vecchia struttura resta solo `dashboard/` (5 temi) come materiale da migrare.
@@ -53,103 +53,24 @@ Della vecchia struttura resta solo `dashboard/` (5 temi) come materiale da migra
 ::: {.callout-tip collapse="true"}
 #### Vedi anche il README
 
-Vista d'insieme del progetto, note di riproducibilità e ricostruzione dei dati: [`README.md`](README.md). Le sezioni "Obiettivo" e "Struttura repo" qui sotto sono le stesse del README: se cambiano, vanno allineate in tutti e due.
+Vista d'insieme del progetto, struttura, regole, note di riproducibilità: [`README.md`](README.md).
 :::
 
-# Intro 
-
-
-L'**obiettivo** è passare da una struttura organizzata per macro-temi (con confini poco netti tra dati,
-analisi e presentazione) a una struttura modulare a due strati:
-
-1. **`moduli/`** — unità di analisi autonome: `input` → `output` (grafico / tabella) + `blurb` (commenti x divulgazione)
-2. **`sito/`** — spazio di composizione: combina gli output dei moduli secondo le esigenze
-   del momento (i temi vivono qui e possono essere ridefiniti senza toccare i moduli)
-
-Rispetto a prima, il flusso dei dati diventa a senso unico:
+**Promemoria del flusso** (regole nel README):
 
 ```
-dati/grezzi/ ──▶ ingestione/ ──▶ dati/puliti/ ──▶ moduli/*/output ──▶ sito/
+dati/grezzi/ ──▶ ingestione/ ──▶ dati/puliti/ ──▶ moduli/*/output ──▶ sito/temi/*
      │        (se multi-modulo)                    ▲
      └─────────────────────────────────────────────┘
               (se mono-modulo salto ingestione/)
 ```
 
-
-{{< pagebreak >}}
-
-
-## Struttura del repo
-
-```
-analisi_contesto/
-├── R/                      # funzioni condivise (resta com'è)
-├── dati/
-│   ├── grezzi/             # input come arrivano, organizzati per fonte. MAI scritti dal codice
-│   └── puliti/             # rds puliti riutilizzabili da più moduli (da ingestione/)
-├── ingestione/             # script numerati: grezzi → puliti (solo fonti multi-modulo)
-├── moduli/
-│   ├── _template_modulo/   # modello da copiare per ogni nuovo modulo
-│   └── <nome_modulo>/      # 1 cartella = 1 unità di analisi (nome per FONTE/indicatore)
-│       ├── 01_dati.R       # grezzi/puliti → rds pronto, salvato in output/
-│       ├── 02_output.R     # → grafico / tabella, salvati in output/
-│       ├── blurb.md        # 2-3 frasi di lettura + fonte + anno dati
-│       └── output/         # tutto ciò che il modulo produce
-└── sito/                   # Quarto website: SOLO legge da moduli/*/output/
-    └── temi/               # una pagina per tema, ricombinabile a piacere
-```
-
-## Regole 
-
-+ Flusso di **elaborazione dati** a senso unico: `dati/grezzi → (ingestione/) → dati/puliti → moduli/*/output → sito`
-    + Ogni modulo scrive **solo** nel proprio `output/`
-    + Il `sito/` legge e basta, non calcola
-    + Un modulo non legge l'`output/` di un altro modulo. 
-    + Se un dataset pulito serve a più moduli (e.g. mappe tematiche censimento), si "promuove": il codice che lo genera passa dal `01_dati.R` del modulo a uno script di `ingestione/`, e l'rds risultante va in `dati/puliti/` (in futuro, idealmente sotto targets). È l'unica eccezione ammessa
-+ I **moduli si nominano** per ambito+indicatore in `moduli/` in modo che il nome "dica qualcosa" (es. `scuola_iscritti`, `pop_piramide_eta`) — deciso 2026-07-18. 
-  Scioglie l'ambiguità "fonte/indicatore". La FONTE sta nel blurb e negli header degli script; l'aggiornamento per fonte si rintraccia via ingestione/ e blurb
-  + In ogni `moduli/*/blurb.md`: fonte, anno dei dati, data ultimo aggiornamento — così l'aggiornamento annuale si riduce a "quali moduli hanno dati nuovi?" (qui ci sarà da capire un modo migliore, ma TBD)
-+ I **temi** (instabili per costruzione) esistono solo in `sito/` 
-+ **Licenza** (deciso 2026-09-15: contenuti CC BY 4.0, codice MIT, v. README): per ogni nuova fonte/modulo verificare la licenza dei dati grezzi e annotarla nel `_metadati.md`; se non è "solo attribuzione" (CC BY / IODL) va valutato prima se e come ripubblicare i dati derivati (la dicitura nei CSV/Excel scaricabili sta in `R/f_scarica_dati.R`)
-+ **Home** (`index.qmd`): quando si aggiunge o promuove una pagina in `sito/temi/` (o si cambia un gruppo della navbar), aggiornare anche l'elenco dei temi e il callout "in preparazione" nella home. Nelle pagine di `sito/temi/` niente `date: last-modified`: il campo `description` del YAML dice fonti, anni dei dati e mese di estrazione, e va aggiornato quando si aggiornano i moduli della pagina
-+ Le **funzioni** sono organizzate secondo logica della promozione dei dati: una funzione nasce LOCALE nello script che la usa; si promuove a generale (`R/`) alla seconda chiamata da uno script diverso (o se palesemente generica). Nel trasloco si ripulisce: tutto via argomenti, `R/` non conosce i moduli.
-    + Mai `source()` orizzontali tra moduli: se serve a due, si promuove. In `R/`: 1 file = 1 funzione, nome file = nome funzione (prefissi: `istat_*` fonti, `f_*` helper viz/formato, `utilities.R` briciole) 
-    + Così `R/` contiene solo funzioni con ≥2 utilizzatori, tutte vive
-
-+ **Convenzioni di codifica**
-  + Spostate in [`CLAUDE.md`](CLAUDE.md) il 2026-09-02 (sono istruzioni permanenti, non voci da spuntare). Stile di tabelle e grafici: skill `formatting-r` + `R/formatting.R`.
-
-## Steps del processo
-
-### a) Automatizzazione flusso
+# Trasversale
 
 - [ ] Esisteva una parziale `_targets.R` (nel repo vecchio) ma sarà da ripensare — targets o semplici script di ingestione — almeno per scarico di dati da aggiornare periodicamente (IStat, SITUAS, ecc.)
-+ [ ] Una volta fatto ol modulo, da lì posso prendere spunto per inserire nel relativo file `sito/temi/....qmd` del sito. Il tema è un file qmd che legge i moduli e li combina in una pagina.
-
-
-
-::: {.callout-important collapse="true"}
-#### Temi ridefiniti il 2026-07-17
-
-**TEMI RIDEFINITI da Luisa il 2026-07-17** (sostituiscono i 5 temi della vecchia
-dashboard), in ordine di priorità. Principio: **l'aggiornamento avviene per FONTE**
-(ingestione/ e moduli/), i temi sono composizione in `sito/`. Il vecchio tema "BES"
-smette di essere un tema a sé: i suoi indicatori si spalmano sui temi come fonte.
-Per ogni tema: fonti già in casa vs da cercare.
-:::
-
-### b) Aggiornamento delle fonti sui temi rilevanti
-
-- [ ] [ONGOING] Da fare man mano che consulto le fonti -> file di pulizia organizzati in `moduli/` (se mono modulo) o in `ingestione/` (se multi-modulo). 
-
-
-### c) Riorganizzazione dei Temi e preparazione pagine sito
-
-- [ ] [ONGOING] Costruire `sito/` (index + una pagina per tema che include output e blurb dei moduli)
-  + Dettagli di come vengono organizzati i dati e ripensati i contenuti alla sezione "Temi" più in basso. 
 - [x] Sistema di download tabelle: FATTO e collaudato su `trend_demogr.qmd` e `scuola.qmd` (2026-07-21). Ogni grafico ha 2 bottoni CSV+Excel sotto-destra, via `R/f_bottoni_dati.R` + `R/f_scarica_dati.R` (dipendenza: `downloadthis`). Decisioni fissate: csv INTERNAZIONALE (virgola+punto, BOM) con titolo/fonte come righe `#` in testa; Excel = formato "sicuro" per gli italiani (tipi preservati) con foglio "Metadati"; nome file `<pagina>_<progressivo>`. NB patchwork: titolo/fonte stanno in `plot_annotation` (gestito da f_bottoni_dati).
   - [ ] Applicare ai moduli/pagine FUTURI (retrofit): ogni modulo salva un `.csv` per grafico accanto al `.rds` (v. Convenzioni)
- 
+
 ---
 
 {{< pagebreak >}}
@@ -163,16 +84,9 @@ I macro temi corrispondono + o - alle pagine del `sito/`. GLi item elencati corr
 **Ricognizione/Aggiornamento FONTI**: fatto
 
 **Ripensamento MODULI (connessi a fonti)**:
-
-- [x] Creare modulo con Dati IStat su popolazione forecast (ci sono gia in `dati/grezzi/istat_trend_demog/PREVISIONI_*` — ATTENZIONE: solo scenario MEDIANO, niente scenari alternativi; comuni solo >= 5.000 ab.)  
-  - [x] prima ingestione: `ingestione/03_prep_istat_previsioni.R` → `dati/puliti/istat_previsioni/` (5 rds)
-  - [x] poi modulo: `moduli/demo_trend_previs/` (p01 indice 2024=100, p02 assoluti province ER, p03 piramide PR 2050 vs 2024, p04 quota 65+/80+) + blurb
-  - [x] pagina dedicata `sito/temi/_trend_demogr_previs.qmd` (invece che dentro trend_demogr.qmd) — DECISO 2026-07-21: pagina separata, con box di rimando reciproco da/verso trend_demogr
-    - [x] PROMOSSA 2026-07-22: rinominata `trend_demogr_previs.qmd`, voce navbar "Previsioni 2050" in `_quarto.yml`
-    - [x] box di rimando reciproco (trend_demogr ⇄ previsioni)
-    - [x] aggiunti indicatori assistenza/filantropia: p05a/b/c 65+/80+ assoluti (grafici separati per PR/ER/IT), p06 dipendenza anziani, p07 nati/morti previsti
-  - [ ] 80+ STORICO per confronto con previsioni: nell'xls indicatori c'è solo 0-14/15-64/65+ → scaricare da demo.istat.it la popolazione per singole età (serie storica; provare pochi anni per volta se il sito non regge il download unico)
-  - [ ] SPERANZA DI VITA PREVISTA al 2050: non è nei file scaricati; esiste tra le ipotesi delle previsioni ISTAT ma a livello REGIONALE → nuovo download da demo.istat.it (la storica è già nei trend, p15/p16)
+- [x] Modulo `moduli/demo_trend_previs/`
+  - [ ] (possibile?) 80+ STORICO per confronto con previsioni: nell'xls indicatori c'è solo 0-14/15-64/65+ → scaricare da demo.istat.it la popolazione per singole età (serie storica; provare pochi anni per volta se il sito non regge il download unico)
+  - [ ] (possibile?) SPERANZA DI VITA PREVISTA al 2050: non è nei file scaricati; esiste tra le ipotesi delle previsioni ISTAT ma a livello REGIONALE → nuovo download da demo.istat.it (la storica è già nei trend, p15/p16)
 
 #### sito  
 
@@ -182,7 +96,7 @@ _(voci chiuse in `_toDONE.qmd`)_
 ___
 
  
-## 2.a Educazione (c'è un inizio; arricchire con fonti LOCALI)
+## 2.a Educazione e ...
 > Non affrontato nello strategico PS 2024-2027, ma da presentare come "Driver di crescita e realizzazione delle persone" 
 
 **Ripensamento MODULI (connessi a fonti)**: (bisogni Fondazione: trend generali + fragilità:
@@ -201,6 +115,7 @@ abbandoni, NEET, formazione continua, % stranieri per comune, studenti disabili;
   
 ### modulo `scuola_disabilita`
 (regionale, dati in casa + USR-ER prov.)
+
 **Ricognizione/Aggiornamento FONTI**: 
 
 - [ ] Al prossimo fact sheet USR-ER (uscita ~settembre): aggiungere le righe al csv (nuovo a.s. = provvisorio, precedente = definitivo), aggiornare `ANNO_ULTIMO` in `02_output.R` e il blurb
@@ -223,10 +138,12 @@ abbandoni, NEET, formazione continua, % stranieri per comune, studenti disabili;
 
 - [ ] Approfondimenti (le domande sono in pagina; qui le fonti): ELET/abbandono provinciale → anagrafe studenti RER (regolarità, successo) o esiti scrutini per scuola nel catalogo MIM (da verificare); dispersione implicita → INVALSI grado 13: il file in casa (`Traguardi_MS2026.xlsx`, solo regionale) ha SOLO i gradi 2, 5 e 10; i pacchetti completi 2-5-10 e 8-13 sono in casa dall'11/9 (csv), ma per i gradi 8 e 13 il trend è solo per macroarea e i livelli regionali solo 2025/26 (vedi `dati/grezzi/invalsi/_metadati.md`); la dispersione implicita vera e propria è solo nel Rapporto 2026 come grafico regionale; nella presentazione 2026 c'è anche una mappa "Tasso di ELET per provincia, biennio 2024-25" (elaborazioni INVALSI su microdati ISTAT): unico dato provinciale sull'uscita precoce, da recuperare (chiedere i dati al Servizio statistico?); ritardo × cittadinanza e dopo-Covid alle medie → incrocio per plesso di `scuole_iscritti_er` (età) con `scuole_iscritti_cittadinanza_er`; coorti → anagrafe RER + iscritti IeFP (`rer_formaz_lavoro`); seconda chance → modulo `formaz_rientri`
  
-### ⬜ modulo `educ_ia` (idea 2026-09-14)
+### modulo `educ_ia` (idea 2026-09-14)
 (approfondimento "crescere al tempo dell'IA": potenzialità e rischi per bambini/ragazzi, ruolo dei corpi intermedi e delle realtà educanti; più qualitativo/documentale che statistico, dati locali da costruire)
 
 **Ricognizione/Aggiornamento FONTI** — organizzata per INDICATORE (traccia decisa 2026-09-15). NB: dati PROVINCIALI su giovani e IA non esistono; regionali pochi (HBSC, Bes, PISA con sovracampionamento ER); l'unico indicatore dove Parma è raggiungibile è l'accesso ai servizi NPIA (Regione/AUSL). Cornice: l'IA è l'ultimo capitolo di ~15 anni di vita digitale degli adolescenti; i paesi arrivati prima (USA, UK, Nord Europa) fanno da anteprima.
+
+**Sezione di contesto della pagina (chiarito 2026-09-17)**: uso di INTERNET, uso dei SOCIAL, uso dell'IA, per fasce d'età (bambini, ragazzi, giovani) e, dove si può, per territorio (Parma e confronti). Esito della ricognizione: internet per età = ISTAT AVQ, serie 2001-2025 già in `dati/puliti/istat_ict/` (territorio: solo ER e Nord-est sul totale 6+); social = ISTAT Bambini e ragazzi 2023 (11-19, ripartizione) + serie per età da cercare sul dataflow `DCCV_ICT`; IA = Eurostat `isoc_ai_iaiu` per il grafico (16+, Italia vs UE) + numeri ISTAT nel testo. Per PARMA nessuna fonte statistica su nessuno dei tre: confronto realistico Italia → Nord-est → Emilia-Romagna. Dettagli nelle voci "(ricognizione 2026-09-17)" qui sotto.
 
 _1. Uso dell'IA per fascia d'età e per SCOPO (compiti, informazione, compagnia/confidenze — il "per cosa" conta più del "quanti")_:
 
@@ -235,11 +152,17 @@ _1. Uso dell'IA per fascia d'età e per SCOPO (compiti, informazione, compagnia/
 - [ ] INDIRE + Festival Innovazione Scolastica, indagine nazionale IA e studenti (14 set 2026): 5.342 studenti medie+superiori (campione autoselezionato in classe, NON confrontabile con Pew); 94% usa l'IA, 84% per compiti/studio, 62% almeno settimanale, 53% per confidarsi su problemi personali, 44% teme di pensare meno autonomamente. Rapporto non ancora online; CHIEDERE a INDIRE il dettaglio regionale. [Indire](https://www.indire.it/2026/09/04/festival-dellinnovazione-scolastica-i-risultati-dellindagine-nazionale-ia-e-studenti-a-cura-di-indire-e-festival/)
 - [ ] Telefono Azzurro + Ipsos Doxa 2025 (12-18 anni): 35% usa strumenti IA, 34% ha chiesto consigli personali a un chatbot, 40% teme riduzione del pensiero critico. Non ufficiale. [Vita.it](https://www.vita.it/un-adolescente-su-tre-usa-i-chatbot-assistente-per-i-compiti-ma-anche-amico/)
 - [ ] Eurostat, IA generativa 16-19 anni (2025): Italia 51,9% vs UE 66,4%. Solo nazionale
+- [ ] (ricognizione 2026-09-17) Eurostat, dataset `isoc_ai_iaiu` "Individuals - use of generative AI tools" (2025; stessa indagine armonizzata di ISTAT): classi 16-24, 25-34, … 65-74, sesso e SCOPO d'uso (privato, lavoro, studio); UE 16-24 = 64%, UE totale 33%, Italia 20% (penultima). Solo nazionale; il valore italiano per classe d'età DA LEGGERE allo scarico (pacchetto R `eurostat`). È l'unica fonte per un GRAFICO IA per età con confronto UE. [Statistics Explained](https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Use_of_artificial_intelligence_by_individuals); [dataset](https://ec.europa.eu/eurostat/databrowser/product/page/ISOC_AI_IAIU)
+- [ ] (verificato 2026-09-17) ISTAT Cittadini e ICT 2025: sull'IA nel comunicato c'è SOLO un paragrafo (pdf p. 6 circa + Figura 4): 14+ 17,8% (M 19,6, F 16,1); 14-19 51,2% (F 53,3, M 49,1); 20-24 43,1%; 16-74 19,9% (UE 32,7%). Niente nelle 11 tavole xlsx né nella codelist dei tipi di dato AVQ → NON basta per un grafico: citare i numeri nel testo. Sotto i 16 anni nessuna fonte ufficiale sull'IA (restano INDIRE, Telefono Azzurro)
 - [ ] _Anteprima USA_: Pew Research, Teens, Social Media and AI Chatbots (dic 2025, rappresentativo 13-17): 64% usa chatbot, 30% ogni giorno, 40% online "quasi costantemente". [Pew](https://www.pewresearch.org/internet/2025/12/09/teens-social-media-and-ai-chatbots-2025/); Common Sense Media, "Talk, Trust and Trade-Offs" (lug 2025): 72% ha usato "compagni IA", oltre metà regolarmente. [Common Sense](https://www.commonsensemedia.org/research/talk-trust-and-trade-offs-how-and-why-teens-use-ai-companions)
 - [ ] ITT Rondani (Parma), indagine interna giovani e IA (mag 2025): una sola scuola, non rappresentativa; unico dato parmense trovato, spunto per una rilevazione propria. [Casco Learning](https://cascolearning.it/magazine/2025/05/12/giovani-e-intelligenza-artificiale-una-indagine-allitt-rondani-di-parma/)
 
 _2. Ore di schermo e uso problematico dei social (proxy della dipendenza)_:
 - [ ] ISS, HBSC Emilia-Romagna 2022 (11-17 anni, ~1.200 per età, quadriennale, regionale, no province): 60,8% >3h di schermo al giorno; uso problematico dei videogiochi (M 27% a 11 anni); indicatore "uso problematico dei social" (~11% in Europa). Niente IA nel 2022; controllare se l'onda 2026 la include. [Epicentro ER](https://www.epicentro.iss.it/hbsc/indagine-2022-emilia-romagna)
+- [ ] (ricognizione 2026-09-17) ISTAT, indagine "Bambini e ragazzi: comportamenti, atteggiamenti e progetti futuri" 2023 (11-19 anni, ~39.000 rispondenti; tavole pubblicate 30 giu 2025): tav. 10 profilo sui social network, tav. 11 internet per fare nuove amicizie, tav. 9 frequenza contatti online con gli amici; per sesso, età, cittadinanza, RIPARTIZIONE (Nord-est, non regione). Un solo anno, non una serie: è la fonte più vicina al target per i SOCIAL. [pagina](https://www.istat.it/tavole-di-dati/bambini-e-ragazzi-comportamenti-atteggiamenti-e-progetti-futuri/); [zip tavole](https://www.istat.it/wp-content/uploads/2025/06/TAVOLE.zip); [indice](https://www.istat.it/wp-content/uploads/2025/06/Indice-delle-tavole-statistiche_new.pdf)
+- [ ] (ricognizione 2026-09-17) ISTAT, volume "Relazioni, opinioni e comportamenti dei giovanissimi" (23 apr 2026): commenta la stessa indagine 2023, con una parte su social e connessione digitale. DA LEGGERE. [Istat](https://www.istat.it/produzione-editoriale/relazioni-opinioni-e-comportamenti-dei-giovanissimi/)
+- [ ] (ricognizione 2026-09-17) Eurostat regionale, dataset `isoc_r_iuse_i` (NUTS2, fino al 2024): uso quotidiano di internet e partecipazione ai social, ma su 16-74 anni SENZA età. Presenza dell'Emilia-Romagna (ITH5) da verificare allo scarico. [Statistics Explained](https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Digital_society_statistics_at_regional_level)
+- [ ] (ricognizione 2026-09-17) Regione ER, "Tra presente e futuro. Essere adolescenti in Emilia-Romagna nel 2022" (terza edizione, oltre 15.000 studenti 11-19 anni): dalle pagine di presentazione NON risultano né dettaglio per provincia né capitoli su social/smartphone; pdf completo DA GUARDARE. [Regione ER](https://sociale.regione.emilia-romagna.it/novita/prodotti-editoriali/2022/tra-presente-e-futuro)
 - [ ] OCSE, "How's Life for Children in the Digital Age?" (2025): rapporto di riferimento per la SELEZIONE degli indicatori di benessere digitale dei minori (cross-nazionale). [OECD](https://www.oecd.org/en/publications/how-s-life-for-children-in-the-digital-age_0854b900-en.html)
 
 _3. Rendimento scolastico in relazione ai device (non il QI, non l'"attention span")_:
@@ -279,19 +202,22 @@ _6. Governare il processo: le risposte dei paesi arrivati prima + la mappa local
 
 - [ ] Cruscotto piccolo (5-6 indicatori), ciascuno con fonte, cadenza e livello territoriale DICHIARATI: 1) uso IA per età e scopo; 2) ore di schermo + uso problematico social; 3) rendimento vs device (PISA); 4) salute mentale 14-19 (Bes); 5) accessi NPIA (Regione/AUSL, provinciale); 6) risposte dei paesi (tabella qualitativa nel testo)
 
-#### ⬜🟩🟨🟦 _AVANZAMENTO `sito/temi/educ_ia`] 
-<!-- (stato al 2026-09-15 — ricostruire da qui l'elenco di avanzamento a inizio sessione):** -->
-
-<!-- Prossimo passo tuo, quando riprendi: lanciare moduli/giovani_benessere/02_output.R e l'anteprima di _educ_ia.qmd, poi 06a per lo scarico ISTAT. Da committare: _quarto.yml, custom.css, index.qmd, README.md, LICENSE, CNAME, R/f_scarica_dati.R, le pagine di sito/temi/, moduli/giovani_benessere/, ingestione/06a_*, dati/grezzi/istat_cittadini_ict/_metadati.md, _TODO.qmd. -->
 
 
+#### 🟡 AVANZAMENTO `sito/temi/educ_ia`
+
+Stato al 2026-09-17: modulo `giovani_benessere` chiuso e collaudato (6 grafici in schede, 14-19 / 20-24 / popolazione); di `giovani_digitale` 1/3 ISTAT fatte le serie lunghe di internet e pc (`06a` + `06b` → `dati/puliti/istat_ict/`) e chiarito l'obiettivo della sezione di contesto (internet / social / IA per età e territorio) con ricognizione delle fonti; prossimo passo: scegliere da quale fonte nuova partire (Eurostat IA, ISTAT Bambini e ragazzi per i social, id dataflow social `DCCV_ICT`), poi 2/3 HBSC.
+
+- [x] Modulo `giovani_benessere` (come stanno: Bes salute mentale + amici + vita + prospettive, 14-19/20-24 per sesso, Italia): `01_dati.R` collaudato, `02_output.R` scritto (6 grafici: `plot_salute_mentale_14_19` / `_20_24` / `_totale`, `plot_amici_14_19` / `_20_24` / `_totale`, caption in textbox ggtext, fascia "pandemia"), blurb con messaggio; sezione in `_educ_ia.qmd` ("Come stanno i ragazzi: il punto di partenza", dentro Rischi) con bottoni e Osservazioni
+- [x] RENDER DI PROVA: lanciare `02_output.R` e l'anteprima di `_educ_ia.qmd`; controllare caption textbox, etichetta "pandemia", asse x (21 anni), bottoni; rileggere le Osservazioni
 - [ ] Modulo `giovani_digitale` (quanto e come: internet/pc per età + IA + HBSC) — 3 passi:
-  - [ ] 1/3 ISTAT: lanciare `ingestione/06a_get_istat_avq_ict.R` (scritto, NON lanciato; verificare chiave e codici ITD5/ITD) → poi scrivere `06b_prep_istat_avq_ict.R` → `dati/puliti/istat_ict/` (formato lungo). Trascrivere a mano da pdf `ict_ia_2025_eta_sesso.csv`. Social per età: recuperare id API del dataflow `DCCV_ICT` dal browser (tipo di dato `PARTSOCIA`)
+  - [ ] 1/3 ISTAT: ~~lanciare `ingestione/06a_get_istat_avq_ict.R` → poi scrivere `06b_prep_istat_avq_ict.R` → `dati/puliti/istat_ict/` (formato lungo)~~ FATTO 2026-09-17 (`06a` lanciato, verificato e documentato: struttura + codelist in json, chiave spiegata, stessa struttura per le 3 tavole; `06b` collaudato → `ict_uso_eta` e `ict_uso_reg`, mancanti solo con segnalazione ISTAT `0`; nuova `R/f_codelist.R`; `_metadati.md` aggiornato). RESTA: trascrivere a mano da pdf `dati/grezzi/istat_cittadini_ict/Testo-integrale-e-nota-metodologica.pdf` ->  `ict_ia_2025_eta_sesso.csv` → NON serve (2026-09-17: nel pdf solo 8 numeri nel testo → citarli in pagina, niente grafico; per il grafico IA v. Eurostat `isoc_ai_iaiu`); social per età: id API del dataflow `DCCV_ICT` (tipo di dato `PARTSOCIA`) dal databrowser ("Query struttura", come per `06a`)
   - [ ] 2/3 HBSC ER 2022: scaricare pdf in `dati/grezzi/iss_hbsc/` + `_metadati.md`, trascrivere csv (ore schermo, uso problematico social/videogiochi, 11-17 per età e sesso, ER vs Italia)
   - [ ] 3/3 modulo: `01_dati.R`, `02_output.R` (internet tutti i giorni per età vs totale, trend 2001-2025; pc vs internet; IA 2025 per età e sesso; HBSC), blurb; sezione "L'adozione delle tecnologie negli ultimi quindici anni" in `_educ_ia.qmd` (già predisposta con i grafici previsti nei commenti)
 - [ ] Testo delle sezioni potenzialità / rischi / governare: numeri delle indagini ad hoc (INDIRE, Telefono Azzurro, Pew, Common Sense) nel testo; VERIFICARE gli studi citati a memoria (Bastani 2024, Kestin 2024, Banca Mondiale Nigeria; Twenge/Haidt/Orben/Odgers, commentati in pagina) e le politiche dei paesi; tabella qualitativa "risposte dei paesi" nella sezione Governare
 - [ ] Chiudere la pagina: In sintesi (3-4 messaggi), Possibili approfondimenti, `description` YAML; poi promozione (togliere underscore, href navbar nel gruppo Educazione, aggiornare `index.qmd`)
 - [ ] Secondo giro, da decidere: PISA 2022 device/rendimento con valori ER trascritti (Rapporto INVALSI, volume OCSE) → in `giovani_digitale`
+- [ ] Nuove fonti per la sezione di contesto (dalla ricognizione 2026-09-17, v. voci sopra): scaricare Eurostat `isoc_ai_iaiu` (IA per età, Italia vs UE) e le tavole ISTAT "Bambini e ragazzi" 2023 (social 11-19); decidere se entrano in `giovani_digitale` o in un modulo a parte
 - [ ] Richieste dati esterne (Luisa): Regione ER / AUSL accessi NPIA e PS per età, serie 2015→ (unico dato con Parma); INDIRE dettaglio regionale dell'indagine IA e studenti
 
 #### sito  
@@ -301,7 +227,7 @@ _6. Governare il processo: le risposte dei paesi arrivati prima + la mappa local
 - [ ] (Bozza) `sito/temi/_educ_ia.qmd`  
   
 
-## 2.b ...formazione GIOVANI (lavoro e innovazione)
+## 2.b ...Formazione GIOVANI (lavoro e innovazione)
 
 > Ponte con tema lavoro e se il territorio sta perdendo terreno sull'innovazione (es. startup, brevetti, ecc.)
 > PS 2024:2027 imprescindibile saper fare rete tra istruzione superiore / università / aziende e comunità 

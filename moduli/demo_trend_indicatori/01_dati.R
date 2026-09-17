@@ -1,4 +1,4 @@
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 # Modulo: demo_trend_indicatori
 # Fonte:  ISTAT - Indicatori demografici ("Demografia in cifre"), livello
 #         provinciale, serie 2002-2025 (ultimo anno provvisorio/stimato;
@@ -6,7 +6,7 @@
 # Input:  dati/grezzi/istat_trend_demog/Indicatori_demografici.xls
 # Output: moduli/demo_trend_indicatori/output/<indicatore>.rds (formato tidy)
 # Origine codice: dashboard/demographic_trends/data_load.R (vecchio repo)
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(readxl)

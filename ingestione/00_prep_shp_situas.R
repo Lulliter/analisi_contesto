@@ -1,4 +1,4 @@
-# ==========================================================================
+# ___________________________________________________________________________
 # ingestione/00_prep_shp_situas.R
 # Fondamenta geografiche: confini ISTAT + caratteristiche territorio SITUAS
 #
@@ -10,7 +10,7 @@
 #
 # Quando rieseguire: una volta l'anno (nuovi confini) → basta cambiare ANNO_SHP
 # Adattato da: analysis/00_carica_shp_situas.qmd (repo pre-ristrutturazione)
-# ==========================================================================
+# ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(here)

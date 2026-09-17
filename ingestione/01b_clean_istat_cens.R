@@ -1,4 +1,4 @@
-# ==========================================================================
+# ___________________________________________________________________________
 # ingestione/01b_clean_istat_cens.R
 # PULIZIA: censimento `permanente` (grezzo API) → oggetto pulito in dati/puliti/
 #
@@ -13,7 +13,7 @@
 #         per le SINGOLE ETÀ vedi nota in 01a (flow gemello SETA_1).
 #
 # Nota: il censimento viene aggiornato ogni anno, ma c'è un lag di tipo 1 anno e mezzo
-# ==========================================================================
+# ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(here)

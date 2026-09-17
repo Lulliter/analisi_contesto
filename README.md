@@ -17,7 +17,9 @@ analisi e presentazione) a una struttura modulare a due strati:
 2. **`sito/`** — spazio di composizione: combina gli output dei moduli secondo le esigenze
    del momento (i temi vivono qui e possono essere ridefiniti senza toccare i moduli)
 
-> Regole complete del "contratto" tra strati, convenzioni di codifica e stato della migrazione: [`_TODO.qmd`](_TODO.qmd).
+I temi (ridefiniti il 2026-07-17, in sostituzione dei 5 temi della vecchia dashboard) sono composizione in `sito/`: l'aggiornamento avviene per FONTE (`ingestione/` e `moduli/`) e il vecchio tema "BES" non è più un tema a sé, i suoi indicatori si spalmano sui temi come fonte.
+
+> Regole del "contratto" tra strati: sezione [Regole](#regole) qui sotto. Convenzioni di codifica: [`CLAUDE.md`](CLAUDE.md). Stato del lavoro tema per tema: [`_TODO.qmd`](_TODO.qmd).
 
 Rispetto a prima, il flusso dei dati diventa a senso unico:
 
@@ -44,9 +46,37 @@ analisi_contesto/
 │       ├── 02_output.R     # → grafico / tabella, salvati in output/
 │       ├── blurb.md        # 2-3 frasi di lettura + fonte + anno dati
 │       └── output/         # tutto ciò che il modulo produce
-└── sito/                   # Quarto website: SOLO legge da moduli/*/output/
-    └── temi/               # una pagina per tema, ricombinabile a piacere
+├── sito/                   # Quarto website: SOLO legge da moduli/*/output/
+│   └── temi/               # una pagina per tema, ricombinabile a piacere
+├── assets/                 # css/scss, brand e logo Fondazione
+├── bib/                    # bibliografia (collegata a Zotero)
+├── docs/                   # output del sito (GitHub Pages) — generato, non editare
+├── build.R                 # rigenera gli output di tutti i moduli
+├── README.md               # questo file
+├── _TODO.qmd               # diario di lavoro: stato tema per tema, fonti da acquisire
+└── _toDONE.qmd             # voci chiuse di _TODO.qmd
 ```
+
+# Regole
+
++ Flusso di **elaborazione dati** a senso unico: `dati/grezzi → (ingestione/) → dati/puliti → moduli/*/output → sito`
+    + Ogni modulo scrive **solo** nel proprio `output/`
+    + Il `sito/` legge e basta, non calcola
+    + Un modulo non legge l'`output/` di un altro modulo. 
+    + Se un dataset pulito serve a più moduli (e.g. mappe tematiche censimento), si "promuove": il codice che lo genera passa dal `01_dati.R` del modulo a uno script di `ingestione/`, e l'rds risultante va in `dati/puliti/` (in futuro, idealmente sotto targets). È l'unica eccezione ammessa
++ I **moduli si nominano** per ambito+indicatore in `moduli/` in modo che il nome "dica qualcosa" (es. `scuola_iscritti`, `pop_piramide_eta`) — deciso 2026-07-18. 
+  Scioglie l'ambiguità "fonte/indicatore". La FONTE sta nel blurb e negli header degli script; l'aggiornamento per fonte si rintraccia via ingestione/ e blurb
+  + In ogni `moduli/*/blurb.md`: fonte, anno dei dati, data ultimo aggiornamento — così l'aggiornamento annuale si riduce a "quali moduli hanno dati nuovi?" (qui ci sarà da capire un modo migliore, ma TBD)
++ I **temi** (instabili per costruzione) esistono solo in `sito/` 
++ **Licenza** (deciso 2026-09-15: contenuti CC BY 4.0, codice MIT, v. README): per ogni nuova fonte/modulo verificare la licenza dei dati grezzi e annotarla nel `_metadati.md`; se non è "solo attribuzione" (CC BY / IODL) va valutato prima se e come ripubblicare i dati derivati (la dicitura nei CSV/Excel scaricabili sta in `R/f_scarica_dati.R`)
++ **Home** (`index.qmd`): quando si aggiunge o promuove una pagina in `sito/temi/` (o si cambia un gruppo della navbar), aggiornare anche l'elenco dei temi e il callout "in preparazione" nella home. Nelle pagine di `sito/temi/` niente `date: last-modified`: il campo `description` del YAML dice fonti, anni dei dati e mese di estrazione, e va aggiornato quando si aggiornano i moduli della pagina
++ Le **funzioni** sono organizzate secondo logica della promozione dei dati: una funzione nasce LOCALE nello script che la usa; si promuove a generale (`R/`) alla seconda chiamata da uno script diverso (o se palesemente generica). Nel trasloco si ripulisce: tutto via argomenti, `R/` non conosce i moduli.
+    + Mai `source()` orizzontali tra moduli: se serve a due, si promuove. In `R/`: 1 file = 1 funzione, nome file = nome funzione (prefissi: `istat_*` fonti, `f_*` helper viz/formato, `utilities.R` briciole) 
+    + Così `R/` contiene solo funzioni con ≥2 utilizzatori, tutte vive
+
++ **Convenzioni di codifica**
+  + Spostate in [`CLAUDE.md`](CLAUDE.md) il 2026-09-02 (sono istruzioni permanenti, non voci da spuntare). Stile di tabelle e grafici: skill `formatting-r` + `R/formatting.R`.
+
 
 # Note riproducibilità
 
@@ -66,6 +96,6 @@ Testi, grafici, tabelle e dati derivati: [CC BY 4.0](https://creativecommons.org
 
 # TODO
 
-🔨 Migrazione per tema in corso. Il diario di lavoro — piano, regole, convenzioni di codifica e stato tema per tema — sta in [`_TODO.qmd`](_TODO.qmd), che si renderizza a mano (`_TODO.html`) e resta fuori dal sito.
+🔨 Lavoro per tema in corso. Il diario — stato tema per tema, fonti da acquisire — sta in [`_TODO.qmd`](_TODO.qmd) (voci chiuse in [`_toDONE.qmd`](_toDONE.qmd)); entrambi si renderizzano a mano e restano fuori dal sito.
 
 ----------

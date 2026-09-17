@@ -1,4 +1,4 @@
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 # Modulo: scuola_abband_neet
 # Fonte:  MIM open data (via ingestione/02 → dati/puliti/mim_iscritti/): iscritti
 #         per anno di corso e fascia d'età → RITARDO SCOLASTICO (proxy del rischio
@@ -25,7 +25,7 @@
 #     dall'estero); NON conta chi ha già lasciato la scuola. Statali + paritarie, no infanzia.
 #     ESCLUSI i corsi serali (percorsi di II livello), CPIA, sedi carcerarie e ospedaliere:
 #     sono adulti/rientri in formazione, tutti "in ritardo" per costruzione
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(here)

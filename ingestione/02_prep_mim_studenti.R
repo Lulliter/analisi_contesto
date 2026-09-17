@@ -1,4 +1,4 @@
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 # Ingestione: MIM open data (studenti + anagrafi scuole) → dati/puliti/mim_iscritti/
 # Fonte:  dati/grezzi/mim_open_data/ + dati/grezzi/istat_codici_comuni/
 #         (vedi i rispettivi _metadati.md)
@@ -15,7 +15,7 @@
 # NB: gli iscritti MIM NON coprono la scuola dell'infanzia; il comune arriva
 #     dall'anagrafe e viene transcodificato a PRO_COM_T ISTAT via join sul
 #     CODICE CATASTALE con l'Elenco comuni ISTAT (dati/grezzi/istat_codici_comuni/)
-# ------------------------------------------------------------------------
+# ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(here)

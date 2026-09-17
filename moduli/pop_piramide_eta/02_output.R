@@ -1,4 +1,4 @@
-# ==========================================================================
+# ___________________________________________________________________________
 # Modulo: pop_piramide_eta — 02_output.R
 # Scopo:  piramidi d'età (classi quinquennali) con territorio di CONFRONTO
 #         in overlay (barra semitrasparente nel colore territoriale:
@@ -6,7 +6,7 @@
 # Input:  output/piramidi_df.rds                (da 01_dati.R)
 #         R/_parma_colors.R                     (palette)
 # Output: output/piramide_<target>_vs_<confronto>.png/.rds
-# ==========================================================================
+# ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
 library(here)
