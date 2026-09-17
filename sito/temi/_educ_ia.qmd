@@ -46,11 +46,12 @@ source(here::here("R", "f_bottoni_dati.R"))
 source(here::here("R", "f_girafe.R"))
 
 dir_ben <- here::here("moduli", "giovani_benessere", "output")
+dir_ict <- here::here("moduli", "giovani_ict_social", "output")
 ```
 
 ::: {.callout-warning}
 ## Pagina in costruzione
-Questa pagina raccoglie le domande e la struttura dell'approfondimento su cosa vuol dire crescere al tempo dell'intelligenza artificiale. I dati e le fonti arriveranno nei prossimi mesi.
+Questa pagina raccoglie le domande e la struttura dell'approfondimento su cosa vuol dire crescere al tempo dell'intelligenza artificiale.
 :::
 
 ## In sintesi
@@ -66,13 +67,233 @@ Cosa possono fare i corpi intermedi della società (scuole, famiglie, terzo sett
 
 Prima di guardare ai rischi nuovi, conviene vedere quanto e come la vita digitale è entrata nelle giornate di tutti, e dei ragazzi in particolare: l'IA generativa arriva su abitudini già formate.
 
-<!-- grafici previsti (modulo giovani_digitale, fonte ISTAT Cittadini e ICT, serie annuali dal ~2010):
+<!-- grafici previsti (modulo giovani_ict_social; elenco scritto prima della ricognizione del 2026-09-17: i grafici fatti sono in moduli/giovani_ict_social/output/):
 - uso quotidiano di internet per fascia d'età (6-10, 11-14, 15-17, 18-19, 20-24 vs totale), Italia, trend 2010-2025;
   per l'Emilia-Romagna solo il totale della popolazione
 - uso dei social network per età, trend (stesso file)
 - 2025: primo dato sull'uso di IA generativa per età e sesso (14-19: 51%; totale: 18%) → il salto generazionale
 - (se in casa) HBSC ER 2022: ore di schermo e uso problematico di social/videogiochi 11-17 anni, ER vs Italia
 - cornice internazionale nel testo: PISA 2022 (ore sui device e rendimento), Pew 2025 (40% dei teen USA online "quasi costantemente") -->
+
+<!-- BOZZA 2026-09-17: tre blocchi (internet, social e amici, IA) dal modulo giovani_ict_social.
+     Testi da rivedere; la sezione resta aperta ad arricchimenti (v. commento in coda). -->
+
+### Internet: da strumento di pochi a presenza quotidiana
+
+In poco più di vent'anni l'uso quotidiano di internet è passato da eccezione a norma, e i ragazzi ci sono arrivati prima e più in fretta degli adulti.
+
+::: {.panel-tabset}
+
+#### Internet tutti i giorni, per età
+
+```{r}
+#| label: plot_internet_eta
+#| output: true
+#| fig-width: 9
+#| fig-height: 6.5
+
+f_girafe(readRDS(file.path(dir_ict, "plot_internet_eta.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_internet_eta
+#| output: true
+f_bottoni_dati("ict_giovani_eta", dir_ict, rds = "plot_internet_eta")
+```
+:::
+
+#### Pc e internet
+
+```{r}
+#| label: plot_pc_internet
+#| output: true
+#| fig-width: 9
+#| fig-height: 6.5
+
+f_girafe(readRDS(file.path(dir_ict, "plot_pc_internet.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_pc_internet
+#| output: true
+f_bottoni_dati("ict_giovani_eta", dir_ict, rds = "plot_pc_internet")
+```
+:::
+
+:::
+
+::: {.callout-note collapse="true"}
+### Osservazioni
+
+Nel 2001 usava internet tutti i giorni circa un ragazzo su dieci. Oggi lo fa la quasi totalità di chi ha tra i 15 e i 24 anni e oltre otto su dieci tra gli 11-14enni, contro circa sette persone su dieci nell'insieme della popolazione. Il passaggio più brusco è quello dei bambini di 6-10 anni: l'uso quotidiano, poco sopra un quarto nel 2019, supera il 40% nel 2020, l'anno delle scuole chiuse, e da allora non è più tornato indietro.
+
+Il confronto tra pc e internet racconta il cambio di strumento. Fino a metà degli anni Duemila i ragazzi usavano il pc più di internet; poi le due curve si incrociano e il pc si ferma o arretra: tra i bambini di 6-10 anni oggi lo usa circa quattro su dieci, mentre quasi nove su dieci usano internet. È la traccia indiretta dello smartphone, che queste serie non rilevano. Il 2020 fa eccezione: il pc risale per un anno, verosimilmente per la didattica a distanza, e poi riprende a calare.
+
+In Emilia-Romagna e nel Nord-est l'uso di internet è da sempre un paio di punti sopra la media italiana; il dettaglio per età, a livello regionale, non esiste.
+
+_NB: stima campionaria, da leggere nei trend più che nei singoli anni. La classe 15-19 anni è una nostra stima (media delle classi ISTAT 15-17 e 18-19, pesata con gli anni d'età che coprono). Nel 2004 l'indagine non è stata svolta. L'uso del pc è rilevato dai 3 anni, quello di internet dai 6._
+:::
+
+### I social e gli amici, tra schermo e presenza
+
+Il profilo social arriva prima dei 14 anni e il contatto online con gli amici è continuo, ma non ha sostituito il vedersi di persona.
+
+::: {.callout-warning}
+## Da verificare prima di pubblicare
+Età minima per i social in Italia: controllare la norma e scrivere il riferimento esatto. Da ricordare che i numeri in gioco sono due e non vanno confusi: i 13 anni sono l'età minima fissata dalle piattaforme nelle loro condizioni d'uso; i 14 anni dovrebbero essere l'età del consenso digitale nella legge italiana (sotto serve il consenso dei genitori). Solo dopo la verifica si può scrivere che una parte degli 11-13enni con un profilo è sotto soglia.
+:::
+
+::: {.panel-tabset}
+
+#### Profilo social
+
+```{r}
+#| label: plot_profilo_social
+#| output: true
+#| fig-width: 9
+#| fig-height: 6.5
+
+f_girafe(readRDS(file.path(dir_ict, "plot_profilo_social.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_profilo_social
+#| output: true
+f_bottoni_dati("ragazzi_ict_social", dir_ict, rds = "plot_profilo_social")
+```
+:::
+
+#### Amici online
+
+```{r}
+#| label: plot_amici_online
+#| output: true
+#| fig-width: 9
+#| fig-height: 6.5
+
+f_girafe(readRDS(file.path(dir_ict, "plot_amici_online.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_amici_online
+#| output: true
+f_bottoni_dati("ragazzi_ict_social", dir_ict, rds = "plot_amici_online")
+```
+:::
+
+#### Amici di persona
+
+```{r}
+#| label: plot_amici_di_persona
+#| output: true
+#| fig-width: 9
+#| fig-height: 6.5
+
+f_girafe(readRDS(file.path(dir_ict, "plot_amici_di_persona.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_amici_di_persona
+#| output: true
+f_bottoni_dati("ragazzi_ict_social", dir_ict, rds = "plot_amici_di_persona")
+```
+:::
+
+#### Nuove amicizie online
+
+```{r}
+#| label: plot_nuove_amicizie_online
+#| output: true
+#| fig-width: 9
+#| fig-height: 6.5
+
+f_girafe(readRDS(file.path(dir_ict, "plot_nuove_amicizie_online.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_nuove_amicizie_online
+#| output: true
+f_bottoni_dati("ragazzi_ict_social", dir_ict, rds = "plot_nuove_amicizie_online")
+```
+:::
+
+:::
+
+::: {.callout-note collapse="true"}
+### Osservazioni
+
+Tra i ragazzi di 11-13 anni che usano internet, circa sei su dieci hanno già almeno un profilo social; tra i 14-19enni quasi tutti, e tre su quattro ne hanno più di uno. Le ragazze sono più presenti dei ragazzi a entrambe le età.
+
+Più di metà dei 14-19enni sente gli amici online più volte al giorno, e circa uno su dieci "continuamente" (di più tra le ragazze); tra gli 11-13enni poco più di un terzo. Eppure circa sette ragazzi su dieci vedono gli amici di persona almeno qualche volta a settimana, senza differenze tra le due età: il contatto a distanza si è aggiunto a quello in presenza, più che sostituirlo. Internet serve anche ad allargare la cerchia: più di metà dei 14-19enni l'ha usato per fare nuove amicizie, circa un quarto tra gli 11-13enni.
+
+Nel Nord-est i valori sono in linea con la media italiana.
+
+_NB: indagine ISTAT "Bambini e ragazzi" sui residenti di 11-19 anni, rilevazione 2023 (dati pubblicati nel 2025); un solo anno, Italia e ripartizioni. Profilo social e nuove amicizie sono in % dei ragazzi che usano internet. Per la frequenza dei contatti con gli amici le sei risposte del questionario sono raggruppate in tre categorie (nostra elaborazione); nei dati scaricabili ci sono tutte e sei. Stima campionaria._
+:::
+
+### L'intelligenza artificiale, l'ultima arrivata
+
+L'IA generativa è entrata per prima nelle abitudini dei più giovani, e per gli adolescenti italiani è soprattutto uno strumento di scuola.
+
+::: {.panel-tabset}
+
+#### Chi la usa, per età
+
+```{r}
+#| label: plot_ia_eta
+#| output: true
+#| fig-width: 9
+#| fig-height: 6.5
+
+f_girafe(readRDS(file.path(dir_ict, "plot_ia_eta.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_ia_eta
+#| output: true
+f_bottoni_dati("ia_eta_it_ue", dir_ict, rds = "plot_ia_eta")
+```
+:::
+
+#### Per cosa la usano i giovani
+
+```{r}
+#| label: plot_ia_scopi
+#| output: true
+#| fig-width: 9
+#| fig-height: 6.5
+
+f_girafe(readRDS(file.path(dir_ict, "plot_ia_scopi.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_ia_scopi
+#| output: true
+f_bottoni_dati("ia_eta_it_ue", dir_ict, rds = "plot_ia_scopi")
+```
+:::
+
+:::
+
+::: {.callout-note collapse="true"}
+### Osservazioni
+
+Nel 2025, primo anno di rilevazione, ha usato strumenti di IA generativa circa la metà dei 16-19enni italiani e poco più di quattro 20-24enni su dieci, contro una persona su cinque nell'insieme della popolazione tra 16 e 74 anni; la quota scende a ogni classe d'età successiva. Lo scarto con l'Europa è ampio a tutte le età: tra i giovani una quindicina di punti o più, tanto che i 20-24enni italiani stanno sotto i 25-34enni europei. Le ragazze la usano un po' più dei ragazzi, in Italia come nell'Unione europea.
+
+Tra i 16-19enni che la usano, quasi otto su dieci lo fanno per lo studio, in linea con i coetanei europei; meno della metà per scopi privati, contro circa due terzi in Europa. L'uso per lavoro, a quest'età, è marginale.
+
+_NB: dati Eurostat dell'indagine europea sull'uso delle tecnologie digitali (per l'Italia la fonte è l'ISTAT). L'adozione è in % delle persone della stessa età; gli scopi sono in % di chi ha usato l'IA negli ultimi tre mesi e non si escludono a vicenda. Un solo anno, solo livello nazionale; sotto i 16 anni non esistono dati ufficiali. Stima campionaria._
+:::
+
+<!-- DA ARRICCHIRE (v. _TODO.qmd, modulo giovani_ict_social): HBSC Emilia-Romagna 2022 (ore di schermo, uso problematico di social e videogiochi, 11-17 anni); trend dei social per età (Eurostat, da verificare); indagini ad hoc sotto i 16 anni (INDIRE, Telefono Azzurro) e anteprima USA (Pew); eventuale dato locale -->
 
 <!-- ::: {.callout-note collapse="true"} -->
 <!-- ### Osservazioni -->

@@ -1,0 +1,65 @@
+indicatore,etichetta_indicatore,territorio,eta,anno,valore,cod_indicatore,cod_base,cod_eta
+uso_ia,Ha usato strumenti di IA generativa (ultimi 3 mesi),UE (27 paesi),Totale 16-74,2025,32.66,I_IUAI,PC_IND,IND_TOTAL
+uso_ia,Ha usato strumenti di IA generativa (ultimi 3 mesi),Italia,Totale 16-74,2025,19.86,I_IUAI,PC_IND,IND_TOTAL
+scopo_studio,Per lo studio (istruzione formale),UE (27 paesi),Totale 16-74,2025,28.54,I_IUAIFE,PC_IND_IUAI,IND_TOTAL
+scopo_studio,Per lo studio (istruzione formale),Italia,Totale 16-74,2025,32.09,I_IUAIFE,PC_IND_IUAI,IND_TOTAL
+scopo_privato,Per scopi privati,UE (27 paesi),Totale 16-74,2025,78.04,I_IUAIPR,PC_IND_IUAI,IND_TOTAL
+scopo_privato,Per scopi privati,Italia,Totale 16-74,2025,64.51,I_IUAIPR,PC_IND_IUAI,IND_TOTAL
+scopo_lavoro,Per lavoro,UE (27 paesi),Totale 16-74,2025,47.02,I_IUAIWP,PC_IND_IUAI,IND_TOTAL
+scopo_lavoro,Per lavoro,Italia,Totale 16-74,2025,40.29,I_IUAIWP,PC_IND_IUAI,IND_TOTAL
+uso_ia,Ha usato strumenti di IA generativa (ultimi 3 mesi),UE (27 paesi),16-19,2025,66.38,I_IUAI,PC_IND,Y16_19
+uso_ia,Ha usato strumenti di IA generativa (ultimi 3 mesi),Italia,16-19,2025,51.9,I_IUAI,PC_IND,Y16_19
+scopo_studio,Per lo studio (istruzione formale),UE (27 paesi),16-19,2025,75.11,I_IUAIFE,PC_IND_IUAI,Y16_19
+scopo_studio,Per lo studio (istruzione formale),Italia,16-19,2025,78.07,I_IUAIFE,PC_IND_IUAI,Y16_19
+scopo_privato,Per scopi privati,UE (27 paesi),16-19,2025,65.23,I_IUAIPR,PC_IND_IUAI,Y16_19
+scopo_privato,Per scopi privati,Italia,16-19,2025,45.99,I_IUAIPR,PC_IND_IUAI,Y16_19
+scopo_lavoro,Per lavoro,UE (27 paesi),16-19,2025,13.59,I_IUAIWP,PC_IND_IUAI,Y16_19
+scopo_lavoro,Per lavoro,Italia,16-19,2025,6.68,I_IUAIWP,PC_IND_IUAI,Y16_19
+uso_ia,Ha usato strumenti di IA generativa (ultimi 3 mesi),UE (27 paesi),20-24,2025,61.6,I_IUAI,PC_IND,Y20_24
+uso_ia,Ha usato strumenti di IA generativa (ultimi 3 mesi),Italia,20-24,2025,43.15,I_IUAI,PC_IND,Y20_24
+scopo_studio,Per lo studio (istruzione formale),UE (27 paesi),20-24,2025,54.13,I_IUAIFE,PC_IND_IUAI,Y20_24
+scopo_studio,Per lo studio (istruzione formale),Italia,20-24,2025,58.52,I_IUAIFE,PC_IND_IUAI,Y20_24
+scopo_privato,Per scopi privati,UE (27 paesi),20-24,2025,75.58,I_IUAIPR,PC_IND_IUAI,Y20_24
+scopo_privato,Per scopi privati,Italia,20-24,2025,59.8,I_IUAIPR,PC_IND_IUAI,Y20_24
+scopo_lavoro,Per lavoro,UE (27 paesi),20-24,2025,36.55,I_IUAIWP,PC_IND_IUAI,Y20_24
+scopo_lavoro,Per lavoro,Italia,20-24,2025,23.09,I_IUAIWP,PC_IND_IUAI,Y20_24
+uso_ia,Ha usato strumenti di IA generativa (ultimi 3 mesi),UE (27 paesi),25-34,2025,50.65,I_IUAI,PC_IND,Y25_34
+uso_ia,Ha usato strumenti di IA generativa (ultimi 3 mesi),Italia,25-34,2025,31.36,I_IUAI,PC_IND,Y25_34
+scopo_studio,Per lo studio (istruzione formale),UE (27 paesi),25-34,2025,19.16,I_IUAIFE,PC_IND_IUAI,Y25_34
+scopo_studio,Per lo studio (istruzione formale),Italia,25-34,2025,21.98,I_IUAIFE,PC_IND_IUAI,Y25_34
+scopo_privato,Per scopi privati,UE (27 paesi),25-34,2025,83.69,I_IUAIPR,PC_IND_IUAI,Y25_34
+scopo_privato,Per scopi privati,Italia,25-34,2025,73.83,I_IUAIPR,PC_IND_IUAI,Y25_34
+scopo_lavoro,Per lavoro,UE (27 paesi),25-34,2025,54.17,I_IUAIWP,PC_IND_IUAI,Y25_34
+scopo_lavoro,Per lavoro,Italia,25-34,2025,47.19,I_IUAIWP,PC_IND_IUAI,Y25_34
+uso_ia,Ha usato strumenti di IA generativa (ultimi 3 mesi),UE (27 paesi),35-44,2025,38.96,I_IUAI,PC_IND,Y35_44
+uso_ia,Ha usato strumenti di IA generativa (ultimi 3 mesi),Italia,35-44,2025,21.55,I_IUAI,PC_IND,Y35_44
+scopo_studio,Per lo studio (istruzione formale),UE (27 paesi),35-44,2025,15.62,I_IUAIFE,PC_IND_IUAI,Y35_44
+scopo_studio,Per lo studio (istruzione formale),Italia,35-44,2025,13.6,I_IUAIFE,PC_IND_IUAI,Y35_44
+scopo_privato,Per scopi privati,UE (27 paesi),35-44,2025,80.78,I_IUAIPR,PC_IND_IUAI,Y35_44
+scopo_privato,Per scopi privati,Italia,35-44,2025,69.35,I_IUAIPR,PC_IND_IUAI,Y35_44
+scopo_lavoro,Per lavoro,UE (27 paesi),35-44,2025,56.64,I_IUAIWP,PC_IND_IUAI,Y35_44
+scopo_lavoro,Per lavoro,Italia,35-44,2025,56.17,I_IUAIWP,PC_IND_IUAI,Y35_44
+uso_ia,Ha usato strumenti di IA generativa (ultimi 3 mesi),UE (27 paesi),45-54,2025,28.35,I_IUAI,PC_IND,Y45_54
+uso_ia,Ha usato strumenti di IA generativa (ultimi 3 mesi),Italia,45-54,2025,16.51,I_IUAI,PC_IND,Y45_54
+scopo_studio,Per lo studio (istruzione formale),UE (27 paesi),45-54,2025,17.54,I_IUAIFE,PC_IND_IUAI,Y45_54
+scopo_studio,Per lo studio (istruzione formale),Italia,45-54,2025,17.54,I_IUAIFE,PC_IND_IUAI,Y45_54
+scopo_privato,Per scopi privati,UE (27 paesi),45-54,2025,76.38,I_IUAIPR,PC_IND_IUAI,Y45_54
+scopo_privato,Per scopi privati,Italia,45-54,2025,65.12,I_IUAIPR,PC_IND_IUAI,Y45_54
+scopo_lavoro,Per lavoro,UE (27 paesi),45-54,2025,57.78,I_IUAIWP,PC_IND_IUAI,Y45_54
+scopo_lavoro,Per lavoro,Italia,45-54,2025,54.31,I_IUAIWP,PC_IND_IUAI,Y45_54
+uso_ia,Ha usato strumenti di IA generativa (ultimi 3 mesi),UE (27 paesi),55-64,2025,16.49,I_IUAI,PC_IND,Y55_64
+uso_ia,Ha usato strumenti di IA generativa (ultimi 3 mesi),Italia,55-64,2025,10.06,I_IUAI,PC_IND,Y55_64
+scopo_studio,Per lo studio (istruzione formale),UE (27 paesi),55-64,2025,12.24,I_IUAIFE,PC_IND_IUAI,Y55_64
+scopo_studio,Per lo studio (istruzione formale),Italia,55-64,2025,14.52,I_IUAIFE,PC_IND_IUAI,Y55_64
+scopo_privato,Per scopi privati,UE (27 paesi),55-64,2025,77.13,I_IUAIPR,PC_IND_IUAI,Y55_64
+scopo_privato,Per scopi privati,Italia,55-64,2025,64.49,I_IUAIPR,PC_IND_IUAI,Y55_64
+scopo_lavoro,Per lavoro,UE (27 paesi),55-64,2025,53.05,I_IUAIWP,PC_IND_IUAI,Y55_64
+scopo_lavoro,Per lavoro,Italia,55-64,2025,51.24,I_IUAIWP,PC_IND_IUAI,Y55_64
+uso_ia,Ha usato strumenti di IA generativa (ultimi 3 mesi),UE (27 paesi),65-74,2025,6.5,I_IUAI,PC_IND,Y65_74
+uso_ia,Ha usato strumenti di IA generativa (ultimi 3 mesi),Italia,65-74,2025,4.55,I_IUAI,PC_IND,Y65_74
+scopo_studio,Per lo studio (istruzione formale),UE (27 paesi),65-74,2025,10.32,I_IUAIFE,PC_IND_IUAI,Y65_74
+scopo_studio,Per lo studio (istruzione formale),Italia,65-74,2025,14.45,I_IUAIFE,PC_IND_IUAI,Y65_74
+scopo_privato,Per scopi privati,UE (27 paesi),65-74,2025,87.46,I_IUAIPR,PC_IND_IUAI,Y65_74
+scopo_privato,Per scopi privati,Italia,65-74,2025,73.71,I_IUAIPR,PC_IND_IUAI,Y65_74
+scopo_lavoro,Per lavoro,UE (27 paesi),65-74,2025,23.12,I_IUAIWP,PC_IND_IUAI,Y65_74
+scopo_lavoro,Per lavoro,Italia,65-74,2025,26.64,I_IUAIWP,PC_IND_IUAI,Y65_74

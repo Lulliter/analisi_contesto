@@ -87,7 +87,11 @@ browseURL(here::here("_toDONE.html"))
 - [x] ISTAT BES dei territori (ed. 2025): SCARICATO in `dati/grezzi/istat_bes_territori/` (2026-09-10, tavola unica tutti i domini, province per sesso, 2004→2024; l'uscita precoce NON è provinciale) → ingerito con `ingestione/04_prep_istat_bes.R`; fonte MULTI-modulo: https://www.istat.it/statistiche-per-temi/focus/benessere-e-sostenibilita/bes-dei-territori/
 - [x] 2026-09-10 modulo collaudato: ritardo scolastico (MIM per età, serali/CPIA esclusi) + NEET e competenze non adeguate (BES dei territori, via `ingestione/04_prep_istat_bes.R` → `dati/puliti/istat_bes/`); 4 grafici + mappa; pagina `sito/temi/_scuola_dispersione.qmd`
 
-### ⬜ modulo `educ_ia` (idea 2026-09-14)
+### ⬜ modulo `educ_ia` (forse)
+
+- [x] Modulo `giovani_digitale` (quanto e come: internet/pc per età + IA + HBSC) — 3 passi: — NB 2026-09-17: CONFLUITO in `giovani_ict_social` (v. voce sotto): il modulo `giovani_digitale` non si crea; restano qui i passi ancora aperti
+  - [x] 1/3 ISTAT: ~~lanciare `ingestione/06a_get_istat_avq_ict.R` → poi scrivere `06b_prep_istat_avq_ict.R` → `dati/puliti/istat_ict/` (formato lungo)~~ FATTO 2026-09-17 (`06a` lanciato, verificato e documentato: struttura + codelist in json, chiave spiegata, stessa struttura per le 3 tavole; `06b` collaudato → `ict_uso_eta` e `ict_uso_reg`, mancanti solo con segnalazione ISTAT `0`; nuova `R/f_codelist.R`; `_metadati.md` aggiornato). RESTA: trascrivere a mano da pdf `dati/grezzi/istat_cittadini_ict/Testo-integrale-e-nota-metodologica.pdf` ->  `ict_ia_2025_eta_sesso.csv` → NON serve (2026-09-17: nel pdf solo 8 numeri nel testo → citarli in pagina, niente grafico; per il grafico IA v. Eurostat `isoc_ai_iaiu`); social per età: id API del dataflow `DCCV_ICT` (tipo di dato `PARTSOCIA`) dal databrowser ("Query struttura", come per `06a`) — AGGIORNAMENTO 2026-09-17: l'id del dataflow social è diventato FACOLTATIVO (per i social c'è l'indagine Bambini e ragazzi; servirebbe solo per un trend) → voce CHIUSA: la parte obbligatoria è fatta, quella facoltativa è tra le idee del modulo `giovani_ict_social`
+  - [x] 3/3 modulo: `01_dati.R`, `02_output.R` (internet tutti i giorni per età vs totale, trend 2001-2025; pc vs internet; IA 2025 per età e sesso; HBSC), blurb; sezione "L'adozione delle tecnologie negli ultimi quindici anni" in `_educ_ia.qmd` (già predisposta con i grafici previsti nei commenti) — SOSTITUITO 2026-09-17 dalla voce `giovani_ict_social` qui sotto (i grafici internet per età e pc vs internet sono lì; IA da Eurostat, non da ISTAT; HBSC ancora da fare) → voce CHIUSA perché sostituita (non perché fatta tutta: blurb e sezione della pagina sono nella voce sotto, HBSC resta in 2/3)
 
 
 
@@ -98,7 +102,7 @@ browseURL(here::here("_toDONE.html"))
 ## 2.b ...formazione GIOVANI (lavoro e innovazione)
 
 
-### modulo `formaz_e_match_lavoro` (idea 2026-09-10)`
+### modulo `formaz_e_match_lavoro` (forse)`
 
 
 #### sito
