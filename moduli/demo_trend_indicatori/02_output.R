@@ -22,7 +22,7 @@ library(ggiraph)
 #   se manca: install.packages("ggtext"), poi renv::snapshot()
 
 source(here("R", "_parma_colors.R")) # burg_*, grn_*, blu_* ecc.
-source(here("R", "f_caption_fonte.R"))
+source(here("R", "grafici.R"))   # temi, caption, mappe, salvataggio (v. indice in testa al file)
 
 # Parametri ---------------------------------------------------------------
 dir_mod <- here("moduli", "demo_trend_indicatori", "output")
@@ -141,22 +141,9 @@ f_plot_indicatore_demografico <- function(
         "Altre provincie ER" = grey_sc
       )
     ) +
-    theme_minimal(base_size = 15) + # font grandi: girafe rimpicciolisce
+    f_theme_sito_trend() +             # tema del sito (R/grafici.R): font, titoli, legenda
     theme(
-      panel.grid.major = element_line(color = "grey90", linewidth = rel(0.3)),
-      panel.grid.minor = element_blank(),
-      axis.text.x = element_text(angle = 45, hjust = 1, size = rel(0.85)),
-      axis.text.y = element_text(size = rel(0.85)),
       axis.title = element_text(size = rel(1), face = "bold"),
-      plot.title = element_text(size = rel(1.3), face = "bold", margin = margin(b = 10)),
-      # textbox: va a capo da solo alla larghezza effettiva del grafico
-      plot.subtitle = ggtext::element_textbox_simple(
-        size = rel(0.95), lineheight = 1.2, margin = margin(b = 10)
-      ),
-      strip.text = element_text(size = rel(1.1), face = "bold"),
-      legend.text = element_text(size = rel(0.9)),
-      legend.title = element_blank(),
-      legend.position = "bottom",
       panel.spacing = unit(1, "lines")
     ) +
     labs(title = title, subtitle = subtitle, caption = caption, x = "", y = "")

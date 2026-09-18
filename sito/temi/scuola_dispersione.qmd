@@ -44,9 +44,8 @@ library(downloadthis)
 
 dir_disp <- here::here("moduli", "scuola_abband_neet", "output")
 
-source(here::here("R", "f_scarica_dati.R"))
-source(here::here("R", "f_bottoni_dati.R"))
-source(here::here("R", "f_girafe.R"))
+source(here::here("R", "sito.R"))     # bottoni CSV + Excel (f_scarica_dati, f_bottoni_dati)
+source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hover bordeaux)
 ```
 
 ## In sintesi
@@ -68,8 +67,6 @@ Circa un giovane su nove tra i 15 e i 29 anni, in provincia di Parma, non studia
 ```{r}
 #| label: plot_neet_prov_er
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_disp, "plot_neet_prov_er.rds")))
 ```
@@ -144,8 +141,6 @@ In terza media quattro studenti su dieci non raggiungono un livello adeguato in 
 ```{r}
 #| label: plot_competenze_prov_er
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_disp, "plot_competenze_prov_er.rds")))
 ```
@@ -173,7 +168,6 @@ Quasi un alunno su cinque alle superiori, e quasi uno su dodici alle medie, ha p
 ```{r}
 #| label: plot_ritardo_corso_pr_er
 #| output: true
-#| fig-width: 9
 #| fig-height: 6
 
 f_girafe(readRDS(file.path(dir_disp, "plot_ritardo_corso_pr_er.rds")))
@@ -204,7 +198,6 @@ Nel trend decennale del ritardo, si osseva una generale inversione di tendenza a
 ```{r}
 #| label: plot_ritardo_trend_pr_er
 #| output: true
-#| fig-width: 9
 #| fig-height: 6
 
 f_girafe(readRDS(file.path(dir_disp, "plot_ritardo_trend_pr_er.rds")))
@@ -232,7 +225,6 @@ Il ritardo alle medie è più alto nei comuni della pedecollina e della Val Taro
 ```{r}
 #| label: mappa_ritardo_sec1_comuni_pr
 #| output: true
-#| fig-width: 8
 #| fig-height: 6
 
 f_girafe(readRDS(file.path(dir_disp, "mappa_ritardo_sec1_comuni_pr.rds")))

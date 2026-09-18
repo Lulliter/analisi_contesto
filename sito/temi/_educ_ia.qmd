@@ -41,9 +41,8 @@ library(scales)
 library(glue)
 library(downloadthis)
 
-source(here::here("R", "f_scarica_dati.R"))
-source(here::here("R", "f_bottoni_dati.R"))
-source(here::here("R", "f_girafe.R"))
+source(here::here("R", "sito.R"))     # bottoni CSV + Excel (f_scarica_dati, f_bottoni_dati)
+source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hover bordeaux)
 
 dir_ben <- here::here("moduli", "giovani_benessere", "output")
 dir_ict <- here::here("moduli", "giovani_ict_social", "output")
@@ -100,7 +99,6 @@ In poco più di vent'anni l'uso quotidiano di internet è passato da eccezione a
 ```{r}
 #| label: plot_internet_eta
 #| output: true
-#| fig-width: 9
 #| fig-height: 6.5
 
 f_girafe(readRDS(file.path(dir_ict, "plot_internet_eta.rds")))
@@ -119,7 +117,6 @@ f_bottoni_dati("ict_giovani_eta", dir_ict, rds = "plot_internet_eta")
 ```{r}
 #| label: plot_pc_internet
 #| output: true
-#| fig-width: 9
 #| fig-height: 6.5
 
 f_girafe(readRDS(file.path(dir_ict, "plot_pc_internet.rds")))
@@ -163,7 +160,6 @@ Età minima per i social in Italia: controllare la norma e scrivere il riferimen
 ```{r}
 #| label: plot_profilo_social
 #| output: true
-#| fig-width: 9
 #| fig-height: 6.5
 
 f_girafe(readRDS(file.path(dir_ict, "plot_profilo_social.rds")))
@@ -182,7 +178,6 @@ f_bottoni_dati("ragazzi_ict_social", dir_ict, rds = "plot_profilo_social")
 ```{r}
 #| label: plot_amici_online
 #| output: true
-#| fig-width: 9
 #| fig-height: 6.5
 
 f_girafe(readRDS(file.path(dir_ict, "plot_amici_online.rds")))
@@ -201,7 +196,6 @@ f_bottoni_dati("ragazzi_ict_social", dir_ict, rds = "plot_amici_online")
 ```{r}
 #| label: plot_amici_di_persona
 #| output: true
-#| fig-width: 9
 #| fig-height: 6.5
 
 f_girafe(readRDS(file.path(dir_ict, "plot_amici_di_persona.rds")))
@@ -220,7 +214,6 @@ f_bottoni_dati("ragazzi_ict_social", dir_ict, rds = "plot_amici_di_persona")
 ```{r}
 #| label: plot_nuove_amicizie_online
 #| output: true
-#| fig-width: 9
 #| fig-height: 6.5
 
 f_girafe(readRDS(file.path(dir_ict, "plot_nuove_amicizie_online.rds")))
@@ -259,7 +252,6 @@ L'IA generativa è entrata per prima nelle abitudini dei più giovani, e per gli
 ```{r}
 #| label: plot_ia_eta
 #| output: true
-#| fig-width: 9
 #| fig-height: 6.5
 
 f_girafe(readRDS(file.path(dir_ict, "plot_ia_eta.rds")))
@@ -278,7 +270,6 @@ f_bottoni_dati("ia_eta_it_ue", dir_ict, rds = "plot_ia_eta")
 ```{r}
 #| label: plot_ia_scopi
 #| output: true
-#| fig-width: 9
 #| fig-height: 6.5
 
 f_girafe(readRDS(file.path(dir_ict, "plot_ia_scopi.rds")))
@@ -344,8 +335,6 @@ L'IA arriva su una generazione che ha subito uno shock negli ultimi dieci anni: 
 ```{r}
 #| label: plot_salute_mentale_14_19
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_ben, "plot_salute_mentale_14_19.rds")))
 ```
@@ -363,8 +352,6 @@ f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_salute_mentale_14_1
 ```{r}
 #| label: plot_salute_mentale_20_24
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_ben, "plot_salute_mentale_20_24.rds")))
 ```
@@ -382,8 +369,6 @@ f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_salute_mentale_20_2
 ```{r}
 #| label: plot_salute_mentale_totale
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_ben, "plot_salute_mentale_totale.rds")))
 ```
@@ -416,8 +401,6 @@ Le relazioni con gli amici raccontano una storia più lunga: la pandemia è il p
 ```{r}
 #| label: plot_amici_14_19
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_ben, "plot_amici_14_19.rds")))
 ```
@@ -435,8 +418,6 @@ f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_amici_14_19")
 ```{r}
 #| label: plot_amici_20_24
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_ben, "plot_amici_20_24.rds")))
 ```
@@ -454,8 +435,6 @@ f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_amici_20_24")
 ```{r}
 #| label: plot_amici_totale
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_ben, "plot_amici_totale.rds")))
 ```

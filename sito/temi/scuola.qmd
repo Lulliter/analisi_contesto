@@ -48,9 +48,8 @@ dir_disab <- here::here("moduli", "scuola_disabilita", "output")
 # Scarico dati: bottoni CSV + Excel sotto ogni grafico (funzioni generali in R/;
 # titolo e fonte del grafico finiscono nel foglio "Metadati" dell'Excel).
 # Piu' grafici possono condividere lo stesso csv: si passa il grafico in `rds`
-source(here::here("R", "f_scarica_dati.R"))
-source(here::here("R", "f_bottoni_dati.R"))
-source(here::here("R", "f_girafe.R"))  # girafe standard: tooltip + hover bordeaux
+source(here::here("R", "sito.R"))     # bottoni CSV + Excel (f_scarica_dati, f_bottoni_dati)
+source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hover bordeaux)
 ```
 
 ## In sintesi 
@@ -80,8 +79,6 @@ readRDS(here::here("moduli", "scuola_iscritti", "output", "iscritti_trend_pr.rds
 ```{r}
 #| label: plot_iscritti_ordine_pr
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_scuola, "plot_iscritti_ordine_pr.rds")))
 ```
@@ -102,7 +99,6 @@ Il calo demografico è entrato in classe dal basso: primaria e secondaria di I g
 ```{r}
 #| label: plot_iscritti_ordine_gestione_pr
 #| output: true
-#| fig-width: 9
 #| fig-height: 8
 
 f_girafe(readRDS(file.path(dir_scuola, "plot_iscritti_ordine_gestione_pr.rds")))
@@ -125,7 +121,6 @@ Il numero di iscritti alle scuole paritarie è relativamente più alto nella fas
 ```{r}
 #| label: plot_plessi_ordine_gestione_pr
 #| output: true
-#| fig-width: 9
 #| fig-height: 8
 
 # i PLESSI (dall'anagrafe) includono l'infanzia e mostrano aperture/chiusure
@@ -154,7 +149,6 @@ servono, e dove si concentrano le presenze straniere.
 ```{r}
 #| label: mappa_n_plessi_comuni_pr
 #| output: true
-#| fig-width: 8
 #| fig-height: 6
 
 f_girafe(readRDS(file.path(dir_scuola, "mappa_n_plessi_comuni_pr.rds")))
@@ -171,7 +165,6 @@ f_bottoni_dati("scuola_comuni_pr", dir_scuola, rds = "mappa_n_plessi_comuni_pr")
 ```{r}
 #| label: mappa_alunni_comuni_pr
 #| output: true
-#| fig-width: 8
 #| fig-height: 6
 
 f_girafe(readRDS(file.path(dir_scuola, "mappa_alunni_comuni_pr.rds")))
@@ -188,7 +181,6 @@ f_bottoni_dati("scuola_comuni_pr", dir_scuola, rds = "mappa_alunni_comuni_pr")
 ```{r}
 #| label: mappa_quota_stranieri_comuni_pr
 #| output: true
-#| fig-width: 8
 #| fig-height: 6
 
 f_girafe(readRDS(file.path(dir_scuola, "mappa_quota_stranieri_comuni_pr.rds")))
@@ -211,7 +203,6 @@ La geografia scolastica ricalca quella demografica: plessi e alunni si concentra
 ```{r}
 #| label: mappa_paritarie_plessi_pr
 #| output: true
-#| fig-width: 9
 #| fig-height: 8
 
 f_girafe(readRDS(file.path(dir_scuola, "mappa_paritarie_plessi_pr.rds")))
@@ -262,8 +253,6 @@ _NB: La mappa conta i plessi presenti nell'anagrafe MIM, anche quelli senza iscr
 ```{r}
 #| label: plot_stranieri_prov_er
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_scuola, "plot_stranieri_prov_er.rds")))
 ```
@@ -288,7 +277,6 @@ sopra la media regionale del 18,8%.
 ```{r}
 #| label: plot_stranieri_comuni_pr
 #| output: true
-#| fig-width: 9
 #| fig-height: 9
 
 f_girafe(readRDS(file.path(dir_scuola, "plot_stranieri_comuni_pr.rds")))
@@ -307,7 +295,6 @@ f_bottoni_dati("scuola_comuni_pr", dir_scuola, rds = "plot_stranieri_comuni_pr")
 ```{r}
 #| label: plot_stranieri_comuni_pr_min
 #| output: true
-#| fig-width: 9
 #| fig-height: 10
 
 f_girafe(readRDS(file.path(dir_scuola, "plot_stranieri_comuni_pr_min.rds")))
@@ -338,8 +325,6 @@ I dati sono dell'Ufficio scolastico regionale e riguardano le sole scuole statal
 ```{r}
 #| label: plot_disab_trend_prov_er
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_disab, "plot_disab_trend_prov_er.rds")))
 ```
@@ -355,7 +340,6 @@ f_bottoni_dati("disab_trend_prov_er", dir_disab, rds = "plot_disab_trend_prov_er
 ```{r}
 #| label: plot_disab_indice_pr_er
 #| output: true
-#| fig-width: 9
 #| fig-height: 6
 
 f_girafe(readRDS(file.path(dir_disab, "plot_disab_indice_pr_er.rds")))
@@ -380,7 +364,6 @@ _NB: Il dato conta le certificazioni, non i bisogni: più certificazioni possono
 ```{r}
 #| label: plot_disab_grado_pr_er
 #| output: true
-#| fig-width: 9
 #| fig-height: 6
 
 f_girafe(readRDS(file.path(dir_disab, "plot_disab_grado_pr_er.rds")))

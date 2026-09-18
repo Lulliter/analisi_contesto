@@ -21,8 +21,7 @@ library(scales)
 library(ggtext)
 
 source(here("R", "_parma_colors.R"))
-source(here("R", "f_caption_fonte.R"))
-source(here("R", "f_theme_scuola.R"))
+source(here("R", "grafici.R"))   # temi, caption, mappe, salvataggio (v. indice in testa al file)
 
 # Parametri ---------------------------------------------------------------
 dir_mod <- here("moduli", "giovani_benessere", "output")
@@ -67,7 +66,7 @@ f_plot_salute_mentale <- function(dati, eta_sel, chi) {
     scale_x_continuous(breaks = seq(2016, ANNO_ULTIMO, by = 1)) +
     scale_y_continuous(limits = c(60, 80)) +
     scale_color_manual(values = COL_SESSO) +
-    f_theme_scuola() +
+    f_theme_sito_trend() +
     theme(axis.text.x = element_text(angle = 0, hjust = 0.5),
           # caption lunga: textbox che va a capo da sola alla larghezza del grafico
           plot.caption = ggtext::element_textbox_simple(size = rel(0.65), lineheight = 1.1, margin = margin(t = 8)),
@@ -108,7 +107,7 @@ f_plot_amici <- function(dati, eta_sel, chi) {
     scale_x_continuous(breaks = seq(2005, ANNO_ULTIMO, by = 1)) +
     scale_y_continuous(labels = function(x) scales::percent(x, accuracy = 1), limits = c(0.15, 0.55)) +
     scale_color_manual(values = COL_SESSO) +
-    f_theme_scuola() +
+    f_theme_sito_trend() +
     theme(axis.text.x = element_text(angle = 45, hjust = 1),
           plot.caption = ggtext::element_textbox_simple(size = rel(0.65), lineheight = 1.1, margin = margin(t = 8)),
           plot.caption.position = "plot") +

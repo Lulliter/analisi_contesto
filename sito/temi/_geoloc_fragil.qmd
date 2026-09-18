@@ -99,8 +99,6 @@ Di seguito sono presentati alcuni dati provenienti dall'ultimo censimento della 
 #| label: map_urb_over60
 #| eval: false
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 map_urb_Over70 <- readRDS(
   file = here::here("data", "maps", "map_urb_Over70.rds")
@@ -120,8 +118,6 @@ map_urb_over70_interactive
 #| label: map_urb_Under30
 #| eval: false
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 map_urb_Under30 <- readRDS(
   file = here::here("data", "maps", "map_urb_Under30.rds")
@@ -144,7 +140,6 @@ map_urb_Under30_interactive
 #| label: map_alt_under30_fac
 #| eval: false
 #| output: true
-#| fig-width: 9
 #| fig-height: 14
 
 

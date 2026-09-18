@@ -19,7 +19,7 @@ library(purrr)
 library(readr)
 library(stringr)
 library(jsonlite)
-source(here("R", "f_codelist.R"))   # una codelist del json ISTAT → tibble codice/etichetta
+source(here("R", "istat.R"))   # funzioni di ingestione ISTAT (v. indice in testa al file)
 
 # Parametri ---------------------------------------------------------------
 dir_in  <- here("dati", "grezzi", "istat_cittadini_ict")

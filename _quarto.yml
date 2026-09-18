@@ -86,6 +86,14 @@ format:
     # mainfont: "Lato"
     # monofont: "Fira Mono"
 
+# --- Grafici: larghezza UNICA (regola del sito, 2026-09-18). ggiraph disegna
+#     l'svg largo fig-width pollici e lo riscala alla colonna di testo (~650 px):
+#     con 9 pollici 1 pt del tema (R/grafici.R, base 15) = 1 pt a schermo.
+#     Nei chunk NON si ridichiara fig-width; fig-height solo se serve un'altezza
+#     diversa da 7 (cambia le proporzioni, non i font)
+fig-width: 9
+fig-height: 7
+
 # --- Default options for tbl and fig captions location (top)
 fig-cap-location: top
 tbl-cap-location: top

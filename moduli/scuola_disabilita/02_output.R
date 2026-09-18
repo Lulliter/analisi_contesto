@@ -21,9 +21,7 @@ library(scales)
 library(ggtext)
 
 source(here("R", "_parma_colors.R"))
-source(here("R", "f_caption_fonte.R"))
-source(here("R", "f_theme_scuola.R"))
-source(here("R", "f_lab_as.R"))
+source(here("R", "grafici.R"))   # temi, caption, mappe, salvataggio (v. indice in testa al file)
 
 # Parametri ---------------------------------------------------------------
 dir_mod <- here("moduli", "scuola_disabilita", "output")
@@ -83,7 +81,7 @@ plot_disab_trend_prov_er <- disab_prov_prep |>
     "Emilia-Romagna" = grn_md,
     "Altre province ER" = grey_sc
   )) +
-  f_theme_scuola() +
+  f_theme_sito_trend() +
   labs(
     title = str_wrap(glue("Alunni con disabilità per provincia ({PERIODO_AS})"), 55),
     subtitle = "Indicatore: % di alunni con certificazione di disabilità sugli iscritti; scuole statali, infanzia inclusa; ultimo a.s. provvisorio (organico di fatto a settembre)",
@@ -115,7 +113,7 @@ plot_disab_grado_pr_er <- disab_grado_prep |>
   scale_y_continuous(labels = function(x) scales::percent(x, accuracy = 1),
                      expand = expansion(mult = c(0, 0.12))) +
   scale_fill_manual(values = c("Parma" = ylw_lg, "Emilia-Romagna" = grn_md)) +
-  f_theme_scuola() +
+  f_theme_sito_trend() +
   theme(axis.text.x = element_text(angle = 0, hjust = 0.5)) +
   labs(
     title = str_wrap(glue("Alunni con disabilità per grado di scuola (a.s. {f_lab_as(ANNO_ULTIMO)})"), 55),
@@ -160,7 +158,7 @@ plot_disab_indice_pr_er <- disab_indice_prep |>
   facet_wrap(~ serie) + # scala y comune: la piattezza dei totali è il messaggio
   scale_x_continuous(breaks = ANNO_PRIMO:ANNO_ULTIMO, labels = f_lab_as(ANNO_PRIMO:ANNO_ULTIMO)) + # etichette "2016/17" (già calcolate: vedi nota etichetta_as)
   scale_color_manual(values = c("Parma" = ylw_lg, "Emilia-Romagna" = grn_md)) +
-  f_theme_scuola() +
+  f_theme_sito_trend() +
   theme(strip.text = element_text(size = rel(1), face = "bold")) +
   labs(
     title = str_wrap(glue("Alunni totali e con disabilità: numeri indice ({PERIODO_AS})"), 55),

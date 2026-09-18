@@ -21,7 +21,7 @@ library(ggiraph)
 library(scales)
 
 source(here("R", "_parma_colors.R"))
-source(here("R", "f_caption_fonte.R"))
+source(here("R", "grafici.R"))   # temi, caption, mappe, salvataggio (v. indice in testa al file)
 
 # Parametri ---------------------------------------------------------------
 dir_mod <- here("moduli", "demo_trend_previs", "output")
@@ -43,19 +43,7 @@ COLORI_TREND <- c(
 COL_SESSO <- c(Maschi = sesso_m_pal, Femmine = sesso_f_pal)
 
 # tema comune dei trend (stesse scelte di demo_trend_indicatori)
-theme_trend <- theme_minimal(base_size = 15) +
-  theme(
-    panel.grid.major = element_line(color = "grey90", linewidth = rel(0.3)),
-    panel.grid.minor = element_blank(),
-    axis.text.x = element_text(angle = 45, hjust = 1, size = rel(0.85)),
-    axis.text.y = element_text(size = rel(0.85)),
-    plot.title = element_text(size = rel(1.3), face = "bold", margin = margin(b = 10)),
-    plot.subtitle = ggtext::element_textbox_simple(
-      size = rel(0.95), lineheight = 1.2, margin = margin(b = 10)
-    ),
-    legend.title = element_blank(),
-    legend.position = "bottom"
-  )
+theme_trend <- f_theme_sito_trend()   # tema del sito (R/grafici.R)
 
 # Carica input -------------------------------------------------------------
 previs_pop_totale <- readRDS(file.path(dir_mod, "previs_pop_totale.rds"))
@@ -167,14 +155,7 @@ p03_piramide_pr <- ggplot(df_2050, aes(x = quota_s, y = eta)) +
     subtitle = "Indicatore: % della popolazione del territorio per classe d'età e sesso. Barre colorate: 2050; grigio semitrasparente: 2024; previsioni Istat, scenario mediano",
     x = "% della popolazione del territorio", y = NULL, caption = CAP
   ) +
-  theme_minimal(base_size = 13) +
-  theme(
-    panel.grid.major.y = element_blank(),
-    panel.grid.minor   = element_blank(),
-    legend.position    = "top",
-    plot.subtitle      = ggtext::element_textbox_simple(size = 10, colour = "grey30", lineheight = 1.2, margin = margin(b = 8)),
-    plot.caption       = element_text(hjust = 0, size = 8, colour = "grey30")
-  )
+  f_theme_sito_piramide()               # tema del sito (R/grafici.R)
 p03_piramide_pr
 
 # 4. p04: quota 65+ e 80+ — Parma/ER/Italia evidenziate, altre province ER grigie ----

@@ -43,9 +43,8 @@ library(scales)
 library(glue)
 library(downloadthis)
 
-source(here::here("R", "f_scarica_dati.R"))
-source(here::here("R", "f_bottoni_dati.R"))
-source(here::here("R", "f_girafe.R"))
+source(here::here("R", "sito.R"))     # bottoni CSV + Excel (f_scarica_dati, f_bottoni_dati)
+source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hover bordeaux)
 ```
 
 ::: {.callout-warning}

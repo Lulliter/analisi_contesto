@@ -46,9 +46,8 @@ library(scales) # percent() nelle etichette della piramide salvata come rds
 
 # Scarico dati: bottoni CSV + Excel sotto ogni grafico (funzioni generali in R/;
 # titolo e fonte del grafico finiscono nel foglio "Metadati" dell'Excel)
-source(here::here("R", "f_scarica_dati.R"))
-source(here::here("R", "f_bottoni_dati.R"))
-source(here::here("R", "f_girafe.R"))  # girafe standard: tooltip + hover bordeaux
+source(here::here("R", "sito.R"))     # bottoni CSV + Excel (f_scarica_dati, f_bottoni_dati)
+source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hover bordeaux)
 dir_previs <- here::here("moduli", "demo_trend_previs", "output")
 ```
 
@@ -65,8 +64,6 @@ I dati di questa pagina vengono dalle **previsioni ISTAT della popolazione 2024-
 ```{r}
 #| label: p01_pop_indice
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_previs, "p01_pop_indice.rds")))
 ```
@@ -91,8 +88,6 @@ f_bottoni_dati("p01_pop_indice", dir_previs)
 ```{r}
 #| label: p02_pop_totale
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_previs, "p02_pop_totale.rds")))
 ```
@@ -111,8 +106,6 @@ f_bottoni_dati("p02_pop_totale", dir_previs)
 ```{r}
 #| label: p03_piramide_pr
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 # piramide statica (non ggiraph)
 readRDS(file.path(dir_previs, "p03_piramide_pr.rds"))
@@ -138,8 +131,6 @@ f_bottoni_dati("p03_piramide_pr", dir_previs)
 ```{r}
 #| label: p04_quota_anziani
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_previs, "p04_quota_anziani.rds")))
 ```
@@ -164,8 +155,6 @@ f_bottoni_dati("p04_quota_anziani", dir_previs)
 ```{r}
 #| label: p05a_anziani_parma
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_previs, "p05a_anziani_parma.rds")))
 ```
@@ -181,8 +170,6 @@ f_bottoni_dati("p05a_anziani_parma", dir_previs)
 ```{r}
 #| label: p05b_anziani_er
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_previs, "p05b_anziani_er.rds")))
 ```
@@ -198,8 +185,6 @@ f_bottoni_dati("p05b_anziani_er", dir_previs)
 ```{r}
 #| label: p05c_anziani_italia
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_previs, "p05c_anziani_italia.rds")))
 ```
@@ -224,8 +209,6 @@ f_bottoni_dati("p05c_anziani_italia", dir_previs)
 ```{r}
 #| label: p06_dipendenza_anziani
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_previs, "p06_dipendenza_anziani.rds")))
 ```
@@ -250,8 +233,6 @@ f_bottoni_dati("p06_dipendenza_anziani", dir_previs)
 ```{r}
 #| label: p07_nati_morti
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_previs, "p07_nati_morti.rds")))
 ```

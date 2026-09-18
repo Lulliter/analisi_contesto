@@ -18,12 +18,7 @@ library(sf)
 library(dplyr, warn.conflicts = FALSE)
 library(tibble)
 
-source(here("R", "istat_shp_get.R"))
-source(here("R", "istat_situas_get.R"))
-source(here("R", "istat_situas_sf_prep.R"))
-source(here("R", "istat_situas_join_comuni_sf.R"))
-source(here("R", "write_codici_vec.R"))
-source(here("R", "utilities.R"))
+source(here("R", "istat.R"))   # funzioni di ingestione ISTAT (v. indice in testa al file)
 
 # --- Parametri ------------------------------------------------------------
 ANNO_SHP   <- "2026"                       # annata confini (al 1° gennaio)

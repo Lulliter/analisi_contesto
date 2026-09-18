@@ -21,12 +21,8 @@ library(ggplot2)
 library(scales)
 
 source(here("R", "_parma_colors.R"))
-source(here("R", "f_caption_fonte.R"))
+source(here("R", "grafici.R"))   # temi, caption, mappe, salvataggio (v. indice in testa al file)
 # funzioni-mappa promosse a R/ il 2026-07-18 (2° utilizzatore: scuola_iscritti)
-source(here("R", "f_aggiungi_classe.R"))
-source(here("R", "f_disegna_mappa.R"))
-source(here("R", "f_salva_mappa.R"))
-source(here("R", "f_pal5.R"))
 
 # Parametri ---------------------------------------------------------------
 dir_mod <- here("moduli", "pop_mappe_tematiche")
@@ -97,7 +93,7 @@ f_mappa_pr <- function(var, titolo, indicatore, palette5) {
   )
 }
 
-# (f_salva_mappa: ora in R/)
+# (f_salva_plot: in R/grafici.R)
 
 # --- 3) Definizione degli indicatori -----------------------------------------
 # palette a 5 colori: f_pal5 ora in R/
@@ -117,8 +113,8 @@ mappe_pr <- indicatori |> pmap(f_mappa_pr) |> set_names(indicatori$var)
 mappe_er$quota_stranieri # anteprima di una; tutte: mappe_er
 mappe_pr$quota_stranieri # idem: mappe_pr
 
-iwalk(mappe_er, function(m, nm) f_salva_mappa(m, paste0("mappa_", nm, "_er"), dir_out = file.path(dir_mod, "output")))
-iwalk(mappe_pr, function(m, nm) f_salva_mappa(m, paste0("mappa_", nm, "_pr"), dir_out = file.path(dir_mod, "output")))
+iwalk(mappe_er, function(m, nm) f_salva_plot(m, paste0("mappa_", nm, "_er"), dir_out = file.path(dir_mod, "output")))
+iwalk(mappe_pr, function(m, nm) f_salva_plot(m, paste0("mappa_", nm, "_pr"), dir_out = file.path(dir_mod, "output")))
 
 # Verifiche rapide (da eseguire a mano) ------------------------------------
 # I numeri del blurb (Messaggio, 2026-09-11): quintili ER, Parma vs ER, comuni PR agli estremi

@@ -16,7 +16,7 @@
 # Setup -------------------------------------------------------------------
 library(here)
 
-source(here("R", "f_istat_scarica_cens.R"))   # f_scarica_istat_blocchi()
+source(here("R", "istat.R"))   # funzioni di ingestione ISTAT (v. indice in testa al file)
 
 # --- Parametri ------------------------------------------------------------
 ANNO_CENS  <- 2024

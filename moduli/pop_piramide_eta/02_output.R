@@ -17,7 +17,7 @@ library(scales)
 library(stringr)
 
 source(here("R", "_parma_colors.R"))
-source(here("R", "f_caption_fonte.R"))
+source(here("R", "grafici.R"))   # temi, caption, mappe, salvataggio (v. indice in testa al file)
 
 # Parametri ---------------------------------------------------------------
 dir_mod <- here("moduli", "pop_piramide_eta")
@@ -76,14 +76,7 @@ f_piramide <- function(cod_target, cod_confronto) {
                         "Barre piene: ", lbl_t, "; barra semitrasparente in overlay: ", lbl_c),
       x = "% della popolazione del territorio", y = NULL, caption = FONTE
     ) +
-    theme_minimal(base_size = 13) +
-    theme(
-      panel.grid.major.y = element_blank(),
-      panel.grid.minor   = element_blank(),
-      legend.position    = "top",
-      plot.subtitle      = ggtext::element_textbox_simple(size = 10, colour = "grey30", lineheight = 1.2, margin = margin(b = 8)),
-      plot.caption       = element_text(hjust = 0, size = 8, colour = "grey30")
-    )
+    f_theme_sito_piramide()             # tema del sito (R/grafici.R)
   attr(g, "dati") <- dati
   g
 }
@@ -115,15 +108,7 @@ f_piramide_cittadinanza <- function(cod_territorio) {
       subtitle = "Indicatore: % della popolazione di ciascun gruppo per classe d'età e sesso (si confrontano le forme, non le taglie)",
       x = "% della popolazione di ciascun gruppo", y = NULL, caption = FONTE
     ) +
-    theme_minimal(base_size = 13) +
-    theme(
-      panel.grid.major.y = element_blank(),
-      panel.grid.minor   = element_blank(),
-      legend.position    = "top",
-      plot.subtitle      = ggtext::element_textbox_simple(size = 10, colour = "grey30", lineheight = 1.2, margin = margin(b = 8)),
-      strip.text         = element_text(face = "bold"),
-      plot.caption       = element_text(hjust = 0, size = 8, colour = "grey30")
-    )
+    f_theme_sito_piramide()             # tema del sito (R/grafici.R)
   attr(g, "dati") <- dati
   g
 }

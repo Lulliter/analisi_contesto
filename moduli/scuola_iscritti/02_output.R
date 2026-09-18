@@ -27,14 +27,8 @@ library(patchwork) # per impilare i pannelli statale/paritaria (operatore /)
 library(readr)
 
 source(here("R", "_parma_colors.R"))
-source(here("R", "f_caption_fonte.R"))
-source(here("R", "f_aggiungi_classe.R"))
-source(here("R", "f_disegna_mappa.R"))
-source(here("R", "f_salva_mappa.R"))
-source(here("R", "f_pal5.R"))
+source(here("R", "grafici.R"))   # temi, caption, mappe, salvataggio (v. indice in testa al file)
 # promosse a R/ il 2026-09-10 (usate anche da scuola_disabilita)
-source(here("R", "f_lab_as.R"))
-source(here("R", "f_theme_scuola.R"))
 
 # Parametri ---------------------------------------------------------------
 dir_mod <- here("moduli", "scuola_iscritti", "output")
@@ -78,7 +72,7 @@ plot_iscritti_ordine_pr <- iscritti_trend_pr |>
     "Secondaria I grado" = grn_md,
     "Secondaria II grado" = grn_sc
   )) +
-  f_theme_scuola() +
+  f_theme_sito_trend() +
   labs(
     title = str_wrap(glue("Iscritti nelle scuole della provincia di Parma ({PERIODO_AS})"), 55),
     subtitle = "Indicatore: numero di iscritti, statali + paritarie, per ordine di scuola",
@@ -111,7 +105,7 @@ f_pannello_gestione <- function(gest, pal3) {
       "Secondaria I grado"  = pal3[2],
       "Secondaria II grado" = pal3[3]
     )) +
-    f_theme_scuola() +
+    f_theme_sito_trend() +
     # NB: stesso tipo di elemento del tema (textbox), se no il merge fallisce
     theme(legend.position = "bottom",
           plot.subtitle = ggtext::element_textbox_simple(
@@ -127,13 +121,7 @@ plot_iscritti_ordine_gestione_pr <-
     title = str_wrap(glue("Iscritti a Parma: statali e paritarie a confronto ({PERIODO_AS})"), 55),
     subtitle = "Indicatore: numero di iscritti per ordine; scale dell'asse y diverse tra i pannelli (statali v. paritarie)",
     caption = CAP,
-    theme = theme(
-      # stesse classi dei pannelli (merge tra classi diverse vietato):
-      # titolo element_text, sottotitolo textbox
-      plot.title = element_text(size = rel(1.3), face = "bold"),
-      plot.subtitle = ggtext::element_textbox_simple(size = rel(0.95), colour = "grey30"),
-      plot.caption = element_text(hjust = 0, size = 8, colour = "grey30")
-    )
+    theme = f_theme_sito()   # titolo/sottotitolo/caption con le stesse dimensioni degli altri grafici
   )
 
 plot_iscritti_ordine_gestione_pr
@@ -169,7 +157,7 @@ f_pannello_plessi <- function(gest, pal4) {
       "Secondaria I grado"  = pal4[3],
       "Secondaria II grado" = pal4[4]
     )) +
-    f_theme_scuola() +
+    f_theme_sito_trend() +
     theme(legend.position = "bottom", # come i pannelli iscritti
           plot.subtitle = ggtext::element_textbox_simple(
             face = "bold", size = rel(0.95), margin = margin(b = 10)
@@ -185,11 +173,7 @@ plot_plessi_ordine_gestione_pr <-
     title = str_wrap("Plessi scolastici a Parma: statali e paritarie (infanzia inclusa)", 55),
     subtitle = "Indicatore: numero di sedi in anagrafe per a.s.; scale y diverse tra i pannelli",
     caption = CAP_ANAGRAFE,
-    theme = theme(
-      plot.title = element_text(size = rel(1.3), face = "bold"),
-      plot.subtitle = ggtext::element_textbox_simple(size = rel(0.95), colour = "grey30"),
-      plot.caption = element_text(hjust = 0, size = 8, colour = "grey30")
-    )
+    theme = f_theme_sito()   # titolo/sottotitolo/caption come gli altri grafici
   )
 
 plot_plessi_ordine_gestione_pr
@@ -238,7 +222,7 @@ plot_stranieri_prov_er <- stranieri_prov_prep |>
     "Emilia-Romagna" = grn_md,
     "Altre province ER" = grey_sc
   )) +
-  f_theme_scuola() +
+  f_theme_sito_trend() +
   labs(
     # titolo corto (quello lungo scappava fuori); il dettaglio sta nel sottotitolo
     title = str_wrap(glue("Alunni stranieri per provincia ({PERIODO_AS})"), 55),
@@ -265,7 +249,7 @@ plot_stranieri_comuni_pr <- scuola_comuni_pr |>
   geom_vline(xintercept = SOGLIA_RIF_STRANIERI, color = ylw_md,
              linetype = "dashed", linewidth = 0.85) +
   scale_x_continuous(labels = function(x) scales::percent(x, accuracy = 1)) +
-  f_theme_scuola() +
+  f_theme_sito_trend() +
   theme(axis.text.x = element_text(angle = 0, hjust = 0.5)) +
   labs(
     title = str_wrap(glue("Alunni stranieri per comune, provincia di Parma (a.s. {f_lab_as(ANNO_ULTIMO)})"), 55),
@@ -293,7 +277,7 @@ plot_stranieri_comuni_pr_min <- scuola_comuni_pr |>
   geom_vline(xintercept = SOGLIA_RIF_STRANIERI, color = ylw_md,
              linetype = "dashed", linewidth = 0.85) +
   scale_x_continuous(labels = function(x) scales::percent(x, accuracy = 1)) +
-  f_theme_scuola() +
+  f_theme_sito_trend() +
   theme(axis.text.x = element_text(angle = 0, hjust = 0.5)) +
   labs(
     title = str_wrap(glue("Alunni stranieri per comune: le incidenze più basse (a.s. {f_lab_as(ANNO_ULTIMO)})"), 55),
@@ -439,7 +423,7 @@ mappe_comuni_pr <- mappe_indicatori |>
 
 mappe_comuni_pr$mappa_quota_stranieri_comuni_pr # anteprima di una; tutte: mappe_comuni_pr
 purrr::iwalk(mappe_comuni_pr, function(m, nome) {
-  f_salva_mappa(m, nome, dir_out = dir_mod)
+  f_salva_plot(m, nome, dir_out = dir_mod)
 })
 
 ## 3d. Mappa: % di PLESSI paritari per comune e ordine (2 x 2) -------------
@@ -496,18 +480,10 @@ mappa_paritarie_plessi_pr <- ggplot() +
     ),
     caption = CAP_ANAGRAFE # infanzia inclusa: caption coerente
   ) +
-  theme_minimal(base_size = 14) +
-  theme(
-    axis.text    = element_blank(),
-    axis.title   = element_blank(),
-    axis.ticks   = element_blank(),
-    panel.grid   = element_blank(),
-    strip.text   = element_text(face = "bold"),
-    plot.caption = element_text(hjust = 0, size = 8, colour = "grey30")
-  )
+  f_theme_sito_mappa()   # tema mappe del sito (R/grafici.R)
 
 mappa_paritarie_plessi_pr
-f_salva_mappa(mappa_paritarie_plessi_pr, "mappa_paritarie_plessi_pr",
+f_salva_plot(mappa_paritarie_plessi_pr, "mappa_paritarie_plessi_pr",
               dir_out = dir_mod, width = 9, height = 8)
 
 ## 3e. Mappa: % di ISCRITTI in paritarie per comune e ordine ----------------
@@ -563,18 +539,10 @@ mappa_paritarie_iscritti_pr <- ggplot() +
     ),
     caption = CAP
   ) +
-  theme_minimal(base_size = 14) +
-  theme(
-    axis.text    = element_blank(),
-    axis.title   = element_blank(),
-    axis.ticks   = element_blank(),
-    panel.grid   = element_blank(),
-    strip.text   = element_text(face = "bold"),
-    plot.caption = element_text(hjust = 0, size = 8, colour = "grey30")
-  )
+  f_theme_sito_mappa()   # tema mappe del sito (R/grafici.R)
 
 mappa_paritarie_iscritti_pr
-f_salva_mappa(mappa_paritarie_iscritti_pr, "mappa_paritarie_iscritti_pr",
+f_salva_plot(mappa_paritarie_iscritti_pr, "mappa_paritarie_iscritti_pr",
               dir_out = dir_mod, width = 9, height = 8)
 
 # 4. Salva i grafici (rds per il sito + png; nome file = oggetto) ----------

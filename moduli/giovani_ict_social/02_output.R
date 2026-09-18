@@ -25,8 +25,7 @@ library(scales)
 library(ggtext)
 
 source(here("R", "_parma_colors.R"))
-source(here("R", "f_caption_fonte.R"))
-source(here("R", "f_theme_scuola.R"))
+source(here("R", "grafici.R"))   # temi, caption, mappe, salvataggio (v. indice in testa al file)
 
 # Parametri ---------------------------------------------------------------
 dir_mod <- here("moduli", "giovani_ict_social", "output")
@@ -153,7 +152,7 @@ plot_internet_eta <- internet_eta_prep |>
   scale_y_continuous(limits = c(0, 100), labels = scales::label_number(suffix = "%")) +
   scale_color_manual(values = COL_ETA) +
   scale_linetype_manual(values = c("TRUE" = "solid", "FALSE" = "dashed"), guide = "none") +
-  f_theme_scuola() +
+  f_theme_sito_trend() +
   theme(plot.caption = element_text(hjust = 0), plot.caption.position = "plot") +
   labs(title = str_wrap(glue("Chi usa internet tutti i giorni, per età ({ANNO_PRIMO_ICT}-{ANNO_ULTIMO_ICT})"), 55),
        subtitle = "Indicatore: % delle persone della stessa età che usano internet tutti i giorni. Linea tratteggiata = popolazione di 6 anni e più",
@@ -183,7 +182,7 @@ plot_pc_internet <- pc_internet_prep |>
   scale_x_continuous(breaks = BREAKS_ANNI_PANNELLI) +
   scale_y_continuous(limits = c(0, 100), labels = scales::label_number(suffix = "%")) +
   scale_color_manual(values = COL_STRUMENTO) +
-  f_theme_scuola() +
+  f_theme_sito_trend() +
   theme(axis.text.x = element_text(angle = 0, hjust = 0.5),
         strip.text = element_text(size = rel(1), face = "bold"),
         plot.caption = element_text(hjust = 0), plot.caption.position = "plot") +
@@ -236,7 +235,7 @@ f_plot_risposte <- function(indicatore_sel, titolo, sottotitolo, dati) {
     # legenda delle risposte in grigio neutro (vale per i tre colori), al massimo 3 voci per riga
     guides(alpha = guide_legend(nrow = ceiling(length(livelli) / 3), byrow = TRUE,
                                 override.aes = list(fill = grey_extra_sc))) +
-    f_theme_scuola() +
+    f_theme_sito_trend() +
     theme(axis.text.x = element_text(angle = 0, hjust = 0.5),
           strip.text = element_text(size = rel(1), face = "bold"),
           plot.caption = element_text(hjust = 0),          # caption allineata a sinistra...
@@ -291,7 +290,7 @@ plot_ia_eta <- ia_eta_prep |>
             position = position_dodge(width = 0.75), vjust = -0.4, size = 3.8) +
   scale_y_continuous(labels = scales::label_number(suffix = "%"), expand = expansion(mult = c(0, 0.12))) +
   scale_fill_manual(values = COL_TERRITORIO) +
-  f_theme_scuola() +
+  f_theme_sito_trend() +
   theme(axis.text.x = element_text(angle = 0, hjust = 0.5),
         plot.caption = element_text(hjust = 0), plot.caption.position = "plot") +
   labs(title = str_wrap(glue("Chi usa l'IA generativa, per età ({ANNO_IA})"), 55),
@@ -325,7 +324,7 @@ plot_ia_scopi <- ia_scopi_prep |>
   scale_y_continuous(limits = c(0, 100), labels = scales::label_number(suffix = "%"),
                      expand = expansion(mult = c(0, 0.05))) +
   scale_fill_manual(values = COL_TERRITORIO) +
-  f_theme_scuola() +
+  f_theme_sito_trend() +
   theme(axis.text.x = element_text(angle = 0, hjust = 0.5),
         strip.text = element_text(size = rel(1), face = "bold"),
         plot.caption = element_text(hjust = 0), plot.caption.position = "plot") +

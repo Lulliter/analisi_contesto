@@ -15,7 +15,7 @@ library(here)
 library(sf)
 library(dplyr, warn.conflicts = FALSE)
 
-source(here("R", "istat_shp_get.R"))   # per read_shp_utf8()
+source(here("R", "istat.R"))   # funzioni di ingestione ISTAT (v. indice in testa al file)
 
 # Parametri ---------------------------------------------------------------
 ANNO_SHP <- "2026"

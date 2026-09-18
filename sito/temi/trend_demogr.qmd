@@ -53,9 +53,8 @@ library(tidyr)  # pivot_wider per la vista "larga"
 
 # Scarico dati: bottoni CSV + Excel sotto ogni grafico (funzioni generali in R/;
 # titolo e fonte del grafico finiscono nel foglio "Metadati" dell'Excel)
-source(here::here("R", "f_scarica_dati.R"))
-source(here::here("R", "f_bottoni_dati.R"))
-source(here::here("R", "f_girafe.R"))  # girafe standard: tooltip + hover bordeaux
+source(here::here("R", "sito.R"))     # bottoni CSV + Excel (f_scarica_dati, f_bottoni_dati)
+source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hover bordeaux)
 dir_demo  <- here::here("moduli", "demo_trend_indicatori", "output")
 dir_piram <- here::here("moduli", "pop_piramide_eta", "output")
 ```
@@ -92,8 +91,6 @@ L'analisi mette a confronto la provincia di Parma con le altre province della re
 ```{r}
 #| label: p01_e_m
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_demo, "p01_e_m.rds")))
 ```
@@ -118,8 +115,6 @@ f_bottoni_dati("p01_e_m", dir_demo)
 ```{r}
 #| label: p06_0_14_anni
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_demo, "p06_0_14_anni.rds")))
 ```
@@ -144,8 +139,6 @@ f_bottoni_dati("p06_0_14_anni", dir_demo)
 ```{r}
 #| label: p06_15_64_anni
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_demo, "p06_15_64_anni.rds")))
 ```
@@ -170,8 +163,6 @@ f_bottoni_dati("p06_15_64_anni", dir_demo)
 ```{r}
 #| label: p06_65piu_anni
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_demo, "p06_65piu_anni.rds")))
 ```
@@ -198,8 +189,6 @@ f_bottoni_dati("p06_65piu_anni", dir_demo)
 ```{r}
 #| label: p10_quoziente_di_natalità
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_demo, "p10_quoziente_di_natalità.rds")))
 ```
@@ -224,8 +213,6 @@ f_bottoni_dati("p10_quoziente_di_natalità", dir_demo)
 ```{r}
 #| label: p09_quoziente_di_mortalità
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_demo, "p09_quoziente_di_mortalità.rds")))
 ```
@@ -251,8 +238,6 @@ f_bottoni_dati("p09_quoziente_di_mortalità", dir_demo)
 ```{r}
 #| label: p07_crescita_naturale
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_demo, "p07_crescita_naturale.rds")))
 ```
@@ -277,8 +262,6 @@ f_bottoni_dati("p07_crescita_naturale", dir_demo)
 ```{r}
 #| label: p17_tasso_di_crescita_totale
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_demo, "p17_tasso_di_crescita_totale.rds")))
 ```
@@ -310,7 +293,6 @@ Se confrontate in termini relativi, le distribuzioni per età mostrano che gli i
 ```{r}
 #| label: piramide_pr_vs_er
 #| output: true
-#| fig-width: 9
 #| fig-height: 6
 
 readRDS(here::here("moduli", "pop_piramide_eta", "output", "piramide_pr_vs_er.rds"))
@@ -327,7 +309,6 @@ f_bottoni_dati("piramide_pr_vs_er", dir_piram)
 ```{r}
 #| label: piramide_pr_vs_it
 #| output: true
-#| fig-width: 9
 #| fig-height: 6
 
 readRDS(here::here("moduli", "pop_piramide_eta", "output", "piramide_pr_vs_it.rds"))
@@ -344,7 +325,6 @@ f_bottoni_dati("piramide_pr_vs_it", dir_piram)
 ```{r}
 #| label: piramide_pr_cittadinanza
 #| output: true
-#| fig-width: 9
 #| fig-height: 5
 
 readRDS(here::here("moduli", "pop_piramide_eta", "output", "piramide_pr_cittadinanza.rds"))
@@ -368,8 +348,6 @@ Istat propone diversi indici sintetici per valutare la struttura demografica e l
 ```{r}
 #| label: p02_i_v
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_demo, "p02_i_v.rds")))
 ```
@@ -394,8 +372,6 @@ f_bottoni_dati("p02_i_v", dir_demo)
 ```{r}
 #| label: p03_i_d_s
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 f_girafe(readRDS(file.path(dir_demo, "p03_i_d_s.rds")))
 ```
 
@@ -419,8 +395,6 @@ f_bottoni_dati("p03_i_d_s", dir_demo)
 ```{r}
 #| label: p04_i_d_a
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 #|
 f_girafe(readRDS(file.path(dir_demo, "p04_i_d_a.rds")))
 ```
@@ -447,8 +421,6 @@ f_bottoni_dati("p04_i_d_a", dir_demo)
 ```{r}
 #| label: p11_quoziente_di_nuzialità
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_demo, "p11_quoziente_di_nuzialità.rds")))
 ```
@@ -474,8 +446,6 @@ f_bottoni_dati("p11_quoziente_di_nuzialità", dir_demo)
 ```{r}
 #| label: p08_età_media_al_parto
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_demo, "p08_età_media_al_parto.rds")))
 ```
@@ -501,8 +471,6 @@ f_bottoni_dati("p08_età_media_al_parto", dir_demo)
 ```{r}
 #| label: p18_tasso_di_fecondità_totale
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_demo, "p18_tasso_di_fecondità_totale.rds")))
 ```
@@ -529,8 +497,6 @@ f_bottoni_dati("p18_tasso_di_fecondità_totale", dir_demo)
 ```{r}
 #| label: p15_speranza_di_vita_0
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_demo, "p15_speranza_di_vita_0.rds")))
 ```
@@ -555,8 +521,6 @@ f_bottoni_dati("p15_speranza_di_vita_0", dir_demo)
 ```{r}
 #| label: p16_speranza_di_vita_65
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_demo, "p16_speranza_di_vita_65.rds")))
 ```
@@ -583,8 +547,6 @@ f_bottoni_dati("p16_speranza_di_vita_65", dir_demo)
 ```{r}
 #| label: p12_saldo_migratorio_totale
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_demo, "p12_saldo_migratorio_totale.rds")))
 ```
@@ -608,8 +570,6 @@ f_bottoni_dati("p12_saldo_migratorio_totale", dir_demo)
 ```{r}
 #| label: p13_saldo_migratorio_interno
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_demo, "p13_saldo_migratorio_interno.rds")))
 ```
@@ -634,8 +594,6 @@ f_bottoni_dati("p13_saldo_migratorio_interno", dir_demo)
 ```{r}
 #| label: p14_saldo_migratorio_con_l_estero
 #| output: true
-#| fig-width: 9
-#| fig-height: 7
 
 f_girafe(readRDS(file.path(dir_demo, "p14_saldo_migratorio_con_l_estero.rds")))
 ```

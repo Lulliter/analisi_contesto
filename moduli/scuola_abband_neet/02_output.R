@@ -25,13 +25,7 @@ library(sf)
 
 source(here("R", "formatting.R")) # f_ft, f_ft_titolo_note (tabelle)
 source(here("R", "_parma_colors.R"))
-source(here("R", "f_caption_fonte.R"))
-source(here("R", "f_theme_scuola.R"))
-source(here("R", "f_lab_as.R"))
-source(here("R", "f_aggiungi_classe.R"))
-source(here("R", "f_disegna_mappa.R"))
-source(here("R", "f_salva_mappa.R"))
-source(here("R", "f_pal5.R"))
+source(here("R", "grafici.R"))   # temi, caption, mappe, salvataggio (v. indice in testa al file)
 
 # Parametri ---------------------------------------------------------------
 dir_mod <- here("moduli", "scuola_abband_neet", "output")
@@ -95,7 +89,7 @@ plot_neet_prov_er <- neet_prov_prep |>
   scale_y_continuous(labels = function(x) scales::percent(x, accuracy = 1), limits = c(0, NA)) +
   scale_alpha_manual(values = c(0.35, 1), guide = "none") +
   scale_color_manual(values = COL_TERRITORI) +
-  f_theme_scuola() +
+  f_theme_sito_trend() +
   theme(axis.text.x = element_text(angle = 0, hjust = 0.5)) +
   labs(
     title = str_wrap(glue("Giovani che non studiano e non lavorano (NEET), {ANNO_BES_PRIMO}-{ANNO_ULTIMO}"), 55),
@@ -127,7 +121,7 @@ plot_competenze_prov_er <- competenze_prep |>
   scale_x_continuous(labels = function(x) scales::percent(x, accuracy = 1),
                      limits = c(0, 0.5), expand = expansion(mult = c(0, 0))) +
   scale_fill_manual(values = COL_TERRITORI) +
-  f_theme_scuola() +
+  f_theme_sito_trend() +
   theme(axis.text.x = element_text(angle = 0, hjust = 0.5),
         strip.text = element_text(size = rel(1), face = "bold"),
         panel.spacing.x = unit(2, "lines")) + # altrimenti "50%" e "0%" dei due pannelli si toccano
@@ -207,7 +201,7 @@ plot_ritardo_corso_pr_er <- ritardo_corso_prep |>
              labeller = label_wrap_gen(14)) + # "Secondaria I grado" su 2 righe
   scale_y_continuous(labels = function(x) scales::percent(x, accuracy = 1), limits = c(0, NA)) +
   scale_color_manual(values = COL_TERRITORI) +
-  f_theme_scuola() +
+  f_theme_sito_trend() +
   theme(axis.text.x = element_text(angle = 0, hjust = 0.5),
         strip.text = element_text(size = rel(1), face = "bold")) +
   labs(
@@ -235,7 +229,7 @@ plot_ritardo_trend_pr_er <- ritardo_trend_prep |>
   scale_x_continuous(breaks = ANNO_PRIMO:ANNO_ULTIMO, labels = f_lab_as(ANNO_PRIMO:ANNO_ULTIMO)) +
   scale_y_continuous(labels = function(x) scales::percent(x, accuracy = 1), limits = c(0, NA)) +
   scale_color_manual(values = COL_TERRITORI) +
-  f_theme_scuola() +
+  f_theme_sito_trend() +
   theme(strip.text = element_text(size = rel(1), face = "bold")) +
   labs(
     title = str_wrap(glue("Alunni in ritardo scolastico per ordine di scuola (trend a.s. {f_lab_as(ANNO_PRIMO)}-{f_lab_as(ANNO_ULTIMO)})"), 55),
@@ -302,7 +296,7 @@ purrr::iwalk(lista_plot, function(p, nome) {
   message("Salvato: ", nome, " (.rds + .png)")
 })
 
-f_salva_mappa(mappa_ritardo_sec1_comuni_pr, "mappa_ritardo_sec1_comuni_pr", dir_out = dir_mod)
+f_salva_plot(mappa_ritardo_sec1_comuni_pr, "mappa_ritardo_sec1_comuni_pr", dir_out = dir_mod)
 
 # tabelle: solo rds (i dati per i bottoni sono il csv dell'oggetto di 01_dati.R)
 saveRDS(neet_tab_ft, file.path(dir_mod, "neet_tab_ft.rds"))

@@ -19,7 +19,7 @@
 # Setup -------------------------------------------------------------------
 library(here)
 
-source(here("R", "f_istat_scarica_cens.R"))   # f_scarica_istat_blocchi() (usa httr + rsdmx)
+source(here("R", "istat.R"))   # funzioni di ingestione ISTAT (v. indice in testa al file)
 
 # --- Parametri ------------------------------------------------------------
 ANNO_CENS  <- 2024   # anno di riferimento del censimento (verificato disponibile il 2026-07-17)
