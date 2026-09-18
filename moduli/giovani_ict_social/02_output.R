@@ -24,6 +24,7 @@ library(ggiraph)
 library(scales)
 library(ggtext)
 
+source(here("R", "formatting.R"))   # f_ft, f_ft_titolo_note, seq_teal (tabella HBSC)
 source(here("R", "_parma_colors.R"))
 source(here("R", "grafici.R"))   # temi, caption, mappe, salvataggio (v. indice in testa al file)
 
@@ -334,14 +335,80 @@ plot_ia_scopi <- ia_scopi_prep |>
 
 plot_ia_scopi
 
-# 6. Salva (rds per il sito + png per riuso rapido; nome file = oggetto) ----
+# 6. Tabella HBSC ER 2022: social e videogiochi per età e sesso -----------------
+# (stile neet_tab_ft di scuola_abband_neet: flextable salvata in rds, riletta tal quale)
+hbsc_2022 <- readRDS(file.path(dir_mod, "hbsc_2022.rds"))
+
+ETICHETTE_HBSC <- c(uso_problematico_social      = "Uso problematico dei social",
+                    videogiochi_4h_piu           = "Videogiochi 4+ ore al giorno",
+                    uso_problematico_videogiochi = "Uso problematico dei videogiochi")
+
+# tabella: per età, ER 2022 (i totali 2018/2022 stanno nel grafico sotto)
+hbsc_tab_prep <- hbsc_2022 |>
+  filter(territorio == "Emilia-Romagna", anno == 2022, sesso %in% c("M", "F"), eta != "Totale") |>
+  mutate(colonna = paste(eta, "anni"),
+         riga = paste0(ETICHETTE_HBSC[indicatore], ", ", if_else(sesso == "M", "maschi", "femmine")),
+         ordine = match(indicatore, names(ETICHETTE_HBSC)) * 2 + (sesso == "F")) |>
+  select(ordine, riga, colonna, valore) |>
+  tidyr::pivot_wider(names_from = colonna, values_from = valore) |>
+  arrange(ordine) |>
+  select(riga, `11 anni`, `13 anni`, `15 anni`, `17 anni`)   # ordine colonne esplicito
+
+hbsc_tab_prep   # 6 righe; N.D. solo per i social a 17 anni (non rilevato)
+
+hbsc_tab_ft <- hbsc_tab_prep |>
+  f_ft() |>
+  set_header_labels(riga = "") |>
+  align(align = "center", part = "header") |>
+  f_ft_titolo_note(
+    titolo = "Social e videogiochi tra gli 11 e i 17 anni in Emilia-Romagna, 2022: uso intenso e problematico (%)",
+    note = c("Fonte: ISS, sorveglianza HBSC 2022, report Emilia-Romagna; stima campionaria (4.200 studenti in classe). Leggere le differenze per età e sesso, non i decimali.",
+             "Uso problematico dei social: 6 o più criteri della Social Media Disorder Scale (non rilevato a 17 anni). Videogiochi 4+ ore: nei giorni in cui giocano. Uso problematico dei videogiochi: Internet Gaming Disorder Scale, punteggio 21 o più (prima rilevazione nel 2022).")
+  )
+hbsc_tab_ft
+saveRDS(hbsc_tab_ft, file.path(dir_mod, "hbsc_tab_ft.rds"))
+
+# __ plot_hbsc_social_trend: uso problematico dei social 2018 e 2022, ER vs Italia, un pannello per sesso ----
+# pannelli per TERRITORIO (basi diverse: ER 11-17, Italia 11-15, non si confrontano tra loro);
+# dentro ogni pannello anno sull'asse x e sesso nel colore
+CAP_HBSC <- f_caption_fonte("ISS, sorveglianza HBSC 2018 e 2022 (report Emilia-Romagna e scheda nazionale); stima campionaria")
+
+hbsc_trend_prep <- hbsc_2022 |>
+  filter(indicatore == "uso_problematico_social", eta == "Totale", sesso %in% c("M", "F")) |>
+  mutate(sesso = factor(if_else(sesso == "M", "Maschi", "Femmine"), levels = c("Maschi", "Femmine")),
+         territorio = factor(territorio, levels = c("Emilia-Romagna", "Italia"),
+                             labels = c("Emilia-Romagna (11-17 anni)", "Italia (11-15 anni)")),
+         anno = factor(anno),
+         etichetta = scales::number(valore, accuracy = 0.1, decimal.mark = ","),
+         tooltip = glue("{territorio}, {sesso} {anno}: {etichetta}%"),
+         id = paste(territorio, sesso, anno))
+hbsc_trend_prep   # 8 righe: 2 territori x 2 sessi x 2 anni
+
+plot_hbsc_social_trend <- hbsc_trend_prep |>
+  ggplot(aes(x = anno, y = valore, fill = sesso)) +
+  geom_col_interactive(aes(tooltip = tooltip, data_id = id), position = position_dodge(width = 0.75), width = 0.7) +
+  geom_text(aes(label = etichetta, group = sesso), position = position_dodge(width = 0.75),
+            vjust = -0.4, size = 3.8) +
+  facet_wrap(~ territorio) +
+  scale_y_continuous(limits = c(0, NA), labels = scales::label_number(suffix = "%"),
+                     expand = expansion(mult = c(0, 0.12))) +
+  scale_fill_manual(values = COL_SESSO) +
+  f_theme_sito() +
+  labs(title = "Uso problematico dei social media, 2018 e 2022",
+       subtitle = "Indicatore: % di ragazzi con 6 o pi\u00f9 criteri della Social Media Disorder Scale, per sesso; i due pannelli hanno basi d'et\u00e0 diverse e non vanno confrontati tra loro",
+       caption = CAP_HBSC, x = "", y = "")
+plot_hbsc_social_trend
+
+# 7. Salva (rds per il sito + png per riuso rapido; nome file = oggetto) ----
 # tutti i grafici del modulo in una lista: i 2 di trend + i 2 sull'IA + i 4 a barre (l'ordine delle sezioni sopra non conta)
 lista_plot <- c(list(plot_internet_eta = plot_internet_eta, plot_pc_internet = plot_pc_internet,
-                     plot_ia_eta = plot_ia_eta, plot_ia_scopi = plot_ia_scopi), lista_plot_barre)
-names(lista_plot)   # attesi 8 nomi
+                     plot_ia_eta = plot_ia_eta, plot_ia_scopi = plot_ia_scopi,
+                     plot_hbsc_social_trend = plot_hbsc_social_trend), lista_plot_barre)
+names(lista_plot)   # attesi 9 nomi
 
 purrr::iwalk(lista_plot, function(p, nome) {
   saveRDS(p, file.path(dir_mod, paste0(nome, ".rds")))
   ggsave(file.path(dir_mod, paste0(nome, ".png")), p, width = 9, height = 6, dpi = 300, device = ragg::agg_png)
   message("Salvato: ", nome, " (.rds + .png)")
 })
+

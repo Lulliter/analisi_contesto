@@ -182,3 +182,11 @@ filter(ia_eta_it_ue, territorio == "Italia", eta == "16-19")
 
 saveRDS(ia_eta_it_ue, file.path(dir_out, "ia_eta_it_ue.rds"))
 write_csv(ia_eta_it_ue, file.path(dir_out, "ia_eta_it_ue.csv"))
+
+# 4. HBSC Emilia-Romagna 2022 (trascrizione da pdf, v. dati/grezzi/iss_hbsc/_metadati.md) ----
+# tre indicatori: uso problematico dei social, videogiochi 4+ ore, uso problematico dei
+# videogiochi; per età e sesso, ER 2022 (social anche 2018) e Italia 2022 (social)
+hbsc_2022 <- read_csv(here("dati", "grezzi", "iss_hbsc", "hbsc_2022.csv"), show_col_types = FALSE)
+count(hbsc_2022, indicatore, territorio, anno)   # attesi: 3 indicatori ER 2022; social anche ER 2018 e Italia 2018/2022
+saveRDS(hbsc_2022, file.path(dir_out, "hbsc_2022.rds"))
+write_csv(hbsc_2022, file.path(dir_out, "hbsc_2022.csv"))

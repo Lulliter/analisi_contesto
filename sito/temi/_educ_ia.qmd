@@ -40,6 +40,7 @@ library(ggtext)
 library(scales)
 library(glue)
 library(downloadthis)
+library(flextable)   # tabella HBSC salvata in rds (serve il pacchetto caricato per stamparla)
 
 source(here::here("R", "sito.R"))     # bottoni CSV + Excel (f_scarica_dati, f_bottoni_dati)
 source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hover bordeaux)
@@ -60,16 +61,7 @@ dir_ict <- here::here("moduli", "giovani_ict_social", "output")
 
 + Pur minore della media UE, anche in Italia **l'adozione dell'IA generativa è arrivata per prima tra i più giovani**: nel 2025, primo anno di rilevazione Eurostat, l'ha usata il 52% dei 16-19enni italiani e il 43% dei 20-24enni, contro il 20% della popolazione 16-74. Tra gli utenti 16-19enni, l'uso per lo studio è citato dal 78%, e l'uso privato dal 46%.  
 
-Pur non consentendo di stabilire nessi causali, i dati disponibili suggeriscono di prestare grande attenzione agli **effetti dell'IA generativa sul benessere dei ragazzi**, in particolare sulle relazioni sociali e sulla salute mentale. Essa infatti agisce da _"amplificatore"_ di processi: può potenziare l'accesso alle informazioni, l'apprendimento e la produttività, ma puà anche acuire problemi già osservabili tra i giovanissimi: isolamento e impoverimento delle relazioni sociali; deficit di sonno; calo delle capacità cognitive e dell'attenzione; dipendenza e peggioramento della salute mentale. 
-
-+ I dati disponibili mostrano il benessere psicologico dei 14-19enni è calato con la pandemia e non è tornato ai livelli precedenti, soprattutto tra le ragazze. La quota di adolescenti "molto soddisfatti" delle relazioni con gli amici tocca il minimo nel 2021 (34,5%) e per le ragazze era già scesa sotto il 39% dal 2018.
- 
-+ Cosa possono fare i corpi intermedi della società (scuole, famiglie, terzo settore, enti locali e fondazioni) per accompagnare la crescita dei ragazzi immersi in questo contesto?
-
-<!-- Punti con i dati dei moduli giovani_ict_social e giovani_benessere (aggiunti 2026-09-18, da fondere con i punti sopra) -->
-
-
-
++ L'esplosione dell'IA generativa è avvenuta in un contesto già segnato da **isolamento e impoverimento delle relazioni sociali tra i più giovani**, soprattutto tra le ragazze, e da un calo del benessere psicologico che non si è ancora invertito. I dati disponibili mostrano il benessere psicologico dei 14-19enni è calato con la pandemia e non è tornato ai livelli precedenti, soprattutto tra le ragazze. La quota di adolescenti "molto soddisfatti" delle relazioni con gli amici tocca il minimo nel 2021 (34,5%) e per le ragazze era già scesa sotto il 39% dal 2018.
 
 
 
@@ -148,9 +140,17 @@ _NB: stima campionaria, da leggere nei trend più che nei singoli anni. La class
 
 Il profilo social arriva prima dei 14 anni e il contatto online con gli amici è continuo, ma non ha sostituito il vedersi di persona.
 
-::: {.callout-warning}
-## Da verificare prima di pubblicare
-Età minima per i social in Italia: controllare la norma e scrivere il riferimento esatto. Da ricordare che i numeri in gioco sono due e non vanno confusi: i 13 anni sono l'età minima fissata dalle piattaforme nelle loro condizioni d'uso; i 14 anni dovrebbero essere l'età del consenso digitale nella legge italiana (sotto serve il consenso dei genitori). Solo dopo la verifica si può scrivere che una parte degli 11-13enni con un profilo è sotto soglia.
+::: {.callout-warning  collapse="true"}
+## Social e minori: Legge italiana e UE
+La legge italiana e il Regolamento Europeo (GDPR) fissano paletti precisi per proteggere i dati personali e la salute mentale dei più giovani:
+
+1. Per la UE, il GDPR stabilisce che **il trattamento dei dati personali dei minori è lecito solo se il minore ha almeno 16 anni**, con discrezione degli Stati membri di abbassare la soglia fino a 13 anni. 
+
+2. <!-- Il GDPR (Regolamento UE 2016/679) stabilisce che il trattamento dei dati personali dei minori è lecito solo se il minore ha almeno 16 anni. Tuttavia, gli Stati membri possono abbassare questa soglia fino a un minimo di 13 anni.  --> In Italia, la legge ha fissato l'**età del consenso digitale a 14 anni** per poter utilizzare servizi online che comportano il trattamento dei loro dati personali; ovvero, l'iscrizione a un sociale sotto i 14 anni deve essere autorizzata da un genitore. 
+
+Ciononostante, le policy interne di Instagram, TikTok e Facebook spesso richiedono un'età minima di 13 anni, creando una discrepanza tra le regole delle piattaforme e la legge italiana.
+ 
+Alcuni paesi ([Australia](https://www.moige.it/2026/02/24/divieto-social-australia-under-16/), Francia, Inghilterra) stanno però  introducendo misure molto più radicali per proteggere i minori, come il **divieto dei social media**, praticato tramite l'obbligo di **verifica dell'età** e la limitazione della pubblicità rivolta ai minori.  
 :::
 
 ::: {.panel-tabset}
@@ -324,6 +324,49 @@ Cosa l'IA mette a rischio: attenzione e autonomia di giudizio, relazioni, beness
 - percezioni di famiglie e docenti (da cercare)
 - divari per condizione socio-economica e territorio (da cercare) -->
 
+### Social e videogiochi a 11-17 anni in Emilia-Romagna, 2022
+
+L'uso problematico dei social è raddoppiato tra il 2018 e il 2022 ed è il doppio tra le ragazze; i videogiochi sono l'immagine speculare, maschile e in calo con l'età.
+
+```{r}
+#| label: tab_hbsc
+#| output: true
+readRDS(file.path(dir_ict, "hbsc_tab_ft.rds"))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_tab_hbsc
+#| output: true
+f_bottoni_dati("hbsc_2022", dir_ict, rds = "hbsc_tab_ft")
+```
+:::
+
+```{r}
+#| label: plot_hbsc_social_trend
+#| output: true
+#| fig-height: 5
+f_girafe(readRDS(file.path(dir_ict, "plot_hbsc_social_trend.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_hbsc_social_trend
+#| output: true
+f_bottoni_dati("hbsc_2022", dir_ict, rds = "plot_hbsc_social_trend")
+```
+:::
+
+::: {.callout-note collapse="true"}
+### Osservazioni
+
+Tra il 2018 e il 2022, in Emilia-Romagna, la quota di ragazzi che fanno un uso problematico dei social (ansia di accedere, tempo fuori controllo, litigi e bugie a causa dei social) è quasi raddoppiata: tra le ragazze da una su dieci a una su sei, tra i ragazzi da 7 a 9 su cento. Cresce con l'età ed è il doppio tra le ragazze a ogni età: a 15 anni ne è interessata una ragazza su cinque. La regione è in linea con l'Italia (12% contro 13,5%); nessun dato esiste per Parma.
+
+I videogiochi raccontano l'altra metà: l'uso problematico è maschile e diminuisce con l'età, dal 27% degli undicenni al 17% dei diciassettenni, mentre tra le ragazze resta intorno al 18% fino a 15 anni e scende al 9% a 17. Circa un ragazzo su sei gioca almeno quattro ore nei giorni in cui gioca, contro una ragazza su undici.
+
+_NB: indagine HBSC (Health Behaviour in School-aged Children, sorveglianza internazionale coordinata in Italia dall'Istituto Superiore di Sanità), rilevazione 2022 in classe, campione regionale di circa 4.200 studenti; stima campionaria: contano le differenze tra età e sessi, non i decimali. Le scale usate individuano un uso "problematico" con criteri autoriferiti, non una diagnosi. Prossima rilevazione: 2026._
+:::
+
 ### Salute mentale e relazioni con gli amici dei 14-19enni, 2005-2025
 
 L'IA arriva su una generazione che ha subito uno shock negli ultimi dieci anni: il benessere psicologico dei 14-19enni è calato con la pandemia e non è tornato ai livelli precedenti, soprattutto tra le ragazze.
@@ -464,8 +507,14 @@ _NB: Quota di 14-19enni che si dichiarano "molto soddisfatti" delle relazioni co
 
 ## Governare il processo: scuole, famiglie e realtà educanti
 
-Cosa devono fare scuole, famiglie, terzo settore, enti locali e fondazioni per accompagnare il cambiamento invece di subirlo: formazione, regole d'uso, alleanze educative.
+Pur non consentendo di stabilire nessi causali, i dati disponibili suggeriscono di prestare grande attenzione agli **effetti dell'IA generativa sul benessere dei ragazzi**, in particolare sulle relazioni sociali e sulla salute mentale.  
 
+L'IA funge da _"amplificatore"_ di processi: può potenziare l'accesso alle informazioni, l'apprendimento e la produttività, ma può acuire problemi già osservabili tra i giovanissimi: isolamento e impoverimento delle relazioni sociali; deficit di sonno; calo delle capacità cognitive e dell'attenzione; dipendenza e peggioramento della salute mentale. 
+
+ 
++ Cosa possono fare i corpi intermedi della società (scuole, famiglie, terzo settore, enti locali e fondazioni) per accompagnare la crescita dei ragazzi immersi in questo contesto?
+
+ 
 <!-- contenuti previsti:
 - mappa delle realtà educanti e delle iniziative sull'IA nel territorio (da costruire)
 - formazione dei docenti e degli educatori: quanta, quale (da cercare)
@@ -474,6 +523,11 @@ Cosa devono fare scuole, famiglie, terzo settore, enti locali e fondazioni per a
 <!-- ::: {.callout-note collapse="true"} -->
 <!-- ### Osservazioni -->
 <!-- ::: -->
+
+
+- [Minori: Moige-Anfn-Age, “16 anni età minima per accedere a social”](https://www.famiglienumerose.org/minori-moige-anfn-age-16-anni-eta-minima-per-accedere-a-social/)
+- [Divieto social Australia: una legge per gli under 16](https://www.moige.it/2026/02/24/divieto-social-australia-under-16/)
+
 
 ## Fonti e riferimenti
 

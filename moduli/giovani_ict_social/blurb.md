@@ -1,9 +1,25 @@
-# <Titolo leggibile del modulo>
+# Internet, social e IA: chi li usa, da quando (bambini, ragazzi e giovani)
 
-**Fonte:** <ente, dataset, link>
-**Anno dati:** <es. 2023>
-**Ultimo aggiornamento:** <AAAA-MM-GG>
-**Output principali:** `output/<file>`
+**Fonte:** ISTAT, "Aspetti della vita quotidiana" (uso di internet e del pc per età, Italia 2001→2025; Emilia-Romagna e Nord-est solo totale 6+); ISTAT, "Bambini e ragazzi: comportamenti, atteggiamenti e progetti futuri" 2023 (profilo social, contatti con gli amici, nuove amicizie online; 11-13 e 14-19 anni per sesso; Italia e ripartizioni); Eurostat, indagine sull'uso delle ICT, dataset `isoc_ai_iaiu` (IA generativa per età e scopo, Italia vs UE27, 2025; per l'Italia dati ISTAT). Tutte stime campionarie. Nessun dato provinciale: il confronto possibile è Italia → Nord-est → Emilia-Romagna, e solo per internet
+**Anno dati:** 2001→2025 (internet e pc; nel 2004 l'indagine non è stata svolta); 2023 (social e amici, pubblicato 2025); 2025 (IA, prima rilevazione)
+**Ultimo aggiornamento:** 2026-09-18 (modulo collaudato, sezione in `_educ_ia.qmd` renderizzata)
+**Output principali:** `plot_internet_eta`, `plot_pc_internet` (csv `ict_giovani_eta`, `ict_reg`); `plot_profilo_social`, `plot_amici_online`, `plot_amici_di_persona`, `plot_nuove_amicizie_online` (csv `ragazzi_ict_social`); `plot_ia_eta`, `plot_ia_scopi` (csv `ia_eta_it_ue`)
 
-<2-3 frasi di lettura del dato, pronte per essere riusate nelle pagine di sito/.
-Cosa mostra, il messaggio chiave per Parma/provincia, eventuali avvertenze.>
+# Messaggio
+
+- **Internet è diventato quotidiano prima per i ragazzi che per gli adulti**: usava internet tutti i giorni il 4% degli 11-14enni e l'11% dei 15-19enni nel 2001; nel 2025 l'85% e il 95%, contro il 72% della popolazione di 6 anni e più. Il sorpasso di internet sul pc (a metà anni Duemila per i ragazzi, poi il pc si ferma o arretra) è la traccia indiretta dello smartphone, che queste serie non rilevano.
+- **I bambini di 6-10 anni sono entrati con la pandemia**: uso quotidiano al 27% nel 2019, 43% nel 2020, 55% nel 2021, poi stabile intorno al 45% (2022-2025): sopra il livello pre-pandemia, sotto il picco della didattica a distanza.
+- **Emilia-Romagna e Nord-est stanno 2 punti sopra l'Italia** per tutta la serie (totale 6+); il dettaglio per età a livello regionale non esiste.
+- **Il profilo social arriva prima dell'età legale**: ce l'ha il 62% degli 11-13enni che usano internet (36% su più piattaforme) e il 95% dei 14-19enni (74% su più piattaforme); le ragazze un po' più dei ragazzi a entrambe le età. In Italia l'età del `consenso digitale` è 14 anni (13 è la soglia delle piattaforme): la quasi totalità degli 11-13enni con un profilo è sotto la soglia di legge. [modifiche in discussione]
+- **Il contatto online si aggiunge a quello in presenza, non lo sostituisce**: il 55% dei 14-19enni sente gli amici online più volte al giorno (10% "continuamente", di più tra le ragazze), il 36% degli 11-13enni; ma circa il 72% vede gli amici di persona almeno qualche volta a settimana, uguale alle due età. Internet allarga la cerchia: il 55% dei 14-19enni l'ha usato per fare nuove amicizie, il 27% degli 11-13enni. Nord-est in linea con l'Italia.
+- **L'IA generativa è arrivata per prima tra i più giovani, e in Italia meno che in Europa**: nel 2025 l'ha usata il 52% dei 16-19enni e il 43% dei 20-24enni, contro il 20% della popolazione 16-74; la quota scende a ogni classe d'età. Scarto con la UE di 15 punti tra i 16-19enni (66%) e 18 tra i 20-24enni (62%): i 20-24enni italiani stanno sotto i 25-34enni europei (51%). Ragazze un po' più dei ragazzi, in Italia come nella UE.
+- **Per gli adolescenti italiani l'IA è soprattutto scuola**: tra i 16-19enni che la usano, il 78% per lo studio (UE 75%), il 46% per scopi privati (UE 65%), il 7% per lavoro. Sotto i 16 anni nessun dato ufficiale: restano le indagini ad hoc (INDIRE, Telefono Azzurro), citate nel testo della pagina.
+
+# Note
+
+- Basi diverse tra i grafici, dette nei sottotitoli: profilo social e nuove amicizie in % dei ragazzi che USANO internet (circa il 95% degli 11-19enni); contatti online e di persona in % di TUTTI i ragazzi (la risposta "Mai" include chi non usa internet); adozione dell'IA in % delle persone della stessa età; scopi dell'IA in % di chi l'ha usata negli ultimi 3 mesi, e non si escludono a vicenda.
+- Classe 15-19 anni delle serie internet/pc: nostra stima, media delle classi ISTAT 15-17 e 18-19 pesata 3:2 (colonna `stima_nostra`). Uso del pc rilevato dai 3 anni, internet dai 6; "usano" = almeno una volta negli ultimi 12 mesi, con qualsiasi dispositivo.
+- Frequenza dei contatti con gli amici: le 6 risposte del questionario sono raggruppate in 3 categorie nei grafici (nostra elaborazione); nei csv restano tutte e 6. L'indagine Bambini e ragazzi ha solo due classi d'età (11-13, 14-19) e le variabili non sono incrociate tra loro.
+- IA: Eurostat e ISTAT sono la stessa indagine armonizzata; i numeri ISTAT 14-19 (51,2%) e 14+ (17,8%) del comunicato 2025 non sono nei grafici (base 14+ invece di 16-74) e si citano nel testo. Un solo anno: dal 2026 ci sarà un trend, e `plot_ia_eta` andrà ripensato.
+- Aggiornamenti: internet/pc ogni ~aprile (cancellare i tre `sdmx_*.rds`, rilanciare `ingestione/06a`-`06b`, alzare `ANNO_ULTIMO_ICT`); IA ogni ~dicembre (`ingestione/07`, `ANNO_IA`); Bambini e ragazzi non annuale (edizioni 2021, 2023).
+- Stime campionarie: commentare trend e ordini di grandezza, non i decimali.

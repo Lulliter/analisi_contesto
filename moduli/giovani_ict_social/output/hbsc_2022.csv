@@ -1,0 +1,45 @@
+indicatore,territorio,anno,eta,sesso,valore,fonte_tabella,nota
+uso_problematico_social,Emilia-Romagna,2018,11,M,5.4,"report ER, cap. 8, fig. 1",NA
+uso_problematico_social,Emilia-Romagna,2022,11,M,8.8,"report ER, cap. 8, fig. 1",NA
+uso_problematico_social,Emilia-Romagna,2018,11,F,7.1,"report ER, cap. 8, fig. 1",NA
+uso_problematico_social,Emilia-Romagna,2022,11,F,14.6,"report ER, cap. 8, fig. 1",NA
+uso_problematico_social,Emilia-Romagna,2018,13,M,8.2,"report ER, cap. 8, fig. 1",NA
+uso_problematico_social,Emilia-Romagna,2022,13,M,9,"report ER, cap. 8, fig. 1",NA
+uso_problematico_social,Emilia-Romagna,2018,13,F,10.5,"report ER, cap. 8, fig. 1",NA
+uso_problematico_social,Emilia-Romagna,2022,13,F,17.5,"report ER, cap. 8, fig. 1",NA
+uso_problematico_social,Emilia-Romagna,2018,15,M,6,"report ER, cap. 8, fig. 1",NA
+uso_problematico_social,Emilia-Romagna,2022,15,M,10.5,"report ER, cap. 8, fig. 1",NA
+uso_problematico_social,Emilia-Romagna,2018,15,F,11.1,"report ER, cap. 8, fig. 1",NA
+uso_problematico_social,Emilia-Romagna,2022,15,F,19.5,"report ER, cap. 8, fig. 1",NA
+uso_problematico_social,Emilia-Romagna,2018,Totale,M,6.6,"report ER, cap. 8, fig. 1",NA
+uso_problematico_social,Emilia-Romagna,2022,Totale,M,9.4,"report ER, cap. 8, fig. 1","totale maschi 2022 e totale femmine 2018: nel pdf 9,4 e 9,6 adiacenti, il testo dice 9,6 per entrambi; da verificare sul grafico"
+uso_problematico_social,Emilia-Romagna,2018,Totale,F,9.6,"report ER, cap. 8, fig. 1","totale maschi 2022 e totale femmine 2018: nel pdf 9,4 e 9,6 adiacenti, il testo dice 9,6 per entrambi; da verificare sul grafico"
+uso_problematico_social,Emilia-Romagna,2022,Totale,F,17.2,"report ER, cap. 8, fig. 1",NA
+uso_problematico_social,Italia,2022,11,M,14.1,scheda nazionale social media 2022,NA
+uso_problematico_social,Italia,2022,11,F,15.6,scheda nazionale social media 2022,NA
+uso_problematico_social,Italia,2022,13,M,11.3,scheda nazionale social media 2022,NA
+uso_problematico_social,Italia,2022,13,F,20.5,scheda nazionale social media 2022,NA
+uso_problematico_social,Italia,2022,15,M,8.8,scheda nazionale social media 2022,NA
+uso_problematico_social,Italia,2022,15,F,18.5,scheda nazionale social media 2022,NA
+uso_problematico_social,Italia,2018,Totale,M,7.8,scheda nazionale social media 2022,base 11-15
+uso_problematico_social,Italia,2022,Totale,M,10.3,scheda nazionale social media 2022,base 11-15
+uso_problematico_social,Italia,2018,Totale,F,11.8,scheda nazionale social media 2022,base 11-15
+uso_problematico_social,Italia,2022,Totale,F,16.9,scheda nazionale social media 2022,base 11-15
+uso_problematico_social,Italia,2022,Totale,MF,13.5,"scheda nazionale social media 2022, classifica regionale",base 11-15
+uso_problematico_social,Emilia-Romagna,2022,Totale,MF,12.2,"scheda nazionale social media 2022, classifica regionale",base 11-15; nel report regionale il totale include i 17enni
+videogiochi_4h_piu,Emilia-Romagna,2022,11,M,15.5,"report ER, cap. 8, fig. 2",NA
+videogiochi_4h_piu,Emilia-Romagna,2022,11,F,8.6,"report ER, cap. 8, fig. 2",NA
+videogiochi_4h_piu,Emilia-Romagna,2022,13,M,14.5,"report ER, cap. 8, fig. 2",NA
+videogiochi_4h_piu,Emilia-Romagna,2022,13,F,8.1,"report ER, cap. 8, fig. 2",NA
+videogiochi_4h_piu,Emilia-Romagna,2022,15,M,18.1,"report ER, cap. 8, fig. 2",NA
+videogiochi_4h_piu,Emilia-Romagna,2022,15,F,10.2,"report ER, cap. 8, fig. 2",NA
+videogiochi_4h_piu,Emilia-Romagna,2022,17,M,17.8,"report ER, cap. 8, fig. 2",NA
+videogiochi_4h_piu,Emilia-Romagna,2022,17,F,9.5,"report ER, cap. 8, fig. 2",NA
+uso_problematico_videogiochi,Emilia-Romagna,2022,11,M,27.2,"report ER, cap. 8, fig. 3",NA
+uso_problematico_videogiochi,Emilia-Romagna,2022,11,F,17.9,"report ER, cap. 8, fig. 3",NA
+uso_problematico_videogiochi,Emilia-Romagna,2022,13,M,25.5,"report ER, cap. 8, fig. 3",NA
+uso_problematico_videogiochi,Emilia-Romagna,2022,13,F,19.6,"report ER, cap. 8, fig. 3",NA
+uso_problematico_videogiochi,Emilia-Romagna,2022,15,M,23.2,"report ER, cap. 8, fig. 3","le conclusioni del report riportano 18,1 (15 anni) e 17,8 (17 anni) per i maschi, ma sono i valori della fig. 2; qui la fig. 3"
+uso_problematico_videogiochi,Emilia-Romagna,2022,15,F,17.1,"report ER, cap. 8, fig. 3",NA
+uso_problematico_videogiochi,Emilia-Romagna,2022,17,M,17.5,"report ER, cap. 8, fig. 3","le conclusioni del report riportano 18,1 (15 anni) e 17,8 (17 anni) per i maschi, ma sono i valori della fig. 2; qui la fig. 3"
+uso_problematico_videogiochi,Emilia-Romagna,2022,17,F,9,"report ER, cap. 8, fig. 3",NA
