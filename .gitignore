@@ -74,3 +74,4 @@ ZZZ_old/
 **/*.quarto_ipynb
 
 /.quarto/
+Rplots.pdf

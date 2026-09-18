@@ -72,7 +72,7 @@ plot_disab_trend_prov_er <- disab_prov_prep |>
   ) +
   geom_point_interactive(
     data = function(df) df |> filter(highlight),
-    aes(tooltip = glue("{provincia} {etichetta_as}: {scales::percent(quota_disab, accuracy = 0.1)} ({scales::number(alunni_disab, big.mark = '.')} alunni)")),
+    aes(tooltip = glue("{provincia} {etichetta_as}: {scales::percent(quota_disab, accuracy = 0.1)} ({scales::number(alunni_disab, big.mark = '.', decimal.mark = ',')} alunni)")),
     size = 1.8
   ) +
   scale_x_continuous(breaks = ANNO_PRIMO:ANNO_ULTIMO, labels = f_lab_as(ANNO_PRIMO:ANNO_ULTIMO)) + # etichette "2016/17" (già calcolate: vedi nota etichetta_as)
@@ -86,7 +86,7 @@ plot_disab_trend_prov_er <- disab_prov_prep |>
   f_theme_scuola() +
   labs(
     title = str_wrap(glue("Alunni con disabilità per provincia ({PERIODO_AS})"), 55),
-    subtitle = "Scuole statali, infanzia inclusa; ultimo a.s. provvisorio (organico di fatto a settembre)",
+    subtitle = "Indicatore: % di alunni con certificazione di disabilità sugli iscritti; scuole statali, infanzia inclusa; ultimo a.s. provvisorio (organico di fatto a settembre)",
     caption = CAP,
     x = "",
     y = "In % degli alunni della provincia"
@@ -104,7 +104,7 @@ disab_grado_prep
 plot_disab_grado_pr_er <- disab_grado_prep |>
   ggplot(aes(x = grado, y = quota_disab, fill = provincia)) +
   geom_col_interactive(
-    aes(tooltip = glue("{provincia}, {grado}: {scales::percent(quota_disab, accuracy = 0.1)} ({scales::number(alunni_disab, big.mark = '.')} su {scales::number(alunni, big.mark = '.')} alunni)"),
+    aes(tooltip = glue("{provincia}, {grado}: {scales::percent(quota_disab, accuracy = 0.1)} ({scales::number(alunni_disab, big.mark = '.', decimal.mark = ',')} su {scales::number(alunni, big.mark = '.', decimal.mark = ',')} alunni)"),
         # group = provincia: senza, data_id (testo) entra nel gruppo e inverte l'ordine delle barre
         data_id = paste(provincia, grado), group = provincia),
     position = position_dodge(width = 0.75), width = 0.7
@@ -119,7 +119,7 @@ plot_disab_grado_pr_er <- disab_grado_prep |>
   theme(axis.text.x = element_text(angle = 0, hjust = 0.5)) +
   labs(
     title = str_wrap(glue("Alunni con disabilità per grado di scuola (a.s. {f_lab_as(ANNO_ULTIMO)})"), 55),
-    subtitle = "Parma e Emilia-Romagna; scuole statali, dato provvisorio (organico di fatto a settembre)",
+    subtitle = "Indicatore: % di alunni con disabilità sugli iscritti del grado; Parma e Emilia-Romagna; scuole statali, dato provvisorio (organico di fatto a settembre)",
     caption = CAP,
     x = "",
     y = "In % degli alunni del grado"
@@ -164,7 +164,7 @@ plot_disab_indice_pr_er <- disab_indice_prep |>
   theme(strip.text = element_text(size = rel(1), face = "bold")) +
   labs(
     title = str_wrap(glue("Alunni totali e con disabilità: numeri indice ({PERIODO_AS})"), 55),
-    subtitle = glue("A.s. {f_lab_as(ANNO_PRIMO)} = 100; scuole statali, infanzia inclusa; ultimo a.s. provvisorio"),
+    subtitle = glue("Indicatore: numero indice (a.s. {f_lab_as(ANNO_PRIMO)} = 100) degli alunni totali e con disabilità; scuole statali, infanzia inclusa; ultimo a.s. provvisorio"),
     caption = CAP,
     x = "",
     y = glue("Indice (a.s. {f_lab_as(ANNO_PRIMO)} = 100)")
@@ -181,6 +181,6 @@ lista_plot <- list(
 
 purrr::iwalk(lista_plot, function(p, nome) {
   saveRDS(p, file.path(dir_mod, paste0(nome, ".rds")))
-  ggsave(file.path(dir_mod, paste0(nome, ".png")), p, width = 9, height = 6, dpi = 300)
+  ggsave(file.path(dir_mod, paste0(nome, ".png")), p, width = 9, height = 6, dpi = 300, device = ragg::agg_png)
   message("Salvato: ", nome, " (.rds + .png)")
 })

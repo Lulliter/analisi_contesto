@@ -81,7 +81,7 @@ plot_iscritti_ordine_pr <- iscritti_trend_pr |>
   f_theme_scuola() +
   labs(
     title = str_wrap(glue("Iscritti nelle scuole della provincia di Parma ({PERIODO_AS})"), 55),
-    subtitle = "Statali + paritarie, per ordine di scuola",
+    subtitle = "Indicatore: numero di iscritti, statali + paritarie, per ordine di scuola",
     caption = CAP, x = "", y = ""
   )
 
@@ -125,7 +125,7 @@ plot_iscritti_ordine_gestione_pr <-
      f_pannello_gestione("paritaria", seq_factor_orange[c(4, 6, 8)])) +
   patchwork::plot_annotation(
     title = str_wrap(glue("Iscritti a Parma: statali e paritarie a confronto ({PERIODO_AS})"), 55),
-    subtitle = "Nota: scale dell'asse y diverse tra i pannelli (statali v. paritarie)",
+    subtitle = "Indicatore: numero di iscritti per ordine; scale dell'asse y diverse tra i pannelli (statali v. paritarie)",
     caption = CAP,
     theme = theme(
       # stesse classi dei pannelli (merge tra classi diverse vietato):
@@ -183,7 +183,7 @@ plot_plessi_ordine_gestione_pr <-
      f_pannello_plessi("paritaria", seq_factor_orange[c(2, 4, 6, 8)])) +
   patchwork::plot_annotation(
     title = str_wrap("Plessi scolastici a Parma: statali e paritarie (infanzia inclusa)", 55),
-    subtitle = "Numero di sedi in anagrafe per a.s.; scale y diverse tra i pannelli",
+    subtitle = "Indicatore: numero di sedi in anagrafe per a.s.; scale y diverse tra i pannelli",
     caption = CAP_ANAGRAFE,
     theme = theme(
       plot.title = element_text(size = rel(1.3), face = "bold"),
@@ -242,7 +242,7 @@ plot_stranieri_prov_er <- stranieri_prov_prep |>
   labs(
     # titolo corto (quello lungo scappava fuori); il dettaglio sta nel sottotitolo
     title = str_wrap(glue("Alunni stranieri per provincia ({PERIODO_AS})"), 55),
-    subtitle = "Cittadinanza non italiana; scuole statali + paritarie (no infanzia)",
+    subtitle = "Indicatore: % di alunni con cittadinanza non italiana sugli iscritti; scuole statali + paritarie (no infanzia)",
     caption = CAP,
     x = "",
     y = "In % degli iscritti della provincia"
@@ -269,7 +269,7 @@ plot_stranieri_comuni_pr <- scuola_comuni_pr |>
   theme(axis.text.x = element_text(angle = 0, hjust = 0.5)) +
   labs(
     title = str_wrap(glue("Alunni stranieri per comune, provincia di Parma (a.s. {f_lab_as(ANNO_ULTIMO)})"), 55),
-    subtitle = glue("Primi {TOP_N_COMUNI} comuni con almeno 300 iscritti; statali + paritarie (no infanzia)"),
+    subtitle = glue("Indicatore: % di alunni con cittadinanza non italiana sugli iscritti del comune; primi {TOP_N_COMUNI} comuni con almeno 300 iscritti; statali + paritarie (no infanzia)"),
     caption = CAP,
     x = "Alunni con cittadinanza non italiana, in % degli iscritti nel comune",
     y = ""
@@ -297,7 +297,7 @@ plot_stranieri_comuni_pr_min <- scuola_comuni_pr |>
   theme(axis.text.x = element_text(angle = 0, hjust = 0.5)) +
   labs(
     title = str_wrap(glue("Alunni stranieri per comune: le incidenze più basse (a.s. {f_lab_as(ANNO_ULTIMO)})"), 55),
-    subtitle = glue("Ultimi {TOP_N_COMUNI} comuni con almeno 300 iscritti; statali + paritarie (no infanzia)"),
+    subtitle = glue("Indicatore: % di alunni con cittadinanza non italiana sugli iscritti del comune; ultimi {TOP_N_COMUNI} comuni con almeno 300 iscritti; statali + paritarie (no infanzia)"),
     caption = CAP,
     x = "Alunni con cittadinanza non italiana, in % degli iscritti nel comune",
     y = ""
@@ -346,10 +346,10 @@ lab_num <- label_number(accuracy = 1, big.mark = ".", decimal.mark = ",")
 # mappa_<var>_comuni_pr (.rds + .png).
 
 mappe_indicatori <- tibble::tribble(
-  ~var,              ~titolo,                                    ~palette5,                 ~legenda,                   ~label_fun,
-  "n_plessi",        "Plessi scolastici con iscritti",           f_pal5(seq_factor_blue),   "N. plessi",                lab_num,
-  "alunni",          "Alunni iscritti",                          f_pal5(seq_factor_green),  "N. alunni",                lab_num,
-  "quota_stranieri", "Alunni con cittadinanza non italiana (%)", f_pal5(seq_factor_purple), "% stranieri\nsu iscritti", lab_pct
+  ~var,              ~titolo,                                    ~indicatore,                                                                  ~palette5,                 ~legenda,                   ~label_fun,
+  "n_plessi",        "Plessi scolastici con iscritti",           "Indicatore: numero di plessi con iscritti nel comune",                       f_pal5(seq_factor_blue),   "N. plessi",                lab_num,
+  "alunni",          "Alunni iscritti",                          "Indicatore: numero di alunni iscritti nelle scuole del comune",              f_pal5(seq_factor_green),  "N. alunni",                lab_num,
+  "quota_stranieri", "Alunni con cittadinanza non italiana (%)", "Indicatore: % di alunni con cittadinanza non italiana sugli iscritti del comune", f_pal5(seq_factor_purple), "% stranieri\nsu iscritti", lab_pct
 )
 
 # classi: di default quintili; per i CONTEGGI (n_plessi) classi fisse
@@ -409,7 +409,7 @@ mappa_comuni_prep <- purrr::reduce(
 # base comune del sottotitolo; la parte sulle classi arriva da nota_classi
 SOTTOTITOLO_BASE <- glue("A.s. {f_lab_as(ANNO_ULTIMO)}, statali + paritarie (no infanzia)")
 
-f_mappa_scuola_pr <- function(var, titolo, palette5, legenda, nota_classi, label_fun) {
+f_mappa_scuola_pr <- function(var, titolo, indicatore, palette5, legenda, nota_classi, label_fun) {
   # tooltip hover: "Comune: valore formattato" (n.d. dove il dato manca)
   df_con_tooltip <- mappa_comuni_prep |>
     mutate(tooltip_mappa = paste0(
@@ -425,7 +425,7 @@ f_mappa_scuola_pr <- function(var, titolo, palette5, legenda, nota_classi, label
     titolo       = str_wrap(paste0(titolo, " — provincia di Parma"), width = 55),
     palette5     = palette5,
     caption      = CAP,
-    sottotitolo  = str_wrap(glue("{SOTTOTITOLO_BASE}; {nota_classi}"), width = 80),
+    sottotitolo  = glue("{indicatore}; {SOTTOTITOLO_BASE}; {nota_classi}"),
     nome_legenda = legenda,
     col_tooltip  = "tooltip_mappa",
     df_evidenzia = NULL # niente bordo di evidenziazione: la mappa È già solo PR
@@ -433,7 +433,7 @@ f_mappa_scuola_pr <- function(var, titolo, palette5, legenda, nota_classi, label
 }
 
 mappe_comuni_pr <- mappe_indicatori |>
-  select(var, titolo, palette5, legenda, nota_classi, label_fun) |>
+  select(var, titolo, indicatore, palette5, legenda, nota_classi, label_fun) |>
   pmap(f_mappa_scuola_pr) |>
   set_names(paste0("mappa_", mappe_indicatori$var, "_comuni_pr"))
 
@@ -489,11 +489,11 @@ mappa_paritarie_plessi_pr <- ggplot() +
                     name = "% plessi\nparitari", drop = FALSE) +
   labs(
     title = str_wrap("Presenza della scuola paritaria per comune e ordine — provincia di Parma", 60),
-    subtitle = str_wrap(glue(
-      "A.s. {f_lab_as(ANNO_ULTIMO)} (anagrafe scuole, INFANZIA inclusa); ",
-      "% di plessi paritari sul totale plessi del comune; classi fisse; ",
+    subtitle = glue(
+      "Indicatore: % di plessi paritari sul totale dei plessi del comune, per ordine; ",
+      "a.s. {f_lab_as(ANNO_ULTIMO)} (anagrafe scuole, infanzia inclusa); classi fisse; ",
       "in grigio i comuni senza plessi dell'ordine"
-    ), 90),
+    ),
     caption = CAP_ANAGRAFE # infanzia inclusa: caption coerente
   ) +
   theme_minimal(base_size = 14) +
@@ -556,11 +556,11 @@ mappa_paritarie_iscritti_pr <- ggplot() +
                     name = "% iscritti\nin paritarie", drop = FALSE) +
   labs(
     title = str_wrap("Iscritti alla scuola paritaria per comune e ordine — provincia di Parma", 60),
-    subtitle = str_wrap(glue(
-      "A.s. {f_lab_as(ANNO_ULTIMO)}; % di iscritti in paritarie sul totale del ",
-      "comune; SENZA infanzia (non rilevata dai dati iscritti MIM — v. mappa ",
-      "dei plessi); classi fisse; in grigio i comuni senza scuole dell'ordine"
-    ), 90),
+    subtitle = glue(
+      "Indicatore: % di iscritti in paritarie sul totale del comune, per ordine; ",
+      "a.s. {f_lab_as(ANNO_ULTIMO)}; senza infanzia (non rilevata dai dati iscritti MIM, ",
+      "v. mappa dei plessi); classi fisse; in grigio i comuni senza scuole dell'ordine"
+    ),
     caption = CAP
   ) +
   theme_minimal(base_size = 14) +
@@ -593,7 +593,7 @@ purrr::iwalk(lista_plot, function(p, nome) {
                              "plot_plessi_ordine_gestione_pr")) 8 else 6
   saveRDS(p, file.path(dir_mod, paste0(nome, ".rds")))
   ggsave(file.path(dir_mod, paste0(nome, ".png")), p,
-         width = 9, height = altezza, dpi = 300)
+         width = 9, height = altezza, dpi = 300, device = ragg::agg_png)
   message("Salvato: ", nome, " (.rds + .png)")
 })
 
@@ -601,7 +601,7 @@ purrr::iwalk(lista_plot, function(p, nome) {
 
 
 # 2. % alunni stranieri 2024/25, Parma vs media ER, statali + paritarie (blurb scuola_iscritti)
-stranieri <- read_csv(here("moduli", "scuola_iscritti", "output", "stranieri_trend_prov_er.csv"))
+stranieri <- read_csv(here("moduli", "scuola_iscritti", "output", "stranieri_trend_prov_er.csv"), show_col_types = FALSE)
 stranieri |>
   filter(anno_inizio == 2024) |>
   mutate(quota = round(100 * quota_stranieri, 1)) |>

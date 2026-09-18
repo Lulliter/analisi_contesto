@@ -1,5 +1,5 @@
 ---
-title: "Crescere al tempo dell'IA: potenzialità, rischi e il ruolo di chi educa"
+title: "Crescere al tempo dell'IA"
 # subtitle: "Un approfondimento su cosa cambia per chi cresce con l'intelligenza artificiale: potenzialità, rischi e il ruolo di chi educa"
 description: "Pagina in costruzione: struttura dell'analisi e fonti individuate, dati in arrivo"
 lang: it
@@ -51,19 +51,30 @@ dir_ict <- here::here("moduli", "giovani_ict_social", "output")
 
 ::: {.callout-warning}
 ## Pagina in costruzione
-Questa pagina raccoglie le domande e la struttura dell'approfondimento su cosa vuol dire crescere al tempo dell'intelligenza artificiale.
 :::
 
 ## In sintesi
 
-<!-- 3-4 messaggi, da scrivere quando ci sono i dati. -->
-L'IA può essere definita come un _"amplificatore"_, sia in senso positivo che negativo. Per chi sta crescendo, può potenziare l'accesso alle informazioni, l'apprendimento e la produttività, ma può anche accrescere l'esposizione a rischi che, in realtà, preoccupano sin dai primi anni 2000, relativi alla diffusione di smart phone e social media. Gli effetti di tali dinamiche sono già da tempo riconosciuti: isolamento e impoverimento delle relazioni sociali; deficit di sonno; calo delle capacità cognitive e dell'attenzione; dipendenza e peggioramento della salute mentale. 
++ **In vent'anni, internet è entrato prepotentemente nella vita quotidiana dei ragazzi**, presumibilmente grazie alla diffusione, dal 2010, degli _smartphone._ Nel 2001, lo usava tutti i giorni il 4% degli 11-14enni e l'11% dei 15-19enni; nel 2025 rispettivamente l'85% e il 95%. Impressiona il salto scatenato dal _lockdown_ nell'adozione tra i bambini di 6-10 anni: l'uso quotidiano passa dal 27% del 2019 al 55% nel 2021, restando poi stabilmente sopra il 40%.
 
-Cosa possono fare i corpi intermedi della società (scuole, famiglie, terzo settore, enti locali e fondazioni) per accompagnare la crescita dei ragazzi immersi in questo contesto?
++ Il profilo social arriva prima dei 14 anni: ce l'ha il 62% degli 11-13enni che usano internet e il 95% dei 14-19enni (tre su quattro su più piattaforme). Anche **le relazioni amicali si "trasferiscono online"**: il 55% dei 14-19enni sente gli amici online più volte al giorno, ma il 72% li vede di persona almeno qualche volta a settimana.
+
++ Pur minore della media UE, anche in Italia **l'adozione dell'IA generativa è arrivata per prima tra i più giovani**: nel 2025, primo anno di rilevazione Eurostat, l'ha usata il 52% dei 16-19enni italiani e il 43% dei 20-24enni, contro il 20% della popolazione 16-74. Tra gli utenti 16-19enni, l'uso per lo studio è citato dal 78%, e l'uso privato dal 46%.  
+
+Pur non consentendo di stabilire nessi causali, i dati disponibili suggeriscono di prestare grande attenzione agli **effetti dell'IA generativa sul benessere dei ragazzi**, in particolare sulle relazioni sociali e sulla salute mentale. Essa infatti agisce da _"amplificatore"_ di processi: può potenziare l'accesso alle informazioni, l'apprendimento e la produttività, ma puà anche acuire problemi già osservabili tra i giovanissimi: isolamento e impoverimento delle relazioni sociali; deficit di sonno; calo delle capacità cognitive e dell'attenzione; dipendenza e peggioramento della salute mentale. 
+
++ I dati disponibili mostrano il benessere psicologico dei 14-19enni è calato con la pandemia e non è tornato ai livelli precedenti, soprattutto tra le ragazze. La quota di adolescenti "molto soddisfatti" delle relazioni con gli amici tocca il minimo nel 2021 (34,5%) e per le ragazze era già scesa sotto il 39% dal 2018.
  
-<!-- social deprivation, sleep deprivation, attention fragmentation, and addiction. -->
++ Cosa possono fare i corpi intermedi della società (scuole, famiglie, terzo settore, enti locali e fondazioni) per accompagnare la crescita dei ragazzi immersi in questo contesto?
 
-## L'adozione delle tecnologie negli ultimi quindici anni
+<!-- Punti con i dati dei moduli giovani_ict_social e giovani_benessere (aggiunti 2026-09-18, da fondere con i punti sopra) -->
+
+
+
+
+
+
+## Internet, social e IA: chi li usa, da quando
 
 Prima di guardare ai rischi nuovi, conviene vedere quanto e come la vita digitale è entrata nelle giornate di tutti, e dei ragazzi in particolare: l'IA generativa arriva su abitudini già formate.
 
@@ -78,7 +89,7 @@ Prima di guardare ai rischi nuovi, conviene vedere quanto e come la vita digital
 <!-- BOZZA 2026-09-17: tre blocchi (internet, social e amici, IA) dal modulo giovani_ict_social.
      Testi da rivedere; la sezione resta aperta ad arricchimenti (v. commento in coda). -->
 
-### Internet: da strumento di pochi a presenza quotidiana
+### L'uso quotidiano di internet per età, 2001-2025
 
 In poco più di vent'anni l'uso quotidiano di internet è passato da eccezione a norma, e i ragazzi ci sono arrivati prima e più in fretta degli adulti.
 
@@ -136,7 +147,7 @@ In Emilia-Romagna e nel Nord-est l'uso di internet è da sempre un paio di punti
 _NB: stima campionaria, da leggere nei trend più che nei singoli anni. La classe 15-19 anni è una nostra stima (media delle classi ISTAT 15-17 e 18-19, pesata con gli anni d'età che coprono). Nel 2004 l'indagine non è stata svolta. L'uso del pc è rilevato dai 3 anni, quello di internet dai 6._
 :::
 
-### I social e gli amici, tra schermo e presenza
+### Profilo social e contatti con gli amici a 11-19 anni
 
 Il profilo social arriva prima dei 14 anni e il contatto online con gli amici è continuo, ma non ha sostituito il vedersi di persona.
 
@@ -237,7 +248,7 @@ Nel Nord-est i valori sono in linea con la media italiana.
 _NB: indagine ISTAT "Bambini e ragazzi" sui residenti di 11-19 anni, rilevazione 2023 (dati pubblicati nel 2025); un solo anno, Italia e ripartizioni. Profilo social e nuove amicizie sono in % dei ragazzi che usano internet. Per la frequenza dei contatti con gli amici le sei risposte del questionario sono raggruppate in tre categorie (nostra elaborazione); nei dati scaricabili ci sono tutte e sei. Stima campionaria._
 :::
 
-### L'intelligenza artificiale, l'ultima arrivata
+### L'uso dell'IA generativa per età, Italia e Unione europea
 
 L'IA generativa è entrata per prima nelle abitudini dei più giovani, e per gli adolescenti italiani è soprattutto uno strumento di scuola.
 
@@ -299,7 +310,7 @@ _NB: dati Eurostat dell'indagine europea sull'uso delle tecnologie digitali (per
 <!-- ### Osservazioni -->
 <!-- ::: -->
 
-## Le potenzialità per bambini e ragazzi
+## Le potenzialità: apprendimento, accessibilità, orientamento
 
 Cosa l'IA può offrire a chi cresce: apprendimento personalizzato, accessibilità per chi ha bisogni specifici, creatività, orientamento.
 
@@ -313,7 +324,7 @@ Cosa l'IA può offrire a chi cresce: apprendimento personalizzato, accessibilit�
 <!-- commento dettagliato + _NB_ di metodo -->
 <!-- ::: -->
 
-## I rischi per bambini e ragazzi
+## I rischi: attenzione, relazioni, benessere
 
 Cosa l'IA mette a rischio: attenzione e autonomia di giudizio, relazioni, benessere, dati personali, divari tra chi ha strumenti e accompagnamento e chi no.
 
@@ -322,7 +333,7 @@ Cosa l'IA mette a rischio: attenzione e autonomia di giudizio, relazioni, beness
 - percezioni di famiglie e docenti (da cercare)
 - divari per condizione socio-economica e territorio (da cercare) -->
 
-### Come stanno i ragazzi: il punto di partenza
+### Salute mentale e relazioni con gli amici dei 14-19enni, 2005-2025
 
 L'IA arriva su una generazione che ha subito uno shock negli ultimi dieci anni: il benessere psicologico dei 14-19enni è calato con la pandemia e non è tornato ai livelli precedenti, soprattutto tra le ragazze.
 
@@ -472,7 +483,7 @@ Il 2021 è il punto più basso della serie a tutte le età, non solo tra i giova
 _NB: Quota di 14-19enni che si dichiarano "molto soddisfatti" delle relazioni con gli amici. Stima campionaria, dato nazionale. Altri indicatori del Bes (soddisfazione per la propria vita, giudizio sulle prospettive future) mostrano la stessa buca nel 2021 ma un trend di fondo in miglioramento: il quadro non è a senso unico._
 :::
 
-## Governare il processo: il ruolo dei corpi intermedi e delle realtà educanti
+## Governare il processo: scuole, famiglie e realtà educanti
 
 Cosa devono fare scuole, famiglie, terzo settore, enti locali e fondazioni per accompagnare il cambiamento invece di subirlo: formazione, regole d'uso, alleanze educative.
 

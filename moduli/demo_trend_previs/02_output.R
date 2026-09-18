@@ -101,8 +101,8 @@ p01_pop_indice <- df_pop |>
   theme_trend +
   labs(
     title = "Popolazione prevista al 2050 (2024 = 100)",
-    subtitle = glue("Previsioni Istat, scenario mediano; province dell'Emilia-Romagna, ",
-                    "regione e Italia. Base: popolazione al 1° gennaio 2024."),
+    subtitle = glue("Indicatore: numero indice della popolazione residente (1° gennaio 2024 = 100); ",
+                    "previsioni Istat, scenario mediano; province dell'Emilia-Romagna, regione e Italia"),
     caption = CAP, x = "", y = ""
   )
 p01_pop_indice
@@ -124,19 +124,19 @@ p02_pop_totale <- df_pop |>
   ) +
   geom_point_interactive(
     data = function(df) df |> filter(territorio == "Parma"),
-    aes(tooltip = scales::number(totale, big.mark = "."), data_id = gsub("'", "", territorio)),
+    aes(tooltip = scales::number(totale, big.mark = ".", decimal.mark = ","), data_id = gsub("'", "", territorio)),
     size = 1.6
   ) +
   scale_x_continuous(breaks = seq(2024, 2050, by = 2),
                      expand = expansion(mult = c(0.02, 0.02))) +
-  scale_y_continuous(labels = scales::label_number(big.mark = ".")) +
+  scale_y_continuous(labels = scales::label_number(big.mark = ".", decimal.mark = ",")) +
   scale_alpha_manual(values = c(0.3, 1), guide = "none") +
   scale_color_manual(values = COLORI_TREND) +
   theme_trend +
   labs(
     title = "Popolazione prevista al 2050 — province dell'Emilia-Romagna",
-    subtitle = glue("Abitanti previsti al 1° gennaio; previsioni Istat, scenario mediano. ",
-                    "Emilia-Romagna e Italia (fuori scala) nel grafico indicizzato."),
+    subtitle = glue("Indicatore: abitanti previsti al 1° gennaio, valori assoluti; previsioni Istat, ",
+                    "scenario mediano. Emilia-Romagna e Italia (fuori scala) nel grafico indicizzato"),
     caption = CAP, x = "", y = ""
   )
 p02_pop_totale
@@ -164,7 +164,7 @@ p03_piramide_pr <- ggplot(df_2050, aes(x = quota_s, y = eta)) +
   scale_fill_manual(values = COL_SESSO, name = NULL) +
   labs(
     title    = "Piramide dell'età prevista — Provincia di Parma (2050)",
-    subtitle = "Barre colorate: 2050 · Grigio semitrasparente: 2024 — previsioni Istat, scenario mediano",
+    subtitle = "Indicatore: % della popolazione del territorio per classe d'età e sesso. Barre colorate: 2050; grigio semitrasparente: 2024; previsioni Istat, scenario mediano",
     x = "% della popolazione del territorio", y = NULL, caption = CAP
   ) +
   theme_minimal(base_size = 13) +
@@ -172,7 +172,7 @@ p03_piramide_pr <- ggplot(df_2050, aes(x = quota_s, y = eta)) +
     panel.grid.major.y = element_blank(),
     panel.grid.minor   = element_blank(),
     legend.position    = "top",
-    plot.subtitle      = element_text(size = 10, colour = "grey30"),
+    plot.subtitle      = ggtext::element_textbox_simple(size = 10, colour = "grey30", lineheight = 1.2, margin = margin(b = 8)),
     plot.caption       = element_text(hjust = 0, size = 8, colour = "grey30")
   )
 p03_piramide_pr
@@ -216,7 +216,7 @@ p04_quota_anziani <- df_p04 |>
   theme(strip.text = element_text(size = rel(1.1), face = "bold")) +
   labs(
     title = "Quota di popolazione anziana prevista (2024-2050)",
-    subtitle = "% della popolazione con 65+ e 80+ anni; previsioni Istat, scenario mediano.",
+    subtitle = "Indicatore: % della popolazione con 65+ e 80+ anni; previsioni Istat, scenario mediano",
     caption = CAP, x = "", y = "%"
   )
 p04_quota_anziani
@@ -239,19 +239,19 @@ f_p05_territorio <- function(terr) {
       color = COLORI_TREND[[terr]], linewidth = rel(1.5)
     ) +
     geom_point_interactive(
-      aes(tooltip = scales::number(valore, big.mark = "."), data_id = indicatore),
+      aes(tooltip = scales::number(valore, big.mark = ".", decimal.mark = ","), data_id = indicatore),
       color = COLORI_TREND[[terr]], size = 1.6
     ) +
     facet_wrap(vars(indicatore), scales = "free_y") +
     scale_x_continuous(breaks = seq(2024, 2050, by = 4)) +
-    scale_y_continuous(labels = scales::label_number(big.mark = "."),
+    scale_y_continuous(labels = scales::label_number(big.mark = ".", decimal.mark = ","),
                        limits = c(0, NA)) +  # da zero: livelli, non variazioni
     theme_trend +
     theme(strip.text = element_text(size = rel(1.1), face = "bold")) +
     labs(
       title = glue("Popolazione anziana prevista — {terr} (2024-2050)"),
-      subtitle = glue("Persone con 65+ e 80+ anni, valori assoluti; ",
-                      "previsioni Istat, scenario mediano."),
+      subtitle = glue("Indicatore: persone con 65+ e 80+ anni, valori assoluti; ",
+                      "previsioni Istat, scenario mediano"),
       caption = CAP, x = "", y = ""
     )
 }
@@ -300,8 +300,8 @@ p06_dipendenza_anziani <- df_p06 |>
   theme_trend +
   labs(
     title = "Indice di dipendenza anziani previsto (2024-2050)",
-    subtitle = glue("Persone di 65+ anni ogni 100 in età attiva (15-64); ",
-                    "previsioni Istat, scenario mediano."),
+    subtitle = glue("Indicatore: persone di 65+ anni ogni 100 in età attiva (15-64); ",
+                    "previsioni Istat, scenario mediano"),
     caption = CAP, x = "", y = ""
   )
 p06_dipendenza_anziani
@@ -318,20 +318,20 @@ p07_nati_morti <- df_p07 |>
   geom_line_interactive(aes(tooltip = componente, data_id = componente),
                         linewidth = rel(1.3)) +
   geom_point_interactive(
-    aes(tooltip = scales::number(valore, big.mark = "."), data_id = componente),
+    aes(tooltip = scales::number(valore, big.mark = ".", decimal.mark = ","), data_id = componente),
     size = 1.4
   ) +
   facet_wrap(vars(territorio), scales = "free_y") +
   scale_x_continuous(breaks = seq(2024, 2050, by = 4)) +
-  scale_y_continuous(labels = scales::label_number(big.mark = "."),
+  scale_y_continuous(labels = scales::label_number(big.mark = ".", decimal.mark = ","),
                      limits = c(0, NA)) +  # da zero: il divario si legge meglio
   scale_color_manual(values = c(Nati = grn_md, Morti = burg_md)) +
   theme_trend +
   theme(strip.text = element_text(size = rel(1.1), face = "bold")) +
   labs(
     title = "Nati e morti previsti (2024-2050)",
-    subtitle = glue("Somma dei comuni con almeno 5.000 abitanti (22 in provincia ",
-                    "di Parma, 195 in ER); previsioni Istat, scenario mediano."),
+    subtitle = glue("Indicatore: nati e morti previsti, valori assoluti; somma dei comuni con almeno ",
+                    "5.000 abitanti (22 in provincia di Parma, 195 in ER); previsioni Istat, scenario mediano"),
     caption = CAP, x = "", y = ""
   )
 p07_nati_morti

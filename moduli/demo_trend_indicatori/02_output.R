@@ -102,7 +102,7 @@ f_plot_indicatore_demografico <- function(
   title <- glue("{title} ({anno_min}-{anno_max})") # intervallo calcolato dai dati
   if (is.null(subtitle)) {
     # niente str_wrap: l'a-capo lo gestisce ggtext::element_textbox_simple nel theme
-    subtitle <- glue("Indicatore espresso in: {udm}")
+    subtitle <- glue("Indicatore: {udm}")
   }
 
   p <- df_plot |>
@@ -384,7 +384,7 @@ p18_tasso_di_fecondità_totale
 
 
 # 1. Età media 2002 → ultimo anno, Parma vs ER vs Italia (blurb demo_trend_indicatori)
-eta_media <- read_csv(here("moduli", "demo_trend_indicatori", "output", "p01_e_m.csv"))
+eta_media <- read_csv(here("moduli", "demo_trend_indicatori", "output", "p01_e_m.csv"), show_col_types = FALSE)
 eta_media |>
   filter(territorio %in% c("Parma", "Emilia-Romagna", "ITALIA"),
          anno %in% c(2002, 2024, 2025, 2026)) |>

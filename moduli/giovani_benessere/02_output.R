@@ -74,7 +74,7 @@ f_plot_salute_mentale <- function(dati, eta_sel, chi) {
           plot.caption.position = "plot") +
     labs(
       title = str_wrap(glue("Salute mentale {chi} in Italia (trend 2016-{ANNO_ULTIMO})"), 55),
-      subtitle = "Indice di salute mentale (punteggio 0-100, più alto = meglio), per sesso. Stima campionaria: leggere il trend, non i decimali",
+      subtitle = "Indicatore: indice di salute mentale (punteggio 0-100, più alto = meglio), per sesso. Stima campionaria: leggere il trend, non i decimali",
       caption = CAP_MH, x = "", y = ""
     )
 }
@@ -114,7 +114,7 @@ f_plot_amici <- function(dati, eta_sel, chi) {
           plot.caption.position = "plot") +
     labs(
       title = str_wrap(glue("Soddisfazione per le relazioni con gli amici {chi} in Italia (trend 2005-{ANNO_ULTIMO})"), 55),
-      subtitle = "Quota di molto soddisfatti, per sesso. Stima campionaria: leggere il trend, non i decimali",
+      subtitle = "Indicatore: % di molto soddisfatti, per sesso. Stima campionaria: leggere il trend, non i decimali",
       caption = str_replace_all(CAP_BES, "\n", "<br>"), x = "", y = ""
     )
 }
@@ -137,6 +137,6 @@ lista_plot <- list(
 
 iwalk(lista_plot, function(p, nome) {
   saveRDS(p, file.path(dir_mod, paste0(nome, ".rds")))
-  ggsave(file.path(dir_mod, paste0(nome, ".png")), p, width = 9, height = 6, dpi = 300)
+  ggsave(file.path(dir_mod, paste0(nome, ".png")), p, width = 9, height = 6, dpi = 300, device = ragg::agg_png)
   message("Salvato: ", nome, " (.rds + .png)")
 })

@@ -72,8 +72,8 @@ f_piramide <- function(cod_target, cod_confronto) {
     scale_fill_manual(values = COL_SESSO, name = NULL) +
     labs(
       title    = paste0("Piramide dell'età — ", lbl_t, " (", anno, ")"),
-      subtitle = paste0("Barre piene: ", lbl_t,
-                        " · Barra semitrasparente in overlay: ", lbl_c),
+      subtitle = paste0("Indicatore: % della popolazione del territorio per classe d'età e sesso. ",
+                        "Barre piene: ", lbl_t, "; barra semitrasparente in overlay: ", lbl_c),
       x = "% della popolazione del territorio", y = NULL, caption = FONTE
     ) +
     theme_minimal(base_size = 13) +
@@ -81,7 +81,7 @@ f_piramide <- function(cod_target, cod_confronto) {
       panel.grid.major.y = element_blank(),
       panel.grid.minor   = element_blank(),
       legend.position    = "top",
-      plot.subtitle      = element_text(size = 10, colour = "grey30"),
+      plot.subtitle      = ggtext::element_textbox_simple(size = 10, colour = "grey30", lineheight = 1.2, margin = margin(b = 8)),
       plot.caption       = element_text(hjust = 0, size = 8, colour = "grey30")
     )
   attr(g, "dati") <- dati
@@ -112,7 +112,7 @@ f_piramide_cittadinanza <- function(cod_territorio) {
     scale_fill_manual(values = COL_SESSO, name = NULL) +
     labs(
       title    = paste0("Piramidi dell'età per cittadinanza — ", lbl_t, " (", anno, ")"),
-      subtitle = "Si confrontano le forme, non le taglie",
+      subtitle = "Indicatore: % della popolazione di ciascun gruppo per classe d'età e sesso (si confrontano le forme, non le taglie)",
       x = "% della popolazione di ciascun gruppo", y = NULL, caption = FONTE
     ) +
     theme_minimal(base_size = 13) +
@@ -120,7 +120,7 @@ f_piramide_cittadinanza <- function(cod_territorio) {
       panel.grid.major.y = element_blank(),
       panel.grid.minor   = element_blank(),
       legend.position    = "top",
-      plot.subtitle      = element_text(size = 10, colour = "grey30"),
+      plot.subtitle      = ggtext::element_textbox_simple(size = 10, colour = "grey30", lineheight = 1.2, margin = margin(b = 8)),
       strip.text         = element_text(face = "bold"),
       plot.caption       = element_text(hjust = 0, size = 8, colour = "grey30")
     )
@@ -131,7 +131,7 @@ f_piramide_cittadinanza <- function(cod_territorio) {
 # salvataggio (png + rds)
 f_salva_piramide <- function(grafico, nome_file, larghezza = 7) {
   ggsave(file.path(dir_mod, "output", paste0(nome_file, ".png")),
-         grafico, width = larghezza, height = 6, dpi = 300, bg = "white")
+         grafico, width = larghezza, height = 6, dpi = 300, device = ragg::agg_png, bg = "white")
   saveRDS(grafico, file.path(dir_mod, "output", paste0(nome_file, ".rds")))
   # csv dei dati del grafico (per il bottone di download nelle pagine di sito/)
   dati <- attr(grafico, "dati")

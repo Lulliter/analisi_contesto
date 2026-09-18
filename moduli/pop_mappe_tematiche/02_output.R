@@ -42,7 +42,7 @@ FONTE <- f_caption_fonte(paste0("ISTAT, Censimento permanente della popolazione 
 # (f_aggiungi_classe: ora in R/)
 
 lab_pct <- label_percent(accuracy = 0.1)
-lab_num <- label_number(accuracy = 1, big.mark = ".")
+lab_num <- label_number(accuracy = 1, big.mark = ".", decimal.mark = ",")
 
 pop_mappe_sf <- pop_mappe_sf |>
   f_aggiungi_classe("quota_stranieri", lab_pct) |>
@@ -70,7 +70,7 @@ pr_bordo_sf <- pr_comuni_sf |> summarise()
 # (f_disegna_mappa: ora in R/; qui restano solo i wrapper er/pr)
 
 # versione ER: tutti i comuni, tutte le province
-f_mappa_er <- function(var, titolo, palette5) {
+f_mappa_er <- function(var, titolo, indicatore, palette5) {
   f_disegna_mappa(
     df_comuni = pop_mappe_sf,
     df_prov   = er_provincie_sf,
@@ -78,12 +78,13 @@ f_mappa_er <- function(var, titolo, palette5) {
     titolo       = paste0(titolo, " — comuni ER"),
     palette5     = palette5,
     caption      = FONTE,
+    sottotitolo  = indicatore,
     df_evidenzia = parma_prov_sf
   )
 }
 
 # versione PR: zoom sulla provincia di Parma (classi ER, dichiarato in sottotitolo)
-f_mappa_pr <- function(var, titolo, palette5) {
+f_mappa_pr <- function(var, titolo, indicatore, palette5) {
   f_disegna_mappa(
     df_comuni    = pr_comuni_sf,
     df_prov      = pr_bordo_sf,      # bordo coerente con la geometria di dettaglio
@@ -91,7 +92,7 @@ f_mappa_pr <- function(var, titolo, palette5) {
     titolo       = paste0(titolo, " — provincia di Parma"),
     palette5     = palette5,
     caption      = FONTE,
-    sottotitolo  = "Classi calcolate sui quintili dell'Emilia-Romagna",
+    sottotitolo  = paste0(indicatore, "; classi calcolate sui quintili dell'Emilia-Romagna"),
     df_evidenzia = pr_bordo_sf
   )
 }
@@ -102,12 +103,12 @@ f_mappa_pr <- function(var, titolo, palette5) {
 # palette a 5 colori: f_pal5 ora in R/
 
 indicatori <- tibble::tribble(
-  ~var,              ~titolo,                                            ~palette5,
-  "quota_stranieri", "Stranieri e apolidi sulla popolazione (2024)",     f_pal5(seq_factor_purple),
-  "dens_km2",        "Densità di popolazione, abitanti per km² (2024)",  f_pal5(seq_factor_blue),
-  "quota_65p",       "Popolazione di 65 anni e oltre (2024)",            f_pal5(seq_factor_red),
-  "quota_0_14",      "Popolazione di 0-14 anni (2024)",                  f_pal5(seq_factor_green),
-  "quota_minorenni", "Popolazione minorenne, 0-17 anni (2024)",          f_pal5(seq_factor_green)
+  ~var,              ~titolo,                                            ~indicatore,                                                    ~palette5,
+  "quota_stranieri", "Stranieri e apolidi sulla popolazione (2024)",     "Indicatore: % di stranieri e apolidi sulla popolazione residente", f_pal5(seq_factor_purple),
+  "dens_km2",        "Densità di popolazione, abitanti per km² (2024)",  "Indicatore: abitanti per km²",                                 f_pal5(seq_factor_blue),
+  "quota_65p",       "Popolazione di 65 anni e oltre (2024)",            "Indicatore: % della popolazione con 65 anni e oltre",          f_pal5(seq_factor_red),
+  "quota_0_14",      "Popolazione di 0-14 anni (2024)",                  "Indicatore: % della popolazione di 0-14 anni",                 f_pal5(seq_factor_green),
+  "quota_minorenni", "Popolazione minorenne, 0-17 anni (2024)",          "Indicatore: % della popolazione di 0-17 anni",                 f_pal5(seq_factor_green)
 )
 
 # --- 4) Genera e salva (purrr) ------------------------------------------------

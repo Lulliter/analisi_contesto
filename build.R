@@ -34,7 +34,12 @@ for (m in moduli) {
   ))
   for (s in script) {
     message("== ", m, " / ", basename(s))
-    esito <- system2(rscript, shQuote(s))
+    # Gli script stampano i grafici "a schermo" (controllo visivo in RStudio).
+    # In Rscript non c'e' schermo e R aprirebbe Rplots.pdf, che non conosce
+    # i caratteri tipografici (warning mbcsToSbcs): dirotto la stampa su png
+    # temporanei (ragg, unicode ok)
+    avvio <- "options(device = function(...) ragg::agg_png(tempfile(fileext = '.png'), ...))"
+    esito <- system2(rscript, c("-e", shQuote(paste0(avvio, "; source('", s, "')"))))
     if (esito != 0) stop("Errore nello script: ", s)
   }
 }

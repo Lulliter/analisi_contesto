@@ -68,10 +68,10 @@ LAB_SCOPI <- c("scopo_studio" = "Per lo studio", "scopo_privato" = "Per scopi pr
 # 1 riga = 1 grafico
 GRAFICI <- tribble(
   ~nome,                        ~indicatore,             ~titolo,                                                   ~sottotitolo,
-  "plot_profilo_social",        "profilo_social",        "Ragazzi con un profilo sui social network",               "Ragazzi di 11-19 anni che usano internet, per età e sesso",
-  "plot_amici_online",          "amici_online",          "Quanto spesso i ragazzi sentono gli amici online",        "Chat, chiamate, videochiamate; ragazzi di 11-19 anni, per età e sesso",
-  "plot_amici_di_persona",      "amici_di_persona",      "Quanto spesso i ragazzi vedono gli amici di persona",     "Nel tempo libero; ragazzi di 11-19 anni, per età e sesso",
-  "plot_nuove_amicizie_online", "nuove_amicizie_online", "Ragazzi che usano internet per fare nuove amicizie",      "Ragazzi di 11-19 anni che usano internet, per età e sesso"
+  "plot_profilo_social",        "profilo_social",        "Ragazzi con un profilo sui social network",               "Indicatore: % dei ragazzi di 11-19 anni che usano internet, per età e sesso",
+  "plot_amici_online",          "amici_online",          "Quanto spesso i ragazzi sentono gli amici online",        "Indicatore: % di tutti i ragazzi di 11-19 anni, per età e sesso (chat, chiamate, videochiamate)",
+  "plot_amici_di_persona",      "amici_di_persona",      "Quanto spesso i ragazzi vedono gli amici di persona",     "Indicatore: % di tutti i ragazzi di 11-19 anni, per età e sesso (nel tempo libero)",
+  "plot_nuove_amicizie_online", "nuove_amicizie_online", "Ragazzi che usano internet per fare nuove amicizie",      "Indicatore: % dei ragazzi di 11-19 anni che usano internet, per età e sesso"
 )
 
 # raggruppamento NOSTRO delle sei risposte ISTAT in tre categorie (solo per i grafici: nel csv restano
@@ -156,7 +156,7 @@ plot_internet_eta <- internet_eta_prep |>
   f_theme_scuola() +
   theme(plot.caption = element_text(hjust = 0), plot.caption.position = "plot") +
   labs(title = str_wrap(glue("Chi usa internet tutti i giorni, per età ({ANNO_PRIMO_ICT}-{ANNO_ULTIMO_ICT})"), 55),
-       subtitle = "Bambini, ragazzi e giovani a confronto con la popolazione (linea tratteggiata)",
+       subtitle = "Indicatore: % delle persone della stessa età che usano internet tutti i giorni. Linea tratteggiata = popolazione di 6 anni e più",
        caption = CAP_ICT, x = "", y = "")
 
 plot_internet_eta
@@ -188,7 +188,7 @@ plot_pc_internet <- pc_internet_prep |>
         strip.text = element_text(size = rel(1), face = "bold"),
         plot.caption = element_text(hjust = 0), plot.caption.position = "plot") +
   labs(title = str_wrap(glue("Chi usa internet e chi usa il pc, per età ({ANNO_PRIMO_ICT}-{ANNO_ULTIMO_ICT})"), 55),
-       subtitle = "La fascia grigia segna gli anni della pandemia (2020-2021)",
+       subtitle = "Indicatore: % delle persone della stessa età che usano internet (almeno una volta l'anno) e che usano il pc. Fascia grigia = pandemia (2020-2021)",
        caption = CAP_ICT, x = "", y = "")
 
 plot_pc_internet
@@ -295,7 +295,7 @@ plot_ia_eta <- ia_eta_prep |>
   theme(axis.text.x = element_text(angle = 0, hjust = 0.5),
         plot.caption = element_text(hjust = 0), plot.caption.position = "plot") +
   labs(title = str_wrap(glue("Chi usa l'IA generativa, per età ({ANNO_IA})"), 55),
-       subtitle = "Persone che l'hanno usata negli ultimi 3 mesi, in % delle persone della stessa età; Italia e Unione europea",
+       subtitle = "Indicatore: % delle persone della stessa età che hanno usato l'IA generativa negli ultimi 3 mesi. Italia e Unione europea",
        caption = CAP_IA, x = "Età (anni)", y = "")
 
 plot_ia_eta
@@ -330,7 +330,7 @@ plot_ia_scopi <- ia_scopi_prep |>
         strip.text = element_text(size = rel(1), face = "bold"),
         plot.caption = element_text(hjust = 0), plot.caption.position = "plot") +
   labs(title = str_wrap(glue("Per cosa i giovani usano l'IA generativa ({ANNO_IA})"), 55),
-       subtitle = "In % dei giovani che l'hanno usata negli ultimi 3 mesi; gli scopi non si escludono a vicenda",
+       subtitle = "Indicatore: % dei giovani della stessa età che hanno usato l'IA negli ultimi 3 mesi; gli scopi non si escludono a vicenda",
        caption = CAP_IA, x = "", y = "")
 
 plot_ia_scopi
@@ -343,6 +343,6 @@ names(lista_plot)   # attesi 8 nomi
 
 purrr::iwalk(lista_plot, function(p, nome) {
   saveRDS(p, file.path(dir_mod, paste0(nome, ".rds")))
-  ggsave(file.path(dir_mod, paste0(nome, ".png")), p, width = 9, height = 6, dpi = 300)
+  ggsave(file.path(dir_mod, paste0(nome, ".png")), p, width = 9, height = 6, dpi = 300, device = ragg::agg_png)
   message("Salvato: ", nome, " (.rds + .png)")
 })

@@ -4,7 +4,7 @@
 # il 2026-07-18 (2° utilizzatore: scuola_iscritti — regola 6).
 f_salva_mappa <- function(mappa, nome_file, dir_out, width = 8, height = 6) {
   ggplot2::ggsave(file.path(dir_out, paste0(nome_file, ".png")),
-                  mappa, width = width, height = height, dpi = 300, bg = "white")
+                  mappa, width = width, height = height, dpi = 300, device = ragg::agg_png, bg = "white")
   saveRDS(mappa, file.path(dir_out, paste0(nome_file, ".rds")))
   message("Salvata: ", nome_file)
 }

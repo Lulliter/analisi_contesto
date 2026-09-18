@@ -52,6 +52,9 @@ f_disegna_mappa <- function(df_comuni, df_prov, var, titolo, palette5, caption,
       axis.title   = ggplot2::element_blank(),
       axis.ticks   = ggplot2::element_blank(),
       panel.grid   = ggplot2::element_blank(),
+      # sottotitolo in textbox: va a capo da solo alla larghezza della mappa
+      plot.subtitle = ggtext::element_textbox_simple(size = 10, colour = "grey30",
+                                                     lineheight = 1.2, margin = ggplot2::margin(b = 8)),
       plot.caption = ggplot2::element_text(hjust = 0, size = 8, colour = "grey30")
     )
 }

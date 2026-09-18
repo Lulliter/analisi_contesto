@@ -99,7 +99,7 @@ plot_neet_prov_er <- neet_prov_prep |>
   theme(axis.text.x = element_text(angle = 0, hjust = 0.5)) +
   labs(
     title = str_wrap(glue("Giovani che non studiano e non lavorano (NEET), {ANNO_BES_PRIMO}-{ANNO_ULTIMO}"), 55),
-    subtitle = "15-29 anni, in % della popolazione della stessa età; province ER, regione e Italia. Stime campionarie: le differenze tra province vanno lette con cautela",
+    subtitle = "Indicatore: % di 15-29enni che non studiano e non lavorano sulla popolazione della stessa età; province ER, regione e Italia. Stime campionarie: le differenze tra province vanno lette con cautela",
     caption = CAP_NEET, x = "", y = ""
   )
 
@@ -133,7 +133,7 @@ plot_competenze_prov_er <- competenze_prep |>
         panel.spacing.x = unit(2, "lines")) + # altrimenti "50%" e "0%" dei due pannelli si toccano
   labs(
     title = str_wrap(glue("Studenti di III media con competenze non adeguate ({ANNO_ULTIMO})"), 55),
-    subtitle = "Prove INVALSI: quota di studenti sotto il livello adeguato, per provincia; dato censuario",
+    subtitle = "Indicatore: % di studenti di III media sotto il livello adeguato nelle prove INVALSI, per provincia; dato censuario",
     caption = CAP_BES, x = "", y = ""
   )
 
@@ -202,7 +202,7 @@ ritardo_corso_prep
 plot_ritardo_corso_pr_er <- ritardo_corso_prep |>
   ggplot(aes(x = classe, y = quota_ritardo, color = territorio_display, group = territorio_display)) +
   geom_line_interactive(aes(tooltip = territorio_display, data_id = territorio_display), linewidth = rel(1.2)) +
-  geom_point_interactive(aes(tooltip = glue("{territorio_display}, {ordine_lbl} {classe}ª: {scales::percent(quota_ritardo, accuracy = 0.1)} ({scales::number(alunni_ritardo, big.mark = '.')} alunni)")), size = 1.8) +
+  geom_point_interactive(aes(tooltip = glue("{territorio_display}, {ordine_lbl} {classe}ª: {scales::percent(quota_ritardo, accuracy = 0.1)} ({scales::number(alunni_ritardo, big.mark = '.', decimal.mark = ',')} alunni)")), size = 1.8) +
   facet_grid(~ ordine_lbl, scales = "free_x", space = "free_x",
              labeller = label_wrap_gen(14)) + # "Secondaria I grado" su 2 righe
   scale_y_continuous(labels = function(x) scales::percent(x, accuracy = 1), limits = c(0, NA)) +
@@ -212,7 +212,7 @@ plot_ritardo_corso_pr_er <- ritardo_corso_prep |>
         strip.text = element_text(size = rel(1), face = "bold")) +
   labs(
     title = str_wrap(glue("Alunni in ritardo scolastico per anno di corso (a.s. {f_lab_as(ANNO_ULTIMO)})"), 55),
-    subtitle = "Età superiore a quella regolare per la classe (ripetenze o inserimenti in classi inferiori), in % degli iscritti della classe. Alle superiori dopo il 3° anno gli iscritti calano di un terzo (fine dell'obbligo a 16 anni, passaggi alla formazione professionale, abbandoni)",
+    subtitle = "Indicatore: % di alunni con età superiore a quella regolare per la classe (ripetenze o inserimenti in classi inferiori) sugli iscritti della classe. Alle superiori dopo il 3° anno gli iscritti calano di un terzo (fine dell'obbligo a 16 anni, passaggi alla formazione professionale, abbandoni)",
     caption = CAP_MIM, x = "Anno di corso", y = ""
   )
 
@@ -239,7 +239,7 @@ plot_ritardo_trend_pr_er <- ritardo_trend_prep |>
   theme(strip.text = element_text(size = rel(1), face = "bold")) +
   labs(
     title = str_wrap(glue("Alunni in ritardo scolastico per ordine di scuola (trend a.s. {f_lab_as(ANNO_PRIMO)}-{f_lab_as(ANNO_ULTIMO)})"), 55),
-    subtitle = "In % degli iscritti dell'ordine",
+    subtitle = "Indicatore: % di alunni in ritardo sugli iscritti dell'ordine",
     caption = CAP_MIM, x = "", y = ""
   )
 
@@ -280,7 +280,7 @@ mappa_ritardo_sec1_comuni_pr <- f_disegna_mappa(
   titolo       = str_wrap("Alunni in ritardo scolastico alle medie — provincia di Parma", 55),
   palette5     = c(f_pal5(seq_factor_red), grey_m), # 5 classi + "n.d."
   caption      = CAP_MIM,
-  sottotitolo  = str_wrap(glue("A.s. {f_lab_as(ANNO_ULTIMO)}, secondaria di I grado, comune della scuola; classi = quintili; in grigio (n.d.) i comuni senza scuole medie"), 80),
+  sottotitolo  = glue("Indicatore: % di alunni in ritardo sugli iscritti alle medie, per comune della scuola; a.s. {f_lab_as(ANNO_ULTIMO)}; classi = quintili; in grigio (n.d.) i comuni senza scuole medie"),
   nome_legenda = "% in ritardo\nsu iscritti",
   col_tooltip  = "tooltip_mappa",
   df_evidenzia = NULL
@@ -298,7 +298,7 @@ lista_plot <- list(
 
 purrr::iwalk(lista_plot, function(p, nome) {
   saveRDS(p, file.path(dir_mod, paste0(nome, ".rds")))
-  ggsave(file.path(dir_mod, paste0(nome, ".png")), p, width = 9, height = 6, dpi = 300)
+  ggsave(file.path(dir_mod, paste0(nome, ".png")), p, width = 9, height = 6, dpi = 300, device = ragg::agg_png)
   message("Salvato: ", nome, " (.rds + .png)")
 })
 
