@@ -19,7 +19,10 @@ execute:
   error: false
   output: false
   
-# bibliography: ../../bib/CRP_analisi_contesto.bib
+# --- Bibliografia (unica per il sito, esportata da Zotero): si cita con [@chiave]
+bibliography: ../../bib/CRP_analisi_contesto.bib
+csl: ../../bib/chicago-author-date.csl
+link-citations: true
 # suppress-bibliography: false
 ---
 
@@ -626,8 +629,6 @@ La pagina [**Previsioni al 2050**](trend_demogr_previs.qmd) prosegue questi tren
 :::
 
 ## Possibili approfondimenti
-
-Le domande a cui questa pagina non risponde ancora, e su cui l'Osservatorio intende lavorare:
 
 1. Dentro la provincia: quali comuni crescono e quali si spopolano, e cosa distingue la montagna dalla pianura e dalla città.
 2. Chi arriva: da dove vengono i nuovi residenti, quanti sono giovani e famiglie, e quanto pesano le seconde generazioni nate qui.

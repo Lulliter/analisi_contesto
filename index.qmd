@@ -12,6 +12,11 @@ execute:
   warning: false
   error: false
   output: false
+
+# --- Bibliografia (unica per il sito, esportata da Zotero): si cita con [@chiave]
+bibliography: bib/CRP_analisi_contesto.bib
+csl: bib/chicago-author-date.csl
+link-citations: true
 ---
 
 Questo sito, curato dall'Osservatorio dei Dati Sociali di Fondazione Cariparma, offre una raccolta ragionata di dati pubblici sulla provincia di Parma, confrontata con l'Emilia-Romagna e con l'Italia, come strumento per chi opera nel sociale, nella scuola e nelle istituzioni locali. I dati sono prevalentemente tratti da fonti ufficiali, sempre citate (ISTAT, Ministero dell'Istruzione, Regione Emilia Romagna, ecc.).

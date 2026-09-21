@@ -35,6 +35,7 @@ CAP <- f_caption_fonte("ISTAT, indagine Bambini e ragazzi (rilevazione 2023, dat
 # un colore per sesso (da _parma_colors); la risposta si legge dall'INTENSITÀ del colore (trasparenza)
 # maschi/femmine = i colori delle piramidi di popolazione; "Tutti" (maschi e femmine) in grigio neutro
 COL_SESSO <- c("Maschi" = maschi, "Femmine" = femmine, "Tutti" = grey_sc)
+BG_SESSO <- c("M" = "#DAE3EB", "F" = "#F0DEE1")   # tinte pallide (25%) di maschi / femmine, per le colonne delle tabelle
 SOGLIA_ETICHETTA <- 4   # sotto questa % l'etichetta dentro la barra non ci sta: va sopra la barra (v. etichette_sopra)
 
 # --- parametri dei grafici di trend (internet e pc per età)
@@ -62,7 +63,8 @@ COL_TERRITORIO <- c("Italia" = blu_md, "UE (27 paesi)" = grey_md1)
 LIVELLI_ETA_IA <- c("16-19", "20-24", "25-34", "35-44", "45-54", "55-64", "65-74", "Totale 16-74")
 ETA_SCOPI <- c("16-19", "20-24")     # classi d'età nel grafico degli scopi
 # scopi d'uso: codice dell'indicatore → etichetta nel grafico, nell'ordine in cui compaiono
-LAB_SCOPI <- c("scopo_studio" = "Per lo studio", "scopo_privato" = "Per scopi privati", "scopo_lavoro" = "Per lavoro")
+# etichette brevi: il titolo del grafico dice già "Per cosa"
+LAB_SCOPI <- c("scopo_studio" = "Studio", "scopo_privato" = "Scopi privati", "scopo_lavoro" = "Lavoro")
 
 # --- parametri dei grafici a barre (social e amici)
 # 1 riga = 1 grafico
@@ -325,6 +327,7 @@ plot_ia_scopi <- ia_scopi_prep |>
   scale_y_continuous(limits = c(0, 100), labels = scales::label_number(suffix = "%"),
                      expand = expansion(mult = c(0, 0.05))) +
   scale_fill_manual(values = COL_TERRITORIO) +
+  scale_x_discrete(labels = scales::label_wrap(8)) +   # a capo se l'etichetta non ci sta
   f_theme_sito_trend() +
   theme(axis.text.x = element_text(angle = 0, hjust = 0.5),
         strip.text = element_text(size = rel(1), face = "bold"),
@@ -343,27 +346,42 @@ ETICHETTE_HBSC <- c(uso_problematico_social      = "Uso problematico dei social"
                     videogiochi_4h_piu           = "Videogiochi 4+ ore al giorno",
                     uso_problematico_videogiochi = "Uso problematico dei videogiochi")
 
-# tabella: per età, ER 2022 (i totali 2018/2022 stanno nel grafico sotto)
+# tabella: righe = indicatori, colonne = età x sesso (M e F affiancati); ER 2022
+# (i totali 2018/2022 stanno nel grafico sotto)
 hbsc_tab_prep <- hbsc_2022 |>
   filter(territorio == "Emilia-Romagna", anno == 2022, sesso %in% c("M", "F"), eta != "Totale") |>
-  mutate(colonna = paste(eta, "anni"),
-         riga = paste0(ETICHETTE_HBSC[indicatore], ", ", if_else(sesso == "M", "maschi", "femmine")),
-         ordine = match(indicatore, names(ETICHETTE_HBSC)) * 2 + (sesso == "F")) |>
-  select(ordine, riga, colonna, valore) |>
+  mutate(riga = factor(ETICHETTE_HBSC[indicatore], levels = ETICHETTE_HBSC),
+         colonna = paste(eta, sesso, sep = "_")) |>
+  select(riga, colonna, valore) |>
   tidyr::pivot_wider(names_from = colonna, values_from = valore) |>
-  arrange(ordine) |>
-  select(riga, `11 anni`, `13 anni`, `15 anni`, `17 anni`)   # ordine colonne esplicito
+  arrange(riga) |>
+  mutate(riga = as.character(riga)) |>
+  select(riga, `11_M`, `11_F`, `13_M`, `13_F`, `15_M`, `15_F`, `17_M`, `17_F`)   # ordine esplicito = colwidths sotto
 
-hbsc_tab_prep   # 6 righe; N.D. solo per i social a 17 anni (non rilevato)
+hbsc_tab_prep   # 3 righe; N.D. solo per i social a 17 anni (non pubblicato nel report)
+
+COL_M <- c("11_M", "13_M", "15_M", "17_M")
+COL_F <- c("11_F", "13_F", "15_F", "17_F")
 
 hbsc_tab_ft <- hbsc_tab_prep |>
   f_ft() |>
-  set_header_labels(riga = "") |>
+  set_header_labels(riga = "Fenomeno",
+                    `11_M` = "M", `11_F` = "F", `13_M` = "M", `13_F` = "F",
+                    `15_M` = "M", `15_F` = "F", `17_M` = "M", `17_F` = "F") |>
+  # riga delle età sopra M/F: colwidths nello stesso ordine del select() del prep
+  add_header_row(values = c("", "11 anni", "13 anni", "15 anni", "17 anni"), colwidths = c(1, 2, 2, 2, 2)) |>
   align(align = "center", part = "header") |>
+  align(j = c(COL_M, COL_F), align = "center", part = "body") |>
+  # colore per colonna: riga M/F dell'header (i = 2) + corpo
+  bg(i = 2, j = COL_M, bg = BG_SESSO[["M"]], part = "header") |>
+  bg(i = 2, j = COL_F, bg = BG_SESSO[["F"]], part = "header") |>
+  bg(j = COL_M, bg = BG_SESSO[["M"]], part = "body") |>
+  bg(j = COL_F, bg = BG_SESSO[["F"]], part = "body") |>
   f_ft_titolo_note(
     titolo = "Social e videogiochi tra gli 11 e i 17 anni in Emilia-Romagna, 2022: uso intenso e problematico (%)",
-    note = c("Fonte: ISS, sorveglianza HBSC 2022, report Emilia-Romagna; stima campionaria (4.200 studenti in classe). Leggere le differenze per età e sesso, non i decimali.",
-             "Uso problematico dei social: 6 o più criteri della Social Media Disorder Scale (non rilevato a 17 anni). Videogiochi 4+ ore: nei giorni in cui giocano. Uso problematico dei videogiochi: Internet Gaming Disorder Scale, punteggio 21 o più (prima rilevazione nel 2022).")
+    note = c("In azzurro: maschi (M); in rosa: femmine (F).",
+             "Fonte: ISS, sorveglianza HBSC 2022, report Emilia-Romagna; stima campionaria (4.200 studenti in classe). Leggere le differenze per età e sesso, non i decimali.",
+             "Uso problematico dei social: 6 o più criteri della Social Media Disorder Scale (a 17 anni il dato non è pubblicato nel report). Videogiochi 4+ ore: nei giorni in cui giocano. Uso problematico dei videogiochi: Internet Gaming Disorder Scale, punteggio 21 o più (prima rilevazione nel 2022).")
   )
 hbsc_tab_ft
 saveRDS(hbsc_tab_ft, file.path(dir_mod, "hbsc_tab_ft.rds"))
@@ -399,7 +417,30 @@ plot_hbsc_social_trend <- hbsc_trend_prep |>
        caption = CAP_HBSC, x = "", y = "")
 plot_hbsc_social_trend
 
-# 7. Salva (rds per il sito + png per riuso rapido; nome file = oggetto) ----
+# 7. Tabella: cosa dicono gli studi su IA e apprendimento ----------------------
+# sintesi di letteratura trascritta a mano (1 riga = 1 studio; riferimenti verificati il 2026-09-21)
+# NB: numeri di Bastani et al. riletti sull'articolo PNAS (2026-09-21); la Correction (doi 10.1073/pnas.2518204122) riguarda solo l'affiliazione di un autore
+studi_ia_apprendimento <- tribble(
+  ~studio,                                          ~chi,                                        ~uso_ia,                                                         ~risultato,
+  "Bastani et al. (2025), PNAS",                    "Circa 1.000 liceali, Turchia, matematica",  "ChatGPT libero oppure ChatGPT tutor che dà indizi, non soluzioni",      "Con ChatGPT libero gli esercizi vengono meglio, ma all'esame senza IA i voti sono più bassi di chi non l'ha usato (-17%). Con il tutor che dà solo indizi il danno sparisce, ma non si impara di più",
+  "Kestin et al. (2025), Scientific Reports",       "194 universitari, Harvard, fisica",         "Tutor costruito dai docenti, al posto della lezione in aula",   "Con il tutor IA gli studenti imparano circa il doppio che in aula, e in meno tempo",
+  "De Simone et al. (2025), Banca Mondiale",        "Studenti delle superiori, Nigeria, inglese", "Doposcuola di 6 settimane, con insegnanti che guidano l'uso",  "In sei settimane, progressi in inglese pari a più di un anno di scuola ordinaria (stima degli autori)",
+  "Wang et al. (2024), Stanford, working paper",    "1.800 alunni di scuole svantaggiate e 900 tutor, Stati Uniti", "L'IA suggerisce al tutor umano come rispondere, non parla con l'alunno", "Gli alunni superano più spesso le verifiche sugli argomenti (+4 punti percentuali); il vantaggio è più che doppio con i tutor meno esperti"
+)
+studi_ia_apprendimento   # 4 righe
+
+studi_ia_tab_ft <- studi_ia_apprendimento |>
+  f_ft() |>
+  set_header_labels(studio = "Studio", chi = "Chi", uso_ia = "Come è usata l'IA", risultato = "Risultato") |>
+  f_ft_titolo_note(
+    titolo = "IA generativa e apprendimento: i primi studi sperimentali",
+    note = "Studi con gruppo di controllo; nessuno riguarda l'uso libero dell'IA da parte di minori fuori dalla scuola."
+  )
+studi_ia_tab_ft
+saveRDS(studi_ia_tab_ft, file.path(dir_mod, "studi_ia_tab_ft.rds"))
+readr::write_csv(studi_ia_apprendimento, file.path(dir_mod, "studi_ia_apprendimento.csv"))   # per i bottoni di scarico
+
+# 8. Salva (rds per il sito + png per riuso rapido; nome file = oggetto) ----
 # tutti i grafici del modulo in una lista: i 2 di trend + i 2 sull'IA + i 4 a barre (l'ordine delle sezioni sopra non conta)
 lista_plot <- c(list(plot_internet_eta = plot_internet_eta, plot_pc_internet = plot_pc_internet,
                      plot_ia_eta = plot_ia_eta, plot_ia_scopi = plot_ia_scopi,

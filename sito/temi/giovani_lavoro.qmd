@@ -16,6 +16,11 @@ execute:
   warning: false
   error: false
   output: false
+
+# --- Bibliografia (unica per il sito, esportata da Zotero): si cita con [@chiave]
+bibliography: ../../bib/CRP_analisi_contesto.bib
+csl: ../../bib/chicago-author-date.csl
+link-citations: true
 ---
 
 ```{r}
@@ -130,8 +135,6 @@ Qui sotto alcune fonti selezionate da analizzare per dati e spunti di ispirazion
  
 
 ## Possibili approfondimenti
-
-Le domande su cui l'Osservatorio intende lavorare:
 
 1. Il mismatch: quali competenze mancano davvero alle imprese di Parma, e quanto il sistema formativo locale può colmarle.
 2. La rete: come istituti tecnici, ITS, università e imprese collaborano sul territorio, e con quali risultati per i ragazzi.

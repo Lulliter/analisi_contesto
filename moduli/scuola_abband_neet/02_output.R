@@ -197,7 +197,7 @@ plot_ritardo_corso_pr_er <- ritardo_corso_prep |>
   ggplot(aes(x = classe, y = quota_ritardo, color = territorio_display, group = territorio_display)) +
   geom_line_interactive(aes(tooltip = territorio_display, data_id = territorio_display), linewidth = rel(1.2)) +
   geom_point_interactive(aes(tooltip = glue("{territorio_display}, {ordine_lbl} {classe}ª: {scales::percent(quota_ritardo, accuracy = 0.1)} ({scales::number(alunni_ritardo, big.mark = '.', decimal.mark = ',')} alunni)")), size = 1.8) +
-  facet_grid(~ ordine_lbl, scales = "free_x", space = "free_x",
+  facet_grid(~ ordine_lbl, scales = "free_x", space = "free_x", rows=2, 
              labeller = label_wrap_gen(14)) + # "Secondaria I grado" su 2 righe
   scale_y_continuous(labels = function(x) scales::percent(x, accuracy = 1), limits = c(0, NA)) +
   scale_color_manual(values = COL_TERRITORI) +

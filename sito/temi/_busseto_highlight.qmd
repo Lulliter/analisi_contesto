@@ -8,6 +8,11 @@ format:
     toc: false
   docx:
     toc: false
+
+# --- Bibliografia (unica per il sito, esportata da Zotero): si cita con [@chiave]
+bibliography: ../../bib/CRP_analisi_contesto.bib
+csl: ../../bib/chicago-author-date.csl
+link-citations: true
 ---
 
 ## Quanti sono

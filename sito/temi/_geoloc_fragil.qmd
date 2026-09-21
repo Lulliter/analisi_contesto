@@ -19,7 +19,10 @@ execute:
   error: false
   output: false
   
-# bibliography: ../../bib/CRP_analisi_contesto.bib
+# --- Bibliografia (unica per il sito, esportata da Zotero): si cita con [@chiave]
+bibliography: ../../bib/CRP_analisi_contesto.bib
+csl: ../../bib/chicago-author-date.csl
+link-citations: true
 # suppress-bibliography: false
 ---
 

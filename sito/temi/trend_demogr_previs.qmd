@@ -16,6 +16,11 @@ execute:
   warning: false
   error: false
   output: false
+
+# --- Bibliografia (unica per il sito, esportata da Zotero): si cita con [@chiave]
+bibliography: ../../bib/CRP_analisi_contesto.bib
+csl: ../../bib/chicago-author-date.csl
+link-citations: true
 ---
 
 ```{r}
@@ -258,8 +263,6 @@ Previsioni ISTAT base 1.1.2024, **solo scenario mediano** (i file pubblicati per
 :::
 
 ## Possibili approfondimenti
-
-Le domande a cui questa pagina non risponde ancora, e su cui l'Osservatorio intende lavorare:
 
 1. Cosa implicano queste previsioni per i servizi: quante classi in meno, quanti posti in più nelle strutture per anziani, dove.
 2. I comuni: quali territori della provincia sono previsti in crescita e quali in declino, e con quale struttura per età.

@@ -16,6 +16,11 @@ execute:
   warning: false
   error: false
   output: false
+
+# --- Bibliografia (unica per il sito, esportata da Zotero): si cita con [@chiave]
+bibliography: ../../bib/CRP_analisi_contesto.bib
+csl: ../../bib/chicago-author-date.csl
+link-citations: true
 ---
 
 ```{r}
@@ -68,7 +73,7 @@ readRDS(here::here("moduli", "scuola_iscritti", "output", "iscritti_trend_pr.rds
 -->
 + La scuola **paritaria della provincia** (frequentata da circa il 5% degli alunni) accoglie soprattutto i bambini dell’infanzia, spesso presidiando aree più remote. Dei 104 plessi paritari, 80 sono scuole dell’infanzia, presenti in 21 comuni
 
-+ Quasi un alunno su quattro ha **cittadinanza non italiana**, con punte comunali molto più alte (Langhirano ~49%, Busseto ~39%): la scuola è il primo luogo dove si vede la Parma che cambia.
++ Più di un alunno su cinque ha **cittadinanza non italiana**, con punte comunali molto più alte (Langhirano ~49%, Colorno e Busseto ~32%): la scuola è il primo luogo dove si vede la Parma che cambia.
 
 + Dall'a.s. 2016/17, a Parma come in Emilia-Romagna, sono cresciuti gli alunni con **certificazioni di disabilità** - con una crescita impressionante (circa il 40% nelle scuole statali) a fronte di un numero stabile di iscritti. 
  
@@ -177,6 +182,8 @@ f_girafe(readRDS(file.path(dir_scuola, "mappa_alunni_comuni_pr.rds")))
 f_bottoni_dati("scuola_comuni_pr", dir_scuola, rds = "mappa_alunni_comuni_pr")
 ```
 :::
+
+[]{#mappa-stranieri-comuni}
 
 ```{r}
 #| label: mappa_quota_stranieri_comuni_pr
@@ -313,7 +320,7 @@ f_bottoni_dati("scuola_comuni_pr", dir_scuola, rds = "plot_stranieri_comuni_pr_m
 
 L'eterogeneità comunale è fortissima: nei comuni della pedecollina e della
 bassa a forte domanda di lavoro l'incidenza supera di molto la soglia del 20%
-(Langhirano ~49%, Busseto ~39%, Colorno ~32%), mentre le code basse si trovano
+(Langhirano ~49%, Colorno ~32%, Busseto ~32%), mentre le code basse si trovano
 soprattutto nei comuni dell'Appennino.
 :::
 
@@ -386,8 +393,6 @@ Sul versante del **sostegno**, il quadro regionale ISTAT (a.s. 2024/25, tutte le
 :::
 
 ## Possibili approfondimenti
-
-Le domande a cui questa pagina non risponde ancora, e su cui l'Osservatorio intende lavorare:
 
 1. La scuola dell'infanzia, oggi fuori da questi dati: quanti bambini la frequentano, dove, e quale ruolo hanno le paritarie.
 2. Disabilità e origine: quanto la crescita delle certificazioni riguarda i bambini arrivati dall'estero, dove difficoltà linguistiche e disturbi possono confondersi.

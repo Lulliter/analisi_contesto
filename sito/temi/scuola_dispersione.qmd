@@ -16,6 +16,11 @@ execute:
   warning: false
   error: false
   output: false
+
+# --- Bibliografia (unica per il sito, esportata da Zotero): si cita con [@chiave]
+bibliography: ../../bib/CRP_analisi_contesto.bib
+csl: ../../bib/chicago-author-date.csl
+link-citations: true
 ---
 
 ```{r}
@@ -50,15 +55,151 @@ source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hov
 
 ## In sintesi
 
-+ Nel 2024 **circa un giovane su nove** (10,9% dei 15-29enni) in provincia di Parma non studia e non lavora (i cosiddetti _NEET_): meno che in Italia (15,2%), poco sopra la media regionale (9,6%), e quasi la metà rispetto al picco pandemico.
-
-+ L'abbandono scolastico vero e proprio (_ELET_: chi ha lasciato senza diploma né qualifica) è ormai una quota piccola, in Emilia-Romagna il 6% dei 18-24enni, sotto l'obiettivo europeo (9% entro il 2030): **il grosso dei giovani fermi non ha lasciato la scuola, ma ha finito di studiare e non è entrato nel lavoro**. E si rileva una differenza di genere: lasciano la scuola più i ragazzi, restano fuori dal lavoro più le ragazze.
++ Il **ritardo scolastico** (avere più anni dell'età regolare per la classe) riguarda il 2,8% degli alunni alla primaria, l'8,6% alle medie e quasi il 20% alle superiori: il salto avviene all'ingresso delle superiori, e chi è in ritardo tende poi a uscire dal percorso.
 
 + L'uscita dalla **terza media è un momento cruciale**, dove si possono vedere le prime avvisaglie del rischio dispersione/abbandono: quattro studenti su dieci non raggiungono un livello adeguato in italiano (39%) e in matematica (41%), più della media regionale e in crescita dal 2018.
 
-+ Il **ritardo scolastico** (avere più anni dell'età regolare per la classe) riguarda il 2,8% degli alunni alla primaria, l'8,6% alle medie e quasi il 20% alle superiori: il salto avviene all'ingresso delle superiori, e chi è in ritardo tende poi a uscire dal percorso.
++ Se il trend decennale di alunni in ritardo decresce (si boccia meno), è però cresciuta la quota di studenti di terza media senza competenze adeguate. In pratica, **una parte degli studenti avanza nel percorso senza acquisire le basi**. Il rischio di tale "dispersione implicita" e maggiore per gli studenti nati all'estero. 
 
-+ Se il trend decennale di alunni in ritardo decresce (si boccia meno), è però cresciuta la quota di studenti di terza media senza competenze adeguate. I due andamenti, letti insieme, suggeriscono che **una parte degli studenti avanza nel percorso senza acquisire le basi: è la "dispersione implicita"** (definizione INVALSI), che non compare nei numeri degli abbandoni ma pesa allo stesso modo sul futuro dei ragazzi.
++ Nel 2024 **circa un giovane su nove** (10,9% dei 15-29enni) in provincia di Parma non studia e non lavora (i cosiddetti ***NEET***): meno che in Italia (15,2%), poco sopra la media regionale (9,6%), e quasi la metà rispetto al picco pandemico.
+
++ L'abbandono scolastico vero e proprio (***ELET***: chi ha lasciato senza diploma né qualifica) è ormai una quota piccola, in Emilia-Romagna il 6% dei 18-24enni, sotto l'obiettivo europeo (9% entro il 2030): **il grosso dei giovani fermi non ha lasciato la scuola, ma ha finito di studiare e non è entrato nel lavoro**. E si rileva una differenza di genere: lasciano la scuola più i ragazzi, restano fuori dal lavoro più le ragazze.
+
+## Dispersione scolastica
+
+Per `dispersione scolastica` si intende l'**insieme dei percorsi che si inceppano prima del traguardo**: frequenze irregolari, bocciature e ritardi, interruzioni, fino all'abbandono vero e proprio. 
+
+### Il ritardo scolastico
+
+Quasi un alunno su cinque alle superiori, e quasi uno su dodici alle medie, ha più anni dell'età regolare per la sua classe: il ritardo raddoppia all'ingresso delle superiori, e chi è in ritardo tende poi a uscire dal percorso.
+
+```{r}
+#| label: plot_ritardo_corso_pr_er
+#| output: true
+#| fig-height: 6
+
+f_girafe(readRDS(file.path(dir_disp, "plot_ritardo_corso_pr_er.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_ritardo_corso_pr_er
+#| output: true
+f_bottoni_dati("ritardo_corso_prov_er", dir_disp, rds = "plot_ritardo_corso_pr_er")
+```
+:::
+
+::: {.callout-note collapse="true"}
+### Osservazioni
+
+Il ritardo cresce nel primo ciclo (dal 2% in prima primaria al 10% in terza media) e **raddoppia all'ingresso delle superiori** (19,6% in prima, a.s. 2024/25). Alla secondaria di I grado, Parma sta sopra la media regionale, coerentemente con la quota più alta di alunni arrivati dall'estero.  
+Dal 3° anno delle superiori, per varie ragioni, la quota non cresce più ma scende. Gli stessi iscritti sono meno (a Parma la prima superiore ha 5.001 iscritti, la quinta 3.334, in regione si va da 47 mila a 34 mila). Questi dati non distinguono 3 possibili canali di uscita: 1) la fine dell'obbligo scolastico a 16 anni; 2) il passaggio ai percorsi triennali di formazione professionale (IeFP) negli enti regionali, che escono dal perimetro delle scuole, e 3) l'abbandono vero e proprio. Evidentemente, chi esce era più propenso ad essere in ritardo, ma una parte esce verso una qualifica, non verso il nulla. 
+
+_NB: Un alunno è in ritardo quando ha più anni dell'età regolare per la classe (età al 31/12): per bocciature o perché, arrivando dall'estero, è stato inserito in una classe inferiore. Non conta chi ha già lasciato la scuola. Dati MIM per singola scuola, statali e paritarie, esclusi corsi serali e per adulti._
+:::
+
+
+Nel trend decennale del ritardo, si osseva una generale inversione di tendenza a partire dal 2020/21 - in parte dovuta all'ordinanza che a fine 2019/20 ha ammesso tutti alla classe successiva, senza bocciature.  
+ 
+
+
+```{r}
+#| label: plot_ritardo_trend_pr_er
+#| output: true
+#| fig-height: 6
+
+f_girafe(readRDS(file.path(dir_disp, "plot_ritardo_trend_pr_er.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_ritardo_trend_pr_er
+#| output: true
+f_bottoni_dati("ritardo_trend_prov_er", dir_disp, rds = "plot_ritardo_trend_pr_er")
+```
+:::
+
+::: {.callout-note collapse="true"}
+### Osservazioni
+
+In dieci anni il ritardo alle superiori a Parma è sceso dal 22% al 19%, alle medie dal 10% all'8,6%; alla primaria è fermo attorno al 3%. Il gradino del 2020/21 è l'effetto dell'ordinanza che a fine 2019/20 ha ammesso tutti alla classe successiva: senza bocciature il ritardo crolla in tutti gli ordini. Da lì in poi i percorsi divergono: alle superiori Parma e regione risalgono insieme, alle medie Parma risale molto di più (dal 6,4% all'8,6%, contro il 6,8% regionale) e la forbice, che si stava chiudendo, si riapre. <!-- è il punto da approfondire, a partire dal ruolo degli inserimenti di alunni arrivati dall'estero.  -->
+<!-- Il calo di lungo periodo del ritardo, insieme al peggioramento delle competenze visto sopra, indica che **si boccia meno ma non si impara di più**: è quella che INVALSI chiama dispersione implicita, studenti che avanzano fino al diploma senza le competenze di base. -->
+:::
+
+### In quali comuni si concentra il ritardo
+
+Il ritardo alle medie è più alto nei comuni della pedecollina e della Val Taro a forte presenza straniera e in alcuni comuni appenninici; Parma città e la bassa stanno attorno alla media provinciale.
+
+```{r}
+#| label: mappa_ritardo_sec1_comuni_pr
+#| output: true
+#| fig-height: 6
+
+f_girafe(readRDS(file.path(dir_disp, "mappa_ritardo_sec1_comuni_pr.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_mappa_ritardo_sec1_comuni_pr
+#| output: true
+f_bottoni_dati("ritardo_comuni_pr", dir_disp, rds = "mappa_ritardo_sec1_comuni_pr")
+```
+:::
+
+::: {.callout-note collapse="true"}
+### Osservazioni
+
+Le **quote più alte di ritardo stanno nella pedecollina e in Val Taro** a forte presenza straniera (Fornovo 24%, Langhirano 16,5%, su centinaia di alunni) e in alcuni comuni appenninici (Palanzano, Solignano, Corniglio, Tizzano), dove però le medie contano 20-50 alunni e bastano pochi casi a spostare la quota. Parma città e i comuni della bassa stanno attorno alla media provinciale.
+
+Il confronto con la [mappa degli alunni con cittadinanza non italiana](scuola.qmd#la-geografia-scolastica-dei-comuni) mostra una sovrapposizione solo parziale: il ritardo è alto in alcuni comuni a forte presenza straniera (Fornovo, Langhirano), ma altri con quote simili o più alte (Busseto, Colorno, Traversetolo) stanno sotto o attorno alla media. La presenza straniera da sola non spiega la geografia del ritardo.
+
+_NB: Il comune è quello della scuola, non della residenza; la mappa riguarda le medie perché le superiori stanno in soli 9 comuni. Nei comuni con poche decine di alunni bastano pochi casi a spostare la quota._
+:::
+
+## Dispersione scolastica implicita
+
+INVALSI chiama `dispersione implicita` quella di chi ottiene il titolo, ma senza le competenze di base che dovrebbe certificare ela misura alla fine delle superiori: nel 2026 riguarda il 6% dei diplomandi in Italia, il valore più basso dal 2019, e meno del 5% in Emilia-Romagna. Da notare, il divario tra licei (3%) e istituti professionali (18%).  
+
+<!-- Il rischio non è distribuito a caso: in terza media riguarda quasi un alunno su tre tra chi ha già accumulato un ritardo, contro uno su nove tra chi ha un percorso regolare; al diploma, il 18% negli istituti professionali contro il 3% nei licei. -->
+
+<!-- _NB: Rapporto INVALSI 2026. È in dispersione implicita chi si ferma ai livelli 1-2 sia in italiano sia in matematica e non raggiunge il B1 in inglese (l'A2 in terza media). È una definizione molto più stretta della quota di competenze non adeguate del grafico qui sotto, che guarda una materia alla volta: per questo i "quattro su dieci" di Parma e il 12% nazionale non sono confrontabili. Il dato per provincia non è pubblicato in forma di tabella._ -->
+
+### Le competenze in terza media possono anticipare il rischio dispersione?
+
+In terza media, si rileva già un `"rischio" di dispersione implicita`. Quattro studenti su dieci non raggiungono un livello adeguato in italiano e in matematica: più della media regionale, e la quota cresce da anni. 
+
+```{r}
+#| label: plot_competenze_prov_er
+#| output: true
+
+f_girafe(readRDS(file.path(dir_disp, "plot_competenze_prov_er.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_competenze_prov_er
+#| output: true
+f_bottoni_dati("bes_istruzione_prov_er", dir_disp, rds = "plot_competenze_prov_er")
+```
+:::
+
+::: {.callout-note collapse="true"}
+### Osservazioni
+
+Nel 2024 a Parma il **39,1% in italiano e il 41,1% in matematica non raggiungono il livello adeguato**: sopra la media regionale (37,9% e 38,5%), in mezzo alla classifica delle province ER (Ferrara e Piacenza peggio, Bologna e Rimini meglio) e in peggioramento continuo dal 2018 (31,5% e 34,0%). Il divario di genere è netto e speculare: i maschi vanno peggio in italiano (44,9%), le femmine in matematica (42,4%).
+
+_NB: Prove INVALSI riprese dall'ISTAT nel Bes dei territori a livello provinciale. È un conteggio su tutti gli studenti, non una stima campionaria: i confronti tra province e nel tempo sono affidabili._
+:::
+
+::: {.callout-warning collapse="true"}
+### Un'attenzione in più: gli alunni arrivati dall'estero
+
+A Parma più di un alunno su cinque ha [cittadinanza non italiana](scuola.qmd#gli-alunni-con-cittadinanza-non-italiana), seconda provincia in regione.  
+In Italia, alla fine della terza media, è a rischio di dispersione implicita il 22,5% degli studenti nati all'estero, **il doppio dei coetanei italiani** (11,5%). Chi è nato in Italia da genitori stranieri è invece in linea con gli italiani (10,3%): il fattore di rischio non è la cittadinanza ma l'arrivo recente, a partire dalla lingua.  
+Alla fine delle superiori il divario scompare (5,9% contro 5,7%), ma secondo il Report INVALSI molti ragazzi di origine straniera hanno lasciato la scuola prima, e al diploma arriva un gruppo selezionato.
+
+<!-- _NB: dati nazionali, la distinzione per origine non esiste per provincia. La quota di alunni con cittadinanza non italiana (dati MIM) comprende nati all'estero e nati in Italia: indica dove guardare, non quanti sono a rischio._ -->
+:::
 
 ## L'entità del fenomeno dei NEET
 
@@ -132,127 +273,10 @@ f_bottoni_dati("bes_istruzione_reg", dir_disp, rds = "elet_tab_ft")
 _NB: Entrambe sono stime campionarie ISTAT (Rilevazione sulle forze di lavoro) riprese nel Bes: leggere il trend, non i decimali. NEET dal Bes dei territori (provinciale, fino al 2024), ELET dal Bes nazionale (regionale, fino al 2025): il dato provinciale dell'abbandono non esiste._
 :::
 
-## Quali segnali anticipano la dispersione scolastica
-
-### Le competenze in terza media
-
-In terza media quattro studenti su dieci non raggiungono un livello adeguato in italiano e in matematica: più della media regionale, e la quota cresce da anni. È il primo segnale, misurabile su tutti gli studenti, del rischio di dispersione.
-
-```{r}
-#| label: plot_competenze_prov_er
-#| output: true
-
-f_girafe(readRDS(file.path(dir_disp, "plot_competenze_prov_er.rds")))
-```
-
-::: {.text-end}
-```{r}
-#| label: dl_plot_competenze_prov_er
-#| output: true
-f_bottoni_dati("bes_istruzione_prov_er", dir_disp, rds = "plot_competenze_prov_er")
-```
-:::
-
-::: {.callout-note collapse="true"}
-### Osservazioni
-
-Nel 2024 a Parma il **39,1% in italiano e il 41,1% in matematica non raggiungono il livello adeguato**: sopra la media regionale (37,9% e 38,5%), in mezzo alla classifica delle province ER (Ferrara e Piacenza peggio, Bologna e Rimini meglio) e in peggioramento continuo dal 2018 (31,5% e 34,0%). Il divario di genere è netto e speculare: i maschi vanno peggio in italiano (44,9%), le femmine in matematica (42,4%).
-
-_NB: Prove INVALSI riprese dall'ISTAT nel Bes dei territori a livello provinciale. A differenza dei NEET è un conteggio su tutti gli studenti, non una stima: i confronti tra province e nel tempo sono affidabili._
-:::
-
-### Il ritardo scolastico
-
-Quasi un alunno su cinque alle superiori, e quasi uno su dodici alle medie, ha più anni dell'età regolare per la sua classe: il ritardo raddoppia all'ingresso delle superiori, e chi è in ritardo tende poi a uscire dal percorso.
-
-```{r}
-#| label: plot_ritardo_corso_pr_er
-#| output: true
-#| fig-height: 6
-
-f_girafe(readRDS(file.path(dir_disp, "plot_ritardo_corso_pr_er.rds")))
-```
-
-::: {.text-end}
-```{r}
-#| label: dl_plot_ritardo_corso_pr_er
-#| output: true
-f_bottoni_dati("ritardo_corso_prov_er", dir_disp, rds = "plot_ritardo_corso_pr_er")
-```
-:::
-
-::: {.callout-note collapse="true"}
-### Osservazioni
-
-Il ritardo cresce nel primo ciclo (dal 2% in prima primaria al 10% in terza media) e **raddoppia all'ingresso delle superiori** (19,6% in prima, a.s. 2024/25). Alla secondaria di I grado, Parma sta sopra la media regionale, coerentemente con la quota più alta di alunni arrivati dall'estero.  
-Dal 3° anno delle superiori, per varie ragioni, la quota non cresce più ma scende. Gli stessi iscritti sono meno (a Parma la prima superiore ha 5.001 iscritti, la quinta 3.334, in regione si va da 47 mila a 34 mila). Questi dati non distinguono 3 possibili canali di uscita: 1) la fine dell'obbligo scolastico a 16 anni; 2) il passaggio ai percorsi triennali di formazione professionale (IeFP) negli enti regionali, che escono dal perimetro delle scuole, e 3) l'abbandono vero e proprio. Evidentemente, chi esce era più propenso ad essere in ritardo, ma una parte esce verso una qualifica, non verso il nulla. 
-
-_NB: Un alunno è in ritardo quando ha più anni dell'età regolare per la classe (età al 31/12): per bocciature o perché, arrivando dall'estero, è stato inserito in una classe inferiore. Non conta chi ha già lasciato la scuola. Dati MIM per singola scuola, statali e paritarie, esclusi corsi serali e per adulti._
-:::
-
-
-Nel trend decennale del ritardo, si osseva una generale inversione di tendenza a partire dal 2020/21 - in parte dovuta all'ordinanza che a fine 2019/20 ha ammesso tutti alla classe successiva, senza bocciature.  
- 
-
-
-```{r}
-#| label: plot_ritardo_trend_pr_er
-#| output: true
-#| fig-height: 6
-
-f_girafe(readRDS(file.path(dir_disp, "plot_ritardo_trend_pr_er.rds")))
-```
-
-::: {.text-end}
-```{r}
-#| label: dl_plot_ritardo_trend_pr_er
-#| output: true
-f_bottoni_dati("ritardo_trend_prov_er", dir_disp, rds = "plot_ritardo_trend_pr_er")
-```
-:::
-
-::: {.callout-note collapse="true"}
-### Osservazioni
-
-In dieci anni il ritardo alle superiori a Parma è sceso dal 22% al 19%, alle medie dal 10% all'8,6%; alla primaria è fermo attorno al 3%. Il gradino del 2020/21 è l'effetto dell'ordinanza che a fine 2019/20 ha ammesso tutti alla classe successiva: senza bocciature il ritardo crolla in tutti gli ordini. Da lì in poi i percorsi divergono: alle superiori Parma e regione risalgono insieme, alle medie Parma risale molto di più (dal 6,4% all'8,6%, contro il 6,8% regionale) e la forbice, che si stava chiudendo, si riapre. <!-- è il punto da approfondire, a partire dal ruolo degli inserimenti di alunni arrivati dall'estero.  -->
-<!-- Il calo di lungo periodo del ritardo, insieme al peggioramento delle competenze visto sopra, indica che **si boccia meno ma non si impara di più**: è quella che INVALSI chiama dispersione implicita, studenti che avanzano fino al diploma senza le competenze di base. -->
-:::
-
-## In quali comuni si concentra la fragilità
-
-Il ritardo alle medie è più alto nei comuni della pedecollina e della Val Taro a forte presenza straniera e in alcuni comuni appenninici; Parma città e la bassa stanno attorno alla media provinciale.
-
-```{r}
-#| label: mappa_ritardo_sec1_comuni_pr
-#| output: true
-#| fig-height: 6
-
-f_girafe(readRDS(file.path(dir_disp, "mappa_ritardo_sec1_comuni_pr.rds")))
-```
-
-::: {.text-end}
-```{r}
-#| label: dl_mappa_ritardo_sec1_comuni_pr
-#| output: true
-f_bottoni_dati("ritardo_comuni_pr", dir_disp, rds = "mappa_ritardo_sec1_comuni_pr")
-```
-:::
-
-::: {.callout-note collapse="true"}
-### Osservazioni
-
-Le **quote più alte di ritardo stanno nella pedecollina e in Val Taro** a forte presenza straniera (Fornovo 24%, Langhirano 16,5%, su centinaia di alunni) e in alcuni comuni appenninici (Palanzano, Solignano, Corniglio, Tizzano), dove però le medie contano 20-50 alunni e bastano pochi casi a spostare la quota. Parma città e i comuni della bassa stanno attorno alla media provinciale.
-
-_NB: Il comune è quello della scuola, non della residenza; la mappa riguarda le medie perché le superiori stanno in soli 9 comuni. Nei comuni con poche decine di alunni bastano pochi casi a spostare la quota._
-:::
-
 ## Possibili approfondimenti
 
-Le domande a cui questa pagina non risponde ancora, e su cui l'Osservatorio intende lavorare:
-
-1. Chi abbandona davvero: quanti ragazzi lasciano la scuola prima del diploma o della qualifica, e quanti dei 5 mila che entrano in prima superiore arrivano in fondo. Vedi considerazioni in [questo articolo di Openpolis](https://www.openpolis.it/labbandono-scolastico-in-italia-in-europa-e-nelle-citta/).  Il dato ufficiale sull'uscita precoce esiste solo a livello regionale: per Parma servono altre fonti.
-2. La dispersione implicita: quanti arrivano al diploma senza le competenze di base, secondo le prove INVALSI di fine superiori.
-3. Ritardo e origine: quanto del ritardo scolastico dipende dagli inserimenti di ragazzi arrivati dall'estero, e quanto dalle bocciature; e perché alle medie Parma è risalita più della regione dopo la pandemia.
-4. La seconda chance: chi rientra in formazione attraverso corsi serali, centri per adulti e percorsi professionali, e con quali esiti.
-5. Il territorio: dove il rischio di dispersione si concentra, in relazione alla fragilità economica e sociale dei comuni.
-6. Chi sono i NEET: quanti hanno un diploma o una laurea e quanti si sono fermati prima, e perché le giovani donne restano fuori dal lavoro più dei coetanei; è il ponte con la pagina sul passaggio dalla scuola al lavoro.
+1. Dettagliare il profilo di chi abbandona davvero: vedi [articolo di Openpolis](https://www.openpolis.it/labbandono-scolastico-in-italia-in-europa-e-nelle-citta/) 
+2. Ritardo e origine: capire meglio il nesso tra ritardo e origine straniera (c'è distinzione tra nati all'estero e nati in Italia da genitori stranieri).
+3. Esplorare anche la seconda chance: chi rientra in formazione attraverso corsi serali, centri per adulti e percorsi professionali, e con quali esiti.
+4. Il territorio: dove il rischio di dispersione si concentra, in relazione alla fragilità economica e sociale dei comuni.
+ 
