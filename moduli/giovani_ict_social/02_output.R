@@ -6,6 +6,7 @@
 #         (barre impilate al 100%), guidati dalla tabella GRAFICI (1 riga = 1 grafico)
 #         + due grafici di TREND 2001-2025 (linea + pallino): internet tutti i giorni per età; internet e pc per età
 #         + due grafici sull'IA generativa (Eurostat 2025): adozione per età e scopi d'uso dei giovani, Italia e UE
+#         + un piccolo trend: smartphone ogni giorno a 6-10 anni (tre bienni, 2018-19 → 2022-23)
 # Input:  output/ragazzi_ict_social.rds, output/ict_giovani_eta.rds, output/ia_eta_it_ue.rds (da 01_dati.R)
 # Output: output/plot_*.rds (ggplot; girafe() nella pagina di sito) + .png (nome file = oggetto)
 #         dati per i bottoni di scarico: output/ragazzi_ict_social.csv (tabella condivisa dai 4 grafici a barre),
@@ -70,10 +71,10 @@ LAB_SCOPI <- c("scopo_studio" = "Studio", "scopo_privato" = "Scopi privati", "sc
 # 1 riga = 1 grafico
 GRAFICI <- tribble(
   ~nome,                        ~indicatore,             ~titolo,                                                   ~sottotitolo,
-  "plot_profilo_social",        "profilo_social",        "Ragazzi con un profilo sui social network",               "Indicatore: % dei ragazzi di 11-19 anni che usano internet, per età e sesso",
-  "plot_amici_online",          "amici_online",          "Quanto spesso i ragazzi sentono gli amici online",        "Indicatore: % di tutti i ragazzi di 11-19 anni, per età e sesso (chat, chiamate, videochiamate)",
-  "plot_amici_di_persona",      "amici_di_persona",      "Quanto spesso i ragazzi vedono gli amici di persona",     "Indicatore: % di tutti i ragazzi di 11-19 anni, per età e sesso (nel tempo libero)",
-  "plot_nuove_amicizie_online", "nuove_amicizie_online", "Ragazzi che usano internet per fare nuove amicizie",      "Indicatore: % dei ragazzi di 11-19 anni che usano internet, per età e sesso"
+  "plot_profilo_social",        "profilo_social",        "Ragazzi con un profilo sui social network",               "Indicatore: % su tot. dei ragazzi di 11-19 anni che usano internet, per età e sesso",
+  "plot_amici_online",          "amici_online",          "Quanto spesso i ragazzi sentono gli amici online",        "Indicatore: % su tot. dei ragazzi di 11-19 anni, per età e sesso (chat, chiamate, videochiamate)",
+  "plot_amici_di_persona",      "amici_di_persona",      "Quanto spesso i ragazzi vedono gli amici di persona",     "Indicatore: % su tot. dei ragazzi di 11-19 anni, per età e sesso (nel tempo libero)",
+  "plot_nuove_amicizie_online", "nuove_amicizie_online", "Ragazzi che usano internet per fare nuove amicizie",      "Indicatore: % su tot. dei ragazzi di 11-19 anni che usano internet, per età e sesso"
 )
 
 # raggruppamento NOSTRO delle sei risposte ISTAT in tre categorie (solo per i grafici: nel csv restano
@@ -106,6 +107,7 @@ LIVELLI <- list(
 ragazzi_ict_social <- readRDS(file.path(dir_mod, "ragazzi_ict_social.rds"))
 ict_giovani_eta    <- readRDS(file.path(dir_mod, "ict_giovani_eta.rds"))
 ia_eta_it_ue       <- readRDS(file.path(dir_mod, "ia_eta_it_ue.rds"))
+smartphone_6_10    <- readRDS(file.path(dir_mod, "smartphone_6_10.rds"))
 
 # 2. Preparazione (comune ai quattro grafici) --------------------------------
 # etichette e tooltip calcolati QUI: negli aes() del plot salvato restano solo colonne
@@ -157,7 +159,7 @@ plot_internet_eta <- internet_eta_prep |>
   scale_linetype_manual(values = c("TRUE" = "solid", "FALSE" = "dashed"), guide = "none") +
   f_theme_sito_trend() +
   theme(plot.caption = element_text(hjust = 0), plot.caption.position = "plot") +
-  labs(title = str_wrap(glue("Chi usa internet tutti i giorni, per età ({ANNO_PRIMO_ICT}-{ANNO_ULTIMO_ICT})"), 55),
+  labs(title = str_wrap(glue("Uso quotidiano di internet per età (trend {ANNO_PRIMO_ICT}-{ANNO_ULTIMO_ICT})"), 55),
        subtitle = "Indicatore: % delle persone della stessa età che usano internet tutti i giorni. Linea tratteggiata = popolazione di 6 anni e più",
        caption = CAP_ICT, x = "", y = "")
 
@@ -189,8 +191,8 @@ plot_pc_internet <- pc_internet_prep |>
   theme(axis.text.x = element_text(angle = 0, hjust = 0.5),
         strip.text = element_text(size = rel(1), face = "bold"),
         plot.caption = element_text(hjust = 0), plot.caption.position = "plot") +
-  labs(title = str_wrap(glue("Chi usa internet e chi usa il pc, per età ({ANNO_PRIMO_ICT}-{ANNO_ULTIMO_ICT})"), 55),
-       subtitle = "Indicatore: % delle persone della stessa età che usano internet (almeno una volta l'anno) e che usano il pc. Fascia grigia = pandemia (2020-2021)",
+  labs(title = str_wrap(glue("Uso di internet e del pc per età (trend {ANNO_PRIMO_ICT}-{ANNO_ULTIMO_ICT})"), 55),
+       subtitle = "Indicatore: % di persone della stessa età che usano internet e % che usano il pc (almeno una volta l'anno). Fascia grigia = pandemia (2020-2021)",
        caption = CAP_ICT, x = "", y = "")
 
 plot_pc_internet
@@ -296,7 +298,7 @@ plot_ia_eta <- ia_eta_prep |>
   f_theme_sito_trend() +
   theme(axis.text.x = element_text(angle = 0, hjust = 0.5),
         plot.caption = element_text(hjust = 0), plot.caption.position = "plot") +
-  labs(title = str_wrap(glue("Chi usa l'IA generativa, per età ({ANNO_IA})"), 55),
+  labs(title = str_wrap(glue("Uso dell'IA generativa per età ({ANNO_IA})"), 55),
        subtitle = "Indicatore: % delle persone della stessa età che hanno usato l'IA generativa negli ultimi 3 mesi. Italia e Unione europea",
        caption = CAP_IA, x = "Età (anni)", y = "")
 
@@ -440,12 +442,47 @@ studi_ia_tab_ft
 saveRDS(studi_ia_tab_ft, file.path(dir_mod, "studi_ia_tab_ft.rds"))
 readr::write_csv(studi_ia_apprendimento, file.path(dir_mod, "studi_ia_apprendimento.csv"))   # per i bottoni di scarico
 
-# 8. Salva (rds per il sito + png per riuso rapido; nome file = oggetto) ----
+# 8. Trend: smartphone ogni giorno a 6-10 anni (tre bienni) ----------------------------
+# __ plot_smartphone_6_10 ----
+# asse x = anno di fine del biennio: la distanza tra i punti rispetta il tempo trascorso (2019 → 2022 → 2023)
+# asse x con TUTTI i bienni dal primo all'ultimo, anche quelli senza dato: si vede il buco 2019-2021
+ANNI_SMART <- min(smartphone_6_10$anno_fine):max(smartphone_6_10$anno_fine)   # 2019:2023
+LAB_SMART  <- sprintf("%d-%02d", ANNI_SMART - 1, ANNI_SMART %% 100)          # "2018-19" ... "2022-23"
+CAP_SMART <- f_caption_fonte("ISTAT, Aspetti della vita quotidiana, elaborazioni per Save the Children; stima campionaria")
+
+smartphone_prep <- smartphone_6_10 |>
+  mutate(
+    # stima campionaria: nel grafico numeri interi, il decimale solo nel tooltip
+    etichetta = scales::number(percentuale, accuracy = 1, suffix = "%"),
+    tooltip = glue("{periodo}: {scales::number(percentuale, accuracy = 0.1, decimal.mark = ',')}%"),
+    id = periodo
+  )
+smartphone_prep
+
+plot_smartphone_6_10 <- smartphone_prep |>
+  ggplot(aes(x = anno_fine, y = percentuale)) +
+  # niente fascia della pandemia: i punti sono bienni, non anni, e tra 2019 e 2022 non ci sono dati
+  geom_line(color = grn_sc, linewidth = rel(1.1)) +
+  geom_point_interactive(aes(tooltip = tooltip, data_id = id), color = grn_sc, size = 3) +
+  geom_text(aes(label = etichetta), vjust = -1.2, size = 4.5) +
+  scale_x_continuous(breaks = ANNI_SMART, labels = LAB_SMART,
+                     expand = expansion(add = 0.6)) +
+  scale_y_continuous(limits = c(0, 50), labels = scales::label_number(suffix = "%")) +
+  f_theme_sito_trend() +
+  theme(axis.text.x = element_text(angle = 0, hjust = 0.5)) +
+  labs(title = str_wrap("Bambini di 6-10 anni che usano lo smartphone ogni giorno", 55),
+       subtitle = "Indicatore: % dei bambini di 6-10 anni che usano lo smartphone tutti i giorni; media di due anni",
+       caption = CAP_SMART, x = "", y = "")
+
+plot_smartphone_6_10
+
+# 9. Salva (rds per il sito + png per riuso rapido; nome file = oggetto) ----
 # tutti i grafici del modulo in una lista: i 2 di trend + i 2 sull'IA + i 4 a barre (l'ordine delle sezioni sopra non conta)
 lista_plot <- c(list(plot_internet_eta = plot_internet_eta, plot_pc_internet = plot_pc_internet,
                      plot_ia_eta = plot_ia_eta, plot_ia_scopi = plot_ia_scopi,
-                     plot_hbsc_social_trend = plot_hbsc_social_trend), lista_plot_barre)
-names(lista_plot)   # attesi 9 nomi
+                     plot_hbsc_social_trend = plot_hbsc_social_trend,
+                     plot_smartphone_6_10 = plot_smartphone_6_10), lista_plot_barre)
+names(lista_plot)   # attesi 10 nomi
 
 purrr::iwalk(lista_plot, function(p, nome) {
   saveRDS(p, file.path(dir_mod, paste0(nome, ".rds")))

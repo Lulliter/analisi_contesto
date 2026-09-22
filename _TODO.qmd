@@ -104,8 +104,7 @@ ___
 ## 2.a Educazione e ...
 > Non affrontato nello strategico PS 2024-2027, ma da presentare come "Driver di crescita e realizzazione delle persone" 
 
-**Ripensamento MODULI (connessi a fonti)**: (bisogni Fondazione: trend generali + fragilità:
-abbandoni, NEET, formazione continua, % stranieri per comune, studenti disabili; mismatch domanda-formazione rimandato → fonte Excelsior, ponte col tema Lavoro):
+**Ripensamento MODULI (connessi a fonti)**: (fragilità: abbandoni, NEET, formazione continua, % stranieri per comune, studenti disabili; mismatch domanda-formazione):
 
 
 ### modulo `scuola_iscritti` 
@@ -114,23 +113,19 @@ abbandoni, NEET, formazione continua, % stranieri per comune, studenti disabili;
 **Ricognizione/Aggiornamento FONTI**: 
 
 - [ ] I totali iscritti includono i corsi serali ("PERCORSO II LIVELLO"), CPIA, sedi carcerarie e ospedaliere (a Parma ~530 alunni nei serali, 2024/25): decidere se escluderli come fa `scuola_abband_neet` (colonna `caratteristica` in `scuole_anagrafe_er`, dal 2026-09-10)
-- [ ] _Fonte da acquisire_: iscritti scuola dell'INFANZIA (il MIM non li rileva; l'anagrafe studenti Regione ER sì) — servono per completare trend e quote paritarie, che nell'infanzia sono il segmento capillare
-- [ ] _Fonte da acquisire_:  Risultati test invalsi e grado di scolarizzazione   
-  - vedi [bellissimo grafico di  Luca Bonzanni](https://public.flourish.studio/visualisation/29981721/)
-  
+- [ ] _Fonte da acquisire_: 
+  + iscritti scuola dell'INFANZIA (il MIM non li rileva; l'anagrafe studenti Regione ER sì) — servono per completare trend e quote paritarie, che nell'infanzia sono il segmento capillare
+  + [ISTAT offerta nidi](https://www.istat.it/comunicato-stampa/offerta-di-nidi-e-servizi-integrativi-per-la-prima-infanzia-anno-educativo-2023-2024)/
+      
+      
 ### modulo `scuola_disabilita`
 (regionale, dati in casa + USR-ER prov.)
 
 **Ricognizione/Aggiornamento FONTI**: 
 
 - [ ] Al prossimo fact sheet USR-ER (uscita ~settembre): aggiungere le righe al csv (nuovo a.s. = provvisorio, precedente = definitivo), aggiornare `ANNO_ULTIMO` in `02_output.R` e il blurb
-- [ ] Approfondimenti sulle ipotesi del blurb: disabilità × cittadinanza (fonte da trovare: MIM/ISTAT non incrociano a livello provinciale) ed effetto post-pandemia (confrontare con la serie ISTAT nazionale per ordine)
-- [ ] Regione ER anagrafe studenti: successo/regolarità per provincia + iscritti INFANZIA (validazione e completamento) → DA ACQUISIRE: https://scuola.regione.emilia-romagna.it/anagrafi-regionali
-- [ ] ISTAT nidi/prima infanzia (posti autorizzati per comune, report feb 2026)
-      → DA SCARICARE:
-      https://www.istat.it/comunicato-stampa/offerta-di-nidi-e-servizi-integrativi-per-la-prima-infanzia-anno-educativo-2023-2024/
+- [ ] Regione ER anagrafe studenti: successo/regolarità per provincia + iscritti INFANZIA (validazione e completamento) → DA ACQUISIRE: [Squola Regione ER](https://scuola.regione.emilia-romagna.it/anagrafi-regionali)
 
- 
 ### modulo `scuola_abband_neet`
 (NEET/abbandoni/formazione continua PR vs province ER; fonte BES dei territori)
 
@@ -148,15 +143,14 @@ abbandoni, NEET, formazione continua, % stranieri per comune, studenti disabili;
   - [ ] rischio di dispersione implicita per provincia a fine terza media: solo cartogramma nel Rapporto INVALSI 2026 (fig. 8.2.3), da chiedere insieme alla mappa ELET
  
 ### modulo `giovani_ict_social`
-(nazionale + confronto UE, niente Parma: internet e pc per età 2001-2025, social e amici a 11-19 anni, IA generativa Italia vs UE. Stato dei lavori: v. AVANZAMENTO `sito/temi/educ_ia` qui sotto)
+(nazionale + confronto UE, niente Parma: internet e pc per età 2001-2025, social e amici a 11-19 anni, IA generativa Italia vs UE.)
 
 **Ricognizione/Aggiornamento FONTI**:
 
-- [ ] Aggiornamento annuale ISTAT internet e pc (nuova edizione Cittadini e ICT, ~aprile): cancellare i tre `sdmx_*.rds` in `dati/grezzi/istat_cittadini_ict/`, rilanciare `ingestione/06a` e `06b`, poi nel modulo aggiornare `ANNO_ULTIMO_ICT` e `BREAKS_ANNI_PANNELLI` in `02_output.R`; controllare che i valori mancanti abbiano ancora solo la segnalazione `0`
-- [ ] Aggiornamento annuale Eurostat IA (`isoc_ai_iaiu`, ~dicembre): cancellare i due rds in `dati/grezzi/eurostat_isoc_ai/`, rilanciare `ingestione/07`; dal secondo anno c'è un TREND: ripensare `plot_ia_eta` (oggi fotografia 2025) e aggiornare `ANNO_IA`
-- [ ] ISTAT Bambini e ragazzi: indagine non annuale (edizioni 2021 e 2023): tenere d'occhio la prossima edizione; confrontabilità con il 2021 da verificare
-- [ ] Idee emerse il 2026-09-17 (da decidere): a) MICRODATI a uso pubblico dell'indagine ISTAT Bambini e ragazzi: verificare se c'è la REGIONE (il campione è stratificato per regione) → valori Emilia-Romagna per i social [Istat](https://www.istat.it/microdati/indagine-indagine-su-bambini-e-ragazzi-comportamenti-atteggiamenti-e-progetti-futuri-microstat/); b) stessa indagine, tavole 12.a (opinione sul futuro) e 1.a (rendimento scolastico percepito) per questa pagina; tavole 2.a/3.a (scelte dopo medie e diploma) e 13.a (dove vorrebbero vivere) per altri temi → se si usano, la lettura delle tavole va promossa a `ingestione/`; c) Eurostat `isoc_ci_ac_i` (attività su internet): partecipazione ai social per età NEL TEMPO, Italia vs UE, dai 16 anni (DA VERIFICARE che l'indicatore ci sia)
- 
+- [ ] Aggiornamento annuale _ISTAT internet e pc_ in `dati/grezzi/istat_cittadini_ict/`
+- [ ] Aggiornamento annuale _Eurostat IA_ in `dati/grezzi/eurostat_isoc_ai/`
+- [ ] Aggiornamento ? _ISTAT Bambini e ragazzi_: (edizioni 2021 e 2023): 
+
 ### modulo `educ_ia` (forse)
 (approfondimento "crescere al tempo dell'IA"; dati solo nazionali o regionali, Parma raggiungibile solo per gli accessi NPIA)
 
@@ -164,65 +158,41 @@ abbandoni, NEET, formazione continua, % stranieri per comune, studenti disabili;
 
 _1. Uso dell'IA per età e scopo_
 
-- [ ] INDIRE, indagine IA e studenti (set 2026): chiedere il dettaglio regionale [Indire](https://www.indire.it/2026/09/04/festival-dellinnovazione-scolastica-i-risultati-dellindagine-nazionale-ia-e-studenti-a-cura-di-indire-e-festival/)
-- [ ] Telefono Azzurro + Ipsos Doxa 2025, 12-18 anni [Vita.it](https://www.vita.it/un-adolescente-su-tre-usa-i-chatbot-assistente-per-i-compiti-ma-anche-amico/)
-- [ ] Pew 2025 e Common Sense 2025 (anteprima USA) [Pew](https://www.pewresearch.org/internet/2025/12/09/teens-social-media-and-ai-chatbots-2025/) [Common Sense](https://www.commonsensemedia.org/research/talk-trust-and-trade-offs-how-and-why-teens-use-ai-companions)
 - [ ] ITT Rondani (Parma), indagine interna 2025: spunto per una rilevazione propria [Casco Learning](https://cascolearning.it/magazine/2025/05/12/giovani-e-intelligenza-artificiale-una-indagine-allitt-rondani-di-parma/)
 
 _2. Schermo e uso problematico dei social_
 
-- [ ] ISTAT, volume "Relazioni, opinioni e comportamenti dei giovanissimi" (2026): da leggere [Istat](https://www.istat.it/produzione-editoriale/relazioni-opinioni-e-comportamenti-dei-giovanissimi/)
-- [ ] Eurostat regionale `isoc_r_iuse_i` (16-74, senza età): verificare l'Emilia-Romagna [Statistics Explained](https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Digital_society_statistics_at_regional_level)
-- [ ] Regione ER, "Essere adolescenti in Emilia-Romagna nel 2022": pdf da guardare [Regione ER](https://sociale.regione.emilia-romagna.it/novita/prodotti-editoriali/2022/tra-presente-e-futuro)
 - [ ] OCSE, "How's Life for Children in the Digital Age?" (2025): per la scelta degli indicatori [OECD](https://www.oecd.org/en/publications/how-s-life-for-children-in-the-digital-age_0854b900-en.html)
 - [ ] HBSC: controllare se l'onda 2026 include l'IA
-- [ ] Smartphone a 6-10 anni (Save the Children su dati ISTAT, 2025): cercare la serie per età
+- [ ] ISTAT, volume "Relazioni, opinioni e comportamenti dei giovanissimi" (2026): da leggere [Istat](https://www.istat.it/produzione-editoriale/relazioni-opinioni-e-comportamenti-dei-giovanissimi/)
+- [ ] Eurostat regionale `isoc_r_iuse_i` (16-74, senza età): verificare l'Emilia-Romagna [Statistics Explained](https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Digital_society_statistics_at_regional_level)
+
 
 _3. Rendimento e device_
 
-- [ ] OCSE PISA 2022, "Students, digital devices and success" (l'ER c'è) [OECD pdf](https://eeb2.be/swfiles/files/OECD-Report-2024.pdf)
-- [ ] INVALSI: perdita di apprendimento 2021 (regionale)
-- [ ] NON usare: inversione dell'effetto Flynn; "attention span"
+- [ ] OCSE PISA (2024 su 2022), "Students, digital devices and success" (l'ER c'è) [OECD pdf](https://eeb2.be/swfiles/files/OECD-Report-2024.pdf)
 - [ ] [Futuri probabili](https://www.futuriprobabili.it/manifesto-allenarsi-al-futuro)
 
-_4. Benessere mentale 14-19_
+_4. Benessere mentale 14-19 e Accessi NPIA (unico indicatore con Parma)_  
 
-- [ ] ISS, HBSC Italia 2022 vs 2018 [Epicentro](https://www.epicentro.iss.it/hbsc/indagine-2022-benessere) [doi](https://doi.org/10.3390/healthcare13162035)
-
-_5. Accessi NPIA (unico indicatore con Parma)_
-
+- [x] ISS, HBSC Italia 2022 vs 2018 [Epicentro](https://www.epicentro.iss.it/hbsc/indagine-2022-benessere) [doi](https://doi.org/10.3390/healthcare13162035)
 - [ ] Nazionale: Bambino Gesù, accessi PS neuropsichiatrici 2011-2021 (via Openpolis)
 - [ ] DA CHIEDERE: Regione ER / AUSL Parma, accessi NPIA e PS per età, 2015→
 
-_6. Governare: risposte dei paesi e mappa locale_
+_5. Governare: risposte dei paesi e mappa locale_
 
-- [ ] Politiche da verificare: smartphone a scuola (Italia, Danimarca, Francia), libri di carta in Svezia, social sotto i 16 anni in Australia
-- [ ] Sperimentazione MIM Impar-AI: valutazione INVALSI da chiedere
-- [ ] Regione ER, Report Observa "L'IA in Emilia-Romagna" (2026) [pdf](https://digitale.regione.emilia-romagna.it/dati/report-nuova-ader-2025-2029/report-observa-ai-emilia-romagna.pdf/@@download/file)
-- [ ] Openpolis, "IA: una sfida educativa" (2026): proxy comunale delle aule informatiche [Openpolis](https://www.openpolis.it/intelligenza-artificiale-una-sfida-educativa/)
+- [ ] ➡️ Politiche da verificare: smartphone a scuola (Italia, Danimarca, Francia), libri di carta in Svezia, social sotto i 16 anni in Australia
+- [ ] ➡️ Regione ER (zotero) [Report Observa "L'IA in Emilia-Romagna" (2026)](https://digitale.regione.emilia-romagna.it/dati/report-nuova-ader-2025-2029/report-observa-ai-emilia-romagna.pdf/@@download/file)
+- [ ] ➡️ Openpolis, "IA: una sfida educativa" (2026): proxy comunale delle aule informatiche [Openpolis](https://www.openpolis.it/intelligenza-artificiale-una-sfida-educativa/)
 - [ ] Mappa locale delle realtà educanti: catalogo del Comune di Parma, Corecom ER [Newsistruzione](https://www.newsistruzione.it/2026/09/10/parma-catalogo-progetti-in-comune-2026) [Assemblea ER](https://www.assemblea.emr.it/comunicati-stampa/diritti-corecom-in-campo-per-leducazione-ai-media-in-un-anno-112-incontri-nelle-scuole-12-laboratori-sullia-e-27-contro-fake-news-e-cyberbullismo)
-- [ ] `dati/grezzi/mim_ia_a_scuola/` (Linee guida MIM, monitoraggio USR Lombardia, INDIRE docenti 2025): manca `_metadati.md`
 
 **Moduli/output previsti**: cruscotto di 5-6 indicatori; restano 3) PISA, 5) NPIA, 6) tabella "risposte dei paesi"
-
-#### 🟡 AVANZAMENTO `sito/temi/educ_ia`
-
-Stato al 2026-09-21: sezioni con dati fatte; "IA come tutor" e "Governare" in bozza. PROSSIMO PASSO: decidere il taglio della pagina.
-
-- [ ] Decidere il taglio della pagina: esplorazione dati o anche discussione di evidenze
-- [ ] Paragrafo "I device in mano ai bambini": serie ISTAT per età
-- [ ] Paragrafo "IA come tutor": Wang et al. 2024 in Zotero e nel `nocite`; leggere una meta-analisi
-- [ ] Paragrafo "Governare": tabella "risposte dei paesi"; fonti in `dati/grezzi/mim_ia_a_scuola/`
-- [ ] HBSC: base d'età del "Totale" ER (etichetta di `plot_hbsc_social_trend`); due righe nel `blurb.md`
-- [ ] Chiudere la pagina: In sintesi, Possibili approfondimenti, `description`, promozione
-- [ ] Secondo giro (da decidere): PISA 2022
-- [ ] Richieste esterne (Luisa): NPIA/PS Regione-AUSL; INDIRE dettaglio regionale; INVALSI valutazione Impar-AI
 
 #### sito  
 
 - [x] (Fatto) `sito/temi/scuola.qmd` (incluso outputs da 1) `moduli/scuola_iscritti` + 2) `moduli/scuola_disabilita`)
-  - [ ] (Da completare?) aggiungere risultati (e.g. INVALSI)? 
-- [ ] (Bozza) `sito/temi/_educ_ia.qmd`  
+- [x] (Fatto) `sito/temi/educ_ia.qmd`
+
   
 
 ## 2.b ...Formazione GIOVANI (lavoro e innovazione)

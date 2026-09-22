@@ -25,12 +25,12 @@ Ad ogni pagina corrisponde un modulo tematico presentato in forma di grafici, ta
 
 + **Demografia.** Andamento della popolazione e previsioni al 2050.
 
-+ **Educazione.** Popolazione scolastica, alunni con disabilità, giovani a rischio dispersione e NEET.
++ **Educazione.** Popolazione scolastica e alunni con disabilità, giovani a rischio dispersione e NEET. Utilizzo di tecnologie, internet e IA.
 
 + **Giovani e lavoro.** Dalla formazione al lavoro: pagina in costruzione, per ora struttura e fonti.
 
 ::: {.callout-note appearance="simple"}
-Il sito è in sviluppo: alcune pagine sono complete, altre ancora in costruzione. In preparazione: crescere al tempo dell'intelligenza artificiale, lavoro e redditi, fragilità economiche e territoriali.
+Il sito è in sviluppo: alcune pagine sono complete, altre ancora in costruzione.
 :::
 
 <br><br>

@@ -394,8 +394,8 @@ Sul versante del **sostegno**, il quadro regionale ISTAT (a.s. 2024/25, tutte le
 
 ## Possibili approfondimenti
 
-1. La scuola dell'infanzia, oggi fuori da questi dati: quanti bambini la frequentano, dove, e quale ruolo hanno le paritarie.
-2. Disabilità e origine: quanto la crescita delle certificazioni riguarda i bambini arrivati dall'estero, dove difficoltà linguistiche e disturbi possono confondersi.
-3. L'effetto della pandemia: quanto del salto di certificazioni dopo il 2020 è un recupero di diagnosi rimandate e quanto un aumento reale dei bisogni.
-4. Il sostegno: insegnanti specializzati, assistenti e risorse sono all'altezza della crescita degli alunni certificati?
-5. Chi rischia di restare indietro: ritardo scolastico, abbandoni e NEET sono l'oggetto della pagina dedicata ai giovani a rischio dispersione.
+1. Difficoltà di apprendimento e paese d'origine: quanto la crescita delle certificazioni riguarda i bambini arrivati dall'estero, dove difficoltà linguistiche e disturbi possono confondersi.
+2. L'effetto della pandemia: quanto del salto di certificazioni dopo il 2020 è un recupero di diagnosi rimandate e quanto un aumento reale dei bisogni.
+3. Il sostegno e la riduzione del N. di alunni: come si può rendere più efficace il sostegno, anche in ragione delle classi che diventano meno numerose, ma con crescente % di certificazioni?  
+4. La numerosità delle classi in certi anni chiave per le scelte di orientamento: e.g. inizio superiori. 
+ 

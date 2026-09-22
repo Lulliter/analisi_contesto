@@ -2,8 +2,8 @@
 
 **Fonte:** ISTAT, "Aspetti della vita quotidiana" (uso di internet e del pc per età, Italia 2001→2025; Emilia-Romagna e Nord-est solo totale 6+); ISTAT, "Bambini e ragazzi: comportamenti, atteggiamenti e progetti futuri" 2023 (profilo social, contatti con gli amici, nuove amicizie online; 11-13 e 14-19 anni per sesso; Italia e ripartizioni); Eurostat, indagine sull'uso delle ICT, dataset `isoc_ai_iaiu` (IA generativa per età e scopo, Italia vs UE27, 2025; per l'Italia dati ISTAT). Tutte stime campionarie. Nessun dato provinciale: il confronto possibile è Italia → Nord-est → Emilia-Romagna, e solo per internet
 **Anno dati:** 2001→2025 (internet e pc; nel 2004 l'indagine non è stata svolta); 2023 (social e amici, pubblicato 2025); 2025 (IA, prima rilevazione)
-**Ultimo aggiornamento:** 2026-09-18 (modulo collaudato, sezione in `_educ_ia.qmd` renderizzata)
-**Output principali:** `plot_internet_eta`, `plot_pc_internet` (csv `ict_giovani_eta`, `ict_reg`); `plot_profilo_social`, `plot_amici_online`, `plot_amici_di_persona`, `plot_nuove_amicizie_online` (csv `ragazzi_ict_social`); `plot_ia_eta`, `plot_ia_scopi` (csv `ia_eta_it_ue`)
+**Ultimo aggiornamento:** 2026-09-22 (aggiunto `plot_smartphone_6_10`; pagina `educ_ia.qmd` pubblicata)
+**Output principali:** `plot_internet_eta`, `plot_pc_internet` (csv `ict_giovani_eta`, `ict_reg`); `plot_profilo_social`, `plot_amici_online`, `plot_amici_di_persona`, `plot_nuove_amicizie_online` (csv `ragazzi_ict_social`); `plot_ia_eta`, `plot_ia_scopi` (csv `ia_eta_it_ue`); `hbsc_tab_ft`, `plot_hbsc_social_trend` (csv `hbsc_2022`); `studi_ia_tab_ft` (csv `studi_ia_apprendimento`); `plot_smartphone_6_10` (csv `smartphone_6_10`)
 
 # Messaggio
 

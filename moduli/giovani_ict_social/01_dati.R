@@ -13,6 +13,8 @@
 #           colonna stima_nostra); cornice territoriale
 #         moduli/giovani_ict_social/output/ia_eta_it_ue.rds (+ .csv)
 #           uso dell'IA e scopi d'uso per classe d'età, Italia e UE
+#         moduli/giovani_ict_social/output/smartphone_6_10.rds (+ .csv)
+#           uso quotidiano dello smartphone a 6-10 anni, tre bienni (da dati/grezzi/savethechildren_smartphone/)
 # NB: la fonte 1 è MONO-modulo → lettura qui, non in ingestione/. Ragazzi di 11-19 anni, un solo anno.
 #     Le tavole 10 e 11 hanno come base i ragazzi che USANO INTERNET, non tutti gli 11-19enni
 # ___________________________________________________________________________
@@ -183,10 +185,16 @@ filter(ia_eta_it_ue, territorio == "Italia", eta == "16-19")
 saveRDS(ia_eta_it_ue, file.path(dir_out, "ia_eta_it_ue.rds"))
 write_csv(ia_eta_it_ue, file.path(dir_out, "ia_eta_it_ue.csv"))
 
-# 4. HBSC Emilia-Romagna 2022 (trascrizione da pdf, v. dati/grezzi/iss_hbsc/_metadati.md) ----
+# 6. HBSC Emilia-Romagna 2022 (trascrizione da pdf, v. dati/grezzi/iss_hbsc/_metadati.md) ----
 # tre indicatori: uso problematico dei social, videogiochi 4+ ore, uso problematico dei
 # videogiochi; per età e sesso, ER 2022 (social anche 2018) e Italia 2022 (social)
 hbsc_2022 <- read_csv(here("dati", "grezzi", "iss_hbsc", "hbsc_2022.csv"), show_col_types = FALSE)
 count(hbsc_2022, indicatore, territorio, anno)   # attesi: 3 indicatori ER 2022; social anche ER 2018 e Italia 2018/2022
 saveRDS(hbsc_2022, file.path(dir_out, "hbsc_2022.rds"))
 write_csv(hbsc_2022, file.path(dir_out, "hbsc_2022.csv"))
+
+# 7. Smartphone ogni giorno a 6-10 anni (tre bienni, scritti a mano dai comunicati Save the Children; v. dati/grezzi/savethechildren_smartphone/_metadati.md) ----------
+smartphone_6_10 <- read_csv(here("dati", "grezzi", "savethechildren_smartphone", "smartphone_6_10.csv"), show_col_types = FALSE)
+smartphone_6_10   # attese 3 righe: 18,4 (2018-19), 30,2 (2021-22), 32,6 (2022-23)
+saveRDS(smartphone_6_10, file.path(dir_out, "smartphone_6_10.rds"))
+write_csv(smartphone_6_10, file.path(dir_out, "smartphone_6_10.csv"))

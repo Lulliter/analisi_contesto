@@ -276,7 +276,7 @@ _NB: Entrambe sono stime campionarie ISTAT (Rilevazione sulle forze di lavoro) r
 ## Possibili approfondimenti
 
 1. Dettagliare il profilo di chi abbandona davvero: vedi [articolo di Openpolis](https://www.openpolis.it/labbandono-scolastico-in-italia-in-europa-e-nelle-citta/) 
-2. Ritardo e origine: capire meglio il nesso tra ritardo e origine straniera (c'è distinzione tra nati all'estero e nati in Italia da genitori stranieri).
-3. Esplorare anche la seconda chance: chi rientra in formazione attraverso corsi serali, centri per adulti e percorsi professionali, e con quali esiti.
+2. Ritardo e origine: capire meglio il nesso tra ritardo e origine straniera (interessante che c'è distinzione tra nati all'estero e nati in Italia da genitori stranieri).
+3. Esplorare la seconda chance: chi rientra in formazione attraverso corsi serali, centri per adulti e percorsi professionali, e con quali esiti.
 4. Il territorio: dove il rischio di dispersione si concentra, in relazione alla fragilità economica e sociale dei comuni.
  

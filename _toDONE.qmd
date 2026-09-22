@@ -109,6 +109,8 @@ _1. Uso dell'IA per fascia d'età e per SCOPO (compiti, informazione, compagnia/
 - [x] Eurostat, IA generativa 16-19 anni (2025): Italia 51,9% vs UE 66,4%. Solo nazionale — FATTO 2026-09-17: valori confermati sul dataset (v. voce sotto)
 - [x] (ricognizione 2026-09-17) Eurostat, dataset `isoc_ai_iaiu` "Individuals - use of generative AI tools" (2025; stessa indagine armonizzata di ISTAT): classi 16-24, 25-34, … 65-74, sesso e SCOPO d'uso (privato, lavoro, studio); UE 16-24 = 64%, UE totale 33%, Italia 20% (penultima). Solo nazionale; il valore italiano per classe d'età DA LEGGERE allo scarico (pacchetto R `eurostat`). È l'unica fonte per un GRAFICO IA per età con confronto UE. [Statistics Explained](https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Use_of_artificial_intelligence_by_individuals); [dataset](https://ec.europa.eu/eurostat/databrowser/product/page/ISOC_AI_IAIU) — FATTO 2026-09-17: scaricato con `ingestione/07_get_eurostat_ai.R` → `dati/grezzi/eurostat_isoc_ai/`; grafici `plot_ia_eta` e `plot_ia_scopi` in `giovani_ict_social`. Italia 16-19 = 51,9 (UE 66,4); 20-24 = 43,2 (UE 61,6); tra i 16-19enni che la usano: 78% per lo studio, 46% per scopi privati (UE 65%)
 - [x] (verificato 2026-09-17) ISTAT Cittadini e ICT 2025: sull'IA nel comunicato c'è SOLO un paragrafo (pdf p. 6 circa + Figura 4): 14+ 17,8% (M 19,6, F 16,1); 14-19 51,2% (F 53,3, M 49,1); 20-24 43,1%; 16-74 19,9% (UE 32,7%). Niente nelle 11 tavole xlsx né nella codelist dei tipi di dato AVQ → NON basta per un grafico: citare i numeri nel testo. Sotto i 16 anni nessuna fonte ufficiale sull'IA (restano INDIRE, Telefono Azzurro)
+- [x] INDIRE, indagine IA e studenti (set 2026): chiedere il dettaglio regionale [Indire](https://www.indire.it/2026/09/04/festival-dellinnovazione-scolastica-i-risultati-dellindagine-nazionale-ia-e-studenti-a-cura-di-indire-e-festival/)
+- [x] Pew 2025 e Common Sense 2025 (anteprima USA) [Pew](https://www.pewresearch.org/internet/2025/12/09/teens-social-media-and-ai-chatbots-2025/) [Common Sense](https://www.commonsensemedia.org/research/talk-trust-and-trade-offs-how-and-why-teens-use-ai-companions)
 
 _2. Ore di schermo e uso problematico dei social (proxy della dipendenza)_:
 
@@ -188,6 +190,11 @@ _6. Governare il processo: le risposte dei paesi arrivati prima + la mappa local
 
 
 
+_Chiuse il 2026-09-22_:
+
+- [x] Telefono Azzurro + Ipsos Doxa 2025, 12-18 anni [Vita.it](https://www.vita.it/un-adolescente-su-tre-usa-i-chatbot-assistente-per-i-compiti-ma-anche-amico/) — usata in pagina (salute mentale, `[@SaferInternetDay2026]`)
+- [x] Smartphone a 6-10 anni (Save the Children su dati ISTAT, 2025): cercare la serie per età — usati i 3 bienni (`plot_smartphone_6_10`); serie per altre età non trovata
+
 **Blocco AVANZAMENTO `sito/temi/educ_ia` com'era il 2026-09-18** (chiuse oggi: verifica degli studi citati a memoria):
 
 Stato al 2026-09-18: pagina renderizzata; titoli riscritti; In sintesi con 4 punti dai dati (da fondere con gli originali); norma età minima social verificata; `blurb.md` scritto; HBSC ER 2022 acquisito (tabella + grafico in pagina). PROSSIMO PASSO: testo di potenzialità / rischi / governare (prima la verifica degli studi citati a memoria; aggiungere alla lista il rapporto internazionale HBSC 2022 OMS Europa su social e gaming, citato a memoria il 2026-09-18).
@@ -213,6 +220,20 @@ Stato al 2026-09-18: pagina renderizzata; titoli riscritti; In sintesi con 4 pun
   - [ ] promozione: togliere underscore, href navbar (gruppo Educazione), `index.qmd`
 - [ ] Secondo giro (da decidere): PISA 2022 device/rendimento, valori ER trascritti (Rapporto INVALSI, volume OCSE) → `giovani_ict_social`
 - [ ] Richieste dati esterne (Luisa): Regione ER / AUSL accessi NPIA e PS per età, serie 2015→; INDIRE dettaglio regionale
+
+
+**Blocco AVANZAMENTO `sito/temi/educ_ia` com'era il 2026-09-22** (pagina pubblicata; le voci aperte restano in `_TODO.qmd` sotto `#### sito`):
+
+Stato al 2026-09-21: sezioni con dati fatte; "IA come tutor" e "Governare" in bozza. PROSSIMO PASSO: decidere il taglio della pagina.
+
+- [x] Decidere il taglio della pagina: esplorazione dati o anche discussione di evidenze (scelto: anche evidenze)
+- [x] Paragrafo "I device in mano ai bambini": serie ISTAT per età (serie per età non trovata: grafico con i 3 bienni 6-10 anni)
+- [ ] Paragrafo "IA come tutor": Wang et al. 2024 in Zotero e nel `nocite`; leggere una meta-analisi
+- [ ] Paragrafo "Governare": tabella "risposte dei paesi"; fonti in `dati/grezzi/mim_ia_a_scuola/`
+- [ ] HBSC: base d'età del "Totale" ER (etichetta di `plot_hbsc_social_trend`); due righe nel `blurb.md`
+- [x] Chiudere la pagina: In sintesi, Possibili approfondimenti, `description`, promozione (pubblicata 2026-09-22)
+- [ ] Secondo giro (da decidere): PISA 2022
+- [ ] Richieste esterne (Luisa): NPIA/PS Regione-AUSL; INDIRE dettaglio regionale; INVALSI valutazione Impar-AI
 
 
 #### sito

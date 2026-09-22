@@ -59,8 +59,8 @@ website:
             href: sito/temi/scuola.qmd
           - text: "Rischio dispersione"
             href: sito/temi/scuola_dispersione.qmd
-          # - text: "Crescere con l'IA"
-          #   href: sito/temi/educ_IA.qmd
+          - text: "Crescere al tempo dell'IA"
+            href: sito/temi/educ_ia.qmd
       - text: "Giovani e lavoro"
         href: sito/temi/giovani_lavoro.qmd
       # Voci da riattivare quando le pagine esistono, es.:
@@ -97,6 +97,10 @@ fig-height: 7
 # --- Default options for tbl and fig captions location (top)
 fig-cap-location: top
 tbl-cap-location: top
+
+# --- Titolo della bibliografia: resta la sezione automatica di Quarto, sempre in fondo alla pagina
+language:
+  section-title-references: "Riferimenti bibliografici"
 
 # --- Important bc Pandoc’s default resource-path is the directory of each input file
 # Let pages see files in the project root (.) and the bib folder explicitly
