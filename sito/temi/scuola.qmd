@@ -59,7 +59,7 @@ source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hov
 
 ## In sintesi 
 
-+ Le scuole della provincia di Parma (statali e paritarie, esclusa l'infanzia) contano 52.276 iscritti (a.s. 2024/25). Il **calo demografico** si inizia a manifestare a partire dalla primaria e dalla secondaria di I grado, mentre la secondaria di II grado cresce ancora (l'onda dei nati fino al 2010 che risale i cicli).
++ Le scuole della provincia di Parma (statali e paritarie, esclusa l'infanzia) contano 51.747 iscritti (a.s. 2024/25, esclusi i corsi per adulti). Il **calo demografico** si inizia a manifestare a partire dalla primaria e dalla secondaria di I grado, mentre la secondaria di II grado cresce ancora (l'onda dei nati fino al 2010 che risale i cicli).
 
 <!-- 
 readRDS(here::here("moduli", "scuola_iscritti", "output", "iscritti_trend_pr.rds")) |>
@@ -257,6 +257,9 @@ _NB: La mappa conta i plessi presenti nell'anagrafe MIM, anche quelli senza iscr
 
 ## Gli alunni con cittadinanza non italiana
 
+➡️ 
+<!-- SPIEGA distinzione tra **alunni con cittadinanza non italiana** (stranieri) e **alunni con cittadinanza italiana ma di origine straniera** (seconda generazione).  e io cosa sto mostrando -->
+
 ```{r}
 #| label: plot_stranieri_prov_er
 #| output: true
@@ -277,8 +280,8 @@ f_bottoni_dati("stranieri_trend_prov_er", dir_scuola, rds = "plot_stranieri_prov
 
 L'incidenza degli alunni con cittadinanza non italiana è **cresciuta lungo
 tutto il decennio** in tutta la regione, e Parma si colloca nella fascia alta
-delle province: nell'a.s. 2024/25 è seconda dopo Piacenza (21,7% contro 25,3%),
-sopra la media regionale del 18,8%.
+delle province: nell'a.s. 2024/25 è seconda dopo Piacenza (21,6% contro 25,2%),
+sopra la media regionale del 18,7%.
 :::
 
 ```{r}

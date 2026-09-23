@@ -1,9 +1,9 @@
 ordine_scuola,comune,pro_com_t,n_plessi_paritari,n_plessi,quota_plessi_paritari
 Primaria,Langhirano,034018,0,2,0
 Primaria,Noceto,034025,0,2,0
-Primaria,Parma,034027,6,36,0.16666666666666666
+Primaria,Parma,034027,6,33,0.18181818181818182
 Infanzia,Neviano degli Arduini,034024,0,3,0
-Secondaria I grado,Parma,034027,5,20,0.25
+Secondaria I grado,Parma,034027,5,17,0.29411764705882354
 Secondaria II grado,Borgo Val di Taro,034006,0,3,0
 Infanzia,Lesignano de' Bagni,034019,0,1,0
 Infanzia,Medesano,034020,3,5,0.6
@@ -22,18 +22,17 @@ Infanzia,Roccabianca,034030,0,1,0
 Secondaria I grado,Fornovo di Taro,034017,0,1,0
 Secondaria I grado,Traversetolo,034042,0,1,0
 Infanzia,Fidenza,034014,6,10,0.6
-Secondaria II grado,Fidenza,034014,0,8,0
 Primaria,San Secondo Parmense,034033,0,1,0
 Primaria,Colorno,034010,0,1,0
 Infanzia,Solignano,034035,0,1,0
 Primaria,Berceto,034004,0,2,0
-Secondaria II grado,Salsomaggiore Terme,034032,2,6,0.3333333333333333
+Secondaria II grado,Salsomaggiore Terme,034032,2,5,0.4
 Secondaria I grado,Colorno,034010,0,1,0
 Primaria,Terenzo,034038,0,1,0
 Primaria,Varsi,034046,0,1,0
 Infanzia,Soragna,034036,0,1,0
 Primaria,Traversetolo,034042,0,1,0
-Secondaria II grado,Parma,034027,4,31,0.12903225806451613
+Secondaria II grado,Parma,034027,4,22,0.18181818181818182
 Infanzia,Noceto,034025,2,4,0.5
 Primaria,Pellegrino Parmense,034028,0,1,0
 Infanzia,Fornovo di Taro,034017,1,2,0.5
@@ -53,6 +52,7 @@ Primaria,Albareto,034001,0,1,0
 Infanzia,Fontevivo,034016,1,2,0.5
 Secondaria I grado,Borgo Val di Taro,034006,0,1,0
 Secondaria I grado,Fontevivo,034016,0,1,0
+Secondaria II grado,Fidenza,034014,0,7,0
 Infanzia,Tornolo,034040,0,2,0
 Primaria,Medesano,034020,0,5,0
 Secondaria II grado,Fornovo di Taro,034017,0,4,0

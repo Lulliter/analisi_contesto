@@ -67,6 +67,12 @@ dati/grezzi/ ──▶ ingestione/ ──▶ dati/puliti/ ──▶ moduli/*/out
 
 # Trasversale
 
+- [ ] **Richieste dati esterne** (bozze in `dati/grezzi/_richieste_dati.md`, 2026-09-23): annotare qui data di invio ed esito
+  - [ ] 1) CPIA Parma: iscritti per anno, percorso, età, cittadinanza, esiti
+  - [ ] 2) Regione ER (SIFER): iscritti IeFP per provincia
+  - [ ] 3) Regione ER: anagrafe regionale degli studenti (infanzia, esiti, passaggi IeFP, ELET provinciale, disabilità) → serve a `scuola_iscritti`, `scuola_disabilita`, `scuola_abband_neet`
+  - [ ] 4) INVALSI, Servizio statistico: tabelle sotto la mappa ELET provinciale e il cartogramma dispersione implicita (fig. 8.2.3)
+  - [ ] 5) AUSL Parma / Regione ER: utenti NPIA e accessi PS minori per età → `educ_ia`
 - [ ] Esisteva una parziale `_targets.R` (nel repo vecchio) ma sarà da ripensare 
 - [ ] **Formato numeri italiano** nei grafici: revisione DEFINITIVA (aperta 2026-09-18). Il warning `'big.mark' and 'decimal.mark' are both '.'` è ricomparso più volte perché ogni 02_output.R chiama scales a modo suo: oggi aggiunto `decimal.mark = ","` alle 11 chiamate con big.mark, ma restano ~35 chiamate dirette a `scales::percent/number/label_*` non coerenti (es. legende mappe demografiche "1.6% – 7.9%" con il punto, mappa ritardo "3,0% – 6,1%" con la virgola). DA FARE: 
   - [ ] 1) un solo set di formattatori in `R/f_formato_numeri.R` (`num_it()`, `pct_it()`, `lab_num_it`, `lab_pct_it`: big.mark ".", decimal.mark ",", accuracy parametrica); 
@@ -112,7 +118,6 @@ ___
 
 **Ricognizione/Aggiornamento FONTI**: 
 
-- [ ] I totali iscritti includono i corsi serali ("PERCORSO II LIVELLO"), CPIA, sedi carcerarie e ospedaliere (a Parma ~530 alunni nei serali, 2024/25): decidere se escluderli come fa `scuola_abband_neet` (colonna `caratteristica` in `scuole_anagrafe_er`, dal 2026-09-10)
 - [ ] _Fonte da acquisire_: 
   + iscritti scuola dell'INFANZIA (il MIM non li rileva; l'anagrafe studenti Regione ER sì) — servono per completare trend e quote paritarie, che nell'infanzia sono il segmento capillare
   + [ISTAT offerta nidi](https://www.istat.it/comunicato-stampa/offerta-di-nidi-e-servizi-integrativi-per-la-prima-infanzia-anno-educativo-2023-2024)/
@@ -124,7 +129,7 @@ ___
 **Ricognizione/Aggiornamento FONTI**: 
 
 - [ ] Al prossimo fact sheet USR-ER (uscita ~settembre): aggiungere le righe al csv (nuovo a.s. = provvisorio, precedente = definitivo), aggiornare `ANNO_ULTIMO` in `02_output.R` e il blurb
-- [ ] Regione ER anagrafe studenti: successo/regolarità per provincia + iscritti INFANZIA (validazione e completamento) → DA ACQUISIRE: [Squola Regione ER](https://scuola.regione.emilia-romagna.it/anagrafi-regionali)
+- [ ] Regione ER anagrafe studenti: successo/regolarità per provincia + iscritti INFANZIA (validazione e completamento) → DA ACQUISIRE: [Squola Regione ER](https://scuola.regione.emilia-romagna.it/anagrafi-regionali) → richiesta n. 3 (Trasversale)
 
 ### modulo `scuola_abband_neet`
 (NEET/abbandoni/formazione continua PR vs province ER; fonte BES dei territori)
@@ -140,8 +145,32 @@ ___
   - [ ] ELET/abbandono provinciale → anagrafe studenti RER (regolarità, successo) o esiti scrutini per scuola nel catalogo MIM (da verificare);
   - [ ] dispersione implicita → INVALSI grado 13: il file in casa (`Traguardi_MS2026.xlsx`, solo regionale) ha SOLO i gradi 2, 5 e 10; i pacchetti completi 2-5-10 e 8-13 sono in casa dall'11/9 (csv), ma per i gradi 8 e 13 il trend è solo per macroarea e i livelli regionali solo 2025/26 (vedi `dati/grezzi/invalsi/_metadati.md`); la dispersione implicita vera e propria è solo nel Rapporto 2026 come grafico regionale; nella presentazione 2026 c'è anche una mappa "Tasso di ELET per provincia, biennio 2024-25" (elaborazioni INVALSI su microdati ISTAT): unico dato provinciale sull'uscita precoce, da recuperare (chiedere i dati al Servizio statistico?); 
   - [ ] ritardo × cittadinanza e dopo-Covid alle medie → incrocio per plesso di `scuole_iscritti_er` (età) con `scuole_iscritti_cittadinanza_er`; coorti → anagrafe RER + iscritti IeFP (`rer_formaz_lavoro`); seconda chance → modulo `formaz_rientri`
-  - [ ] rischio di dispersione implicita per provincia a fine terza media: solo cartogramma nel Rapporto INVALSI 2026 (fig. 8.2.3), da chiedere insieme alla mappa ELET
+  - [ ] rischio di dispersione implicita per provincia a fine terza media: solo cartogramma nel Rapporto INVALSI 2026 (fig. 8.2.3), da chiedere insieme alla mappa ELET → richiesta n. 4 (Trasversale)
  
+### modulo `formaz_e_rientro`
+(le altre strade: IeFP dopo la terza media, corsi serali e sezioni carcerarie, esiti; il CPIA solo come ordine di grandezza. Da MIM `percorso == "seconda_chance"` + fonti proprie in `dati/grezzi/iefp_cpia_ER_PR/`)
+
+**Ricognizione/Aggiornamento FONTI**:
+
+- [x] MIM serali e carcere: dai puliti di `ingestione/02` (2026-09-23); totali Italia in `iscritti_it_percorso.rds` (sez. 3b)
+- [x] CPIA Parma: bilancio di sostenibilità (3.058 alunni, 162 gruppi, anno dedotto 2024/25) + corsi FAMI 2022-25; trascrizione in `cpia_parma_iscritti.csv` (2026-09-23)
+- [x] IeFP: atti regionali 2026/27 (offerta: 2 IP, 7 enti, 1 hub a Parma) + rapporti INAPP 2026 (solo regionali) (2026-09-23)
+- [ ] Iscritti IeFP per provincia (Regione ER, SIFER) → richiesta n. 2 in `dati/grezzi/_richieste_dati.md`
+- [ ] CPIA iscritti per anno/percorso/età/cittadinanza → richiesta n. 1; è un indicatore di inclusione degli adulti stranieri, da ricollocare quando nasce quel tema
+- [ ] Esiti (diplomati dei serali, qualificati IeFP): verificare "esiti scrutini/esami" per scuola nel catalogo MIM; INAPP; SIFER
+- [ ] Intanto, dagli allegati regionali: tabella/mappa dell'offerta IeFP 2026/27 a Parma (enti, istituti, qualifiche)
+
+#### 🟡 AVANZAMENTO formaz_rientro
+
+Stato al 2026-09-23: modulo collaudato (01 + 02: `plot_rientro_porte_pr`, `plot_rientro_trend_pr`, `plot_rientro_incidenza_prov_er` con linea Italia, `plot_rientro_profilo_pr`; arancio = seconda chance in `_parma_colors.R`); blurb scritto; bozza `sito/temi/_formaz_rientro.qmd` ("Le altre strade", sotto Educazione) con sezioni 🟡 IeFP ed esiti vuote; voce navbar pronta commentata in `_quarto.yml`. PROSSIMO PASSO: inviare le richieste 1 e 2; nel frattempo tabella dell'offerta IeFP.
+
+- [x] Modulo `formaz_e_rientro` nato e collaudato (2026-09-23)
+- [x] Bozza `_formaz_rientro.qmd` con i 4 grafici, callout CPIA, sezioni 🟡 (2026-09-23)
+- [ ] Anteprima della pagina e revisione testi (In sintesi da riscrivere quando c'è l'IeFP)
+- [ ] Sezione IeFP: offerta 2026/27 subito; iscritti per provincia quando arriva la richiesta 2
+- [ ] Sezione esiti: fonti da verificare (vedi ricognizione)
+- [ ] Promozione: togliere underscore, riattivare la voce in `_quarto.yml`, rimandi incrociati con `scuola_dispersione.qmd` (uscite dopo il 3° anno) e `_giovani_lavoro.qmd`; riserva di unificare con `giovani_lavoro`
+
 ### modulo `giovani_ict_social`
 (nazionale + confronto UE, niente Parma: internet e pc per età 2001-2025, social e amici a 11-19 anni, IA generativa Italia vs UE.)
 
@@ -177,7 +206,7 @@ _4. Benessere mentale 14-19 e Accessi NPIA (unico indicatore con Parma)_
 
 - [x] ISS, HBSC Italia 2022 vs 2018 [Epicentro](https://www.epicentro.iss.it/hbsc/indagine-2022-benessere) [doi](https://doi.org/10.3390/healthcare13162035)
 - [ ] Nazionale: Bambino Gesù, accessi PS neuropsichiatrici 2011-2021 (via Openpolis)
-- [ ] DA CHIEDERE: Regione ER / AUSL Parma, accessi NPIA e PS per età, 2015→
+- [ ] DA CHIEDERE: Regione ER / AUSL Parma, accessi NPIA e PS per età, 2015→ → richiesta n. 5 (Trasversale)
 
 _5. Governare: risposte dei paesi e mappa locale_
 
@@ -211,8 +240,6 @@ _5. Governare: risposte dei paesi e mappa locale_
 + [ ] Secondo Welfare. Ripartenze possibili: NEET e transizioni interrotte tra i giovani adulti [Internet]. 2026 [cited 2026 Sept 8]. https://www.secondowelfare.it/wp-content/uploads/2026/07/Rapporto-FAST-3_Neet_Percorsi-di-Secondo-Welfare-e-Fondazione-Lottomatica.pdf. Accessed 8 Sept 2026
 
 **Ripensamento MODULI (connessi a fonti)**:
-### modulo `formaz_e_rientro` (forse)
-- [ ] Chi rientra in formazione: corsi serali (percorsi di II livello), CPIA, IeFP (offerta in `dati/grezzi/rer_formaz_lavoro`). I dati MIM per scuola ci sono già (anagrafe `caratteristica` + iscritti per età); a Parma i serali sono ~530 alunni. Ponte tra scuola e lavoro
 - [ ] Modulo `istruz_formaz_neet` (scaricare tavole BesT provinciali) → avrà una PAGINA separata (neet/abbandoni/formazione continua)
 
 
@@ -224,7 +251,7 @@ _5. Governare: risposte dei paesi e mappa locale_
 
 #### sito  
 
-- [ ] Acquisire le fonti per `sito/temi/_giovani_lavoro.qmd`: Excelsior (difficoltà di reperimento per profilo, PR), AlmaLaurea/AlmaDiploma o Regione ER (esiti occupazionali per percorso), ITS e IeFP iscritti (Regione ER), INPS Osservatori (contratti giovani), ISTAT cancellazioni per l'estero 20-34 per provincia; già in casa dal BES: passaggio all'università, laureati 25-39, formazione continua, NEET per sesso, occupazione giovanile (dominio Lavoro)
+- [ ] Acquisire le fonti per `sito/temi/_giovani_lavoro.qmd` (NB 2026-09-23: IeFP e serali stanno in `sito/temi/_formaz_rientro.qmd`, tema 2.a, con riserva di unificare): Excelsior (difficoltà di reperimento per profilo, PR), AlmaLaurea/AlmaDiploma o Regione ER (esiti occupazionali per percorso), ITS e IeFP iscritti (Regione ER), INPS Osservatori (contratti giovani), ISTAT cancellazioni per l'estero 20-34 per provincia; già in casa dal BES: passaggio all'università, laureati 25-39, formazione continua, NEET per sesso, occupazione giovanile (dominio Lavoro)
 ___
 
 

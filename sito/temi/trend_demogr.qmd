@@ -296,9 +296,9 @@ Se confrontate in termini relativi, le distribuzioni per età mostrano che gli i
 ```{r}
 #| label: piramide_pr_vs_er
 #| output: true
-#| fig-height: 6
+#| fig-height: 8
 
-readRDS(here::here("moduli", "pop_piramide_eta", "output", "piramide_pr_vs_er.rds"))
+f_girafe(readRDS(file.path(dir_piram, "piramide_pr_vs_er.rds")))
 ```
 
 ::: {.text-end}
@@ -312,9 +312,9 @@ f_bottoni_dati("piramide_pr_vs_er", dir_piram)
 ```{r}
 #| label: piramide_pr_vs_it
 #| output: true
-#| fig-height: 6
+#| fig-height: 8
 
-readRDS(here::here("moduli", "pop_piramide_eta", "output", "piramide_pr_vs_it.rds"))
+f_girafe(readRDS(file.path(dir_piram, "piramide_pr_vs_it.rds")))
 ```
 
 ::: {.text-end}
@@ -328,9 +328,9 @@ f_bottoni_dati("piramide_pr_vs_it", dir_piram)
 ```{r}
 #| label: piramide_pr_cittadinanza
 #| output: true
-#| fig-height: 5
+#| fig-height: 8
 
-readRDS(here::here("moduli", "pop_piramide_eta", "output", "piramide_pr_cittadinanza.rds"))
+f_girafe(readRDS(file.path(dir_piram, "piramide_pr_cittadinanza.rds")))
 ```
 
 ::: {.text-end}

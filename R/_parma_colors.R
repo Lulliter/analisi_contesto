@@ -5,7 +5,7 @@
 #   rosso   = anziani / invecchiamento
 #   viola   = stranieri / migrazioni
 #   blu     = densità, popolazione totale, temi neutri
-#   arancio = disponibile (non ancora assegnato)
+#   arancio = seconda chance / istruzione degli adulti (serali, CPIA, carcere: seq_factor_orange[6/8/4], deciso 2026-09-23 in formaz_e_rientro)
 #   bordeaux (burg_*) = evidenziazione Parma (mappe) + hover interattivo (R/f_girafe.R usa burg_md)
 #   serie territoriali (trend): Parma = ylw_lg, ER = grn_md, Italia = blu_md
 #   piramidi: maschi = azzurro, femmine = rosa antico

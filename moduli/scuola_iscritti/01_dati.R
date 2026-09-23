@@ -19,6 +19,10 @@
 #                                   dalle anagrafi storiche, infanzia inclusa)
 # NB: gli ISCRITTI non coprono la scuola dell'infanzia (limite fonte MIM);
 #     i conteggi di PLESSI dall'anagrafe invece sì
+# NB: dal 2026-09-23 SOLO `percorso == "ordinario"` (scuola in età scolare):
+#     serali, CPIA, carcere (~530 alunni PR) e sezioni ospedaliere restano fuori
+#     da iscritti E plessi, come nel ritardo di scuola_abband_neet (stesso
+#     denominatore); la seconda chance ha il suo modulo, formaz_e_rientro
 # ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
@@ -36,6 +40,17 @@ if (!dir.exists(dir_mod)) dir.create(dir_mod, recursive = TRUE)
 scuole_iscritti_er <- readRDS(here("dati", "puliti", "mim_iscritti", "scuole_iscritti_er.rds"))
 scuole_iscritti_cittadinanza_er <- readRDS(here("dati", "puliti", "mim_iscritti", "scuole_iscritti_cittadinanza_er.rds"))
 scuole_anagrafe_er <- readRDS(here("dati", "puliti", "mim_iscritti", "scuole_anagrafe_er.rds"))
+
+# solo scuola in età scolare (v. NB in testa): stesso filtro su iscritti e plessi.
+# COSA CAMBIA (2026-09-23): prima i totali includevano corsi serali (percorsi di
+# II livello), CPIA e sezioni carcerarie (PR 2024/25: 529 alunni su 52.276, cioè
+# 1%) mentre il ritardo di scuola_abband_neet li escludeva → due denominatori per
+# la stessa fonte. Ora escono da qui: totale PR 2024/25 52.276 → 51.747; stranieri
+# 21,7% → 21,6%; ER 18,8% → 18,7%. Le sezioni ospedaliere sono in anagrafe ma
+# senza alunni nei file iscritti (escono solo dai plessi: PR -3)
+scuole_iscritti_er <- scuole_iscritti_er |> filter(percorso == "ordinario")
+scuole_iscritti_cittadinanza_er <- scuole_iscritti_cittadinanza_er |> filter(percorso == "ordinario")
+scuole_anagrafe_er <- scuole_anagrafe_er |> filter(percorso == "ordinario")
 
 # Classifica il "grado" dell'anagrafe nei 4 ordini di scuola (NA = non è un
 # plesso didattico di un ordine: istituti comprensivi, CPIA, convitti)
@@ -130,7 +145,8 @@ paritarie_plessi_comuni_pr
 # Trend dei PLESSI per anno, ordine (infanzia inclusa) e gestione — per
 # vedere aperture/chiusure di scuole. Dalle anagrafi storiche (ingestione/02).
 scuole_anagrafe_storico_er <- readRDS(here("dati", "puliti", "mim_iscritti",
-                                           "scuole_anagrafe_storico_er.rds"))
+                                           "scuole_anagrafe_storico_er.rds")) |>
+  filter(percorso == "ordinario")
 
 plessi_trend_pr <- scuole_anagrafe_storico_er |>
   filter(provincia == "PARMA") |>
@@ -157,7 +173,7 @@ iwalk(lista_out, function(df, nome) {
 })
 
 # Verifiche rapide (da eseguire a mano) ------------------------------------
-iscritti_trend_pr |> summarise(alunni = sum(alunni), .by = anno_inizio)  # trend totale PR
+iscritti_trend_pr |> summarise(alunni = sum(alunni), .by = anno_inizio)  # trend totale PR (2024: ~51.750, era 52.276 coi serali)
 stranieri_trend_prov_er |> filter(anno_inizio == 2024)                   # PR atteso ~18-19%
 plessi_trend_pr |> count(anno_inizio)         # atteso: 12 a.s. (con anagrafi storiche)
 

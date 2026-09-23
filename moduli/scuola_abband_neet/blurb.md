@@ -18,7 +18,7 @@
 
 # Note
 
-- Ritardo scolastico = età al 31/12 superiore a quella regolare per l'anno di corso; include ripetenze e inserimenti in classi inferiori (frequenti per chi arriva dall'estero); NON conta chi ha già abbandonato. Esclusi corsi serali (percorsi di II livello), CPIA, sedi carcerarie e ospedaliere, tutti "in ritardo" per costruzione (a Parma ~530 alunni nei serali). Le paritarie di recupero anni non sono identificabili dall'anagrafe e restano dentro.
+- Ritardo scolastico = età al 31/12 superiore a quella regolare per l'anno di corso; include ripetenze e inserimenti in classi inferiori (frequenti per chi arriva dall'estero); NON conta chi ha già abbandonato. Esclusi corsi serali (percorsi di II livello), CPIA, sedi carcerarie e ospedaliere, tutti "in ritardo" per costruzione (a Parma ~530 alunni nei serali). Le paritarie di recupero anni non sono identificabili dall'anagrafe e restano dentro. Dal 2026-09-23 l'esclusione usa la classificazione `percorso` di `ingestione/02`, la stessa di `scuola_iscritti`: i due moduli contano la stessa popolazione.
 - L'uscita precoce dal sistema formativo (ELET 18-24) nel Bes dei territori non è provinciale: nella tabella `elet_tab_ft` viene dal Bes nazionale (ER, Nord-est, Italia). Nella tabella `neet_tab_ft` i valori per sesso di ER/Nord-est/Italia vengono anch'essi dal Bes nazionale (stessa fonte RCFL: i totali regionali coincidono con il Bes dei territori); Parma per sesso = N.D.
 - Il calo degli iscritti lungo le superiori non è misurabile come abbandono con questi dati: serve un dato longitudinale (anagrafe studenti regionale + iscritti IeFP), vedi approfondimenti in pagina.
 - NEET: stime campionarie; per Parma l'errore relativo è ampio, confrontare i trend più che i singoli anni.

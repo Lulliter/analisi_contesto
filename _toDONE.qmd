@@ -75,6 +75,7 @@ browseURL(here::here("_toDONE.html"))
 #### sito
 
 - [x] `sito/temi/trend_demogr.qmd`
+  - [x] (2026-09-23) le 3 piramidi passano per `f_girafe()` con `fig-height: 8`
 - [x] `sito/temi/trend_demogr_previs.qmd`
 
 ## 2.a Educazione (c'è un inizio; arricchire con fonti LOCALI)
@@ -85,6 +86,7 @@ browseURL(here::here("_toDONE.html"))
 - [x] Open data MIM (dati.istruzione.it, IODL, CSV per SINGOLA SCUOLA): SCARICATO in `dati/grezzi/mim_open_data/` (64 csv: iscritti + cittadinanza 2015/16→2024/25, anagrafi 2015/16→2026/27) e ingerito; URL e percorso leggibile in `_metadati.md`
 - [x] `ingestione/02_prep_mim_studenti.R` ESEGUITO e collaudato (2026-07-19): produce `dati/puliti/mim_iscritti/` (scuole_anagrafe_er, scuole_anagrafe_storico_er, scuole_iscritti_er, scuole_iscritti_cittadinanza_er); transcodifica comuni sul codice catastale (327/327), nome comune ufficiale ISTAT
 - [x] Studenti disabili (dettaglio provinciale, USR-ER): FATTO nel modulo `scuola_disabilita` (2026-09-10)
+- [x] I totali iscritti includono i corsi serali ("PERCORSO II LIVELLO"), CPIA, sedi carcerarie e ospedaliere (a Parma ~530 alunni nei serali, 2024/25): decidere se escluderli come fa `scuola_abband_neet` (colonna `caratteristica` in `scuole_anagrafe_er`, dal 2026-09-10). FATTO 2026-09-23: classificazione `percorso` in `ingestione/02` (ordinario / seconda_chance / ospedaliero), solo ordinario in `scuola_iscritti` e `scuola_abband_neet` (stesso denominatore: PR 2024/25 51.747, stranieri 21,6%); la seconda chance ha il modulo `formaz_e_rientro`
 
 ### modulo `scuola_disabilita`
 

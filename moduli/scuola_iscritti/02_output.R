@@ -574,4 +574,4 @@ stranieri |>
   filter(anno_inizio == 2024) |>
   mutate(quota = round(100 * quota_stranieri, 1)) |>
   arrange(desc(quota)) |>
-  select(provincia, alunni, alunni_stranieri, quota)  # attesi: Parma 21,7 (2ª dopo Piacenza 25,3); ER 18,8
+  select(provincia, alunni, alunni_stranieri, quota)  # attesi (solo ordinario, 2026-09-23): Parma 21,6 (2ª dopo Piacenza 25,2); ER 18,7

@@ -4,8 +4,7 @@
 #         per anno di corso e fascia d'età → RITARDO SCOLASTICO (proxy del rischio
 #         dispersione); ISTAT Bes dei territori (via ingestione/04 →
 #         dati/puliti/istat_bes/): NEET, competenze non adeguate, ecc.
-# Input:  dati/puliti/mim_iscritti/scuole_iscritti_er.rds
-#         dati/puliti/mim_iscritti/scuole_anagrafe_er.rds (caratteristica: esclusione serali ecc.)
+# Input:  dati/puliti/mim_iscritti/scuole_iscritti_er.rds (colonna `percorso`: solo "ordinario")
 #         dati/puliti/istat_bes/bes_territori.rds
 #         dati/puliti/istat_bes/bes_regioni.rds (Bes nazionale, via ingestione/05)
 # Output: moduli/scuola_abband_neet/output/<oggetto>.rds + .csv (nome file = oggetto):
@@ -24,7 +23,9 @@
 #     Include ripetenze e inserimenti in classi inferiori (es. alunni arrivati
 #     dall'estero); NON conta chi ha già lasciato la scuola. Statali + paritarie, no infanzia.
 #     ESCLUSI i corsi serali (percorsi di II livello), CPIA, sedi carcerarie e ospedaliere:
-#     sono adulti/rientri in formazione, tutti "in ritardo" per costruzione
+#     sono adulti/rientri in formazione, tutti "in ritardo" per costruzione. Dal
+#     2026-09-23 l'esclusione è `percorso == "ordinario"`, classificazione unica
+#     fatta in ingestione/02 e condivisa con scuola_iscritti (stesso denominatore)
 # ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
@@ -50,12 +51,9 @@ if (!dir.exists(dir_mod)) dir.create(dir_mod, recursive = TRUE)
 ETA_BASE <- c("SCUOLA PRIMARIA" = 5, "SCUOLA SECONDARIA I GRADO" = 10, "SCUOLA SECONDARIA II GRADO" = 13)
 TERRITORI_BES <- c("Emilia-Romagna", "Nord-est", "Italia") # oltre alle province ER
 ANNO_ULTIMO <- 2024 # a.s. 2024/25, per la tabella per anno di corso
-# caratteristiche di scuola (anagrafe MIM, solo statali) escluse dal ritardo
-CARATT_ESCLUSE <- c("PERCORSO II LIVELLO", "CPIA", "SPEC. PER CARCERARI", "C/O IST. OSPEDALIERO")
 
 # 1. Carica input (già puliti dall'ingestione) -----------------------------
 scuole_iscritti_er <- readRDS(here("dati", "puliti", "mim_iscritti", "scuole_iscritti_er.rds"))
-scuole_anagrafe_er <- readRDS(here("dati", "puliti", "mim_iscritti", "scuole_anagrafe_er.rds"))
 bes_territori <- readRDS(here("dati", "puliti", "istat_bes", "bes_territori.rds"))
 bes_regioni <- readRDS(here("dati", "puliti", "istat_bes", "bes_regioni.rds"))
 
@@ -72,9 +70,13 @@ f_eta_num <- function(fascia) {
 }
 
 iscritti_ritardo <- scuole_iscritti_er |>
-  # esclusione serali ecc. (paritarie: caratteristica NA → restano dentro)
-  left_join(scuole_anagrafe_er |> select(codice_scuola, caratteristica), by = "codice_scuola") |>
-  filter(!caratteristica %in% CARATT_ESCLUSE) |>
+  # solo scuola in età scolare: fuori serali, CPIA, carcere, ospedale.
+  # COSA CAMBIA (2026-09-23): prima l'esclusione era fatta qui, con un join
+  # sull'anagrafe e la lista locale CARATT_ESCLUSE; ora la classificazione
+  # `percorso` arriva da ingestione/02 ed è la stessa usata da scuola_iscritti,
+  # così i due moduli hanno lo stesso denominatore. Risultati invariati
+  # (PR 2024/25: 529 alunni esclusi, tutti serali e carcere)
+  filter(percorso == "ordinario") |>
   mutate(
     eta = f_eta_num(fascia_eta),               # NA se "Non Classificabile" (16 alunni in Italia in 10 a.s.)
     eta_regolare = ETA_BASE[ordine_scuola] + anno_corso,
@@ -159,9 +161,7 @@ iwalk(lista_out, function(df, nome) {
 
 # Verifiche rapide (da eseguire a mano) ------------------------------------
 iscritti_ritardo |> count(ordine_scuola, anno_corso, fascia_eta, in_ritardo) |> filter(anno_corso == 1) # sanity check della regola
-iscritti_ritardo |> count(caratteristica, wt = alunni) # devono restare solo NORMALE, convitti, DI MONTAGNA, NA (paritarie)
-# double check (Se vuoi essere sicura che gli NA siano tutti paritarie e non statali con anagrafe mancante, un controllo rapido in console:)
-iscritti_ritardo |> count(gestione, is.na(caratteristica), wt = alunni)
+iscritti_ritardo |> count(percorso, wt = alunni) # deve restare solo "ordinario"
 ritardo_trend_prov_er |> filter(provincia %in% c("PARMA", "EMILIA-ROMAGNA"), anno_inizio == 2024) # attesi: primaria ~2-3%, sec I ~7-9%, sec II ~18-20% (era 21,3% coi serali)
 ritardo_corso_prov_er |> filter(provincia == "PARMA") |> select(ordine_scuola, anno_corso, quota_ritardo) # crescente lungo il percorso
 ritardo_comuni_pr |> filter(anno_inizio == 2024, ordine_scuola == "SCUOLA SECONDARIA II GRADO") |> arrange(desc(quota_ritardo))
