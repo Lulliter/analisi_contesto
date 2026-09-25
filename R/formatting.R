@@ -1,5 +1,7 @@
-# formatting_core.R — v1.1 (2026-08-28) — canonico: repo metadati
+# formatting_core.R — v1.2 (2026-09-25) — canonico: repo metadati
 # Changelog:
+# v1.2: f_ft() header grigio chiaro #E5EBEE (lo stesso di footer e tendine del sito) al posto
+#       del giallino: neutro rispetto ai colori tematici delle celle. Da riportare nel repo metadati
 # v1.1: f_ft() con sfondo header "giallino sabbia" #F7F1E1 (param header_bg,
 #       sovrascrivibile per tabella)
 # v1.0: f_ft() con na_str = "N.D." (double + int); OKKIO: colformat_int
@@ -100,9 +102,9 @@ f_ft_tight <- function(ft, font_size = 9, pad = 1) {
 # ___ Costruttore standard: flextable + formato numeri italiano, 1 decimale ----
 # Da usare al posto di flextable() nelle tabelle dei report; eventuali
 # colformat_double() successive (es. digits = 0 su alcune colonne) vincono.
-# header_bg: sfondo delle etichette colonne ("giallino sabbia"); la riga
+# header_bg: sfondo delle etichette colonne (grigio chiaro); la riga
 # titolo aggiunta da f_ft_titolo_note() resta bianca.
-f_ft <- function(x, header_bg = "#F7F1E1") {
+f_ft <- function(x, header_bg = "#E5EBEE") {   # fino a v1.1: "#F7F1E1" giallino sabbia
   flextable(x) |>
     colformat_double(na_str = "N.D.") |>
     colformat_int(na_str = "N.D.") |>

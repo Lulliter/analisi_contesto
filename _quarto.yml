@@ -22,12 +22,12 @@ website:
   site-url: "https://datiparma.it/"
   # favicon: assets/favicon.ico
   search: false # no magnifier on navbar
-  # # BANNER (icone vedi https://icons.getbootstrap.com/)
+  # # BANNER globale (icone vedi https://icons.getbootstrap.com/): scartato 2026-09-25 (troppo invadente)
   # announcement:
-  #   icon: lock # info-circle | lightbulb | megaphone | lock | cone-striped | calendar | mega | exclamation-triangle
+  #   icon: info-circle # info-circle | lightbulb | megaphone | lock | cone-striped | calendar | mega | exclamation-triangle
   #   dismissable: true
-  #   content: "Sito acessibile solo dalla intranet di Fondazione Cariparma: [https://analisidati.fondazionecrp.it/](https://analisidati.fondazionecrp.it/)"
-  #   type: warning #info
+  #   content: "Osservatorio in evoluzione: alcune pagine sono complete, altre in preparazione. Dati aggiornati a settembre 2026."
+  #   type: info
   #   position: below-navbar
   # Footer
   page-footer:
@@ -59,9 +59,8 @@ website:
             href: sito/temi/scuola.qmd
           - text: "Rischio dispersione"
             href: sito/temi/scuola_dispersione.qmd
-          # Da riattivare alla promozione di _formaz_rientro.qmd → formaz_rientro.qmd (2026-09-23)
-          # - text: "Le altre strade"
-          #   href: sito/temi/formaz_rientro.qmd
+          - text: "Formazione professionale"
+            href: sito/temi/formaz_rientro.qmd
           - text: "Crescere al tempo dell'IA"
             href: sito/temi/educ_ia.qmd
       - text: "Giovani e lavoro"
@@ -84,6 +83,7 @@ format:
   html:
     toc: true
     css: assets/styles/custom.css
+    include-after-body: assets/nav_attiva.html # evidenzia nella navbar la pagina corrente
     # theme: cosmo
     # highlight-style: github
     # mainfont: "Lato"

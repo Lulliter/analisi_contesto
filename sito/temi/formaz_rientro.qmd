@@ -27,7 +27,7 @@ link-citations: true
 #| label: anteprima
 #| eval: false
 # Anteprima: renderizza e apre nel browser (lancia a mano, ignorato nel render)
-pagina <- "_formaz_rientro"   # nome pagina, senza estensione
+pagina <- "formaz_rientro"   # nome pagina, senza estensione
 quarto::quarto_render(here::here("sito", "temi", paste0(pagina, ".qmd")))
 browseURL(here::here("docs", "sito", "temi", paste0(pagina, ".html")))
 ```
@@ -54,9 +54,16 @@ source(here::here("R", "sito.R"))     # bottoni CSV + Excel (f_scarica_dati, f_b
 source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hover bordeaux)
 ```
 
+::: {.callout-warning}
+## Pagina in completamento
+<!-- Mancano ancora la formazione professionale (IeFP) e gli esiti, in attesa dei dati regionali: le sezioni segnate con 🟡. -->
+<!-- Questa pagina raccoglie le domande e la struttura dell'analisi sul passaggio dalla formazione al lavoro. Segue logicamente la pagina sui [giovani a rischio dispersione](scuola_dispersione.qmd). -->
+:::
+
+
 ## In sintesi
 
-+ 🟡 Dopo la terza media una parte dei ragazzi prende la via della **formazione professionale (IeFP)**, negli enti accreditati o negli istituti professionali: quanti sono a Parma, e quanti arrivano alla qualifica, è il primo dato da acquisire.
++ Dopo la terza media una parte dei ragazzi prende la via della **formazione professionale (IeFP)**: in regione sono circa 16 mila, a Parma l'offerta conta nove sedi tra enti e istituti, ma quanti la frequentano e quanti arrivano alla qualifica è il dato da acquisire.
 
 + **Circa 500 adulti l'anno tornano a scuola nei corsi serali** della provincia, in otto sedi di istituti tecnici e professionali: erano 700 dieci anni fa, un calo di circa il 30%.
 
@@ -65,16 +72,38 @@ source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hov
 + **Nove su dieci sono maggiorenni e più di un terzo è straniero**: il serale è anche una porta d'ingresso per chi arriva da fuori.
 
 + Il **centro per l'istruzione degli adulti (CPIA)**, con oltre 3.000 iscritti l'anno, è la porta più grande, ma risponde soprattutto all'inclusione degli adulti stranieri (italiano, licenza media): qui lo citiamo per l'ordine di grandezza, non lo approfondiamo.
+<!-- + Per chi interviene: i serali calano a Parma mentre crescono in Italia; prima di sostenerli va capito perché (offerta, mercato del lavoro, altri canali). -->
 
-## 🟡 La formazione professionale (IeFP): il ponte verso il lavoro
+## Studenti in formazione professionale [🟡]{.content-hidden}
 
-Dopo la terza media una parte dei ragazzi lascia la scuola per i percorsi triennali di istruzione e formazione professionale, negli enti accreditati o negli istituti professionali. Nei dati sulla dispersione questa uscita si confonde con l'abbandono: qui si tratta di distinguerle, e di capire chi, tra scuola, formazione e lavoro, resta fuori da tutto.
+Dopo la terza media, una parte dei ragazzi intraprende i percorsi IeFP (istruzione e formazione professionale), che portano a una **qualifica professionale in tre anni**, a cui può seguire un quarto anno per ottenere il diploma di istruzione professionale.
 
-<!-- Da riempire quando arrivano gli iscritti IeFP per provincia dalla Regione
-     (SIFER, richiesta 2.a-2). In casa oggi: offerta 2026/27 a Parma (7 enti
+In **Emilia-Romagna i percorsi IeFP contano circa 16 mila allievi** (a.f. 2023/24). Nella regione si può frequentare in 2 tipi di sede:
+
+1. **Istituti professionali**, che offrono il quinquennio ordinario (diploma) e, in sussidiarietà, i percorsi IeFP.
+2. **Enti di formazione accreditati** dalla Regione, che non sono scuole: i loro allievi li conta solo la Regione (SIFER).
+
+I dati del MIM accorpano tutti i frequentanti del primo tipo di sede, e non rilevano quelli del secondo tipo (rilevati dalla Regione). Per questo non è facile identificare quanti ragazzi frequentano IeFP a Parma, e quanti arrivano alla qualifica.
+
+L'offerta per il 2026/27 a Parma è proposta da **7 enti accreditati, 2 istituti professionali con percorsi IeFP, più 1 hub propedeutico** per chi non ha ancora scelto. 
+
+::: {.callout-warning collapse="true" #alunni-iefp}
+#### Nota di metodo
+<!-- Fonti: INAPP, Rapporto di monitoraggio IeFP 2026 (dati regionali 2023/24); Regione Emilia-Romagna, atti sull'offerta IeFP 2026/27. -->
+Circa metà degli allievi regionali sta negli istituti professionali e metà negli enti accreditati. I dati del MIM contano i primi insieme a tutti gli altri iscritti di quegli istituti, e non rilevano i secondi: per questo non si può dire quanti ragazzi frequentano l'IeFP a Parma, né quanti arrivano alla qualifica.
+
+`[Approfondimenti in corso]`
+:::
+
+<!-- RICHIESTA DA FARE: (TODO / SIFER, richiesta 2.a-2). 
+
+    Da riempire quando arrivano gli iscritti IeFP per provincia dalla Regione
+     In casa oggi: offerta 2026/27 a Parma (7 enti
      accreditati, 2 istituti professionali, 1 hub propedeutico) e i totali
      regionali INAPP (ER 2023/24: 15.817 allievi, metà enti e metà istituti;
      qualificati e diplomati). Possibile intanto: la mappa/tabella dell'offerta. -->
+ 
+
 
 ## Adulti che tornano a scuola
 
@@ -96,15 +125,18 @@ f_bottoni_dati("rientro_trend_pr", dir_rientro, rds = "plot_rientro_porte_pr")
 ```
 :::
 
-::: {.callout-tip collapse="false"}
-### Il CPIA: un'altra domanda
+::: {.callout-note collapse="true"}
+### Osservazioni
 
-Oltre 3.000 iscritti nel 2024/25, in gran parte adulti stranieri per corsi di italiano, licenza media e competenze di base: è un indicatore di inclusione più che di transizione scuola-lavoro, e qui compare solo per l'ordine di grandezza. Il numero viene dal bilancio di sostenibilità del Centro: il CPIA non è nei dati aperti del Ministero.
+Gli ordini di grandezza sono molto diversi: oltre 3.000 iscritti al CPIA, circa 500 nei serali, 10-30 nelle sezioni carcerarie. Il CPIA risponde soprattutto all'inclusione degli adulti stranieri (italiano, licenza media, competenze di base): è un indicatore di inclusione più che di transizione scuola-lavoro, e qui compare per il peso che ha.
+
+_NB: Serali e sezioni carcerarie da dati MIM per singola scuola; il CPIA non è nei dati aperti del Ministero, il numero (3.058 nel 2024/25) viene dal bilancio di sostenibilità del Centro._
 :::
 
-<br>
+### Serali e sezioni carcerarie nel decennio
 
-Sotto, i trend sui dati del Ministero (che _non_ traccia i CPIA) mostrano un rallentamento in atto.
+I dati del Ministero, che non tracciano il CPIA, mostrano un rallentamento in atto.
+
 ```{r}
 #| label: plot_rientro_trend_pr
 #| output: true
@@ -124,15 +156,15 @@ f_bottoni_dati("rientro_trend_pr", dir_rientro, rds = "plot_rientro_trend_pr")
 ::: {.callout-note collapse="true"}
 ### Osservazioni
 
-Gli iscritti ai serali scendono da 704 (2015/16) a 502 (2024/25), con un picco nel 2019/20 e un gradino in basso nel 2022/23. Le sezioni carcerarie contano tra i 10 e i 30 studenti l'anno.
+Il calo non è lineare: picco nel 2019/20 e gradino in basso nel 2022/23, da cui i serali non sono più risaliti. Le sezioni carcerarie oscillano tra 10 e 30 studenti l'anno.
 
-_NB: Corsi serali = percorsi di istruzione di II livello negli istituti statali; sezioni carcerarie rilevate dal 2017/18. Restano fuori le scuole private non paritarie ("recupero anni"), che non rilasciano titoli e non stanno nella fonte._
+_NB: Fonte MIM, a.s. 2015/16-2024/25. Corsi serali = percorsi di istruzione di II livello negli istituti statali; sezioni carcerarie rilevate dal 2017/18. Restano fuori le scuole private non paritarie ("recupero anni"), che non rilasciano titoli e non stanno nella fonte._
 :::
 
-## I corsi serali
+### I corsi serali
 
 
-### Parma rispetto alle altre province
+#### Parma rispetto alle altre province
 
 Parma è tra le province con più iscritti ai serali in rapporto alla scuola ordinaria, ma sotto la media nazionale, che cresce.
 
@@ -157,7 +189,7 @@ f_bottoni_dati("rientro_incidenza_prov_er", dir_rientro, rds = "plot_rientro_inc
 
 Nel 2024/25 a Parma i serali valgono il 2,5% degli iscritti alla secondaria di II grado statale: seconda in regione dopo Rimini, sopra la media dell'Emilia-Romagna (1,9%). In Italia la stessa quota è al 3,2% ed è salita ogni anno dal 2,3% del 2015/16 (da 49 mila a 77 mila iscritti): il rientro a scuola degli adulti cresce nel paese e cala a Parma, che dieci anni fa stava al 4,2%, sopra la media nazionale.
 
-_NB: Rapporto tra iscritti ai corsi serali e iscritti alla secondaria di II grado ordinaria, solo scuole statali su entrambi i lati (i serali si identificano solo nelle statali; nelle paritarie non risultano corsi per adulti). I serali non sono compresi nel denominatore._
+_NB: Fonte MIM, a.s. 2024/25. Rapporto tra iscritti ai corsi serali e iscritti alla secondaria di II grado ordinaria, solo scuole statali su entrambi i lati (i serali si identificano solo nelle statali; nelle paritarie non risultano corsi per adulti). I serali non sono compresi nel denominatore._
 :::
 
 ### Chi frequenta i serali?
@@ -185,7 +217,7 @@ f_bottoni_dati("rientro_profilo_pr", dir_rientro, rds = "plot_rientro_profilo_pr
 
 Nel 2024/25 i 502 iscritti ai serali della provincia sono per il 90% oltre i 18 anni (solo 10 minorenni); 179 (36%) hanno cittadinanza non italiana, contro il 22% della scuola ordinaria. Gli istituti professionali (servizi commerciali, industria, agrario, alberghiero) raccolgono più della metà, i tecnici un terzo, l'istituto d'arte il resto. Sei sedi su otto sono nel comune di Parma, le altre a Fidenza e Salsomaggiore.
 
-_NB: Età al 31/12 dell'anno scolastico, per fasce. La cittadinanza viene dal file gemello del Ministero per le stesse sedi._
+_NB: Fonte MIM, a.s. 2024/25. Età al 31/12 dell'anno scolastico, per fasce. La cittadinanza viene dal file gemello del Ministero per le stesse sedi._
 :::
 
 <!-- CPIA (2026-09-23): tolto dalle sezioni principali, è un indicatore di
@@ -193,13 +225,23 @@ _NB: Età al 31/12 dell'anno scolastico, per fasce. La cittadinanza viene dal fi
      Materiale in casa: totale 2024/25 (bilancio di sostenibilità) e corsi FAMI
      2022-25 (744 iscritti, 271 certificazioni) in dati/grezzi/iefp_cpia_ER_PR/ -->
 
-## 🟡 Gli esiti: chi arriva al titolo e chi resta fuori
+## Gli esiti: chi arriva al titolo e chi resta fuori [🟡]{.content-hidden}
 
 <!-- Quanti dei serali arrivano al diploma, quanti dell'IeFP alla qualifica, e
      quanti non arrivano da nessuna parte (il ponte con i NEET di
      scuola_dispersione e con giovani_lavoro). Fonti da verificare: esiti
      scrutini/esami per scuola nel catalogo MIM (copre i percorsi di II
      livello?), INAPP per l'IeFP (solo regionale), Regione ER (SIFER). -->
+
+Quanti dei serali arrivano al diploma e quanti dell'IeFP alla qualifica, e quanti non arrivano a nessun titolo: è il ponte con i NEET della pagina precedente. 
+
+`[Approfondimenti in corso]`
+
+
+::: {.callout-tip}
+## Per continuare
+La pagina [Dalla scuola al lavoro](giovani_lavoro.qmd), in preparazione, seguirà la transizione verso il lavoro.
+:::
 
 ## Possibili approfondimenti
 

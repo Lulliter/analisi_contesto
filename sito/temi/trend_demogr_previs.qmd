@@ -61,8 +61,15 @@ dir_previs <- here::here("moduli", "demo_trend_previs", "output")
 + Parma è prevista in crescita (+6,9% di abitanti al 2050), in controtendenza rispetto all'Italia (-7,3%).
 
 + L'invecchiamento però accelera: al 2050 quasi un abitante su tre avrà 65 anni o più.
+<!-- + Per chi interviene: non autosufficienza, domiciliarità e caregiving vanno dimensionati sui numeri assoluti (gli over 80 da 36 a 59 mila), non sulle quote. -->
 
 <!-- frasi dal blurb di moduli/demo_trend_previs -->
+
+::: {.callout-warning collapse="true"}
+## Nota di metodo
+Previsioni ISTAT base 1.1.2024, **solo scenario mediano** (i file pubblicati per comuni e province non riportano gli scenari alternativi). Gli aggregati Emilia-Romagna e Italia sono somme delle province (i file ISTAT non contengono totali). I dati comunali esistono solo per i comuni con almeno 5.000 abitanti (22 su 44 in provincia di Parma) e non sono usati in questa pagina.
+:::
+
 
 I dati di questa pagina vengono dalle **previsioni ISTAT della popolazione 2024-2050** (base 1.1.2024, solo scenario mediano), a livello provinciale. L'analisi confronta la provincia di Parma con le altre province della regione, con l'Emilia-Romagna e con l'Italia. Come tutte le proiezioni, l'incertezza cresce allontanandosi dall'anno base. Le serie storiche osservate (2002-2026) sono nella pagina [**Trend Demografici**](trend_demogr.qmd).
 
@@ -256,11 +263,6 @@ f_bottoni_dati("p07_nati_morti", dir_previs)
 **Il saldo naturale resta strutturalmente negativo**: nei comuni parmensi ≥ 5.000 abitanti i morti passerebbero da ~4.300 a ~5.700 l'anno mentre i nati risalirebbero solo lievemente (da ~2.850 a ~3.150): il deficit naturale quasi **raddoppia (da -1.400 a -2.550 l'anno)** — la crescita prevista di Parma poggia interamente sui flussi migratori.
 :::
 
-
-::: {.callout-warning collapse="true"}
-## Nota di metodo
-Previsioni ISTAT base 1.1.2024, **solo scenario mediano** (i file pubblicati per comuni e province non riportano gli scenari alternativi). Gli aggregati Emilia-Romagna e Italia sono somme delle province (i file ISTAT non contengono totali). I dati comunali esistono solo per i comuni con almeno 5.000 abitanti (22 su 44 in provincia di Parma) e non sono usati in questa pagina.
-:::
 
 ## Possibili approfondimenti
 

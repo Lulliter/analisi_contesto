@@ -1,5 +1,5 @@
 ---
-title: "Demografia: trend da osservare per comprendere l'evoluzione dei bisogni e domanda di servizi sociali"
+title: "Demografia: trend che dettano l'evoluzione dei bisogni e domanda di servizi sociali"
 # subtitle: "Popolazione, età, cittadinanza e densità: come cambia la domanda di servizi"
 description: "Dati ISTAT (indicatori demografici 2002-2025, censimento 2024), estratti a luglio 2026"
 lang: it
@@ -84,12 +84,27 @@ dir_piram <- here::here("moduli", "pop_piramide_eta", "output")
 
 + La crescita naturale è negativa (-4,4 per mille nel 2025), ma la popolazione tiene grazie al saldo migratorio, soprattutto con l'estero (+6,7 per mille), stabilmente sopra la media nazionale.
 
++ La fecondità è ferma a 1,2 figli per donna, come regione e Italia: la tenuta di Parma non viene dalle nascite.
+
++ La speranza di vita è salita a 84 anni: a 65 anni restano in media 21 anni da vivere, la durata da considerare per il bisogno assistenziale.
+<!-- + Per chi interviene: la domanda di servizi cresce su due fronti opposti, anziani e nuovi arrivati, ed è l'immigrazione a reggere la demografia del territorio. -->
+
 <!-- frasi dal blurb di moduli/demo_trend_indicatori -->
+
+
+
+::: {.callout-warning collapse="true"}
+## Nota di metodo
+Gli indicatori di FLUSSO (natalità, saldi, fecondità…) si riferiscono all'anno solare e arrivano al 2025*; quelli di STRUTTURA (età media, indici, classi di età) sono fotografie al 1° gennaio e arrivano al 2026* — per questo gli assi non finiscono tutti nello stesso punto (l'intervallo è nel titolo di ciascun grafico).
+:::
+
 
 ## Trend di distribuzione della popolazione per età
 
-I dati illustrati in questa sezione sono stati estratti principalmente dal database **ISTAT -- indicatori demografici a livello provinciale**, lungo il periodo 2002-2025/26.
-L'analisi mette a confronto la provincia di Parma con le altre province della regione, e con i valori medi dell'Emilia-Romagna e dell'Italia, al fine di evidenziare le peculiarità demografiche del territorio parmense.
+Parma invecchia, ma più lentamente di regione e Italia: la struttura per età tiene sui giovani e sulla popolazione attiva.
+
+<!-- I dati illustrati in questa sezione sono stati estratti principalmente dal database **ISTAT -- indicatori demografici a livello provinciale**, lungo il periodo 2002-2025/26.
+L'analisi mette a confronto la provincia di Parma con le altre province della regione, e con i valori medi dell'Emilia-Romagna e dell'Italia, al fine di evidenziare le peculiarità demografiche del territorio parmense. -->
 
 ```{r}
 #| label: p01_e_m
@@ -617,14 +632,8 @@ f_bottoni_dati("p14_saldo_migratorio_con_l_estero", dir_demo)
 
 
 
-::: {.callout-warning collapse="true"}
-## Nota di metodo
-Gli indicatori di FLUSSO (natalità, saldi, fecondità…) si riferiscono all'anno solare e arrivano al 2025*; quelli di STRUTTURA (età media, indici, classi di età) sono fotografie al 1° gennaio e arrivano al 2026* — per questo gli assi non finiscono tutti nello stesso punto (l'intervallo è nel titolo di ciascun grafico).
-:::
-
-
 ::: {.callout-tip}
-## E in futuro?
+## Per continuare
 La pagina [**Previsioni al 2050**](trend_demogr_previs.qmd) prosegue questi trend con le previsioni ISTAT della popolazione 2024-2050 (scenario mediano): popolazione attesa, piramide dell'età, quota e numero di anziani, dipendenza e saldo naturale.
 :::
 

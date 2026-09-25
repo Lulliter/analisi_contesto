@@ -127,3 +127,37 @@ div.sidebar-item-container nav[role=doc-toc] ul li a.active {
 #nav-menu-demografia                   { color: #f7da7b; } /* demografia: ylw_lg */
 #nav-menu-educazione                   { color: #b7e4d0; } /* educazione: verde menta (grn_lg schiarito, contrasto ~3.4) */
 .navbar a[href$="giovani_lavoro.html"] { color: #b7e4d0; } /* giovani e lavoro: stesso verde (stesso gruppo tematico) */
+
+/* Tendine della navbar: sfondo distinto dalla pagina (stesso grigio del footer), bordo e ombra (2026-09-25) */
+.navbar .dropdown-menu {
+  background-color: #E5EBEE;
+  border: 1px solid #517699;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+}
+.navbar .dropdown-item:hover { background-color: #d3dde3; }
+
+/* Pagina corrente (2026-09-25): gruppo o voce singola sottolineati (nel colore gia' assegnato sopra),
+   voce di tendina in evidenza. Quarto mette `active` solo sulle voci di primo livello;
+   per le voci dentro le tendine ci pensa assets/nav_attiva.html (include-after-body in _quarto.yml). */
+.navbar .nav-link.active {
+  text-decoration: underline;
+  text-underline-offset: .35em;
+  text-decoration-thickness: 2px;
+}
+.navbar .dropdown-item.active {
+  background-color: #517699;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Tabset (panel-tabset): solo bordi piu' visibili, colori di testo e sfondo invariati (2026-09-25).
+   #adb5bd = gray-500 di Bootstrap; per piu' stacco usare #6c757d (gray-600) */
+.panel-tabset .nav-tabs {
+  border-bottom: 2px solid #adb5bd;
+}
+.panel-tabset .nav-tabs .nav-link.active {
+  border-color: #adb5bd #adb5bd #fff;   /* la scheda attiva si stacca dalla riga di base */
+}
+.panel-tabset .nav-tabs .nav-link:hover:not(.active) {
+  border-color: #dee2e6 #dee2e6 transparent;
+}

@@ -1,0 +1,87 @@
+---
+title: "Messaggi principali del sito"
+subtitle: "Nota di lavoro per la revisione di settembre 2026: cosa deve arrivare a chi legge"
+lang: it
+format:
+  html:
+    toc: true
+  docx:
+    toc: false
+---
+
+<!-- Nota di lavoro (file con underscore: fuori dal sito). Serve a tenere allineati Home, sintesi delle pagine e presentazioni orali. Non è una pagina del sito. -->
+
+
+## Tre fili rossi (attraversano tutte le pagine)
+
+1. La **demografia a Parma tiene grazie all'immigrazione.** Saldo naturale negativo, popolazione in crescita solo per il saldo migratorio (soprattutto estero). La stessa presenza straniera si ritrova a scuola (un alunno su cinque, punte comunali al 30-50%), nel ritardo scolastico, nei corsi serali (un terzo). L'integrazione è il tema trasversale, anche se nessuna pagina lo tratta da solo.
+2. **L'invecchiamento arriva più tardi che altrove, ma arriva.** Oggi Parma è più giovane di regione e Italia; al 2050 quasi un abitante su tre avrà 65+ e gli 80+ passano da 36 a 59 mila persone. Vanno dimensionati i servizi in numeri assoluti, non in quote.
+3. **Per i giovani il problema non è più l'abbandono, è la transizione.** L'abbandono è sotto l'obiettivo europeo; un giovane su nove è NEET; le competenze mancano già in terza media, soprattutto per chi è nato all'estero; il benessere delle adolescenti è calato e non è risalito. Il lavoro (da fare) è sul passaggio scuola-lavoro.
+
+## Messaggi per pagina
+
+### Demografia: trend
+- Parma invecchia più lentamente di regione e Italia; natalità e fecondità tengono meglio ma restano basse (1,2 figli per donna).
+- La crescita è tutta migratoria: senza immigrazione la popolazione calerebbe.
+
+
+> **Per chi interviene**: la domanda di servizi cresce su due fronti opposti, anziani e nuovi arrivati, ed è l'immigrazione a reggere la demografia del territorio.
+
+### Demografia: previsioni al 2050
+- Parma cresce (+7%) mentre l'Italia perde il 7%: è l'unica provincia ER con questa dinamica.
+- L'invecchiamento accelera: 65+ dal 23% al 32%; 80+ +64% in valore assoluto.
+
+
+> **Per chi interviene**: non autosufficienza, domiciliarità e caregiving vanno dimensionati sui numeri assoluti (gli over 80 da 36 a 59 mila), non sulle quote.
+
+### Scuola
+- 52 mila iscritti; il calo demografico è entrato dal basso (primaria e medie), le superiori crescono ancora per pochi anni.
+- Un alunno su cinque ha cittadinanza non italiana (seconda provincia in regione), con fortissima eterogeneità comunale.
+- Alunni con disabilità +40% in otto anni a iscritti fermi: la scuola cambia composizione, non dimensione.
+
+
+> **Per chi interviene**: il bisogno si concentra nel primo ciclo e in comuni precisi, pedecollina e bassa, dove presenza straniera e certificazioni crescono insieme.
+
+### Giovani a rischio: dispersione e NEET
+- Il ritardo raddoppia all'ingresso delle superiori (20%); alle medie Parma sta sopra la regione e la forbice si riapre.
+- In terza media quattro su dieci non hanno competenze adeguate, in peggioramento dal 2018: la dispersione è "implicita" prima che visibile.
+- Il fattore di rischio [non è la cittadinanza ma l'arrivo recente (nati all'estero: rischio doppio; nati in Italia da stranieri: come gli italiani)](https://datiparma.it/sito/temi/scuola_dispersione.html#arrivati-estero).
+- NEET uno su nove, in calo dal picco pandemico; l'abbandono è piccolo: i giovani fermi hanno finito di studiare e non sono entrati nel lavoro. Genere speculare: lasciano più i ragazzi, restano fuori più le ragazze.
+
+
+> **Per chi interviene**: il momento critico è la terza media e l'ingresso alle superiori; il divario è tra chi è arrivato da poco dall'estero e tutti gli altri, non tra italiani e stranieri.
+
+### Le altre strade: formazione professionale e rientri
+- 500 adulti l'anno nei serali, in calo del 30% in dieci anni mentre in Italia crescono: Parma in controtendenza.
+- Nove su dieci maggiorenni, più di un terzo stranieri: il serale è anche una porta d'ingresso.
+- CPIA oltre 3.000 iscritti: inclusione degli adulti stranieri, ordine di grandezza da tenere presente.
+
+
+> **Per chi interviene**: i serali calano a Parma mentre crescono in Italia; prima di sostenerli va capito perché (offerta, mercato del lavoro, altri canali).
+
+### Dalla scuola al lavoro (in preparazione)
+- Le domande: dove vanno i diciottenni; cosa funziona (IeFP, ITS, università, apprendistato); dove domanda e offerta non si incontrano; chi resta fuori e chi se ne va.
+- Per chi interviene: è il tema che chiude il filo rosso sui giovani; oggi solo struttura e fonti.
+
+### Crescere al tempo dell'IA (cornice nazionale)
+- In vent'anni internet quotidiano dal 4% all'85% degli 11-14enni; il salto dei 6-10enni col lockdown non è rientrato.
+- Profilo social prima dei 14 anni per sei su dieci; uso problematico dei social raddoppiato in ER 2018-2022, doppio tra le ragazze; videogiochi speculari.
+- IA generativa: primi ad adottarla i 16-19enni (uno su due), soprattutto per lo studio; Italia sotto la UE a tutte le età.
+- Benessere psicologico dei 14-19enni calato con la pandemia e non risalito, soprattutto per le ragazze; le relazioni con gli amici delle adolescenti peggioravano già prima.
+
+
+> **Per chi interviene**: il territorio non è ancora osservato; il primo passo è mappare cosa fanno scuole, famiglie e terzo settore.
+
+## Stato dei lavori (per la Home)
+
+| Tema | Pagina | Stato | Dati aggiornati a |
+|---|---|---|---|
+| Demografia | Trend demografici | pubblicata | 2025/26 (estratti lug 2026) |
+| Demografia | Previsioni al 2050 | pubblicata | base 2024 (estratti lug 2026) |
+| Educazione | Scuola e istruzione | pubblicata | a.s. 2024/25 (estratti set 2026) |
+| Educazione | Rischio dispersione | pubblicata | 2024 / a.s. 2024/25 (estratti set 2026) |
+| Educazione | Le altre strade | in completamento | a.s. 2024/25 (estratti set 2026) |
+| Educazione | Crescere al tempo dell'IA | pubblicata, cornice nazionale | 2025 (estratti set 2026) |
+| Giovani e lavoro | Dalla scuola al lavoro | in preparazione | — |
+
+Prossimi temi (dal piano in `_TODO.qmd`): sanità; lavoro e redditi; fragilità economica; fragilità e bisogni sul territorio; capitale istituzionale e sociale (terzo settore).

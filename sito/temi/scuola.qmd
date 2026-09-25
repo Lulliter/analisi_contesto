@@ -59,7 +59,7 @@ source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hov
 
 ## In sintesi 
 
-+ Le scuole della provincia di Parma (statali e paritarie, esclusa l'infanzia) contano 51.747 iscritti (a.s. 2024/25, esclusi i corsi per adulti). Il **calo demografico** si inizia a manifestare a partire dalla primaria e dalla secondaria di I grado, mentre la secondaria di II grado cresce ancora (l'onda dei nati fino al 2010 che risale i cicli).
++ Le scuole della provincia di Parma (statali e paritarie, esclusa l'infanzia) contano 51.747 iscritti (a.s. 2024/25, esclusi i corsi per adulti). Il **calo demografico** appare a partire dalla primaria e dalla secondaria di I grado, mentre la secondaria di II grado cresce ancora (l'onda dei nati fino al 2010 che risale i cicli).
 
 <!-- 
 readRDS(here::here("moduli", "scuola_iscritti", "output", "iscritti_trend_pr.rds")) |>
@@ -71,11 +71,10 @@ readRDS(here::here("moduli", "scuola_iscritti", "output", "iscritti_trend_pr.rds
 1 paritaria   2706
 2 statale    49570
 -->
-+ La scuola **paritaria della provincia** (frequentata da circa il 5% degli alunni) accoglie soprattutto i bambini dell’infanzia, spesso presidiando aree più remote. Dei 104 plessi paritari, 80 sono scuole dell’infanzia, presenti in 21 comuni
++ La scuola **paritaria della provincia** (frequentata da circa il 5% degli alunni) accoglie soprattutto i bambini dell’infanzia: 80 dei 104 plessi paritari sono scuole dell’infanzia, in 21 comuni, spesso unico presidio locale; negli altri ordini è concentrata in 5 comuni.
 
-+ Più di un alunno su cinque ha **cittadinanza non italiana**, con punte comunali molto più alte (Langhirano ~49%, Colorno e Busseto ~32%): la scuola è il primo luogo dove si vede la Parma che cambia.
-
-+ Dall'a.s. 2016/17, a Parma come in Emilia-Romagna, sono cresciuti gli alunni con **certificazioni di disabilità** - con una crescita impressionante (circa il 40% nelle scuole statali) a fronte di un numero stabile di iscritti. 
++ La scuola è chiamata a servire una popolazione studentesca che si evolve: la **presenza di alunni con cittadinanza non italiana** (21,6% contro 18,7% della media regionale) è cresciuta lungo tutto il decennio; si osserva anche una crescita repentina delle **certificazioni di disabilità** (circa il 40% nelle scuole statali) a fronte di un numero stabile di iscritti. 
+<!-- + Per chi interviene: il bisogno si concentra nel primo ciclo e in comuni precisi, pedecollina e bassa, dove presenza straniera e certificazioni crescono insieme. -->
  
 
 
@@ -257,7 +256,6 @@ _NB: La mappa conta i plessi presenti nell'anagrafe MIM, anche quelli senza iscr
 
 ## Gli alunni con cittadinanza non italiana
 
-➡️ 
 <!-- SPIEGA distinzione tra **alunni con cittadinanza non italiana** (stranieri) e **alunni con cittadinanza italiana ma di origine straniera** (seconda generazione).  e io cosa sto mostrando -->
 
 ```{r}
@@ -393,6 +391,11 @@ f_bottoni_dati("disab_grado_prov_er", dir_disab, rds = "plot_disab_grado_pr_er")
 **La concentrazione è nel primo ciclo**: a Parma primaria (4,8%) e secondaria di I grado (4,5%) hanno quote più alte di infanzia (3,1%) e secondaria di II grado (3,2%), con lo stesso profilo della regione.
 
 Sul versante del **sostegno**, il quadro regionale ISTAT (a.s. 2024/25, tutte le scuole) dice che in Emilia-Romagna il 30,8% degli insegnanti di sostegno viene dalle liste curricolari, senza specializzazione (Italia 22,1%), e che il 7,2% non era ancora assegnato al 10 ottobre (Italia 10,2%). Gli alunni con bisogni educativi speciali non riconducibili a disabilità sono il 12,0% (Italia 9,0%).
+:::
+
+::: {.callout-tip}
+## Per continuare
+La pagina [Rischio dispersione](scuola_dispersione.qmd) segue chi resta indietro: ritardo, competenze in terza media, NEET.
 :::
 
 ## Possibili approfondimenti

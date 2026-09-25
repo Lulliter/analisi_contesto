@@ -54,7 +54,7 @@ source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hov
 
 ::: {.callout-warning}
 ## Pagina in costruzione
-Questa pagina raccoglie le domande e la struttura dell'analisi sul passaggio dalla formazione al lavoro. Segue logicamente la pagina sui [giovani a rischio dispersione](scuola_dispersione.qmd).
+<!-- Questa pagina raccoglie le domande e la struttura dell'analisi sul passaggio dalla formazione al lavoro. Segue logicamente la pagina sui [giovani a rischio dispersione](scuola_dispersione.qmd). -->
 :::
 
 ## In sintesi

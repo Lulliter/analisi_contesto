@@ -68,7 +68,10 @@ dir_pew <- here::here("moduli", "ia_pew_usa", "output")
 + Pur sotto la media UE, anche in Italia **l'adozione dell'IA generativa è arrivata per prima tra i più giovani**: nel 2025 (primo anno di rilevazione Eurostat), l'ha usata il 52% dei 16-19enni italiani e il 43% dei 20-24enni, contro il 20% della popolazione 16-74. Tra gli utenti 16-19enni, l'uso per lo studio è citato dal 78%, e l'uso privato dal 46%.  
 
 + L'esplosione dell'IA generativa è avvenuta in un contesto già segnato da **isolamento e impoverimento delle relazioni sociali** tra i più giovani. Il benessere psicologico dei 14-19enni è calato con la pandemia e non è tornato ai livelli precedenti, soprattutto tra le ragazze. 
+<!-- + Per chi interviene: il territorio non è ancora osservato; il primo passo è mappare cosa fanno scuole, famiglie e terzo settore. -->
 <!-- La quota di adolescenti "molto soddisfatti" delle relazioni con gli amici tocca il minimo nel 2021 (34,5%) e per le ragazze era già scesa sotto il 39% dal 2018. -->
+
+_I dati di questa pagina sono nazionali o regionali: il territorio parmense non è ancora osservato su questi temi._
 
 ## I dispositivi in mano a bambini e ragazzi
 
@@ -102,7 +105,7 @@ _NB: elaborazioni ISTAT per Save the Children ("Educare al digitale", aprile 202
  
  - questo è il TRIGGER che apre alla creazione di profili social 
  
- - quanto è restponsabile la scuola? 
+ - quanto è responsabile la scuola? 
  
  -->
 
@@ -191,7 +194,7 @@ La legge italiana e il Regolamento Europeo (GDPR) fissano paletti precisi per pr
 
 1. Per la UE, il GDPR stabilisce che **il trattamento dei dati personali dei minori è lecito solo se il minore ha almeno 16 anni**, con discrezione degli Stati membri di abbassare la soglia fino a 13 anni. 
 
-2. <!-- Il GDPR (Regolamento UE 2016/679) stabilisce che il trattamento dei dati personali dei minori è lecito solo se il minore ha almeno 16 anni. Tuttavia, gli Stati membri possono abbassare questa soglia fino a un minimo di 13 anni.  --> La legge italiana, invece, stabiliscce che il **consenso al trattamento digitale dei dati personali può essere dato a 14 anni**; quindi, sotto i 14 anni, l'iscrizione a un social deve essere autorizzata da un genitore. 
+2. <!-- Il GDPR (Regolamento UE 2016/679) stabilisce che il trattamento dei dati personali dei minori è lecito solo se il minore ha almeno 16 anni. Tuttavia, gli Stati membri possono abbassare questa soglia fino a un minimo di 13 anni.  --> La legge italiana, invece, stabilisce che il **consenso al trattamento digitale dei dati personali può essere dato a 14 anni**; quindi, sotto i 14 anni, l'iscrizione a un social deve essere autorizzata da un genitore. 
 
 Ciononostante, le policy interne di Instagram, TikTok e Facebook spesso richiedono un'età minima di 13 anni, creando una discrepanza tra le regole delle piattaforme e la legge italiana.
 Alcuni paesi ([Australia](https://www.moige.it/2026/02/24/divieto-social-australia-under-16/), Francia, Inghilterra) stanno però  introducendo misure molto più radicali per proteggere i minori, come il **divieto dei social media**, praticato tramite l'obbligo di **verifica dell'età** e la limitazione della pubblicità rivolta ai minori.  
@@ -533,7 +536,7 @@ _NB: dati Eurostat dell'indagine europea sull'uso delle tecnologie digitali (per
 
 ## IA inarrestabile anche se preoccupante
 
-Un recente studio del Pew Research Center su un campione di persone maggiorenni in USA, fa riflettere su una caratteristca peculiare di questa tecnologia: la sua diffusione in tempi rapidissimi convive con la consapevolezza che possa portare a conseguenze negative [@gottfriedAmericansAI20262026]. 
+Un recente studio del Pew Research Center su un campione di persone maggiorenni in USA, fa riflettere su una caratteristica peculiare di questa tecnologia: la sua diffusione in tempi rapidissimi convive con la consapevolezza che possa portare a conseguenze negative [@gottfriedAmericansAI20262026]. 
 
 <!-- ✅ vedere  anche questo report ER [@IntelligenzaArtificialeTra] -->
 

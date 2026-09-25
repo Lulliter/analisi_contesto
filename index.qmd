@@ -19,19 +19,16 @@ csl: bib/chicago-author-date.csl
 link-citations: true
 ---
 
-Questo sito, curato dall'Osservatorio dei Dati Sociali di Fondazione Cariparma, offre una raccolta ragionata di dati pubblici sulla provincia di Parma, confrontata con l'Emilia-Romagna e con l'Italia, come strumento per chi opera nel sociale, nella scuola e nelle istituzioni locali. I dati sono prevalentemente tratti da fonti ufficiali, sempre citate (ISTAT, Ministero dell'Istruzione, Regione Emilia Romagna, ecc.).
+Dati pubblici sulla provincia di Parma, confrontati con l'Emilia-Romagna e con l'Italia, per leggere i bisogni del territorio e orientare gli interventi; fonti ufficiali (ISTAT, Ministero dell'Istruzione, Regione Emilia-Romagna, ecc.), sempre citate.
 
-Ad ogni pagina corrisponde un modulo tematico presentato in forma di grafici, tabelle e mappe che descrivono bisogni e risorse del territorio:
+Le pagine sono raggruppate per tema nel menu in alto. Ognuna riporta una sintesi, grafici e tabelle con dati scaricabili e piste di lavoro aperte.
 
-+ **Demografia.** Andamento della popolazione e previsioni al 2050.
 
-+ **Educazione.** Popolazione scolastica e alunni con disabilità, giovani a rischio dispersione e NEET. Utilizzo di tecnologie, internet e IA.
-
-+ **Giovani e lavoro.** Dalla formazione al lavoro: pagina in costruzione, per ora struttura e fonti.
-
-::: {.callout-note appearance="simple"}
-Il sito è in sviluppo: alcune pagine sono complete, altre ancora in costruzione.
+::: {.callout-warning appearance="simple"}
+Alcune pagine sono complete, altre in preparazione. Dati aggiornati a settembre 2026.
 :::
 
-<br><br>
-Testi, grafici e tabelle con licenza CC BY 4.0 (i dati di origine restano soggetti alle licenze delle rispettive fonti); codice sorgente e contatti a piè di pagina.
+
+
+<br><br><br>
+A cura dell'**Osservatorio dei Dati Sociali di Fondazione Cariparma**. Testi, grafici e tabelle con licenza CC BY 4.0 (i dati di origine restano soggetti alle licenze delle rispettive fonti); codice sorgente e contatti a piè di pagina.

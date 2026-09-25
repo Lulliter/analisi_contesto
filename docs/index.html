@@ -109,6 +109,10 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Rischio dispersione</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="./sito/temi/formaz_rientro.html">
+ <span class="dropdown-text">Formazione professionale</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./sito/temi/educ_ia.html">
  <span class="dropdown-text">Crescere al tempo dell’IA</span></a>
   </li>  
@@ -136,28 +140,34 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>Questo sito, curato dall’Osservatorio dei Dati Sociali di Fondazione Cariparma, offre una raccolta ragionata di dati pubblici sulla provincia di Parma, confrontata con l’Emilia-Romagna e con l’Italia, come strumento per chi opera nel sociale, nella scuola e nelle istituzioni locali. I dati sono prevalentemente tratti da fonti ufficiali, sempre citate (ISTAT, Ministero dell’Istruzione, Regione Emilia Romagna, ecc.).</p>
-<p>Ad ogni pagina corrisponde un modulo tematico presentato in forma di grafici, tabelle e mappe che descrivono bisogni e risorse del territorio:</p>
-<ul>
-<li><p><strong>Demografia.</strong> Andamento della popolazione e previsioni al 2050.</p></li>
-<li><p><strong>Educazione.</strong> Popolazione scolastica e alunni con disabilità, giovani a rischio dispersione e NEET. Utilizzo di tecnologie, internet e IA.</p></li>
-<li><p><strong>Giovani e lavoro.</strong> Dalla formazione al lavoro: pagina in costruzione, per ora struttura e fonti.</p></li>
-</ul>
+<p>Dati pubblici sulla provincia di Parma, confrontati con l’Emilia-Romagna e con l’Italia, per leggere i bisogni del territorio e orientare gli interventi; fonti ufficiali (ISTAT, Ministero dell’Istruzione, Regione Emilia-Romagna, ecc.), sempre citate.</p>
+<p>Le pagine sono raggruppate per tema nel menu in alto. Ognuna riporta una sintesi, grafici e tabelle con dati scaricabili e piste di lavoro aperte.</p>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Il sito è in sviluppo: alcune pagine sono complete, altre ancora in costruzione.</p>
+<p>Alcune pagine sono complete, altre in preparazione. Dati aggiornati a settembre 2026.</p>
 </div>
 </div>
 </div>
-<p><br><br> Testi, grafici e tabelle con licenza CC BY 4.0 (i dati di origine restano soggetti alle licenze delle rispettive fonti); codice sorgente e contatti a piè di pagina.</p>
+<p><br><br><br> A cura dell’<strong>Osservatorio dei Dati Sociali di Fondazione Cariparma</strong>. Testi, grafici e tabelle con licenza CC BY 4.0 (i dati di origine restano soggetti alle licenze delle rispettive fonti); codice sorgente e contatti a piè di pagina.</p>
 
 
 
 </main> <!-- /main -->
+<script>
+// Segna come attiva la voce di tendina della pagina corrente e il suo gruppo padre
+// (Quarto lo fa solo per le voci di primo livello). Lo stile e' in assets/styles/custom.css
+document.querySelectorAll(".navbar .dropdown-item").forEach(function (a) {
+  if (a.pathname === window.location.pathname) {
+    a.classList.add("active");
+    var gruppo = a.closest(".dropdown").querySelector(".dropdown-toggle");
+    if (gruppo) gruppo.classList.add("active");
+  }
+});
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

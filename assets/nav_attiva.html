@@ -1,0 +1,11 @@
+<script>
+// Segna come attiva la voce di tendina della pagina corrente e il suo gruppo padre
+// (Quarto lo fa solo per le voci di primo livello). Lo stile e' in assets/styles/custom.css
+document.querySelectorAll(".navbar .dropdown-item").forEach(function (a) {
+  if (a.pathname === window.location.pathname) {
+    a.classList.add("active");
+    var gruppo = a.closest(".dropdown").querySelector(".dropdown-toggle");
+    if (gruppo) gruppo.classList.add("active");
+  }
+});
+</script>

@@ -99,37 +99,51 @@ plot_neet_prov_er <- neet_prov_prep |>
 
 plot_neet_prov_er
 
-# Plot: competenze non adeguate in III media per provincia, ultimo anno ----
+# __ plot_competenze_prov_er: competenze non adeguate in III media per provincia, primo e ultimo anno ----
+# due fotografie con lo stesso ordine delle barre (quello dell'ultimo anno), per il tabset del sito
 competenze_prep <- bes_istruzione_prov_er |>
   filter(cod_indicatore %in% c("02IST011P", "02IST010P"), sesso == "Totale",
-         anno == ANNO_ULTIMO, territorio != "Nord-est") |>
+         anno %in% c(ANNO_BES_PRIMO, ANNO_ULTIMO), territorio != "Nord-est") |>
   mutate(materia = if_else(cod_indicatore == "02IST011P", "Italiano (alfabetica)", "Matematica (numerica)"),
          quota = valore / 100,
-         territorio_display = f_territorio_display(territorio)) |>
-  # ordine delle barre: media delle due materie
-  mutate(ordine = mean(quota), .by = territorio) |>
-  mutate(territorio = reorder(territorio, ordine))
+         territorio_display = f_territorio_display(territorio))
+
+# ordine delle barre: media delle due materie nell'ultimo anno
+ordine_territori <- competenze_prep |>
+  filter(anno == ANNO_ULTIMO) |>
+  summarise(ordine = mean(quota), .by = territorio) |>
+  arrange(ordine) |>
+  pull(territorio)
+
+competenze_prep <- competenze_prep |>
+  mutate(territorio = factor(territorio, levels = ordine_territori))
 
 competenze_prep
 
-plot_competenze_prov_er <- competenze_prep |>
-  ggplot(aes(x = quota, y = territorio, fill = territorio_display)) +
-  geom_col_interactive(aes(tooltip = glue("{territorio}, {materia}: {scales::percent(quota, accuracy = 0.1)}"),
-                           data_id = paste(territorio, materia)), width = 0.75) +
-  geom_text(aes(label = scales::percent(quota, accuracy = 1)), hjust = -0.15, size = 3.5) +
-  facet_wrap(~ materia) +
-  scale_x_continuous(labels = function(x) scales::percent(x, accuracy = 1),
-                     limits = c(0, 0.5), expand = expansion(mult = c(0, 0))) +
-  scale_fill_manual(values = COL_TERRITORI) +
-  f_theme_sito_trend() +
-  theme(axis.text.x = element_text(angle = 0, hjust = 0.5),
-        strip.text = element_text(size = rel(1), face = "bold"),
-        panel.spacing.x = unit(2, "lines")) + # altrimenti "50%" e "0%" dei due pannelli si toccano
-  labs(
-    title = str_wrap(glue("Studenti di III media con competenze non adeguate ({ANNO_ULTIMO})"), 55),
-    subtitle = "Indicatore: % di studenti di III media sotto il livello adeguato nelle prove INVALSI, per provincia; dato censuario",
-    caption = CAP_BES, x = "", y = ""
-  )
+f_plot_competenze <- function(dati, anno_plot) {
+  dati |>
+    filter(anno == anno_plot) |>
+    ggplot(aes(x = quota, y = territorio, fill = territorio_display)) +
+    geom_col_interactive(aes(tooltip = glue("{territorio}, {materia}: {scales::percent(quota, accuracy = 0.1)}"),
+                             data_id = paste(territorio, materia)), width = 0.75) +
+    geom_text(aes(label = scales::percent(quota, accuracy = 1)), hjust = -0.15, size = 3.5) +
+    facet_wrap(~ materia) +
+    scale_x_continuous(labels = function(x) scales::percent(x, accuracy = 1),
+                       limits = c(0, 0.5), expand = expansion(mult = c(0, 0))) +
+    scale_fill_manual(values = COL_TERRITORI) +
+    f_theme_sito_trend() +
+    theme(axis.text.x = element_text(angle = 0, hjust = 0.5),
+          strip.text = element_text(size = rel(1), face = "bold"),
+          panel.spacing.x = unit(2, "lines")) + # altrimenti "50%" e "0%" dei due pannelli si toccano
+    labs(
+      title = str_wrap(glue("Studenti di III media con competenze non adeguate ({anno_plot})"), 55),
+      subtitle = "Indicatore: % di studenti di III media sotto il livello adeguato nelle prove INVALSI, per provincia; dato censuario",
+      caption = CAP_BES, x = "", y = ""
+    )
+}
+
+plot_competenze_prov_er      <- f_plot_competenze(competenze_prep, ANNO_ULTIMO)
+plot_competenze_prov_er_2018 <- f_plot_competenze(competenze_prep, ANNO_BES_PRIMO)
 
 plot_competenze_prov_er
 
@@ -197,7 +211,7 @@ plot_ritardo_corso_pr_er <- ritardo_corso_prep |>
   ggplot(aes(x = classe, y = quota_ritardo, color = territorio_display, group = territorio_display)) +
   geom_line_interactive(aes(tooltip = territorio_display, data_id = territorio_display), linewidth = rel(1.2)) +
   geom_point_interactive(aes(tooltip = glue("{territorio_display}, {ordine_lbl} {classe}ª: {scales::percent(quota_ritardo, accuracy = 0.1)} ({scales::number(alunni_ritardo, big.mark = '.', decimal.mark = ',')} alunni)")), size = 1.8) +
-  facet_grid(~ ordine_lbl, scales = "free_x", space = "free_x", rows=2, 
+  facet_grid(~ ordine_lbl, scales = "free_x", space = "free_x",
              labeller = label_wrap_gen(14)) + # "Secondaria I grado" su 2 righe
   scale_y_continuous(labels = function(x) scales::percent(x, accuracy = 1), limits = c(0, NA)) +
   scale_color_manual(values = COL_TERRITORI) +
@@ -286,6 +300,7 @@ mappa_ritardo_sec1_comuni_pr
 lista_plot <- list(
   plot_neet_prov_er = plot_neet_prov_er,
   plot_competenze_prov_er = plot_competenze_prov_er,
+  plot_competenze_prov_er_2018 = plot_competenze_prov_er_2018,
   plot_ritardo_corso_pr_er = plot_ritardo_corso_pr_er,
   plot_ritardo_trend_pr_er = plot_ritardo_trend_pr_er
 )
