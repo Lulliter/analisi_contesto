@@ -76,7 +76,8 @@ mkdir -p "$DST"
 # Copia la cartella docs/ del repo
 # -a = preserva permessi e timestamp, -v = verbose
 # --delete = rimuove nella destinazione i file eliminati nell'origine
-rsync -av --delete "$SRC" "$DST"
+# -c = confronta il contenuto, non la data: site_libs/ riscritta dal render ma identica non si ricopia
+rsync -avc --delete "$SRC" "$DST"
 
 # ── Verifica integrità: confronta checksum origine/destinazione ──────
 echo ""

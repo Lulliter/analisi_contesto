@@ -19,7 +19,7 @@ execute:
 
 # --- Bibliografia (unica per il sito, esportata da Zotero): si cita con [@chiave]
 bibliography: ../../bib/CRP_analisi_contesto.bib
-csl: ../../bib/chicago-author-date.csl
+csl: ../../bib/apa_7th.csl
 link-citations: true
 # fonti in elenco senza citarle nel testo: gli studi della tabella "IA generativa e apprendimento"
 # (manca Wang et al. 2024, Tutor CoPilot: aggiungere la chiave qui quando è in Zotero)
@@ -59,19 +59,26 @@ dir_ict <- here::here("moduli", "giovani_ict_social", "output")
 dir_pew <- here::here("moduli", "ia_pew_usa", "output")
 ```
 
+
+::: {.callout-warning collapse="true"}
+## Nota di metodo
+I dati sono per lo più riferiti a territori extra-provincia, in quanto relativi a fenomeni recenti non necessariamente coperti a livello locale. 
+<!-- Mancano ancora la formazione professionale (IeFP) e gli esiti, in attesa dei dati regionali: le sezioni segnate con 🟡. -->
+<!-- Questa pagina raccoglie le domande e la struttura dell'analisi sul passaggio dalla formazione al lavoro. Segue logicamente la pagina sui [giovani a rischio dispersione](scuola_dispersione.qmd). -->
+:::
+ 
+
 ## In sintesi
 
-+ **In vent'anni, internet è entrato prepotentemente nella vita quotidiana dei ragazzi**, sia per la comparsa di smartphone e tablet, che per la diffusione di social network e social media. Nel 2001, si connetteva tutti i giorni il 4% degli 11-14enni e l'11% dei 15-19enni; nel 2025 rispettivamente l'85% e il 95%. Impressiona il salto portato dal _lockdown_ nell'adozione di internet tra i bambini di 6-10 anni: l'uso quotidiano passa dal 27% del 2019 al 55% nel 2021, per attestarsi oltre il 40%.
++ **In vent'anni, internet è entrato prepotentemente nella vita quotidiana dei ragazzi**, sia per la comparsa di smartphone e tablet, che per la diffusione di social network e social media. Nel 2001, si connetteva tutti i giorni il 4% degli 11-14enni e l'11% dei 15-19enni; nel 2025 rispettivamente l'85% e il 95%. Decisivo l'aumento portato dal _lockdown_ nella fascia 6-10 anni: l'uso quotidiano passa dal 27% del 2019 al 55% nel 2021, per attestarsi oltre il 40%.
 
-+ Oggi il "profilo social" arriva prima dei 14 anni: ce l'ha il 62% degli 11-13enni che usano internet e il 95% dei 14-19enni (tre su quattro su più piattaforme). Anche **le relazioni amicali si "trasferiscono online"**: il 55% dei 14-19enni sente gli amici online più volte al giorno, mentre il 21% li vede di persona ogni giorno. Tra gli adolescenti si registra anche l'uso problematico dei social network (prevalentemente le ragazze) e dei videogiochi (prevalentemente i ragazzi).  
++ Oggi **il profilo social arriva prima dei 14 anni**: ce l'ha il 62% degli 11-13enni che usano internet e il 95% dei 14-19enni (tre su quattro su più piattaforme). Il contatto con gli amici è continuo, sia online (più volte al giorno per il 55% dei 14-19enni) che di persona. Tra gli adolescenti si registra anche l'uso problematico dei social network (soprattutto ragazze) e dei videogiochi (soprattutto ragazzi).
 
 + Pur sotto la media UE, anche in Italia **l'adozione dell'IA generativa è arrivata per prima tra i più giovani**: nel 2025 (primo anno di rilevazione Eurostat), l'ha usata il 52% dei 16-19enni italiani e il 43% dei 20-24enni, contro il 20% della popolazione 16-74. Tra gli utenti 16-19enni, l'uso per lo studio è citato dal 78%, e l'uso privato dal 46%.  
 
-+ L'esplosione dell'IA generativa è avvenuta in un contesto già segnato da **isolamento e impoverimento delle relazioni sociali** tra i più giovani. Il benessere psicologico dei 14-19enni è calato con la pandemia e non è tornato ai livelli precedenti, soprattutto tra le ragazze. 
++ L'IA generativa arriva su un terreno che la pandemia ha segnato: il benessere psicologico dei 14-19enni è calato nel 2021 e non è tornato ai livelli precedenti, soprattutto tra le ragazze. Usata anzitutto per studiare, le prime valutazioni sperimentali dicono che **l'IA può aiutare l'apprendimento, ma solo se usata come tutor con regole esplicite**.    
 <!-- + Per chi interviene: il territorio non è ancora osservato; il primo passo è mappare cosa fanno scuole, famiglie e terzo settore. -->
 <!-- La quota di adolescenti "molto soddisfatti" delle relazioni con gli amici tocca il minimo nel 2021 (34,5%) e per le ragazze era già scesa sotto il 39% dal 2018. -->
-
-_I dati di questa pagina sono nazionali o regionali: il territorio parmense non è ancora osservato su questi temi._
 
 ## I dispositivi in mano a bambini e ragazzi
 
@@ -110,11 +117,15 @@ _NB: elaborazioni ISTAT per Save the Children ("Educare al digitale", aprile 202
  -->
 
 
+## L'utilizzo di internet e schermi 
 
+In poco più di vent'anni usare internet ogni giorno è passato da eccezione a norma: la didattica a distanza adottata nel lockdown ha segnato un'accelerazione senza ritorno anche tra i più piccoli.
 
-## L'utilizzo di internet e social 
+::: {.callout-warning collapse="true"}
 
-In poco più di vent'anni usare internet ogni giorno è passato da eccezione a norma: l'IA generativa arriva su abitudini già formate.
+#### Scuola e dispositivi: norme in contraddizione
+Si nota una sorta di "corto circuito" nella normativa scolastica: da un lato si esorta a limitare l'uso di smartphone e tablet per assicurare il benessere psicofisico degli studenti [@MIM2024notasmart; @MIM2026circsmart]; dall'altro, si promuove ormai da tempo l'adozione di libri di testo in modalità mista e digitale per la didattica [a partire da @MIUR2013DMlibri; @MIUR2013libri]. D'altra parte, vigilare sui tetti di spesa dei manuali scolastici [@MIUR2013DMlibri] può entrare in contraddizione con la promozione dell'approccio BYOD (_bring your own device_) [@MIUR2015pnsd], che sposta l'onere economico dell'acquisto dei dispositivi tecnologici direttamente sulle famiglie.
+:::
 
 <!-- grafici previsti (modulo giovani_ict_social; elenco scritto prima della ricognizione del 2026-09-17: i grafici fatti sono in moduli/giovani_ict_social/output/):
 - uso quotidiano di internet per fascia d'età (6-10, 11-14, 15-17, 18-19, 20-24 vs totale), Italia, trend 2010-2025;
@@ -174,30 +185,27 @@ f_bottoni_dati("ict_giovani_eta", dir_ict, rds = "plot_pc_internet")
 ::: {.callout-note collapse="true"}
 ### Osservazioni
 
-Nel 2001 usava internet tutti i giorni circa un ragazzo su dieci. Oggi, la quasi totalità di chi ha tra i 15 e i 24 anni e oltre otto su dieci tra gli 11-14enni, contro circa sette persone su dieci nell'insieme della popolazione. Il passaggio più brusco è quello dei bambini di 6-10 anni nel 2020, e da allora non è più tornato indietro.
-
-Fino a metà degli anni 2000 i ragazzi usavano il PC più di internet; poi le due curve si incrociano e il PC si ferma o arretra: tra i bambini di 6-10 anni oggi lo usa circa quattro su dieci, mentre quasi nove su dieci usano internet (presumibilmente via dispositivo mobile). Nel 2020, il PC risale per un anno, verosimilmente per la didattica a distanza, e poi riprende a calare.
-
-In Emilia-Romagna e nel Nord-est l'uso di internet è da sempre un paio di punti sopra la media italiana.
+Il salto del 2020 riguarda soprattutto i bambini di 6-10 anni, e da allora non è più rientrato. Il PC segue la parabola opposta: superato da internet a metà anni 2000, oggi lo usa meno di metà dei 6-10enni; l'unico rimbalzo è il 2020 della didattica a distanza. Emilia-Romagna e Nord-est stanno stabilmente un paio di punti sopra la media italiana.
 
 _NB: stima campionaria, da leggere nei trend più che nei singoli anni. La classe 15-19 anni è una nostra stima (media delle classi ISTAT 15-17 e 18-19, pesata con gli anni d'età che coprono). Nel 2004 l'indagine non è stata svolta. L'uso del PC è rilevato dai 3 anni, quello di internet dai 6._
 :::
 
-## I social network e le relazioni a 11-19 anni
+## I social network e le relazioni
 
-Il profilo sui social network e media arriva prima dei 14 anni e il contatto online con gli amici è continuo, e forse sostituisce il vedersi di persona.
+Il profilo sui social network e media arriva prima dei 14 anni e il contatto online con gli amici è continuo.
 
 ::: {.callout-warning  collapse="true"}
 
 #### Social e minori: Legge italiana e UE
-La legge italiana e il Regolamento Europeo (GDPR) fissano paletti precisi per proteggere i dati personali e la salute mentale dei più giovani:
+Il Regolamento Europeo (GDPR) e la normativa italiana fissano paletti precisi per proteggere i dati personali e la salute psicofisica dei minori:
 
-1. Per la UE, il GDPR stabilisce che **il trattamento dei dati personali dei minori è lecito solo se il minore ha almeno 16 anni**, con discrezione degli Stati membri di abbassare la soglia fino a 13 anni. 
+1. Il quadro UE: il GDPR stabilisce che **il trattamento dei dati personali dei minori è lecito a partire dai 16 anni**, con discrezione degli Stati membri di abbassare tale soglia fino al limite minimo di 13 anni. 
 
-2. <!-- Il GDPR (Regolamento UE 2016/679) stabilisce che il trattamento dei dati personali dei minori è lecito solo se il minore ha almeno 16 anni. Tuttavia, gli Stati membri possono abbassare questa soglia fino a un minimo di 13 anni.  --> La legge italiana, invece, stabilisce che il **consenso al trattamento digitale dei dati personali può essere dato a 14 anni**; quindi, sotto i 14 anni, l'iscrizione a un social deve essere autorizzata da un genitore. 
+<!-- Il GDPR (Regolamento UE 2016/679) stabilisce che il trattamento dei dati personali dei minori è lecito solo se il minore ha almeno 16 anni. Tuttavia, gli Stati membri possono abbassare questa soglia fino a un minimo di 13 anni.  --> 
+2. La specificità italiana: il D.lgs. 101/2018 [@Dlgs2018consenso] fissa a **14 anni l'età minima per il consenso digitale autonomo**; al di sotto di questa soglia, l'iscrizione a una piattaforma social richiede l'autorizzazione genitoriale.
 
-Ciononostante, le policy interne di Instagram, TikTok e Facebook spesso richiedono un'età minima di 13 anni, creando una discrepanza tra le regole delle piattaforme e la legge italiana.
-Alcuni paesi ([Australia](https://www.moige.it/2026/02/24/divieto-social-australia-under-16/), Francia, Inghilterra) stanno però  introducendo misure molto più radicali per proteggere i minori, come il **divieto dei social media**, praticato tramite l'obbligo di **verifica dell'età** e la limitazione della pubblicità rivolta ai minori.  
+Ciononostante, i termini di servizio di piattaforme come Instagram, TikTok e Facebook richiedono un'età minima di 13 anni, in contrasto con la legge italiana.   
+Altri paesi, tra cui Australia, Francia e Regno Unito, stanno implementando strategie più radicali, che spaziano dal [divieto totale d'accesso ai social per i minori di 16](https://www.moige.it/2026/02/24/divieto-social-australia-under-16/) o 15 anni, all'obbligo di sistemi rigorosi di verifica dell'età (_age verification_), fino alla restrizione della pubblicità profilata sui minori.
 :::
 
 ::: {.panel-tabset}
@@ -281,7 +289,7 @@ f_bottoni_dati("ragazzi_ict_social", dir_ict, rds = "plot_nuove_amicizie_online"
 
 Tra i ragazzi di 11-13 anni che usano internet, circa sei su dieci hanno già almeno un profilo sui social network; tra i 14-19enni quasi tutti, e tre su quattro ne hanno più di uno. Le ragazze sono più presenti dei ragazzi a entrambe le età.
 
-Più di metà dei 14-19enni sente gli amici online più volte al giorno, e circa uno su dieci "continuamente" (di più tra le ragazze); tra gli 11-13enni poco più di un terzo. Eppure circa sette ragazzi su dieci vedono gli amici di persona almeno qualche volta a settimana, senza differenze tra le due età: il contatto a distanza si è aggiunto a quello in presenza, più che sostituirlo. Internet serve anche ad allargare la cerchia: più di metà dei 14-19enni l'ha usato per fare nuove amicizie, circa un quarto tra gli 11-13enni.
+Il contatto con gli amici online si è aggiunto a quello di persona. Oltre metà degli 11-13enni e la stragrande maggioranza di 14-19enni sente gli amici online almeno giornnalmente. Internet serve anche ad allargare la cerchia: più di metà dei 14-19enni l'ha usato per fare nuove amicizie, circa un quarto tra gli 11-13enni.
 
 Nel Nord-est i valori sono in linea con la media italiana.
 
@@ -289,9 +297,9 @@ _NB: indagine ISTAT "Bambini e ragazzi" sui residenti di 11-19 anni, rilevazione
 :::
 
 
-## Rischi di social network e videogiochi a 11-17 anni 
+## Rischi di social network e videogiochi
 
-Secondo questa rilevazione del 2022, disaggregata per regione, l'uso problematico dei social network è raddoppiato tra il 2018 e il 2022 ed è il doppio tra le ragazze; i videogiochi sono l'immagine speculare, maschile e in calo con l'età.
+Secondo l'indagine HBSC 2022 (_Health Behaviour in School-aged Children_, coordinata in Italia dall'Istituto Superiore di Sanità), disaggregata per regione, l'uso problematico dei social network è raddoppiato tra il 2018 e il 2022 ed è il doppio tra le ragazze; i videogiochi sono l'immagine speculare, maschile e in calo con l'età.
 
 ```{r}
 #| label: tab_hbsc
@@ -325,16 +333,14 @@ f_bottoni_dati("hbsc_2022", dir_ict, rds = "plot_hbsc_social_trend")
 ::: {.callout-note collapse="true"}
 #### Osservazioni
 
-Tra il 2018 e il 2022, in Emilia-Romagna, la quota di ragazzi che fanno un uso problematico dei social network (ansia di accedere, tempo fuori controllo, litigi e bugie a causa dei social) è quasi raddoppiata: tra le ragazze da una su dieci a una su sei, tra i ragazzi da 7 a 9 su cento. Cresce con l'età ed è il doppio tra le ragazze a ogni età: a 15 anni ne è interessata una ragazza su cinque. La regione è in linea con l'Italia (12% contro 13,5%); nessun dato esiste per Parma.
+L'uso problematico dei social riguarda soprattutto le ragazze, a ogni età circa il doppio dei ragazzi, e aumenta crescendo: a 15 anni ne è interessata una ragazza su cinque. I videogiochi mostrano il quadro opposto: l'uso problematico è più frequente tra i ragazzi e diminuisce con l'età. L'Emilia-Romagna è vicina alla media italiana sia per le ragazze (17% contro 17%) sia per i ragazzi (9% contro 10%), anche se i due dati non coincidono del tutto nelle età coperte (11-17 anni in regione, 11-15 in Italia). Per Parma il dato non esiste.
 
-I videogiochi raccontano l'altra metà: l'uso problematico è maschile e diminuisce con l'età, dal 27% degli undicenni al 17% dei diciassettenni, mentre tra le ragazze resta intorno al 18% fino a 15 anni e scende al 9% a 17. Circa un ragazzo su sei gioca almeno quattro ore nei giorni in cui gioca, contro una ragazza su undici.
-
-_NB: indagine HBSC (Health Behaviour in School-aged Children, sorveglianza internazionale coordinata in Italia dall'Istituto Superiore di Sanità), rilevazione 2022 in classe, campione regionale di circa 4.200 studenti; stima campionaria: contano le differenze tra età e sessi, non i decimali. Le scale usate individuano un uso "problematico" con criteri autoriferiti, non una diagnosi. Prossima rilevazione: 2026._
+_NB: indagine HBSC (Health Behaviour in School-aged Children, sorveglianza internazionale coordinata in Italia dall'Istituto Superiore di Sanità), rilevazione 2022 in classe, campione regionale di circa 4.200 studenti; stima campionaria. L'uso "problematico" è definito da scale con criteri autoriferiti, non da una diagnosi (per i social, e.g. ansia di accedere, tempo fuori controllo, litigi e bugie; per i videogiochi una scala analoga). Prossima rilevazione: 2026._
 :::
 
 ## Salute mentale e relazioni con gli amici dei 14-19enni, 2005-2025
 
-Il benessere psicologico dei 14-19enni è calato con la pandemia e non è tornato ai livelli precedenti, soprattutto tra le ragazze. Alcuni libri hanno portato alla ribalta i danni riconducibili a quella che Haidt ha definito la sostituzione dell'_infanzia basata sul gioco_ con una _infanzia basata sul telefono_ [@haidtAnxiousGenerationHow2024]. Molti psicologi e pedagogisti rilevano: isolamento e impoverimento delle relazioni sociali; deficit di sonno; calo delle capacità cognitive e dell’attenzione; ansia e peggioramento della salute mentale.
+Il benessere psicologico dei 14-19enni è calato con la pandemia e non è tornato ai livelli precedenti, soprattutto tra le ragazze. Alcuni libri hanno portato alla ribalta i danni riconducibili a quella che Haidt ha definito la sostituzione dell'_infanzia basata sul gioco_ con una _infanzia basata sul telefono_ [@haidtAnxiousGenerationHow2024]. Molti neuropsichiatri e pedagogisti rilevano: isolamento e impoverimento delle relazioni sociali; deficit di sonno; calo delle capacità cognitive e dell’attenzione; ansia e peggioramento della salute mentale.
 
  
 ::: {.panel-tabset}
@@ -395,8 +401,7 @@ f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_salute_mentale_tota
 ::: {.callout-note collapse="true"}
 #### Osservazioni
 
-Il 2021 è un crollo netto, soprattutto per le ragazze. <!-- Per loro il calo è più profondo e il primo rimbalzo più rapido, ma poi il recupero si ferma: i ragazzi sono tornati ai livelli di prima, le ragazze non ancora. --> Il divario, di circa quattro punti prima della pandemia, si allarga nel 2021 e resta un po' più ampio di allora.   
-Il confronto con le altre età dice due cose. La pandemia ha colpito i più giovani, non tutti: l'indice dell'intera popolazione nel 2021 non si muove. E i 20-24enni, che all'epoca del lockdown avevano 15-19 anni, non hanno avuto la stessa buca ma da allora scendono lentamente e nel 2025 restano un po' sotto i livelli del 2019. Il dato è nazionale: per l'Emilia-Romagna esiste solo il valore sull'intera popolazione, allineato a quello italiano.
+Il 2021 è un crollo netto per i più giovani: l'indice dell'intera popolazione non si muove, e la variazione per i 20-24enni sembra meno evidente. Il divario tra ragazze e ragazzi, circa quattro punti prima della pandemia, si allarga nel 2021 e non si è richiuso.  
 
 _NB: L'indice di salute mentale è un punteggio 0-100 costruito dall'ISTAT da cinque domande sull'umore delle ultime quattro settimane (nervosismo, tristezza, serenità, scoraggiamento, felicità): misura il benessere psicologico autoriferito, non una diagnosi. Stima campionaria: leggere il trend, non i decimali._
 :::
@@ -460,21 +465,21 @@ f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_amici_totale")
 
 ::: {.callout-note collapse="true"}
 #### Osservazioni
+Il 2021 è il minimo a tutte le età, non solo tra i giovani; nel 2025 tutti sono tornati ai livelli del 2019. La differenza è che per le 14-19enni quel livello era già basso: dal 2018 la quota scende sotto il 39% e non risale, mentre per i ragazzi non c'è un calo di fondo. Tra le 20-24enni e nella popolazione adulta non si vede. È compatibile con quanto osservato altrove sul benessere delle adolescenti. Questi dati rappresentano delle stime di tendenza, ma andrebbero indagati più a fondo. 
 
-Il 2021 è il punto più basso della serie a tutte le età, non solo tra i giovani: il lockdown ha tolto le relazioni a tutti, mentre sulla salute mentale la buca riguarda soprattutto i ragazzi. Nel 2025 tutte le classi di età sono tornate ai livelli del 2019. Il dato che colpisce è che, per le 14-19enni, quel livello era già basso: fino al 2017 la quota oscilla intorno al 42-46%, dal 2018 scende sotto il 39% e non risale; per i ragazzi la serie è altalenante ma senza un calo di fondo. Tra le 20-24enni e nella popolazione adulta lo stesso calo non si vede: sembra riguardare le adolescenti, anche se con serie così variabili va letto con prudenza. È una tendenza compatibile con quanto osservato in altri paesi sul benessere delle adolescenti nell'ultimo decennio, ma con questi dati non si può attribuirla a una causa: negli stessi anni l'Italia attraversava anche la crisi economica.
 <!-- Fonti del parallelo internazionale (da rivedere prima di citarle in pagina):
 - Twenge J.M. (2017), iGen, Atria Books; Twenge et al. (2018), "Increases in depressive symptoms, suicide-related outcomes, and suicide rates among U.S. adolescents after 2010", Clinical Psychological Science 6(1)
 - Haidt J. (2024), The Anxious Generation, Penguin Press (tesi: peggioramento del benessere delle adolescenti dal ~2012, USA/UK/Nord Europa, con smartphone e social)
 - Critici: Orben A. & Przybylski A.K. (2019), "The association between adolescent well-being and digital technology use", Nature Human Behaviour 3 (effetti piccoli); Odgers C.L. (2024), recensione di The Anxious Generation, Nature 628
 - Spiegazioni concorrenti per l'Italia 2012-14: seconda recessione e picco della disoccupazione giovanile (ISTAT); possibile cambio di metodo dell'indagine Aspetti della vita quotidiana (verificare: salto 2011→2012 della soddisfazione per la vita) -->
 
-_NB: Quota di 14-19enni che si dichiarano "molto soddisfatti" delle relazioni con gli amici. Stima campionaria, dato nazionale. Altri indicatori del Bes (soddisfazione per la propria vita, giudizio sulle prospettive future) mostrano la stessa buca nel 2021 ma un trend di fondo in miglioramento: il quadro non è a senso unico._
+_NB: Quota per fascie d'età che si dichiarano "molto soddisfatti" delle relazioni con gli amici. Stima campionaria, dato nazionale. Altri indicatori del Bes (soddisfazione per la propria vita, giudizio sulle prospettive future) mostrano la stessa buca nel 2021 ma un trend di fondo in miglioramento: il quadro non è a senso unico._
 :::
 
 Su questo terreno arriva l'IA generativa: in un'indagine del 2026 su ragazzi di 12-18 anni, uno su tre dice di aver chiesto almeno qualche volta consigli personali a un chatbot, e uno su sette lo fa spesso; più di un terzo teme però che questi strumenti impoveriscano le relazioni reali [@SaferInternetDay2026].
 
 
-## L'uso dell'IA generativa per età, Italia v. UE
+## L'uso dell'IA generativa (Italia v. UE)
 
 Sul finire del 2022 OpenAI ha reso l'IA generativa accessibile a tutti con ChatGPT; sono seguiti Gemini, Claude e Meta AI, sempre più integrati negli strumenti di uso comune. A fine 2025 la usavano già circa 15 milioni di italiani, uno su tre tra chi va online (Audiweb); tra i 16-19enni, uno su due (Eurostat).
 
@@ -521,9 +526,7 @@ f_bottoni_dati("ia_eta_it_ue", dir_ict, rds = "plot_ia_scopi")
 ::: {.callout-note collapse="true"}
 #### Osservazioni
 
-Il 2025 è il primo anno di rilevazione Eurostat dell'uso di strumenti di IA generativa. Lo scarto con l'Europa è ampio a tutte le età: tra i giovani una quindicina di punti o più, tanto che i 20-24enni italiani stanno sotto i 25-34enni europei. Le ragazze la usano un po' più dei ragazzi, in Italia come nell'Unione europea.
-
-Tra i 16-19enni che la usano, quasi otto su dieci lo fanno per lo studio, in linea con i coetanei europei; meno della metà per scopi privati, contro circa due terzi in Europa. L'uso per lavoro, a quest'età, è marginale.
+Il 2025 è il primo anno di rilevazione Eurostat dell'uso di strumenti di IA generativa. Lo scarto con l'Europa è ampio a tutte le età. Le ragazze la usano un po' più dei ragazzi, in Italia come nell'Unione Europea. Sugli scopi, i 16-19enni italiani studiano con l'IA quanto i coetanei europei ma la usano molto meno per fini privati. L'uso per lavoro, a quest'età, è marginale.
 
 _NB: dati Eurostat dell'indagine europea sull'uso delle tecnologie digitali (per l'Italia la fonte è l'ISTAT). L'adozione è in % delle persone della stessa età; gli scopi sono in % di chi ha usato l'IA negli ultimi tre mesi e non si escludono a vicenda. Un solo anno, solo livello nazionale; sotto i 16 anni non esistono dati ufficiali. Stima campionaria._
 :::
@@ -534,7 +537,7 @@ _NB: dati Eurostat dell'indagine europea sull'uso delle tecnologie digitali (per
 <!-- #### Osservazioni -->
 <!-- ::: -->
 
-## IA inarrestabile anche se preoccupante
+## Diffusione e percezioni dell'IA (adulti USA)
 
 Un recente studio del Pew Research Center su un campione di persone maggiorenni in USA, fa riflettere su una caratteristica peculiare di questa tecnologia: la sua diffusione in tempi rapidissimi convive con la consapevolezza che possa portare a conseguenze negative [@gottfriedAmericansAI20262026]. 
 
@@ -583,14 +586,14 @@ f_bottoni_dati("impatto_ia_eta", dir_pew, rds = "plot_impatto_ia")
 ::: {.callout-note collapse="true"}
 ### Osservazioni
 
-Negli Stati Uniti un adulto su quattro usa un chatbot di IA ogni giorno: uno su tre tra i 18 e i 49 anni, meno di uno su dieci oltre i 65. Chi la usa di più non è però il più fiducioso: tra i 18-29enni quasi uno su due si aspetta che nei prossimi vent'anni l'IA abbia effetti negativi sulla società, solo uno su sette effetti positivi. Quando si pensa alla propria vita il giudizio è meno severo. Gli over 65, che la usano poco, sono soprattutto incerti: non sa rispondere uno su cinque per la società, quasi uno su tre per sé.
+Negli Stati Uniti un adulto su quattro usa l'IA ogni giorno: uno su tre tra i 18 e i 49 anni, meno di uno su dieci oltre i 65. Chi la usa di più non è però il più fiducioso: tra i 18-29enni quasi uno su due si aspetta che nei prossimi vent'anni l'IA abbia effetti negativi sulla società, solo uno su sette effetti positivi. Quando si pensa alla propria vita il giudizio è meno severo. Gli over 65, che la usano poco, sono soprattutto incerti.
 
 _NB: sondaggio del Pew Research Center su 5.119 adulti USA (febbraio 2026); stima campionaria, con un margine d'errore di circa ±4 punti tra i 18-29enni. Non è mostrato chi si aspetta un impatto ugualmente positivo e negativo (tra il 23 e il 32%)._
 :::
 
 
 
-## IA come tutor? Potenzialità a certe condizioni
+## IA come tutor?
 
 
 <!-- + Cosa l'IA può offrire a chi cresce: apprendimento personalizzato, accessibilità per chi ha bisogni specifici, creatività, orientamento. -->
@@ -637,7 +640,7 @@ Anche i docenti sono cauti: tra quelli che hanno risposto a un'indagine INDIRE (
 
 L'IA generativa funziona da _amplificatore_ di processi: può potenziare l’accesso alle informazioni, l’apprendimento e la produttività, ma può acuire problemi già osservabili tra i giovanissimi e danneggiarne lo sviluppo cognitivo e relazionale. Pur senza azzardare nessi causali, i dati disponibili suggeriscono di prestare grande attenzione agli effetti dell’IA generativa sul benessere dei ragazzi.
 
-Le regole arrivano, ma più lente della tecnologia: il Ministero ha avviato un percorso con le [Linee guida per l'IA nella scuola](https://www.mim.gov.it/documents/20182/0/MIM_Linee+guida+IA+nella+Scuola_09_08_2025-signed.pdf/b70fdc45-4b75-1f7e-73bf-eab12989b928) e alcune sperimentazioni, altri paesi hanno scelto di limitare l'accesso dei minori ai social.  
+Le regole arrivano, ma più lente della tecnologia: il Ministero ha avviato un percorso con le "Linee guida per l'IA nella scuola" [@MIM_LineeGuidaIA] e alcune sperimentazioni, altri paesi hanno scelto di limitare l'accesso dei minori ai social.  
 Diverse famiglie chiedono iniziative legislative più decise che tutelino i minori, come l'innalzamento a 16 anni dell'età minima per l'accesso ai social ([e.g. iniziativa di Moige, Anfn, e Age](https://www.moige.it/landing/ferma-dipendenza-social/)), ma anche la responsabilizzazione di piattaforme che adottano pratiche dannose e illegali. 
 
 > Di cosa hanno bisogno i ragazzi per crescere in un contesto così complesso e in rapida evoluzione?

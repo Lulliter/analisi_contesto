@@ -19,7 +19,7 @@ execute:
 
 # --- Bibliografia (unica per il sito, esportata da Zotero): si cita con [@chiave]
 bibliography: ../../bib/CRP_analisi_contesto.bib
-csl: ../../bib/chicago-author-date.csl
+csl: ../../bib/apa_7th.csl
 link-citations: true
 ---
 
@@ -98,6 +98,8 @@ f_bottoni_dati("iscritti_trend_pr", dir_scuola, rds = "plot_iscritti_ordine_pr")
 ::: {.callout-note collapse="true"}
 ### Osservazioni
 Il calo demografico è entrato in classe dal basso: primaria e secondaria di I grado perdono iscritti negli ultimi 5 anni, mentre la secondaria di II grado cresce ancora (l'onda dei nati fino al 2010 che risale i cicli). 
+
+_NB: Gli iscritti del Ministero partono dalla primaria: la scuola dell'infanzia non c'è, e nemmeno i corsi per adulti._
 :::
 
 ```{r}
@@ -120,6 +122,8 @@ f_bottoni_dati("iscritti_trend_pr", dir_scuola, rds = "plot_iscritti_ordine_gest
 ### Osservazioni
 
 Il numero di iscritti alle scuole paritarie è relativamente più alto nella fascia 6-11 anni (primaria) - o forse ancora più nell'infanzia (qui non rappresentata) - mentre cala all'avanzare dell'ordine di scuola.
+
+_NB: Infanzia esclusa dalla fonte (vedi sopra); il peso delle paritarie nell'infanzia si vede nella mappa dei plessi._
 :::
 
 ```{r}
@@ -142,7 +146,9 @@ f_bottoni_dati("plessi_trend_pr", dir_scuola, rds = "plot_plessi_ordine_gestione
 ::: {.callout-note collapse="true"}
 ### Osservazioni
 
-La rete dei plessi è rimasta stabile per tutto il decennio (la serie, dall'anagrafe scuole, include l'infanzia e arriva all'a.s. 2026/27): le statali sono quasi immobili, con un lieve calo di primarie e superiori dal 2022, e le ~80 materne paritarie sono costanti. **Il calo degli iscritti, per ora, non si è tradotto in chiusure di scuole**.
+La rete dei plessi è rimasta stabile per tutto il decennio (la serie, dall'anagrafe scuole, include l'infanzia e arriva all'a.s. 2026/27): le statali sono quasi immobili, con un lieve calo di primarie e superiori dal 2022, e le ~80 materne paritarie sono costanti. Il calo degli iscritti, per ora, non si è tradotto in chiusure di scuole.
+
+_NB: Infanzia inclusa. "Plessi" = sedi registrate in anagrafe, anche senza iscritti._
 :::
 
 ## La geografia scolastica dei comuni
@@ -225,10 +231,9 @@ f_bottoni_dati("paritarie_plessi_comuni_pr", dir_scuola, rds = "mappa_paritarie_
 ::: {.callout-note collapse="true"}
 ### Osservazioni
 
-**La scuola paritaria della provincia serve soprattutto l'infanzia**: dei 104 plessi paritari, 80 sono scuole dell'infanzia, diffuse capillarmente in 21 comuni. Negli altri ordini la paritaria è un fenomeno concentrato: 24 plessi in soli 5 comuni (Parma 15, Salsomaggiore 4, Fidenza 3, Busseto e Traversetolo 1). In diversi comuni le paritarie restano un **presidio importante** e, talora, l'unica o la principale offerta locale.  
+La scuola paritaria della provincia serve soprattutto l'infanzia: dei 104 plessi paritari, 80 sono scuole dell'infanzia, diffuse capillarmente in 21 comuni. Negli altri ordini la paritaria è un fenomeno concentrato: 24 plessi in soli 5 comuni (Parma 15, Salsomaggiore 4, Fidenza 3, Busseto e Traversetolo 1). In diversi comuni le paritarie restano un presidio importante e, talora, l'unica o la principale offerta locale.  
 
-_NB: La mappa conta i plessi presenti nell'anagrafe MIM, anche quelli senza iscritti (es. le primarie di Bore e Valmozzola, formalmente attive ma senza alunni nei dati): "0" = plessi tutti statali, in grigio i comuni senza alcun plesso dell'ordine._
-
+_NB: Fonte MIM, anagrafe scuole, a.s. 2024/25, infanzia inclusa. Un plesso = un codice per ordine e sede: la stessa scuola con più ordini conta più plessi. La mappa conta anche scuole senza iscritti (es. le primarie di Bore e Valmozzola, formalmente attive ma senza alunni): "0" = plessi tutti statali, in grigio i comuni senza alcun plesso dell'ordine._
 :::
 
 
@@ -276,10 +281,7 @@ f_bottoni_dati("stranieri_trend_prov_er", dir_scuola, rds = "plot_stranieri_prov
 ::: {.callout-note collapse="true"}
 ### Osservazioni
 
-L'incidenza degli alunni con cittadinanza non italiana è **cresciuta lungo
-tutto il decennio** in tutta la regione, e Parma si colloca nella fascia alta
-delle province: nell'a.s. 2024/25 è seconda dopo Piacenza (21,6% contro 25,2%),
-sopra la media regionale del 18,7%.
+L'incidenza degli alunni con cittadinanza non italiana è cresciuta lungo tutto il decennio in tutta la regione, e Parma si colloca nella fascia alta delle province: nell'a.s. 2024/25 è seconda dopo Piacenza (21,6% contro 25,2%), sopra la media regionale del 18,7%.
 :::
 
 ```{r}
@@ -302,7 +304,7 @@ f_bottoni_dati("scuola_comuni_pr", dir_scuola, rds = "plot_stranieri_comuni_pr")
 
 ```{r}
 #| label: plot_stranieri_comuni_pr_min
-#| output: true
+#| output: false
 #| fig-height: 10
 
 f_girafe(readRDS(file.path(dir_scuola, "plot_stranieri_comuni_pr_min.rds")))
@@ -311,7 +313,7 @@ f_girafe(readRDS(file.path(dir_scuola, "plot_stranieri_comuni_pr_min.rds")))
 ::: {.text-end}
 ```{r}
 #| label: dl_plot_stranieri_comuni_pr_min
-#| output: true
+#| output: false
 f_bottoni_dati("scuola_comuni_pr", dir_scuola, rds = "plot_stranieri_comuni_pr_min")
 ```
 :::
@@ -319,16 +321,21 @@ f_bottoni_dati("scuola_comuni_pr", dir_scuola, rds = "plot_stranieri_comuni_pr_m
 ::: {.callout-note collapse="true"}
 ### Osservazioni
 
-L'eterogeneità comunale è fortissima: nei comuni della pedecollina e della
-bassa a forte domanda di lavoro l'incidenza supera di molto la soglia del 20%
-(Langhirano ~49%, Colorno ~32%, Busseto ~32%), mentre le code basse si trovano
-soprattutto nei comuni dell'Appennino.
+L'eterogeneità comunale è fortissima: nei comuni della pedecollina e della bassa a forte domanda di lavoro l'incidenza supera di molto la soglia del 20% (Langhirano ~49%, Colorno ~32%, Busseto ~32%), mentre le code basse si trovano soprattutto nei comuni dell'Appennino.
 :::
 
 
 ## Gli alunni con disabilità
+La scuola italiana riconosce diverse forme di fragilità e di bisogno educativo speciale. Sotto la "categoria ombrello" di **BES (bisogni educativi speciali) non certificati**, introdotta dalla direttiva ministeriale del 27 dicembre 2012 e dalla circolare 8/2013, si distinguono:
 
-I dati sono dell'Ufficio scolastico regionale e riguardano le sole scuole statali (infanzia inclusa); contano gli alunni certificati, non la prevalenza delle condizioni.
+1. Alunni con **certificazione di disabilità** (L. 104/1992), che hanno diritto al sostegno con insegnante di sostegno dedicato e al PEI (piano educativo individualizzato).
+2. Alunni con **DSA (disturbi specifici dell'apprendimento) certificati** (L. 170/2010), con diritto a PDP (piano didattico personalizzato) e strumenti compensativi/dispensativi, ma non a un insegnante di sostegno dedicato.
+3. Alunni con **BES non certificati** individuato dal consiglio di classe anche senza diagnosi, ovvero con bisogni educativi speciali dovuti a svantaggio socio-economico o linguistico, disturbi evolutivi specifici, ecc. Questi alunni possono ricevere interventi didattici personalizzati.
+
+Nell'a.s. 2024/25, gli alunni con DSA e BES non certificati (gruppi 2 e 3) erano il 12% n Emilia Romagna sIil 9% in talia - media tra tutti gli ordini di scuola, statali e paritarie.  
+<!-- E il dato cresce molto con l'ordine di scuola: in ER 1% nell'infanzia, 8,8% nella primaria, 17,1% nella secondaria di I grado e 16,9% nella II grado -->
+I dati riportati sotto con lo spaccato prociale riguardano, invece, le sole certificazioni ai sensi della L. 104/92 (gruppo 1), e solo le scuole statali.
+
 
 ```{r}
 #| label: plot_disab_trend_prov_er
@@ -364,9 +371,9 @@ f_bottoni_dati("disab_trend_prov_er", dir_disab, rds = "plot_disab_indice_pr_er"
 ::: {.callout-note collapse="true"}
 ### Osservazioni
 
-**Gli alunni con disabilità crescono mentre la scuola non cresce**: nelle statali della provincia sono passati da ~1.500 (a.s. 2016/17) a ~2.150 (a.s. 2024/25), +41%, con gli alunni totali fermi attorno a 54 mila; la quota è salita dal 2,8% al 3,9%. Parma resta **sotto la media regionale** (4,4%) lungo tutta la serie, con un andamento parallelo alle altre province: la dinamica è regionale e nazionale (ISTAT, tutte le scuole: dal 2,6% del 2014/15 al 4,8% del 2024/25).
+Gli alunni con disabilità certificata crescono mentre la scuola non cresce: nelle statali della provincia sono passati da ~1.500 (a.s. 2016/17) a ~2.150 (a.s. 2024/25), +41%, con gli alunni totali fermi attorno a 54 mila; la quota è salita dal 2,8% al 3,9%. Parma resta sotto la media regionale (4,4%) lungo tutta la serie, con un andamento parallelo alle altre province: la dinamica è regionale e nazionale (ISTAT, tutte le scuole: dal 2,6% del 2014/15 al 4,8% del 2024/25).
 
-_NB: Il dato conta le certificazioni, non i bisogni: più certificazioni possono voler dire più riconoscimento e più sostegno. Va letto come segnale di fragilità *potenziale* della popolazione scolastica._
+_NB: Fonte Ufficio scolastico regionale ER, a.s. 2016/17-2024/25, solo scuole statali (infanzia inclusa); ultimo anno provvisorio (organico di fatto a settembre). Il dato conta solo gli alunni con certificazione ai sensi della L. 104/92 (esclusi DSA e altri BES)._
 :::
 
 ```{r}
@@ -388,9 +395,9 @@ f_bottoni_dati("disab_grado_prov_er", dir_disab, rds = "plot_disab_grado_pr_er")
 ::: {.callout-note collapse="true"}
 ### Osservazioni
 
-**La concentrazione è nel primo ciclo**: a Parma primaria (4,8%) e secondaria di I grado (4,5%) hanno quote più alte di infanzia (3,1%) e secondaria di II grado (3,2%), con lo stesso profilo della regione.
+La concentrazione è nel primo ciclo: a Parma primaria (4,8%) e secondaria di I grado (4,5%) hanno quote più alte di infanzia (3,1%) e secondaria di II grado (3,2%), con lo stesso profilo della regione.
 
-Sul versante del **sostegno**, il quadro regionale ISTAT (a.s. 2024/25, tutte le scuole) dice che in Emilia-Romagna il 30,8% degli insegnanti di sostegno viene dalle liste curricolari, senza specializzazione (Italia 22,1%), e che il 7,2% non era ancora assegnato al 10 ottobre (Italia 10,2%). Gli alunni con bisogni educativi speciali non riconducibili a disabilità sono il 12,0% (Italia 9,0%).
+_NB: Grafico: Ufficio scolastico regionale ER, a.s. 2024/25, solo statali. Dati sul sostegno: ISTAT, "L'inclusione scolastica degli alunni con disabilità", a.s. 2024/25, statali e paritarie; le due fonti non sono confrontabili tra loro._
 :::
 
 ::: {.callout-tip}

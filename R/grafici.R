@@ -109,6 +109,15 @@ f_lab_as <- function(anno) paste0(anno, "/", (anno + 1) %% 100)
 # il 2026-07-18 (2° utilizzatore: scuola_iscritti — regola 6).
 f_pal5 <- function(seq8) seq8[c(2, 3, 5, 6, 8)]
 
+# f_lab_na -----------------------------------------------------------------
+# Etichetta della classe NA in legenda (ggplot di default scrive "NA").
+# Fabbrica: restituisce la funzione da passare a `labels =`; costruita così
+# la chiusura porta con sé solo la stringa, non il data frame della mappa
+f_lab_na <- function(lab_na) {
+  force(lab_na)
+  function(x) ifelse(is.na(x), lab_na, x)
+}
+
 # f_aggiungi_classe --------------------------------------------------------
 # Aggiunge a un df (anche sf) la colonna "classe_<var>": classi a quantili
 # di `var` (default quintili), con etichette "da – a" formattate da label_fun.
@@ -159,7 +168,8 @@ f_disegna_mappa <- function(df_comuni, df_prov, var, titolo, palette5, caption,
                             df_evidenzia = NULL,
                             col_evidenzia = burg_md,
                             col_bordi = grey_sc,
-                            col_na = grey_m) {
+                            col_na = grey_m,
+                            lab_na = "n.d.") {
   # strato dei comuni: interattivo (ggiraph) se c'è una colonna tooltip,
   # altrimenti statico. NB: la versione interattiva si attiva nelle pagine
   # con girafe(ggobj = ...); stampata/salvata in png resta identica
@@ -190,7 +200,8 @@ f_disegna_mappa <- function(df_comuni, df_prov, var, titolo, palette5, caption,
 
   p +
     ggplot2::scale_fill_manual(values = palette5, na.value = col_na,
-                               name = nome_legenda, drop = FALSE) +
+                               name = nome_legenda, drop = FALSE,
+                               labels = f_lab_na(lab_na)) +
     ggplot2::labs(title = titolo, subtitle = sottotitolo, caption = caption) +
     f_theme_sito_mappa()
 }

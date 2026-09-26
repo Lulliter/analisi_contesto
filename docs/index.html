@@ -142,7 +142,7 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Dati pubblici sulla provincia di Parma, confrontati con l’Emilia-Romagna e con l’Italia, per leggere i bisogni del territorio e orientare gli interventi; fonti ufficiali (ISTAT, Ministero dell’Istruzione, Regione Emilia-Romagna, ecc.), sempre citate.</p>
 <p>Le pagine sono raggruppate per tema nel menu in alto. Ognuna riporta una sintesi, grafici e tabelle con dati scaricabili e piste di lavoro aperte.</p>
-<div class="callout callout-style-simple callout-note">
+<div class="callout callout-style-simple callout-warning">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -158,15 +158,44 @@ ul.task-list li input[type="checkbox"] {
 
 </main> <!-- /main -->
 <script>
-// Segna come attiva la voce di tendina della pagina corrente e il suo gruppo padre
-// (Quarto lo fa solo per le voci di primo livello). Lo stile e' in assets/styles/custom.css
+// 1. Segna come attiva la voce di tendina della pagina corrente e il suo gruppo padre
+//    (Quarto lo fa solo per le voci di primo livello). Lo stile e' in assets/styles/custom.css
+// 2. Copia la tendina del gruppo in cima al sommario di sinistra ("nav-gruppo"),
+//    cosi' le pagine sorelle si vedono senza aprire il menu (2026-09-26)
+var tendina = null;
 document.querySelectorAll(".navbar .dropdown-item").forEach(function (a) {
   if (a.pathname === window.location.pathname) {
     a.classList.add("active");
-    var gruppo = a.closest(".dropdown").querySelector(".dropdown-toggle");
+    tendina = a.closest(".dropdown");
+    var gruppo = tendina.querySelector(".dropdown-toggle");
     if (gruppo) gruppo.classList.add("active");
   }
 });
+
+var toc = document.querySelector("#quarto-sidebar #TOC");
+if (tendina && toc) {
+  var blocco = document.createElement("nav");
+  blocco.className = "nav-gruppo";
+  var titolo = document.createElement("h2");
+  titolo.textContent = tendina.querySelector(".dropdown-toggle").textContent.trim();
+  blocco.appendChild(titolo);
+  var lista = document.createElement("ul");
+  tendina.querySelectorAll(".dropdown-item").forEach(function (a) {
+    var li = document.createElement("li");
+    if (a.classList.contains("active")) {
+      li.textContent = a.textContent.trim();   // pagina corrente: testo, non link
+      li.className = "active";
+    } else {
+      var link = document.createElement("a");
+      link.href = a.href;
+      link.textContent = a.textContent.trim();
+      li.appendChild(link);
+    }
+    lista.appendChild(li);
+  });
+  blocco.appendChild(lista);
+  toc.parentNode.insertBefore(blocco, toc);
+}
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {

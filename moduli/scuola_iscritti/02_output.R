@@ -68,9 +68,9 @@ plot_iscritti_ordine_pr <- iscritti_trend_pr |>
   scale_y_continuous(labels = function(x) scales::number(x, big.mark = ".", decimal.mark = ",")) +
   # gradazione unica (verde = giovani): chiaro = piccoli → scuro = grandi
   scale_color_manual(values = c(
-    "Primaria" = grn_lg,
-    "Secondaria I grado" = grn_md,
-    "Secondaria II grado" = grn_sc
+    "Primaria"            = verde_eta3[1],
+    "Secondaria I grado"  = verde_eta3[2],
+    "Secondaria II grado" = verde_eta3[3]
   )) +
   f_theme_sito_trend() +
   labs(
@@ -391,7 +391,7 @@ mappa_comuni_prep <- purrr::reduce(
 )
 
 # base comune del sottotitolo; la parte sulle classi arriva da nota_classi
-SOTTOTITOLO_BASE <- glue("A.s. {f_lab_as(ANNO_ULTIMO)}, statali + paritarie (no infanzia)")
+SOTTOTITOLO_BASE <- "statali + paritarie (no infanzia)"
 
 f_mappa_scuola_pr <- function(var, titolo, indicatore, palette5, legenda, nota_classi, label_fun) {
   # tooltip hover: "Comune: valore formattato" (n.d. dove il dato manca)
@@ -406,7 +406,7 @@ f_mappa_scuola_pr <- function(var, titolo, indicatore, palette5, legenda, nota_c
     df_prov      = pr_bordo_sf,
     var          = var,
     # str_wrap: titoli e sottotitoli lunghi andrebbero tagliati nel png
-    titolo       = str_wrap(paste0(titolo, " — provincia di Parma"), width = 55),
+    titolo       = str_wrap(glue("{titolo} — provincia di Parma (a.s. {f_lab_as(ANNO_ULTIMO)})"), width = 55),
     palette5     = palette5,
     caption      = CAP,
     sottotitolo  = glue("{indicatore}; {SOTTOTITOLO_BASE}; {nota_classi}"),
@@ -453,7 +453,7 @@ paritarie_plessi_prep <- tidyr::crossing(
   ) |>
   mutate(tooltip_mappa = paste0(
     str_to_title(COMUNE), ": ",
-    if_else(is.na(quota_plessi_paritari), "n.d.",
+    if_else(is.na(quota_plessi_paritari), "nessuna scuola",
             paste0(lab_pct(quota_plessi_paritari),
                    " (", n_plessi_paritari, " su ", n_plessi, " plessi)"))
   ))
@@ -470,12 +470,13 @@ mappa_paritarie_plessi_pr <- ggplot() +
   facet_wrap(vars(ordine_lbl), ncol = 2) +
   # arancio = paritarie (come nel grafico statali/paritarie)
   scale_fill_manual(values = seq_factor_orange[c(2, 4, 6, 8)], na.value = grey_m,
-                    name = "% plessi\nparitari", drop = FALSE) +
+                    name = "% plessi\nparitari", drop = FALSE,
+                    labels = f_lab_na("nessuna scuola")) +
   labs(
-    title = str_wrap("Presenza della scuola paritaria per comune e ordine — provincia di Parma", 60),
+    title = str_wrap(glue("Presenza della scuola paritaria per comune e ordine — provincia di Parma (a.s. {f_lab_as(ANNO_ULTIMO)})"), 60),
     subtitle = glue(
       "Indicatore: % di plessi paritari sul totale dei plessi del comune, per ordine; ",
-      "a.s. {f_lab_as(ANNO_ULTIMO)} (anagrafe scuole, infanzia inclusa); classi fisse; ",
+      "anagrafe scuole, infanzia inclusa; classi fisse; ",
       "in grigio i comuni senza plessi dell'ordine"
     ),
     caption = CAP_ANAGRAFE # infanzia inclusa: caption coerente
@@ -513,7 +514,7 @@ paritarie_iscritti_prep <- tidyr::crossing(
   ) |>
   mutate(tooltip_mappa = paste0(
     str_to_title(COMUNE), ": ",
-    if_else(is.na(quota_paritaria), "n.d.",
+    if_else(is.na(quota_paritaria), "nessuna scuola",
             paste0(lab_pct(quota_paritaria),
                    " (", alunni_paritaria, " su ", alunni, " iscritti)"))
   ))
@@ -529,12 +530,13 @@ mappa_paritarie_iscritti_pr <- ggplot() +
   # 2 per riga anche qui (la terza va a capo da sola)
   facet_wrap(vars(ordine_lbl), ncol = 2) +
   scale_fill_manual(values = seq_factor_orange[c(2, 4, 6, 8)], na.value = grey_m,
-                    name = "% iscritti\nin paritarie", drop = FALSE) +
+                    name = "% iscritti\nin paritarie", drop = FALSE,
+                    labels = f_lab_na("nessuna scuola")) +
   labs(
-    title = str_wrap("Iscritti alla scuola paritaria per comune e ordine — provincia di Parma", 60),
+    title = str_wrap(glue("Iscritti alla scuola paritaria per comune e ordine — provincia di Parma (a.s. {f_lab_as(ANNO_ULTIMO)})"), 60),
     subtitle = glue(
       "Indicatore: % di iscritti in paritarie sul totale del comune, per ordine; ",
-      "a.s. {f_lab_as(ANNO_ULTIMO)}; senza infanzia (non rilevata dai dati iscritti MIM, ",
+      "senza infanzia (non rilevata dai dati iscritti MIM, ",
       "v. mappa dei plessi); classi fisse; in grigio i comuni senza scuole dell'ordine"
     ),
     caption = CAP

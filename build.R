@@ -24,8 +24,8 @@ moduli <- list.dirs(moduli_dir, recursive = FALSE, full.names = FALSE)
 moduli <- moduli[!startsWith(moduli, "_")]
 
 # Controllo delle regole dei grafici (2026-09-18) --------------------------
-# Tre regole (v. README): tema solo da R/grafici.R, larghezza unica dal default
-# di _quarto.yml, numeri italiani. Il build si ferma se un modulo o una pagina
+# Quattro regole (v. README): tema solo da R/grafici.R, larghezza unica dal default
+# di _quarto.yml, numeri italiani, group = esplicito nelle barre affiancate. Il build si ferma se un modulo o una pagina
 # le viola, con il file e la riga: meglio qui che scoprirlo sul sito.
 f_controlla_regole <- function() {
   cerca <- function(files, pattern, messaggio, togli_commenti = TRUE) {
@@ -49,6 +49,26 @@ f_controlla_regole <- function() {
   cerca(pagine, "^#\\| *fig-width",
         "fig-width in un chunk: la larghezza e' unica, dal default di _quarto.yml",
         togli_commenti = FALSE)   # nei .qmd le opzioni di chunk iniziano con #|
+  # 4. barre affiancate (position_dodge) con tooltip/data_id senza group = esplicito:
+  #    ggplot mette tooltip e data_id nel gruppo e inverte l'ordine delle barre
+  #    rispetto alle etichette (errore ricorrente: scuola_disabilita, giovani_ict_social)
+  for (f in script_moduli) {
+    righe <- sub("#.*$", "", readLines(f, warn = FALSE))
+    inizi <- grep("geom_(col|bar)_interactive\\(", righe)
+    for (i in inizi) {
+      # blocco = dalla riga della chiamata fino a quando le parentesi tornano in pari
+      aperte <- 0; j <- i
+      repeat {
+        aperte <- aperte + nchar(gsub("[^(]", "", righe[j])) - nchar(gsub("[^)]", "", righe[j]))
+        if (aperte <= 0 || j >= length(righe)) break
+        j <- j + 1
+      }
+      blocco <- paste(righe[i:j], collapse = " ")
+      if (grepl("position_dodge", blocco) && !grepl("group *=", blocco))
+        stop("geom_col_interactive con position_dodge senza group = (etichette e barre in ordine diverso)\n  ",
+             f, ":", i, call. = FALSE)
+    }
+  }
   message("Regole dei grafici: ok")
 }
 f_controlla_regole()

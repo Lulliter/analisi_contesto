@@ -49,8 +49,8 @@ LOCKDOWN <- c(2020, 2021)   # anni evidenziati con una fascia grigia (come in gi
 # classi d'età nei grafici, con l'etichetta da mostrare (15-19 = nostra stima da 15-17 e 18-19, v. 01_dati.R)
 LAB_ETA <- c("06-10" = "6-10 anni", "11-14" = "11-14 anni", "15-19" = "15-19 anni", "20-24" = "20-24 anni",
              "Totale" = "Popolazione (6 anni e più)")
-# verdi (giovani) dal chiaro al scuro con l'età; la popolazione in grigio
-COL_ETA <- c(colorRampPalette(c("#b9d8d1", grn_sc))(4), grey_sc)
+# verdi (giovani) dal chiaro al scuro con l'età (verde_eta4); la popolazione in grigio scuro
+COL_ETA <- c(verde_eta4, grey_extra_sc)
 names(COL_ETA) <- LAB_ETA
 # due STRUMENTI, non due gruppi di persone: niente verde (= giovani), niente viola (= stranieri),
 # niente grigio (= riferimento neutro). Internet in blu (temi neutri), pc in ocra: freddo contro caldo
@@ -406,7 +406,8 @@ hbsc_trend_prep   # 8 righe: 2 territori x 2 sessi x 2 anni
 
 plot_hbsc_social_trend <- hbsc_trend_prep |>
   ggplot(aes(x = anno, y = valore, fill = sesso)) +
-  geom_col_interactive(aes(tooltip = tooltip, data_id = id), position = position_dodge(width = 0.75), width = 0.7) +
+  # group = sesso: senza, tooltip/data_id entrano nel gruppo e invertono l'ordine delle barre rispetto alle etichette
+  geom_col_interactive(aes(tooltip = tooltip, data_id = id, group = sesso), position = position_dodge(width = 0.75), width = 0.7) +
   geom_text(aes(label = etichetta, group = sesso), position = position_dodge(width = 0.75),
             vjust = -0.4, size = 3.8) +
   facet_wrap(~ territorio) +

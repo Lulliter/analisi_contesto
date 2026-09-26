@@ -1,7 +1,7 @@
 ---
 title: "Dalla scuola al lavoro"
 # subtitle: "Cosa funziona nel passaggio tra formazione e lavoro, cosa non funziona, e chi resta fuori"
-description: "Pagina in costruzione: struttura dell'analisi e fonti individuate, dati in arrivo"
+description: "Pagina in costruzione: indice illustrativo..."
 lang: it
 
 format:
@@ -19,7 +19,7 @@ execute:
 
 # --- Bibliografia (unica per il sito, esportata da Zotero): si cita con [@chiave]
 bibliography: ../../bib/CRP_analisi_contesto.bib
-csl: ../../bib/chicago-author-date.csl
+csl: ../../bib/apa_7th.csl
 link-citations: true
 ---
 
@@ -57,7 +57,7 @@ source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hov
 <!-- Questa pagina raccoglie le domande e la struttura dell'analisi sul passaggio dalla formazione al lavoro. Segue logicamente la pagina sui [giovani a rischio dispersione](scuola_dispersione.qmd). -->
 :::
 
-## In sintesi
+<!-- ## In sintesi -->
 
 <!-- 3-4 messaggi, da scrivere quando ci sono i dati. Attesi:
 + Quanti giovani, dopo la scuola, studiano ancora, lavorano o non fanno né l'uno né l'altro.
@@ -94,7 +94,12 @@ Le filiere che a Parma funzionano meglio nel collegare formazione e occupazione:
 
 ## Cosa non funziona: domanda e offerta che non si incontrano
 
-Quali profili le imprese del territorio cercano e non trovano, e quali competenze escono dal sistema formativo senza sbocco.
+Quali profili le imprese del territorio cercano e non trovano, e quali competenze escono dal sistema formativo senza sbocco.  
+
+Chi parte: quanti giovani lasciano Parma per studiare o lavorare altrove, e quanti tornano.
+
+
+Il mismatch: quali competenze mancano davvero alle imprese di Parma, e quanto il sistema formativo locale può colmarle.
 
 <!-- grafici previsti:
 - difficoltà di reperimento per profilo e titolo di studio, provincia di Parma (Excelsior, da acquisire)
@@ -118,7 +123,15 @@ I giovani che la transizione lascia indietro: per titolo di studio, genere, orig
 <!-- ### Osservazioni -->
 <!-- ::: -->
 
-## Fonti e riferimenti
+
+<!-- ## Possibili approfondimenti -->
+
+<!-- 1. Il mismatch: quali competenze mancano davvero alle imprese di Parma, e quanto il sistema formativo locale può colmarle. -->
+<!-- 2. La rete: come istituti tecnici, ITS, università e imprese collaborano sul territorio, e con quali risultati per i ragazzi. -->
+<!-- 3. Chi parte: quanti giovani lasciano Parma per studiare o lavorare altrove, e quanti tornano. -->
+<!-- 4. L'innovazione: se il territorio attrae o perde talenti, e come si colloca su startup, brevetti e ricerca rispetto alle province vicine. -->
+
+## Riferimenti bibliografici
 
 Qui sotto alcune fonti selezionate da analizzare per dati e spunti di ispirazione:
 
@@ -133,10 +146,3 @@ Qui sotto alcune fonti selezionate da analizzare per dati e spunti di ispirazion
 - [Istituto Toniolo, Rapporto Giovani 2026](https://www.istitutotoniolo.it/rapporto-giovani-2026-crescere-nellincertezza-e-costruire-il-futuro/); 
 - [Percorsi di Secondo Welfare, "Ripartenze possibili: NEET e transizioni interrotte tra i giovani adulti"](https://www.secondowelfare.it/studio/rapporto-fast-3-neet/).
  
-
-## Possibili approfondimenti
-
-1. Il mismatch: quali competenze mancano davvero alle imprese di Parma, e quanto il sistema formativo locale può colmarle.
-2. La rete: come istituti tecnici, ITS, università e imprese collaborano sul territorio, e con quali risultati per i ragazzi.
-3. Chi parte: quanti giovani lasciano Parma per studiare o lavorare altrove, e quanti tornano.
-4. L'innovazione: se il territorio attrae o perde talenti, e come si colloca su startup, brevetti e ricerca rispetto alle province vicine.

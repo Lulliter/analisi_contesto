@@ -2,6 +2,8 @@
 #
 # CONVENZIONE SEMANTICA (decisa 2026-07-17, usare coerentemente nei grafici):
 #   verde   = giovani / minori
+#   fasce d'età / ordini di scuola (giovani): verde_eta3 / verde_eta4, chiaro = piccoli → scuro = grandi
+#     (deciso 2026-09-26: luminosità distanziata e capo chiaro giallo-verde, i grn_* erano troppo vicini)
 #   rosso   = anziani / invecchiamento
 #   viola   = stranieri / migrazioni
 #   blu     = densità, popolazione totale, temi neutri
@@ -27,6 +29,10 @@ blu_lg <- "#5582a7"
 grn_sc <- "#246864"
 grn_md <- "#539d90"        # territorio = "Emilia-Romagna"
 grn_lg <- "#8eb9b1"
+
+# verdi per fasce d'età / ordini di scuola: chiaro = piccoli → scuro = grandi
+verde_eta3 <- c("#a6c48a", "#3d8f80", "#0f4a44")
+verde_eta4 <- c("#b5cf8f", "#6fb3a4", "#2f7f72", "#12463f")
 
 pur_sc <- "#553c64"
 pur_md <- "#805f95"

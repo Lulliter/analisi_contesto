@@ -150,6 +150,26 @@ div.sidebar-item-container nav[role=doc-toc] ul li a.active {
   font-weight: 600;
 }
 
+/* Pagine del gruppo in cima al sommario di sinistra (riempito da assets/nav_attiva.html, 2026-09-26):
+   stesso stile del sommario, titolo = nome del gruppo in navbar, pagina corrente in evidenza senza link */
+.nav-gruppo { margin-bottom: 1.5rem; }
+.nav-gruppo h2 {
+  font-size: .875rem;       /* come #toc-title */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-bottom: .5rem;
+}
+.nav-gruppo ul { list-style: none; padding-left: 0; margin: 0; }
+.nav-gruppo li {
+  padding: .15rem 0 .15rem .75rem;
+  border-left: 1px solid #dee2e6;   /* stessa riga verticale del sommario */
+  font-size: .875rem;
+}
+.nav-gruppo li a { color: #5C2129; text-decoration: none; }
+.nav-gruppo li a:hover { color: #9f7d35; }
+.nav-gruppo li.active { color: #9f7d35; font-weight: 600; border-left-color: #9f7d35; }
+
 /* Tabset (panel-tabset): solo bordi piu' visibili, colori di testo e sfondo invariati (2026-09-25).
    #adb5bd = gray-500 di Bootstrap; per piu' stacco usare #6c757d (gray-600) */
 .panel-tabset .nav-tabs {
