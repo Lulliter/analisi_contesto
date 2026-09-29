@@ -16,7 +16,7 @@ execute:
 
 # --- Bibliografia (unica per il sito, esportata da Zotero): si cita con [@chiave]
 bibliography: bib/CRP_analisi_contesto.bib
-csl: bib/harvard-cite-them-right.csl
+csl: bib/apa_7th.csl
 link-citations: true
 ---
 
@@ -40,6 +40,6 @@ Alcune pagine sono in preparazione.
 
 ---
 
-A cura dell'_Osservatorio dei Dati Sociali di Fondazione Cariparma_. Codice sorgente e contatti a piè di pagina.
+**Autore**: A cura dell'_Osservatorio dei Dati Sociali di Fondazione Cariparma_. Codice sorgente e contatti a piè di pagina.
 
-_Licenza_: testi, grafici e tabelle con licenza [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); i dati di origine restano soggetti alle licenze delle rispettive fonti.
+**Utilizzo**: testi, grafici e tabelle con licenza [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); i dati di origine restano soggetti alle licenze delle rispettive fonti.

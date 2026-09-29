@@ -65,6 +65,7 @@ dati/grezzi/ ──▶ ingestione/ ──▶ dati/puliti/ ──▶ moduli/*/out
               (se mono-modulo salto ingestione/)
 ```
 
+
 # Trasversale
 
 - [ ] **Richieste dati esterne** (bozze in `dati/grezzi/_richieste_dati.md`, 2026-09-23): annotare qui data di invio ed esito
@@ -73,18 +74,30 @@ dati/grezzi/ ──▶ ingestione/ ──▶ dati/puliti/ ──▶ moduli/*/out
   - [ ] 3) Regione ER: anagrafe regionale degli studenti (infanzia, esiti, passaggi IeFP, ELET provinciale, disabilità) → serve a `scuola_iscritti`, `scuola_disabilita`, `scuola_abband_neet`
   - [ ] 4) INVALSI, Servizio statistico: tabelle sotto la mappa ELET provinciale e il cartogramma dispersione implicita (fig. 8.2.3)
   - [ ] 5) AUSL Parma / Regione ER: utenti NPIA e accessi PS minori per età → `educ_ia`
-- [ ] Esisteva una parziale `_targets.R` (nel repo vecchio) ma sarà da ripensare 
 - [ ] **Formato numeri italiano** nei grafici: revisione DEFINITIVA (aperta 2026-09-18). Il warning `'big.mark' and 'decimal.mark' are both '.'` è ricomparso più volte perché ogni 02_output.R chiama scales a modo suo: oggi aggiunto `decimal.mark = ","` alle 11 chiamate con big.mark, ma restano ~35 chiamate dirette a `scales::percent/number/label_*` non coerenti (es. legende mappe demografiche "1.6% – 7.9%" con il punto, mappa ritardo "3,0% – 6,1%" con la virgola). DA FARE: 
   - [ ] 1) un solo set di formattatori in `R/f_formato_numeri.R` (`num_it()`, `pct_it()`, `lab_num_it`, `lab_pct_it`: big.mark ".", decimal.mark ",", accuracy parametrica); 
   - [ ] 2) sostituire tutte le chiamate dirette nei moduli (`grep -rn 'scales::\|label_number\|label_percent' moduli/*/02_output.R`) e rilanciare `build.R`; 
   - [x] 3) in `build.R` un controllo che fermi il build se ricompare `big.mark = "."` senza decimal.mark (FATTO 2026-09-18, `f_controlla_regole()`); il controllo sulle chiamate dirette a `scales::` fuori da R/ si aggiunge con il punto 2)
   - [ ] 4) aggiornare la skill formatting-r
 - [ ] Riportare nel repo metadati la v1.2 di `R/formatting.R` (header tabelle grigio `#E5EBEE` al posto del giallino, 2026-09-25; la skill è già aggiornata)
+- [ ] revamp `_targets.R` (nel repo vecchio)? 
+- [ ] **renv** (aperta 2026-09-29): il repo non ha lockfile; ~35 pacchetti, i delicati per il sito sono ggiraph, downloadthis, flextable, sf, ggtext. Decidere: `renv::init()` + commit di `renv.lock` (poi `renv::snapshot()` a ogni pacchetto nuovo), oppure solo fotografia con `sessioninfo` a ogni pubblicazione del sito
+- [ ] **Font del sito** (aperta 2026-09-29): il corpo usa il font di sistema (tema Lato in `parma-theme.scss` non attivo), le flextable scrivono `Roboto Condensed` senza alternative e sul telefono cadono in Times. Decidere un font unico per testo e tabelle (`mainfont` in `_quarto.yml` + regola css per `.flextable`), eventualmente caricato da Google Fonts; poi verificare la larghezza delle tabelle sui telefoni
 
 
 ---
 
 {{< pagebreak >}}
+
+
+
+# ⭐ Spunti commissione strategico
+
++ [SITO/`Natalità`]: come cambia il **desiderio di figli** a 14 anni e 25
++ [SITO/`Dispersione`]: incrociare **certificazioni e tempo disponibile dei genitori**/stabilità della famiglia ecc
++ [SITO/`Disabilita/ DSA`]: Confrontare il **N diagnosi /certificazioni di autismo v. demenza senile** con la popolazione di riferimento  
++ [SITO/`Giovani e lavoro`]: **attrattività** di Parma (arrivano o partono?)
++ [SITO/`Giovani e lavoro`]: il **mismatch** non è Domanda oggi v. Offerta oggi ma **Domanda futura v. Offerta oggi** (es. laureati in discipline STEM, laureati in discipline umanistiche, ecc.) 
 
 # Temi 
 
@@ -115,7 +128,7 @@ ___
 
 
 ### modulo `scuola_iscritti` 
-(trend PR per ordine scuola, italiani E stranieri incl. % per comune; fonte MIM)
+>(trend PR per ordine scuola, italiani E stranieri incl. % per comune; fonte MIM)
 
 **Ricognizione/Aggiornamento FONTI**: 
 
@@ -125,7 +138,7 @@ ___
       
       
 ### modulo `scuola_disabilita`
-(regionale, dati in casa + USR-ER prov.)
+>(regionale, dati in casa + USR-ER prov.)
 
 **Ricognizione/Aggiornamento FONTI**: 
 
@@ -133,7 +146,7 @@ ___
 - [ ] Regione ER anagrafe studenti: successo/regolarità per provincia + iscritti INFANZIA (validazione e completamento) → DA ACQUISIRE: [Squola Regione ER](https://scuola.regione.emilia-romagna.it/anagrafi-regionali) → richiesta n. 3 (Trasversale)
 
 ### modulo `scuola_abband_neet`
-(NEET/abbandoni/formazione continua PR vs province ER; fonte BES dei territori)
+>(NEET/abbandoni/formazione continua PR vs province ER; fonte BES dei territori)
 
 **Ricognizione/Aggiornamento FONTI**: 
 
@@ -164,17 +177,14 @@ ___
 
 #### 🟡 AVANZAMENTO formaz_rientro
 
-Stato al 2026-09-23: modulo collaudato (01 + 02: `plot_rientro_porte_pr`, `plot_rientro_trend_pr`, `plot_rientro_incidenza_prov_er` con linea Italia, `plot_rientro_profilo_pr`; arancio = seconda chance in `_parma_colors.R`); blurb scritto; bozza `sito/temi/_formaz_rientro.qmd` ("Le altre strade", sotto Educazione) con sezioni 🟡 IeFP ed esiti vuote; voce navbar pronta commentata in `_quarto.yml`. PROSSIMO PASSO: inviare le richieste 1 e 2; nel frattempo tabella dell'offerta IeFP.
-
-- [x] Modulo `formaz_e_rientro` nato e collaudato (2026-09-23)
-- [x] Bozza `_formaz_rientro.qmd` con i 4 grafici, callout CPIA, sezioni 🟡 (2026-09-23)
+- [x] Pagina `_formaz_rientro.qmd` con i 4 grafici, callout CPIA, sezioni 🟡 (2026-09-23)
 - [ ] Anteprima della pagina e revisione testi (In sintesi da riscrivere quando c'è l'IeFP)
 - [ ] Sezione IeFP: offerta 2026/27 subito; iscritti per provincia quando arriva la richiesta 2
 - [ ] Sezione esiti: fonti da verificare (vedi ricognizione)
-- [ ] Promozione: togliere underscore, riattivare la voce in `_quarto.yml`, rimandi incrociati con `scuola_dispersione.qmd` (uscite dopo il 3° anno) e `_giovani_lavoro.qmd`; riserva di unificare con `giovani_lavoro`
+ 
 
 ### modulo `giovani_ict_social`
-(nazionale + confronto UE, niente Parma: internet e pc per età 2001-2025, social e amici a 11-19 anni, IA generativa Italia vs UE.)
+>(nazionale + confronto UE, niente Parma: internet e pc per età 2001-2025, social e amici a 11-19 anni, IA generativa Italia vs UE.)
 
 **Ricognizione/Aggiornamento FONTI**:
 
@@ -225,10 +235,9 @@ _5. Governare: risposte dei paesi e mappa locale_
 - [x] `sito/temi/scuola_dispersione.qmd` (incluso dispersione esplicita e implicita / NEET / ELET )
 + [x] (in progress) `sito/temi/formaz_rientro.qmd` (incluso IeFP / serali / CPIA (adulti) / esiti)]
 - [x] `sito/temi/educ_ia.qmd` (incluso uso dispositivi e device / social e benessere mentale / IA / risposte dei paesi)
-+ 
+ 
   
-
-## 2.b ...Formazione GIOVANI (lavoro e innovazione)
+## 2.b ...Lavoro GIOVANI (lavoro e innovazione)
 
 > Ponte con tema lavoro e se il territorio sta perdendo terreno sull'innovazione (es. startup, brevetti, ecc.)
 > PS 2024:2027 imprescindibile saper fare rete tra istruzione superiore / università / aziende e comunità 
@@ -236,6 +245,7 @@ _5. Governare: risposte dei paesi e mappa locale_
   > - sguardo su chi va all'estero (quanti come e perchè) 
 
 **Ricognizione/Aggiornamento FONTI**: 
+
 + [ ] Orientamento dei giovani e formazione professionale e transizione scuola-lavoro - Istituto Giuseppe TOniolo 
 - [ ] startup, brevetti, cervelli in fuga e attrattività, ecc. (REgione e bandi?) 
 - [ ] mismatch domanda-formazione, nuove forme con cui si cerca il lavoro (es. Excelsior, Osservatori INPS, ecc.)
@@ -244,25 +254,22 @@ _5. Governare: risposte dei paesi e mappa locale_
 + [ ] Secondo Welfare. Ripartenze possibili: NEET e transizioni interrotte tra i giovani adulti [Internet]. 2026 [cited 2026 Sept 8]. https://www.secondowelfare.it/wp-content/uploads/2026/07/Rapporto-FAST-3_Neet_Percorsi-di-Secondo-Welfare-e-Fondazione-Lottomatica.pdf. Accessed 8 Sept 2026
 
 **Ripensamento MODULI (connessi a fonti)**:
-- [ ] Modulo `istruz_formaz_neet` (scaricare tavole BesT provinciali) → avrà una PAGINA separata (neet/abbandoni/formazione continua)
 
-
-
-
-### modulo `formaz_e_match_lavoro` (forse)` 
-- [ ]  ??? 
+### modulo  ???
+ 
 
 
 #### sito  
 
 - [ ] Acquisire le fonti per `sito/temi/_giovani_lavoro.qmd` (NB 2026-09-23: IeFP e serali stanno in `sito/temi/_formaz_rientro.qmd`, tema 2.a, con riserva di unificare): Excelsior (difficoltà di reperimento per profilo, PR), AlmaLaurea/AlmaDiploma o Regione ER (esiti occupazionali per percorso), ITS e IeFP iscritti (Regione ER), INPS Osservatori (contratti giovani), ISTAT cancellazioni per l'estero 20-34 per provincia; già in casa dal BES: passaggio all'università, laureati 25-39, formazione continua, NEET per sesso, occupazione giovanile (dominio Lavoro)
 ___
-## 🌟 ANZIANI (tutto da fare)
+
+## ⏭️ ANZIANI (tutto da fare)
 > Donatella: abbiamo 100 diagnosi di autismo e 1000 di demenza senile ... forse questo ci dice dove dovremmo guardare?!?!!?
 
 > Marani: In prospettiva i (pochi) giovani di oggi sono gli stessi che dovranno occuparsi degli anziani di domani...
 
-## 🌟 SANITA (tutto da fare)
+## ⏭️ A SANITA (tutto da fare)
 > C'è un nesso potenziale con trasporto sociale / welfare connesso 
 
 Spunti nelle 4 DIRETTRICI [FORUM PA Sanità 2026](https://www.forumpa.it/sanita/forum-pa-sanita-2026-quattro-direttrici-per-costruire-il-sistema-salute-del-futuro/)
