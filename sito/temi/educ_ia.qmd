@@ -60,8 +60,7 @@ dir_pew <- here::here("moduli", "ia_pew_usa", "output")
 ```
 
 
-::: {.callout-warning collapse="true"}
-## Nota di metodo
+::: {.callout-warning title="" collapse="true"}
 I dati sono per lo più riferiti a territori extra-provincia, in quanto relativi a fenomeni recenti non necessariamente coperti a livello locale. 
 <!-- Mancano ancora la formazione professionale (IeFP) e gli esiti, in attesa dei dati regionali: le sezioni segnate con 🟡. -->
 <!-- Questa pagina raccoglie le domande e la struttura dell'analisi sul passaggio dalla formazione al lavoro. Segue logicamente la pagina sui [giovani a rischio dispersione](scuola_dispersione.qmd). -->
@@ -204,7 +203,8 @@ Il Regolamento Europeo (GDPR) e la normativa italiana fissano paletti precisi pe
 <!-- Il GDPR (Regolamento UE 2016/679) stabilisce che il trattamento dei dati personali dei minori è lecito solo se il minore ha almeno 16 anni. Tuttavia, gli Stati membri possono abbassare questa soglia fino a un minimo di 13 anni.  --> 
 2. La specificità italiana: il D.lgs. 101/2018 [@Dlgs2018consenso] fissa a **14 anni l'età minima per il consenso digitale autonomo**; al di sotto di questa soglia, l'iscrizione a una piattaforma social richiede l'autorizzazione genitoriale.
 
-Ciononostante, i termini di servizio di piattaforme come Instagram, TikTok e Facebook richiedono un'età minima di 13 anni, in contrasto con la legge italiana.   
+Ciononostante, i termini di servizio di piattaforme come Instagram, TikTok e Facebook richiedono un'età minima di 13 anni, in contrasto con la legge italiana. Diverse famiglie chiedono iniziative legislative più decise che tutelino i minori, come l'innalzamento a 16 anni dell'età minima per l'accesso ai social ([e.g. iniziativa di Moige, Anfn, e Age](https://www.moige.it/landing/ferma-dipendenza-social/)), ma anche la responsabilità penale di piattaforme che adottano pratiche dannose e illegali.  
+
 Altri paesi, tra cui Australia, Francia e Regno Unito, stanno implementando strategie più radicali, che spaziano dal [divieto totale d'accesso ai social per i minori di 16](https://www.moige.it/2026/02/24/divieto-social-australia-under-16/) o 15 anni, all'obbligo di sistemi rigorosi di verifica dell'età (_age verification_), fino alla restrizione della pubblicità profilata sui minori.
 :::
 
@@ -636,20 +636,19 @@ f_bottoni_dati("studi_ia_apprendimento", dir_ict, rds = "studi_ia_tab_ft")
 Anche i docenti sono cauti: tra quelli che hanno risposto a un'indagine INDIRE (2025, campione di volontari), l'83% ritiene che l'IA vada usata con molta attenzione, perché gli studenti possono fidarsi di risultati inattendibili, e il 52% la vede come un possibile fattore di distrazione [@indireUtiizzoDellIntelligenzaArtificiale2025].
 
 
-## Governare il fenomeno: scuola, famiglie e realtà educanti
+## IA e tecnologie: quale ruolo per scuola, famiglie e realtà educanti?
 
-L'IA generativa funziona da _amplificatore_ di processi: può potenziare l’accesso alle informazioni, l’apprendimento e la produttività, ma può acuire problemi già osservabili tra i giovanissimi e danneggiarne lo sviluppo cognitivo e relazionale. Pur senza azzardare nessi causali, i dati disponibili suggeriscono di prestare grande attenzione agli effetti dell’IA generativa sul benessere dei ragazzi.
+L'IA generativa funziona da _amplificatore_: può potenziare l’accesso alle informazioni, l’apprendimento e la produttività, ma può acuire problemi già osservabili tra i giovanissimi e danneggiarne lo sviluppo cognitivo e relazionale. I dati mostrano che l'IA è arrivata prima tra i più giovani, in una generazione già molto connessa e con un benessere psicologico che non è tornato ai livelli pre-pandemia. E le prime evidenze sperimentali dicono che come tutor funziona, ma solo quando proposta con regole e limiti, mentre un uso sregolato può peggiorare l'apprendimento.  
 
-Le regole arrivano, ma più lente della tecnologia: il Ministero ha avviato un percorso con le "Linee guida per l'IA nella scuola" [@MIM_LineeGuidaIA] e alcune sperimentazioni, altri paesi hanno scelto di limitare l'accesso dei minori ai social.  
-Diverse famiglie chiedono iniziative legislative più decise che tutelino i minori, come l'innalzamento a 16 anni dell'età minima per l'accesso ai social ([e.g. iniziativa di Moige, Anfn, e Age](https://www.moige.it/landing/ferma-dipendenza-social/)), ma anche la responsabilizzazione di piattaforme che adottano pratiche dannose e illegali. 
+Le regole arrivano più lente della tecnologia: il Ministero ha avviato le "Linee guida per l'IA nella scuola" [@MIM_LineeGuidaIA] e alcune sperimentazioni, e alcuni paesi hanno scelto di limitare l'accesso dei minori ai social. Per l'IA, come per gli altri strumenti digitali, l'uso a scuola va subordinato alle esigenze formative e ai bisogni dell'età evolutiva.
 
-> Di cosa hanno bisogno i ragazzi per crescere in un contesto così complesso e in rapida evoluzione?
++ Di cosa hanno bisogno i ragazzi per crescere in un contesto così complesso e in rapida evoluzione?
 
-> Come possono contribuire le realtà educanti (incluso terzo settore, enti locali e fondazioni)?
++ Come possono contribuire le realtà educanti (incluso terzo settore, enti locali e fondazioni)?
 
  
 ## Possibili approfondimenti
 
 1. Cosa succede a Parma/Emilia-Romagna (mancano ancora informazioni locali)  
-2. Chi sono e cosa stanno facendo le realtà locali della comunità educante (scuole, famiglie, terzo settore, enti locali e fondazioni) per accompagnare la crescita dei ragazzi immersi in questo contesto?   
+2. Mappare cosa stanno facendo le realtà locali della comunità educante (scuole, famiglie, terzo settore, enti locali e fondazioni) per accompagnare la crescita dei ragazzi immersi in questo contesto?   
 3. IA e povertà educativa: vedi [indagine Openpolis e Con i bambini](https://www.openpolis.it/intelligenza-artificiale-una-sfida-educativa/)

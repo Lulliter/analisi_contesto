@@ -288,10 +288,9 @@ f_bottoni_dati("bes_istruzione_reg", dir_disp, rds = "elet_tab_ft")
 _NB: Fonte ISTAT. ELET = 18-24enni con al più la licenza media e fuori da ogni percorso di istruzione o formazione (obiettivo UE: sotto il 9% entro il 2030); NEET come sopra. Entrambe stime campionarie della Rilevazione sulle forze di lavoro riprese nel Bes: NEET dal Bes dei territori (provinciale, fino al 2024), ELET dal Bes nazionale (regionale, fino al 2025): il dato provinciale dell'abbandono non esiste._
 :::
 
-::: {.callout-tip}
-## Per continuare
-La pagina [Formazione professionale](formaz_rientro.qmd) osserva chi lascia il percorso ordinario per una qualifica professionale o torna a scuola da adulto.
-:::
+<!-- ::: {.callout-tip title="" collapse="true"} -->
+<!-- La pagina [Formazione professionale](formaz_rientro.qmd) osserva chi lascia il percorso ordinario per una qualifica professionale o torna a scuola da adulto. -->
+<!-- ::: -->
 
 ## Possibili approfondimenti
 

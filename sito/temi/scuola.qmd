@@ -400,10 +400,9 @@ La concentrazione è nel primo ciclo: a Parma primaria (4,8%) e secondaria di I 
 _NB: Grafico: Ufficio scolastico regionale ER, a.s. 2024/25, solo statali. Dati sul sostegno: ISTAT, "L'inclusione scolastica degli alunni con disabilità", a.s. 2024/25, statali e paritarie; le due fonti non sono confrontabili tra loro._
 :::
 
-::: {.callout-tip}
-## Per continuare
-La pagina [Rischio dispersione](scuola_dispersione.qmd) segue chi resta indietro: ritardo, competenze in terza media, NEET.
-:::
+<!-- ::: {.callout-tip title="" collapse="true"} -->
+<!-- La pagina [Rischio dispersione](scuola_dispersione.qmd) segue chi resta indietro: ritardo, competenze in terza media, NEET. -->
+<!-- ::: -->
 
 ## Possibili approfondimenti
 

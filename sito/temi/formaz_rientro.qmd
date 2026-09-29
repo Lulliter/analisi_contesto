@@ -88,7 +88,7 @@ I dati del MIM accorpano tutti i frequentanti del primo tipo di sede, e non rile
 L'offerta per il 2026/27 a Parma è proposta da **7 enti accreditati, 2 istituti professionali con percorsi IeFP, più 1 hub propedeutico** per chi non ha ancora scelto. 
 
 ::: {.callout-warning collapse="true" #alunni-iefp}
-#### Nota di metodo
+#### Nota
 <!-- Fonti: INAPP, Rapporto di monitoraggio IeFP 2026 (dati regionali 2023/24); Regione Emilia-Romagna, atti sull'offerta IeFP 2026/27. -->
 Circa metà degli allievi regionali sta negli istituti professionali e metà negli enti accreditati. I dati del MIM contano i primi insieme a tutti gli altri iscritti di quegli istituti, e non rilevano i secondi: per questo non si può dire quanti ragazzi frequentano l'IeFP a Parma, né quanti arrivano alla qualifica.
 
@@ -238,10 +238,9 @@ Quanti dei serali arrivano al diploma e quanti dell'IeFP alla qualifica, e quant
 `[Approfondimenti in corso]`
 
 
-::: {.callout-tip}
-## Per continuare
-La pagina [Dalla scuola al lavoro](giovani_lavoro.qmd), in preparazione, seguirà la transizione verso il lavoro.
-:::
+<!-- ::: {.callout-tip title="" collapse="true"} -->
+<!-- La pagina [Dalla scuola al lavoro](giovani_lavoro.qmd), in preparazione, seguirà la transizione verso il lavoro. -->
+<!-- ::: -->
 
 ## Possibili approfondimenti
 

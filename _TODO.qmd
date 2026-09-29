@@ -182,7 +182,7 @@ Stato al 2026-09-23: modulo collaudato (01 + 02: `plot_rientro_porte_pr`, `plot_
 - [ ] Aggiornamento annuale _Eurostat IA_ in `dati/grezzi/eurostat_isoc_ai/`
 - [ ] Aggiornamento ? _ISTAT Bambini e ragazzi_: (edizioni 2021 e 2023): 
 
-### modulo `educ_ia` (forse)
+### modulo `educ_ia`
 (approfondimento "crescere al tempo dell'IA"; dati solo nazionali o regionali, Parma raggiungibile solo per gli accessi NPIA)
 
 **Ricognizione/Aggiornamento FONTI** (per indicatore; versione lunga e voci chiuse in `_toDONE.qmd`)
@@ -221,9 +221,11 @@ _5. Governare: risposte dei paesi e mappa locale_
 
 #### sito  
 
-- [x] (Fatto) `sito/temi/scuola.qmd` (incluso outputs da 1) `moduli/scuola_iscritti` + 2) `moduli/scuola_disabilita`)
-- [x] (Fatto) `sito/temi/educ_ia.qmd`
-
+- [x] `sito/temi/scuola.qmd` (incluso iscritti / geografia / stranieri / disabilità)
+- [x] `sito/temi/scuola_dispersione.qmd` (incluso dispersione esplicita e implicita / NEET / ELET )
++ [x] (in progress) `sito/temi/formaz_rientro.qmd` (incluso IeFP / serali / CPIA (adulti) / esiti)]
+- [x] `sito/temi/educ_ia.qmd` (incluso uso dispositivi e device / social e benessere mentale / IA / risposte dei paesi)
++ 
   
 
 ## 2.b ...Formazione GIOVANI (lavoro e innovazione)
@@ -255,7 +257,10 @@ _5. Governare: risposte dei paesi e mappa locale_
 
 - [ ] Acquisire le fonti per `sito/temi/_giovani_lavoro.qmd` (NB 2026-09-23: IeFP e serali stanno in `sito/temi/_formaz_rientro.qmd`, tema 2.a, con riserva di unificare): Excelsior (difficoltà di reperimento per profilo, PR), AlmaLaurea/AlmaDiploma o Regione ER (esiti occupazionali per percorso), ITS e IeFP iscritti (Regione ER), INPS Osservatori (contratti giovani), ISTAT cancellazioni per l'estero 20-34 per provincia; già in casa dal BES: passaggio all'università, laureati 25-39, formazione continua, NEET per sesso, occupazione giovanile (dominio Lavoro)
 ___
+## 🌟 ANZIANI (tutto da fare)
+> Donatella: abbiamo 100 diagnosi di autismo e 1000 di demenza senile ... forse questo ci dice dove dovremmo guardare?!?!!?
 
+> Marani: In prospettiva i (pochi) giovani di oggi sono gli stessi che dovranno occuparsi degli anziani di domani...
 
 ## 🌟 SANITA (tutto da fare)
 > C'è un nesso potenziale con trasporto sociale / welfare connesso 

@@ -17,8 +17,8 @@
 # CSV internazionale (virgola, punto decimale, UTF-8 con BOM): formato di
 # riuso dati standard. Chi lavora in Excel usa il bottone Excel, che è
 # l'unico sicuro contro l'autoformattazione di codici e classi d'età.
-f_scarica_dati <- local({
-  pagina_corr <- NULL
+f_scarica_dati <- local({ # esegue in un env separato per contatore progressivo per pagina
+  pagina_corr <- NULL     # variabili "private" per pagina
   n <- 0L
   # Licenza delle elaborazioni (grafici, tabelle, dati derivati); i dati di
   # origine restano soggetti alla licenza della fonte (vedi _metadati.md)
@@ -28,9 +28,9 @@ f_scarica_dati <- local({
     pagina <- if (is.null(pagina)) "tabella" else tools::file_path_sans_ext(basename(pagina))
     if (is.null(pagina_corr) || pagina != pagina_corr) {  # nuova pagina -> azzera
       pagina_corr <<- pagina
-      n <<- 0L
+      n <<- 0L       # <<- modifica la n dell'ambiente di local(), non crea una n globale
     }
-    n <<- n + 1L
+    n <<- n + 1L     # <<- modifica la n dell'ambiente di local(), non crea una n globale
     nome <- paste0(pagina, "_", n)
 
     csv_tmp <- file.path(tempdir(), paste0(nome, ".csv"))
@@ -72,6 +72,9 @@ f_scarica_dati <- local({
 # Output: i 2 bottoni CSV + Excel (via f_scarica_dati), con titolo e fonte
 #         del grafico nel foglio "Metadati" dell'Excel
 # NB: richiede f_scarica_dati gia' caricata (source di R/f_scarica_dati.R)
+# NB: l'aspetto dei bottoni (piccoli, senza bordo, riga sottile sopra) NON
+#     si decide qui ma in assets/styles/custom.css, regole su .btn-default
+#     (2026-09-29): downloadthis produce <button class="btn btn-default">
 f_bottoni_dati <- function(nome, dir, rds = nome) {
   df <- read.csv(file.path(dir, paste0(nome, ".csv")), check.names = FALSE)
   p  <- readRDS(file.path(dir, paste0(rds, ".rds")))
