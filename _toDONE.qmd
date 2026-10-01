@@ -1,6 +1,6 @@
 ---
 title: "Voci chiuse del piano di lavoro"
-subtitle: "Archivio delle voci spuntate in _TODO.qmd"
+subtitle: "Archivio delle voci spuntate in _TODO.qmd (non più aggiornato dal 2026-10-01)"
 date: last-modified
 date-format: "DD-MMMM-YYYY"
 lang: it

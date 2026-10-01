@@ -1,7 +1,7 @@
 ---
 title: "Crescere al tempo dell'IA"
 # subtitle: "Un approfondimento su cosa cambia per chi cresce con l'intelligenza artificiale: potenzialità, rischi e il ruolo di chi educa"
-description: "Dati ISTAT (2001-2025), Eurostat (2025), ISS HBSC (2018 e 2022) e indagini ad hoc italiane e statunitensi (2025-2026), estratti a settembre 2026"
+description: "Dati ISTAT (2001-2025), Eurostat (2025) e indagini ad hoc italiane e statunitensi (2025-2026), estratti a settembre 2026"
 lang: it
 
 format:
@@ -71,11 +71,11 @@ I dati sono per lo più riferiti a territori extra-provincia, in quanto relativi
 
 + **In vent'anni, internet è entrato prepotentemente nella vita quotidiana dei ragazzi**, sia per la comparsa di smartphone e tablet, che per la diffusione di social network e social media. Nel 2001, si connetteva tutti i giorni il 4% degli 11-14enni e l'11% dei 15-19enni; nel 2025 rispettivamente l'85% e il 95%. Decisivo l'aumento portato dal _lockdown_ nella fascia 6-10 anni: l'uso quotidiano passa dal 27% del 2019 al 55% nel 2021, per attestarsi oltre il 40%.
 
-+ Oggi **il profilo social arriva prima dei 14 anni**: ce l'ha il 62% degli 11-13enni che usano internet e il 95% dei 14-19enni (tre su quattro su più piattaforme). Il contatto con gli amici è continuo, sia online (più volte al giorno per il 55% dei 14-19enni) che di persona. Tra gli adolescenti si registra anche l'uso problematico dei social network (soprattutto ragazze) e dei videogiochi (soprattutto ragazzi).
++ Oggi **il profilo social arriva prima dei 14 anni**: ce l'ha il 62% degli 11-13enni che usano internet e il 95% dei 14-19enni (tre su quattro su più piattaforme). Il contatto con gli amici è continuo, sia online (più volte al giorno per il 55% dei 14-19enni) che di persona.
 
 + Pur sotto la media UE, anche in Italia **l'adozione dell'IA generativa è arrivata per prima tra i più giovani**: nel 2025 (primo anno di rilevazione Eurostat), l'ha usata il 52% dei 16-19enni italiani e il 43% dei 20-24enni, contro il 20% della popolazione 16-74. Tra gli utenti 16-19enni, l'uso per lo studio è citato dal 78%, e l'uso privato dal 46%.  
 
-+ L'IA generativa arriva su un terreno che la pandemia ha segnato: il benessere psicologico dei 14-19enni è calato nel 2021 e non è tornato ai livelli precedenti, soprattutto tra le ragazze. Usata anzitutto per studiare, le prime valutazioni sperimentali dicono che **l'IA può aiutare l'apprendimento, ma solo se usata come tutor con regole esplicite**.    
++ L'IA generativa arriva su un terreno che la pandemia ha segnato (vedi [Benessere e salute mentale dei ragazzi](benessere_giovani.qmd)). Usata anzitutto per studiare, le prime valutazioni sperimentali dicono che **l'IA può aiutare l'apprendimento, ma solo se usata come tutor con regole esplicite**.    
 <!-- + Per chi interviene: il territorio non è ancora osservato; il primo passo è mappare cosa fanno scuole, famiglie e terzo settore. -->
 <!-- La quota di adolescenti "molto soddisfatti" delle relazioni con gli amici tocca il minimo nel 2021 (34,5%) e per le ragazze era già scesa sotto il 39% dal 2018. -->
 
@@ -297,184 +297,7 @@ _NB: indagine ISTAT "Bambini e ragazzi" sui residenti di 11-19 anni, rilevazione
 :::
 
 
-## Rischi di social network e videogiochi
-
-Secondo l'indagine HBSC 2022 (_Health Behaviour in School-aged Children_, coordinata in Italia dall'Istituto Superiore di Sanità), disaggregata per regione, l'uso problematico dei social network è raddoppiato tra il 2018 e il 2022 ed è il doppio tra le ragazze; i videogiochi sono l'immagine speculare, maschile e in calo con l'età.
-
-```{r}
-#| label: tab_hbsc
-#| output: true
-readRDS(file.path(dir_ict, "hbsc_tab_ft.rds"))
-```
-
-::: {.text-end}
-```{r}
-#| label: dl_tab_hbsc
-#| output: true
-f_bottoni_dati("hbsc_2022", dir_ict, rds = "hbsc_tab_ft")
-```
-:::
-
-```{r}
-#| label: plot_hbsc_social_trend
-#| output: true
-#| fig-height: 5
-f_girafe(readRDS(file.path(dir_ict, "plot_hbsc_social_trend.rds")))
-```
-
-::: {.text-end}
-```{r}
-#| label: dl_plot_hbsc_social_trend
-#| output: true
-f_bottoni_dati("hbsc_2022", dir_ict, rds = "plot_hbsc_social_trend")
-```
-:::
-
-::: {.callout-note collapse="true"}
-#### Osservazioni
-
-L'uso problematico dei social riguarda soprattutto le ragazze, a ogni età circa il doppio dei ragazzi, e aumenta crescendo: a 15 anni ne è interessata una ragazza su cinque. I videogiochi mostrano il quadro opposto: l'uso problematico è più frequente tra i ragazzi e diminuisce con l'età. L'Emilia-Romagna è vicina alla media italiana sia per le ragazze (17% contro 17%) sia per i ragazzi (9% contro 10%), anche se i due dati non coincidono del tutto nelle età coperte (11-17 anni in regione, 11-15 in Italia). Per Parma il dato non esiste.
-
-_NB: indagine HBSC (Health Behaviour in School-aged Children, sorveglianza internazionale coordinata in Italia dall'Istituto Superiore di Sanità), rilevazione 2022 in classe, campione regionale di circa 4.200 studenti; stima campionaria. L'uso "problematico" è definito da scale con criteri autoriferiti, non da una diagnosi (per i social, e.g. ansia di accedere, tempo fuori controllo, litigi e bugie; per i videogiochi una scala analoga). Prossima rilevazione: 2026._
-:::
-
-## Salute mentale e relazioni con gli amici dei 14-19enni, 2005-2025
-
-Il benessere psicologico dei 14-19enni è calato con la pandemia e non è tornato ai livelli precedenti, soprattutto tra le ragazze. Alcuni libri hanno portato alla ribalta i danni riconducibili a quella che Haidt ha definito la sostituzione dell'_infanzia basata sul gioco_ con una _infanzia basata sul telefono_ [@haidtAnxiousGenerationHow2024]. Molti neuropsichiatri e pedagogisti rilevano: isolamento e impoverimento delle relazioni sociali; deficit di sonno; calo delle capacità cognitive e dell’attenzione; ansia e peggioramento della salute mentale.
-
- 
-::: {.panel-tabset}
-
-#### 14-19 anni
-
-```{r}
-#| label: plot_salute_mentale_14_19
-#| output: true
-
-f_girafe(readRDS(file.path(dir_ben, "plot_salute_mentale_14_19.rds")))
-```
-
-::: {.text-end}
-```{r}
-#| label: dl_plot_salute_mentale_14_19
-#| output: true
-f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_salute_mentale_14_19")
-```
-:::
-
-#### 20-24 anni
-
-```{r}
-#| label: plot_salute_mentale_20_24
-#| output: true
-
-f_girafe(readRDS(file.path(dir_ben, "plot_salute_mentale_20_24.rds")))
-```
-
-::: {.text-end}
-```{r}
-#| label: dl_plot_salute_mentale_20_24
-#| output: true
-f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_salute_mentale_20_24")
-```
-:::
-
-#### Tutta la popolazione
-
-```{r}
-#| label: plot_salute_mentale_totale
-#| output: true
-
-f_girafe(readRDS(file.path(dir_ben, "plot_salute_mentale_totale.rds")))
-```
-
-::: {.text-end}
-```{r}
-#| label: dl_plot_salute_mentale_totale
-#| output: true
-f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_salute_mentale_totale")
-```
-:::
-
-:::
-
-::: {.callout-note collapse="true"}
-#### Osservazioni
-
-Il 2021 è un crollo netto per i più giovani: l'indice dell'intera popolazione non si muove, e la variazione per i 20-24enni sembra meno evidente. Il divario tra ragazze e ragazzi, circa quattro punti prima della pandemia, si allarga nel 2021 e non si è richiuso.  
-
-_NB: L'indice di salute mentale è un punteggio 0-100 costruito dall'ISTAT da cinque domande sull'umore delle ultime quattro settimane (nervosismo, tristezza, serenità, scoraggiamento, felicità): misura il benessere psicologico autoriferito, non una diagnosi. Stima campionaria: leggere il trend, non i decimali._
-:::
-
-Le relazioni con gli amici raccontano una storia più lunga: la pandemia è il punto più basso, ma per le ragazze il peggioramento era cominciato prima.
-
-::: {.panel-tabset}
-
-#### 14-19 anni
-
-```{r}
-#| label: plot_amici_14_19
-#| output: true
-
-f_girafe(readRDS(file.path(dir_ben, "plot_amici_14_19.rds")))
-```
-
-::: {.text-end}
-```{r}
-#| label: dl_plot_amici_14_19
-#| output: true
-f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_amici_14_19")
-```
-:::
-
-#### 20-24 anni
-
-```{r}
-#| label: plot_amici_20_24
-#| output: true
-
-f_girafe(readRDS(file.path(dir_ben, "plot_amici_20_24.rds")))
-```
-
-::: {.text-end}
-```{r}
-#| label: dl_plot_amici_20_24
-#| output: true
-f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_amici_20_24")
-```
-:::
-
-#### Tutta la popolazione
-
-```{r}
-#| label: plot_amici_totale
-#| output: true
-
-f_girafe(readRDS(file.path(dir_ben, "plot_amici_totale.rds")))
-```
-
-::: {.text-end}
-```{r}
-#| label: dl_plot_amici_totale
-#| output: true
-f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_amici_totale")
-```
-:::
-
-:::
-
-::: {.callout-note collapse="true"}
-#### Osservazioni
-Il 2021 è il minimo a tutte le età, non solo tra i giovani; nel 2025 tutti sono tornati ai livelli del 2019. La differenza è che per le 14-19enni quel livello era già basso: dal 2018 la quota scende sotto il 39% e non risale, mentre per i ragazzi non c'è un calo di fondo. Tra le 20-24enni e nella popolazione adulta non si vede. È compatibile con quanto osservato altrove sul benessere delle adolescenti. Questi dati rappresentano delle stime di tendenza, ma andrebbero indagati più a fondo. 
-
-<!-- Fonti del parallelo internazionale (da rivedere prima di citarle in pagina):
-- Twenge J.M. (2017), iGen, Atria Books; Twenge et al. (2018), "Increases in depressive symptoms, suicide-related outcomes, and suicide rates among U.S. adolescents after 2010", Clinical Psychological Science 6(1)
-- Haidt J. (2024), The Anxious Generation, Penguin Press (tesi: peggioramento del benessere delle adolescenti dal ~2012, USA/UK/Nord Europa, con smartphone e social)
-- Critici: Orben A. & Przybylski A.K. (2019), "The association between adolescent well-being and digital technology use", Nature Human Behaviour 3 (effetti piccoli); Odgers C.L. (2024), recensione di The Anxious Generation, Nature 628
-- Spiegazioni concorrenti per l'Italia 2012-14: seconda recessione e picco della disoccupazione giovanile (ISTAT); possibile cambio di metodo dell'indagine Aspetti della vita quotidiana (verificare: salto 2011→2012 della soddisfazione per la vita) -->
-
-_NB: Quota per fascie d'età che si dichiarano "molto soddisfatti" delle relazioni con gli amici. Stima campionaria, dato nazionale. Altri indicatori del Bes (soddisfazione per la propria vita, giudizio sulle prospettive future) mostrano la stessa buca nel 2021 ma un trend di fondo in miglioramento: il quadro non è a senso unico._
-:::
+Sul benessere psicologico dei ragazzi, le relazioni con gli amici e l'uso problematico di social e videogiochi vedi la pagina [Benessere e salute mentale dei ragazzi](benessere_giovani.qmd).
 
 Su questo terreno arriva l'IA generativa: in un'indagine del 2026 su ragazzi di 12-18 anni, uno su tre dice di aver chiesto almeno qualche volta consigli personali a un chatbot, e uno su sette lo fa spesso; più di un terzo teme però che questi strumenti impoveriscano le relazioni reali [@SaferInternetDay2026].
 

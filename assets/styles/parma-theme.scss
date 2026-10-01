@@ -74,6 +74,7 @@ $theme: "litera" !default;
 // Andrew Heiss 
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Fira+Sans+Condensed:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
+// NB 2026-09-29: questo tema non è attivo nel sito (in _quarto.yml theme e mainfont sono commentati): il corpo usa il font di sistema, le flextable Roboto Condensed → voce "Font del sito" in _TODO.qmd
 // use Lato font if available
 $font-family-sans-serif:  "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 

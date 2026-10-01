@@ -57,8 +57,7 @@ analisi_contesto/
 ├── docs/                   # output del sito (GitHub Pages) — generato, non editare
 ├── build.R                 # rigenera gli output di tutti i moduli
 ├── README.md               # questo file
-├── _TODO.qmd               # diario di lavoro: stato tema per tema, fonti da acquisire
-└── _toDONE.qmd             # voci chiuse di _TODO.qmd
+└── _TODO.qmd               # diario di lavoro: stato tema per tema, fonti da acquisire
 ```
 
 # Regole
@@ -97,7 +96,6 @@ Scorciatoia: `source("build.R")` rigenera gli `output/` di tutti i moduli e inva
 # TODO
 
 🔨 Lavoro per tema in corso. Il diario — stato tema per tema, fonti da acquisire — sta in [`_TODO.qmd`](_TODO.qmd) 
-<!-- (voci chiuse in [`_toDONE.qmd`](_toDONE.qmd)); entrambi si renderizzano a mano e restano fuori dal sito. -->
 
 # Licenza
 
@@ -107,6 +105,12 @@ Testi, grafici, tabelle e dati derivati: [CC BY 4.0](https://creativecommons.org
 # Utilizzo IA
 
 Nello sviluppo del codice R e nella predisposizione di alcuni testi descrittivi è stato usato un assistente di IA (Claude, Anthropic). Scelta delle fonti, elaborazioni, verifica dei risultati e commenti sono dell'autrice, che ne ha la responsabilità.
+
+Contesto usato dall'assistente:
+
+- `CLAUDE.md` (nella radice del progetto, non pubblicato): istruzioni su progetto, regole e modo di lavorare; lo scrive l'autrice, Claude propone modifiche
+- Memoria: preferenze dell'autrice ricordate tra una sessione e l'altra; sta nell'account claude.ai (progetto analisi_contesto), si aggiorna in automatico, l'autrice la rivede ogni 2-3 mesi
+- Skill: procedure ripetibili (`avanzamento` per il diario `_TODO.qmd`, `formatting-r` per tabelle e grafici); stanno nell'account claude.ai, Claude propone modifiche e l'autrice le salva
 
 
 

@@ -53,7 +53,8 @@ website:
             href: sito/temi/trend_demogr.qmd
           - text: "Previsioni al 2050"
             href: sito/temi/trend_demogr_previs.qmd
-      - text: "Educazione"
+      # Gruppi = linee d'azione e priorità del piano strategico; un tema sta dove sta la sua popolazione di riferimento
+      - text: "Crescita ed educazione"
         menu:
           - text: "Scuola e istruzione"
             href: sito/temi/scuola.qmd
@@ -63,8 +64,17 @@ website:
             href: sito/temi/formaz_rientro.qmd
           - text: "Crescere al tempo dell'IA"
             href: sito/temi/educ_ia.qmd
+          - text: "Benessere e salute mentale"      # bozza: sito/temi/_benessere_giovani.qmd
+            href: sito/temi/benessere_giovani.qmd
       - text: "Giovani e lavoro"
         href: sito/temi/giovani_lavoro.qmd
+      # ⭐Gruppi da attivare quando c'è la prima pagina⭐:
+      # - text: "Welfare e fragilita"               # anziani, sanità, fragilità economica
+      #   menu:
+      # - text: "Territorio"                        # fragilità e bisogni sul territorio, mappe
+      #   menu:
+      # - text: "Istituzioni e comunita"            # capitale istituzionale e sociale, terzo settore
+      #   menu:
       # Voci da riattivare quando le pagine esistono, es.:
       # - text: "Fragilità"
       #   menu:

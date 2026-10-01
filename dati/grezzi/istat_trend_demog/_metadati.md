@@ -26,6 +26,7 @@
 - Formato csv previsioni: separatore ";", virgola decimale, 1a riga = titolo (skip), codici comune/provincia con zero iniziale (tenerli character)
 - Nomi territorio nei csv previsioni ("Forlì-Cesena", "Reggio nell'Emilia") diversi dall'xls storico ("Forli'") → attenzione ai join per nome
 - Ingestione: `ingestione/03_prep_istat_previsioni.R` → `dati/puliti/istat_previsioni/` (consumati da `moduli/demo_trend_previs`)
+- `Indicatori_demografici.xls` ha la struttura per età solo in 3 classi (0-14 / 15-64 / 65+): per gli 80+ storici serve la popolazione per singole età da demo.istat.it; se il sito non regge il download unico, scaricare pochi anni per volta
 
 **Storico aggiornamenti:**
 

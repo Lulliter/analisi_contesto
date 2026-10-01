@@ -1,0 +1,268 @@
+---
+title: "Benessere e salute mentale dei ragazzi"
+description: "Dati ISTAT, Bes (2005-2025) e ISS, HBSC (2018 e 2022), estratti a settembre 2026"
+lang: it
+
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+
+execute:
+  eval: true
+  echo: false
+  warning: false
+  error: false
+  output: false
+
+# --- Bibliografia (unica per il sito, esportata da Zotero): si cita con [@chiave]
+bibliography: ../../bib/CRP_analisi_contesto.bib
+csl: ../../bib/apa_7th.csl
+link-citations: true
+---
+
+```{r}
+#| eval: false
+# Anteprima: renderizza e apre nel browser (lancia a mano, ignorato nel render)
+pagina <- "benessere_giovani"   # nome pagina, senza estensione
+quarto::quarto_render(here::here("sito", "temi", paste0(pagina, ".qmd")))
+browseURL(here::here("docs", "sito", "temi", paste0(pagina, ".html")))
+```
+
+<!-- BOZZA 2026-10-01: sezioni scorporate da educ_ia.qmd ("Rischi di social network e videogiochi", "Salute mentale e relazioni con gli amici").
+     Nel menu "Crescita ed educazione" va dopo "Crescere al tempo dell'IA" (voce già pronta, commentata, in _quarto.yml).
+     Da scrivere: In sintesi, eventuale testo di apertura, Possibili approfondimenti. -->
+
+```{r}
+#| label: setup
+library(here)
+library(ggplot2)
+library(ggiraph)
+library(ggtext)
+library(scales)
+library(downloadthis)
+library(flextable)   # tabella HBSC salvata in rds (serve il pacchetto caricato per stamparla)
+library(glue)
+
+source(here::here("R", "sito.R"))     # bottoni CSV + Excel (f_scarica_dati, f_bottoni_dati)
+source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hover bordeaux)
+
+dir_ben <- here::here("moduli", "giovani_benessere", "output")
+dir_ict <- here::here("moduli", "giovani_ict_social", "output")
+```
+
+::: {.callout-warning}
+## Pagina in completamento
+:::
+
+
+
+
+## In sintesi
+
++ Il quadro della salute mentale dei ragazzi (_da completare..._) 
+
++ Tra gli adolescenti cresce l'**uso problematico dei social network**, soprattutto tra le ragazze (a 15 anni ne è interessata una su cinque), mentre quello dei videogiochi riguarda soprattutto i ragazzi e cala con l'età.
+
++ **Il benessere psicologico dei 14-19enni è calato nel 2021** e non è tornato ai livelli precedenti, soprattutto tra le ragazze; nella popolazione nel suo insieme l'indice non si è mosso.
+
++ Le relazioni con gli amici toccano il minimo nel 2021 a tutte le età, ma **per le ragazze di 14-19 anni il calo era cominciato prima**: dal 2018 le molto soddisfatte restano sotto il 39%.
+
+## La salute mentale nei bambini e ragazzi [🟡]{.content-hidden}
+
+(_da completare..._) 
+
+ 
+Un segnale indiretto viene dalla scuola: le certificazioni di disabilità sono cresciute del 41% in otto anni nelle statali della provincia, a parità di iscritti ([Gli alunni con disabilità](scuola.qmd#gli-alunni-con-disabilità)) -- da leggere con cautela, perché dipende anche da come si diagnostica e si certifica.
+
+<!-- Da riempire. Fonti candidate (tutte da verificare):
+- utenti dei servizi di neuropsichiatria infantile (NPIA) per età → richiesta n. 5 (Trasversale)
+- accessi in pronto soccorso e ricoveri per disturbi neuropsichiatrici in età evolutiva (schede di dimissione ospedaliera, Ministero della Salute / Regione ER)
+- consumo di psicofarmaci in età pediatrica (rapporto OsMed, AIFA)
+- Bambino Gesù, accessi PS neuropsichiatrici 2011-2021 (via Openpolis) -->
+
+## Rischi di social network e videogiochi
+
+Secondo l'indagine HBSC 2022 (_Health Behaviour in School-aged Children_, coordinata in Italia dall'Istituto Superiore di Sanità), disaggregata per regione, l'uso problematico dei social network è raddoppiato tra il 2018 e il 2022 ed è il doppio tra le ragazze; i videogiochi sono l'immagine speculare, maschile e in calo con l'età.
+
+Il contesto è quello di una generazione che usa internet ogni giorno sempre prima ([L'utilizzo di internet e schermi](educ_ia.qmd#lutilizzo-di-internet-e-schermi)) e resta in contatto continuo con gli amici, online e di persona ([I social network e le relazioni](educ_ia.qmd#i-social-network-e-le-relazioni)).
+
+```{r}
+#| label: tab_hbsc
+#| output: true
+readRDS(file.path(dir_ict, "hbsc_tab_ft.rds"))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_tab_hbsc
+#| output: true
+f_bottoni_dati("hbsc_2022", dir_ict, rds = "hbsc_tab_ft")
+```
+:::
+
+```{r}
+#| label: plot_hbsc_social_trend
+#| output: true
+#| fig-height: 5
+f_girafe(readRDS(file.path(dir_ict, "plot_hbsc_social_trend.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_hbsc_social_trend
+#| output: true
+f_bottoni_dati("hbsc_2022", dir_ict, rds = "plot_hbsc_social_trend")
+```
+:::
+
+::: {.callout-note collapse="true"}
+#### Osservazioni
+
+L'uso problematico dei social riguarda soprattutto le ragazze, a ogni età circa il doppio dei ragazzi, e aumenta crescendo: a 15 anni ne è interessata una ragazza su cinque. I videogiochi mostrano il quadro opposto: l'uso problematico è più frequente tra i ragazzi e diminuisce con l'età. L'Emilia-Romagna è vicina alla media italiana sia per le ragazze (17% contro 17%) sia per i ragazzi (9% contro 10%), anche se i due dati non coincidono del tutto nelle età coperte (11-17 anni in regione, 11-15 in Italia). Per Parma il dato non esiste.
+
+_NB: indagine HBSC (Health Behaviour in School-aged Children, sorveglianza internazionale coordinata in Italia dall'Istituto Superiore di Sanità), rilevazione 2022 in classe, campione regionale di circa 4.200 studenti; stima campionaria. L'uso "problematico" è definito da scale con criteri autoriferiti, non da una diagnosi (per i social, e.g. ansia di accedere, tempo fuori controllo, litigi e bugie; per i videogiochi una scala analoga). Prossima rilevazione: 2026._
+:::
+
+## Salute mentale e relazioni con gli amici dei 14-19enni, 2005-2025
+
+Il benessere psicologico dei 14-19enni è calato con la pandemia e non è tornato ai livelli precedenti, soprattutto tra le ragazze. Alcuni libri hanno portato alla ribalta i danni riconducibili a quella che Haidt ha definito la sostituzione dell'_infanzia basata sul gioco_ con una _infanzia basata sul telefono_ [@haidtAnxiousGenerationHow2024]. Molti neuropsichiatri e pedagogisti rilevano: isolamento e impoverimento delle relazioni sociali; deficit di sonno; calo delle capacità cognitive e dell’attenzione; ansia e peggioramento della salute mentale.
+
+ 
+::: {.panel-tabset}
+
+#### 14-19 anni
+
+```{r}
+#| label: plot_salute_mentale_14_19
+#| output: true
+
+f_girafe(readRDS(file.path(dir_ben, "plot_salute_mentale_14_19.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_salute_mentale_14_19
+#| output: true
+f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_salute_mentale_14_19")
+```
+:::
+
+#### 20-24 anni
+
+```{r}
+#| label: plot_salute_mentale_20_24
+#| output: true
+
+f_girafe(readRDS(file.path(dir_ben, "plot_salute_mentale_20_24.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_salute_mentale_20_24
+#| output: true
+f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_salute_mentale_20_24")
+```
+:::
+
+#### Tutta la popolazione
+
+```{r}
+#| label: plot_salute_mentale_totale
+#| output: true
+
+f_girafe(readRDS(file.path(dir_ben, "plot_salute_mentale_totale.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_salute_mentale_totale
+#| output: true
+f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_salute_mentale_totale")
+```
+:::
+
+:::
+
+::: {.callout-note collapse="true"}
+#### Osservazioni
+
+Il 2021 è un crollo netto per i più giovani: l'indice dell'intera popolazione non si muove, e la variazione per i 20-24enni sembra meno evidente. Il divario tra ragazze e ragazzi, circa quattro punti prima della pandemia, si allarga nel 2021 e non si è richiuso.  
+
+_NB: L'indice di salute mentale è un punteggio 0-100 costruito dall'ISTAT da cinque domande sull'umore delle ultime quattro settimane (nervosismo, tristezza, serenità, scoraggiamento, felicità): misura il benessere psicologico autoriferito, non una diagnosi. Stima campionaria: leggere il trend, non i decimali._
+:::
+
+Le relazioni con gli amici raccontano una storia più lunga: la pandemia è il punto più basso, ma per le ragazze il peggioramento era cominciato prima.
+
+::: {.panel-tabset}
+
+#### 14-19 anni
+
+```{r}
+#| label: plot_amici_14_19
+#| output: true
+
+f_girafe(readRDS(file.path(dir_ben, "plot_amici_14_19.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_amici_14_19
+#| output: true
+f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_amici_14_19")
+```
+:::
+
+#### 20-24 anni
+
+```{r}
+#| label: plot_amici_20_24
+#| output: true
+
+f_girafe(readRDS(file.path(dir_ben, "plot_amici_20_24.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_amici_20_24
+#| output: true
+f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_amici_20_24")
+```
+:::
+
+#### Tutta la popolazione
+
+```{r}
+#| label: plot_amici_totale
+#| output: true
+
+f_girafe(readRDS(file.path(dir_ben, "plot_amici_totale.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_amici_totale
+#| output: true
+f_bottoni_dati("bes_giovani_eta_sesso", dir_ben, rds = "plot_amici_totale")
+```
+:::
+
+:::
+
+::: {.callout-note collapse="true"}
+#### Osservazioni
+Il 2021 è il minimo a tutte le età, non solo tra i giovani; nel 2025 tutti sono tornati ai livelli del 2019. La differenza è che per le 14-19enni quel livello era già basso: dal 2018 la quota scende sotto il 39% e non risale, mentre per i ragazzi non c'è un calo di fondo. Tra le 20-24enni e nella popolazione adulta non si vede. È compatibile con quanto osservato altrove sul benessere delle adolescenti. Questi dati rappresentano delle stime di tendenza, ma andrebbero indagati più a fondo. 
+
+<!-- Fonti del parallelo internazionale (da rivedere prima di citarle in pagina):
+- Twenge J.M. (2017), iGen, Atria Books; Twenge et al. (2018), "Increases in depressive symptoms, suicide-related outcomes, and suicide rates among U.S. adolescents after 2010", Clinical Psychological Science 6(1)
+- Haidt J. (2024), The Anxious Generation, Penguin Press (tesi: peggioramento del benessere delle adolescenti dal ~2012, USA/UK/Nord Europa, con smartphone e social)
+- Critici: Orben A. & Przybylski A.K. (2019), "The association between adolescent well-being and digital technology use", Nature Human Behaviour 3 (effetti piccoli); Odgers C.L. (2024), recensione di The Anxious Generation, Nature 628
+- Spiegazioni concorrenti per l'Italia 2012-14: seconda recessione e picco della disoccupazione giovanile (ISTAT); possibile cambio di metodo dell'indagine Aspetti della vita quotidiana (verificare: salto 2011→2012 della soddisfazione per la vita) -->
+
+_NB: Quota per fascie d'età che si dichiarano "molto soddisfatti" delle relazioni con gli amici. Stima campionaria, dato nazionale. Altri indicatori del Bes (soddisfazione per la propria vita, giudizio sulle prospettive future) mostrano la stessa buca nel 2021 ma un trend di fondo in miglioramento: il quadro non è a senso unico._
+:::
+
+## Possibili approfondimenti
+
+- ...
