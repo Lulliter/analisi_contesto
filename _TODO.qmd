@@ -198,7 +198,7 @@ _3. Rendimento e device_
 - [ ] OCSE PISA (2024 su 2022), "Students, digital devices and success" (l'ER c'è) [OECD pdf](https://eeb2.be/swfiles/files/OECD-Report-2024.pdf)
 - [ ] [Futuri probabili](https://www.futuriprobabili.it/manifesto-allenarsi-al-futuro)
 
-_4. Benessere mentale 14-19 e Accessi NPIA (unico indicatore con Parma)_  
+_4. ➡️ Benessere mentale 14-19 e Accessi NPIA (unico indicatore con Parma)_  
 
 - [ ] Nazionale: Bambino Gesù, accessi PS neuropsichiatrici 2011-2021 (via Openpolis)
 - [ ] DA CHIEDERE: Regione ER / AUSL Parma, accessi NPIA e PS per età, 2015→ → richiesta n. 5 (Trasversale)

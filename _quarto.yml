@@ -22,6 +22,9 @@ website:
   site-url: "https://datiparma.it/"
   # favicon: assets/favicon.ico
   search: false # no magnifier on navbar
+  # Analytics con Plausible
+  plausible-analytics:
+    path: assets/plausible.html
   # # BANNER globale (icone vedi https://icons.getbootstrap.com/): scartato 2026-09-25 (troppo invadente)
   # announcement:
   #   icon: info-circle # info-circle | lightbulb | megaphone | lock | cone-striped | calendar | mega | exclamation-triangle
