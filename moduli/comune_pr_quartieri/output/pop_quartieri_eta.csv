@@ -1,0 +1,127 @@
+quartiere,classe_eta,n,pct
+Cittadella,0-2,513,2.1
+Cittadella,3-5,570,2.3
+Cittadella,6-10,1055,4.2
+Cittadella,11-13,671,2.7
+Cittadella,14-18,1247,5
+Cittadella,19-29,2689,10.8
+Cittadella,30-64,11986,48.1
+Cittadella,65-79,3991,16
+Cittadella,80+,2183,8.8
+Cortile San Martino,0-2,114,1.8
+Cortile San Martino,3-5,117,1.9
+Cortile San Martino,6-10,234,3.7
+Cortile San Martino,11-13,157,2.5
+Cortile San Martino,14-18,303,4.8
+Cortile San Martino,19-29,733,11.7
+Cortile San Martino,30-64,3220,51.4
+Cortile San Martino,65-79,968,15.4
+Cortile San Martino,80+,420,6.7
+Golese,0-2,198,2
+Golese,3-5,241,2.4
+Golese,6-10,408,4.1
+Golese,11-13,280,2.8
+Golese,14-18,547,5.5
+Golese,19-29,1120,11.3
+Golese,30-64,5116,51.6
+Golese,65-79,1385,14
+Golese,80+,612,6.2
+Lubiana,0-2,588,2.2
+Lubiana,3-5,615,2.3
+Lubiana,6-10,1157,4.2
+Lubiana,11-13,715,2.6
+Lubiana,14-18,1364,5
+Lubiana,19-29,2923,10.7
+Lubiana,30-64,13080,48
+Lubiana,65-79,4422,16.2
+Lubiana,80+,2413,8.8
+Molinetto,0-2,449,2.2
+Molinetto,3-5,441,2.2
+Molinetto,6-10,793,3.9
+Molinetto,11-13,538,2.7
+Molinetto,14-18,879,4.3
+Molinetto,19-29,2436,12
+Molinetto,30-64,9921,48.9
+Molinetto,65-79,3095,15.3
+Molinetto,80+,1726,8.5
+Montanara,0-2,257,1.9
+Montanara,3-5,271,2
+Montanara,6-10,575,4.1
+Montanara,11-13,357,2.6
+Montanara,14-18,627,4.5
+Montanara,19-29,1571,11.3
+Montanara,30-64,6362,45.9
+Montanara,65-79,2444,17.6
+Montanara,80+,1400,10.1
+Oltretorrente,0-2,188,2.1
+Oltretorrente,3-5,202,2.3
+Oltretorrente,6-10,314,3.5
+Oltretorrente,11-13,167,1.9
+Oltretorrente,14-18,330,3.7
+Oltretorrente,19-29,1241,14
+Oltretorrente,30-64,4644,52.5
+Oltretorrente,65-79,1181,13.3
+Oltretorrente,80+,584,6.6
+Pablo,0-2,364,2.3
+Pablo,3-5,347,2.2
+Pablo,6-10,609,3.8
+Pablo,11-13,400,2.5
+Pablo,14-18,660,4.2
+Pablo,19-29,2336,14.8
+Pablo,30-64,7886,49.8
+Pablo,65-79,2065,13.1
+Pablo,80+,1156,7.3
+Parma Centro,0-2,463,2.2
+Parma Centro,3-5,396,1.9
+Parma Centro,6-10,691,3.3
+Parma Centro,11-13,475,2.3
+Parma Centro,14-18,838,4
+Parma Centro,19-29,3009,14.3
+Parma Centro,30-64,10973,52.2
+Parma Centro,65-79,2791,13.3
+Parma Centro,80+,1390,6.6
+San Lazzaro,0-2,198,1.8
+San Lazzaro,3-5,224,2.1
+San Lazzaro,6-10,437,4
+San Lazzaro,11-13,274,2.5
+San Lazzaro,14-18,500,4.6
+San Lazzaro,19-29,1186,11
+San Lazzaro,30-64,5340,49.4
+San Lazzaro,65-79,1784,16.5
+San Lazzaro,80+,861,8
+San Leonardo,0-2,503,2.4
+San Leonardo,3-5,455,2.1
+San Leonardo,6-10,862,4
+San Leonardo,11-13,610,2.9
+San Leonardo,14-18,1012,4.7
+San Leonardo,19-29,2612,12.2
+San Leonardo,30-64,10826,50.8
+San Leonardo,65-79,2950,13.8
+San Leonardo,80+,1502,7
+San Pancrazio,0-2,248,2.4
+San Pancrazio,3-5,266,2.5
+San Pancrazio,6-10,480,4.6
+San Pancrazio,11-13,311,3
+San Pancrazio,14-18,495,4.7
+San Pancrazio,19-29,1169,11.1
+San Pancrazio,30-64,5235,49.7
+San Pancrazio,65-79,1565,14.9
+San Pancrazio,80+,755,7.2
+Vigatto,0-2,213,1.8
+Vigatto,3-5,288,2.4
+Vigatto,6-10,516,4.3
+Vigatto,11-13,402,3.4
+Vigatto,14-18,663,5.6
+Vigatto,19-29,1284,10.8
+Vigatto,30-64,6156,51.8
+Vigatto,65-79,1715,14.4
+Vigatto,80+,648,5.5
+Comune di Parma,0-2,4296,2.1
+Comune di Parma,3-5,4433,2.2
+Comune di Parma,6-10,8131,4
+Comune di Parma,11-13,5357,2.6
+Comune di Parma,14-18,9465,4.7
+Comune di Parma,19-29,24309,12
+Comune di Parma,30-64,100745,49.7
+Comune di Parma,65-79,30356,15
+Comune di Parma,80+,15650,7.7

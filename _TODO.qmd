@@ -162,7 +162,7 @@ ___
 - [ ] CPIA iscritti per anno/percorso/età/cittadinanza → richiesta n. 1; indicatore di inclusione degli adulti stranieri, da ricollocare quando nasce quel tema
 - [ ] Esiti (diplomati dei serali, qualificati IeFP): verificare "esiti scrutini/esami" per scuola nel catalogo MIM; INAPP; SIFER
 
-#### 🟡 AVANZAMENTO formaz_rientro
+**Sito**:
 
 - [ ] Sezione IeFP: tabella/mappa dell'offerta 2026/27 a Parma dagli allegati regionali; iscritti per provincia quando arriva la richiesta n. 2
 - [ ] Sezione esiti, quando ci sono le fonti
@@ -352,6 +352,31 @@ Fonti in casa: `istat_sae_glf_2019` ✓ (stime GLF provinciali), aree interne/zo
 - [ ] Moduli: `disab_gali`, `disab_ehis_adl`, `anziani_soli`?, `territori_remoti`
       (da definire in ricognizione)
  
+
+
+### modulo `comune_pr_quartieri`
+> (Comune di Parma per quartiere: popolazione residente e immobili ACER; pagina bozza `sito/temi/_geogr_abitare.qmd`, voce prevista "Geografia dell'abitare" nel menu Demografia)
+
+**Ricognizione/Aggiornamento FONTI**:
+
+- [x] [Immobili ACER 2022](https://opendata.comune.parma.it/dataset/immobili-acer-di-parma-2022) e [quartieri vigenti](https://opendata.comune.parma.it/dataset/quartieri-del-comune-di-parma-vigenti) (2026-10-07)
+- [x] sfondo delle mappe per quartiere: strade 2025, torrenti, ferrovie, parchi, con `ingestione/09` (2026-10-07)
+- [x] [Popolazione residente al 1 gennaio 2026](https://opendata.comune.parma.it/dataset/popolazione-residente-al-1-gennaio-2026) in `ingestione/09`; età = anni compiuti con `ETA - 1`, v. `_metadati.md` (2026-10-08)
+- [ ] reddito sotto il livello comunale: verificare MEF IRPEF per CAP
+- [ ] disabilità per quartiere: non nei dati aperti del Comune; eventuale richiesta a servizi sociali / AUSL
+
+**Sito**:
+
+- [x] indicatori per quartiere (età, famiglie, anziani soli, stranieri, ACER e convivenze per 1.000) e pagina bozza `_geogr_abitare.qmd` (2026-10-08)
+- [ ] peso della pagina (20 MB, quasi tutto le 13 mappe ACER con le strade): semplificare le strade o pagina a parte
+- [ ] sezione "La provincia": recuperare le mappe per comune (`pop_mappe_tematiche`, Censimento 2024) e verificare se ci sono dati più recenti
+- [ ] testi di `_geogr_abitare.qmd` (In sintesi, messaggi e Osservazioni); correggere il titolo "Quanti risiedono in immobili ACER" (il dato sono gli edifici, non i residenti)
+- [ ] `_geoloc_fragil.qmd`: la sezione ACER è ora in `_geogr_abitare.qmd`, togliere il doppione
+- [ ] promozione: togliere l'underscore, voce navbar in Demografia, togliere dal YAML `fig-width` e `css` messi per l'anteprima
+
+#### 🟡 AVANZAMENTO comune_pr_quartieri
+
+Stato al 2026-10-08: dati e grafici del Comune fatti, pagina bozza completa senza testi; prossimo passo mappe provinciali (sezione "La provincia") e peso della pagina
 
 
 ## 6. Capitale istituzionale e sociale (istituzioni pubbliche, terzo settore, capitale relazionale)

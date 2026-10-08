@@ -11,6 +11,17 @@ format:
 
 <!-- Nota di lavoro (file con underscore: fuori dal sito). Serve a tenere allineati Home, sintesi delle pagine e presentazioni orali. Non è una pagina del sito. -->
 
+# Mega riassunto per Dona 
+
+Uno dei punti all'ordine del giorno è stato l'analisi dei dati di contesto, facilitata dal sito [https://datiparma.it/](https://datiparma.it/) - un lavoro tuttora in corso a cura dell'Osservatorio.un lavoro in corso a cura dell'Osservatorio. Dopo un inquadramento demografico e strutturale della popolazione di Parma e provincia, il sito esamina la condizione dei giovani per intercettare potenziali fragilità.
+
+La **popolazione scolastica** di 52 mila iscritti inizia a riflettere il calo demografico. Un alunno su cinque ha cittadinanza non italiana (seconda provincia in regione), con forte eterogeneità tra comuni. Sono in aumento gli alunni con disabilità certificata ai sensi della L. 104/92 (dal 2,8% al 3,9% in dieci anni), pur sotto la media regionale. A questi si aggiungono gli alunni con DSA e BES (stimati intorno al 10%), che per motivi vari (incluso situazioni socio-economiche di fragilità) necessitano interventi didattici personalizzati.
+
+**NEET e rischio di dispersione scolastica**. Se da un lato il trend è incoraggiante, con NEET ed ELET (_Early Leavers_) in calo e sotto la media italiana, dall'altro va guardato con attenzione il _rischio di dispersione implicita_. In terza media circa il 40% degli studenti della provincia non raggiunge un livello adequato nelle prove INVALSI, una quota sopra la media regionale e in crescita dal 2018. 
+
+**Tecnologie digitali (internet, social, IA)**. Sono ormai parte della vita quotidiana di bambini e ragazzi. Con la pandemia e la didattica a distanza l'uso di internet è cresciuto molto anche tra i più piccoli, e negli stessi anni è calato il benessere psicologico degli adolescenti, soprattutto delle ragazze (dati nazionali). L'IA generativa è già diffusa: la usa circa la metà dei 16-19enni, soprattutto per studiare.
+
+ 
 
 ## Tre fili rossi (attraversano tutte le pagine)
 
