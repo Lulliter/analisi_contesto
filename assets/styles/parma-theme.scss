@@ -61,6 +61,46 @@ h1 {
   border-color: $darkgray;
 }
 
+// OTHER PALETTES from Carto Colors https://carto.com/carto-colors/
+// ----- Sequential schemes
+// Burg
+#ffc6c4,#f4a3a8,#e38191,#cc607d,#ad466c,#8b3058,#672044
+// BurgYl
+#fbe6c5,#f5ba98,#ee8a82,#dc7176,#c8586c,#9c3f5d,#70284a
+// Peach
+#fde0c5,#facba6,#f8b58b,#f59e72,#f2855d,#ef6a4c,#eb4a40
+// Teal
+#c6e2e0,#8ac9c7,#4eb0b0,#1f9699,#007d80,#00636a,#004b55 
+// Purp
+#f3e0f7,#e4c7f1,#d1afe8,#b998dd,#9f82ce,#826dba,#63589f
+// BlueGrn
+#c4e6c3,#96d2a4,#6dbc90,#4da284,#36877a,#266b6e,#1d4f60
+// BluYl
+#f7feae,#b7e6a5,#7ccba2,#46aea0,#089099,#00718b,#045275
+// Sunset
+#f3e79b,#fac484,#f8a07e,#eb7f86,#ce6693,#a059a0,#5c53a5
+//SunsetDark
+#fcde9c,#faa476,#f0746e,#e34f6f,#dc3977,#b9257a,#7c1d6f
+// Magenta
+#f3cbd3,#eaa9bd,#dd88ac,#ca699d,#b14d8e,#91357d,#6c2167
+//BrnYl
+#ede5cf,#e0c2a2,#d39c83,#c1766f,#a65461,#813753,#541f3f
+
+// ----- Diverging schemes 
+// Temps
+#008080,#70a494,#b4c8a8,#f6edbd,#edbb8a,#de8a5a,#ca562c
+//Earth
+#A16928,#bd925a,#d6bd8d,#edeac2,#b5c8b8,#79a7ac,#2887a1
+
+// ----- Qualitative schemes 
+// Prism
+#5F4690,#1D6996,#38A6A5,#0F8554,#73AF48,#EDAD08,#E17C05,#CC503E,#94346E,#6F4070,#994E95,#666666
+
+//Safe
+#88CCEE,#CC6677,#DDCC77,#117733,#332288,#AA4499,#44AA99,#999933,#882255,#661100,#6699CC,#888888
+ 
+
+
 
 // use litera as the base
 $theme: "litera" !default;

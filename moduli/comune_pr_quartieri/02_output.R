@@ -6,7 +6,7 @@
 #         (4) mappe per quartiere degli indicatori di popolazione (tabella
 #             "1 riga = 1 mappa"); (5) classi di età per quartiere
 # Input:  output/*.rds (da 01_dati.R)
-# Output: output/mappa_acer_quartieri.rds|.png, plot_acer_quartieri.rds|.png,
+# Output: output/mappa_acer_quartieri.rds|.png, plot_acer_quartieri.rds|.png, mappa_acer_punti.rds|.png,
 #         output/mappa_acer_<quartiere>.rds|.png (13 mappe)
 #         output/mappa_pop_<indicatore>.rds|.png, plot_pop_quartieri_eta.rds|.png
 #         (csv per i bottoni: acer_immobili.csv, acer_quartieri.csv, pop_quartieri.csv
@@ -25,6 +25,7 @@ library(ggtext)    # sottotitoli che vanno a capo da soli (element_textbox)
 library(ggrepel)   # numeri dei quartieri che non si sovrappongono
 library(glue)      # caption con il link al portale
 library(sf)
+library(patchwork) # mappa a punti + barre affiancate (mappa_acer_punti)
 
 source(here("R", "_parma_colors.R"))
 source(here("R", "grafici.R"))   # temi, caption, classi, salvataggio
@@ -48,10 +49,10 @@ CAP_QUARTIERE <- f_caption_fonte(glue("{FONTE_OPENDATA} (immobili ACER 2022; qua
 # colori dello sfondo delle mappe per quartiere (tenui: il dato sono i punti)
 COL_ACQUA <- scales::alpha(blu_lg, 0.35)
 COL_PARCHI <- scales::alpha(grn_lg, 0.35)
-# colore: blu = temi neutri nella convenzione di _parma_colors.R
-COL_ACER <- blu_md
-# palette a 4 classi della mappa sunto (DA SCEGLIERE): blu del repo, dal chiaro allo scuro
-PAL_ACER <- c("#DCE6EE", blu_lg, blu_md, blu_sc)
+# colore: pesca = abitare pubblico nella convenzione di _parma_colors.R (deciso 2026-10-09; prima blu)
+COL_ACER <- seq_factor_peach[6]
+# palette a 4 classi della mappa sunto: toni della stessa sequenziale, dal chiaro allo scuro
+PAL_ACER <- seq_factor_peach[c(2, 4, 6, 8)]
 # classi fisse della mappa sunto (conteggi da 9 a 148: i quintili darebbero tagli strani)
 BREAKS_IMMOBILI <- c(0, 20, 50, 100, Inf)
 ETICHETTE_IMMOBILI <- c("fino a 20", "21-50", "51-100", "oltre 100")
@@ -253,6 +254,51 @@ iwalk(mappe_acer_quartiere, function(p, nome) {
   f_salva_plot(p, nome, dir_out = dir_mod, width = 9, height = 7)
 })
 
+# 4b. Mappa a punti di tutti gli immobili + barre per quartiere (2026-10-09) ------
+# Nel sito sostituisce la mappa sunto a classi: un conteggio si mostra coi punti
+# (dove) e con le barre (quanti). Stesso data_id nei due pannelli: passando su una
+# barra si evidenziano i punti del quartiere, e viceversa. Totale del Comune nel sottotitolo
+
+## __ mappa_acer_punti_prep ----
+mappa_acer_punti_prep <- immobili_prep |>
+  left_join(acer_quartieri, by = "quartiere") |>
+  mutate(tooltip_punto = paste0(quartiere, ": ", n_immobili, " immobili ACER\n", tooltip_immobile))
+
+n_immobili_comune <- sum(acer_quartieri$n_immobili)
+bbox_citta <- st_bbox(quartieri_sf)
+
+## __ mappa_acer_punti ----
+pannello_mappa <- ggplot() +
+  geom_sf(data = quartieri_sf, fill = "white", color = grey_sc, linewidth = 0.3) +
+  geom_sf_interactive(data = mappa_acer_punti_prep,
+                      aes(tooltip = tooltip_punto, data_id = quartiere),
+                      shape = 21, fill = COL_ACER, color = "white", size = 1.8, stroke = 0.2, alpha = 0.85) +
+  # riquadro stretto della città (non riquadro_comune, che ha lo spazio per la legenda a destra)
+  coord_sf(xlim = bbox_citta[c("xmin", "xmax")], ylim = bbox_citta[c("ymin", "ymax")], datum = NA) +
+  f_theme_sito_mappa()
+
+pannello_barre <- plot_acer_quartieri_prep |>
+  ggplot(aes(x = n_immobili, y = quartiere)) +
+  geom_col_interactive(aes(tooltip = tooltip_barra, data_id = quartiere), fill = COL_ACER, width = 0.7) +
+  geom_text(aes(label = n_immobili), hjust = -0.2, size = 3.2, color = grey_extra_sc) +
+  scale_x_continuous(expand = expansion(mult = c(0, 0.15))) +
+  labs(x = NULL, y = NULL) +
+  f_theme_sito() +
+  theme(panel.grid.major.y = element_blank())
+
+mappa_acer_punti <- pannello_mappa + pannello_barre +
+  plot_layout(widths = c(3, 2)) +
+  plot_annotation(
+    title    = paste0("Immobili ACER nel Comune di Parma (", ANNO_DATI, ")"),
+    subtitle = paste0("Indicatore: n. di immobili ACER (edifici, non alloggi); un punto = un immobile, le barre il totale per quartiere; Comune di Parma: ",
+                      n_immobili_comune, " immobili"),
+    caption  = CAP,
+    theme    = f_theme_sito()
+  )
+mappa_acer_punti
+
+f_salva_plot(mappa_acer_punti, "mappa_acer_punti", dir_out = dir_mod, width = 9, height = 6)
+
 # 5. Popolazione per quartiere: mappe degli indicatori ---------------------
 
 # valori del comune (per il sottotitolo) e dei soli quartieri (per le mappe)
@@ -262,8 +308,13 @@ bordo_comune_sf <- quartieri_sf |> summarise()
 # valori dei soli quartieri (per i gradini delle scale)
 pop_soli_quartieri <- pop_quartieri |> filter(quartiere != "Comune di Parma")
 
-# gradini "tondi" e di ampiezza uguale sul campo di valori di un gruppo di indicatori
-f_gradini <- function(vars) pretty(range(unlist(pop_soli_quartieri[vars])), n = 5)
+# gradini di ampiezza `passo` sui multipli del passo che contengono il campo di valori
+# del gruppo di indicatori; passo NA = gradini "tondi" automatici (pretty), per conteggi e per mille
+f_gradini <- function(vars, passo = NA) {
+  campo <- range(unlist(pop_soli_quartieri[vars]))
+  if (is.na(passo)) return(pretty(campo, n = 5))
+  seq(floor(campo[1] / passo) * passo, ceiling(campo[2] / passo) * passo, by = passo)
+}
 
 # 1 riga = 1 mappa. Le mappe dello stesso "gruppo" hanno la STESSA scala (gradini
 # calcolati sui valori di tutto il gruppo): stesso colore = stessa %.
@@ -271,23 +322,23 @@ f_gradini <- function(vars) pretty(range(unlist(pop_soli_quartieri[vars])), n = 
 # suffisso = "%" per le percentuali, "‰" per i rapporti per 1.000;
 # tono = "pieno" o "tenue" (senza i toni più scuri, per valori piccoli in assoluto)
 mappe_pop_def <- tibble::tribble(
-  ~var,                    ~titolo,                                ~indicatore,                                                         ~legenda,                         ~suffisso, ~gruppo,        ~tono,    ~seq8,             ~caption,
-  "pct_bambini_0_14",      "Bambini e ragazzi di 0-14 anni",       "Indicatore: % di 0-14 anni su tot. residenti",                      "% sui residenti",                "%",       "giovani",      "pieno",  seq_factor_green,  CAP_POP,
-  "pct_minori_0_17",       "Residenti minorenni",                  "Indicatore: % di 0-17 anni su tot. residenti",                      "% sui residenti",                "%",       "giovani",      "pieno",  seq_factor_green,  CAP_POP,
-  "pct_giovani_18_29",     "Giovani adulti di 18-29 anni",         "Indicatore: % di 18-29 anni su tot. residenti (solo residenti, esclusi studenti fuori sede)", "% sui residenti", "%", "giovani", "pieno", seq_factor_green, CAP_POP,
-  "pct_stranieri",         "Stranieri residenti",                  "Indicatore: % di stranieri su tot. residenti",                      "% sui residenti",                "%",       "stranieri",    "pieno",  seq_factor_purple, CAP_POP,
-  "pct_stranieri_minori",  "Stranieri tra i minori",               "Indicatore: % di stranieri su tot. residenti di 0-17 anni",         "% sui minori",                   "%",       "stranieri",    "pieno",  seq_factor_purple, CAP_POP,
-  "pct_anziani_65",        "Residenti di 65 anni e oltre",         "Indicatore: % di 65+ su tot. residenti",                            "% sui residenti",                "%",       "anziani",      "pieno",  seq_factor_red,    CAP_POP,
-  "pct_anziani_80",        "Residenti di 80 anni e oltre",         "Indicatore: % di 80+ su tot. residenti",                            "% sui residenti",                "%",       "anziani",      "pieno",  seq_factor_red,    CAP_POP,
-  "pct_anziani_soli",      "Anziani che vivono soli",              "Indicatore: % in famiglia di 1 persona su tot. 65+ in famiglia",    "% sugli anziani\nin famiglia",   "%",       "anziani_soli", "pieno",  seq_factor_red,    CAP_FAMIGLIE,
-  "famiglie",              "Famiglie anagrafiche",                 "Indicatore: n. di famiglie anagrafiche (stesso stato di famiglia; escluse le convivenze)", "famiglie", "", "famiglie_n", "tenue", seq_factor_blue, CAP_FAMIGLIE,
-  "pct_famiglie_1",        "Famiglie di una sola persona",         "Indicatore: % di famiglie di 1 persona su tot. famiglie",           "% sulle famiglie",               "%",       "famiglie_1",   "pieno",  seq_factor_blue,   CAP_FAMIGLIE,
-  "pct_famiglie_numerose", "Famiglie numerose",                    "Indicatore: % di famiglie con 5 o più componenti su tot. famiglie", "% sulle famiglie",               "%",       "famiglie",     "tenue",  seq_factor_blue ,  CAP_FAMIGLIE,
-  "acer_per_1000",         "Immobili ACER ogni 1.000 residenti",   "Indicatore: immobili ACER (edifici, 2022) ogni 1.000 residenti (‰)", "‰ sui residenti",               "‰",       "acer",         "tenue",  seq_factor_blue,   f_caption_fonte(glue("{FONTE_OPENDATA} (immobili ACER 2022; popolazione al 1/1/2026; quartieri vigenti)")),
-  "convivenza_per_1000",   "Residenti in convivenze anagrafiche",  "Indicatore: residenti in convivenza ogni 1.000 residenti (‰)",      "‰ sui residenti",               "‰",       "convivenze",   "tenue",  seq_factor_grey,   paste0("Nota: convivenze anagrafiche = residenze per anziani, comunità, accoglienza, istituti religiosi, carcere\n", CAP_POP)
+  ~var,                    ~titolo,                                ~indicatore,                                                         ~legenda,                         ~suffisso, ~gruppo,        ~tono,    ~seq8,             ~caption, ~passo,
+  "pct_bambini_0_14",      "Bambini e ragazzi di 0-14 anni",       "Indicatore: % di 0-14 anni su tot. residenti",                      "% sui residenti",                "%",       "giovani",      "pieno",  seq_factor_green,  CAP_POP, 2,
+  "pct_minori_0_17",       "Residenti minorenni",                  "Indicatore: % di 0-17 anni su tot. residenti",                      "% sui residenti",                "%",       "giovani",      "pieno",  seq_factor_green,  CAP_POP, 2,
+  "pct_giovani_18_29",     "Giovani adulti di 18-29 anni",         "Indicatore: % di 18-29 anni su tot. residenti (solo residenti, esclusi studenti fuori sede)", "% sui residenti", "%", "giovani", "pieno", seq_factor_green, CAP_POP, 2,
+  "pct_stranieri",         "Stranieri residenti",                  "Indicatore: % di stranieri su tot. residenti",                      "% sui residenti",                "%",       "stranieri",    "pieno",  seq_factor_purple, CAP_POP, 5,
+  "pct_stranieri_minori",  "Stranieri tra i minori",               "Indicatore: % di stranieri su tot. residenti di 0-17 anni",         "% sui minori",                   "%",       "stranieri",    "pieno",  seq_factor_purple, CAP_POP, 5,
+  "pct_anziani_65",        "Residenti di 65 anni e oltre",         "Indicatore: % di 65+ su tot. residenti",                            "% sui residenti",                "%",       "anziani_65",   "pieno",  seq_factor_red,    CAP_POP, 2.5,
+  "pct_anziani_80",        "Residenti di 80 anni e oltre",         "Indicatore: % di 80+ su tot. residenti",                            "% sui residenti",                "%",       "anziani_80",   "pieno",  seq_factor_red,    CAP_POP, 2.5,
+  "pct_anziani_soli",      "Anziani che vivono soli",              "Indicatore: % in famiglia di 1 persona su tot. 65+ in famiglia",    "% sugli anziani\nin famiglia",   "%",       "anziani_soli", "pieno",  seq_factor_red,    CAP_FAMIGLIE, 5,
+  "famiglie",              "Famiglie anagrafiche",                 "Indicatore: n. di famiglie anagrafiche (stesso stato di famiglia; escluse le convivenze)", "famiglie", "", "famiglie_n", "tenue", seq_factor_blue, CAP_FAMIGLIE, NA,
+  "pct_famiglie_1",        "Famiglie di una sola persona",         "Indicatore: % di famiglie di 1 persona su tot. famiglie",           "% sulle famiglie",               "%",       "famiglie_1",   "pieno",  seq_factor_blue,   CAP_FAMIGLIE, 5,
+  "pct_famiglie_numerose", "Famiglie numerose",                    "Indicatore: % di famiglie con 5 o più componenti su tot. famiglie", "% sulle famiglie",               "%",       "famiglie",     "tenue",  seq_factor_blue ,  CAP_FAMIGLIE, 0.5,
+  "acer_per_1000",         "Immobili ACER ogni 1.000 residenti",   "Indicatore: immobili ACER (edifici, 2022) ogni 1.000 residenti (‰)", "‰ sui residenti",               "‰",       "acer",         "tenue",  seq_factor_peach,  f_caption_fonte(glue("{FONTE_OPENDATA} (immobili ACER 2022; popolazione al 1/1/2026; quartieri vigenti)")), NA,
+  "convivenza_per_1000",   "Residenti in convivenze anagrafiche",  "Indicatore: residenti in convivenza ogni 1.000 residenti (‰)",      "‰ sui residenti",               "‰",       "convivenze",   "tenue",  seq_factor_grey,   paste0("Nota: convivenze anagrafiche = residenze per anziani, comunità, accoglienza, istituti religiosi, carcere\n", CAP_POP), NA
 ) |>
   group_by(gruppo) |>
-  mutate(gradini = list(f_gradini(var))) |>
+  mutate(gradini = list(f_gradini(var, first(passo)))) |>
   ungroup()
 
 # controllo: i gradini di ogni gruppo
@@ -297,12 +348,12 @@ mappe_pop_def |> distinct(gruppo, gradini) |> tidyr::unnest_wider(gradini, names
 # gruppo); colori interpolati sulla sequenziale (pieno: 2°-8° tono; tenue: 1°-5°);
 # valori (nome quartiere + valore) solo nel tooltip, niente etichette in mappa
 f_mappa_pop <- function(var, titolo, indicatore, legenda, suffisso, gruppo, tono,
-                        seq8, caption, gradini) {
+                        seq8, caption, passo, gradini) {
   # conteggi (suffisso vuoto) senza decimali, percentuali con 1 decimale
   lab_val <- function(x) scales::number(x, accuracy = if (suffisso == "") 1 else 0.1,
                                         big.mark = ".", decimal.mark = ",", suffix = suffisso)
-  # etichette dei gradini: decimali solo se il passo è sotto 1
-  lab_gradino <- scales::label_number(accuracy = if (diff(gradini)[1] < 1) 0.1 else 1,
+  # etichette dei gradini: un decimale solo se il passo non è intero (es. 2,5 o 0,5)
+  lab_gradino <- scales::label_number(accuracy = if (diff(gradini)[1] %% 1 != 0) 0.1 else 1,
                                       big.mark = ".", decimal.mark = ",", suffix = suffisso)
   colori <- if (tono == "tenue") seq8[1:5] else seq8[2:8]
   palette <- grDevices::colorRampPalette(colori)(length(gradini) - 1)
@@ -315,7 +366,7 @@ f_mappa_pop <- function(var, titolo, indicatore, legenda, suffisso, gruppo, tono
                             if (var == "famiglie") {
                               paste0(" famiglie (", scales::number(comp_per_famiglia, accuracy = 0.01, decimal.mark = ","), " componenti in media)")
                             } else if (var %in% c("pct_famiglie_1", "pct_famiglie_numerose")) {
-                              paste0(" (", scales::number(famiglie, big.mark = "."), " famiglie)")
+                              paste0(" (", scales::number(famiglie, big.mark = ".", decimal.mark = ","), " famiglie)")
                             } else ""))
 
   mappa <- f_disegna_mappa(
@@ -413,3 +464,30 @@ plot_pop_quartieri_eta
 f_salva_plot(plot_pop_quartieri_eta, "plot_pop_quartieri_eta",
              dir_out = dir_mod, width = 9, height = 7)
 
+
+# Verifiche rapide (da eseguire a mano) ------------------------------------
+# Scelta del passo delle classi delle mappe per quartiere (2026-10-09): campo dei
+# valori per indicatore e, per i passi candidati, quante classi escono e quanti
+# quartieri cadono in ciascuna (confrontare con l'analogo blocco in pop_mappe_tematiche)
+vars_pct <- c("pct_bambini_0_14", "pct_minori_0_17", "pct_giovani_18_29",
+              "pct_anziani_65", "pct_anziani_80", "pct_anziani_soli",
+              "pct_stranieri", "pct_stranieri_minori",
+              "pct_famiglie_1", "pct_famiglie_numerose")
+
+# campo min – max per indicatore (quartieri, senza il totale comunale)
+pop_soli_quartieri |>
+  summarise(across(all_of(vars_pct), function(x) paste(round(range(x), 1), collapse = " – "))) |>
+  tidyr::pivot_longer(everything(), names_to = "indicatore", values_to = "campo")
+
+# quartieri per classe con un dato passo (gradini = multipli del passo che contengono il campo)
+f_prova_passo <- function(var, passo, df = pop_soli_quartieri) {
+  x    <- df[[var]]
+  brks <- seq(floor(min(x) / passo) * passo, ceiling(max(x) / passo) * passo, by = passo)
+  table(cut(x, brks, include.lowest = TRUE))
+}
+f_prova_passo("pct_bambini_0_14", 2)
+f_prova_passo("pct_bambini_0_14", 2.5)
+f_prova_passo("pct_anziani_65", 5)
+f_prova_passo("pct_anziani_65", 2.5)
+f_prova_passo("pct_stranieri", 5)
+f_prova_passo("pct_stranieri", 2.5)

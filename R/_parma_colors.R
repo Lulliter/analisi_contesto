@@ -7,6 +7,7 @@
 #   rosso   = anziani / invecchiamento
 #   viola   = stranieri / migrazioni
 #   blu     = densità, popolazione totale, temi neutri
+#   pesca (seq_factor_peach) = abitare pubblico / immobili ACER (deciso 2026-10-09 in comune_pr_quartieri; brnyl scartata: i toni scuri vanno nel bordeaux di Parma)
 #   arancio = seconda chance / istruzione degli adulti (serali, CPIA, carcere: seq_factor_orange[6/8/4], deciso 2026-09-23 in formaz_e_rientro)
 #   bordeaux (burg_*) = evidenziazione Parma (mappe) + hover interattivo (R/f_girafe.R usa burg_md)
 #   serie territoriali (trend): Parma = ylw_lg, ER = grn_md, Italia = blu_md
@@ -126,6 +127,12 @@ seq_factor_grey <- c(
   '#525252',
   '#252525'
 )
+
+# abitare pubblico (ACER): da Carto Colors Peach (7 toni, giallo-pesca -> arancio-rosso),
+# portata a 8 toni per lo schema seq8[2:8] delle mappe
+seq_factor_peach <- grDevices::colorRampPalette(c('#fde0c5', '#facba6', '#f8b58b', '#f59e72', '#f2855d', '#ef6a4c', '#eb4a40'))(8)
+# Carto BrnYl (sabbia -> prugna): disponibile, non assegnata (provata per ACER il 2026-10-09)
+seq_factor_brnyl <- grDevices::colorRampPalette(c('#ede5cf', '#e0c2a2', '#d39c83', '#c1766f', '#a65461', '#813753', '#541f3f'))(8)
 
 
 div_dummy_ter <- c('#d8b365', '#f5f5f5', '#5ab4ac')

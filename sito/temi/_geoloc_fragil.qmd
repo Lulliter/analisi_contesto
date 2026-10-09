@@ -27,11 +27,14 @@ link-citations: true
 ---
 
 ```{r}
+#| label: anteprima
 #| eval: false
 # Anteprima: renderizza e apre nel browser (lancia a mano, ignorato nel render)
 pagina <- "_geoloc_fragil"   # nome pagina, senza estensione
 quarto::quarto_render(here::here("sito", "temi", paste0(pagina, ".qmd")))
-browseURL(here::here("docs", "sito", "temi", paste0(pagina, ".html")))
+# le bozze con l'underscore sono fuori dal progetto: l'html finisce accanto al .qmd, non in docs/
+# (e l'anteprima di RStudio non trova il css: aprire il file direttamente)
+browseURL(here::here("sito", "temi", paste0(pagina, ".html")))
 ```
 
 <!-- BOZZA migrazione 2026-07-18: adattata da dashboard/demographic_trends/index.qmd

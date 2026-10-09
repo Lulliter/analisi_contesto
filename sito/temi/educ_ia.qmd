@@ -28,6 +28,7 @@ nocite: |
 ---
 
 ```{r}
+#| label: anteprima
 #| eval: false
 # Anteprima: renderizza e apre nel browser (lancia a mano, ignorato nel render)
 pagina <- "educ_ia"   # nome pagina, senza estensione
@@ -60,7 +61,8 @@ dir_pew <- here::here("moduli", "ia_pew_usa", "output")
 ```
 
 
-::: {.callout-warning title="" collapse="true"}
+::: {.callout-note .metodo collapse="true"}
+#### Nota metodologica
 I dati sono per lo più riferiti a territori extra-provincia, in quanto relativi a fenomeni recenti non necessariamente coperti a livello locale. 
 <!-- Mancano ancora la formazione professionale (IeFP) e gli esiti, in attesa dei dati regionali: le sezioni segnate con 🟡. -->
 <!-- Questa pagina raccoglie le domande e la struttura dell'analisi sul passaggio dalla formazione al lavoro. Segue logicamente la pagina sui [giovani a rischio dispersione](scuola_dispersione.qmd). -->
@@ -120,8 +122,7 @@ _NB: elaborazioni ISTAT per Save the Children ("Educare al digitale", aprile 202
 
 In poco più di vent'anni usare internet ogni giorno è passato da eccezione a norma: la didattica a distanza adottata nel lockdown ha segnato un'accelerazione senza ritorno anche tra i più piccoli.
 
-::: {.callout-warning collapse="true"}
-
+::: {.callout-note .normativa collapse=true}
 #### Scuola e dispositivi: norme in contraddizione
 Si nota una sorta di "corto circuito" nella normativa scolastica: da un lato si esorta a limitare l'uso di smartphone e tablet per assicurare il benessere psicofisico degli studenti [@MIM2024notasmart; @MIM2026circsmart]; dall'altro, si promuove ormai da tempo l'adozione di libri di testo in modalità mista e digitale per la didattica [a partire da @MIUR2013DMlibri; @MIUR2013libri]. D'altra parte, vigilare sui tetti di spesa dei manuali scolastici [@MIUR2013DMlibri] può entrare in contraddizione con la promozione dell'approccio BYOD (_bring your own device_) [@MIUR2015pnsd], che sposta l'onere economico dell'acquisto dei dispositivi tecnologici direttamente sulle famiglie.
 :::
@@ -193,9 +194,9 @@ _NB: stima campionaria, da leggere nei trend più che nei singoli anni. La class
 
 Il profilo sui social network e media arriva prima dei 14 anni e il contatto online con gli amici è continuo.
 
-::: {.callout-warning  collapse="true"}
 
-#### Social e minori: Legge italiana e UE
+::: {.callout-note .normativa collapse=true}
+#### Normativa: Social e minori
 Il Regolamento Europeo (GDPR) e la normativa italiana fissano paletti precisi per proteggere i dati personali e la salute psicofisica dei minori:
 
 1. Il quadro UE: il GDPR stabilisce che **il trattamento dei dati personali dei minori è lecito a partire dai 16 anni**, con discrezione degli Stati membri di abbassare tale soglia fino al limite minimo di 13 anni. 

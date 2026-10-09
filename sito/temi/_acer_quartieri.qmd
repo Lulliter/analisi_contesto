@@ -1,0 +1,212 @@
+---
+title: "Immobili ACER per quartiere (bozza di lavoro)"
+description: "Le 13 mappe di dettaglio degli immobili ACER (2022) per quartiere, con strade, parchi e corsi d'acqua; materiale di lavoro staccato dalla pagina Geografia dell'abitare"
+lang: it
+
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+    # solo per l'anteprima della bozza: fuori dal sito _quarto.yml non si applica
+    # (nel sito è già il default, si può togliere alla promozione)
+    css: ../../assets/styles/custom.css
+
+# idem: larghezza unica dei grafici del sito (regola 2026-09-18), qui solo per l'anteprima
+fig-width: 9
+
+execute:
+  eval: true
+  echo: false
+  warning: false
+  error: false
+  output: false
+
+# --- Bibliografia (unica per il sito, esportata da Zotero): si cita con [@chiave]
+bibliography: ../../bib/CRP_analisi_contesto.bib
+csl: ../../bib/apa_7th.csl
+link-citations: true
+---
+
+```{r}
+#| label: anteprima
+#| eval: false
+# Anteprima: renderizza e apre nel browser (lancia a mano, ignorato nel render)
+pagina <- "_acer_quartieri"   # nome pagina, senza estensione
+quarto::quarto_render(here::here("sito", "temi", paste0(pagina, ".qmd")))
+# le bozze con l'underscore sono fuori dal progetto: l'html finisce accanto al .qmd, non in docs/
+# (e l'anteprima di RStudio non trova il css: aprire il file direttamente)
+browseURL(here::here("sito", "temi", paste0(pagina, ".html")))
+```
+
+<!-- Pagina bozza (2026-10-08), voce prevista nel menu Demografia ("Geografia
+     dell'abitare"). Output del modulo comune_pr_quartieri; la sezione ACER è
+     copiata da _geoloc_fragil.qmd. -->
+
+```{r}
+#| label: setup
+library(here)
+library(dplyr)
+library(ggplot2)
+library(ggiraph)
+library(ggtext)       # registra element_textbox usato nei temi dei plot
+library(sf)
+library(downloadthis) # bottoni di scarico dati
+source(here::here("R", "sito.R"))     # bottoni CSV + Excel (f_scarica_dati, f_bottoni_dati)
+source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hover bordeaux)
+dir_mod <- here::here("moduli", "comune_pr_quartieri", "output")
+dir_pop <- here::here("moduli", "pop_mappe_tematiche", "output")   # mappe per comune (sezione La provincia)
+
+# totali del comune per le frasi di apertura delle sezioni (si aggiornano con i dati)
+pop_comune <- readRDS(file.path(dir_mod, "pop_quartieri.rds")) |>
+  filter(quartiere == "Comune di Parma")
+f_n <- function(x) format(x, big.mark = ".", decimal.mark = ",")
+```
+
+<!-- Bozza di lavoro (2026-10-09): le 13 mappe per quartiere degli immobili ACER
+     (modulo comune_pr_quartieri, sezione 4) erano in _geogr_abitare.qmd, tolte da lì
+     per il peso della pagina (~20 MB) e sostituite da mappa_acer_punti. Qui restano
+     per farne altro (es. schede di quartiere). Non è nel sito finché ha l'underscore. -->
+
+# Gli immobili ACER quartiere per quartiere
+
+### Dove sono gli immobili ACER per quartiere? 
+
+
+:::: {.panel-tabset}
+
+### Parma Centro
+
+```{r}
+#| label: mappa_acer_parma_centro
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_acer_parma_centro.rds")))
+```
+
+### Oltretorrente
+
+```{r}
+#| label: mappa_acer_oltretorrente
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_acer_oltretorrente.rds")))
+```
+
+### Molinetto
+
+```{r}
+#| label: mappa_acer_molinetto
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_acer_molinetto.rds")))
+```
+
+### Pablo
+
+```{r}
+#| label: mappa_acer_pablo
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_acer_pablo.rds")))
+```
+
+### Golese
+
+```{r}
+#| label: mappa_acer_golese
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_acer_golese.rds")))
+```
+
+### San Pancrazio
+
+```{r}
+#| label: mappa_acer_san_pancrazio
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_acer_san_pancrazio.rds")))
+```
+
+### San Leonardo
+
+```{r}
+#| label: mappa_acer_san_leonardo
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_acer_san_leonardo.rds")))
+```
+
+### Cortile San Martino
+
+```{r}
+#| label: mappa_acer_cortile_san_martino
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_acer_cortile_san_martino.rds")))
+```
+
+### Lubiana
+
+```{r}
+#| label: mappa_acer_lubiana
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_acer_lubiana.rds")))
+```
+
+### San Lazzaro
+
+```{r}
+#| label: mappa_acer_san_lazzaro
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_acer_san_lazzaro.rds")))
+```
+
+### Cittadella
+
+```{r}
+#| label: mappa_acer_cittadella
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_acer_cittadella.rds")))
+```
+
+### Montanara
+
+```{r}
+#| label: mappa_acer_montanara
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_acer_montanara.rds")))
+```
+
+### Vigatto
+
+```{r}
+#| label: mappa_acer_vigatto
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_acer_vigatto.rds")))
+```
+
+::::
+
+:::: {.text-end}
+```{r}
+#| label: dl_mappe_acer_quartiere
+#| output: true
+f_bottoni_dati("acer_immobili", dir_mod, rds = "mappa_acer_parma_centro")
+```
+::::
+
+:::: {.callout-note collapse="true"}
+### Osservazioni
+
+<!-- <da scrivere> -->
+
+_NB: passando il mouse sui punti si leggono indirizzo e anno di costruzione, sulle strade il nome della via, sui parchi il nome del parco. Il file scaricabile contiene l'elenco completo degli immobili di tutti i quartieri, con le coordinate._
+::::
+

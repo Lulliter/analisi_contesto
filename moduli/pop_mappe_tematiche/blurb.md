@@ -14,9 +14,4 @@
 - **Invecchiamento: la provincia è un po' più giovane della regione (65+ al 23,6% contro 24,9%), ma la media nasconde due estremi**: 12 comuni stanno nel quinto più giovane dell'ER (la cintura del capoluogo e la pedecollina: Torrile 18,3%, Colorno, Langhirano, Lesignano, Sala Baganza) e 14 nel quinto più vecchio, tutti in montagna, dove gli anziani sono quasi la metà dei residenti (Bore 47%, Monchio 44%, Tornolo 42%, Palanzano 41%) e i bambini 0-14 il 4-6%. I bambini si concentrano invece nella bassa e nella pedecollina (San Secondo 14,4%, Langhirano 14,0%, Colorno e Fidenza 13,7%); Parma città è nella media (12,3%, ER 11,8%).
 
 
-**Note di metodo:** classi = quintili della distribuzione comunale ER; densità
-calcolata sulla superficie dei poligoni generalizzati (adeguata per mappe, non
-per statistiche ufficiali di superficie — TODO: sostituire con superfici ISTAT);
-"stranieri" = cittadinanza straniera + apolidi (codice FRGAPO); "minorenni" =
-0-17 anni dall'indicatore dedicato del censimento (`RESPOP_MIN_AV`), non
-derivabile dalle classi decennali.
+**Note di metodo:** classi = quintili della distribuzione comunale ER; densità calcolata sulla superficie dei poligoni generalizzati (adeguata per mappe, non per statistiche ufficiali di superficie — TODO: sostituire con superfici ISTAT); "stranieri" = cittadinanza straniera + apolidi (codice FRGAPO); "minorenni" = 0-17 anni dall'indicatore dedicato del censimento (`RESPOP_MIN_AV`), non derivabile dalle classi decennali.

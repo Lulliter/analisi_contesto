@@ -24,6 +24,7 @@ link-citations: true
 ---
 
 ```{r}
+#| label: anteprima
 #| eval: false
 # Anteprima: renderizza e apre nel browser (lancia a mano, ignorato nel render)
 pagina <- "scuola"   # nome pagina, senza estensione

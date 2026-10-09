@@ -27,9 +27,6 @@ link-citations: true
 #| label: anteprima
 #| eval: false
 
-#| label: anteprima
-#| eval: false
-
 # --- [se serve] Ricreare i grafici
 # source(here::here("moduli", "demo_trend_previs", "01_dati.R"))
 # source(here::here("moduli", "demo_trend_indicatori", "02_output.R"))
@@ -65,8 +62,8 @@ dir_previs <- here::here("moduli", "demo_trend_previs", "output")
 
 <!-- frasi dal blurb di moduli/demo_trend_previs -->
 
-::: {.callout-warning collapse="true"}
-## Nota
+::: {.callout-note .metodo collapse="true"}
+#### Nota metodologica
 Previsioni ISTAT base 1.1.2024, **solo scenario mediano** (i file pubblicati per comuni e province non riportano gli scenari alternativi). Gli aggregati Emilia-Romagna e Italia sono somme delle province (i file ISTAT non contengono totali). I dati comunali esistono solo per i comuni con almeno 5.000 abitanti (22 su 44 in provincia di Parma) e non sono usati in questa pagina.
 :::
 

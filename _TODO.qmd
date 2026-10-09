@@ -63,15 +63,26 @@ dati/grezzi/ ──▶ ingestione/ ──▶ dati/puliti/ ──▶ moduli/*/out
 ```
 
 
+# Richieste uffici
+
+Dati che non stanno negli open data e vanno chiesti agli enti (bozze in `dati/grezzi/_richieste_dati.md`, 2026-09-23). Una riga per richiesta; annotare qui data di invio ed esito.
+
+- [ ] 1) CPIA Parma: iscritti per anno, percorso, età, cittadinanza, esiti
+- [ ] 2) Regione ER (SIFER): iscritti IeFP per provincia
+- [ ] 3) Regione ER: anagrafe regionale degli studenti (infanzia, esiti, passaggi IeFP, ELET provinciale, disabilità) → serve a `scuola_iscritti`, `scuola_disabilita`, `scuola_abband_neet`
+- [ ] 4) INVALSI, Servizio statistico: tabelle sotto la mappa ELET provinciale e il cartogramma dispersione implicita (fig. 8.2.3)
+- [ ] 5) AUSL Parma / Regione ER: utenti NPIA e accessi PS minori per età → `educ_ia`
+- [ ] 6) Comune di Parma, servizi sociali / AUSL: persone con disabilità per quartiere → `comune_pr_quartieri`
+- [ ] 7) Comune di Parma, ufficio casa: domande al bando affitto (e morosità incolpevole, domande ERP) per quartiere o CAP, per anno → mappa del rischio abitativo nel mercato privato, accanto agli immobili ACER (`comune_pr_quartieri`)
+  - in attesa, proxy da fonti aperte: canoni OMI per zona (Agenzia delle Entrate) rapportati ai redditi IRPEF per CAP (MEF) e sfratti per provincia (Ministero dell'Interno) → voci nel tema 5
+
+---
+
+{{< pagebreak >}}
+
 # Trasversale
 
 - [x] Riordino del diario e del contesto per l'assistente IA: pulizia di `_TODO.qmd` sezione per sezione; confronto memoria / `CLAUDE.md`
-- [ ] **Richieste dati esterne** (bozze in `dati/grezzi/_richieste_dati.md`, 2026-09-23): annotare qui data di invio ed esito
-  - [ ] 1) CPIA Parma: iscritti per anno, percorso, età, cittadinanza, esiti
-  - [ ] 2) Regione ER (SIFER): iscritti IeFP per provincia
-  - [ ] 3) Regione ER: anagrafe regionale degli studenti (infanzia, esiti, passaggi IeFP, ELET provinciale, disabilità) → serve a `scuola_iscritti`, `scuola_disabilita`, `scuola_abband_neet`
-  - [ ] 4) INVALSI, Servizio statistico: tabelle sotto la mappa ELET provinciale e il cartogramma dispersione implicita (fig. 8.2.3)
-  - [ ] 5) AUSL Parma / Regione ER: utenti NPIA e accessi PS minori per età → `educ_ia`
 - [ ] **Formato numeri italiano** nei grafici (aperta 2026-09-18; oggi punto e virgola mescolati nelle legende)
   - [ ] 1) un solo set di formattatori in `R/` (`num_it()`, `pct_it()`, `lab_num_it`, `lab_pct_it`)
   - [ ] 2) sostituire le chiamate dirette a `scales::` nei `02_output.R`, rilanciare `build.R` e aggiungere lì il controllo sulle chiamate dirette
@@ -126,7 +137,7 @@ ___
 **Ricognizione/Aggiornamento FONTI**: 
 
 - [ ] _Fonte da acquisire_:
-  + iscritti alla scuola dell'infanzia: il MIM non li rileva, l'anagrafe studenti della Regione ER sì → richiesta n. 3 (Trasversale)
+  + iscritti alla scuola dell'infanzia: il MIM non li rileva, l'anagrafe studenti della Regione ER sì → richiesta n. 3 (Richieste uffici)
   + [ISTAT offerta nidi](https://www.istat.it/comunicato-stampa/offerta-di-nidi-e-servizi-integrativi-per-la-prima-infanzia-anno-educativo-2023-2024)
 
 ### modulo `scuola_disabilita`
@@ -135,7 +146,9 @@ ___
 **Ricognizione/Aggiornamento FONTI**: 
 
 - [ ] Al prossimo fact sheet USR-ER (uscita ~settembre): aggiungere le righe al csv, aggiornare `ANNO_ULTIMO` e il blurb
-- [ ] Anagrafe studenti [Regione ER](https://scuola.regione.emilia-romagna.it/anagrafi-regionali): successo/regolarità per provincia e iscritti all'infanzia → richiesta n. 3 (Trasversale)
+- [ ] Anagrafe studenti [Regione ER](https://scuola.regione.emilia-romagna.it/anagrafi-regionali): successo/regolarità per provincia e iscritti all'infanzia → richiesta n. 3 (Richieste uffici)
+- [ ]  Percorsi di Secondo Welfare. A pieno titolo. Nessi [Internet]. 2026 [cited 2026 Oct 8];03. https://www.secondowelfare.it/wp-content/uploads/2026/09/Nessi-3_A-pieno-titolo.pdf. Accessed 8 Oct 2026
+
 
 ### modulo `scuola_abband_neet`
 >(NEET/abbandoni/formazione continua PR vs province ER; fonte BES dei territori)
@@ -145,12 +158,13 @@ ___
 + [ ] Abbandono scolastico [Eurostat? / Openpolis](https://www.openpolis.it/labbandono-scolastico-un-problema-in-crescita-per-alcuni-paesi-ue/)
 + [ ] Profilo di chi abbandona (dalla pagina, approfondimento 1): [articolo Openpolis, abbandono in Italia, UE e città](https://www.openpolis.it/labbandono-scolastico-in-italia-in-europa-e-nelle-citta/)
 + [ ] Dispersione scolastica e NEET [Studio IPRASE Trentino ma bello](https://www.iprase.tn.it/news/comunicati/dispersione-scolastica-e-giovani-neet-presentati-i-risultati-della-ricerca-sullalto)
++ [x] BLog "Welfare" su [orientamento a 14 anni](https://www.secondowelfare.it/giovani/a-14-anni-davanti-al-futuro-quanto-pesano-scuola-famiglia-e-contesto/)
 
 + [ ] Il ruolo della scuola come sussidio al welfare territoriale
 
 - [ ] Approfondimenti (vedi domande in pagina): 
   - [ ] ELET/abbandono provinciale → anagrafe studenti RER (regolarità, successo) o esiti scrutini per scuola nel catalogo MIM (da verificare)
-  - [ ] dispersione implicita ed ELET per provincia: nei dati aperti non ci sono; esistono solo come grafici INVALSI (mappa ELET 2024-25, cartogramma fig. 8.2.3) → richiesta n. 4 (Trasversale)
+  - [ ] dispersione implicita ed ELET per provincia: nei dati aperti non ci sono; esistono solo come grafici INVALSI (mappa ELET 2024-25, cartogramma fig. 8.2.3) → richiesta n. 4 (Richieste uffici)
   - [ ] ritardo × cittadinanza e dopo-Covid alle medie → incrocio per plesso di età e cittadinanza (iscritti MIM); coorti → anagrafe RER + iscritti IeFP; seconda chance → modulo `formaz_e_rientro`
 
 ### modulo `formaz_e_rientro`
@@ -158,7 +172,7 @@ ___
 
 **Ricognizione/Aggiornamento FONTI**:
 
-- [ ] Iscritti IeFP per provincia (Regione ER, SIFER) → richiesta n. 2 (Trasversale)
+- [ ] Iscritti IeFP per provincia (Regione ER, SIFER) → richiesta n. 2 (Richieste uffici)
 - [ ] CPIA iscritti per anno/percorso/età/cittadinanza → richiesta n. 1; indicatore di inclusione degli adulti stranieri, da ricollocare quando nasce quel tema
 - [ ] Esiti (diplomati dei serali, qualificati IeFP): verificare "esiti scrutini/esami" per scuola nel catalogo MIM; INAPP; SIFER
 
@@ -201,7 +215,7 @@ _3. Rendimento e device_
 _4. ➡️ Benessere mentale 14-19 e Accessi NPIA (unico indicatore con Parma)_  
 
 - [ ] Nazionale: Bambino Gesù, accessi PS neuropsichiatrici 2011-2021 (via Openpolis)
-- [ ] DA CHIEDERE: Regione ER / AUSL Parma, accessi NPIA e PS per età, 2015→ → richiesta n. 5 (Trasversale)
+- [ ] DA CHIEDERE: Regione ER / AUSL Parma, accessi NPIA e PS per età, 2015→ → richiesta n. 5 (Richieste uffici)
 - [ ] Accessi PS e ricoveri per disturbi neuropsichiatrici in età evolutiva (schede di dimissione ospedaliera, Ministero della Salute / Regione ER): da verificare
 - [ ] Consumo di psicofarmaci in età pediatrica (rapporto OsMed, AIFA): da verificare
 - [ ] Pagina `benessere_giovani.qmd`: sezione "La salute mentale nei bambini e ragazzi" da riempire con le fonti qui sopra
@@ -345,6 +359,8 @@ Fonti in casa: `istat_sae_glf_2019` ✓ (stime GLF provinciali), aree interne/zo
 - [ ] RECUPERARE/CERCARE: trasporto pubblico sociale
 - [ ] RECUPERARE/CERCARE: PRESIDI TERRITORIALI di prossimità e ricomposizione sociale
 - [ ] verde urbano e spazi pubblici, comportamenti sostenibili
+- [ ] RECUPERARE: canoni di locazione per zona OMI (Agenzia delle Entrate, semestrale) da rapportare ai redditi IRPEF per CAP → indice di sforzo per l'affitto sotto il livello comunale
+- [ ] RECUPERARE: sfratti per provincia (Ministero dell'Interno, procedure di rilascio: emessi, eseguiti, per morosità), serie annuale
 
 
 **Ripensamento MODULI (connessi a fonti)**:
@@ -363,7 +379,8 @@ Fonti in casa: `istat_sae_glf_2019` ✓ (stime GLF provinciali), aree interne/zo
 - [x] sfondo delle mappe per quartiere: strade 2025, torrenti, ferrovie, parchi, con `ingestione/09` (2026-10-07)
 - [x] [Popolazione residente al 1 gennaio 2026](https://opendata.comune.parma.it/dataset/popolazione-residente-al-1-gennaio-2026) in `ingestione/09`; età = anni compiuti con `ETA - 1`, v. `_metadati.md` (2026-10-08)
 - [ ] reddito sotto il livello comunale: verificare MEF IRPEF per CAP
-- [ ] disabilità per quartiere: non nei dati aperti del Comune; eventuale richiesta a servizi sociali / AUSL
+- [ ] disabilità per quartiere e domande bando affitto / ERP per quartiere: non nei dati aperti del Comune → richieste n. 6 e 7 (Richieste uffici)
+- [ ] anziani soli per comune: verificare su Esplora Dati censimento (famiglie / persone sole per età); se c'è, aggiungerlo a `pop_mappe_tematiche` come sesto indicatore
 
 **Sito**:
 

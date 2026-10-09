@@ -7,7 +7,7 @@
 #         dati/puliti/istat_cens/pop_com_er_eta_2024.rds        (singole età)
 #         dati/puliti/istat_cens/pop_com_er_minorenni_2024.rds  (0-17 anni)
 # Output: output/pop_mappe_sf.rds — sf dei 330 comuni ER con indicatori:
-#         pop_tot, quota_stranieri, dens_km2, quota_65p, quota_0_14, quota_minorenni
+#         pop_tot, quota_stranieri, dens_km2, quota_65p, quota_80p, quota_0_14, quota_18_29, quota_minorenni
 # ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
@@ -45,13 +45,15 @@ if (is.na(sesso_tot)) {
 }
 
 # 3) Indicatori per comune ----------------------------------------------------
-# 3a. da singole età: totale, 65+, 0-14
+# 3a. da singole età: totale, 65+, 80+, 0-14, 18-29 (classi allineate a comune_pr_quartieri, 2026-10-09)
 ind_eta <- pop_eta |>
   filter(sesso == sesso_tot, cittadinanza == "TOTAL") |>
   summarise(
     pop_tot  = sum(popolazione),
     pop_65p  = sum(popolazione[eta >= 65]),
+    pop_80p  = sum(popolazione[eta >= 80]),
     pop_0_14 = sum(popolazione[eta <= 14]),
+    pop_18_29 = sum(popolazione[eta >= 18 & eta <= 29]),
     .by = PRO_COM_T
   )
 
@@ -75,7 +77,9 @@ ind_com <- ind_eta |>
   left_join(ind_min,   by = "PRO_COM_T") |>
   mutate(
     quota_65p       = pop_65p / pop_tot,
+    quota_80p       = pop_80p / pop_tot,
     quota_0_14      = pop_0_14 / pop_tot,
+    quota_18_29     = pop_18_29 / pop_tot,
     quota_minorenni = minorenni / pop_tot
   )
 

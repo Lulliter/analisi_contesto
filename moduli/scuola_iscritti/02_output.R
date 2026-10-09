@@ -292,12 +292,13 @@ plot_stranieri_comuni_pr_min
 # 3. Mappe comunali PR (ultimo a.s.) ---------------------------------------
 
 ## Scelta risoluzione sf  ------------------------------------------------
-file_dett <- here("dati", "puliti", "istat_shp", "PR_comuni_dettaglio_sf.rds")
+# dettaglio PR semplificato per il web (da ingestione/00b, 2026-10-09; prima il dettaglio pieno)
+file_dett <- here("dati", "puliti", "istat_shp", "PR_comuni_web_sf.rds")
 # dettaglio PR se disponibile (da ingestione/00b), altrimenti generalizzato
 if (file.exists(file_dett)) {
   pr_comuni_sf <- readRDS(file_dett) |> select(PRO_COM_T, COMUNE)
 } else {
-  message("Dettaglio PR non trovato (esegui ingestione/00b): uso il generalizzato")
+  message("Confini PR web non trovati (esegui ingestione/00b): uso il generalizzato")
   pr_comuni_sf <- readRDS(here("dati", "puliti", "istat_shp", "ER_comuni_sf.rds")) |>
     filter(COD_PROV %in% c("34", 34)) |>
     select(PRO_COM_T, COMUNE)

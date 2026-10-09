@@ -24,6 +24,7 @@ link-citations: true
 ---
 
 ```{r}
+#| label: anteprima
 #| eval: false
 # Anteprima: renderizza e apre nel browser (lancia a mano, ignorato nel render)
 pagina <- "scuola_dispersione"   # nome pagina, senza estensione
@@ -206,8 +207,8 @@ _NB: Fonte ISTAT, Bes dei territori, indicatori "competenza alfabetica / numeric
 :::
 
 
-::: {.callout-warning collapse="false" #arrivati-estero}
-### Un'attenzione in più: gli alunni arrivati dall'estero
+::: {.callout-note .metodo collapse="false" #arrivati-estero}
+#### Nota metodologica: gli alunni arrivati dall'estero
 
 A Parma più di un alunno su cinque ha [cittadinanza non italiana](scuola.qmd#gli-alunni-con-cittadinanza-non-italiana), seconda provincia in regione.  
 In Italia, alla fine della terza media, è a rischio di dispersione implicita il 22,5% degli studenti nati all'estero, il doppio dei coetanei italiani (11,5%). Chi è nato in Italia da genitori stranieri è invece in linea con gli italiani (10,3%): **il fattore di rischio non è la cittadinanza ma l'arrivo recente, a partire dalla lingua**.  

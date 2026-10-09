@@ -35,6 +35,8 @@ _freeze/
 
 # Root outputs (render di README.md ecc.)
 /*.html
+# html delle pagine bozza (underscore) resi accanto al sorgente, fuori da docs/
+sito/**/_*.html
 /*.docx
 
 # ----------------- DATI (vedi CLAUDE_TODO.md)

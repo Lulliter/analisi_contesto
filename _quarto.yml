@@ -56,6 +56,8 @@ website:
             href: sito/temi/trend_demogr.qmd
           - text: "Previsioni al 2050"
             href: sito/temi/trend_demogr_previs.qmd
+          - text: "Geografia dell'abitare"
+            href: sito/temi/geogr_abitare.qmd
       # Gruppi = linee d'azione e priorità del piano strategico; un tema sta dove sta la sua popolazione di riferimento
       - text: "Crescita ed educazione"
         menu:

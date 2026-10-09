@@ -1,6 +1,6 @@
 ---
 title: "Geografia dell'abitare"
-description: "Popolazione residente per comune e per quartiere nel Comune di Parma (anagrafe comunale al 1/1/2026) e immobili ACER (2022), dal portale open data del Comune"
+description: "Popolazione residente per comune della provincia (Censimento ISTAT 2024) e per quartiere nel Comune di Parma (anagrafe comunale al 1/1/2026), immobili ACER (2022) dal portale open data del Comune"
 lang: it
 
 format:
@@ -8,12 +8,6 @@ format:
     toc: true
     toc-depth: 2
     toc-location: left
-    # solo per l'anteprima della bozza: fuori dal sito _quarto.yml non si applica
-    # (nel sito è già il default, si può togliere alla promozione)
-    css: ../../assets/styles/custom.css
-
-# idem: larghezza unica dei grafici del sito (regola 2026-09-18), qui solo per l'anteprima
-fig-width: 9
 
 execute:
   eval: true
@@ -29,9 +23,10 @@ link-citations: true
 ---
 
 ```{r}
+#| label: anteprima
 #| eval: false
 # Anteprima: renderizza e apre nel browser (lancia a mano, ignorato nel render)
-pagina <- "_geogr_abitare"   # nome pagina, senza estensione
+pagina <- "geogr_abitare"   # nome pagina, senza estensione
 quarto::quarto_render(here::here("sito", "temi", paste0(pagina, ".qmd")))
 browseURL(here::here("docs", "sito", "temi", paste0(pagina, ".html")))
 ```
@@ -52,11 +47,21 @@ library(downloadthis) # bottoni di scarico dati
 source(here::here("R", "sito.R"))     # bottoni CSV + Excel (f_scarica_dati, f_bottoni_dati)
 source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hover bordeaux)
 dir_mod <- here::here("moduli", "comune_pr_quartieri", "output")
+dir_pop <- here::here("moduli", "pop_mappe_tematiche", "output")   # mappe per comune (sezione La provincia)
 
 # totali del comune per le frasi di apertura delle sezioni (si aggiornano con i dati)
 pop_comune <- readRDS(file.path(dir_mod, "pop_quartieri.rds")) |>
   filter(quartiere == "Comune di Parma")
 f_n <- function(x) format(x, big.mark = ".", decimal.mark = ",")
+
+# totali della provincia (somma dei 44 comuni) per le frasi di apertura della sezione La provincia
+pop_prov <- readRDS(file.path(dir_pop, "pop_mappe_sf.rds")) |>
+  sf::st_drop_geometry() |>
+  filter(COD_PROV %in% c("34", 34)) |>
+  summarise(n_comuni = n(), pop_tot = sum(pop_tot), pop_0_14 = sum(pop_0_14), pop_18_29 = sum(pop_18_29),
+            minorenni = sum(minorenni), pop_65p = sum(pop_65p), pop_80p = sum(pop_80p), pop_stranieri = sum(pop_stranieri)) |>
+  mutate(across(c(pop_0_14, pop_18_29, minorenni, pop_65p, pop_80p, pop_stranieri),
+                function(x) round(100 * x / pop_tot, 1), .names = "pct_{.col}"))
 ```
 
 
@@ -69,17 +74,145 @@ f_n <- function(x) format(x, big.mark = ".", decimal.mark = ",")
 
 <!-- <da scrivere> -->
 
-# 🟡 La provincia
 
-<!-- <segnaposto: mappe provinciali da recuperare (vecchio repo / modulo pop_mappe_tematiche)> -->
+::: {.callout-note .metodo collapse=true}
+#### Nota metodologica: le classi d'età
+Le classi d'età seguono le convenzioni ISTAT: "bambini e ragazzi" 0-14 anni, minorenni 0-17, giovani adulti 18-29, "anziani" 65 anni e oltre, "grandi anziani" 80 e oltre. La soglia dei 65 anni è una convenzione statistica (è quella degli indici di vecchiaia e di dipendenza), non una definizione di anzianità.
+:::
+
+
+# La provincia
+
+La provincia conta `r f_n(pop_prov$n_comuni)` comuni e `r f_n(pop_prov$pop_tot)` residenti (Censimento 2024). 
+
+<!-- Le classi delle mappe sono le stesse usate per i quartieri del Comune, più sotto: un colore uguale vuol dire una percentuale uguale, in città come in provincia. -->
+
 
 ## Giovani per comune
 
+I bambini di 0-14 anni sono `r f_n(pop_prov$pop_0_14)` (`r f_n(pop_prov$pct_pop_0_14)`% dei residenti), su un totale di `r f_n(pop_prov$minorenni)` minorenni (`r f_n(pop_prov$pct_minorenni)`%), i giovani di 18-29 anni `r f_n(pop_prov$pop_18_29)` (`r f_n(pop_prov$pct_pop_18_29)`%). I bambini si concentrano nella bassa e nella pedecollina; in montagna sono il 4-6% dei residenti.
+
+:::: {.panel-tabset}
+
+### 0-14 anni
+
+```{r}
+#| label: mappa_quota_0_14_pr
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_pop, "mappa_quota_0_14_pr.rds")))
+```
+
+### 0-17 anni
+
+```{r}
+#| label: mappa_quota_minorenni_pr
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_pop, "mappa_quota_minorenni_pr.rds")))
+```
+
+### 18-29 anni
+
+```{r}
+#| label: mappa_quota_18_29_pr
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_pop, "mappa_quota_18_29_pr.rds")))
+```
+
+::::
+
+:::: {.text-end}
+```{r}
+#| label: dl_mappa_quota_0_14
+#| output: true
+f_bottoni_dati("pop_mappe_comuni", dir_pop, rds = "mappa_quota_0_14_pr")
+```
+::::
+
+:::: {.callout-note collapse="true"}
+### Osservazioni
+
+La provincia è un po' più giovane della regione, ma la media nasconde due estremi: la cintura del capoluogo e la pedecollina stanno nel quinto più giovane dell'ER, la montagna nel quinto più vecchio. I bambini 0-14 pesano di più nella bassa e nella pedecollina (San Secondo, Langhirano, Colorno, Fidenza intorno al 14%); Parma città è nella media regionale (12,3%, ER 11,8%).
+
+_NB: Censimento permanente ISTAT, edizione 2024; un anno indietro rispetto ai dati per quartiere del Comune (1/1/2026). Classi = quintili dei 330 comuni dell'Emilia-Romagna._
+::::
+
 ## Anziani per comune
+
+In provincia, le persone di 65 anni e oltre sono `r f_n(pop_prov$pop_65p)` (`r f_n(pop_prov$pct_pop_65p)`% dei residenti), di cui `r f_n(pop_prov$pop_80p)` "grandi anziani" (`r f_n(pop_prov$pct_pop_80p)`%). Gli anziani sono quasi la metà dei residenti in diversi comuni di montagna; la cintura del capoluogo è tra le aree più giovani della regione.
+
+:::: {.panel-tabset}
+
+### 65 anni e oltre
+
+```{r}
+#| label: mappa_quota_65p_pr
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_pop, "mappa_quota_65p_pr.rds")))
+```
+
+### 80 anni e oltre
+
+```{r}
+#| label: mappa_quota_80p_pr
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_pop, "mappa_quota_80p_pr.rds")))
+```
+
+::::
+
+:::: {.text-end}
+```{r}
+#| label: dl_mappa_quota_65p
+#| output: true
+f_bottoni_dati("pop_mappe_comuni", dir_pop, rds = "mappa_quota_65p_pr")
+```
+::::
+
+:::: {.callout-note collapse="true"}
+### Osservazioni
+
+La quota di 65 anni e oltre in provincia (23,6%) è sotto quella regionale (24,9%), ma 14 comuni, tutti in montagna, stanno nel quinto più vecchio dell'ER (Bore 47%, Monchio 44%, Tornolo 42%, Palanzano 41%) e 12 nel quinto più giovane: la cintura del capoluogo e la pedecollina (Torrile 18,3%, Colorno, Langhirano, Lesignano, Sala Baganza).
+
+_NB: Censimento permanente ISTAT, edizione 2024; un anno indietro rispetto ai dati per quartiere del Comune (1/1/2026). Classi = quintili dei 330 comuni dell'Emilia-Romagna._
+::::
 
 ## Stranieri per comune
 
+I residenti con cittadinanza straniera (o apolidi) sono `r f_n(pop_prov$pop_stranieri)`, il `r f_n(pop_prov$pct_pop_stranieri)`% dei residenti: sopra la media regionale, e non solo in città, perché in testa c'è la pedecollina della filiera alimentare.
+
+```{r}
+#| label: mappa_quota_stranieri_pr
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_pop, "mappa_quota_stranieri_pr.rds")))
+```
+
+:::: {.text-end}
+```{r}
+#| label: dl_mappa_quota_stranieri
+#| output: true
+f_bottoni_dati("pop_mappe_comuni", dir_pop, rds = "mappa_quota_stranieri_pr")
+```
+::::
+
+:::: {.callout-note collapse="true"}
+### Osservazioni
+
+Il 14,8% dei residenti ha cittadinanza straniera (ER 12,7%); 12 comuni su 44 stanno nel quinto più alto dell'ER, e in testa non c'è Parma (17,1%) ma la pedecollina della filiera alimentare (Calestano 20,7%, Langhirano 20,6%, Fornovo e Salsomaggiore 16,6%). In fondo l'Appennino interno, con il 3-4% (Albareto, Monchio, Corniglio, Tornolo).
+
+_NB: Censimento permanente ISTAT, edizione 2024; un anno indietro rispetto ai dati per quartiere del Comune (1/1/2026). Classi = quintili dei 330 comuni dell'Emilia-Romagna._
+::::
+
 # Il Comune
+
+È interessante osservare la distribuzione della popolazione anche all'interno del comune. Il sito [Open Data del comune di Parma](https://opendata.comune.parma.it/), consente di disaggregare molti indicatori demografici e sociali fino al livello dei quartieri. 
+
+_NB: Da tenere presente il fatto che **i dati escludono i non residenti** (come gli studenti fuori sede), che in una città come Parma sono una quota significativa._
 
 ## Giovani e anziani per quartiere
 
@@ -177,7 +310,7 @@ _NB: dati dell'anagrafe comunale al 1° gennaio 2026, solo residenti (non chi vi
 
 ## Famiglie per quartiere
 
-Le famiglie anagrafiche (persone che vivono insieme legate da matrimonio, parentela, affinità, adozione, tutela o vincoli affettivi; anche una persona sola è una famiglia) sono `r f_n(pop_comune$famiglie)`, con `r f_n(pop_comune$comp_per_famiglia)` componenti in media: `r f_n(pop_comune$famiglie_1)` sono di una sola persona (`r f_n(pop_comune$pct_famiglie_1)`%) e `r f_n(pop_comune$famiglie_numerose)` hanno 5 o più componenti (`r f_n(pop_comune$pct_famiglie_numerose)`%).
+Le famiglie "anagrafiche" (i.e. persone che vivono insieme legate da matrimonio, parentela, affinità, adozione, tutela o vincoli affettivi; anche una persona sola è una famiglia) sono `r f_n(pop_comune$famiglie)`, con `r f_n(pop_comune$comp_per_famiglia)` componenti in media. Ben `r f_n(pop_comune$famiglie_1)` sono di fatto nuclei di una sola persona (`r f_n(pop_comune$pct_famiglie_1)`%), mentre solo `r f_n(pop_comune$famiglie_numerose)` hanno 5 o più componenti (`r f_n(pop_comune$pct_famiglie_numerose)`%).
 
 <!-- <1-2 frasi col messaggio principale, da scrivere> -->
 
@@ -230,7 +363,7 @@ _NB: famiglie anagrafiche nel senso del regolamento anagrafico (DPR 223/1989, ar
 
 ## Anziani che vivono soli
 
-Le persone di 65 anni e oltre che vivono in una famiglia anagrafica di una sola persona sono `r f_n(pop_comune$anziani_soli)`, il `r f_n(pop_comune$pct_anziani_soli)`% dei `r f_n(pop_comune$anziani_in_famiglia)` anziani residenti in famiglia.
+Le persone di 65 anni e oltre che vivono in una famiglia anagrafica di una sola persona sono `r f_n(pop_comune$anziani_soli)`, ovvero il `r f_n(pop_comune$pct_anziani_soli)`% dei `r f_n(pop_comune$anziani_in_famiglia)` anziani residenti in famiglia.
 
 <!-- <1-2 frasi col messaggio principale, da scrivere> -->
 
@@ -308,6 +441,10 @@ ___
 
 <!-- <1-2 frasi col messaggio principale, da scrivere> -->
 
+Gli open data del comune di Parma registrano anche la distribuzione della popolazione che risiende in "convivenze anagrafiche" e in immobili ACER (Azienda Casa Emilia-Romagna), che sono forme di abitare pubblico o collettivo.
+
+_NB: i dati sulle convivenze anagrafiche non sono disaggregabili per tipo._
+
 ## Le _convivenze anagrafiche_ per quartiere
 
 I residenti in convivenze anagrafiche al 1° gennaio 2026 sono `r f_n(pop_comune$in_convivenza)`, `r f_n(pop_comune$convivenza_per_1000)` ogni 1.000 residenti.
@@ -338,7 +475,9 @@ f_bottoni_dati("pop_quartieri", dir_mod, rds = "mappa_pop_convivenza_per_1000")
 
 ## L'abitare pubblico
 
-Gli immobili ACER censiti nel 2022 sono `r f_n(pop_comune$n_immobili)`, `r f_n(pop_comune$acer_per_1000)` ogni 1.000 residenti del 2026.
+La distribuzione territoriale degli immobili ACER segnala la risposta storica e istituzionale al bisogno abitativo, anche se non riflette adeguatamente la domanda attuale o l'effettiva mappa della povertà oggi (e.g. nuove ondate migratorie, "lavoratori poveri" o emergenza studenti). 
+
+Gli immobili ACER censiti nel 2022 sono `r f_n(pop_comune$n_immobili)`, `r f_n(pop_comune$acer_per_1000)` ogni 1.000 residenti del 2026. I quartieri con la maggiore densità ddi alloggi popolari sono Montanara, San Leonardo, Pablo, Lubiana e Molinetto. 
 
 ### Quanti risiedono in immobili ACER per quartiere? 
 
@@ -365,21 +504,21 @@ f_bottoni_dati("pop_quartieri", dir_mod, rds = "mappa_pop_acer_per_1000")
 _NB: immobili ACER del 2022 rapportati ai residenti al 1° gennaio 2026._
 ::::
 
-### Quanti sono gli immobili ACER per quartiere? 
+### Quanti sono e dove sono gli immobili ACER? 
 
 <!-- <1-2 frasi col messaggio principale, da scrivere> -->
 ```{r}
-#| label: mappa_acer_quartieri
+#| label: mappa_acer_punti
 #| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_mod, "mappa_acer_quartieri.rds")))
+#| fig-height: 6
+f_girafe(readRDS(file.path(dir_mod, "mappa_acer_punti.rds")))
 ```
 
 :::: {.text-end}
 ```{r}
-#| label: dl_mappa_acer_quartieri
+#| label: dl_mappa_acer_punti
 #| output: true
-f_bottoni_dati("acer_quartieri", dir_mod, rds = "mappa_acer_quartieri")
+f_bottoni_dati("acer_immobili", dir_mod, rds = "mappa_acer_punti")
 ```
 ::::
 
@@ -391,146 +530,7 @@ f_bottoni_dati("acer_quartieri", dir_mod, rds = "mappa_acer_quartieri")
 _NB: 1 immobile ACER = 1 edificio (indirizzo e civico), non 1 alloggio: la fonte non riporta il numero di alloggi. 21 indirizzi compaiono due volte con dati identici e si mantengono come nella fonte (possibili più unità allo stesso civico). Dati 2022._
 ::::
 
-### Dove sono gli immobili ACER per quartiere? 
-
-
-:::: {.panel-tabset}
-
-### Parma Centro
-
-```{r}
-#| label: mappa_acer_parma_centro
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_mod, "mappa_acer_parma_centro.rds")))
-```
-
-### Oltretorrente
-
-```{r}
-#| label: mappa_acer_oltretorrente
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_mod, "mappa_acer_oltretorrente.rds")))
-```
-
-### Molinetto
-
-```{r}
-#| label: mappa_acer_molinetto
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_mod, "mappa_acer_molinetto.rds")))
-```
-
-### Pablo
-
-```{r}
-#| label: mappa_acer_pablo
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_mod, "mappa_acer_pablo.rds")))
-```
-
-### Golese
-
-```{r}
-#| label: mappa_acer_golese
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_mod, "mappa_acer_golese.rds")))
-```
-
-### San Pancrazio
-
-```{r}
-#| label: mappa_acer_san_pancrazio
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_mod, "mappa_acer_san_pancrazio.rds")))
-```
-
-### San Leonardo
-
-```{r}
-#| label: mappa_acer_san_leonardo
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_mod, "mappa_acer_san_leonardo.rds")))
-```
-
-### Cortile San Martino
-
-```{r}
-#| label: mappa_acer_cortile_san_martino
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_mod, "mappa_acer_cortile_san_martino.rds")))
-```
-
-### Lubiana
-
-```{r}
-#| label: mappa_acer_lubiana
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_mod, "mappa_acer_lubiana.rds")))
-```
-
-### San Lazzaro
-
-```{r}
-#| label: mappa_acer_san_lazzaro
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_mod, "mappa_acer_san_lazzaro.rds")))
-```
-
-### Cittadella
-
-```{r}
-#| label: mappa_acer_cittadella
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_mod, "mappa_acer_cittadella.rds")))
-```
-
-### Montanara
-
-```{r}
-#| label: mappa_acer_montanara
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_mod, "mappa_acer_montanara.rds")))
-```
-
-### Vigatto
-
-```{r}
-#| label: mappa_acer_vigatto
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_mod, "mappa_acer_vigatto.rds")))
-```
-
-::::
-
-:::: {.text-end}
-```{r}
-#| label: dl_mappe_acer_quartiere
-#| output: true
-f_bottoni_dati("acer_immobili", dir_mod, rds = "mappa_acer_parma_centro")
-```
-::::
-
-:::: {.callout-note collapse="true"}
-### Osservazioni
-
-<!-- <da scrivere> -->
-
-_NB: passando il mouse sui punti si leggono indirizzo e anno di costruzione, sulle strade il nome della via, sui parchi il nome del parco. Il file scaricabile contiene l'elenco completo degli immobili di tutti i quartieri, con le coordinate._
-::::
-
 # Possibili approfondimenti
 
 <!-- <da scrivere> -->
++ Fotografare la povertà abitativa oggi, incrociando i dati disponibili (immobili ACER ≈ povertà strutturale e storica) con dati da recuperare su mancanza di offerta e/o affitti insostenibili (e.g. OMI dell'Agenzia delle Entrate, IRPEF per CAP, dati sugli sfratti,...)
