@@ -322,18 +322,18 @@
     "text": "Stranieri per quartiere\nI residenti con cittadinanza straniera sono 36.372, il 17,9% dei residenti; tra i minorenni sono 6.506, il 21,9%.\n\n\nSul totale dei residentiTra i minori\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n CSV\n Excel\n\n\n\n\n\n\n\n\n\nNotaOsservazioni\n\n\n\n\n\n\nNB: dati dell’anagrafe comunale al 1° gennaio 2026, solo residenti (non chi vive in città senza residenza, come gli studenti fuori sede); età in anni compiuti. Le mappe dello stesso tipo (giovani, anziani, stranieri) usano la stessa scala di colori, quindi lo stesso colore indica lo stesso valore."
   },
   {
-    "objectID": "sito/temi/geogr_abitare.html#le-convivenze-anagrafiche-per-quartiere",
-    "href": "sito/temi/geogr_abitare.html#le-convivenze-anagrafiche-per-quartiere",
+    "objectID": "sito/temi/geogr_abitare.html#chi-vive-in-strutture-collettive",
+    "href": "sito/temi/geogr_abitare.html#chi-vive-in-strutture-collettive",
     "title": "Geografia dell’abitare",
-    "section": "Le convivenze anagrafiche per quartiere",
-    "text": "Le convivenze anagrafiche per quartiere\nI residenti in convivenze anagrafiche al 1° gennaio 2026 sono 3.095, 15,3 ogni 1.000 residenti.\nLe “convivenze anagrafiche” sono gruppi di persone che vivono abitualmente insieme per motivi religiosi, di cura, di assistenza, militari, di pena o simili, senza legami di famiglia: per esempio residenze per anziani, comunità per minori, strutture di accoglienza, istituti religiosi, carcere. Il dato anagrafico non distingue il tipo di struttura.\n\n\n\n\n\n\n\n\n\n CSV\n Excel\n\n\n\n\n\n\n\n\n\nNotaOsservazioni"
+    "section": "Chi vive in strutture collettive",
+    "text": "Chi vive in strutture collettive\nI residenti in strutture collettive (le “convivenze anagrafiche”) al 1° gennaio 2026 sono 3.095, 15,3 ogni 1.000 residenti.\nLe “convivenze anagrafiche” sono gruppi di persone che vivono abitualmente insieme per motivi religiosi, di cura, di assistenza, militari, di pena o simili, senza legami di famiglia: per esempio residenze per anziani, comunità per minori, strutture di accoglienza, istituti religiosi, carcere.\nNB: il dato non distingue purtoppo il tipo di struttura.\n\n\n\n\n\n\n\n\n\n CSV\n Excel\n\n\n\n\n\n\n\n\n\nNotaOsservazioni"
   },
   {
-    "objectID": "sito/temi/geogr_abitare.html#labitare-pubblico",
-    "href": "sito/temi/geogr_abitare.html#labitare-pubblico",
+    "objectID": "sito/temi/geogr_abitare.html#le-case-popolari-acer",
+    "href": "sito/temi/geogr_abitare.html#le-case-popolari-acer",
     "title": "Geografia dell’abitare",
-    "section": "L’abitare pubblico",
-    "text": "L’abitare pubblico\nLa distribuzione territoriale degli immobili ACER segnala la risposta storica e istituzionale al bisogno abitativo, anche se non riflette adeguatamente la domanda attuale o l’effettiva mappa della povertà oggi (e.g. nuove ondate migratorie, “lavoratori poveri” o emergenza studenti).\nGli immobili ACER censiti nel 2022 sono 639, 3,15 ogni 1.000 residenti del 2026. I quartieri con la maggiore densità ddi alloggi popolari sono Montanara, San Leonardo, Pablo, Lubiana e Molinetto.\n\nQuanti risiedono in immobili ACER per quartiere?\n\n\n\n\n\n\n\n\n\n CSV\n Excel\n\n\n\n\n\n\n\n\n\nNotaOsservazioni\n\n\n\n\n\n\nNB: immobili ACER del 2022 rapportati ai residenti al 1° gennaio 2026.\n\n\n\n\n\nQuanti sono e dove sono gli immobili ACER?\n\n\n\n\n\n\n\n\n\n\n CSV\n Excel\n\n\n\n\n\n\n\n\n\nNotaOsservazioni\n\n\n\n\n\n\nNB: 1 immobile ACER = 1 edificio (indirizzo e civico), non 1 alloggio: la fonte non riporta il numero di alloggi. 21 indirizzi compaiono due volte con dati identici e si mantengono come nella fonte (possibili più unità allo stesso civico). Dati 2022."
+    "section": "Le case popolari (ACER)",
+    "text": "Le case popolari (ACER)\nLa distribuzione territoriale degli immobili ACER segnala la risposta storica e istituzionale al bisogno abitativo, anche se non riflette adeguatamente la domanda attuale o l’effettiva mappa della povertà oggi (e.g. nuove ondate migratorie, “lavoratori poveri” o emergenza studenti).\nGli immobili ACER censiti nel 2022 sono 639, 3,15 ogni 1.000 residenti del 2026. I quartieri con la maggiore densità ddi alloggi popolari sono Montanara, San Leonardo, Pablo, Lubiana e Molinetto.\n\nQuanti risiedono in immobili ACER per quartiere?\n\n\n\n\n\n\n\n\n\n CSV\n Excel\n\n\n\n\n\n\n\n\n\nNotaOsservazioni\n\n\n\n\n\n\nNB: immobili ACER del 2022 rapportati ai residenti al 1° gennaio 2026.\n\n\n\n\n\nQuanti sono e dove sono gli immobili ACER?\n\n\n\n\n\n\n\n\n\n\n CSV\n Excel\n\n\n\n\n\n\n\n\n\nNotaOsservazioni\n\n\n\n\n\n\nNB: 1 immobile ACER = 1 edificio (indirizzo e civico), non 1 alloggio: la fonte non riporta il numero di alloggi. 21 indirizzi compaiono due volte con dati identici e si mantengono come nella fonte (possibili più unità allo stesso civico). Dati 2022."
   },
   {
     "objectID": "sito/temi/scuola.html",

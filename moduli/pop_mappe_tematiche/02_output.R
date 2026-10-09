@@ -33,7 +33,7 @@ pop_mappe_sf    <- readRDS(file.path(dir_mod, "output", "pop_mappe_sf.rds"))
 er_provincie_sf <- readRDS(here("dati", "puliti", "istat_shp", "ER_provincie_sf.rds"))
 parma_prov_sf   <- filter(er_provincie_sf, COD_PROV %in% c("34", 34))
 
-FONTE <- f_caption_fonte(paste0("ISTAT, Censimento permanente della popolazione 2024;\n",
+FONTE <- f_caption_fonte(paste0("ISTAT, Censimento permanente della popolazione 2024; ",
                                 "confini ISTAT al 01/01/2026 (versione generalizzata)"))
 
 # --- 1) Classi -------------------------------------------------------------------

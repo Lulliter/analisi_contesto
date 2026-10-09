@@ -40,11 +40,12 @@ BUFFER_ZOOM <- 300     # metri di margine attorno al quartiere nelle mappe singo
 # zona stretta e alta lascerebbe titolo e sottotitolo in una colonna stretta
 RAPPORTO_MAPPA <- 1.4
 # fonte con l'indirizzo del portale per esteso (testo, non cliccabile)
-FONTE_OPENDATA <- "Comune di Parma, https://opendata.comune.parma.it"
+# senza https://: la caption e' markdown (ggtext) e un indirizzo nudo diventa un <a> che gridtext non disegna
+FONTE_OPENDATA <- "Comune di Parma, opendata.comune.parma.it"
 CAP <- f_caption_fonte(glue("{FONTE_OPENDATA} (immobili ACER 2022; quartieri vigenti)"))
 CAP_POP <- f_caption_fonte(glue("{FONTE_OPENDATA} (popolazione al 1/1/2026; quartieri vigenti)"))
 # nota a piè di mappa per gli indicatori sulle famiglie
-CAP_FAMIGLIE <- paste0("Nota: famiglia anagrafica = persone coabitanti legate da matrimonio, parentela, affinità, adozione, tutela o vincoli affettivi (anche 1 sola); escluse le convivenze\n", CAP_POP)
+CAP_FAMIGLIE <- f_avvolgi_caption(paste0("Nota: famiglia anagrafica = persone coabitanti legate da matrimonio, parentela, affinità, adozione, tutela o vincoli affettivi (anche 1 sola); escluse le convivenze\n", CAP_POP))
 CAP_QUARTIERE <- f_caption_fonte(glue("{FONTE_OPENDATA} (immobili ACER 2022; quartieri, strade 2025, torrenti, ferrovie, parchi)"))
 # colori dello sfondo delle mappe per quartiere (tenui: il dato sono i punti)
 COL_ACQUA <- scales::alpha(blu_lg, 0.35)

@@ -41,6 +41,8 @@ f_theme_sito <- function(base_size = 15) {
                                                margin = ggplot2::margin(b = 10)),
       plot.subtitle    = ggtext::element_textbox_simple(size = ggplot2::rel(0.95), lineheight = 1.2,
                                                         margin = ggplot2::margin(b = 10)),
+      # caption: element_text (non textbox: il markdown di ggtext interpreta indirizzi web e "\n",
+      # provato e abbandonato il 2026-10-09). Le righe lunghe vanno a capo in f_caption_fonte()
       plot.caption     = ggplot2::element_text(hjust = 0, size = ggplot2::rel(0.7), colour = "grey30",
                                                margin = ggplot2::margin(t = 8)),
       # titolo, sottotitolo e caption allineati all'INTERA figura, non al
@@ -91,11 +93,23 @@ f_theme_sito_piramide <- function(base_size = 15) {
 # Caption standard dei grafici del repo: riga "Fonte: ..." (variabile) +
 # riga fissa "Rielaborazione: ..." che va SEMPRE a capo (decisione 2026-07-18).
 # Uso: labs(caption = f_caption_fonte("MIM, Portale unico dei dati della scuola"))
-f_caption_fonte <- function(fonte) {
+f_caption_fonte <- function(fonte, larghezza = 130) {
+  # la caption e' un element_text e non va a capo da sola: si avvolge qui a larghezza fissa
+  # (figure tutte larghe 9 pollici, corpo rel(0.7) -> ~130 caratteri); nell'SVG del sito il
+  # testo oltre il bordo veniva tagliato (2026-10-09). Chi costruisce una caption a mano
+  # (es. "Nota: ..." + fonte) passi anche quella da f_avvolgi_caption()
   paste0(
-    "Fonte: ", fonte,
+    f_avvolgi_caption(paste0("Fonte: ", fonte), larghezza),
     "\nRielaborazione: Fondazione Cariparma - Osservatorio dei Dati Sociali"
   )
+}
+
+# f_avvolgi_caption ---------------------------------------------------------
+# Manda a capo un testo di caption a larghezza fissa, riga per riga (i "\n" gia' presenti restano)
+f_avvolgi_caption <- function(testo, larghezza = 130) {
+  righe <- strsplit(testo, "\n", fixed = TRUE)[[1]]
+  paste(vapply(righe, function(r) paste(strwrap(r, width = larghezza), collapse = "\n"), character(1)),
+        collapse = "\n")
 }
 
 # f_lab_as ----------------------------------------------------------------
@@ -167,7 +181,8 @@ f_disegna_mappa <- function(df_comuni, df_prov, var, titolo, palette5, caption,
                                                  # (NULL = mappa statica)
                             df_evidenzia = NULL,
                             col_evidenzia = burg_md,
-                            col_bordi = grey_sc,
+                            col_bordi = "white",  # dal 2026-10-09 (prima grey_sc): visibili su toni chiari e scuri
+                            lw_bordi = 0.25,      # dal 2026-10-09 (prima 0.1: nell'SVG del sito spariva tra comuni dello stesso colore)
                             col_na = grey_m,
                             lab_na = "n.d.") {
   # strato dei comuni: interattivo (ggiraph) se c'è una colonna tooltip,
@@ -177,7 +192,7 @@ f_disegna_mappa <- function(df_comuni, df_prov, var, titolo, palette5, caption,
     strato_comuni <- ggplot2::geom_sf(
       data = df_comuni,
       ggplot2::aes(fill = .data[[paste0("classe_", var)]]),
-      color = col_bordi, linewidth = 0.1
+      color = col_bordi, linewidth = lw_bordi
     )
   } else {
     strato_comuni <- ggiraph::geom_sf_interactive(
@@ -185,7 +200,7 @@ f_disegna_mappa <- function(df_comuni, df_prov, var, titolo, palette5, caption,
       ggplot2::aes(fill = .data[[paste0("classe_", var)]],
                    tooltip = .data[[col_tooltip]],
                    data_id = .data[[col_tooltip]]),
-      color = col_bordi, linewidth = 0.1
+      color = col_bordi, linewidth = lw_bordi
     )
   }
 

@@ -437,19 +437,19 @@ _NB: dati dell'anagrafe comunale al 1° gennaio 2026, solo residenti (non chi vi
 ___
 
 
-# Abitare pubblico e collettivo
+# Strutture collettive e case popolari
 
 <!-- <1-2 frasi col messaggio principale, da scrivere> -->
 
-Gli open data del comune di Parma registrano anche la distribuzione della popolazione che risiende in "convivenze anagrafiche" e in immobili ACER (Azienda Casa Emilia-Romagna), che sono forme di abitare pubblico o collettivo.
+Gli open data del Comune di Parma registrano anche quanti residenti vivono in strutture collettive (residenze per anziani, comunità, istituti) e quanti immobili appartengono ad ACER, l'azienda regionale delle case popolari: due forme di residenza particolari localizzate qui per quartiere.
 
-_NB: i dati sulle convivenze anagrafiche non sono disaggregabili per tipo._
+## Chi vive in strutture collettive
 
-## Le _convivenze anagrafiche_ per quartiere
+I residenti in strutture collettive (le "convivenze anagrafiche") al 1° gennaio 2026 sono `r f_n(pop_comune$in_convivenza)`, `r f_n(pop_comune$convivenza_per_1000)` ogni 1.000 residenti.
 
-I residenti in convivenze anagrafiche al 1° gennaio 2026 sono `r f_n(pop_comune$in_convivenza)`, `r f_n(pop_comune$convivenza_per_1000)` ogni 1.000 residenti.
+Le "convivenze anagrafiche" sono gruppi di persone che vivono abitualmente insieme per motivi religiosi, di cura, di assistenza, militari, di pena o simili, senza legami di famiglia: per esempio residenze per anziani, comunità per minori, strutture di accoglienza, istituti religiosi, carcere.
 
-Le "convivenze anagrafiche" sono gruppi di persone che vivono abitualmente insieme per motivi religiosi, di cura, di assistenza, militari, di pena o simili, senza legami di famiglia: per esempio residenze per anziani, comunità per minori, strutture di accoglienza, istituti religiosi, carcere. Il dato anagrafico non distingue il tipo di struttura.
+_NB: il dato non distingue purtoppo il tipo di struttura._
 
 ```{r}
 #| label: mappa_pop_convivenza_per_1000
@@ -473,7 +473,7 @@ f_bottoni_dati("pop_quartieri", dir_mod, rds = "mappa_pop_convivenza_per_1000")
 <!-- <da scrivere> -->
 ::::
 
-## L'abitare pubblico
+## Le case popolari (ACER)
 
 La distribuzione territoriale degli immobili ACER segnala la risposta storica e istituzionale al bisogno abitativo, anche se non riflette adeguatamente la domanda attuale o l'effettiva mappa della povertà oggi (e.g. nuove ondate migratorie, "lavoratori poveri" o emergenza studenti). 
 

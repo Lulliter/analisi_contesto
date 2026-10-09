@@ -91,6 +91,8 @@ Dati che non stanno negli open data e vanno chiesti agli enti (bozze in `dati/gr
 - [ ] revamp `_targets.R` (nel repo vecchio)?
 - [ ] **renv** (aperta 2026-09-29): decidere tra `renv.lock` versionato e una fotografia `sessioninfo` a ogni pubblicazione del sito
 - [ ] **Font del sito** (aperta 2026-09-29): un font unico per testo e tabelle; oggi le tabelle sul telefono cadono in Times
+- [ ] Nomi delle funzioni `f_...`: criterio e lessico comune (rimandato 2026-10-09)
+- [ ] Residui di render delle bozze accanto ai sorgenti (`sito/temi/_*.html`, `_*_files/`, `.rmarkdown`): ora fuori da git, da cancellare a mano
 
 ---
 
@@ -385,15 +387,18 @@ Fonti in casa: `istat_sae_glf_2019` ✓ (stime GLF provinciali), aree interne/zo
 **Sito**:
 
 - [x] indicatori per quartiere (età, famiglie, anziani soli, stranieri, ACER e convivenze per 1.000) e pagina bozza `_geogr_abitare.qmd` (2026-10-08)
-- [ ] peso della pagina (20 MB, quasi tutto le 13 mappe ACER con le strade): semplificare le strade o pagina a parte
-- [ ] sezione "La provincia": recuperare le mappe per comune (`pop_mappe_tematiche`, Censimento 2024) e verificare se ci sono dati più recenti
-- [ ] testi di `_geogr_abitare.qmd` (In sintesi, messaggi e Osservazioni); correggere il titolo "Quanti risiedono in immobili ACER" (il dato sono gli edifici, non i residenti)
-- [ ] `_geoloc_fragil.qmd`: la sezione ACER è ora in `_geogr_abitare.qmd`, togliere il doppione
-- [ ] promozione: togliere l'underscore, voce navbar in Demografia, togliere dal YAML `fig-width` e `css` messi per l'anteprima
+- [x] sezione "La provincia": mappe per comune 0-14/0-17/18-29, 65+/80+, stranieri da `pop_mappe_tematiche`, classi uguali ai quartieri (2026-10-09)
+- [x] promozione: `geogr_abitare.qmd` pubblica, voce "Geografia dell'abitare" nel menu Demografia (2026-10-09)
+- [ ] peso della pagina: 13 mappe ACER spostate in `_acer_quartieri.qmd` e confini comunali semplificati per il web (`ingestione/00b`): misurare dopo il render, obiettivo sotto i 4 MB
+- [ ] testi di `geogr_abitare.qmd` (In sintesi, messaggi e Osservazioni del Comune)
+- [ ] verificare in anteprima le scelte del 2026-10-09: classi a gradini fissi (città e provincia), palette pesca per ACER, mappa a punti + barre, bordi bianchi delle mappe, caption a capo
+- [ ] riscrivere in valori le frasi "nel quinto più…" (Osservazioni della provincia e Note di metodo del blurb `pop_mappe_tematiche`), ora che le classi non sono più quintili
+- [ ] `_acer_quartieri.qmd` (bozza con le 13 mappe di dettaglio): decidere se e come usarla; per pubblicarla semplificare anche le strade
+- [ ] `_geoloc_fragil.qmd`: la sezione ACER è ora in `geogr_abitare.qmd`, togliere il doppione
 
 #### 🟡 AVANZAMENTO comune_pr_quartieri
 
-Stato al 2026-10-08: dati e grafici del Comune fatti, pagina bozza completa senza testi; prossimo passo mappe provinciali (sezione "La provincia") e peso della pagina
+Stato al 2026-10-09: pagina pubblicata (in costruzione) con sezione provincia; classi d'età e gradini uniformati città/provincia; prossimo passo: verifica in anteprima e testi
 
 
 ## 6. Capitale istituzionale e sociale (istituzioni pubbliche, terzo settore, capitale relazionale)

@@ -11,6 +11,7 @@
 #         mano il relativo script di ingestione/ (00-05: shp/SITUAS, censimento,
 #         MIM studenti, previsioni ISTAT, BES dei territori, BES nazionale) — build.R parte
 #         dai dati/puliti/ e non li rigenera
+# Dopo:  quarto::quarto_render() oppure Build -> Render Website
 # ----------------------------------------------------------------------
 
 library(here)
