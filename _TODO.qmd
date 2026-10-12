@@ -94,6 +94,13 @@ Dati che non stanno negli open data e vanno chiesti agli enti (bozze in `dati/gr
 - [ ] Nomi delle funzioni `f_...`: criterio e lessico comune (rimandato 2026-10-09)
 - [ ] Residui di render delle bozze accanto ai sorgenti (`sito/temi/_*.html`, `_*_files/`, `.rmarkdown`): ora fuori da git, da cancellare a mano
 
+**Sito e piano strategico (2026-10-12)**:
+
+- [x] `categories` nello YAML delle pagine = priorità (P1-P3) e linee d'azione (LA1-LA4) del PS 24-27; etichette in `sito/README.md`; pillole sotto la description; pannello chiuso nel margine destro (`sito/_indice_ps.R` → `assets/indice_ps.html`, lanciato da `build.R`), nascosto su telefono; fatto su `scuola.qmd`
+- [x] navbar riorganizzata sui macro-temi del diario: Demografia, Giovani (con Giovani e lavoro), poi Anziani, Assistenza socio-sanitaria, Mappe, Approfondimenti "spente" (grigie) finché senza pagine
+- [ ] `categories` sulle altre pagine (abbinamento dal foglio `confronto` di allineam_strategico)
+- [ ] rivedere il diario (temi 3/4/5 entro dicembre, 1-2 da sfoltire; voci di `geogr_abitare` sparite nel riordino: recuperare?) e poi riallineare `allineam_strategico/` (colonna "tema diario" dell'xlsx e righe "In analisi_contesto" della `_guida.qmd`) alla nuova numerazione
+
 ---
 
 {{< pagebreak >}}
@@ -112,9 +119,9 @@ Dati che non stanno negli open data e vanno chiesti agli enti (bozze in `dati/gr
 
 # Temi 
 
-I macro temi corrispondono + o - alle pagine del `sito/`. GLi item elencati corrispondono + o - ai `moduli/` di info cercate
+I macro temi corrispondono + o - ai tab principali del `sito/`. GLi item elencati corrispondono + o - ai `moduli/` di info cercate
 
-## 1. Trend demografici (fatto, restano idee)
+## 1. DEMOGRAFIA (fatto, restano idee)
 
 **Ricognizione/Aggiornamento FONTI**: fatto
 
@@ -127,7 +134,7 @@ I macro temi corrispondono + o - alle pagine del `sito/`. GLi item elencati corr
 ___
 
  
-## 2.a Educazione e ...
+## 2 GIOVANI
 > Non affrontato nello strategico PS 2024-2027, ma da presentare come "Driver di crescita e realizzazione delle persone" 
 
 **Ripensamento MODULI (connessi a fonti)**: (fragilità: abbandoni, NEET, formazione continua, % stranieri per comune, studenti disabili; mismatch domanda-formazione):
@@ -238,8 +245,7 @@ _5. Governare: risposte dei paesi e mappa locale_
 - `sito/temi/formaz_rientro.qmd`: IeFP, serali, CPIA (adulti), esiti
 - `sito/temi/educ_ia.qmd`: uso dei dispositivi, social e benessere mentale, IA, risposte dei paesi
 
-## 2.b ...Lavoro GIOVANI (lavoro e innovazione)
-
+### modulo `ingresso_lavoro`
 > Ponte con tema lavoro e se il territorio sta perdendo terreno sull'innovazione (es. startup, brevetti, ecc.)
 > PS 2024:2027 imprescindibile saper fare rete tra istruzione superiore / università / aziende e comunità 
   > - Focus sui giovani (Parma capitale dei giovani 2026) e sul mismatch domanda-formazione 
@@ -253,15 +259,6 @@ _5. Governare: risposte dei paesi e mappa locale_
 + [ ] PMI che introducono innovazione ( Fonte: dati European Commission, 2023)
 + [ ] Investimenti in R&D OECD? 
 + [ ] [Secondo Welfare, "Ripartenze possibili: NEET e transizioni interrotte tra i giovani adulti" (2026)](https://www.secondowelfare.it/wp-content/uploads/2026/07/Rapporto-FAST-3_Neet_Percorsi-di-Secondo-Welfare-e-Fondazione-Lottomatica.pdf)
-
-**Ripensamento MODULI (connessi a fonti)**:
-
-### modulo  ???
- 
-
-
-#### sito  
-
 - [ ] Fonti per `sito/temi/_giovani_lavoro.qmd` (IeFP e serali stanno in `formaz_rientro.qmd`, con riserva di unificare):
   - [ ] Excelsior: difficoltà di reperimento per profilo, Parma
   - [ ] AlmaLaurea/AlmaDiploma o Regione ER: esiti occupazionali per percorso
@@ -269,14 +266,20 @@ _5. Governare: risposte dei paesi e mappa locale_
   - [ ] INPS Osservatori: contratti dei giovani
   - [ ] ISTAT: cancellazioni per l'estero 20-34 anni per provincia
   - già in casa dal Bes: passaggio all'università, laureati 25-39, formazione continua, NEET per sesso, occupazione giovanile
+  
+  
 ___
 
-## ⏭️ ANZIANI (tutto da fare)
+## ⏭️ 3. ANZIANI (tutto da fare)
 > Spunti CG: abbiamo 100 diagnosi di autismo e 1000 di demenza senile ... forse questo ci dice dove dovremmo guardare?!?!!?
 
 > Spunti CG: in prospettiva i (pochi) giovani di oggi sono gli stessi che dovranno occuparsi degli anziani di domani...
 
-## ⏭️ A SANITA (tutto da fare)
+
+
+
+
+## ⏭️ 4. ASSISTENZA SOCIO-SANITARIA (tutto da fare)
 > C'è un nesso potenziale con trasporto sociale / welfare connesso 
 
 Spunti nelle 4 DIRETTRICI [FORUM PA Sanità 2026](https://www.forumpa.it/sanita/forum-pa-sanita-2026-quattro-direttrici-per-costruire-il-sistema-salute-del-futuro/)
@@ -302,11 +305,87 @@ Il Regolamento sull’European Health Data Space è entrato in vigore il 26 marz
 - [ ] xxxx
 
 
+___
+
+
+## ⏭️ 5. MAPPE 
+
+
+La fragilità e i bisogni sul territorio meglio se rappresentati da indici sintetici, disaggregabili nello spazio
+
+> PS 2024-2027: Un settore che fornisce un punto di osservazione privilegiato è l'abitare / i bisogni e le risorse si concentrano in alcune aree del territorio
+> QUI VOGLIO METTERE TANTE MAPPE E ANALISI GEOLOCALIZZATE con un tabset PROVINCIA(e comuni) e/o COMUNE(e quartieri) 
+
+> ... inspiration [MILANO CHE CAMBIA/MAPPE](https://public.tableau.com/app/profile/maud.lab/viz/MILANOCHECAMBIAUNVIAGGIOINTERATTIVOTRADATIPERSONEEQUARTIERI/INFO_descrizione)
+ 
+Fonti in casa: `istat_sae_glf_2019` ✓ (stime GLF provinciali), aree interne/zone altimetriche/DEGURBA (già in anagrafica SITUAS ✓), singole età censimento (anziani); nel backup: EHIS 2019 (ADL/IADL), GALI 2023, ISTAT_DISAB_CIFRE. Da cercare: ReportER (ADI, SMAC), INPS AUU figli disabili.
+ 
+**Ricognizione/Aggiornamento FONTI**: 
+
+- [ ] RECUPERARE/CERCARE: spopolamento dei comuni e aree interne 
+- [ ] RECUPERARE/CERCARE: assenza/economicità dei servizi in certi comuni 
+- [ ] RECUPERARE/CERCARE: trasporto pubblico sociale
+- [ ] RECUPERARE/CERCARE: PRESIDI TERRITORIALI di prossimità e ricomposizione sociale
+- [ ] verde urbano e spazi pubblici, comportamenti sostenibili
+- [ ] RECUPERARE: canoni di locazione per zona OMI (Agenzia delle Entrate, semestrale) da rapportare ai redditi IRPEF per CAP → indice di sforzo per l'affitto sotto il livello comunale
+- [ ] RECUPERARE: sfratti per provincia (Ministero dell'Interno, procedure di rilascio: emessi, eseguiti, per morosità), serie annuale
+
+
+**Ricognizione/Aggiornamento FONTI**:
+
+- [x] [Immobili ACER 2022](https://opendata.comune.parma.it/dataset/immobili-acer-di-parma-2022) e [quartieri vigenti](https://opendata.comune.parma.it/dataset/quartieri-del-comune-di-parma-vigenti) (2026-10-07)
+- [x] sfondo delle mappe per quartiere: strade 2025, torrenti, ferrovie, parchi, con `ingestione/09` (2026-10-07)
+- [x] [Popolazione residente al 1 gennaio 2026](https://opendata.comune.parma.it/dataset/popolazione-residente-al-1-gennaio-2026) in `ingestione/09`; età = anni compiuti con `ETA - 1`, v. `_metadati.md` (2026-10-08)
+- [ ] reddito sotto il livello comunale: verificare MEF IRPEF per CAP
+- [ ] disabilità per quartiere e domande bando affitto / ERP per quartiere: non nei dati aperti del Comune → richieste n. 6 e 7 (Richieste uffici)
+- [ ] anziani soli per comune: verificare su Esplora Dati censimento (famiglie / persone sole per età); se c'è, aggiungerlo a `pop_mappe_tematiche` come sesto indicatore
+
+
+**Ripensamento MODULI (connessi a fonti)**:
+
+### modulo `indic_fragil`
+> inspo: [MILANO CHE CAMBIA/Indicatori composti](https://public.tableau.com/app/profile/maud.lab/viz/MILANOCHECAMBIAUNVIAGGIOINTERATTIVOTRADATIPERSONEEQUARTIERI/INFO_descrizione)
+
+- Una sorta di TABSET per vedere PROVINCIA (x comune) e COMUNE (x quartieri) che illustrino nello spaziopgli indicatori di fragilità e i bisogni del territorio, con mappe e tabelle. 
+  - [ ] attratttività migratoria 
+  - [ ] dipendenza anziani e/o 
+  - [ ] ... indice di fragilità demografica 
+  - [ ] famiglie numerose 
+  - [ ] redditi medi 
+  - [ ] povertà abitativa  e/o 
+  - [ ] ... dinamica immobiliare (canoni OMI, sfratti, immobili ACER)  
+  - [ ] dinamica pendolarismo/mobilità per lavoro, ...  
+ 
+
+
+### modulo `comune_pr_quartieri`
+> (Comune di Parma per quartiere: popolazione residente e immobili ACER; pagina bozza `sito/temi/_geogr_abitare.qmd`, voce prevista "Geografia dell'abitare" nel menu Demografia)
+
+
+**Sito**:
+
+- [ ] CAPIRE COME REDISTRIBUIRE `_geoloc_fragil.qmd` e`geogr_abitare.qmd`, (forse qualcosa lo tolgo da qui e lo metto in `_geoloc_fragil.qmd`) 
+- [ ] - CAPIRE COSA FARNE - `_acer_quartieri.qmd` (bozza con le 13 mappe di dettaglio): decidere se e come usarla; per pubblicarla semplificare anche le strade
+
+#### 🟡 AVANZAMENTO comune_pr_quartieri
+
+Stato al 2026-10-09: pagina pubblicata (in costruzione) con sezione provincia; classi d'età e gradini uniformati città/provincia; prossimo passo: verifica in anteprima e testi
+
+
+___
+
+## ⏭️ 6. Approfondimenti 
+
+Eventuali pagine di approfondimento, magari con analisi meno esplorativa e piu statstica che sia composta da temi auto contenuti (as opposed to temi che stanno bene spezzettati in sotto pagine) 
+
+
 
 ___
 
 
-## 3. Lavoro e redditi da lavoro (tutto da fare)
+# DA CAPIRE SE FAR RIENTRARE NELLE PRECEDENTI E COME 
+
+## 7. Lavoro e redditi da lavoro (tutto da fare)
 > Non affrontato nello strategico PS 2024-2027, ma da presentare come "Driver di riscatto economico-sociale" 
 
 Fonti candidate: ISTAT RCFL (occupati/disoccupati, livello prov), Osservatori INPS (dipendenti, precariato, retribuzioni), MEF dichiarazioni IRPEF per comune, ISTAT ASIA (imprese/addetti), CCIAA/Excelsior (domanda di lavoro).
@@ -321,11 +400,7 @@ Fonti candidate: ISTAT RCFL (occupati/disoccupati, livello prov), Osservatori IN
 
 - [ ] xxxx
 
- 
-
-
-
-## 4. Fragilità economica 
+## 8. Fragilità economica 
 
 > Da PS 2024-2027 si citano le nuove forme (oltre a povertà materiale) di 
   - povertà lavorativa
@@ -347,61 +422,7 @@ Fonti candidate: INPS (AUU, ADI/sostegni), MEF IRPEF (distribuzione, redditi bas
 
  
 
-## 5. La fragilità e i bisogni sul territorio 
-
-> PS 2024-2027: Un settore che fornisce un punto di osservazione privilegiato è l'abitare / i bisogni e le risorse si concentrano in alcune aree del territorio
-> QUI VOGLIO METTERE TANTE MAPPE E ANALISI GEOLOCALIZZATE... 
- 
-Fonti in casa: `istat_sae_glf_2019` ✓ (stime GLF provinciali), aree interne/zone altimetriche/DEGURBA (già in anagrafica SITUAS ✓), singole età censimento (anziani); nel backup: EHIS 2019 (ADL/IADL), GALI 2023, ISTAT_DISAB_CIFRE. Da cercare: ReportER (ADI, SMAC), INPS AUU figli disabili.
- 
-**Ricognizione/Aggiornamento FONTI**: 
-
-- [ ] RECUPERARE/CERCARE: spopolamento dei comuni e aree interne 
-- [ ] RECUPERARE/CERCARE: assenza/economicità dei servizi in certi comuni 
-- [ ] RECUPERARE/CERCARE: trasporto pubblico sociale
-- [ ] RECUPERARE/CERCARE: PRESIDI TERRITORIALI di prossimità e ricomposizione sociale
-- [ ] verde urbano e spazi pubblici, comportamenti sostenibili
-- [ ] RECUPERARE: canoni di locazione per zona OMI (Agenzia delle Entrate, semestrale) da rapportare ai redditi IRPEF per CAP → indice di sforzo per l'affitto sotto il livello comunale
-- [ ] RECUPERARE: sfratti per provincia (Ministero dell'Interno, procedure di rilascio: emessi, eseguiti, per morosità), serie annuale
-
-
-**Ripensamento MODULI (connessi a fonti)**:
-
-- [ ] Moduli: `disab_gali`, `disab_ehis_adl`, `anziani_soli`?, `territori_remoti`
-      (da definire in ricognizione)
- 
-
-
-### modulo `comune_pr_quartieri`
-> (Comune di Parma per quartiere: popolazione residente e immobili ACER; pagina bozza `sito/temi/_geogr_abitare.qmd`, voce prevista "Geografia dell'abitare" nel menu Demografia)
-
-**Ricognizione/Aggiornamento FONTI**:
-
-- [x] [Immobili ACER 2022](https://opendata.comune.parma.it/dataset/immobili-acer-di-parma-2022) e [quartieri vigenti](https://opendata.comune.parma.it/dataset/quartieri-del-comune-di-parma-vigenti) (2026-10-07)
-- [x] sfondo delle mappe per quartiere: strade 2025, torrenti, ferrovie, parchi, con `ingestione/09` (2026-10-07)
-- [x] [Popolazione residente al 1 gennaio 2026](https://opendata.comune.parma.it/dataset/popolazione-residente-al-1-gennaio-2026) in `ingestione/09`; età = anni compiuti con `ETA - 1`, v. `_metadati.md` (2026-10-08)
-- [ ] reddito sotto il livello comunale: verificare MEF IRPEF per CAP
-- [ ] disabilità per quartiere e domande bando affitto / ERP per quartiere: non nei dati aperti del Comune → richieste n. 6 e 7 (Richieste uffici)
-- [ ] anziani soli per comune: verificare su Esplora Dati censimento (famiglie / persone sole per età); se c'è, aggiungerlo a `pop_mappe_tematiche` come sesto indicatore
-
-**Sito**:
-
-- [x] indicatori per quartiere (età, famiglie, anziani soli, stranieri, ACER e convivenze per 1.000) e pagina bozza `_geogr_abitare.qmd` (2026-10-08)
-- [x] sezione "La provincia": mappe per comune 0-14/0-17/18-29, 65+/80+, stranieri da `pop_mappe_tematiche`, classi uguali ai quartieri (2026-10-09)
-- [x] promozione: `geogr_abitare.qmd` pubblica, voce "Geografia dell'abitare" nel menu Demografia (2026-10-09)
-- [ ] peso della pagina: 13 mappe ACER spostate in `_acer_quartieri.qmd` e confini comunali semplificati per il web (`ingestione/00b`): misurare dopo il render, obiettivo sotto i 4 MB
-- [ ] testi di `geogr_abitare.qmd` (In sintesi, messaggi e Osservazioni del Comune)
-- [ ] verificare in anteprima le scelte del 2026-10-09: classi a gradini fissi (città e provincia), palette pesca per ACER, mappa a punti + barre, bordi bianchi delle mappe, caption a capo
-- [ ] riscrivere in valori le frasi "nel quinto più…" (Osservazioni della provincia e Note di metodo del blurb `pop_mappe_tematiche`), ora che le classi non sono più quintili
-- [ ] `_acer_quartieri.qmd` (bozza con le 13 mappe di dettaglio): decidere se e come usarla; per pubblicarla semplificare anche le strade
-- [ ] `_geoloc_fragil.qmd`: la sezione ACER è ora in `geogr_abitare.qmd`, togliere il doppione
-
-#### 🟡 AVANZAMENTO comune_pr_quartieri
-
-Stato al 2026-10-09: pagina pubblicata (in costruzione) con sezione provincia; classi d'età e gradini uniformati città/provincia; prossimo passo: verifica in anteprima e testi
-
-
-## 6. Capitale istituzionale e sociale (istituzioni pubbliche, terzo settore, capitale relazionale)
+## 9. Capitale istituzionale e sociale (istituzioni pubbliche, terzo settore, capitale relazionale)
 > PS 2024-2027: La formazione, la crescita e la valorizzazione del capitale umano sono strettamente collegate alla rete di istituzioni di un dato territorio 
 
 Fonti candidate: ISTAT spesa servizi sociali comuni (grezzi nel backup, ISTAT_SERVSOC), BDAP/OpenCivitas (bilanci comuni), RUNTS + ISTAT censimento nonprofit (terzo settore), BES (partecipazione civica, relazioni). Salvabile: `analysis/03_carica_bes.qmd` dal backup.
@@ -423,7 +444,13 @@ Fonti candidate: ISTAT spesa servizi sociali comuni (grezzi nel backup, ISTAT_SE
 ---
 
 
-# Guardare esempi di altri 
+# Ispirazione 
+
+## Open data 
+
+- Mapping and Urban Data Lab (**MAUD-DAStU**) del **Politecnico di Milano** [Milano che Cambia Public Tableu](https://public.tableau.com/app/profile/maud.lab/viz/MILANOCHECAMBIAUNVIAGGIOINTERATTIVOTRADATIPERSONEEQUARTIERI/INFO_descrizione)
+
+## Altre FOB? 
 
 Perimetro: parto da queste, per patrimonio decrescente, Nord-Centro:
 

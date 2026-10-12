@@ -95,6 +95,10 @@ for (m in moduli) {
   }
 }
 
+# Pannello del piano strategico (margine destro) --------------------------
+# Rigenera assets/indice_ps.html dalle `categories` delle pagine di sito/temi/
+source(here("sito", "_indice_ps.R"))
+
 # Invalida la cache di Quarto ------------------------------------------
 if (pulisci_freeze) {
   freeze_sito <- here("_freeze", "sito")

@@ -104,14 +104,13 @@ Testi, grafici, tabelle e dati derivati: [CC BY 4.0](https://creativecommons.org
 
 # Utilizzo IA
 
-Nello sviluppo del codice R e nella predisposizione di alcuni testi descrittivi è stato usato un assistente di IA (Claude, Anthropic). Scelta delle fonti, elaborazioni, verifica dei risultati e commenti sono dell'autrice, che ne ha la responsabilità.
+Nello sviluppo del codice R e nella predisposizione di alcune bozze di testi descrittivi è stato usato Claude (di Anthropic), modelli Opus 5+ e Fable 5+. Scelta delle fonti, elaborazione dei dati, verifica e interpretazione dei risultati sono tutti dell'autrice, che ne ha la piena responsabilità.
 
-Contesto usato dall'assistente:
+<!-- 
+Contesto usato dall'IA:
 
 - `CLAUDE.md` (nella radice del progetto, non pubblicato): istruzioni su progetto, regole e modo di lavorare; lo scrive l'autrice, Claude propone modifiche
 - Memoria: preferenze dell'autrice ricordate tra una sessione e l'altra; sta nell'account claude.ai (progetto analisi_contesto), si aggiorna in automatico, l'autrice la rivede ogni 2-3 mesi
 - Skill: procedure ripetibili (`avanzamento` per il diario `_TODO.qmd`, `formatting-r` per tabelle e grafici); stanno nell'account claude.ai, Claude propone modifiche e l'autrice le salva
-
-
-
-----------
+-->
+ 

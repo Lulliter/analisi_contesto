@@ -59,7 +59,7 @@ website:
           - text: "Geografia dell'abitare"
             href: sito/temi/geogr_abitare.qmd
       # Gruppi = linee d'azione e priorità del piano strategico; un tema sta dove sta la sua popolazione di riferimento
-      - text: "Crescita ed educazione"
+      - text: "Giovani"
         menu:
           - text: "Scuola e istruzione"
             href: sito/temi/scuola.qmd
@@ -67,12 +67,23 @@ website:
             href: sito/temi/scuola_dispersione.qmd
           - text: "Formazione professionale"
             href: sito/temi/formaz_rientro.qmd
+          - text: "Giovani e lavoro"
+            href: sito/temi/giovani_lavoro.qmd
           - text: "Crescere al tempo dell'IA"
             href: sito/temi/educ_ia.qmd
-          - text: "Benessere e salute mentale"      # bozza: sito/temi/_benessere_giovani.qmd
+          - text: "Benessere e salute mentale" 
             href: sito/temi/benessere_giovani.qmd
-      - text: "Giovani e lavoro"
-        href: sito/temi/giovani_lavoro.qmd
+
+      # Voci "spente" (2026-10-12): previste ma senza pagine; grigie (css .nav-spenta), senza link.
+      # Quando arriva la prima pagina: togliere lo span e trasformare in menu
+      - text: "<span class='nav-spenta' title='in preparazione'>Anziani</span>"
+        href: "#"
+      - text: "<span class='nav-spenta' title='in preparazione'>Assistenza socio-sanitaria</span>"
+        href: "#"
+      - text: "<span class='nav-spenta' title='in preparazione'>Mappe</span>"
+        href: "#"
+      - text: "<span class='nav-spenta' title='in preparazione'>Approfondimenti</span>"
+        href: "#"
       # ⭐Gruppi da attivare quando c'è la prima pagina⭐:
       # - text: "Welfare e fragilita"               # anziani, sanità, fragilità economica
       #   menu:
@@ -99,6 +110,7 @@ format:
     toc: true
     css: assets/styles/custom.css
     include-after-body: assets/nav_attiva.html # evidenzia nella navbar la pagina corrente
+    margin-header: assets/indice_ps.html # pannello PS nel margine destro (generato da sito/_indice_ps.R)
     # theme: cosmo
     # highlight-style: github
     # mainfont: "Lato"

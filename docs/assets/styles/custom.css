@@ -125,8 +125,8 @@ div.sidebar-item-container nav[role=doc-toc] ul li a.active {
    4. piu' voci dello stesso tema = stesso colore (come Educazione + Giovani qui sotto);
    5. se non sei sicura dell'id, aprilo da docs/index.html cercando "nav-menu-". */
 #nav-menu-demografia                   { color: #f7da7b; } /* demografia: ylw_lg */
-#nav-menu-crescita-ed-educazione       { color: #b7e4d0; } /* crescita ed educazione: verde menta (grn_lg schiarito, contrasto ~3.4) */
-.navbar a[href$="giovani_lavoro.html"] { color: #b7e4d0; } /* giovani e lavoro: stesso verde (stesso gruppo tematico) */
+#nav-menu-giovani                      { color: #b7e4d0; } /* giovani (ex "crescita ed educazione", 2026-10-12): verde menta (grn_lg schiarito, contrasto ~3.4) */
+/* .navbar a[href$="giovani_lavoro.html"] { color: #b7e4d0; }  giovani e lavoro: dal 2026-10-12 sta nella tendina Giovani, non serve più */
 
 /* Tendine della navbar: sfondo distinto dalla pagina (stesso grigio del footer), bordo e ombra (2026-09-25) */
 .navbar .dropdown-menu {
@@ -221,3 +221,32 @@ div.callout-note.metodo.callout-style-default > .callout-header { background-col
 div.callout-note.metodo .callout-icon::before {
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="fill: rgb(31,150,153)" class="bi bi-clipboard-data" viewBox="0 0 16 16"><path d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0z"/><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z"/></svg>');
 }
+
+/* Pannello del piano strategico nel margine destro (assets/indice_ps.html, generato da sito/_indice_ps.R, 2026-10-12):
+   6 voci chiuse, cliccando si apre l'elenco delle pagine con quel tag; nascosto sotto i 992 px (telefono/tablet) */
+#indice-ps { font-size: .875rem; margin-bottom: 1.5rem; }
+#indice-ps .indice-ps-gruppo {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin: 0 0 .25rem;
+  color: #5C2129;
+}
+#indice-ps details { margin: 0 0 .15rem; }
+#indice-ps summary { cursor: pointer; }
+#indice-ps ul { list-style: none; padding-left: .75rem; margin: .15rem 0 .5rem; border-left: 1px solid #dee2e6; }
+#indice-ps .indice-ps-vuoto { color: #6c757d; font-style: italic; }
+@media (max-width: 991.98px) { #indice-ps { display: none; } }
+
+/* Pillole delle categories (priorità/LA del PS) sotto la description, non sotto il titolo (2026-10-12) */
+#title-block-header { display: flex; flex-direction: column; }
+#title-block-header .quarto-title,
+#title-block-header > div:not([class]) { display: contents; }   /* i figli salgono al livello dell'header */
+#title-block-header h1 { order: 0; }
+#title-block-header .description { order: 1; }
+#title-block-header .quarto-categories { order: 2; margin-top: .5rem; }
+#title-block-header .quarto-title-meta { order: 3; }
+
+/* Voci di navbar "spente" = previste ma senza pagine (2026-10-12): grigie, non cliccabili */
+.navbar .nav-spenta { color: #adb5bd; cursor: default; }
+.navbar a.nav-link:has(.nav-spenta) { pointer-events: none; }
