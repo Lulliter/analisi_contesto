@@ -4,7 +4,7 @@ Bozze da adattare (destinatario, firma, riferimenti). Tono: richiesta tra uffici
 
 ---
 
-## 1. CPIA di Parma — iscritti per anno, percorso, età, cittadinanza
+## ⛔ 1. CPIA di Parma — iscritti per anno, percorso, età, cittadinanza
 
 Destinatario: dirigente scolastico / segreteria del CPIA di Parma
 Cartella di arrivo: `dati/grezzi/iefp_cpia_ER_PR/CPIA_PR/`
@@ -30,9 +30,10 @@ Grazie, cordiali saluti
 
 ---
 
-## 2. Regione Emilia-Romagna — iscritti IeFP per provincia (SIFER)
+## ✅ 2. Regione Emilia-Romagna — iscritti IeFP per provincia (SIFER)
 
 Destinatario: Regione ER, Settore/Servizio istruzione e formazione professionale (sistema informativo SIFER) — verificare l'ufficio competente sul sito formazionelavoro.regione.emilia-romagna.it
+Email: [annamaria.arrighi@regione.emilia-romagna.it](mailto:annamaria.arrighi@regione.emilia-romagna.it)
 Cartella di arrivo: `dati/grezzi/iefp_cpia_ER_PR/IeFP_Regione/`
 
 Oggetto: richiesta dati aggregati sui percorsi IeFP per provincia, a.f. 2015/16-2025/26
@@ -55,9 +56,10 @@ Grazie, cordiali saluti
 
 ---
 
-## 3. Regione Emilia-Romagna — anagrafe regionale degli studenti
+## ✅ 3. Regione Emilia-Romagna — anagrafe regionale degli studenti
 
 Destinatario: Regione ER, Settore istruzione (anagrafe regionale degli studenti, scuola.regione.emilia-romagna.it/anagrafi-regionali)
+Email: [Statistica@Regione.Emilia-Romagna.it ](mailto:Statistica@Regione.Emilia-Romagna.it)
 Cartella di arrivo: `dati/grezzi/rer_anagrafe_studenti/` (da creare, con `_metadati.md`)
 Serve a tre moduli: `scuola_iscritti` (infanzia), `scuola_disabilita` (validazione), `scuola_abband_neet` (regolarità, successo, ELET provinciale)
 
@@ -81,11 +83,11 @@ Grazie, cordiali saluti
 
 ---
 
-## 4. INVALSI, Servizio statistico — mappa ELET per provincia e dispersione implicita
+## 4. ✅ INVALSI, Servizio statistico — mappa ELET per provincia e dispersione implicita
 
 Destinatario: INVALSI, Servizio statistico (verificare il contatto sul sito; il dominio invalsi.it non è raggiungibile da Claude, scarichi a mano)
 Cartella di arrivo: `dati/grezzi/invalsi/`
-
+Email: [uff.statistico@invalsi.it](mailto:uff.statistico@invalsi.it)
 Oggetto: richiesta dei dati sottostanti due grafici del Rapporto/presentazione 2026 (ELET per provincia; dispersione implicita per provincia)
 
 Gentili colleghi,

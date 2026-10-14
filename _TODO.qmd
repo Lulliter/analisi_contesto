@@ -67,11 +67,11 @@ dati/grezzi/ ──▶ ingestione/ ──▶ dati/puliti/ ──▶ moduli/*/out
 
 Dati che non stanno negli open data e vanno chiesti agli enti (bozze in `dati/grezzi/_richieste_dati.md`, 2026-09-23). Una riga per richiesta; annotare qui data di invio ed esito.
 
-- [ ] 1) CPIA Parma: iscritti per anno, percorso, età, cittadinanza, esiti
-- [ ] 2) Regione ER (SIFER): iscritti IeFP per provincia
+- [ ] 1) ~~CPIA Parma: iscritti per anno, percorso, età, cittadinanza, esiti~~
+- [x] 2) Regione ER (SIFER): iscritti IeFP per provincia
 - [ ] 3) Regione ER: anagrafe regionale degli studenti (infanzia, esiti, passaggi IeFP, ELET provinciale, disabilità) → serve a `scuola_iscritti`, `scuola_disabilita`, `scuola_abband_neet`
 - [ ] 4) INVALSI, Servizio statistico: tabelle sotto la mappa ELET provinciale e il cartogramma dispersione implicita (fig. 8.2.3)
-- [ ] 5) AUSL Parma / Regione ER: utenti NPIA e accessi PS minori per età → `educ_ia`
+- [ ] 5) AUSL Parma, DAISMDP: richiesta SOSPESA dopo la scoperta dei report annuali del Dipartimento (2014-2024, in `dati/grezzi/ausl_npia/`); se serve, chiedere all'Ufficio sistema informativo le tabelle 2023-24 mancanti (accessi residenti 0-17, nuovi in carico, classi d'età)
 - [ ] 6) Comune di Parma, servizi sociali / AUSL: persone con disabilità per quartiere → `comune_pr_quartieri`
 - [ ] 7) Comune di Parma, ufficio casa: domande al bando affitto (e morosità incolpevole, domande ERP) per quartiere o CAP, per anno → mappa del rischio abitativo nel mercato privato, accanto agli immobili ACER (`comune_pr_quartieri`)
   - in attesa, proxy da fonti aperte: canoni OMI per zona (Agenzia delle Entrate) rapportati ai redditi IRPEF per CAP (MEF) e sfratti per provincia (Ministero dell'Interno) → voci nel tema 5
@@ -87,7 +87,7 @@ Dati che non stanno negli open data e vanno chiesti agli enti (bozze in `dati/gr
   - [ ] 1) un solo set di formattatori in `R/` (`num_it()`, `pct_it()`, `lab_num_it`, `lab_pct_it`)
   - [ ] 2) sostituire le chiamate dirette a `scales::` nei `02_output.R`, rilanciare `build.R` e aggiungere lì il controllo sulle chiamate dirette
   - [ ] 3) aggiornare la skill `formatting-r`
-- [ ] Riportare nel repo metadati la v1.2 di `R/formatting.R` (header tabelle grigio, 2026-09-25)
+- [ ] Riportare nel repo metadati la v1.3 di `R/formatting.R` (header tabelle grigio 2026-09-25; N.D. in rosso pallido dentro `f_ft()` 2026-10-14) e dire "aggiorna la skill formatting-r"
 - [ ] revamp `_targets.R` (nel repo vecchio)?
 - [ ] **renv** (aperta 2026-09-29): decidere tra `renv.lock` versionato e una fotografia `sessioninfo` a ogni pubblicazione del sito
 - [ ] **Font del sito** (aperta 2026-09-29): un font unico per testo e tabelle; oggi le tabelle sul telefono cadono in Times
@@ -130,6 +130,8 @@ I macro temi corrispondono + o - ai tab principali del `sito/`. GLi item elencat
 - [x] Modulo `moduli/demo_trend_previs/`
   - [ ] (possibile?) age 80+ storico per il confronto con le previsioni: serve la popolazione per singole età da demo.istat.it
   - [ ] (possibile?) speranza di vita prevista al 2050: c'è solo a livello regionale, tra le ipotesi delle previsioni ISTAT
+- [ ] **Popolazione per comune × età × anno (2018→)** da IstatData (flusso `DF_DCSS_POPRES_SERIES_TV_1`, prova a mano in `dati/grezzi/istat_cens/popres_com_PR_amano_…xlsx`, solo totali e solo dal 2018; anni precedenti forse in altro flusso): script `get_`/`clean_` in `ingestione/`, verificare se il flusso ha la dimensione età; serve a `npia_utenti` (0-17 per distretto), a mappe e trend per comune e per distretto sanitario
+- [ ] Tabella comune → distretto sanitario AUSL PR (44 righe) in `dati/grezzi/`, da sito AUSL
 
 ___
 
@@ -237,6 +239,18 @@ _5. Governare: risposte dei paesi e mappa locale_
 - [ ] Mappa locale delle realtà educanti: catalogo del Comune di Parma, Corecom ER [Newsistruzione](https://www.newsistruzione.it/2026/09/10/parma-catalogo-progetti-in-comune-2026) [Assemblea ER](https://www.assemblea.emr.it/comunicati-stampa/diritti-corecom-in-campo-per-leducazione-ai-media-in-un-anno-112-incontri-nelle-scuole-12-laboratori-sullia-e-27-contro-fake-news-e-cyberbullismo)
 
 **Moduli/output previsti**: cruscotto di 5-6 indicatori; restano 3) PISA, 5) NPIA, 6) tabella "risposte dei paesi"
+
+### modulo `npia_utenti`
+(minori con accesso e in carico ai servizi di neuropsichiatria infantile, provincia di Parma per distretto, 2010-2024; fonte report DAISMDP AUSL, trascritti in `npia_pr_serie.csv`)
+
+- [ ] rivedere grafici e tabelle di `02_output.R` (5 grafici, 4 tabelle) dopo il primo lancio
+- [ ] sezione "La salute mentale nei bambini e ragazzi" in bozza `_benessere_giovani_v2.qmd`: restringere le Osservazioni, verificare la frase sul tasso città/provincia, poi promuovere al posto di `benessere_giovani.qmd`
+- [ ] richiesta n. 5 all'AUSL: le domande sono nei commenti di `_metadati.md` (geografia, VTC 2023, tabelle 2023-24, criterio 2016, refusi, definizione di "stranieri"); da comporre in `_richieste_dati.md`
+- [ ] popolazione 0-17 per distretto da ISTAT (somma di comuni) al posto di `pop_calc`: dipende dalla serie per comune × età e dalla tabella comune → distretto (vedi Demografia)
+
+#### AVANZAMENTO giovani
+
+Stato al 2026-10-14: modulo `npia_utenti` completo e lanciato (`01` con dataset `npia_distretti_rev`, diagnosi e confronto adulti 2024; `02` con 5 grafici e 4 tabelle), blurb e bozza di pagina scritti; nuova fonte `prov_pr_statistica/` (totali Provincia 1990-2025); prossimo passo: rivedere grafici e tabelle, restringere la bozza di pagina
 
 #### Pagine del tema
 

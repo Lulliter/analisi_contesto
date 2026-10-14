@@ -13,6 +13,7 @@
 - `istat_cens_pop_com_er_<anno>.rds` — risposta API grezza (dataframe rsdmx, comuni ER; classi decennali + minorenni)
 - `istat_cens_pop_com_er_seta_<anno>.rds` — risposta API grezza, SINGOLE ETÀ (flow `SETA_1`, da `01c`; serve per tagli tipo 65+)
 - `istat_cens_pop_confronti_<anno>.rds` / `..._confronti_seta_<anno>.rds` — territori di confronto: IT, Nord-Est (ITD), ER (ITD5), province ER (ITD51-59; ITD52 = Parma)
+- `popres_com_PR_amano_serie2018-2024_check(IT1,DF_DCSS_POPRES_SERIES_TV_1,1.0).xlsx` — prova a mano (2026-10-14) del flusso SERIE `DF_DCSS_POPRES_SERIES_TV_1`: popolazione TOTALE al 31/12 per i 44 comuni PR + provincia (ITD52), 2018-2024 (chiesto dal 2012, la serie parte dal 2018); senza età. URL e chiave nel foglio `metadati` dentro il file
 
 **Note/insidie:**
 

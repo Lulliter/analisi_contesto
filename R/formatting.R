@@ -1,5 +1,8 @@
-# formatting_core.R — v1.2 (2026-09-25) — canonico: repo metadati
+# formatting_core.R — v1.3 (2026-10-14) — canonico: repo metadati
 # Changelog:
+# v1.3: f_ft() colora i N.D. (NA numerici) in rosso pallido col_nd, per distinguerli dai
+#       numeri; vale per ogni tabella del sito (deciso 2026-10-14 in npia_utenti).
+#       Da riportare nel repo metadati insieme alla v1.2
 # v1.2: f_ft() header grigio chiaro #E5EBEE (lo stesso di footer e tendine del sito) al posto
 #       del giallino: neutro rispetto ai colori tematici delle celle. Da riportare nel repo metadati
 # v1.1: f_ft() con sfondo header "giallino sabbia" #F7F1E1 (param header_bg,
@@ -104,10 +107,24 @@ f_ft_tight <- function(ft, font_size = 9, pad = 1) {
 # colformat_double() successive (es. digits = 0 su alcune colonne) vincono.
 # header_bg: sfondo delle etichette colonne (grigio chiaro); la riga
 # titolo aggiunta da f_ft_titolo_note() resta bianca.
+# colore dei valori non disponibili / non riportati (N.D.): rosso pallido
+col_nd <- "#C98A8A"
+
+# ___ N.D. colorati: una color() per colonna numerica, sulle sole righe NA ----
+# (solo NA numerici: sono quelli che colformat_* trasforma in "N.D.")
+f_ft_nd <- function(ft, colore = col_nd) {
+  dati <- ft$body$dataset
+  colonne_na <- names(dati)[sapply(dati, function(x) is.numeric(x) && any(is.na(x)))]
+  purrr::reduce(colonne_na, function(ft_acc, j) {
+    flextable::color(ft_acc, i = which(is.na(dati[[j]])), j = j, color = colore, part = "body")
+  }, .init = ft)
+}
+
 f_ft <- function(x, header_bg = "#E5EBEE") {   # fino a v1.1: "#F7F1E1" giallino sabbia
   flextable(x) |>
     colformat_double(na_str = "N.D.") |>
     colformat_int(na_str = "N.D.") |>
+    f_ft_nd() |>                                 # v1.3: N.D. in rosso pallido
     bg(bg = header_bg, part = "header") |>
     # Opzioni solo-Word (ignorate in HTML): righe non spezzate tra pagine,
     # header ripetuto. Per tabelle molto larghe in Word resta f_ft_word()

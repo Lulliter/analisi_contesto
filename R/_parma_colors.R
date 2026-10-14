@@ -12,6 +12,7 @@
 #   bordeaux (burg_*) = evidenziazione Parma (mappe) + hover interattivo (R/f_girafe.R usa burg_md)
 #   serie territoriali (trend): Parma = ylw_lg, ER = grn_md, Italia = blu_md
 #   piramidi: maschi = azzurro, femmine = rosa antico
+#   distretti sanitari AUSL PR (entità nuova, palette CATEGORICA a 4): cat_distretti (deciso 2026-10-14 in npia_utenti)
 #
 # NB 2026-07-18: hex allineati alla palette del repo BILANCIO DI MISSIONE
 # (gialli e grigi aggiornati; maschi/femmine sono gli hex originali che
@@ -159,6 +160,13 @@ div_factor_red_blu <- c(
   '#3288bd'
 )
 
+
+# distretti sanitari dell'AUSL di Parma: palette CATEGORICA (nessun ordine tra i distretti),
+# tinte fuori da quelle riservate (verde minori, rosso anziani, viola stranieri, giallo Parma, ...)
+cat_distretti <- c("Parma" = "#8C6D31",
+                   "Fidenza" = "#1B7F8C",
+                   "Sud Est" = "#C2559A",
+                   "Valli Taro e Ceno" = "#6699CC")
 
 # Color QUALITATIVE
 #install.packages("rcartocolor")

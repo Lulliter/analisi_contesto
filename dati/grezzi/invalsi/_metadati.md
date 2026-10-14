@@ -23,3 +23,4 @@
 
 - 2026-09-02 prima acquisizione (`Traguardi_MS2026.xlsx`, Rapporto 2025-2026, a.s. 2017/18 → 2025/26)
 - 2026-09-11 ricognizione fonti e scarico dei due pacchetti completi "Dati sottostanti le dashboard Tableau" (gradi 2-5-10 e 8-13), in csv
+- 2026-10-13 cruscotti Tableau del Rapporto 2026 verificati: scendono solo fino a regione; valori provinciali di fig. 8.2.3 (dispersione implicita) e della mappa ELET chiesti al Servizio statistico (richiesta n. 4)
