@@ -17,6 +17,8 @@
 - `CPIA_PR/SITO_CPIA_PARMA.docx` — testo del sito: contesto, 3 sedi associate + 28 punti di erogazione, tipi di percorso, "oltre 3.000 iscritti nel 2024/25", liste d'attesa
 - `CPIA_PR/tabellacorsiFAMI22-25.xlsx-Foglio1(1).pdf` — corsi di italiano su fondi FAMI 2022-25: 44 corsi, 744 iscritti, 463 frequentanti, 271 certificazioni, per livello e sede (parte dell'offerta, non il totale)
 - `IeFP_Regione/*.pdf` — delibere, nota congiunta Regione-USR e allegati 1-5 per l'a.s. 2026/27: offerta (istituti professionali e enti accreditati per provincia, hub propedeutici, qualifiche). A Parma: 2 istituti professionali con IeFP, 7 enti accreditati, 1 hub. NIENTE iscritti
+- `IeFP_Regione/MIM_factsheet_IeFP_2023_24.pdf` — fact sheet dell'Ufficio scolastico regionale sull'IeFP negli istituti professionali, per provincia (a.s. 2023/24: classi e iscritti per anno di corso; qualificati 2022/23). Solo istituti professionali, niente enti di formazione
+- `IeFP_Regione/Bevilacqua_slide_Sist_IeFP_RER_ott2026.pdf` — slide sul sistema IeFP regionale presentate a Parma (Ufficio scolastico di Parma, 2026): offerta 2025/26 e 7 enti accreditati, nessun numero di allievi
 - `Inapp_Rapporto_IeFP/*.pdf` — rapporto completo e schede di sintesi: allievi, qualificati, diplomati per REGIONE (ER 2023/24: 15.817 allievi, metà enti di formazione e metà istituti professionali)
 
 **Note/insidie:** il CPIA non compare nei file studenti open data del MIM (0 alunni per tutte le 130 sedi CPIA d'Italia, verificato 2026-09-23): la sede è in anagrafe ma gli iscritti no. Gli allievi IeFP negli istituti professionali sono già dentro gli iscritti MIM di quegli istituti e non si distinguono. Gli iscritti IeFP per provincia esistono nel sistema informativo regionale (SIFER) ma non sono in questi file: da richiedere alla Regione.
@@ -24,3 +26,4 @@
 **Storico aggiornamenti:**
 
 - 2026-09-23 prima acquisizione (Luisa: documenti; Claude: csv e metadati)
+- 2026-10-15 aggiunti fact sheet USR IeFP 2023/24 e slide sul sistema IeFP a Parma (in attesa degli iscritti per provincia dalla Regione, richiesta n. 2)

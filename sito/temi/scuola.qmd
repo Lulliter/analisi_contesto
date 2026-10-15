@@ -61,9 +61,10 @@ source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hov
 
 ## In sintesi 
 
-+ Le scuole della provincia di Parma (statali e paritarie, esclusa l'infanzia) contano 51.747 iscritti (a.s. 2024/25, esclusi i corsi per adulti). Il **calo demografico** appare a partire dalla primaria e dalla secondaria di I grado, mentre la secondaria di II grado cresce ancora (l'onda dei nati fino al 2010 che risale i cicli).
++ Le scuole della provincia di Parma (statali e paritarie) contano **61.105 iscritti** nell'a.s. 2024/25, di cui 9.358 alla scuola dell'infanzia (esclusi i corsi per adulti). Il **calo demografico** è evidente tra i più piccoli: l'infanzia ha perso il 13% dei bambini dal 2015/16, mentre primaria e secondaria di I grado calano. La secondaria di II grado cresce ancora (l'onda dei nati fino al 2010 che risale i cicli).
 
 <!-- 
+# NB dal 2026-10-15 iscritti_trend_pr include l'infanzia (ISTAT, colonna fonte): i numeri sotto sono senza
 readRDS(here::here("moduli", "scuola_iscritti", "output", "iscritti_trend_pr.rds")) |>
   dplyr::filter(anno_inizio == 2024) |>
   dplyr::summarise(alunni = sum(alunni), .by = gestione)
@@ -73,9 +74,9 @@ readRDS(here::here("moduli", "scuola_iscritti", "output", "iscritti_trend_pr.rds
 1 paritaria   2706
 2 statale    49570
 -->
-+ La scuola **paritaria della provincia** (frequentata da circa il 5% degli alunni) accoglie soprattutto i bambini dell’infanzia: 80 dei 104 plessi paritari sono scuole dell’infanzia, in 21 comuni, spesso unico presidio locale; negli altri ordini è concentrata in 5 comuni.
++ La scuola **paritaria della provincia** (frequentata dal 13% degli alunni, infanzia inclusa) accoglie soprattutto i bambini dell’infanzia (il 57% di loro, tra comunali e private). Infatti, 80 dei 104 plessi paritari sono scuole dell’infanzia situate in 21 comuni, spesso unico presidio locale; negli altri ordini è concentrata in 5 comuni.
 
-+ La scuola è chiamata a servire una popolazione studentesca che si evolve: la **presenza di alunni con cittadinanza non italiana** (21,6% contro 18,7% della media regionale) è cresciuta lungo tutto il decennio; si osserva anche una crescita repentina delle **certificazioni di disabilità** (circa il 40% nelle scuole statali) a fronte di un numero stabile di iscritti. 
++ La scuola è chiamata a servire una popolazione studentesca che si evolve: la **presenza di alunni con cittadinanza non italiana** (21,6% contro 18,7% della media regionale, dalla primaria alle superiori) è cresciuta lungo tutto il decennio; si osserva anche una crescita repentina delle **certificazioni di disabilità** (circa il 40% nelle scuole statali) a fronte di un numero stabile di iscritti. 
 <!-- + Per chi interviene: il bisogno si concentra nel primo ciclo e in comuni precisi, pedecollina e bassa, dove presenza straniera e certificazioni crescono insieme. -->
  
 
@@ -99,9 +100,10 @@ f_bottoni_dati("iscritti_trend_pr", dir_scuola, rds = "plot_iscritti_ordine_pr")
 
 ::: {.callout-note collapse="true"}
 ### Osservazioni
-Il calo demografico è entrato in classe dal basso: primaria e secondaria di I grado perdono iscritti negli ultimi 5 anni, mentre la secondaria di II grado cresce ancora (l'onda dei nati fino al 2010 che risale i cicli). 
+Il calo demografico è entrato in classe dal basso: l'infanzia è passata da 10.744 a 9.358 bambini in dieci anni (-13%), primaria e secondaria di I grado perdono iscritti negli ultimi 5 anni, mentre la secondaria di II grado cresce ancora (l'onda dei nati fino al 2010 che risale i cicli). 
 
-_NB: Gli iscritti del Ministero partono dalla primaria: la scuola dell'infanzia non c'è, e nemmeno i corsi per adulti._
+<!-- _NB: Gli iscritti del Ministero partono dalla primaria: la scuola dell'infanzia non c'è, e nemmeno i corsi per adulti._ -->
+_NB: primaria e secondarie dal Ministero, infanzia da ISTAT (statali e paritarie); esclusi i corsi per adulti._
 :::
 
 ```{r}
@@ -123,9 +125,9 @@ f_bottoni_dati("iscritti_trend_pr", dir_scuola, rds = "plot_iscritti_ordine_gest
 ::: {.callout-note collapse="true"}
 ### Osservazioni
 
-Il numero di iscritti alle scuole paritarie è relativamente più alto nella fascia 6-11 anni (primaria) - o forse ancora più nell'infanzia (qui non rappresentata) - mentre cala all'avanzare dell'ordine di scuola.
+Le paritarie pesano soprattutto nell'infanzia, dove accolgono più della metà dei bambini (57%: 16% nelle scuole comunali, 41% nelle private); poi il loro peso cala all'avanzare dell'ordine di scuola.
 
-_NB: Infanzia esclusa dalla fonte (vedi sopra); il peso delle paritarie nell'infanzia si vede nella mappa dei plessi._
+_NB: nell'infanzia "paritarie" = scuole comunali + private paritarie (ISTAT)._
 :::
 
 ```{r}
@@ -284,6 +286,29 @@ f_bottoni_dati("stranieri_trend_prov_er", dir_scuola, rds = "plot_stranieri_prov
 ### Osservazioni
 
 L'incidenza degli alunni con cittadinanza non italiana è cresciuta lungo tutto il decennio in tutta la regione, e Parma si colloca nella fascia alta delle province: nell'a.s. 2024/25 è seconda dopo Piacenza (21,6% contro 25,2%), sopra la media regionale del 18,7%.
+:::
+
+```{r}
+#| label: plot_stranieri_ordine_pr
+#| output: true
+
+f_girafe(readRDS(file.path(dir_scuola, "plot_stranieri_ordine_pr.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_stranieri_ordine_pr
+#| output: true
+f_bottoni_dati("stranieri_ordine_pr", dir_scuola, rds = "plot_stranieri_ordine_pr")
+```
+:::
+
+::: {.callout-note collapse="true"}
+#### Osservazioni
+
+Dal 2015/16 la presenza di alunni stranieri cresce in tutti gli ordini. Nel 2024/25 è più alta nella primaria (27%), poi nell'infanzia e nella secondaria di I grado (24%), più bassa alle superiori (15%).
+
+_NB: primaria e secondarie dal Ministero, infanzia da ISTAT; stessa definizione (cittadinanza non italiana)._
 :::
 
 ```{r}

@@ -56,7 +56,7 @@ Grazie, cordiali saluti
 
 ---
 
-## ✅ 3. Regione Emilia-Romagna — anagrafe regionale degli studenti
+## ✅ ✅ 3. Regione Emilia-Romagna — anagrafe regionale degli studenti
 
 Destinatario: Regione ER, Settore istruzione (anagrafe regionale degli studenti, scuola.regione.emilia-romagna.it/anagrafi-regionali)
 Email: [Statistica@Regione.Emilia-Romagna.it ](mailto:Statistica@Regione.Emilia-Romagna.it)
@@ -80,6 +80,9 @@ Vi chiederei, se disponibili, i seguenti dati aggregati per anno scolastico dal 
 Un file Excel o csv è il formato ideale; la Regione sarà citata come fonte.
 
 Grazie, cordiali saluti
+
+### Risp
+Risposta 2026-10-15: rimanda a IstatData «Scuole» (dati provinciali; per l'infanzia solo indicatori, scaricati in `dati/grezzi/istat_scuole/`); per ciò che manca, referenti regionali per infanzia e per gli altri ordini (contatti nella mail); suggerito anche l'Ufficio IX, AT Parma dell'USR.
 
 ---
 

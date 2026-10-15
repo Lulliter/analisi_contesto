@@ -69,7 +69,10 @@ Dati che non stanno negli open data e vanno chiesti agli enti (bozze in `dati/gr
 
 - [ ] 1) ~~CPIA Parma: iscritti per anno, percorso, età, cittadinanza, esiti~~
 - [x] 2) Regione ER (SIFER): iscritti IeFP per provincia
-- [ ] 3) Regione ER: anagrafe regionale degli studenti (infanzia, esiti, passaggi IeFP, ELET provinciale, disabilità) → serve a `scuola_iscritti`, `scuola_disabilita`, `scuola_abband_neet`
+- [ ] 3) Regione ER: anagrafe regionale degli studenti (infanzia, esiti, passaggi IeFP, ELET provinciale, disabilità) → serve a `scuola_iscritti`, `scuola_disabilita`, `scuola_abband_neet` → risposta 2026-10-15: rimanda a IstatData «Scuole» (dati provinciali); per ciò che manca, referenti regionali per infanzia e per gli altri ordini (contatti nella mail); suggerito anche l'Ufficio IX, AT Parma dell'USR
+  - [x] infanzia: su IstatData solo indicatori per provincia (stranieri, femmine, disabili, % scuole pubbliche, iscritti per classe), scaricati con `ingestione/10_prep_istat_scuole.R`; bastano
+  - [ ] infanzia per comune (gestione, cittadinanza, disabilità): chiesta alla referente regionale per l'infanzia il 2026-10-15
+  - [ ] verificare su IstatData esiti, passaggi IeFP, uscite precoci, disabilità negli altri ordini
 - [ ] 4) INVALSI, Servizio statistico: tabelle sotto la mappa ELET provinciale e il cartogramma dispersione implicita (fig. 8.2.3)
 - [ ] 5) AUSL Parma, DAISMDP: richiesta SOSPESA dopo la scoperta dei report annuali del Dipartimento (2014-2024, in `dati/grezzi/ausl_npia/`); se serve, chiedere all'Ufficio sistema informativo le tabelle 2023-24 mancanti (accessi residenti 0-17, nuovi in carico, classi d'età)
 - [ ] 6) Comune di Parma, servizi sociali / AUSL: persone con disabilità per quartiere → `comune_pr_quartieri`
@@ -82,23 +85,20 @@ Dati che non stanno negli open data e vanno chiesti agli enti (bozze in `dati/gr
 
 # Trasversale
 
-- [x] Riordino del diario e del contesto per l'assistente IA: pulizia di `_TODO.qmd` sezione per sezione; confronto memoria / `CLAUDE.md`
+- [ ] revamp `_targets.R` (nel repo vecchio)?
+- [ ] **renv** (aperta 2026-09-29): decidere tra `renv.lock` versionato e una fotografia `sessioninfo` a ogni pubblicazione del sito
 - [ ] **Formato numeri italiano** nei grafici (aperta 2026-09-18; oggi punto e virgola mescolati nelle legende)
   - [ ] 1) un solo set di formattatori in `R/` (`num_it()`, `pct_it()`, `lab_num_it`, `lab_pct_it`)
   - [ ] 2) sostituire le chiamate dirette a `scales::` nei `02_output.R`, rilanciare `build.R` e aggiungere lì il controllo sulle chiamate dirette
   - [ ] 3) aggiornare la skill `formatting-r`
-- [ ] Riportare nel repo metadati la v1.3 di `R/formatting.R` (header tabelle grigio 2026-09-25; N.D. in rosso pallido dentro `f_ft()` 2026-10-14) e dire "aggiorna la skill formatting-r"
-- [ ] revamp `_targets.R` (nel repo vecchio)?
-- [ ] **renv** (aperta 2026-09-29): decidere tra `renv.lock` versionato e una fotografia `sessioninfo` a ogni pubblicazione del sito
-- [ ] **Font del sito** (aperta 2026-09-29): un font unico per testo e tabelle; oggi le tabelle sul telefono cadono in Times
+- [ ] Riportare nel repo metadati la v1.3 di `R/formatting.R` (header tabelle grigio 2026-09-25; N.D. in rosso pallido dentro `f_ft()` 2026-10-14; font fisso "Roboto Condensed" per il sito 2026-10-15) e dire "aggiorna la skill formatting-r"
+- [x] **Font del sito**: fatto e sfrutta `assets/fonts/` (non piu googleapi): portare ad altri repos?
 - [ ] Nomi delle funzioni `f_...`: criterio e lessico comune (rimandato 2026-10-09)
-- [ ] Residui di render delle bozze accanto ai sorgenti (`sito/temi/_*.html`, `_*_files/`, `.rmarkdown`): ora fuori da git, da cancellare a mano
+- [ ] Export dati: in `f_bottoni_dati()` smistare per riga, "Fonte…" nel campo Fonte e il resto in Nota (oggi alcune fonti escono come Nota)
+- [ ] asse y sopra il massimo (`f_scale_y_tacche`, `f_scale_y_sopra` in `R/grafici.R`): estendere agli altri grafici di trend del sito
 
 **Sito e piano strategico (2026-10-12)**:
 
-- [x] `categories` nello YAML delle pagine = priorità (P1-P3) e linee d'azione (LA1-LA4) del PS 24-27; etichette in `sito/README.md`; pillole sotto la description; pannello chiuso nel margine destro (`sito/_indice_ps.R` → `assets/indice_ps.html`, lanciato da `build.R`), nascosto su telefono; fatto su `scuola.qmd`
-- [x] navbar riorganizzata sui macro-temi del diario: Demografia, Giovani (con Giovani e lavoro), poi Anziani, Assistenza socio-sanitaria, Mappe, Approfondimenti "spente" (grigie) finché senza pagine
-- [ ] `categories` sulle altre pagine (abbinamento dal foglio `confronto` di allineam_strategico)
 - [ ] rivedere il diario (temi 3/4/5 entro dicembre, 1-2 da sfoltire; voci di `geogr_abitare` sparite nel riordino: recuperare?) e poi riallineare `allineam_strategico/` (colonna "tema diario" dell'xlsx e righe "In analisi_contesto" della `_guida.qmd`) alla nuova numerazione
 
 ---
@@ -106,8 +106,7 @@ Dati che non stanno negli open data e vanno chiesti agli enti (bozze in `dati/gr
 {{< pagebreak >}}
 
 
-
-# ⭐ Spunti commissione CG e Anna P
+# ⭐ Spunti commissione CG e Aaltri stakeholders
 
 + SITO/`Natalità`: come cambia il **desiderio di figli** a 14 anni e 25
 + SITO/`Dispersione`: 
@@ -116,6 +115,9 @@ Dati che non stanno negli open data e vanno chiesti agli enti (bozze in `dati/gr
 + SITO/`Disabilita/ DSA`: Confrontare il **N diagnosi /certificazioni di autismo v. demenza senile** con la popolazione di riferimento  
 + SITO/`Giovani e lavoro`: **attrattività** di Parma (arrivano o partono?)
 + SITO/`Giovani e lavoro`: il **mismatch** non è Domanda oggi v. Offerta oggi ma **Domanda futura v. Offerta oggi** (es. laureati in discipline STEM, laureati in discipline umanistiche, ecc.) 
+
+**Mauro Pinardi**:
++ SITO/`Mappe`: ci servirebbe vedere la mobilità e anche dove sono gli ATS ETS  e anche come sono cresciuti certi comuni nel tempo 
 
 # Temi 
 
@@ -146,10 +148,9 @@ ___
 >(trend PR per ordine scuola, italiani E stranieri incl. % per comune; fonte MIM)
 
 **Ricognizione/Aggiornamento FONTI**: 
-
-- [ ] _Fonte da acquisire_:
-  + iscritti alla scuola dell'infanzia: il MIM non li rileva, l'anagrafe studenti della Regione ER sì → richiesta n. 3 (Richieste uffici)
-  + [ISTAT offerta nidi](https://www.istat.it/comunicato-stampa/offerta-di-nidi-e-servizi-integrativi-per-la-prima-infanzia-anno-educativo-2023-2024)
+- [ ] iscritti alla scuola dell'infanzia **PER COMUNE** vedi richiesta # 3 (Richieste uffici)
+- [ ] verificare in pagina i grafici rifatti (barre 2×2, etichette sulle linee) e i testi aggiornati con l'infanzia
+ 
 
 ### modulo `scuola_disabilita`
 >(regionale, dati in casa + USR-ER prov.)
@@ -159,7 +160,6 @@ ___
 - [ ] Al prossimo fact sheet USR-ER (uscita ~settembre): aggiungere le righe al csv, aggiornare `ANNO_ULTIMO` e il blurb
 - [ ] Anagrafe studenti [Regione ER](https://scuola.regione.emilia-romagna.it/anagrafi-regionali): successo/regolarità per provincia e iscritti all'infanzia → richiesta n. 3 (Richieste uffici)
 - [ ]  Percorsi di Secondo Welfare. A pieno titolo. Nessi [Internet]. 2026 [cited 2026 Oct 8];03. https://www.secondowelfare.it/wp-content/uploads/2026/09/Nessi-3_A-pieno-titolo.pdf. Accessed 8 Oct 2026
-
 
 ### modulo `scuola_abband_neet`
 >(NEET/abbandoni/formazione continua PR vs province ER; fonte BES dei territori)
@@ -174,7 +174,7 @@ ___
 + [ ] Il ruolo della scuola come sussidio al welfare territoriale
 
 - [ ] Approfondimenti (vedi domande in pagina): 
-  - [ ] ELET/abbandono provinciale → anagrafe studenti RER (regolarità, successo) o esiti scrutini per scuola nel catalogo MIM (da verificare)
+  - [ ] ELET/**abbandono** provinciale → Vedi Richieste RER + risposte varie... anagrafe studenti RER (regolarità, successo) o esiti scrutini per scuola nel catalogo MIM (da verificare)
   - [ ] dispersione implicita ed ELET per provincia: nei dati aperti non ci sono; esistono solo come grafici INVALSI (mappa ELET 2024-25, cartogramma fig. 8.2.3) → richiesta n. 4 (Richieste uffici)
   - [ ] ritardo × cittadinanza e dopo-Covid alle medie → incrocio per plesso di età e cittadinanza (iscritti MIM); coorti → anagrafe RER + iscritti IeFP; seconda chance → modulo `formaz_e_rientro`
 
@@ -200,6 +200,7 @@ ___
 - [ ] Aggiornamento annuale _ISTAT internet e pc_ in `dati/grezzi/istat_cittadini_ict/`
 - [ ] Aggiornamento annuale _Eurostat IA_ in `dati/grezzi/eurostat_isoc_ai/`
 - [ ] Aggiornamento ? _ISTAT Bambini e ragazzi_: (edizioni 2021 e 2023): 
+- [ ] grafico HBSC social e videogiochi: nella caption la legenda dei colori al posto della fonte
 
 ### modulo `educ_ia`
 (approfondimento "crescere al tempo dell'IA"; dati solo nazionali o regionali, Parma raggiungibile solo per gli accessi NPIA)
@@ -226,10 +227,8 @@ _3. Rendimento e device_
 _4. ➡️ Benessere mentale 14-19 e Accessi NPIA (unico indicatore con Parma)_  
 
 - [ ] Nazionale: Bambino Gesù, accessi PS neuropsichiatrici 2011-2021 (via Openpolis)
-- [ ] DA CHIEDERE: Regione ER / AUSL Parma, accessi NPIA e PS per età, 2015→ → richiesta n. 5 (Richieste uffici)
-- [ ] Accessi PS e ricoveri per disturbi neuropsichiatrici in età evolutiva (schede di dimissione ospedaliera, Ministero della Salute / Regione ER): da verificare
 - [ ] Consumo di psicofarmaci in età pediatrica (rapporto OsMed, AIFA): da verificare
-- [x] Pagina `benessere_giovani.qmd`: sezione "La salute mentale nei bambini e ragazzi" da riempire con le fonti qui sopra
+ 
 
 _5. Governare: risposte dei paesi e mappa locale_
 
@@ -256,7 +255,7 @@ _5. Governare: risposte dei paesi e mappa locale_
 
 #### AVANZAMENTO giovani
 
-Stato al 2026-10-14: modulo `npia_utenti` completo e lanciato (`01` con dataset `npia_distretti_rev`, diagnosi e confronto adulti 2024; `02` con 5 grafici e 4 tabelle), blurb e bozza di pagina scritti; nuova fonte `prov_pr_statistica/` (totali Provincia 1990-2025); prossimo passo: rivedere grafici e tabelle, restringere la bozza di pagina
+Stato al 2026-10-15: pagina `benessere_giovani.qmd` promossa con la sezione NPIA; infanzia da ISTAT (iscritti per gestione e cittadinanza) integrata in `scuola_iscritti` e `scuola.qmd`, con grafici di statali e paritarie rifatti a barre; prossimo passo: verificare `scuola.qmd` dopo `build.R`, poi fonti sul ritiro sociale e richiesta n. 5 all'AUSL
 
 #### Pagine del tema
 
@@ -286,17 +285,13 @@ Stato al 2026-10-14: modulo `npia_utenti` completo e lanciato (`01` con dataset 
   - [ ] INPS Osservatori: contratti dei giovani
   - [ ] ISTAT: cancellazioni per l'estero 20-34 anni per provincia
   - già in casa dal Bes: passaggio all'università, laureati 25-39, formazione continua, NEET per sesso, occupazione giovanile
-  
-  
+
 ___
 
 ## ⏭️ 3. ANZIANI (tutto da fare)
 > Spunti CG: abbiamo 100 diagnosi di autismo e 1000 di demenza senile ... forse questo ci dice dove dovremmo guardare?!?!!?
 
 > Spunti CG: in prospettiva i (pochi) giovani di oggi sono gli stessi che dovranno occuparsi degli anziani di domani...
-
-
-
 
 
 ## ⏭️ 4. ASSISTENZA SOCIO-SANITARIA (tutto da fare)
@@ -386,6 +381,7 @@ Fonti in casa: `istat_sae_glf_2019` ✓ (stime GLF provinciali), aree interne/zo
 
 - [ ] CAPIRE COME REDISTRIBUIRE `_geoloc_fragil.qmd` e`geogr_abitare.qmd`, (forse qualcosa lo tolgo da qui e lo metto in `_geoloc_fragil.qmd`) 
 - [ ] - CAPIRE COSA FARNE - `_acer_quartieri.qmd` (bozza con le 13 mappe di dettaglio): decidere se e come usarla; per pubblicarla semplificare anche le strade
+- [ ] spostare "Chi vive in strutture collettive" da `geogr_abitare.qmd` a un'altra pagina (la pagina supera i 3 MB)
 
 #### 🟡 AVANZAMENTO comune_pr_quartieri
 

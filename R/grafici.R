@@ -117,6 +117,32 @@ f_avvolgi_caption <- function(testo, larghezza = 130) {
 # (nata in moduli/scuola_iscritti, promossa a R/ il 2026-09-10)
 f_lab_as <- function(anno) paste0(anno, "/", (anno + 1) %% 100)
 
+# f_scale_y_tacche -----------------------------------------------------------
+# Asse y dei trend: tacche a passo fisso da 0 fino al multiplo del passo che include
+# il massimo, così l'ultima etichetta sta SOPRA il valore più alto; restituisce la
+# scale_y pronta. labels: funzione di formato (default numeri all'italiana; per le
+# quote 0-1 usare function(x) scales::percent(x, accuracy = 1)).
+# Promossa da npia_utenti il 2026-10-15 (2° utilizzatore: scuola_iscritti).
+f_scale_y_tacche <- function(valori, passo,
+                             labels = function(x) scales::number(x, big.mark = ".", decimal.mark = ",")) {
+  lim <- ceiling(max(valori, na.rm = TRUE) / passo) * passo
+  ggplot2::scale_y_continuous(breaks = seq(0, lim, by = passo), limits = c(0, lim), labels = labels)
+}
+
+# f_scale_y_sopra ------------------------------------------------------------
+# Come f_scale_y_tacche ma senza passo fisso, e funziona anche con facet a scala libera
+# (facet_wrap(scales = "free_y")): in ogni pannello tacche "tonde" da 0 (pretty()) fino a
+# una che supera il massimo, e asse che finisce lì. 2026-10-15 (scuola_iscritti).
+f_scale_y_sopra <- function(labels = function(x) scales::number(x, big.mark = ".", decimal.mark = ","),
+                            n = 4) {
+  ggplot2::scale_y_continuous(
+    breaks = function(lim) pretty(c(0, lim[2]), n = n),
+    limits = function(lim) range(pretty(c(0, lim[2]), n = n)),
+    expand = ggplot2::expansion(mult = c(0, 0.02)),
+    labels = labels
+  )
+}
+
 # f_pal5 -------------------------------------------------------------------
 # Estrae una palette a 5 colori (per classi a quintili) da una sequenziale
 # a 8 di _parma_colors.R (seq_factor_*). Promossa da pop_mappe_tematiche

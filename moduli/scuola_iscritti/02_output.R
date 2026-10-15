@@ -34,6 +34,13 @@ source(here("R", "grafici.R"))   # temi, caption, mappe, salvataggio (v. indice 
 dir_mod <- here("moduli", "scuola_iscritti", "output")
 
 CAP <- f_caption_fonte("MIM, Portale unico dei dati della scuola (no scuola dell'infanzia)")
+# per i grafici che uniscono MIM (primaria-secondarie) e ISTAT (infanzia), dal 2026-10-15
+CAP_ISCR <- f_caption_fonte("MIM, Portale unico dei dati della scuola (primaria e secondarie); ISTAT, IstatData, Scuole (infanzia)")
+ORDINI_LIV <- c("SCUOLA INFANZIA", "SCUOLA PRIMARIA", "SCUOLA SECONDARIA I GRADO", "SCUOLA SECONDARIA II GRADO")
+ORDINI_LAB <- c("Infanzia", "Primaria", "Secondaria I grado", "Secondaria II grado")
+# verdi per le LINEE dei 4 ordini, chiaro = piccoli → scuro = grandi: verde_eta4 parte troppo chiaro
+# per una linea su fondo bianco (contrasto 1,7); qui da #6b9f52 (contrasto 3,1) al verde scuro di verde_eta4
+VERDI_ORDINI <- setNames(grDevices::colorRampPalette(c("#6b9f52", verde_eta4[4]))(4), ORDINI_LAB)
 # per i prodotti basati sull'ANAGRAFE scuole (che l'infanzia la include)
 CAP_ANAGRAFE <- f_caption_fonte("MIM, anagrafe scuole (tutti gli ordini, infanzia inclusa)")
 
@@ -53,78 +60,120 @@ scuola_comuni_pr <- readRDS(file.path(dir_mod, "scuola_comuni_pr.rds"))
 # 2. Grafici ---------------------------------------------------------------
 
 # Plot: trend iscritti PR per ordine di scuola (statale + paritaria) ----
-plot_iscritti_ordine_pr <- iscritti_trend_pr |>
+# (2026-10-15) con l'infanzia da ISTAT: prep separata, 4 ordini, asse y con tacche sopra il massimo
+iscritti_ordine_prep <- iscritti_trend_pr |>
   summarise(alunni = sum(alunni), .by = c(anno_inizio, ordine_scuola)) |>
-  mutate(ordine_scuola = factor(
-    ordine_scuola,
-    levels = c("SCUOLA PRIMARIA", "SCUOLA SECONDARIA I GRADO", "SCUOLA SECONDARIA II GRADO"),
-    labels = c("Primaria", "Secondaria I grado", "Secondaria II grado")
-  )) |>
+  mutate(ordine_scuola = factor(ordine_scuola, levels = ORDINI_LIV, labels = ORDINI_LAB))
+
+iscritti_ordine_prep
+
+plot_iscritti_ordine_pr <- iscritti_ordine_prep |>
   ggplot(aes(x = anno_inizio, y = alunni, color = ordine_scuola, group = ordine_scuola)) +
   geom_line_interactive(aes(tooltip = ordine_scuola, data_id = ordine_scuola),
                         linewidth = rel(1.2)) +
   geom_point_interactive(aes(tooltip = alunni), size = 1.6) +
-  scale_x_continuous(breaks = ANNO_PRIMO:ANNO_ULTIMO, labels = f_lab_as(ANNO_PRIMO:ANNO_ULTIMO)) + # etichette a.s. già calcolate (al render f_lab_as non c'è)
-  scale_y_continuous(labels = function(x) scales::number(x, big.mark = ".", decimal.mark = ",")) +
+  # (2026-10-15) nome dell'ordine scritto in fondo a ogni linea, al posto della legenda
+  geom_text(data = function(df) filter(df, anno_inizio == max(anno_inizio)),
+            aes(label = ordine_scuola), hjust = -0.08, size = 4, show.legend = FALSE) +
+  scale_x_continuous(breaks = ANNO_PRIMO:ANNO_ULTIMO, labels = f_lab_as(ANNO_PRIMO:ANNO_ULTIMO), # etichette a.s. già calcolate (al render f_lab_as non c'è)
+                     expand = expansion(mult = c(0.02, 0.25))) +
+  f_scale_y_tacche(iscritti_ordine_prep$alunni, passo = 5000) +
   # gradazione unica (verde = giovani): chiaro = piccoli → scuro = grandi
-  scale_color_manual(values = c(
-    "Primaria"            = verde_eta3[1],
-    "Secondaria I grado"  = verde_eta3[2],
-    "Secondaria II grado" = verde_eta3[3]
-  )) +
+  scale_color_manual(values = VERDI_ORDINI) +
+  coord_cartesian(clip = "off") +
   f_theme_sito_trend() +
+  theme(legend.position = "none") +
   labs(
     title = str_wrap(glue("Iscritti nelle scuole della provincia di Parma ({PERIODO_AS})"), 55),
-    subtitle = "Indicatore: numero di iscritti, statali + paritarie, per ordine di scuola",
-    caption = CAP, x = "", y = ""
+    subtitle = "Indicatore: numero di iscritti, statali + paritarie, per ordine di scuola (infanzia inclusa)",
+    caption = CAP_ISCR, x = "", y = ""
   )
 
 plot_iscritti_ordine_pr
 
-# Plot: trend iscritti PR, facet statale | paritaria ----
-# (scale y libere: le paritarie sono ~1/10 delle statali — dichiarato nel sottotitolo)
-# un pannello per gestione, ognuno con la propria scala y e la propria legenda
-# (gradazione chiaro = piccoli → scuro = grandi; blu = statali, arancio = paritarie)
-f_pannello_gestione <- function(gest, pal3) {
-  iscritti_trend_pr |>
-    filter(gestione == gest) |>
-    summarise(alunni = sum(alunni), .by = c(anno_inizio, ordine_scuola)) |>
-    mutate(ordine_scuola = factor(
-      ordine_scuola,
-      levels = c("SCUOLA PRIMARIA", "SCUOLA SECONDARIA I GRADO", "SCUOLA SECONDARIA II GRADO"),
-      labels = c("Primaria", "Secondaria I grado", "Secondaria II grado")
-    )) |>
-    ggplot(aes(x = anno_inizio, y = alunni, color = ordine_scuola, group = ordine_scuola)) +
-    geom_line_interactive(aes(tooltip = ordine_scuola, data_id = paste(gest, ordine_scuola)),
-                          linewidth = rel(1.1)) +
-    geom_point_interactive(aes(tooltip = alunni), size = 1.6) + # linea + pallino: standard trend
-    scale_x_continuous(breaks = ANNO_PRIMO:ANNO_ULTIMO, labels = f_lab_as(ANNO_PRIMO:ANNO_ULTIMO)) + # etichette a.s. già calcolate (al render f_lab_as non c'è)
-    scale_y_continuous(labels = function(x) scales::number(x, big.mark = ".", decimal.mark = ",")) +
-    scale_color_manual(values = c(
-      "Primaria"            = pal3[1],
-      "Secondaria I grado"  = pal3[2],
-      "Secondaria II grado" = pal3[3]
-    )) +
+# Plot: iscritti PR per ordine, statali + paritarie (barre impilate) ----
+# (2026-10-15) al posto dei due pannelli statale | paritaria con 4 linee ciascuno (illeggibili):
+# un pannello per ordine (2×2), ogni barra un anno, statali in basso e paritarie sopra;
+# stessa funzione per iscritti e plessi. La versione precedente è commentata qui sotto.
+COL_GESTIONE <- c("Statale" = seq_factor_blue[7], "Paritaria" = seq_factor_orange[6])
+
+f_barre_gestione <- function(dati_prep, anni) {
+  dati_prep |>
+    ggplot(aes(x = anno_inizio, y = valore, fill = gestione)) +
+    geom_col_interactive(aes(tooltip = etichetta, data_id = paste(ordine_scuola, gestione, anno_inizio),
+                             group = gestione), width = 0.75) +
+    facet_wrap(~ ordine_scuola, ncol = 2, scales = "free_y") +
+    scale_x_continuous(breaks = anni, labels = f_lab_as(anni)) +
+    # tacche fino a sopra il massimo in ogni pannello (scala libera): f_scale_y_sopra in R/grafici.R
+    f_scale_y_sopra() +
+    scale_fill_manual(values = COL_GESTIONE, breaks = c("Statale", "Paritaria")) +
     f_theme_sito_trend() +
-    # NB: stesso tipo di elemento del tema (textbox), se no il merge fallisce
-    theme(legend.position = "bottom",
-          plot.subtitle = ggtext::element_textbox_simple(
-            face = "bold", size = rel(0.95), margin = margin(b = 10)
-          )) +
-    labs(subtitle = str_to_sentence(gest), x = "", y = "")
+    theme(axis.text.x = element_text(angle = 0, hjust = 0.5),
+          legend.position = "top",
+          strip.text = element_text(face = "bold"))
 }
 
-plot_iscritti_ordine_gestione_pr <-
-  (f_pannello_gestione("statale", seq_factor_blue[c(4, 6, 8)]) /
-     f_pannello_gestione("paritaria", seq_factor_orange[c(4, 6, 8)])) +
-  patchwork::plot_annotation(
+iscritti_gestione_prep <- iscritti_trend_pr |>
+  summarise(valore = sum(alunni), .by = c(anno_inizio, ordine_scuola, gestione)) |>
+  mutate(ordine_scuola = factor(ordine_scuola, levels = ORDINI_LIV, labels = ORDINI_LAB),
+         # primo livello = in cima alla barra
+         gestione = factor(str_to_sentence(gestione), levels = c("Paritaria", "Statale")),
+         etichetta = paste0(ordine_scuola, ", ", tolower(gestione), " ", f_lab_as(anno_inizio), ": ",
+                            scales::number(valore, big.mark = ".", decimal.mark = ",")))
+
+iscritti_gestione_prep
+
+# __ plot_iscritti_ordine_gestione_pr ----
+plot_iscritti_ordine_gestione_pr <- f_barre_gestione(iscritti_gestione_prep, seq(ANNO_PRIMO, ANNO_ULTIMO, by = 3)) +
+  labs(
     title = str_wrap(glue("Iscritti a Parma: statali e paritarie a confronto ({PERIODO_AS})"), 55),
-    subtitle = "Indicatore: numero di iscritti per ordine; scale dell'asse y diverse tra i pannelli (statali v. paritarie)",
-    caption = CAP,
-    theme = f_theme_sito()   # titolo/sottotitolo/caption con le stesse dimensioni degli altri grafici
+    subtitle = "Indicatore: numero di iscritti per ordine, statali e paritarie (infanzia inclusa); scala dell'asse y diversa per ogni ordine",
+    caption = CAP_ISCR, x = "", y = ""
   )
 
 plot_iscritti_ordine_gestione_pr
+
+
+# ___ versione precedente (fino al 2026-10-15) ___
+# # Plot: trend iscritti PR, facet statale | paritaria ----
+# # (scale y libere: le paritarie sono ~1/10 delle statali — dichiarato nel sottotitolo)
+# # un pannello per gestione, ognuno con la propria scala y e la propria legenda
+# # (gradazione chiaro = piccoli → scuro = grandi; blu = statali, arancio = paritarie)
+# # (2026-10-15) infanzia inclusa: 4 ordini, palette a 4, passo delle tacche per pannello
+# f_pannello_gestione <- function(gest, pal4, passo) {
+#   dati_prep <- iscritti_trend_pr |>
+#     filter(gestione == gest) |>
+#     summarise(alunni = sum(alunni), .by = c(anno_inizio, ordine_scuola)) |>
+#     mutate(ordine_scuola = factor(ordine_scuola, levels = ORDINI_LIV, labels = ORDINI_LAB))
+#   dati_prep |>
+#     ggplot(aes(x = anno_inizio, y = alunni, color = ordine_scuola, group = ordine_scuola)) +
+#     geom_line_interactive(aes(tooltip = ordine_scuola, data_id = paste(gest, ordine_scuola)),
+#                           linewidth = rel(1.1)) +
+#     geom_point_interactive(aes(tooltip = alunni), size = 1.6) + # linea + pallino: standard trend
+#     scale_x_continuous(breaks = ANNO_PRIMO:ANNO_ULTIMO, labels = f_lab_as(ANNO_PRIMO:ANNO_ULTIMO)) + # etichette a.s. già calcolate (al render f_lab_as non c'è)
+#     f_scale_y_tacche(dati_prep$alunni, passo = passo) +
+#     scale_color_manual(values = setNames(pal4, ORDINI_LAB)) +
+#     f_theme_sito_trend() +
+#     # NB: stesso tipo di elemento del tema (textbox), se no il merge fallisce
+#     theme(legend.position = "bottom",
+#           plot.subtitle = ggtext::element_textbox_simple(
+#             face = "bold", size = rel(0.95), margin = margin(b = 10)
+#           )) +
+#     labs(subtitle = str_to_sentence(gest), x = "", y = "")
+# }
+#
+# plot_iscritti_ordine_gestione_pr <-
+#   # toni dal 5° all'8° delle sequenziali: i primi sono troppo chiari per una linea (2026-10-15)
+#   (f_pannello_gestione("statale", seq_factor_blue[5:8], passo = 5000) /
+#      f_pannello_gestione("paritaria", seq_factor_orange[5:8], passo = 1000)) +
+#   patchwork::plot_annotation(
+#     title = str_wrap(glue("Iscritti a Parma: statali e paritarie a confronto ({PERIODO_AS})"), 55),
+#     subtitle = "Indicatore: numero di iscritti per ordine (infanzia inclusa); scale dell'asse y diverse tra i pannelli (statali v. paritarie)",
+#     caption = CAP_ISCR,
+#     theme = f_theme_sito()   # titolo/sottotitolo/caption con le stesse dimensioni degli altri grafici
+#   )
+#
+# plot_iscritti_ordine_gestione_pr
 
 # Plot: trend dei PLESSI, facet statale | paritaria (infanzia inclusa) ----
 # Come il grafico degli iscritti per gestione, ma conta i PLESSI in anagrafe:
@@ -136,47 +185,70 @@ plessi_trend_pr <- readRDS(file.path(dir_mod, "plessi_trend_pr.rds"))
 
 ordini_plessi_lbl <- c("Infanzia", "Primaria", "Secondaria I grado", "Secondaria II grado")
 
-## un pannello per gestione (stesso schema del grafico iscritti, ma 4 ordini)
-f_pannello_plessi <- function(gest, pal4) {
-  df <- plessi_trend_pr |>
-    filter(gestione == gest) |>
-    mutate(ordine_scuola = factor(ordine_scuola, levels = ordini_plessi_lbl))
+## (2026-10-15) barre impilate 2×2 come gli iscritti (stessa f_barre_gestione); versione precedente commentata sotto
+plessi_gestione_prep <- plessi_trend_pr |>
+  mutate(valore = n_plessi,
+         ordine_scuola = factor(ordine_scuola, levels = ordini_plessi_lbl),
+         gestione = factor(str_to_sentence(gestione), levels = c("Paritaria", "Statale")),
+         etichetta = paste0(ordine_scuola, ", ", tolower(gestione), " ", f_lab_as(anno_inizio), ": ",
+                            valore, " plessi"))
 
-  anni <- seq(min(df$anno_inizio), max(df$anno_inizio)) # fino al 2026/27 (anagrafi)
+plessi_gestione_prep
 
-  df |>
-    ggplot(aes(x = anno_inizio, y = n_plessi,
-               color = ordine_scuola, group = ordine_scuola)) +
-    geom_line_interactive(aes(tooltip = ordine_scuola, data_id = paste(gest, ordine_scuola)),
-                          linewidth = rel(1.1)) +
-    geom_point_interactive(aes(tooltip = n_plessi), size = 1.6) +
-    scale_x_continuous(breaks = anni, labels = f_lab_as(anni)) +
-    scale_color_manual(values = c(
-      "Infanzia"            = pal4[1],
-      "Primaria"            = pal4[2],
-      "Secondaria I grado"  = pal4[3],
-      "Secondaria II grado" = pal4[4]
-    )) +
-    f_theme_sito_trend() +
-    theme(legend.position = "bottom", # come i pannelli iscritti
-          plot.subtitle = ggtext::element_textbox_simple(
-            face = "bold", size = rel(0.95), margin = margin(b = 10)
-          )) +
-    labs(subtitle = str_to_sentence(gest), x = "", y = "")
-}
-
-## composizione dei due pannelli
-plot_plessi_ordine_gestione_pr <-
-  (f_pannello_plessi("statale", seq_factor_blue[c(2, 4, 6, 8)]) /
-     f_pannello_plessi("paritaria", seq_factor_orange[c(2, 4, 6, 8)])) +
-  patchwork::plot_annotation(
+# __ plot_plessi_ordine_gestione_pr ----
+plot_plessi_ordine_gestione_pr <- f_barre_gestione(
+  plessi_gestione_prep, seq(min(plessi_trend_pr$anno_inizio), max(plessi_trend_pr$anno_inizio), by = 3)) +
+  labs(
     title = str_wrap("Plessi scolastici a Parma: statali e paritarie (infanzia inclusa)", 55),
-    subtitle = "Indicatore: numero di sedi in anagrafe per a.s.; scale y diverse tra i pannelli",
-    caption = CAP_ANAGRAFE,
-    theme = f_theme_sito()   # titolo/sottotitolo/caption come gli altri grafici
+    subtitle = "Indicatore: numero di sedi in anagrafe per a.s., statali e paritarie; scala dell'asse y diversa per ogni ordine",
+    caption = CAP_ANAGRAFE, x = "", y = ""
   )
 
 plot_plessi_ordine_gestione_pr
+
+
+# ___ versione precedente (fino al 2026-10-15) ___
+# ## un pannello per gestione (stesso schema del grafico iscritti, ma 4 ordini)
+# f_pannello_plessi <- function(gest, pal4) {
+#   df <- plessi_trend_pr |>
+#     filter(gestione == gest) |>
+#     mutate(ordine_scuola = factor(ordine_scuola, levels = ordini_plessi_lbl))
+#
+#   anni <- seq(min(df$anno_inizio), max(df$anno_inizio)) # fino al 2026/27 (anagrafi)
+#
+#   df |>
+#     ggplot(aes(x = anno_inizio, y = n_plessi,
+#                color = ordine_scuola, group = ordine_scuola)) +
+#     geom_line_interactive(aes(tooltip = ordine_scuola, data_id = paste(gest, ordine_scuola)),
+#                           linewidth = rel(1.1)) +
+#     geom_point_interactive(aes(tooltip = n_plessi), size = 1.6) +
+#     scale_x_continuous(breaks = anni, labels = f_lab_as(anni)) +
+#     scale_color_manual(values = c(
+#       "Infanzia"            = pal4[1],
+#       "Primaria"            = pal4[2],
+#       "Secondaria I grado"  = pal4[3],
+#       "Secondaria II grado" = pal4[4]
+#     )) +
+#     f_theme_sito_trend() +
+#     theme(legend.position = "bottom", # come i pannelli iscritti
+#           plot.subtitle = ggtext::element_textbox_simple(
+#             face = "bold", size = rel(0.95), margin = margin(b = 10)
+#           )) +
+#     labs(subtitle = str_to_sentence(gest), x = "", y = "")
+# }
+#
+# ## composizione dei due pannelli
+# plot_plessi_ordine_gestione_pr <-
+#   (f_pannello_plessi("statale", seq_factor_blue[c(2, 4, 6, 8)]) /
+#      f_pannello_plessi("paritaria", seq_factor_orange[c(2, 4, 6, 8)])) +
+#   patchwork::plot_annotation(
+#     title = str_wrap("Plessi scolastici a Parma: statali e paritarie (infanzia inclusa)", 55),
+#     subtitle = "Indicatore: numero di sedi in anagrafe per a.s.; scale y diverse tra i pannelli",
+#     caption = CAP_ANAGRAFE,
+#     theme = f_theme_sito()   # titolo/sottotitolo/caption come gli altri grafici
+#   )
+#
+# plot_plessi_ordine_gestione_pr
 
 # Plot: % alunni stranieri per provincia ER, Parma evidenziata ----
 # prep separata dal grafico (convenzione <nome>_prep)
@@ -214,7 +286,8 @@ plot_stranieri_prov_er <- stranieri_prov_prep |>
     aes(tooltip = scales::percent(quota_stranieri, accuracy = 0.1)), size = 1.8
   ) +
   scale_x_continuous(breaks = ANNO_PRIMO:ANNO_ULTIMO, labels = f_lab_as(ANNO_PRIMO:ANNO_ULTIMO)) + # etichette a.s. già calcolate (al render f_lab_as non c'è)
-  scale_y_continuous(labels = function(x) scales::percent(x, accuracy = 1)) +
+  f_scale_y_tacche(stranieri_prov_prep$quota_stranieri, passo = 0.05,
+                   labels = function(x) scales::percent(x, accuracy = 1)) +
   scale_alpha_manual(values = c(0.35, 1), guide = "none") +
   # come nei trend demografici: Parma gialla, regione verde, altre grigie
   scale_color_manual(values = c(
@@ -233,6 +306,93 @@ plot_stranieri_prov_er <- stranieri_prov_prep |>
   )
 
 plot_stranieri_prov_er
+
+# Plot: % stranieri per ordine di scuola, Parma (infanzia da ISTAT) ----
+# (2026-10-15) dall'infanzia alle superiori: le classi più giovani hanno più stranieri?
+stranieri_ordine_pr <- readRDS(file.path(dir_mod, "stranieri_ordine_pr.rds"))
+
+stranieri_ordine_prep <- stranieri_ordine_pr |>
+  mutate(ordine_scuola = factor(ordine_scuola, levels = ORDINI_LIV, labels = ORDINI_LAB),
+         etichetta = paste0(ordine_scuola, " ", f_lab_as(anno_inizio), ": ",
+                            scales::percent(quota_stranieri, accuracy = 0.1, decimal.mark = ",")))
+
+stranieri_ordine_prep
+
+# __ plot_stranieri_ordine_pr ----
+plot_stranieri_ordine_pr <- stranieri_ordine_prep |>
+  ggplot(aes(x = anno_inizio, y = quota_stranieri, color = ordine_scuola, group = ordine_scuola)) +
+  geom_line_interactive(aes(tooltip = ordine_scuola, data_id = ordine_scuola), linewidth = rel(1.2)) +
+  geom_point_interactive(aes(tooltip = etichetta, data_id = ordine_scuola), size = 1.6) +
+  scale_x_continuous(breaks = ANNO_PRIMO:ANNO_ULTIMO, labels = f_lab_as(ANNO_PRIMO:ANNO_ULTIMO)) +
+  f_scale_y_tacche(stranieri_ordine_prep$quota_stranieri, passo = 0.05,
+                   labels = function(x) scales::percent(x, accuracy = 1)) +
+  scale_color_manual(values = VERDI_ORDINI) +
+  f_theme_sito_trend() +
+  labs(
+    title = str_wrap(glue("Alunni stranieri per ordine di scuola, provincia di Parma ({PERIODO_AS})"), 55),
+    subtitle = "Indicatore: % di alunni con cittadinanza non italiana sugli iscritti dell'ordine; statali + paritarie",
+    caption = CAP_ISCR, x = "", y = ""
+  )
+
+plot_stranieri_ordine_pr
+
+# Plot: infanzia per provincia ER, Parma evidenziata (3 indicatori ISTAT) ----
+# (2026-10-15) stesso disegno di plot_stranieri_prov_er; serie guidata da tabella, 1 riga = 1 grafico
+infanzia_prov_er <- readRDS(file.path(dir_mod, "infanzia_prov_er.rds"))
+CAP_INFANZIA <- f_caption_fonte("ISTAT, IstatData, Scuole (scuola dell'infanzia, statali e paritarie)")
+ANNI_INFANZIA <- range(infanzia_prov_er$anno_inizio)
+
+GRAFICI_INFANZIA <- tibble::tribble(
+  ~nome,                             ~ind,                ~titolo,                                                          ~sottotitolo,                                                                                      ~suffisso, ~passo,
+  "plot_infanzia_stranieri_prov_er", "stranieri_pct",     "Bambini stranieri nella scuola dell'infanzia, per provincia",    "Indicatore: % di iscritti con cittadinanza non italiana sul totale degli iscritti all'infanzia", "%", 5,
+  "plot_infanzia_pubbliche_prov_er", "pubbliche_pct",     "Iscritti alla scuola dell'infanzia pubblica, per provincia",     "Indicatore: % di iscritti in scuole pubbliche sul totale degli iscritti all'infanzia",         "%", 10
+  # tolto il 2026-10-15: la disabilità all'infanzia è già in scuola_disabilita (USR)
+  # "plot_infanzia_disabili_prov_er",  "disabili_per_1000", "Bambini con disabilità nella scuola dell'infanzia, per provincia", "Indicatore: iscritti con disabilità ogni 1.000 iscritti all'infanzia", "", 5
+)
+
+# prep: Parma e regione evidenziate, etichette del tooltip già pronte
+f_prep_infanzia <- function(ind, suffisso) {
+  infanzia_prov_er |>
+    filter(indicatore == ind) |>
+    mutate(
+      highlight = cod_territorio %in% c("ITD52", "ITD5"),
+      territorio_display = case_when(cod_territorio == "ITD52" ~ "Parma",
+                                     cod_territorio == "ITD5"  ~ "Emilia-Romagna",
+                                     .default = "Altre province ER") |>
+        factor(levels = c("Parma", "Emilia-Romagna", "Altre province ER")),
+      etichetta = paste0(territorio, " ", f_lab_as(anno_inizio), ": ",
+                         scales::number(valore, accuracy = 0.1, decimal.mark = ","), suffisso)
+    )
+}
+
+# grafico: linee grigie per le province, Parma e regione evidenziate con i pallini
+f_plot_infanzia <- function(dati_prep, titolo, sottotitolo, suffisso, passo) {
+  dati_prep |>
+    ggplot(aes(x = anno_inizio, y = valore, color = territorio_display, alpha = highlight, group = territorio)) +
+    geom_line_interactive(aes(tooltip = territorio, data_id = territorio), linewidth = rel(0.8)) +
+    geom_line_interactive(data = function(df) filter(df, highlight),
+                          aes(tooltip = territorio, data_id = territorio), linewidth = rel(1.5)) +
+    geom_point_interactive(data = function(df) filter(df, highlight),
+                           aes(tooltip = etichetta, data_id = territorio), size = 1.8) +
+    scale_x_continuous(breaks = ANNI_INFANZIA[1]:ANNI_INFANZIA[2], labels = f_lab_as(ANNI_INFANZIA[1]:ANNI_INFANZIA[2])) +
+    f_scale_y_tacche(dati_prep$valore, passo = passo,
+                     labels = scales::label_number(suffix = suffisso, decimal.mark = ",")) +
+    scale_alpha_manual(values = c(0.35, 1), guide = "none") +
+    scale_color_manual(values = c("Parma" = ylw_lg, "Emilia-Romagna" = grn_md, "Altre province ER" = grey_sc)) +
+    f_theme_sito_trend() +
+    labs(title = str_wrap(glue("{titolo} (trend a.s. {f_lab_as(ANNI_INFANZIA[1])}-{f_lab_as(ANNI_INFANZIA[2])})"), 55),
+         subtitle = sottotitolo, caption = CAP_INFANZIA, x = "", y = "")
+}
+
+# prep + grafici per tutte le righe della tabella
+infanzia_prep <- map2(GRAFICI_INFANZIA$ind, GRAFICI_INFANZIA$suffisso, f_prep_infanzia) |>
+  set_names(GRAFICI_INFANZIA$nome)
+grafici_infanzia <- pmap(list(infanzia_prep, GRAFICI_INFANZIA$titolo, GRAFICI_INFANZIA$sottotitolo,
+                              GRAFICI_INFANZIA$suffisso, GRAFICI_INFANZIA$passo),
+                         f_plot_infanzia)
+
+# __ grafici_infanzia ----
+grafici_infanzia$plot_infanzia_stranieri_prov_er
 
 # Plot: % alunni stranieri per comune PR (ultimo a.s., top N) ----
 plot_stranieri_comuni_pr <- scuola_comuni_pr |>
@@ -553,10 +713,14 @@ lista_plot <- list(
   plot_iscritti_ordine_pr = plot_iscritti_ordine_pr,
   plot_iscritti_ordine_gestione_pr = plot_iscritti_ordine_gestione_pr,
   plot_stranieri_prov_er = plot_stranieri_prov_er,
+  plot_stranieri_ordine_pr = plot_stranieri_ordine_pr,
   plot_stranieri_comuni_pr = plot_stranieri_comuni_pr,
   plot_stranieri_comuni_pr_min = plot_stranieri_comuni_pr_min,
   plot_plessi_ordine_gestione_pr = plot_plessi_ordine_gestione_pr
 )
+
+# grafici dell'infanzia (ISTAT), 2026-10-15
+lista_plot <- c(lista_plot, grafici_infanzia)
 
 purrr::iwalk(lista_plot, function(p, nome) {
   # i grafici a doppio pannello hanno bisogno di più altezza

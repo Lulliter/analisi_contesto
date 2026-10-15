@@ -253,7 +253,7 @@ f_bottoni_dati("tab_diagnosi_ft", dir_npia)
 _NB: raggruppamenti e diciture del report._
 :::
 
-::: {.callout-note collapse="true"}
+::: {.callout-note .metodo collapse="true"}
 #### Per confronto: gli adulti
 In rapporto alla popolazione di riferimento, i pazienti pediatrici in carico sono quattro volte gli adulti (6,1% dei minorenni contro 1,4% dei maggiorenni); tra i pazienti pediatrici prevalgono i maschi (61%), tra gli adulti le femmine (57%); gli stranieri sono in proporzione tra i pazienti pediatrici e sotto-rappresentati tra gli adulti (9,5% contro il 14% dei residenti).
 

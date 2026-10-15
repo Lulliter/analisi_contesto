@@ -44,11 +44,12 @@ COL_DISTRETTI <- cat_distretti
 
 # asse y dei trend: tacche a passo fisso fino al multiplo che include il massimo (mai
 # un valore oltre l'ultima tacca); restituisce la scale_y pronta
-f_scale_y_tacche <- function(valori, passo) {
-  lim <- ceiling(max(valori, na.rm = TRUE) / passo) * passo
-  scale_y_continuous(breaks = seq(0, lim, by = passo), limits = c(0, lim),
-                     labels = function(x) scales::number(x, big.mark = ".", decimal.mark = ","))
-}
+# promossa in R/grafici.R il 2026-10-15 (stesso comportamento, con argomento labels)
+# f_scale_y_tacche <- function(valori, passo) {
+#   lim <- ceiling(max(valori, na.rm = TRUE) / passo) * passo
+#   scale_y_continuous(breaks = seq(0, lim, by = passo), limits = c(0, lim),
+#                      labels = function(x) scales::number(x, big.mark = ".", decimal.mark = ","))
+# }
 
 # 1. Carica dati pronti ----------------------------------------------------
 npia_distretti_rev <- readRDS(file.path(dir_mod, "npia_distretti_rev.rds"))

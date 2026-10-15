@@ -5,8 +5,12 @@
 #         dati/puliti/mim_iscritti/scuole_iscritti_cittadinanza_er.rds
 #         dati/puliti/mim_iscritti/scuole_anagrafe_er.rds (plessi paritarie)
 #         dati/puliti/mim_iscritti/scuole_anagrafe_storico_er.rds (trend plessi)
+#         dati/puliti/istat_scuole/scuole_infanzia.rds (indicatori infanzia per provincia, ISTAT)
+#         dati/puliti/istat_scuole/infanzia_conteggi.rds (iscritti infanzia per gestione e cittadinanza, ISTAT)
 # Output: moduli/scuola_iscritti/output/<oggetto>.rds + .csv (nome file = oggetto):
-#         iscritti_trend_pr        (anno × ordine × gestione, provincia PR)
+#         iscritti_trend_pr        (anno × ordine × gestione, provincia PR; dal 2026-10-15
+#                                   anche l'infanzia da ISTAT, colonna fonte = MIM / ISTAT)
+#         stranieri_ordine_pr      (anno × ordine, PR: % stranieri, infanzia da ISTAT)
 #         iscritti_trend_prov_er   (anno × provincia, totali per confronto)
 #         stranieri_trend_prov_er  (anno × provincia, % stranieri)
 #         scuola_comuni_pr         (anno × comune PR: plessi, alunni,
@@ -17,6 +21,8 @@
 #                                   dall'anagrafe → infanzia inclusa)
 #         plessi_trend_pr          (anno × 4 ordini × gestione: n. plessi,
 #                                   dalle anagrafi storiche, infanzia inclusa)
+#         infanzia_prov_er         (anno × territorio ER × 3 indicatori infanzia: % stranieri,
+#                                   % in scuole pubbliche, disabili per 1.000; ISTAT)
 # NB: gli ISCRITTI non coprono la scuola dell'infanzia (limite fonte MIM);
 #     i conteggi di PLESSI dall'anagrafe invece sì
 # NB: dal 2026-09-23 SOLO `percorso == "ordinario"` (scuola in età scolare):
@@ -40,6 +46,9 @@ if (!dir.exists(dir_mod)) dir.create(dir_mod, recursive = TRUE)
 scuole_iscritti_er <- readRDS(here("dati", "puliti", "mim_iscritti", "scuole_iscritti_er.rds"))
 scuole_iscritti_cittadinanza_er <- readRDS(here("dati", "puliti", "mim_iscritti", "scuole_iscritti_cittadinanza_er.rds"))
 scuole_anagrafe_er <- readRDS(here("dati", "puliti", "mim_iscritti", "scuole_anagrafe_er.rds"))
+# infanzia: indicatori ISTAT per provincia (da ingestione/10_prep_istat_scuole.R)
+scuole_infanzia <- readRDS(here("dati", "puliti", "istat_scuole", "scuole_infanzia.rds"))
+infanzia_conteggi <- readRDS(here("dati", "puliti", "istat_scuole", "infanzia_conteggi.rds"))
 
 # solo scuola in età scolare (v. NB in testa): stesso filtro su iscritti e plessi.
 # COSA CAMBIA (2026-09-23): prima i totali includevano corsi serali (percorsi di
@@ -70,6 +79,29 @@ f_classifica_ordine <- function(grado) {
 iscritti_trend_pr <- scuole_iscritti_er |>
   filter(provincia == "PARMA") |>
   summarise(alunni = sum(alunni), .by = c(anno_inizio, ordine_scuola, gestione))
+iscritti_trend_pr
+
+## __ Infanzia PR da ISTAT, nello stesso formato (2026-10-15) -----
+# il MIM non rileva gli iscritti all'infanzia: li prende ISTAT (tavola DCIS_SCUOLE1_2).
+# Gestione come nel MIM: statale = STA; paritaria = non statale pubblica (comunali) + privata.
+# Solo gli anni della serie MIM (dal 2015/16)
+infanzia_pr <- infanzia_conteggi |>
+  filter(cod_territorio == "ITD52", conteggio == "iscritti", sesso == "totale",
+         cittadinanza %in% c("totale", "straniero-a"),
+         cod_gestione %in% c("STA", "PUB_NSTA", "PRI"),
+         anno_inizio >= min(iscritti_trend_pr$anno_inizio)) |>
+  mutate(gestione = if_else(cod_gestione == "STA", "statale", "paritaria")) |>
+  summarise(alunni = sum(valore[cittadinanza == "totale"]),
+            alunni_stranieri = sum(valore[cittadinanza == "straniero-a"]),
+            .by = c(anno_inizio, gestione)) |>
+  mutate(ordine_scuola = "SCUOLA INFANZIA")
+infanzia_pr
+
+# iscritti per ordine: MIM (primaria-secondarie) + ISTAT (infanzia), con la fonte di ogni riga
+iscritti_trend_pr <- bind_rows(
+  iscritti_trend_pr |> mutate(fonte = "MIM"),
+  infanzia_pr |> select(anno_inizio, ordine_scuola, gestione, alunni) |> mutate(fonte = "ISTAT")
+)
 iscritti_trend_pr
 
 ## __ Trend iscritti totali per provincia ER (per confronto tra province) -----
@@ -154,6 +186,28 @@ plessi_trend_pr <- scuole_anagrafe_storico_er |>
   filter(!is.na(ordine_scuola)) |>
   summarise(n_plessi = n(), .by = c(anno_inizio, ordine_scuola, gestione))
 
+## __ % stranieri per ordine di scuola, PR (infanzia da ISTAT) — 2026-10-15 -----
+stranieri_ordine_pr <- bind_rows(
+  scuole_iscritti_cittadinanza_er |>
+    filter(provincia == "PARMA") |>
+    summarise(alunni = sum(alunni), alunni_stranieri = sum(alunni_stranieri),
+              .by = c(anno_inizio, ordine_scuola)) |>
+    mutate(fonte = "MIM"),
+  infanzia_pr |>
+    summarise(alunni = sum(alunni), alunni_stranieri = sum(alunni_stranieri), .by = anno_inizio) |>
+    mutate(ordine_scuola = "SCUOLA INFANZIA", fonte = "ISTAT")
+) |>
+  mutate(quota_stranieri = alunni_stranieri / alunni)
+stranieri_ordine_pr
+
+# infanzia: province ER + regione, gestione totale, i 3 indicatori dei grafici (2026-10-15)
+infanzia_prov_er <- scuole_infanzia |>
+  filter(cod_territorio != "IT", gestione == "totale",
+         indicatore %in% c("stranieri_pct", "pubbliche_pct", "disabili_per_1000")) |>
+  select(territorio, cod_territorio, indicatore, unita, anno_inizio, valore)
+
+infanzia_prov_er
+
 # 3. Salva nel proprio output/ (rds + csv, nome file = oggetto) ------------
 lista_out <- list(
   iscritti_trend_pr = iscritti_trend_pr,
@@ -162,7 +216,9 @@ lista_out <- list(
   scuola_comuni_pr = scuola_comuni_pr,
   paritarie_comuni_pr = paritarie_comuni_pr,
   paritarie_plessi_comuni_pr = paritarie_plessi_comuni_pr,
-  plessi_trend_pr = plessi_trend_pr
+  plessi_trend_pr = plessi_trend_pr,
+  infanzia_prov_er = infanzia_prov_er,
+  stranieri_ordine_pr = stranieri_ordine_pr
 )
 
 
