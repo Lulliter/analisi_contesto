@@ -98,12 +98,15 @@ plot_accessi_in_carico_prov <- accessi_in_carico_prov_prep |>
   f_scale_y_tacche(accessi_in_carico_prov_prep$n, passo = 1000) +
   scale_color_manual(values = COL_MISURE) +
   f_theme_sito_trend() +
+  # anni orizzontali: 8 anni ci stanno (2026-10-15)
+  theme(axis.text.x = element_text(angle = 0, hjust = 0.5)) +
   labs(
     title = str_wrap(glue("Chi arriva alla neuropsichiatria infantile e chi viene preso in carico, provincia di Parma (trend {ANNO_PRIMO}-{ANNO_ULTIMO})"), 60),
-    subtitle = glue("Indicatore: n. di utenti nell'anno; \"accessi\" = almeno una prestazione (anche una sola consulenza), \"in carico\" = progetto terapeutico aperto. Il servizio è rivolto ai pazienti pediatrici, ma il {QUOTA_18PLUS}% degli \"in carico\" ha 18 anni o più"),
-    caption = CAP_NPIA, x = "", y = ""
+    subtitle = glue("Indicatore: n. di utenti nell'anno; \"accessi\" = almeno una prestazione, \"in carico\" = progetto terapeutico aperto."),
+    caption = f_avvolgi_caption(paste0(glue("Nota: il servizio è rivolto ai pazienti pediatrici, ma il {QUOTA_18PLUS}% degli \"in carico\" ha 18 anni o più"), "\n", CAP_NPIA)),
+    x = "", y = ""
   )
-
+# Il servizio è rivolto ai pazienti pediatrici, ma il {QUOTA_18PLUS}% degli \"in carico\" ha 18 anni o più
 plot_accessi_in_carico_prov
 
 # 3. Tabelle: chi sono gli utenti, provincia, 2017-2024 --------------------
@@ -122,11 +125,16 @@ tab_utenti_base <- npia_distretti_rev |>
     # anni come testo: colformat_int metterebbe il punto delle migliaia
     anno = as.character(anno))
 
+# minori in % sul totale invece che in valore assoluto (2026-10-15)
 tab_accessi_prep <- tab_utenti_base |>
-  select(anno, totale = accessi, minori = accessi_residenti_0_17, quota_stranieri = acc_quota_stranieri)
+  mutate(quota_minori = round(accessi_residenti_0_17 / accessi * 100, 1)) |>
+  # select(anno, totale = accessi, minori = accessi_residenti_0_17, quota_stranieri = acc_quota_stranieri)
+  select(anno, totale = accessi, quota_minori, quota_stranieri = acc_quota_stranieri)
 
 tab_in_carico_prep <- tab_utenti_base |>
-  select(anno, totale = in_carico, minori = in_carico_0_17, quota_stranieri, quota_femmine, quota_autismo)
+  mutate(quota_minori = round(in_carico_0_17 / in_carico * 100, 1)) |>
+  # select(anno, totale = in_carico, minori = in_carico_0_17, quota_stranieri, quota_femmine, quota_autismo)
+  select(anno, totale = in_carico, quota_minori, quota_stranieri, quota_femmine, quota_autismo)
 
 tab_accessi_prep
 tab_in_carico_prep
@@ -138,15 +146,19 @@ BG_FEMMINE   <- "#F6E7EA"
 
 # stile comune alle due tabelle: etichette, grassetto sul totale, colori di categoria, N.D.
 f_tab_utenti <- function(dati, titolo, note) {
-  etichette <- c(anno = "Anno", totale = "Totale", minori = "di cui minori (0-17)", quota_stranieri = "di cui stranieri (%)",
-                 quota_femmine = "di cui femmine (%)", quota_autismo = "di cui con autismo (%)")
+  # simbolo % nei valori, non nelle intestazioni (2026-10-15)
+  etichette <- c(anno = "Anno", totale = "Totale", quota_minori = "di cui minori (0-17)", quota_stranieri = "di cui stranieri",
+                 quota_femmine = "di cui femmine", quota_autismo = "di cui con autismo")
+  col_quote <- grep("^quota_", names(dati), value = TRUE)
   dati |>
     f_ft() |>
-    colformat_double(j = c("totale", "minori"), digits = 0, na_str = "N.D.") |>
+    # colformat_double(j = c("totale", "minori"), digits = 0, na_str = "N.D.") |>
+    colformat_double(j = "totale", digits = 0, na_str = "N.D.") |>
+    colformat_double(j = col_quote, digits = 1, suffix = "%", na_str = "N.D.") |>
     set_header_labels(values = as.list(etichette[names(dati)])) |>
     align(align = "center", part = "header") |>
     bold(j = "totale", part = "body") |>
-    bg(j = "minori", bg = BG_MINORI, part = "body") |>
+    bg(j = "quota_minori", bg = BG_MINORI, part = "body") |>
     bg(j = "quota_stranieri", bg = BG_STRANIERI, part = "body") |>
     f_ft_titolo_note(titolo = titolo, note = note)
 }
@@ -156,8 +168,8 @@ NOTA_ND <- "N.D. = non riportato nel report di quell'anno. Dal 2022 nuova cartel
 # __ tab_accessi_ft ----
 tab_accessi_ft <- f_tab_utenti(
   tab_accessi_prep,
-  titolo = glue("Accessi alla neuropsichiatria infantile, provincia di Parma ({ANNO_PRIMO}-{ANNO_ULTIMO})"),
-  note = c("Accessi = utenti con almeno una prestazione nell'anno (anche una sola consulenza), ogni età e residenza. Minori = residenti 0-17; stranieri come definiti nel report (origine o cittadinanza: da chiarire), % sui minori residenti.",
+  titolo = glue("Accessi alla neuropsichiatria infantile, provincia di Parma (trend {ANNO_PRIMO}-{ANNO_ULTIMO})"),
+  note = c("Accessi = utenti con almeno una prestazione nell'anno (anche una sola consulenza), ogni età e residenza. Minori = residenti 0-17, in % sul totale degli accessi; stranieri come definiti nel report (origine o cittadinanza: da chiarire), in % sui minori residenti.",
            NOTA_ND)
 )
 
@@ -166,8 +178,8 @@ tab_accessi_ft
 # __ tab_in_carico_ft ----
 tab_in_carico_ft <- f_tab_utenti(
   tab_in_carico_prep,
-  titolo = glue("Pazienti in carico alla neuropsichiatria infantile, provincia di Parma ({ANNO_PRIMO}-{ANNO_ULTIMO})"),
-  note = c("In carico = utenti con un progetto terapeutico aperto nell'anno. Minori = totale meno i pazienti con 18 anni e più; stranieri come definiti nel report (origine o cittadinanza: da chiarire), % su tutti i pazienti. Autismo = diagnosi in cartella (dal 2022 solo diagnosi principale).",
+  titolo = glue("Pazienti in carico alla neuropsichiatria infantile, provincia di Parma (trend {ANNO_PRIMO}-{ANNO_ULTIMO})"),
+  note = c("In carico = utenti con un progetto terapeutico aperto nell'anno. Minori = totale meno i pazienti con 18 anni e più, in % sul totale; stranieri come definiti nel report (origine o cittadinanza: da chiarire), in % su tutti i pazienti. Autismo = diagnosi in cartella (dal 2022 solo diagnosi principale).",
            NOTA_ND)
 ) |>
   bg(j = "quota_femmine", bg = BG_FEMMINE, part = "body")
@@ -207,11 +219,13 @@ plot_in_carico_distretti <- in_carico_distretti_prep |>
   f_scale_y_tacche(in_carico_distretti_prep$in_carico, passo = 500) +
   scale_color_manual(values = COL_DISTRETTI, name = "Distretti") +
   f_theme_sito_trend() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+  # anni orizzontali (2026-10-15)
+  # theme(axis.text.x = element_text(angle = 45, hjust = 1),
+  theme(axis.text.x = element_text(angle = 0, hjust = 0.5),
         # il tema del sito spegne il titolo di legenda: qui serve ("Distretti")
         legend.title = element_text(size = rel(0.9), face = "bold")) +
   labs(
-    title = str_wrap(glue("Minori in carico alla neuropsichiatria infantile per distretto (trend {ANNO_PRIMO}-{ANNO_ULTIMO})"), 60),
+    title = str_wrap(glue("Pazienti pediatrici in carico alla neuropsichiatria infantile per distretto (trend {ANNO_PRIMO}-{ANNO_ULTIMO})"), 60),
     subtitle = glue("Indicatore: n. di utenti con un progetto terapeutico aperto nell'anno, per distretto sanitario dell'AUSL di Parma; in tutta la provincia {scales::number(tot_ultimo, big.mark = '.', decimal.mark = ',')} nel {ANNO_ULTIMO}"),
     caption = CAP_NPIA, x = "", y = ""
   )
@@ -256,11 +270,13 @@ plot_tasso_distretti <- tasso_distretti_prep |>
   f_scale_y_tacche(tasso_distretti_prep$tasso_accesso_x1000, passo = 20) +
   scale_color_manual(values = COL_DISTRETTI_TOT, name = "Distretti") +
   f_theme_sito_trend() +
-  theme(legend.title = element_text(size = rel(0.9), face = "bold")) +
+  # anni orizzontali: 6-8 anni ci stanno (2026-10-15)
+  theme(axis.text.x = element_text(angle = 0, hjust = 0.5),
+        legend.title = element_text(size = rel(0.9), face = "bold")) +
   labs(
     title = str_wrap(glue("Minori che accedono alla neuropsichiatria infantile ogni 1.000 residenti, per distretto (trend {ANNO_PRIMO}-{ANNO_ULTIMO_TASSO})"), 60),
     subtitle = "Indicatore: accessi di residenti 0-17 per 1.000 residenti 0-17 del distretto (tasso calcolato dall'AUSL su popolazione del Servizio Statistico della Provincia); non disponibile dopo il 2022",
-    caption = CAP_NPIA, x = "", y = ""
+    caption = CAP_NPIA, x = "", y = "accessi ogni 1.000 residenti 0-17"
   )
 
 plot_tasso_distretti
@@ -354,8 +370,12 @@ tab_diagnosi_prep <- npia_diagnosi_2024 |>
 tab_diagnosi_ft <- tab_diagnosi_prep |>
   f_ft() |>
   colformat_double(j = "n", digits = 0) |>
-  set_header_labels(diagnosi_principale = "", n = "N. di pazienti", pct = "% di pazienti",
-                    eta_media = "Età media (anni)", femmine_pct = "Femmine (%)", stranieri_pct = "Stranieri (%)") |>
+  # simbolo % nei valori, non nelle intestazioni (2026-10-15)
+  colformat_double(j = c("pct", "femmine_pct", "stranieri_pct"), digits = 1, suffix = "%") |>
+  # set_header_labels(diagnosi_principale = "", n = "N. di pazienti", pct = "% di pazienti",
+  #                   eta_media = "Età media (anni)", femmine_pct = "Femmine (%)", stranieri_pct = "Stranieri (%)") |>
+  set_header_labels(diagnosi_principale = "", n = "N. di pazienti", pct = "Sul totale",
+                    eta_media = "Età media (anni)", femmine_pct = "Femmine", stranieri_pct = "Stranieri") |>
   # header a due righe: le colonne sotto ogni etichetta sono quelle del select() sopra, in ordine
   add_header_row(values = c("Diagnosi principale", "Incidenza per classi demografiche"), colwidths = c(4, 2)) |>
   align(align = "center", part = "header") |>
@@ -386,7 +406,10 @@ LAB_CONFRONTO <- c(accessi = "Accessi (utenti con almeno una prestazione)",
                    stranieri_pct = "Stranieri, % degli in carico",
                    diagnosi_principale_prima = "Diagnosi più frequente, % degli in carico")
 # formato per riga: conteggi senza decimali, percentuali con 1 decimale
-f_num_riga <- function(x, pct) if_else(pct, scales::number(x, accuracy = 0.1, decimal.mark = ","),
+# f_num_riga <- function(x, pct) if_else(pct, scales::number(x, accuracy = 0.1, decimal.mark = ","),
+#                                        scales::number(x, big.mark = ".", decimal.mark = ","))
+# con il simbolo % nei valori percentuali (2026-10-15)
+f_num_riga <- function(x, pct) if_else(pct, paste0(scales::number(x, accuracy = 0.1, decimal.mark = ","), "%"),
                                        scales::number(x, big.mark = ".", decimal.mark = ","))
 
 confronto_adulti_prep <- npia_sma_2024 |>
@@ -401,7 +424,7 @@ confronto_adulti_prep
 # __ tab_confronto_adulti_ft ----
 tab_confronto_adulti_ft <- confronto_adulti_prep |>
   f_ft() |>
-  set_header_labels(indicatore = "", npia = "Minori (NPIA)", sma = "Adulti (SMA)") |>
+  set_header_labels(indicatore = "", npia = "Pazienti pediatrici (NPIA)", sma = "Adulti (SMA)") |>
   align(j = c("npia", "sma"), align = "right", part = "all") |>
   f_ft_titolo_note(
     titolo = glue("Minori e adulti nei servizi di salute mentale dell'AUSL di Parma ({ANNO_DIAGNOSI})"),

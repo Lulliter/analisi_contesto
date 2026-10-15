@@ -229,7 +229,7 @@ _4. ➡️ Benessere mentale 14-19 e Accessi NPIA (unico indicatore con Parma)_
 - [ ] DA CHIEDERE: Regione ER / AUSL Parma, accessi NPIA e PS per età, 2015→ → richiesta n. 5 (Richieste uffici)
 - [ ] Accessi PS e ricoveri per disturbi neuropsichiatrici in età evolutiva (schede di dimissione ospedaliera, Ministero della Salute / Regione ER): da verificare
 - [ ] Consumo di psicofarmaci in età pediatrica (rapporto OsMed, AIFA): da verificare
-- [ ] Pagina `benessere_giovani.qmd`: sezione "La salute mentale nei bambini e ragazzi" da riempire con le fonti qui sopra
+- [x] Pagina `benessere_giovani.qmd`: sezione "La salute mentale nei bambini e ragazzi" da riempire con le fonti qui sopra
 
 _5. Governare: risposte dei paesi e mappa locale_
 
@@ -243,10 +243,16 @@ _5. Governare: risposte dei paesi e mappa locale_
 ### modulo `npia_utenti`
 (minori con accesso e in carico ai servizi di neuropsichiatria infantile, provincia di Parma per distretto, 2010-2024; fonte report DAISMDP AUSL, trascritti in `npia_pr_serie.csv`)
 
-- [ ] rivedere grafici e tabelle di `02_output.R` (5 grafici, 4 tabelle) dopo il primo lancio
-- [ ] sezione "La salute mentale nei bambini e ragazzi" in bozza `_benessere_giovani_v2.qmd`: restringere le Osservazioni, verificare la frase sul tasso città/provincia, poi promuovere al posto di `benessere_giovani.qmd`
 - [ ] richiesta n. 5 all'AUSL: le domande sono nei commenti di `_metadati.md` (geografia, VTC 2023, tabelle 2023-24, criterio 2016, refusi, definizione di "stranieri"); da comporre in `_richieste_dati.md`
 - [ ] popolazione 0-17 per distretto da ISTAT (somma di comuni) al posto di `pop_calc`: dipende dalla serie per comune × età e dalla tabella comune → distretto (vedi Demografia)
+
+### modulo `hikikomori` (forse)
+(ritiro sociale e hikikomori: le fonti misurano cose diverse, casi noti ai servizi, autodefinizione, assenza di relazioni fuori da scuola; da pensare quale messaggio regge)
+
+- [ ] Regione ER, rilevazione sul ritiro sociale (giugno 2023, dati per distretto): verificare i numeri dei distretti di Parma [Ricerca sul ritiro sociale 2024](https://sociale.regione.emilia-romagna.it/novita/prodotti-editoriali/2024/il-ritiro-sociale-in-adolescenza/@@download/publicationFile/Ricerca%20sul%20ritiro%20sociale%202024.pdf)
+- [ ] CNR-IFC e Gruppo Abele, hikikomori tra gli studenti di 15-19 anni da ESPAD (2023), solo nazionale [report](https://www.gruppoabele.org/documenti/schede/02_02_cnr_ifc_abele_ns_report_hikikomori.pdf)
+- [ ] CNR-IRPPS, ritirati sociali 14-19 anni nel 2019 e 2022 (Scientific Reports, 2025) [Sky TG24](https://tg24.sky.it/salute-e-benessere/2025/01/28/hikikomori-fattori-scatenanti-adolescenti-studio)
+- [ ] decidere indicatore e posto nella pagina `benessere_giovani.qmd`
 
 #### AVANZAMENTO giovani
 

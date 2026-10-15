@@ -3,6 +3,8 @@ project:
   output-dir: docs # to publish website on GithubPages
   resources:
     - CNAME # dominio personalizzato (datiparma.it): copiato in docs/ a ogni render
+    - assets/fonts/*.woff2 # font serviti dal sito (2026-10-15, vedi assets/fonts/README.md)
+    - assets/fonts/*.woff
   render:
     # Lista esplicita ("whitelist"): si renderizza SOLO la home e le pagine di sito/
     - index.qmd

@@ -1,7 +1,7 @@
 ---
 title: "Benessere e salute mentale dei ragazzi"
 # categories: [P1 Disuguaglianze, LA1 Welfare]
-description: "Dati ISTAT, Bes (2005-2025) e ISS, HBSC (2018 e 2022), estratti a settembre 2026"
+description: "Dati AUSL di Parma, NPIA (2017-2024), ISTAT, Bes (2005-2025) e ISS, HBSC (2018 e 2022), estratti a settembre e ottobre 2026"
 lang: it
 
 format:
@@ -32,6 +32,8 @@ quarto::quarto_render(here::here("sito", "temi", paste0(pagina, ".qmd")))
 browseURL(here::here("docs", "sito", "temi", paste0(pagina, ".html")))
 ```
 
+<!-- SUPERATO 2026-10-15: bozza promossa al posto di benessere_giovani.qmd (la versione precedente resta nella storia git) -->
+<!-- BOZZA v2 2026-10-14: sezione "La salute mentale nei bambini e ragazzi" riempita con il modulo npia_utenti (AUSL di Parma); da restringere e poi promuovere al posto di benessere_giovani.qmd. -->
 <!-- BOZZA 2026-10-01: sezioni scorporate da educ_ia.qmd ("Rischi di social network e videogiochi", "Salute mentale e relazioni con gli amici").
      Nel menu "Crescita ed educazione" va dopo "Crescere al tempo dell'IA" (voce già pronta, commentata, in _quarto.yml).
      Da scrivere: In sintesi, eventuale testo di apertura, Possibili approfondimenti. -->
@@ -52,34 +54,225 @@ source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hov
 
 dir_ben <- here::here("moduli", "giovani_benessere", "output")
 dir_ict <- here::here("moduli", "giovani_ict_social", "output")
+dir_npia <- here::here("moduli", "npia_utenti", "output")
 ```
 
-::: {.callout-warning}
-## Pagina in completamento
-:::
 
 
 
 
 ## In sintesi
 
-+ Il quadro della salute mentale dei ragazzi (_da completare..._) 
++ Nel 2024 la neuropsichiatria infantile ha in carico 4.655 pazienti pediatrici, pari al 6,1% dei minorenni della provincia (erano il 5,3% nel 2023). **Dal 2017 i "presi in carico" sono cresciuti del 23%** mentre gli "accessi" sono stabili. Un terzo dei pazienti ha 6-10 anni, l'età della scuola primaria; la diagnosi più frequente è l'autismo (16%).
 
 + Tra gli adolescenti cresce l'**uso problematico dei social network**, soprattutto tra le ragazze (a 15 anni ne è interessata una su cinque), mentre quello dei videogiochi riguarda soprattutto i ragazzi e cala con l'età.
 
-+ **Il benessere psicologico dei 14-19enni è calato nel 2021** e non è tornato ai livelli precedenti, soprattutto tra le ragazze; nella popolazione nel suo insieme l'indice non si è mosso.
++ **Il benessere psicologico dei 14-19enni è calato nel lockdown** e non è tornato ai livelli precedenti, soprattutto tra le ragazze; nella popolazione nel suo insieme l'indice non si è mosso.
 
 + Le relazioni con gli amici toccano il minimo nel 2021 a tutte le età, ma **per le ragazze di 14-19 anni il calo era cominciato prima**: dal 2018 le molto soddisfatte restano sotto il 39%.
 
-## La salute mentale nei bambini e ragazzi [🟡]{.content-hidden}
+## La salute mentale nei bambini e ragazzi
 
-(_da completare..._) 
+Nel 2024 i pazienti pediatrici con un progetto terapeutico aperto alla neuropsichiatria dell'infanzia e dell'adolescenza (NPIA) dell'AUSL di Parma sono 4.655, pari al 6,1% dei minorenni residenti; chi ha avuto almeno una prestazione nell'anno (anche una sola consulenza) è 6.647 -- dati del @Report_2024. Gli accessi sull'intera popolazione residente sono stati 17.634, ovvero il 3,8%.
 
+```{r}
+#| label: plot_accessi_in_carico_prov
+#| output: true
+f_girafe(readRDS(file.path(dir_npia, "plot_accessi_in_carico_prov.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_accessi_in_carico_prov
+#| output: true
+f_bottoni_dati("plot_accessi_in_carico_prov", dir_npia)
+```
+:::
+
+
+::: {.callout-note .metodo collapse=true}
+#### Due misure, da non sommare
+_Accessi_: chi ha ricevuto almeno una prestazione nell'anno (anche una sola consulenza), a ogni età e residenza. _In carico_: chi ha un progetto terapeutico aperto; circa il 7% ha 18 anni o più, ragazzi diventati maggiorenni durante la cura. Serie dal 2017, primo anno con misure confrontabili; dal 2022 nuova cartella clinica regionale (possibile rottura di serie); dati per età e tasso di accesso dei minori solo fino al 2022.
+:::
+
+
+::: {.panel-tabset}
+
+#### Accessi
+
+```{r}
+#| label: tab_accessi
+#| output: true
+readRDS(file.path(dir_npia, "tab_accessi_ft.rds"))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_tab_accessi
+#| output: true
+f_bottoni_dati("tab_accessi_ft", dir_npia)
+```
+:::
+
+#### In carico
+
+```{r}
+#| label: tab_in_carico
+#| output: true
+readRDS(file.path(dir_npia, "tab_in_carico_ft.rds"))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_tab_in_carico
+#| output: true
+f_bottoni_dati("tab_in_carico_ft", dir_npia)
+```
+:::
+
+:::
+
+::: {.callout-note collapse="true"}
+#### Osservazioni
+- Il lockdown è una buca, non l'inizio della crescita: nel 2020 gli in carico calano del 22%, nel 2021-22 tornano ai livelli del 2018-19; la crescita vera è del 2023-24 (+13% in due anni).
+- Gli stranieri accedono in proporzione: sono il 28% degli in carico, contro "circa il 30%" dei minori residenti secondo il report (per cittadinanza, nei dati ISTAT, i minori stranieri sono il 20%: la definizione usata dall'AUSL è da chiarire).
+
+_NB: più ragazzi presi in carico, ma non più ragazzi che arrivano: potrebbe voler dire più bisogno riconosciuto, più capacità diagnostica o un diverso modo di registrare, i dati non lo dicono..._
+<!-- _NB: i refusi dei report (tre casi) sono corretti e documentati nei metadati del modulo._ -->
+:::
+
+### Dove: i distretti
+
+Più della metà dei pazienti in carico (55% nel 2024) è seguita nel distretto di Parma, dove si concentra anche la crescita degli ultimi anni; a parità di popolazione, però, i minori accedono al servizio più spesso negli altri distretti.
+
+::: {.panel-tabset}
+
+#### In carico
+
+```{r}
+#| label: plot_in_carico_distretti
+#| output: true
+f_girafe(readRDS(file.path(dir_npia, "plot_in_carico_distretti.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_in_carico_distretti
+#| output: true
+f_bottoni_dati("plot_in_carico_distretti", dir_npia)
+```
+:::
+
+#### Accessi ogni 1.000 residenti
+
+```{r}
+#| label: plot_tasso_distretti
+#| output: true
+f_girafe(readRDS(file.path(dir_npia, "plot_tasso_distretti.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_tasso_distretti
+#| output: true
+f_bottoni_dati("plot_tasso_distretti", dir_npia)
+```
+:::
+
+:::
+
+::: {.callout-note collapse="true"}
+#### Osservazioni
+- I distretti crescono in modo diverso: Parma +44% dal 2017 (1.776 → 2.558 in carico), Fidenza e Sud Est +12-17%, Valli Taro e Ceno in calo, con un dimezzamento nel 2023 (da 450 a 245) in parte recuperato nel 2024 (349), che il report non commenta.
+- A parità di popolazione, si accede di più fuori dal distretto di Parma: dal 2017 al 2022 il distretto di Parma ha sempre il tasso di accesso più basso dei quattro (tra 67 e 80 minori ogni 1.000, contro 80-115 negli altri).
+
+_NB: gli in carico per distretto sono attribuiti secondo il report._
+:::
+
+### Pazienti per età 
+
+La fascia 6-10 anni è la più numerosa tra i pazienti in carico, con i maschi circa il doppio delle femmine; solo tra gli adolescenti i due sessi si equivalgono.
+
+```{r}
+#| label: plot_eta
+#| output: true
+f_girafe(readRDS(file.path(dir_npia, "plot_eta.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_eta
+#| output: true
+f_bottoni_dati("plot_eta", dir_npia)
+```
+:::
+
+### Pazienti per diagnosi
+
+Autismo, difficoltà scolastiche e disturbi del linguaggio: tre diagnosi quasi alla pari, che insieme riguardano quasi la metà dei pazienti.
+
+```{r}
+#| label: plot_diagnosi
+#| output: true
+f_girafe(readRDS(file.path(dir_npia, "plot_diagnosi.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_diagnosi
+#| output: true
+f_bottoni_dati("plot_diagnosi", dir_npia)
+```
+:::
+
+### Diagnosi e caratteristiche demografiche
+
+Ogni diagnosi ha il suo profilo: i disturbi alimentari sono quasi solo femminili (97%), l'autismo per quattro casi su cinque maschile.
+
+```{r}
+#| label: tab_diagnosi
+#| output: true
+readRDS(file.path(dir_npia, "tab_diagnosi_ft.rds"))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_tab_diagnosi
+#| output: true
+f_bottoni_dati("tab_diagnosi_ft", dir_npia)
+```
+:::
  
-Un segnale indiretto viene dalla scuola: le certificazioni di disabilità sono cresciute del 41% in otto anni nelle statali della provincia, a parità di iscritti ([Gli alunni con disabilità](scuola.qmd#gli-alunni-con-disabilità)) -- da leggere con cautela, perché dipende anche da come si diagnostica e si certifica.
 
-<!-- Da riempire. Fonti candidate (tutte da verificare):
-- utenti dei servizi di neuropsichiatria infantile (NPIA) per età → richiesta n. 5 (Trasversale)
+::: {.callout-note collapse="true"}
+#### Osservazioni
+- Un servizio per bambini della scuola primaria, prima che per adolescenti: gli adolescenti (14-17) sono un quinto e non crescono dopo la pandemia. Un segnale nella stessa direzione viene dalla scuola: le certificazioni di disabilità sono cresciute del 41% in otto anni nelle statali della provincia, a parità di iscritti ([Gli alunni con disabilità](scuola.qmd#gli-alunni-con-disabilità)), da leggere con la stessa cautela, perché dipende anche da come si diagnostica e si certifica.
+- Le diagnosi per sesso: oltre ai disturbi alimentari, le ragazze prevalgono nei disturbi della personalità (89%), dell'umore e nevrotici (62-63%); i maschi nel linguaggio e nel comportamento.
+- I pazienti con autismo erano 236 nel 2018 e 748 nel 2024, ma dal 2022 si conta solo la diagnosi principale (prima anche le secondarie): il salto va letto con cautela.
+
+_NB: raggruppamenti e diciture del report._
+:::
+
+::: {.callout-note collapse="true"}
+#### Per confronto: gli adulti
+In rapporto alla popolazione di riferimento, i pazienti pediatrici in carico sono quattro volte gli adulti (6,1% dei minorenni contro 1,4% dei maggiorenni); tra i pazienti pediatrici prevalgono i maschi (61%), tra gli adulti le femmine (57%); gli stranieri sono in proporzione tra i pazienti pediatrici e sotto-rappresentati tra gli adulti (9,5% contro il 14% dei residenti).
+
+```{r}
+#| label: tab_confronto_adulti
+#| output: true
+readRDS(file.path(dir_npia, "tab_confronto_adulti_ft.rds"))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_tab_confronto_adulti
+#| output: true
+f_bottoni_dati("tab_confronto_adulti_ft", dir_npia)
+```
+:::
+:::
+
+<!-- Fonti candidate ancora da verificare per questa sezione:
 - accessi in pronto soccorso e ricoveri per disturbi neuropsichiatrici in età evolutiva (schede di dimissione ospedaliera, Ministero della Salute / Regione ER)
 - consumo di psicofarmaci in età pediatrica (rapporto OsMed, AIFA)
 - Bambino Gesù, accessi PS neuropsichiatrici 2011-2021 (via Openpolis) -->
@@ -267,4 +460,6 @@ _NB: Quota per fascie d'età che si dichiarano "molto soddisfatti" delle relazio
 
 ## Possibili approfondimenti
 
-- ...
+- La crescita dei presi in carico in neuropsichiatria infantile è dovuta a più bisogno, a più capacità di riconoscerlo o a un diverso modo di registrarlo? Servono i dati per età e per distretto del 2023 e 2024, che i report non riportano più.
+- Chi sono gli "stranieri" nei servizi: per cittadinanza o per origine? La risposta cambia il confronto con la popolazione residente.
+- Che legame c'è tra la presa in carico sanitaria (6-10 anni) e le certificazioni e i disturbi dell'apprendimento riconosciuti a scuola?

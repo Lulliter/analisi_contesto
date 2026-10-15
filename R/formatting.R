@@ -56,7 +56,11 @@ f_pick_font <- function(
 }
 
 # Define target font
-target_font <- f_pick_font()
+# Sito: basta il NOME del font, il file lo serve il sito (assets/fonts/ + @font-face in custom.css, 2026-10-15)
+# target_font <- f_pick_font()
+target_font <- "Roboto Condensed"
+# avviso solo per usi interni (Word, png, pdf), dove il font deve essere installato sul computer
+if (!f_has_font(target_font)) message("Roboto Condensed non installato: ok per il sito, non per Word/pdf")
 message("Using font: ", target_font)
 
 # 2) set flextable defaults -----------------------------------------

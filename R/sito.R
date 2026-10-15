@@ -23,7 +23,7 @@ f_scarica_dati <- local({ # esegue in un env separato per contatore progressivo 
   # Licenza delle elaborazioni (grafici, tabelle, dati derivati); i dati di
   # origine restano soggetti alla licenza della fonte (vedi _metadati.md)
   licenza_txt <- "Elaborazione Osservatorio dei Dati Sociali, Fondazione Cariparma, CC BY 4.0. I dati di origine restano soggetti alla licenza della fonte citata."
-  function(df, titolo = "", fonte = "") {
+  function(df, titolo = "", fonte = "", note = character(0)) {
     pagina <- knitr::current_input()
     pagina <- if (is.null(pagina)) "tabella" else tools::file_path_sans_ext(basename(pagina))
     if (is.null(pagina_corr) || pagina != pagina_corr) {  # nuova pagina -> azzera
@@ -40,18 +40,25 @@ f_scarica_dati <- local({ # esegue in un env separato per contatore progressivo 
     # titolo e fonte come righe di commento "#" in testa (convenzione dei
     # portali dati: in R si rileggono con read_csv(..., comment = "#"));
     # "\ufeff" e' il BOM UTF-8 e deve essere il primo carattere del file
-    intestazione <- paste0("# Titolo: ", titolo, "\n# Fonte: ", fonte_txt,
-                           "\n# Licenza: ", licenza_txt, "\n#\n")
+    # note (sottotitolo del grafico o note della tabella, 2026-10-15): una riga ciascuna; fonte solo se presente
+    note <- note[nzchar(note)]
+    righe_meta <- data.frame(
+      campo  = c("Titolo", rep("Nota", length(note)), if (nzchar(fonte_txt)) "Fonte", "Licenza"),
+      valore = c(titolo, note, if (nzchar(fonte_txt)) fonte_txt, licenza_txt)
+    )
+    # intestazione <- paste0("# Titolo: ", titolo, "\n# Fonte: ", fonte_txt,
+    #                        "\n# Licenza: ", licenza_txt, "\n#\n")
+    intestazione <- paste0(paste0("# ", righe_meta$campo, ": ", righe_meta$valore, collapse = "\n"), "\n#\n")
     readr::write_file(paste0("\ufeff", intestazione, readr::format_csv(df)), csv_tmp)
 
     # Excel a 2 fogli (Dati + Metadati) scritto direttamente con writexl
     # (equivalente a download_this() con lista, ma esplicito e verificabile)
-    metadati <- data.frame(
-      campo  = c("Titolo", "Fonte", "Licenza"),
-      valore = c(titolo, fonte_txt, licenza_txt)
-    )
+    # metadati <- data.frame(
+    #   campo  = c("Titolo", "Fonte", "Licenza"),
+    #   valore = c(titolo, fonte_txt, licenza_txt)
+    # )
     xlsx_tmp <- file.path(tempdir(), paste0(nome, ".xlsx"))
-    writexl::write_xlsx(list(Dati = df, Metadati = metadati), xlsx_tmp)
+    writexl::write_xlsx(list(Dati = df, Metadati = righe_meta), xlsx_tmp)
 
     htmltools::tagList(
       downloadthis::download_file(path = csv_tmp, output_name = nome,
@@ -81,20 +88,37 @@ f_bottoni_dati <- function(nome, dir, rds = nome) {
   # titolo/fonte: nei ggplot stanno in labs() -> p$labels; nei patchwork
   # in plot_annotation() -> p$patches$annotation; nelle flextable nella riga
   # titolo (f_ft_titolo_note) e nella prima nota a pie' di tabella
+  # (2026-10-15) passano anche le note: tutte quelle della tabella, il sottotitolo del grafico
   if (inherits(p, "flextable")) {
     titolo <- p$header$dataset[1, 1]
-    fonte  <- if (nrow(p$footer$dataset) > 0) p$footer$dataset[1, 1] else ""
+    # fonte  <- if (nrow(p$footer$dataset) > 0) p$footer$dataset[1, 1] else ""
+    # tutte le note a pie' di tabella; se la prima inizia con "Fonte" fa da fonte, le altre sono note
+    note_ft <- if (nrow(p$footer$dataset) > 0) as.character(p$footer$dataset[[1]]) else character(0)
+    if (length(note_ft) > 0 && grepl("^\\s*Fonte", note_ft[1])) {
+      fonte <- note_ft[1]
+      note  <- note_ft[-1]
+    } else {
+      fonte <- ""
+      note  <- note_ft
+    }
   } else if (inherits(p, "patchwork")) {
     ann    <- p$patches$annotation
-    titolo <- ann$title   %||% ""
-    fonte  <- ann$caption %||% ""
+    titolo <- ann$title    %||% ""
+    note   <- ann$subtitle %||% ""
+    fonte  <- ann$caption  %||% ""
   } else {
-    titolo <- p$labels$title   %||% ""
-    fonte  <- p$labels$caption %||% ""
+    titolo <- p$labels$title    %||% ""
+    note   <- p$labels$subtitle %||% ""
+    fonte  <- p$labels$caption  %||% ""
   }
+  # i <br> delle caption ggtext diventano spazi nei metadati (2026-10-15)
+  titolo <- gsub("<br>", " ", titolo)
+  fonte  <- gsub("<br>", " ", fonte)
+  note   <- gsub("<br>", " ", note)
   f_scarica_dati(
     df,
     titolo = gsub("\n", " ", titolo),
-    fonte  = gsub("\n", " ", fonte)
+    fonte  = gsub("\n", " ", fonte),
+    note   = gsub("\n", " ", note)
   )
 }

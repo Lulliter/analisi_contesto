@@ -1,3 +1,13 @@
+/* Titolo del sito in Bricolage Grotesque 800 (2026-10-15) */
+/* @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&display=swap'); */
+
+/* Font serviti dal sito invece che da Google Fonts: tutti vedono gli stessi caratteri (2026-10-15, vedi assets/fonts/README.md) */
+@font-face { font-family: "Bricolage Grotesque"; font-weight: 800; font-style: normal; font-display: swap; src: url("../fonts/bricolage_grotesque_800.woff2") format("woff2"), url("../fonts/bricolage_grotesque_800.woff") format("woff"); }
+@font-face { font-family: "Roboto Condensed"; font-weight: 400; font-style: normal; font-display: swap; src: url("../fonts/roboto_condensed_400.woff2") format("woff2"), url("../fonts/roboto_condensed_400.woff") format("woff"); }
+@font-face { font-family: "Roboto Condensed"; font-weight: 700; font-style: normal; font-display: swap; src: url("../fonts/roboto_condensed_700.woff2") format("woff2"), url("../fonts/roboto_condensed_700.woff") format("woff"); }
+@font-face { font-family: "Roboto Condensed"; font-weight: 400; font-style: italic; font-display: swap; src: url("../fonts/roboto_condensed_400_italic.woff2") format("woff2"), url("../fonts/roboto_condensed_400_italic.woff") format("woff"); }
+@font-face { font-family: "Roboto Condensed"; font-weight: 700; font-style: italic; font-display: swap; src: url("../fonts/roboto_condensed_700_italic.woff2") format("woff2"), url("../fonts/roboto_condensed_700_italic.woff") format("woff"); }
+
 /* Override Bootstrap code color variable */
 :root {
   --bs-code-color: #17717f !important;  /* teal color for inline code */
@@ -124,8 +134,9 @@ div.sidebar-item-container nav[role=doc-toc] ul li a.active {
       - voce singola      -> .navbar a[href$="<nome_file>.html"] { color: ...; }
    4. piu' voci dello stesso tema = stesso colore (come Educazione + Giovani qui sotto);
    5. se non sei sicura dell'id, aprilo da docs/index.html cercando "nav-menu-". */
-#nav-menu-demografia                   { color: #f7da7b; } /* demografia: ylw_lg */
-#nav-menu-giovani                      { color: #b7e4d0; } /* giovani (ex "crescita ed educazione", 2026-10-12): verde menta (grn_lg schiarito, contrasto ~3.4) */
+/* Colori per gruppo tolti il 2026-10-15: tutti bianchi (bianco = attivo, grigio = in preparazione) */
+/* #nav-menu-demografia                   { color: #f7da7b; } */ /* demografia: ylw_lg */
+/* #nav-menu-giovani                      { color: #b7e4d0; } */ /* giovani (ex "crescita ed educazione", 2026-10-12): verde menta (grn_lg schiarito, contrasto ~3.4) */
 /* .navbar a[href$="giovani_lavoro.html"] { color: #b7e4d0; }  giovani e lavoro: dal 2026-10-12 sta nella tendina Giovani, non serve più */
 
 /* Tendine della navbar: sfondo distinto dalla pagina (stesso grigio del footer), bordo e ombra (2026-09-25) */
@@ -254,3 +265,9 @@ div.callout-note.metodo .callout-icon::before {
 /* Footer: link senza sottolineatura, cambio colore al passaggio come nell'indice laterale (2026-10-15) */
 .nav-footer a { text-decoration: none; }
 .nav-footer a:hover { color: #9f7d35; }
+
+/* Titolo del sito nella navbar: Bricolage Grotesque, stacco dal resto in font di sistema (2026-10-15) */
+.navbar-title {
+  font-family: "Bricolage Grotesque", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 800;
+}
