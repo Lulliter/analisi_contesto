@@ -40,6 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-f9f57a1b1cadbb07669c83f3c2996967.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
+<script src="site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "Nessun risultato",
@@ -66,7 +67,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="assets/styles/custom.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -98,10 +99,6 @@ ul.task-list li input[type="checkbox"] {
         <li>
     <a class="dropdown-item" href="./sito/temi/trend_demogr_previs.html">
  <span class="dropdown-text">Previsioni al 2050</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./sito/temi/geogr_abitare.html">
- <span class="dropdown-text">Geografia dell’abitare</span></a>
   </li>  
     </ul>
   </li>
@@ -144,10 +141,17 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./#"> 
 <span class="menu-text"><span class="nav-spenta" title="in preparazione">Assistenza socio-sanitaria</span></span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./#"> 
-<span class="menu-text"><span class="nav-spenta" title="in preparazione">Mappe</span></span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-mappe" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Mappe</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-mappe">    
+        <li>
+    <a class="dropdown-item" href="./sito/temi/geogr_abitare.html">
+ <span class="dropdown-text">Geografia dell’abitare</span></a>
   </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./#"> 
 <span class="menu-text"><span class="nav-spenta" title="in preparazione">Approfondimenti</span></span></a>
@@ -163,45 +167,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
-<!-- generato da sito/_indice_ps.R: non modificare a mano -->
-<div id="indice-ps">
-<p class="indice-ps-gruppo">Priorità strategiche</p>
-<details><summary>P1 Disuguaglianze</summary>
-<ul>
-<li><a href="./sito/temi/scuola.html">Scuola e istruzione</a></li>
-</ul>
-</details>
-<details><summary>P2 Persone e istituzioni</summary>
-<ul>
-<li><a href="./sito/temi/scuola.html">Scuola e istruzione</a></li>
-</ul>
-</details>
-<details><summary>P3 Trasformazioni del territorio</summary>
-<ul>
-<li class="indice-ps-vuoto">nessuna pagina ancora</li>
-</ul>
-</details>
-<p class="indice-ps-gruppo">Linea d'azione</p>
-<details><summary>LA1 Welfare</summary>
-<ul>
-<li class="indice-ps-vuoto">nessuna pagina ancora</li>
-</ul>
-</details>
-<details><summary>LA2 Territorio</summary>
-<ul>
-<li class="indice-ps-vuoto">nessuna pagina ancora</li>
-</ul>
-</details>
-<details><summary>LA3 Capitale umano</summary>
-<ul>
-<li><a href="./sito/temi/scuola.html">Scuola e istruzione</a></li>
-</ul>
-</details>
-</div>
-
-</div></div>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -237,7 +203,7 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Alcune pagine sono in preparazione.</p>
+<p>Alcune pagine sono in costruzione.</p>
 </div>
 </div>
 </div>
@@ -694,13 +660,13 @@ if (tendina && toc) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> <br> <a href="mailto:mimmi@fondazionecrp.it">Luisa M. Mimmi</a></p>
+<p><a href="https://creativecommons.org/licenses/by/4.0/deed.it"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> CC BY 4.0</a> <br> <a href="mailto:mimmi@fondazionecrp.it"><i class="fa-solid fa-envelope" aria-label="envelope"></i> Luisa M. Mimmi</a></p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Made with <i class="fa-brands fa-r-project" aria-label="r-project"></i> and <a href="https://quarto.org/">Quarto</a> <br> <a href="https://github.com/Lulliter/analisi_contesto">Code at <i class="fa-brands fa-github" aria-label="github"></i> GitHub</a></p>
+<p>Realizzato con <a href="https://www.r-project.org/"><i class="fa-brands fa-r-project" aria-label="r-project"></i></a> e <a href="https://quarto.org/"><iconify-icon aria-hidden="true" inline="" icon="simple-icons:quarto" style="font-size: 0.9em;"></iconify-icon> Quarto</a> <br> Codice su <a href="https://github.com/Lulliter/analisi_contesto"><i class="fa-brands fa-github" aria-label="github"></i> GitHub</a></p>
 </div>
   </div>
 </footer>

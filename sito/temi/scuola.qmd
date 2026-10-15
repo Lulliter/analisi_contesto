@@ -1,6 +1,6 @@
 ---
 title: "La realtà della scuola nella provincia di Parma"
-categories: [P1 Disuguaglianze, P2 Persone e istituzioni, LA3 Capitale umano]
+# categories: [P1 Disuguaglianze, P2 Persone e istituzioni, LA3 Capitale umano]
 # subtitle: "Iscritti, geografia scolastica, alunni con potenziale fragilità..."
 description: "Dati MIM (iscritti a.s. 2015/16-2024/25) e USR Emilia-Romagna (alunni con disabilità fino al 2024/25), estratti a luglio e settembre 2026"
 lang: it

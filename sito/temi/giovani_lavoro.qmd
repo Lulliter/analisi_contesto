@@ -1,5 +1,6 @@
 ---
 title: "Dalla scuola al lavoro"
+# categories: [P2 Persone e istituzioni, LA3 Capitale umano]
 # subtitle: "Cosa funziona nel passaggio tra formazione e lavoro, cosa non funziona, e chi resta fuori"
 description: "Pagina in costruzione: indice illustrativo..."
 lang: it

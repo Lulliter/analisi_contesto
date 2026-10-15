@@ -1,5 +1,6 @@
 ---
 title: "Le altre strade: formazione professionale e rientri a scuola nella provincia di Parma"
+# categories: [P2 Persone e istituzioni, LA3 Capitale umano]
 # subtitle: "Chi lascia il percorso ordinario per una qualifica professionale e chi torna a scuola da adulto: quanti sono, chi sono, come cambia nel tempo"
 description: "Dati MIM (a.s. 2015/16-2024/25) e CPIA di Parma (2024/25), estratti a settembre 2026"
 lang: it

@@ -1,5 +1,6 @@
 ---
 title: "Demografia: trend che dettano l'evoluzione dei bisogni e domanda di servizi sociali"
+# categories: [P2 Persone e istituzioni]
 # subtitle: "Popolazione, età, cittadinanza e densità: come cambia la domanda di servizi"
 description: "Dati ISTAT (indicatori demografici 2002-2025, censimento 2024), estratti a luglio 2026"
 lang: it

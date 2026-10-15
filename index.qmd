@@ -32,7 +32,7 @@ Analisi sulla provincia di Parma, in confronto con l'Emilia-Romagna e con l'Ital
 Le pagine del sito corrispondono a moduli tematici. Ognuna riporta una sintesi, grafici e tabelle con dati scaricabili e piste di lavoro aperte. Dati aggiornati a settembre 2026.
 
 ::: {.callout-warning appearance="simple"}
-Alcune pagine sono in preparazione. 
+Alcune pagine sono in costruzione. 
 :::
 :::
 

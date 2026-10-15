@@ -1,5 +1,6 @@
 ---
 title: "Giovani a rischio: dispersione scolastica e NEET"
+# categories: [P1 Disuguaglianze, LA3 Capitale umano]
 # subtitle: "Un affondo su chi rischia di lasciare la scuola o resta fuori da studio e lavoro: quanti sono, quali segnali li anticipano, dove sono"
 description: "Dati ISTAT Bes (2018-2024, nazionale fino al 2025) e MIM (a.s. 2015/16-2024/25), estratti a settembre 2026"
 lang: it

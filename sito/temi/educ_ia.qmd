@@ -1,5 +1,6 @@
 ---
 title: "Crescere al tempo dell'IA"
+# categories: [P2 Persone e istituzioni, LA3 Capitale umano]
 # subtitle: "Un approfondimento su cosa cambia per chi cresce con l'intelligenza artificiale: potenzialità, rischi e il ruolo di chi educa"
 description: "Dati ISTAT (2001-2025), Eurostat (2025) e indagini ad hoc italiane e statunitensi (2025-2026), estratti a settembre 2026"
 lang: it

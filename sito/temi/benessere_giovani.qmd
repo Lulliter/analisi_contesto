@@ -1,5 +1,6 @@
 ---
 title: "Benessere e salute mentale dei ragazzi"
+# categories: [P1 Disuguaglianze, LA1 Welfare]
 description: "Dati ISTAT, Bes (2005-2025) e ISS, HBSC (2018 e 2022), estratti a settembre 2026"
 lang: it
 

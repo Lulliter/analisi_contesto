@@ -1,5 +1,6 @@
 ---
 title: "Geografia dell'abitare"
+# categories: [P1 Disuguaglianze, P3 Trasformazioni del territorio, LA2 Territorio]
 description: "Popolazione residente per comune della provincia (Censimento ISTAT 2024) e per quartiere nel Comune di Parma (anagrafe comunale al 1/1/2026), immobili ACER (2022) dal portale open data del Comune"
 lang: it
 

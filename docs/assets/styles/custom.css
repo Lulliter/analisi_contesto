@@ -250,3 +250,7 @@ div.callout-note.metodo .callout-icon::before {
 /* Voci di navbar "spente" = previste ma senza pagine (2026-10-12): grigie, non cliccabili */
 .navbar .nav-spenta { color: #adb5bd; cursor: default; }
 .navbar a.nav-link:has(.nav-spenta) { pointer-events: none; }
+
+/* Footer: link senza sottolineatura, cambio colore al passaggio come nell'indice laterale (2026-10-15) */
+.nav-footer a { text-decoration: none; }
+.nav-footer a:hover { color: #9f7d35; }
