@@ -29,7 +29,7 @@ link-citations: true
 ::: {.g-col-12 .g-col-md-7}
 Analisi sulla provincia di Parma, in confronto con l'Emilia-Romagna e con l'Italia, per leggere i bisogni del territorio e orientare gli interventi; dati aperti da fonti ufficiali (ISTAT, Ministero dell'Istruzione, Regione Emilia-Romagna, ecc.), sempre citate.
 
-Le pagine del sito corrispondono a moduli tematici. Ognuna riporta una sintesi, grafici e tabelle con dati scaricabili e piste di lavoro aperte. Dati aggiornati a settembre 2026.
+Le pagine del sito corrispondono a moduli tematici. Ognuna riporta una sintesi, grafici e tabelle con dati scaricabili e piste di lavoro aperte. Dati aggiornati tra settembre e dicembre 2026.
 
 ::: {.callout-warning appearance="simple"}
 Alcune pagine sono in costruzione. 

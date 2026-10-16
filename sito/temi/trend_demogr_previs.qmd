@@ -59,6 +59,8 @@ dir_previs <- here::here("moduli", "demo_trend_previs", "output")
 + Parma è prevista in crescita (+6,9% di abitanti al 2050), in controtendenza rispetto all'Italia (-7,3%).
 
 + L'invecchiamento però accelera: al 2050 quasi un abitante su tre avrà 65 anni o più.
+
++ Cresce anche la quota degli anziani in rapporto a chi è in età da lavoro: a Parma le persone di 65 anni e oltre passerebbero da 37 a 56 ogni 100 tra 15 e 64 anni. Un segnale che servono politiche a sostegno di chi dovrà prendersi cura di anziani non autosufficienti, conciliando lavoro e cura.
 <!-- + Per chi interviene: non autosufficienza, domiciliarità e caregiving vanno dimensionati sui numeri assoluti (gli over 80 da 36 a 59 mila), non sulle quote. -->
 
 <!-- frasi dal blurb di moduli/demo_trend_previs -->

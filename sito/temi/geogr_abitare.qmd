@@ -66,14 +66,13 @@ pop_prov <- readRDS(file.path(dir_pop, "pop_mappe_sf.rds")) |>
 ```
 
 
-::: {.callout-warning}
-## Pagina in costruzione
-<!-- Questa pagina raccoglie le domande e la struttura dell'analisi sul passaggio dalla formazione al lavoro. Segue logicamente la pagina sui [giovani a rischio dispersione](scuola_dispersione.qmd). -->
-:::
-
 # In sintesi
 
-<!-- <da scrivere> -->
++ Giovani e anziani vivono in posti diversi della provincia. La cintura del capoluogo e la pedecollina sono tra le zone più giovani dell'Emilia-Romagna. In diversi comuni di montagna invece chi ha 65 anni e oltre è più del 40% dei residenti (Bore 47%).
+
++ I residenti stranieri sono il 14,8% in provincia (12,7% in regione) con forte iresenza lla pedecollina della filiera alimentare (Calestano e Langhirano, circa 21%). In città sono un quarto o più dei residenti in Oltretorrente, San Leonardo, Pablo e Parma Centro.
+
++ Nel Comune di Parma, in Oltretorrente e Parma Centro circa 6 famiglie su 10 sono di una sola persona (45% in città). In questi due quartieri vive solo anche più di 4 anziani su 10 (34% in città).
 
 
 ::: {.callout-note .metodo collapse=true}

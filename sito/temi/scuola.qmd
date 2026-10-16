@@ -155,6 +155,54 @@ La rete dei plessi è rimasta stabile per tutto il decennio (la serie, dall'anag
 _NB: Infanzia inclusa. "Plessi" = sedi registrate in anagrafe, anche senza iscritti._
 :::
 
+
+```{r}
+#| label: mappa_paritarie_plessi_pr
+#| output: true
+#| fig-height: 8
+
+f_girafe(readRDS(file.path(dir_scuola, "mappa_paritarie_plessi_pr.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_mappa_paritarie_plessi_pr
+#| output: true
+f_bottoni_dati("paritarie_plessi_comuni_pr", dir_scuola, rds = "mappa_paritarie_plessi_pr")
+```
+:::
+
+::: {.callout-note collapse="true"}
+### Osservazioni
+
+La scuola paritaria della provincia serve soprattutto l'infanzia: dei 104 plessi paritari, 80 sono scuole dell'infanzia, diffuse capillarmente in 21 comuni. Negli altri ordini la paritaria è un fenomeno concentrato: 24 plessi in soli 5 comuni (Parma 15, Salsomaggiore 4, Fidenza 3, Busseto e Traversetolo 1). In diversi comuni le paritarie restano un presidio importante e, talora, l'unica o la principale offerta locale.  
+
+_NB: Fonte MIM, anagrafe scuole, a.s. 2024/25, infanzia inclusa. Un plesso = un codice per ordine e sede: la stessa scuola con più ordini conta più plessi. La mappa conta anche scuole senza iscritti (es. le primarie di Bore e Valmozzola, formalmente attive ma senza alunni): "0" = plessi tutti statali, in grigio i comuni senza alcun plesso dell'ordine._
+:::
+
+
+<!-- ```{r} -->
+<!-- #| label: mappa_paritarie_iscritti_pr -->
+<!-- #| output: true -->
+<!-- #| fig-width: 9 -->
+<!-- #| fig-height: 8 -->
+
+<!-- f_girafe(readRDS(file.path(dir_scuola, "mappa_paritarie_iscritti_pr.rds"))) -->
+<!-- ``` -->
+
+<!-- ::: {.text-end} -->
+<!-- ```{r} -->
+<!-- #| label: dl_mappa_paritarie_iscritti_pr -->
+<!-- #| output: true -->
+<!-- f_bottoni_dati("paritarie_comuni_pr", dir_scuola, rds = "mappa_paritarie_iscritti_pr") -->
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- ::: {.callout-note collapse="true"} -->
+<!-- ### Osservazioni -->
+<!-- Per gli iscritti **La scuola paritaria** non è disponibile il dato (molto significativo) sull'infanzia: la fonte da acquisire è l'anagrafe studenti della Regione ER.  -->
+<!-- ::: -->
+
 ## La geografia scolastica dei comuni
 
 Le tre mappe leggono dove stanno le scuole (plessi), quanti alunni
@@ -216,52 +264,6 @@ f_bottoni_dati("scuola_comuni_pr", dir_scuola, rds = "mappa_quota_stranieri_comu
 La geografia scolastica ricalca quella demografica: plessi e alunni si concentrano su Parma città e sui comuni maggiori, mentre in montagna la rete si dirada — Bore e Valmozzola non hanno scuole primarie o secondarie e i loro ragazzi si spostano altrove. La presenza di stranieri riflette, su base scolastica, le concentrazioni già viste nelle mappe demografiche.
 :::
 
-```{r}
-#| label: mappa_paritarie_plessi_pr
-#| output: true
-#| fig-height: 8
-
-f_girafe(readRDS(file.path(dir_scuola, "mappa_paritarie_plessi_pr.rds")))
-```
-
-::: {.text-end}
-```{r}
-#| label: dl_mappa_paritarie_plessi_pr
-#| output: true
-f_bottoni_dati("paritarie_plessi_comuni_pr", dir_scuola, rds = "mappa_paritarie_plessi_pr")
-```
-:::
-
-::: {.callout-note collapse="true"}
-### Osservazioni
-
-La scuola paritaria della provincia serve soprattutto l'infanzia: dei 104 plessi paritari, 80 sono scuole dell'infanzia, diffuse capillarmente in 21 comuni. Negli altri ordini la paritaria è un fenomeno concentrato: 24 plessi in soli 5 comuni (Parma 15, Salsomaggiore 4, Fidenza 3, Busseto e Traversetolo 1). In diversi comuni le paritarie restano un presidio importante e, talora, l'unica o la principale offerta locale.  
-
-_NB: Fonte MIM, anagrafe scuole, a.s. 2024/25, infanzia inclusa. Un plesso = un codice per ordine e sede: la stessa scuola con più ordini conta più plessi. La mappa conta anche scuole senza iscritti (es. le primarie di Bore e Valmozzola, formalmente attive ma senza alunni): "0" = plessi tutti statali, in grigio i comuni senza alcun plesso dell'ordine._
-:::
-
-
-<!-- ```{r} -->
-<!-- #| label: mappa_paritarie_iscritti_pr -->
-<!-- #| output: true -->
-<!-- #| fig-width: 9 -->
-<!-- #| fig-height: 8 -->
-
-<!-- f_girafe(readRDS(file.path(dir_scuola, "mappa_paritarie_iscritti_pr.rds"))) -->
-<!-- ``` -->
-
-<!-- ::: {.text-end} -->
-<!-- ```{r} -->
-<!-- #| label: dl_mappa_paritarie_iscritti_pr -->
-<!-- #| output: true -->
-<!-- f_bottoni_dati("paritarie_comuni_pr", dir_scuola, rds = "mappa_paritarie_iscritti_pr") -->
-<!-- ``` -->
-<!-- ::: -->
-
-<!-- ::: {.callout-note collapse="true"} -->
-<!-- ### Osservazioni -->
-<!-- Per gli iscritti **La scuola paritaria** non è disponibile il dato (molto significativo) sull'infanzia: la fonte da acquisire è l'anagrafe studenti della Regione ER.  -->
-<!-- ::: -->
 
 ## Gli alunni con cittadinanza non italiana
 
