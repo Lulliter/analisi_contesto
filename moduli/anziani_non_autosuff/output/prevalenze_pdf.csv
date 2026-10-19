@@ -1,0 +1,24 @@
+indicatore,classe_eta,sesso,territorio,valore,fonte,nota
+gravi_limitazioni_funzionali,65-74,Totale,Italia,14.6,OLTC_8rapp_2026 Tab. 1.2 (p. 19; pdf p. 20),ADL o IADL gravi; il Rapporto cita ISTAT (2021) = IstatAnziani2019
+gravi_limitazioni_funzionali,75-84,Totale,Italia,32.5,OLTC_8rapp_2026 Tab. 1.2 (p. 19; pdf p. 20),ADL o IADL gravi; il Rapporto cita ISTAT (2021) = IstatAnziani2019
+gravi_limitazioni_funzionali,85+,Totale,Italia,63.8,OLTC_8rapp_2026 Tab. 1.2 (p. 19; pdf p. 20),ADL o IADL gravi; il Rapporto cita ISTAT (2021) = IstatAnziani2019
+gravi_limitazioni_funzionali,65+,Totale,Italia,28.4,OLTC_8rapp_2026 Tab. 1.1 (p. 18-19; pdf p. 19-20),definizione CERGAS di anziani non autosufficienti
+gravi_difficolta_adl,65-74,Totale,Italia,2.6,IstatAnziani2019 p. 2,cura della persona (ADL)
+gravi_difficolta_adl,75-84,Totale,Italia,10.3,IstatAnziani2019 p. 2,cura della persona (ADL)
+gravi_difficolta_adl,75+,Totale,Italia,18.3,IstatAnziani2019 p. 2,cura della persona (ADL)
+gravi_difficolta_adl,85+,Totale,Italia,37.2,IstatAnziani2019 p. 2,cura della persona (ADL)
+gravi_difficolta_adl,65+,Totale,Italia,10.6,IstatAnziani2019 p. 2,cura della persona (ADL)
+gravi_difficolta_adl,65+,Maschi,Italia,7.5,IstatAnziani2019 p. 2,cura della persona (ADL)
+gravi_difficolta_adl,65+,Femmine,Italia,13.3,IstatAnziani2019 p. 2,cura della persona (ADL)
+demenze,65-69,Maschi,Italia,0.9,ISS Report Nazionale 2024 Tab. 1.1 (p. NA; pdf p. 22),tassi di prevalenza Bacigalupo et al. 2018; demenza late onset (≥ 65 anni)
+demenze,65-69,Femmine,Italia,1.1,ISS Report Nazionale 2024 Tab. 1.1 (p. NA; pdf p. 22),tassi di prevalenza Bacigalupo et al. 2018; demenza late onset (≥ 65 anni)
+demenze,70-74,Maschi,Italia,2.1,ISS Report Nazionale 2024 Tab. 1.1 (p. NA; pdf p. 22),tassi di prevalenza Bacigalupo et al. 2018; demenza late onset (≥ 65 anni)
+demenze,70-74,Femmine,Italia,2.2,ISS Report Nazionale 2024 Tab. 1.1 (p. NA; pdf p. 22),tassi di prevalenza Bacigalupo et al. 2018; demenza late onset (≥ 65 anni)
+demenze,75-79,Maschi,Italia,4.6,ISS Report Nazionale 2024 Tab. 1.1 (p. NA; pdf p. 22),tassi di prevalenza Bacigalupo et al. 2018; demenza late onset (≥ 65 anni)
+demenze,75-79,Femmine,Italia,5.6,ISS Report Nazionale 2024 Tab. 1.1 (p. NA; pdf p. 22),tassi di prevalenza Bacigalupo et al. 2018; demenza late onset (≥ 65 anni)
+demenze,80-84,Maschi,Italia,9,ISS Report Nazionale 2024 Tab. 1.1 (p. NA; pdf p. 22),tassi di prevalenza Bacigalupo et al. 2018; demenza late onset (≥ 65 anni)
+demenze,80-84,Femmine,Italia,13.3,ISS Report Nazionale 2024 Tab. 1.1 (p. NA; pdf p. 22),tassi di prevalenza Bacigalupo et al. 2018; demenza late onset (≥ 65 anni)
+demenze,85-89,Maschi,Italia,13.9,ISS Report Nazionale 2024 Tab. 1.1 (p. NA; pdf p. 22),tassi di prevalenza Bacigalupo et al. 2018; demenza late onset (≥ 65 anni)
+demenze,85-89,Femmine,Italia,26.4,ISS Report Nazionale 2024 Tab. 1.1 (p. NA; pdf p. 22),tassi di prevalenza Bacigalupo et al. 2018; demenza late onset (≥ 65 anni)
+demenze,90+,Maschi,Italia,31.2,ISS Report Nazionale 2024 Tab. 1.1 (p. NA; pdf p. 22),tassi di prevalenza Bacigalupo et al. 2018; demenza late onset (≥ 65 anni)
+demenze,90+,Femmine,Italia,38.9,ISS Report Nazionale 2024 Tab. 1.1 (p. NA; pdf p. 22),tassi di prevalenza Bacigalupo et al. 2018; demenza late onset (≥ 65 anni)

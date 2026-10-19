@@ -1,0 +1,55 @@
+territorio,anno,classe_eta,popolazione,indicatore,prevalenza,n_stimato
+Provincia di Parma,2024,65-74,49400,gravi_difficolta_adl,2.6,1284
+Provincia di Parma,2024,75-84,38753,gravi_difficolta_adl,10.3,3992
+Provincia di Parma,2024,85+,19404,gravi_difficolta_adl,37.2,7218
+Provincia di Parma,2024,65-74,49400,gravi_limitazioni_funzionali,14.6,7212
+Provincia di Parma,2024,75-84,38753,gravi_limitazioni_funzionali,32.5,12595
+Provincia di Parma,2024,85+,19404,gravi_limitazioni_funzionali,63.8,12380
+Provincia di Parma,2036,65-74,68339,gravi_difficolta_adl,2.6,1777
+Provincia di Parma,2036,75-84,42976,gravi_difficolta_adl,10.3,4427
+Provincia di Parma,2036,85+,22667,gravi_difficolta_adl,37.2,8432
+Provincia di Parma,2036,65-74,68339,gravi_limitazioni_funzionali,14.6,9977
+Provincia di Parma,2036,75-84,42976,gravi_limitazioni_funzionali,32.5,13967
+Provincia di Parma,2036,85+,22667,gravi_limitazioni_funzionali,63.8,14462
+Provincia di Parma,2050,65-74,62145,gravi_difficolta_adl,2.6,1616
+Provincia di Parma,2050,75-84,61630,gravi_difficolta_adl,10.3,6348
+Provincia di Parma,2050,85+,30563,gravi_difficolta_adl,37.2,11369
+Provincia di Parma,2050,65-74,62145,gravi_limitazioni_funzionali,14.6,9073
+Provincia di Parma,2050,75-84,61630,gravi_limitazioni_funzionali,32.5,20030
+Provincia di Parma,2050,85+,30563,gravi_limitazioni_funzionali,63.8,19499
+Emilia-Romagna,2024,65-74,514160,gravi_difficolta_adl,2.6,13368
+Emilia-Romagna,2024,75-84,397210,gravi_difficolta_adl,10.3,40913
+Emilia-Romagna,2024,85+,200610,gravi_difficolta_adl,37.2,74627
+Emilia-Romagna,2024,65-74,514160,gravi_limitazioni_funzionali,14.6,75067
+Emilia-Romagna,2024,75-84,397210,gravi_limitazioni_funzionali,32.5,129093
+Emilia-Romagna,2024,85+,200610,gravi_limitazioni_funzionali,63.8,127989
+Emilia-Romagna,2036,65-74,673018,gravi_difficolta_adl,2.6,17498
+Emilia-Romagna,2036,75-84,443228,gravi_difficolta_adl,10.3,45652
+Emilia-Romagna,2036,85+,232258,gravi_difficolta_adl,37.2,86400
+Emilia-Romagna,2036,65-74,673018,gravi_limitazioni_funzionali,14.6,98261
+Emilia-Romagna,2036,75-84,443228,gravi_limitazioni_funzionali,32.5,144049
+Emilia-Romagna,2036,85+,232258,gravi_limitazioni_funzionali,63.8,148181
+Emilia-Romagna,2050,65-74,591398,gravi_difficolta_adl,2.6,15376
+Emilia-Romagna,2050,75-84,604748,gravi_difficolta_adl,10.3,62289
+Emilia-Romagna,2050,85+,308081,gravi_difficolta_adl,37.2,114606
+Emilia-Romagna,2050,65-74,591398,gravi_limitazioni_funzionali,14.6,86344
+Emilia-Romagna,2050,75-84,604748,gravi_limitazioni_funzionali,32.5,196543
+Emilia-Romagna,2050,85+,308081,gravi_limitazioni_funzionali,63.8,196556
+Italia,2024,65-74,7007610,gravi_difficolta_adl,2.6,182198
+Italia,2024,75-84,5162052,gravi_difficolta_adl,10.3,531691
+Italia,2024,85+,2410205,gravi_difficolta_adl,37.2,896596
+Italia,2024,65-74,7007610,gravi_limitazioni_funzionali,14.6,1023111
+Italia,2024,75-84,5162052,gravi_limitazioni_funzionali,32.5,1677667
+Italia,2024,85+,2410205,gravi_limitazioni_funzionali,63.8,1537711
+Italia,2036,65-74,8810196,gravi_difficolta_adl,2.6,229065
+Italia,2036,75-84,5854222,gravi_difficolta_adl,10.3,602985
+Italia,2036,85+,2933154,gravi_difficolta_adl,37.2,1091133
+Italia,2036,65-74,8810196,gravi_limitazioni_funzionali,14.6,1286289
+Italia,2036,75-84,5854222,gravi_limitazioni_funzionali,32.5,1902622
+Italia,2036,85+,2933154,gravi_limitazioni_funzionali,63.8,1871352
+Italia,2050,65-74,7399737,gravi_difficolta_adl,2.6,192393
+Italia,2050,75-84,7555053,gravi_difficolta_adl,10.3,778170
+Italia,2050,85+,3928033,gravi_difficolta_adl,37.2,1461228
+Italia,2050,65-74,7399737,gravi_limitazioni_funzionali,14.6,1080362
+Italia,2050,75-84,7555053,gravi_limitazioni_funzionali,32.5,2455392
+Italia,2050,85+,3928033,gravi_limitazioni_funzionali,63.8,2506085

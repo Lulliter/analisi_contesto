@@ -1,0 +1,19 @@
+anno,classe_eta,popolazione,prevalenza,condizione,n,pct_pezzo
+2024,65-74,49400,14.6,Non autosufficienti (stima),7212,14.6
+2024,65-74,49400,14.6,Autosufficienti,42188,85.4
+2024,75-84,38753,32.5,Non autosufficienti (stima),12595,32.5
+2024,75-84,38753,32.5,Autosufficienti,26158,67.5
+2024,85+,19404,63.8,Non autosufficienti (stima),12380,63.8
+2024,85+,19404,63.8,Autosufficienti,7024,36.2
+2036,65-74,68339,14.6,Non autosufficienti (stima),9977,14.6
+2036,65-74,68339,14.6,Autosufficienti,58362,85.4
+2036,75-84,42976,32.5,Non autosufficienti (stima),13967,32.5
+2036,75-84,42976,32.5,Autosufficienti,29009,67.5
+2036,85+,22667,63.8,Non autosufficienti (stima),14462,63.8
+2036,85+,22667,63.8,Autosufficienti,8205,36.2
+2050,65-74,62145,14.6,Non autosufficienti (stima),9073,14.6
+2050,65-74,62145,14.6,Autosufficienti,53072,85.4
+2050,75-84,61630,32.5,Non autosufficienti (stima),20030,32.5
+2050,75-84,61630,32.5,Autosufficienti,41600,67.5
+2050,85+,30563,63.8,Non autosufficienti (stima),19499,63.8
+2050,85+,30563,63.8,Autosufficienti,11064,36.2

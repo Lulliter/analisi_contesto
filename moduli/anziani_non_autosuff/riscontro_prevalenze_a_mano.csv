@@ -1,0 +1,14 @@
+indicatore,classe_eta,sesso,territorio,valore,fonte,nota
+gravi_limitazioni_funzionali,65-74,Totale,Italia,14.6,OLTC_8rapp_2026 Tab. 1.2 p. 19,"ADL o IADL gravi; il Rapporto cita ISTAT (2021) = IstatAnziani2019"
+gravi_limitazioni_funzionali,75-84,Totale,Italia,32.5,OLTC_8rapp_2026 Tab. 1.2 p. 19,
+gravi_limitazioni_funzionali,85+,Totale,Italia,63.8,OLTC_8rapp_2026 Tab. 1.2 p. 19,
+gravi_limitazioni_funzionali,65+,Totale,Italia,28.4,OLTC_8rapp_2026 Tab. 1.1 p. 18-19,"definizione CERGAS di anziani non autosufficienti; 4.027.488 nel 2023"
+gravi_difficolta_adl,65-74,Totale,Italia,2.6,IstatAnziani2019 p. 2,"cura della persona (ADL)"
+gravi_difficolta_adl,75-84,Totale,Italia,10.3,IstatAnziani2019 p. 2,
+gravi_difficolta_adl,85+,Totale,Italia,37.2,IstatAnziani2019 p. 2,
+gravi_difficolta_adl,75+,Totale,Italia,18.3,IstatAnziani2019 p. 2,
+gravi_difficolta_adl,65+,Totale,Italia,10.6,IstatAnziani2019 p. 2,
+gravi_difficolta_adl,65+,Maschi,Italia,7.5,IstatAnziani2019 p. 2,
+gravi_difficolta_adl,65+,Femmine,Italia,13.3,IstatAnziani2019 p. 2,
+gravi_difficolta_adl,65+,Totale,Nord-est,8.0,IstatAnziani2019 p. 7,"tasso standardizzato per età"
+gravi_difficolta_iadl,65+,Totale,Nord-est,21.9,IstatAnziani2019 p. 7,"tasso standardizzato per età"

@@ -91,11 +91,12 @@ Dati che non stanno negli open data e vanno chiesti agli enti (bozze in `dati/gr
   - [ ] 1) un solo set di formattatori in `R/` (`num_it()`, `pct_it()`, `lab_num_it`, `lab_pct_it`)
   - [ ] 2) sostituire le chiamate dirette a `scales::` nei `02_output.R`, rilanciare `build.R` e aggiungere lì il controllo sulle chiamate dirette
   - [ ] 3) aggiornare la skill `formatting-r`
-- [ ] Riportare nel repo metadati la v1.3 di `R/formatting.R` (header tabelle grigio 2026-09-25; N.D. in rosso pallido dentro `f_ft()` 2026-10-14; font fisso "Roboto Condensed" per il sito 2026-10-15) e dire "aggiorna la skill formatting-r"
+- [ ] Riportare nel repo metadati la v1.4 di `R/formatting.R` (header tabelle grigio 2026-09-25; N.D. in rosso pallido dentro `f_ft()` 2026-10-14; font fisso "Roboto Condensed" per il sito 2026-10-15; `bg_previsione` azzurro per gli anni previsti 2026-10-19) e dire "aggiorna la skill formatting-r"
 - [x] **Font del sito**: fatto e sfrutta `assets/fonts/` (non piu googleapi): portare ad altri repos?
 - [ ] Nomi delle funzioni `f_...`: criterio e lessico comune (rimandato 2026-10-09)
 - [ ] Export dati: in `f_bottoni_dati()` smistare per riga, "Fonte…" nel campo Fonte e il resto in Nota (oggi alcune fonti escono come Nota)
 - [ ] asse y sopra il massimo (`f_scale_y_tacche`, `f_scale_y_sopra` in `R/grafici.R`): estendere agli altri grafici di trend del sito
+- [ ] `ausl_npia/npia_pr_serie.csv`: trascrizione a mano da convertire con la regola Fonti in pdf (`dati/README.md`)
 
 **Sito e piano strategico (2026-10-12)**:
 
@@ -288,10 +289,39 @@ Stato al 2026-10-15: pagina `benessere_giovani.qmd` promossa con la sezione NPIA
 
 ___
 
-## ⏭️ 3. ANZIANI (tutto da fare)
+## ⏭️ 3. ANZIANI
 > Spunti CG: abbiamo 100 diagnosi di autismo e 1000 di demenza senile ... forse questo ci dice dove dovremmo guardare?!?!!?
 
 > Spunti CG: in prospettiva i (pochi) giovani di oggi sono gli stessi che dovranno occuparsi degli anziani di domani...
+
+Due domande, pagina asciutta (deciso 2026-10-19): 1) quanti sono gli over 65 e over 80 a Parma / ER / Italia nel 2024 e quanti saranno nel 2036 e 2050; 2) quale quota è non autosufficiente, oggi e nel 2036 e 2050 (stima per prevalenze × popolazione), con glossario disabilità / non autosufficienza / fragilità e un passaggio sulle demenze. La domanda di cura (accompagnamento INPS, badanti, CRA, ADI) va nel tema Assistenza. Materiali del vecchio repo in `temp/analisi_contesto_old/` (tenere solo EHIS "3. Limitazioni" e GALI 2023).
+
+**Ricognizione/Aggiornamento FONTI**:
+
+- [x] previsioni ISTAT 2024-2050 per età: 65+ e 80+ Parma / ER / Italia già in `demo_trend_previs` (manca il taglio 2036)
+- [x] censimento 2024 per età singola per comune (`dati/puliti/istat_cens/`): 65+ e 80+ "oggi"
+- [x] ISTAT stime per piccole aree GLF 2019 (`dati/grezzi/istat_sae_glf_2019/`): gravi limitazioni funzionali per provincia, 65+ per sesso: l'unico dato su Parma
+- [x] ISTAT EHIS 2019, tavole "3. Limitazioni" (ADL / IADL per regione, classe d'età e sesso): in `dati/grezzi/istat_ehis_2019/` con `_metadati.md`; prevalenze dal report di sintesi, lette da script; nessuna edizione più recente (EHIS 2025 non ancora pubblicata)
+- [ ] ISTAT Disabilità in cifre, GALI per regione ed età (2023, in `temp/`): "gravi limitazioni" annuale, confronto con EHIS
+- [x] Demenze: tassi ISS (Report Nazionale 2024) in `dati/grezzi/iss_demenze/`; Alzheimer Europe solo come confronto
+- [ ] `alzheimer_europe/_metadati.md`: URL e licenza; voce in bib (segnaposto `@AlzheimerEurope2025` nella pagina)
+- [ ] (forse) ISS profilo Emilia-Romagna / CDCD: utenti in carico, per confronto con la stima
+- [ ] (forse) indennità di accompagnamento INPS per provincia e classe d'età: controllo della stima → tema Assistenza
+
+### modulo `anziani_non_autosuff`
+(stima del numero di anziani non autosufficienti a Parma oggi e nel 2036: prevalenze per età e sesso (EHIS 2019, ER o Nord-Est) × popolazione 2024 e prevista 2036; GLF per provincia come dato osservato; demenze con la stessa logica)
+
+- [x] `01_dati.R`: prevalenze ADL/IADL e GLF puliti; popolazione per età 2024 e 2036; stime con ipotesi dichiarate (prevalenza costante)
+- [x] `02_output.R`: tabella riassuntiva Parma / ER / Italia × 2024 / 2036 (65+, 80+, stima non autosufficienti); grafico prevalenze per età; confronto GLF tra province ER
+- [ ] blurb
+- [x] pagina bozza `sito/temi/_anziani.qmd` (glossario in callout `.metodo`)
+- [ ] nota tabella non autosufficienti: "un sesto" → "un quinto in più" (AE/ISS 1,22 al 2050)
+- [ ] `istat_ehis_2019/_metadati.md`, Insidie: EHIS esclude chi vive in struttura → stima per difetto
+- [ ] prevalenze larghe per sesso (ISTAT p. 2) in `prevalenze_pdf` e `anziani_sesso_2024`
+
+#### AVANZAMENTO anziani
+
+Stato al 2026-10-19: catena `00` → `01` → `02` → `_anziani.qmd` funzionante (2024 / 2036 / 2050, demenze, testi in bozza `.mark`); prossimo passo: rilettura della pagina da parte di Luisa, poi le voci aperte e il blurb
 
 
 ## ⏭️ 4. ASSISTENZA SOCIO-SANITARIA (tutto da fare)

@@ -1,5 +1,8 @@
-# formatting_core.R — v1.3 (2026-10-14) — canonico: repo metadati
+# formatting_core.R — v1.4 (2026-10-19) — canonico: repo metadati
 # Changelog:
+# v1.4: bg_previsione, sfondo azzurro pallido per le righe/celle di dati previsti o stimati
+#       nelle tabelle (anni di previsione con *), deciso in anziani_non_autosuff. Da riportare
+#       nel repo metadati insieme a v1.2 e v1.3
 # v1.3: f_ft() colora i N.D. (NA numerici) in rosso pallido col_nd, per distinguerli dai
 #       numeri; vale per ogni tabella del sito (deciso 2026-10-14 in npia_utenti).
 #       Da riportare nel repo metadati insieme alla v1.2
@@ -113,6 +116,11 @@ f_ft_tight <- function(ft, font_size = 9, pad = 1) {
 # titolo aggiunta da f_ft_titolo_note() resta bianca.
 # colore dei valori non disponibili / non riportati (N.D.): rosso pallido
 col_nd <- "#C98A8A"
+
+# sfondo delle righe (o celle) di previsione nelle tabelle: azzurro pallido (blu = neutro),
+# distinto dall'header grigio #E5EBEE; uso: bg(i = ~ grepl("\\*", anno), bg = bg_previsione, part = "body")
+# con l'anno marcato da * e una nota "* e sfondo azzurro = previsioni"
+bg_previsione <- "#EDF4FA"
 
 # ___ N.D. colorati: una color() per colonna numerica, sulle sole righe NA ----
 # (solo NA numerici: sono quelli che colformat_* trasforma in "N.D.")

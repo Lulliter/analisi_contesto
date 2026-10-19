@@ -1,0 +1,109 @@
+territorio,anno,sesso,classe_quinq,popolazione,tasso,casi
+Provincia di Parma,2024,Femmine,65-69,13955,1.1,154
+Provincia di Parma,2024,Femmine,70-74,12166,2.2,268
+Provincia di Parma,2024,Femmine,75-79,11796,5.6,661
+Provincia di Parma,2024,Femmine,80-84,9684,13.3,1288
+Provincia di Parma,2024,Femmine,85-89,7489,26.4,1977
+Provincia di Parma,2024,Femmine,90+,4976,38.9,1936
+Provincia di Parma,2024,Maschi,65-69,12739,0.9,115
+Provincia di Parma,2024,Maschi,70-74,10540,2.1,221
+Provincia di Parma,2024,Maschi,75-79,10040,4.6,462
+Provincia di Parma,2024,Maschi,80-84,7233,9,651
+Provincia di Parma,2024,Maschi,85-89,4872,13.9,677
+Provincia di Parma,2024,Maschi,90+,2067,31.2,645
+Provincia di Parma,2036,Femmine,65-69,18496,1.1,203
+Provincia di Parma,2036,Femmine,70-74,16655,2.2,366
+Provincia di Parma,2036,Femmine,75-79,13300,5.6,745
+Provincia di Parma,2036,Femmine,80-84,10232,13.3,1361
+Provincia di Parma,2036,Femmine,85-89,8264,26.4,2182
+Provincia di Parma,2036,Femmine,90+,5638,38.9,2193
+Provincia di Parma,2036,Maschi,65-69,17759,0.9,160
+Provincia di Parma,2036,Maschi,70-74,15429,2.1,324
+Provincia di Parma,2036,Maschi,75-79,11387,4.6,524
+Provincia di Parma,2036,Maschi,80-84,8057,9,725
+Provincia di Parma,2036,Maschi,85-89,5820,13.9,809
+Provincia di Parma,2036,Maschi,90+,2945,31.2,919
+Provincia di Parma,2050,Femmine,65-69,15195,1.1,167
+Provincia di Parma,2050,Femmine,70-74,16648,2.2,366
+Provincia di Parma,2050,Femmine,75-79,17406,5.6,975
+Provincia di Parma,2050,Femmine,80-84,15522,13.3,2064
+Provincia di Parma,2050,Femmine,85-89,10937,26.4,2887
+Provincia di Parma,2050,Femmine,90+,7499,38.9,2917
+Provincia di Parma,2050,Maschi,65-69,14645,0.9,132
+Provincia di Parma,2050,Maschi,70-74,15657,2.1,329
+Provincia di Parma,2050,Maschi,75-79,15612,4.6,718
+Provincia di Parma,2050,Maschi,80-84,13090,9,1178
+Provincia di Parma,2050,Maschi,85-89,8132,13.9,1130
+Provincia di Parma,2050,Maschi,90+,3995,31.2,1246
+Emilia-Romagna,2024,Femmine,65-69,144712,1.1,1592
+Emilia-Romagna,2024,Femmine,70-74,126998,2.2,2794
+Emilia-Romagna,2024,Femmine,75-79,122992,5.6,6888
+Emilia-Romagna,2024,Femmine,80-84,97374,13.3,12951
+Emilia-Romagna,2024,Femmine,85-89,76525,26.4,20203
+Emilia-Romagna,2024,Femmine,90+,51305,38.9,19958
+Emilia-Romagna,2024,Maschi,65-69,132444,0.9,1192
+Emilia-Romagna,2024,Maschi,70-74,110006,2.1,2310
+Emilia-Romagna,2024,Maschi,75-79,103099,4.6,4743
+Emilia-Romagna,2024,Maschi,80-84,73745,9,6637
+Emilia-Romagna,2024,Maschi,85-89,49878,13.9,6933
+Emilia-Romagna,2024,Maschi,90+,22902,31.2,7145
+Emilia-Romagna,2036,Femmine,65-69,181937,1.1,2001
+Emilia-Romagna,2036,Femmine,70-74,166748,2.2,3668
+Emilia-Romagna,2036,Femmine,75-79,136747,5.6,7658
+Emilia-Romagna,2036,Femmine,80-84,106699,13.3,14191
+Emilia-Romagna,2036,Femmine,85-89,85576,26.4,22592
+Emilia-Romagna,2036,Femmine,90+,56900,38.9,22134
+Emilia-Romagna,2036,Maschi,65-69,172685,0.9,1554
+Emilia-Romagna,2036,Maschi,70-74,151648,2.1,3185
+Emilia-Romagna,2036,Maschi,75-79,116562,4.6,5362
+Emilia-Romagna,2036,Maschi,80-84,83220,9,7490
+Emilia-Romagna,2036,Maschi,85-89,59683,13.9,8296
+Emilia-Romagna,2036,Maschi,90+,30099,31.2,9391
+Emilia-Romagna,2050,Femmine,65-69,142860,1.1,1571
+Emilia-Romagna,2050,Femmine,70-74,161658,2.2,3556
+Emilia-Romagna,2050,Femmine,75-79,171667,5.6,9613
+Emilia-Romagna,2050,Femmine,80-84,151547,13.3,20156
+Emilia-Romagna,2050,Femmine,85-89,109886,26.4,29010
+Emilia-Romagna,2050,Femmine,90+,76953,38.9,29935
+Emilia-Romagna,2050,Maschi,65-69,136673,0.9,1230
+Emilia-Romagna,2050,Maschi,70-74,150207,2.1,3154
+Emilia-Romagna,2050,Maschi,75-79,154379,4.6,7101
+Emilia-Romagna,2050,Maschi,80-84,127155,9,11444
+Emilia-Romagna,2050,Maschi,85-89,80064,13.9,11129
+Emilia-Romagna,2050,Maschi,90+,41178,31.2,12848
+Italia,2024,Femmine,65-69,1957812,1.1,21536
+Italia,2024,Femmine,70-74,1732121,2.2,38107
+Italia,2024,Femmine,75-79,1631466,5.6,91362
+Italia,2024,Femmine,80-84,1249885,13.3,166235
+Italia,2024,Femmine,85-89,948390,26.4,250375
+Italia,2024,Femmine,90+,608991,38.9,236897
+Italia,2024,Maschi,65-69,1790530,0.9,16115
+Italia,2024,Maschi,70-74,1527147,2.1,32070
+Italia,2024,Maschi,75-79,1358243,4.6,62479
+Italia,2024,Maschi,80-84,922458,9,83021
+Italia,2024,Maschi,85-89,594542,13.9,82641
+Italia,2024,Maschi,90+,258282,31.2,80584
+Italia,2036,Femmine,65-69,2370862,1.1,26079
+Italia,2036,Femmine,70-74,2216880,2.2,48771
+Italia,2036,Femmine,75-79,1802261,5.6,100927
+Italia,2036,Femmine,80-84,1420680,13.3,188950
+Italia,2036,Femmine,85-89,1099570,26.4,290286
+Italia,2036,Femmine,90+,716820,38.9,278843
+Italia,2036,Maschi,65-69,2222740,0.9,20005
+Italia,2036,Maschi,70-74,1999714,2.1,41994
+Italia,2036,Maschi,75-79,1526446,4.6,70217
+Italia,2036,Maschi,80-84,1104835,9,99435
+Italia,2036,Maschi,85-89,750351,13.9,104299
+Italia,2036,Maschi,90+,366413,31.2,114321
+Italia,2050,Femmine,65-69,1793024,1.1,19723
+Italia,2050,Femmine,70-74,2008465,2.2,44186
+Italia,2050,Femmine,75-79,2134716,5.6,119544
+Italia,2050,Femmine,80-84,1945479,13.3,258749
+Italia,2050,Femmine,85-89,1414586,26.4,373451
+Italia,2050,Femmine,90+,990315,38.9,385233
+Italia,2050,Maschi,65-69,1732187,0.9,15590
+Italia,2050,Maschi,70-74,1866061,2.1,39187
+Italia,2050,Maschi,75-79,1887978,4.6,86847
+Italia,2050,Maschi,80-84,1586880,9,142819
+Italia,2050,Maschi,85-89,1004550,13.9,139632
+Italia,2050,Maschi,90+,518582,31.2,161798

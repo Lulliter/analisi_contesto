@@ -24,4 +24,12 @@ Il terzo livello ("data_out") non esiste come cartella centrale: ogni modulo in
 - Aggiornamento annuale: nuovo rilascio che sostituisce la serie → sovrascrivi il file;
   annata che si aggiunge → il nuovo file convive col vecchio. In entrambi i casi
   aggiornare "Storico aggiornamenti" nel `_metadati.md`.
+- **Fonti in pdf** (report AUSL, CERGAS, ISS): il pdf sta in `grezzi/<fonte>/` come qualsiasi grezzo;
+  i numeri si estraggono con uno script del modulo `00_prep_<cosa>_pdf.R` (`pdftools::pdf_text` + regex),
+  che per ogni tabella stampa pagina e righe catturate (rivedibile riga per riga), tiene nella colonna
+  `fonte` la pagina del pdf e chiude con controlli (somme, totali stampati). Una trascrizione a mano in
+  csv può restare solo come riscontro dell'estrazione, non come fonte, e sta nella cartella del modulo
+  (non in `grezzi/`, che contiene solo ciò che la fonte pubblica) (deciso 2026-10-19; modello:
+  `moduli/anziani_non_autosuff/00_prep_prevalenze_pdf.R` + `riscontro_prevalenze_a_mano.csv`). `ausl_npia/npia_pr_serie.csv` è ancora una
+  trascrizione a mano: da convertire quando si tocca il modulo.
 
