@@ -12,7 +12,7 @@
 
 **File:**
 
-- `ReportNazionale_2024.pdf` — 305 pp. Tabella 1.1 (p. 1 del cap. 1 "Epidemiologia"; lo script riporta anche la pagina del pdf): casi prevalenti di demenza ≥ 65 anni per sesso e classe d'età (65-69 … ≥90): popolazione, tassi × 100, casi; totale Italia 1.126.961 (uomini 5,5%, donne 9,9% dei 65+). Tab. 1.2 demenza giovanile 35-64 (23.730 casi); Tab. 1.3 MCI (952.101). DA LEGGERE CON SCRIPT (`moduli/anziani_non_autosuff/00_prep_prevalenze_pdf.R`, come per il CERGAS)
+- `ReportNazionale_2024.pdf` — 305 pp. Tabella 1.1 (p. 1 del cap. 1 "Epidemiologia"; lo script riporta anche la pagina del pdf): casi prevalenti di demenza ≥ 65 anni per sesso e classe d'età (65-69 … ≥90): popolazione, tassi × 100, casi; totale Italia 1.126.961 (uomini 5,5%, donne 9,9% dei 65+). Tab. 1.2 demenza giovanile 35-64 (23.730 casi); Tab. 1.3 MCI (952.101). DA LEGGERE CON SCRIPT (`moduli/anziani_non_autosuff/00_prep_prevalenze.R`, come per il CERGAS)
 - `MappaServiziER.pdf` — 73 pp., schede dei servizi per le demenze in Emilia-Romagna dal portale ISS (CDCD, CRA, centri diurni, associazioni), con quelli di Parma; elenco, senza dati di attività
 - `risultati_survey_rsa_e_cd1.pdf` — slide ISS (dic. 2023), survey nazionale su RSA e centri diurni 2022-23, progetto Fondo Alzheimer
 

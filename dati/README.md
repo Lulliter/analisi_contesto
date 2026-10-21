@@ -30,6 +30,6 @@ Il terzo livello ("data_out") non esiste come cartella centrale: ogni modulo in
   `fonte` la pagina del pdf e chiude con controlli (somme, totali stampati). Una trascrizione a mano in
   csv può restare solo come riscontro dell'estrazione, non come fonte, e sta nella cartella del modulo
   (non in `grezzi/`, che contiene solo ciò che la fonte pubblica) (deciso 2026-10-19; modello:
-  `moduli/anziani_non_autosuff/00_prep_prevalenze_pdf.R` + `riscontro_prevalenze_a_mano.csv`). `ausl_npia/npia_pr_serie.csv` è ancora una
+  `moduli/anziani_non_autosuff/00_prep_prevalenze.R` + `riscontro_prevalenze_a_mano.csv`). `ausl_npia/npia_pr_serie.csv` è ancora una
   trascrizione a mano: da convertire quando si tocca il modulo.
 

@@ -94,6 +94,7 @@ Dati che non stanno negli open data e vanno chiesti agli enti (bozze in `dati/gr
 - [ ] Riportare nel repo metadati la v1.4 di `R/formatting.R` (header tabelle grigio 2026-09-25; N.D. in rosso pallido dentro `f_ft()` 2026-10-14; font fisso "Roboto Condensed" per il sito 2026-10-15; `bg_previsione` azzurro per gli anni previsti 2026-10-19) e dire "aggiorna la skill formatting-r"
 - [x] **Font del sito**: fatto e sfrutta `assets/fonts/` (non piu googleapi): portare ad altri repos?
 - [ ] Nomi delle funzioni `f_...`: criterio e lessico comune (rimandato 2026-10-09)
+- [ ] grafico di trend multi-territorio (province ER grigie, Parma / ER / Italia evidenziate) ripetuto in `demo_trend_previs` e `anziani_non_autosuff`: promuovere una funzione in `R/grafici.R`?
 - [ ] Export dati: in `f_bottoni_dati()` smistare per riga, "Fonte…" nel campo Fonte e il resto in Nota (oggi alcune fonti escono come Nota)
 - [ ] asse y sopra il massimo (`f_scale_y_tacche`, `f_scale_y_sopra` in `R/grafici.R`): estendere agli altri grafici di trend del sito
 - [ ] `ausl_npia/npia_pr_serie.csv`: trascrizione a mano da convertire con la regola Fonti in pdf (`dati/README.md`)
@@ -317,11 +318,17 @@ Due domande, pagina asciutta (deciso 2026-10-19): 1) quanti sono gli over 65 e o
 - [x] pagina bozza `sito/temi/_anziani.qmd` (glossario in callout `.metodo`)
 - [ ] nota tabella non autosufficienti: "un sesto" → "un quinto in più" (AE/ISS 1,22 al 2050)
 - [ ] `istat_ehis_2019/_metadati.md`, Insidie: EHIS esclude chi vive in struttura → stima per difetto
-- [ ] prevalenze larghe per sesso (ISTAT p. 2) in `prevalenze_pdf` e `anziani_sesso_2024`
+- [ ] prevalenze larghe per sesso (ISTAT p. 2) in `prevalenze` e `anziani_sesso_2024`
+- [ ] lanciare `ingestione/03`, `build.R` e render; verificare `anziani.qmd` (grafico quota con 2036 e 2050, tabella quadro, testi con le nuove definizioni) e le tacche di `trend_demogr_previs`
+- [ ] `00_prep_prevalenze.R`: controlli in coda (ADL tavola = ADL report, valori attesi, GALI per età = foglio scaricato)
+- [ ] `istat_disab_cifre_gali_2023`: confrontare il foglio per età con Disabilità in cifre e annotare la data di pubblicazione
+- [ ] rileggere il quadro di riferimento (`claude_outputs/quadro_anziani_fragili.qmd`) e decidere se le tutele vanno nel glossario o nel tema Assistenza
+- [ ] Prestazione universale (sperimentale fino al 31-12-2026): verificare la proroga nella legge di bilancio 2027 → tema Assistenza
+- [ ] fragilità: cercare fonti (letteratura, servizi sanitari) per la sezione in fondo a `anziani.qmd`
 
 #### AVANZAMENTO anziani
 
-Stato al 2026-10-19: catena `00` → `01` → `02` → `_anziani.qmd` funzionante (2024 / 2036 / 2050, demenze, testi in bozza `.mark`); prossimo passo: rilettura della pagina da parte di Luisa, poi le voci aperte e il blurb
+Stato al 2026-10-20: "non autosufficienti" = gravi difficoltà nella cura della persona (ADL); prevalenze CERGAS riconosciute come limitazioni motorie, sensoriali e cognitive; nuova tabella quadro (disabilità GALI, gravi difficoltà ADL o IADL, di cui ADL); grafico della quota di anziani spostato nel modulo; aggregati delle previsioni promossi in `ingestione/03`; tutto da eseguire e verificare; prossimo passo: lancio degli script e rilettura
 
 
 ## ⏭️ 4. ASSISTENZA SOCIO-SANITARIA (tutto da fare)
@@ -488,37 +495,5 @@ Fonti candidate: ISTAT spesa servizi sociali comuni (grezzi nel backup, ISTAT_SE
 
  
 ---
-
-
-# Ispirazione 
-
-## Open data 
-
-- Mapping and Urban Data Lab (**MAUD-DAStU**) del **Politecnico di Milano** [Milano che Cambia Public Tableu](https://public.tableau.com/app/profile/maud.lab/viz/MILANOCHECAMBIAUNVIAGGIOINTERATTIVOTRADATIPERSONEEQUARTIERI/INFO_descrizione)
-
-## Altre FOB? 
-
-Perimetro: parto da queste, per patrimonio decrescente, Nord-Centro:
-
-1. Cariplo (Milano)
-2.Compagnia di San Paolo (Torino)
-3. Cassa di Risparmio di Torino
-4. Cassa di Risparmio di Padova e Rovigo
-5. Cassa di Risparmio di Verona Vicenza Belluno e Ancona (Cariverona)
-6. Cassa di Risparmio in Bologna
-7. Cassa di Risparmio di Cuneo
-8. Cassa di Risparmio di Lucca
-9. Cassa di Risparmio di Modena
-10. Monte dei Paschi di Siena
-11. Cassa di Risparmio di Firenze
-12. Cassa di Risparmio di Trento e Rovereto (Caritro)
-13. Cassa di Risparmio di Parma (Cariparma)
-14. Cassa di Risparmio di Perugia
-15. Cassa di Risparmio di Pisa / Livorno / Pistoia (le toscane minori, se il budget di ricerca lo consente)
-
-
----- 
-
-
 
 

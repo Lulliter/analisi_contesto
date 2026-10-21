@@ -1,0 +1,75 @@
+---
+title: "Inspiration wall"
+# subtitle: "Nota di lavoro per la revisione di settembre 2026: cosa deve arrivare a chi legge"
+lang: it
+format:
+  html:
+    toc: true
+  docx:
+    toc: false
+
+bibliography: bib/CRP_analisi_contesto.bib
+csl: bib/apa_7th.csl
+link-citations: true
+#nocite: |
+#  @*
+---
+
+# Ispirazione 
+
+
+## Open data 
+
+- TOP! [Our World in Data](https://ourworldindata.org/) focus: economia dello sviluppo 
+- [Pew Research Center](https://www.pewresearch.org/) focus: opinioni politiche, sociali e culturali
+  - fantastico modo di presentare dati e contenuti (dati scaricabili e riutilizzabili)
+
+
+## Open e focus su mappe! 
+
+- Mapping and Urban Data Lab (**MAUD-DAStU**) del **Politecnico di Milano** Osservatorio MAUD Milano [Milano che Cambia Public Tableu](https://public.tableau.com/app/profile/maud.lab/viz/MILANOCHECAMBIAUNVIAGGIOINTERATTIVOTRADATIPERSONEEQUARTIERI/INFO_descrizione)
+  - accessibile sito e mappe (ma non dati sottostanti)
+  - (contenuto stupendo ma fatto con Tableu 💩)
+
+## Dati di contesto
+
++ **AICCON** (2026). Database proprietario per la lettura di contesto
+  - mi hanno fatto vedere la versione beta, molto simile alla mia selezione di dati ma con lettura di varie provincie
+  - NON accessibile al pubblico (uso interno o da vendere?) s
+
+
+## Altre FOB? 
+
+
++ **Fondazione Cassa di Risparmio di Biella**, fatto con **Percorsi di Secondo Welfare**, da (2020-2026), [OsservaBiella – Osservatorio territoriale del Biellese](https://www.osservabiella.it/cose-osservabiella/)
+  - accessibile sia sito (con indicatori e dati scaricabili) che report annuale (pdf)  
+  
+
++ **Intesa Sanpaolo per il Sociale, AICCON, & SRM**. (2026). MONITOR PER LA GEOGRAFIA DELLE FRAGILITÀ E DELLE DISUGUAGLIANZE.
+  - accessibile [report](https://group.intesasanpaolo.com/content/dam/portalgroup/repository-documenti/eventi-e-progetti/progetti/Report_Banca_Intesa_Geo_Frag_Disuguaglianza_Monitor.pdf) ma NON accessibile banca dati 
+
+
+  
+Perimetro: parto da queste, per patrimonio decrescente, Nord-Centro:
+
+1. Cariplo (Milano)
+2.Compagnia di San Paolo (Torino)
+3. Cassa di Risparmio di Torino
+4. Cassa di Risparmio di Padova e Rovigo
+5. Cassa di Risparmio di Verona Vicenza Belluno e Ancona (Cariverona)
+6. Cassa di Risparmio in Bologna
+7. Cassa di Risparmio di Cuneo
+8. Cassa di Risparmio di Lucca
+9. Cassa di Risparmio di Modena
+10. Monte dei Paschi di Siena
+11. Cassa di Risparmio di Firenze
+12. Cassa di Risparmio di Trento e Rovereto (Caritro)
+13. Cassa di Risparmio di Parma (Cariparma)
+14. Cassa di Risparmio di Perugia
+15. Cassa di Risparmio di Pisa / Livorno / Pistoia (le toscane minori, se il budget di ricerca lo consente)
+
+
+---- 
+
+
+

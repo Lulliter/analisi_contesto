@@ -48,7 +48,7 @@ theme_trend <- f_theme_sito_trend()   # tema del sito (R/grafici.R)
 # Carica input -------------------------------------------------------------
 previs_pop_totale <- readRDS(file.path(dir_mod, "previs_pop_totale.rds"))
 previs_piramide   <- readRDS(file.path(dir_mod, "previs_piramide.rds"))
-previs_struttura  <- readRDS(file.path(dir_mod, "previs_struttura_territori.rds"))
+previs_struttura  <- readRDS(here("dati", "puliti", "istat_previsioni", "previs_struttura_territori.rds"))
 previs_bilancio   <- readRDS(file.path(dir_mod, "previs_bilancio_territori.rds"))
 
 # dataset comune a p01/p02: indice 2024=100 + territorio_display/highlight
@@ -73,12 +73,12 @@ p01_pop_indice <- df_pop |>
     linewidth = rel(0.8)
   ) +
   geom_line_interactive(
-    data = function(df) df |> filter(territorio_display != "Altre provincie ER"),
+    data = function(df) df |> dplyr::filter(territorio_display != "Altre provincie ER"),
     aes(tooltip = territorio, data_id = gsub("'", "", territorio)),
     linewidth = rel(1.5)
   ) +
   geom_point_interactive(
-    data = function(df) df |> filter(territorio_display != "Altre provincie ER"),
+    data = function(df) df |> dplyr::filter(territorio_display != "Altre provincie ER"),
     aes(tooltip = round(indice, 1), data_id = gsub("'", "", territorio)),
     size = 1.6
   ) +
@@ -106,12 +106,12 @@ p02_pop_totale <- df_pop |>
     linewidth = rel(0.8)
   ) +
   geom_line_interactive(
-    data = function(df) df |> filter(territorio == "Parma"),
+    data = function(df) df |> dplyr::filter(territorio == "Parma"),
     aes(tooltip = territorio, data_id = gsub("'", "", territorio)),
     linewidth = rel(1.5)
   ) +
   geom_point_interactive(
-    data = function(df) df |> filter(territorio == "Parma"),
+    data = function(df) df |> dplyr::filter(territorio == "Parma"),
     aes(tooltip = scales::number(totale, big.mark = ".", decimal.mark = ","), data_id = gsub("'", "", territorio)),
     size = 1.6
   ) +
@@ -180,17 +180,18 @@ p04_quota_anziani <- df_p04 |>
     linewidth = rel(0.8)
   ) +
   geom_line_interactive(
-    data = function(df) df |> filter(territorio_display != "Altre provincie ER"),
+    data = function(df) df |> dplyr::filter(territorio_display != "Altre provincie ER"),
     aes(tooltip = territorio, data_id = gsub("'", "", territorio)),
     linewidth = rel(1.5)
   ) +
   geom_point_interactive(
-    data = function(df) df |> filter(territorio_display != "Altre provincie ER"),
+    data = function(df) df |> dplyr::filter(territorio_display != "Altre provincie ER"),
     aes(tooltip = round(valore, 1), data_id = gsub("'", "", territorio)),
     size = 1.4
   ) +
   facet_wrap(vars(indicatore), scales = "free_y") +
-  scale_x_continuous(breaks = seq(2024, 2050, by = 4)) +
+  # tacche ogni 6 anni fino al 2042, poi 2050 (2048 tolto: si sovrapporrebbe)
+  scale_x_continuous(breaks = c(seq(2024, 2042, by = 6), 2050)) +
   scale_alpha_manual(values = c(0.3, 1), guide = "none") +
   scale_color_manual(values = COLORI_TREND) +
   theme_trend +
@@ -224,7 +225,7 @@ f_p05_territorio <- function(terr) {
       color = COLORI_TREND[[terr]], size = 1.6
     ) +
     facet_wrap(vars(indicatore), scales = "free_y") +
-    scale_x_continuous(breaks = seq(2024, 2050, by = 4)) +
+    scale_x_continuous(breaks = c(seq(2024, 2042, by = 6), 2050)) +
     scale_y_continuous(labels = scales::label_number(big.mark = ".", decimal.mark = ","),
                        limits = c(0, NA)) +  # da zero: livelli, non variazioni
     theme_trend +
@@ -265,12 +266,12 @@ p06_dipendenza_anziani <- df_p06 |>
     linewidth = rel(0.8)
   ) +
   geom_line_interactive(
-    data = function(df) df |> filter(territorio_display != "Altre provincie ER"),
+    data = function(df) df |> dplyr::filter(territorio_display != "Altre provincie ER"),
     aes(tooltip = territorio, data_id = gsub("'", "", territorio)),
     linewidth = rel(1.5)
   ) +
   geom_point_interactive(
-    data = function(df) df |> filter(territorio_display != "Altre provincie ER"),
+    data = function(df) df |> dplyr::filter(territorio_display != "Altre provincie ER"),
     aes(tooltip = round(valore, 1), data_id = gsub("'", "", territorio)),
     size = 1.6
   ) +
@@ -303,7 +304,7 @@ p07_nati_morti <- df_p07 |>
     size = 1.4
   ) +
   facet_wrap(vars(territorio), scales = "free_y") +
-  scale_x_continuous(breaks = seq(2024, 2050, by = 4)) +
+  scale_x_continuous(breaks = c(seq(2024, 2042, by = 6), 2050)) +
   scale_y_continuous(labels = scales::label_number(big.mark = ".", decimal.mark = ","),
                      limits = c(0, NA)) +  # da zero: il divario si legge meglio
   scale_color_manual(values = c(Nati = grn_md, Morti = burg_md)) +

@@ -12,7 +12,7 @@
 
 **File:**
 
-- `oltc_8_rapporto_2026.pdf` — 8° Rapporto (bib `OLTC_8rapp_2026`). LETTO DA SCRIPT: `moduli/anziani_non_autosuff/00_prep_prevalenze_pdf.R` (pdftools + regex) legge Tab. 1.1 (28,4%, p. 18-19 stampate) e Tab. 1.2 (65-74 14,6% / 75-84 32,5% / 85+ 63,8%, p. 19 stampata); la pagina del pdf dipende dalla copia e lo script la stampa a schermo. Il 7° Rapporto (bib `OLTC_7rapp_2025`) è solo in Zotero
+- `oltc_8_rapporto_2026.pdf` — 8° Rapporto (bib `OLTC_8rapp_2026`). LETTO DA SCRIPT: `moduli/anziani_non_autosuff/00_prep_prevalenze.R` (pdftools + regex) legge Tab. 1.1 (28,4%, p. 18-19 stampate) e Tab. 1.2 (65-74 14,6% / 75-84 32,5% / 85+ 63,8%, p. 19 stampata); la pagina del pdf dipende dalla copia e lo script la stampa a schermo. Il 7° Rapporto (bib `OLTC_7rapp_2025`) è solo in Zotero
 
 **Note (come leggere i dati):**
 
@@ -22,7 +22,7 @@
 
 **Insidie:**
 
-- Se cambia l'impaginazione in una nuova edizione, le regex di `00_prep_prevalenze_pdf.R` vanno riviste (i controlli in coda allo script devono tornare TRUE; il riscontro è `moduli/anziani_non_autosuff/riscontro_prevalenze_a_mano.csv`)
+- Se cambia l'impaginazione in una nuova edizione, le regex di `00_prep_prevalenze.R` vanno riviste (i controlli in coda allo script devono tornare TRUE; il riscontro è `moduli/anziani_non_autosuff/riscontro_prevalenze_a_mano.csv`)
 
 **Storico aggiornamenti:**
 

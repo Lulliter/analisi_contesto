@@ -81,8 +81,10 @@ website:
 
       # Voci "spente" (2026-10-12): previste ma senza pagine; grigie (css .nav-spenta), senza link.
       # Quando arriva la prima pagina: togliere lo span e trasformare in menu
-      - text: "<span class='nav-spenta' title='in preparazione'>Anziani</span>"
-        href: "#"
+      - text: "Anziani"
+        menu:
+          - text: "Bisogno di cura"
+            href: sito/temi/anziani.qmd
       - text: "<span class='nav-spenta' title='in preparazione'>Assistenza socio-sanitaria</span>"
         href: "#"
       # - text: "<span class='nav-spenta' title='in preparazione'>Mappe</span>"

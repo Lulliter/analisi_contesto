@@ -1,0 +1,37 @@
+territorio,anno,indicatore,n_stimato,n65_piu,pct_65_piu,pop_totale,pct_residenti
+Provincia di Parma,2024,gali_grave,14651,107557,13.6,455713,3.2
+Provincia di Parma,2024,gravi_difficolta_adl_o_iadl,31383,107557,29.2,455713,6.9
+Provincia di Parma,2024,gravi_difficolta_adl,12494,107557,11.6,455713,2.7
+Provincia di Parma,2024,nessuna_grave_difficolta_adl_o_iadl,74019,107557,68.8,455713,16.2
+Provincia di Parma,2036,gali_grave,17379,133982,13,476542,3.6
+Provincia di Parma,2036,gravi_difficolta_adl_o_iadl,36957,133982,27.6,476542,7.8
+Provincia di Parma,2036,gravi_difficolta_adl,14636,133982,10.9,476542,3.1
+Provincia di Parma,2036,nessuna_grave_difficolta_adl_o_iadl,94429,133982,70.5,476542,19.8
+Provincia di Parma,2050,gali_grave,22142,154338,14.3,485697,4.6
+Provincia di Parma,2050,gravi_difficolta_adl_o_iadl,47778,154338,31,485697,9.8
+Provincia di Parma,2050,gravi_difficolta_adl,19333,154338,12.5,485697,4
+Provincia di Parma,2050,nessuna_grave_difficolta_adl_o_iadl,103355,154338,67,485697,21.3
+Emilia-Romagna,2024,gali_grave,151024,1111980,13.6,4461998,3.4
+Emilia-Romagna,2024,gravi_difficolta_adl_o_iadl,323378,1111980,29.1,4461998,7.2
+Emilia-Romagna,2024,gravi_difficolta_adl,128908,1111980,11.6,4461998,2.9
+Emilia-Romagna,2024,nessuna_grave_difficolta_adl_o_iadl,766375,1111980,68.9,4461998,17.2
+Emilia-Romagna,2036,gali_grave,176812,1348504,13.1,4566661,3.9
+Emilia-Romagna,2036,gravi_difficolta_adl_o_iadl,376620,1348504,27.9,4566661,8.2
+Emilia-Romagna,2036,gravi_difficolta_adl,149550,1348504,11.1,4566661,3.3
+Emilia-Romagna,2036,nessuna_grave_difficolta_adl_o_iadl,945572,1348504,70.1,4566661,20.7
+Emilia-Romagna,2050,gali_grave,217626,1504227,14.5,4573125,4.8
+Emilia-Romagna,2050,gravi_difficolta_adl_o_iadl,470144,1504227,31.3,4573125,10.3
+Emilia-Romagna,2050,gravi_difficolta_adl,192271,1504227,12.8,4573125,4.2
+Emilia-Romagna,2050,nessuna_grave_difficolta_adl_o_iadl,1002661,1504227,66.7,4573125,21.9
+Italia,2024,gali_grave,1937398,14579867,13.3,58943464,3.3
+Italia,2024,gravi_difficolta_adl_o_iadl,4156432,14579867,28.5,58943464,7.1
+Italia,2024,gravi_difficolta_adl,1610485,14579867,11,58943464,2.7
+Italia,2024,nessuna_grave_difficolta_adl_o_iadl,10135457,14579867,69.5,58943464,17.2
+Italia,2036,gali_grave,2295080,17597572,13,57602136,4
+Italia,2036,gravi_difficolta_adl_o_iadl,4906140,17597572,27.9,57602136,8.5
+Italia,2036,gravi_difficolta_adl,1923183,17597572,10.9,57602136,3.3
+Italia,2036,nessuna_grave_difficolta_adl_o_iadl,12348428,17597572,70.2,57602136,21.4
+Italia,2050,gali_grave,2715335,18882823,14.4,54652345,5
+Italia,2050,gravi_difficolta_adl_o_iadl,5909393,18882823,31.3,54652345,10.8
+Italia,2050,gravi_difficolta_adl,2431791,18882823,12.9,54652345,4.4
+Italia,2050,nessuna_grave_difficolta_adl_o_iadl,12578673,18882823,66.6,54652345,23

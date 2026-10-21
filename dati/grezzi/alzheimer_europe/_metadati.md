@@ -2,10 +2,10 @@
 
 **Ente/fonte:** Alzheimer Europe — "The Prevalence of Dementia in Europe 2025" (Dementia Prevalence Report 2025, progetto cofinanziato UE)
 **Di cosa si tratta**: stime del numero di persone con demenza per paese europeo, per sesso e classe d'età, 2025-2050 (ogni 5 anni), ottenute applicando tassi di prevalenza aggiornati alle previsioni di popolazione Eurostat. Per l'Italia e per l'UE27 i dati sono scaricabili in csv: da `Dementia / Population` si ricavano i tassi per sesso × età, costanti negli anni. Qui serve come fonte alternativa (più recente) alle prevalenze ISS per stimare le demenze a Parma (modulo `anziani_non_autosuff`)
-**URL / API:** https://www.alzheimer-europe.org (sezione dementia prevalence / report 2025) — <precisare la pagina del download dei csv>
+**URL / API:** https://www.alzheimer-europe.org/resources/publications/prevalence-dementia-europe-2025?language_content_entity=en (sezione  Home -> Resources -> Reports And Publications -> Dementia Research Participation And Data Sharing In Europe) — <precisare la pagina del download dei csv>
 **Come riscaricare:** scarico manuale di pdf e csv dal sito
 **Data ultimo download:** 2026-10-19
-**Data di ultima pubblicazione:** 2025
+**Data di ultima pubblicazione:** 2026-10 (rapporto "Prevalence of Dementia in Europe 2025": pubblicato nel 2026, dati riferiti al 2025)
 **Periodo coperto:** 2025, 2030, 2035, 2040, 2045, 2050 (popolazione prevista Eurostat; tassi costanti)
 **Unità territoriale:** Italia; UE27
 **Licenza:** <verificare sul report>

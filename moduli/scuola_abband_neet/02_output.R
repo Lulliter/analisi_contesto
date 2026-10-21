@@ -81,9 +81,9 @@ neet_prov_prep
 plot_neet_prov_er <- neet_prov_prep |>
   ggplot(aes(x = anno, y = quota, color = territorio_display, alpha = highlight, group = territorio)) +
   geom_line_interactive(aes(tooltip = territorio, data_id = territorio), linewidth = rel(0.8)) +
-  geom_line_interactive(data = function(df) df |> filter(highlight),
+  geom_line_interactive(data = function(df) df |> dplyr::filter(highlight),
                         aes(tooltip = territorio, data_id = territorio), linewidth = rel(1.5)) +
-  geom_point_interactive(data = function(df) df |> filter(highlight),
+  geom_point_interactive(data = function(df) df |> dplyr::filter(highlight),
                          aes(tooltip = glue("{territorio} {anno}: {scales::percent(quota, accuracy = 0.1)}")), size = 1.8) +
   scale_x_continuous(breaks = ANNO_BES_PRIMO:ANNO_ULTIMO) +
   scale_y_continuous(labels = function(x) scales::percent(x, accuracy = 1), limits = c(0, NA)) +

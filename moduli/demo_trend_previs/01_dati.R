@@ -2,7 +2,9 @@
 # Modulo: demo_trend_previs — 01_dati.R
 # Fonte:  ISTAT, previsioni demografiche 2024-2050, SOLO scenario mediano,
 #         base 1.1.2024 (demo.istat.it; download 2026-07-18)
-# Input:  dati/puliti/istat_previsioni/previs_pop_eta_province.rds
+# Input:  dati/puliti/istat_previsioni/previs_pop_eta_territori.rds (aggregati per
+#           territorio, promossi in ingestione/03 il 2026-10-20; prima
+#           previs_pop_eta_province.rds sommato qui)
 #         dati/puliti/istat_previsioni/previs_indicatori_comuni_er.rds
 #         dati/puliti/istat_previsioni/previs_bilancio_comuni_er.rds
 #         dati/puliti/istat_shp/lista_COD_PROV_er_vec.R (codici prov. ER)
@@ -10,9 +12,7 @@
 #           (9 province ER + aggregati Emilia-Romagna e Italia = somma province)
 #         output/previs_piramide.rds        — quote per territorio (PR/ER/IT) ×
 #           anno × sesso × classe quinquennale (stile pop_piramide_eta)
-#         output/previs_struttura_territori.rds — % e n. assoluti 0-14, 15-64,
-#           65+, 80+ e indice di dipendenza anziani, per territorio (province
-#           ER + ER + Italia) × anno (calcolati dalle classi di età)
+#         (previs_struttura_territori: dal 2026-10-20 in dati/puliti/istat_previsioni/)
 #         output/previs_bilancio_territori.rds — nati, morti, saldo naturale
 #           previsti per Parma e ER (somma comuni >= 5.000 ab.!) × anno
 #         output/previs_indicatori_comuni_pr.rds — indicatori strutturali ISTAT
@@ -43,28 +43,19 @@ LIVELLI_ETA <- c(paste0(sprintf("%02d", seq(0, 90, 5)), "-",
                         sprintf("%02d", seq(4, 94, 5))), "95+")
 
 # 1) Carica input ----------------------------------------------------------
-pop_eta_prov    <- readRDS(file.path(dir_in, "previs_pop_eta_province.rds"))
+pop_eta_terr    <- readRDS(file.path(dir_in, "previs_pop_eta_territori.rds"))
 indic_comuni    <- readRDS(file.path(dir_in, "previs_indicatori_comuni_er.rds"))
 bilancio_comuni <- readRDS(file.path(dir_in, "previs_bilancio_comuni_er.rds"))
 
-stopifnot(all(cod_prov_er_3 %in% pop_eta_prov$codice_provincia))
+# (controllo sui codici ER spostato in ingestione/03)
 
 # 2) Pop per età nei 3 territori di confronto: PR / ER / Italia -------------
-# (ER e Italia = somma delle province; tolgo la riga "Tutte le età",
-#  i totali si ricalcolano dalle classi)
-pop_eta_territori <- bind_rows(
-  pop_eta_prov |>
-    filter(codice_provincia == COD_PR) |>
-    mutate(territorio = "Provincia di Parma"),
-  pop_eta_prov |>
-    filter(codice_provincia %in% cod_prov_er_3) |>
-    mutate(territorio = "Emilia-Romagna"),
-  pop_eta_prov |>
-    mutate(territorio = "Italia")
-) |>
-  filter(eta != "Tutte le età") |>
-  summarise(maschi = sum(maschi), femmine = sum(femmine), totale = sum(totale),
-            .by = c(territorio, anno, eta)) |>
+# (ER e Italia = somma delle province, già fatta in ingestione/03)
+pop_eta_territori <- pop_eta_terr |>
+  filter(territorio %in% c("Parma", "Emilia-Romagna", "Italia")) |>
+  # nella piramide la provincia si chiama "Provincia di Parma" (come prima)
+  mutate(territorio = if_else(territorio == "Parma", "Provincia di Parma", territorio)) |>
+  select(territorio, anno, eta, maschi, femmine, totale) |>
   mutate(
     territorio = factor(territorio,
                         levels = c("Provincia di Parma", "Emilia-Romagna", "Italia")),
@@ -72,27 +63,12 @@ pop_eta_territori <- bind_rows(
   )
 
 # 3) previs_pop_totale: province ER (nomi) + ER + Italia --------------------
-previs_pop_totale <- bind_rows(
-  pop_eta_prov |>
-    filter(codice_provincia %in% cod_prov_er_3, eta == "Tutte le età") |>
-    select(territorio = provincia, anno, maschi, femmine, totale),
-  pop_eta_territori |>
-    filter(territorio != "Provincia di Parma") |>   # PR è già tra le province
-    summarise(maschi = sum(maschi), femmine = sum(femmine), totale = sum(totale),
-              .by = c(territorio, anno)) |>
-    mutate(territorio = as.character(territorio))
-) |>
+previs_pop_totale <- pop_eta_terr |>
+  summarise(maschi = sum(maschi), femmine = sum(femmine), totale = sum(totale),
+            .by = c(territorio, anno)) |>
   arrange(territorio, anno)
 
-# CONTROLLO: il totale ER da somma classi == somma "Tutte le età" delle 9 prov.
-chk_er <- previs_pop_totale |>
-  filter(territorio == "Emilia-Romagna", anno == 2024) |>
-  pull(totale)
-
-stopifnot(chk_er == pop_eta_prov |>
-            filter(codice_provincia %in% cod_prov_er_3,
-                   eta == "Tutte le età", anno == 2024) |>
-            pull(totale) |> sum())
+# (CONTROLLO sul totale ER spostato in ingestione/03)
 
 # 4) previs_piramide: quote per territorio × anno (stile pop_piramide_eta) --
 # quota = popolazione della cella / popolazione totale del territorio × anno:
@@ -111,41 +87,8 @@ chk_quote <- previs_piramide |>
 
 stopifnot(nrow(chk_quote) == 0)
 
-# 5) previs_struttura_territori: % grandi classi di età ---------------------
-# territori: le 9 province ER singole (nome ISTAT, es. "Parma") + aggregati
-# "Emilia-Romagna" e "Italia" — così p04 può mostrare le altre province in
-# grigio come p01. Età di inizio classe dai primi 2 caratteri ("00-04" → 0,
-# "95+" → 95); 80+ possibile perché le classi quinquennali sono chiuse
-pop_eta_struttura <- bind_rows(
-  pop_eta_prov |>
-    filter(codice_provincia %in% cod_prov_er_3, eta != "Tutte le età") |>
-    mutate(territorio = provincia) |>
-    select(territorio, anno, eta, totale),
-  pop_eta_territori |>
-    filter(territorio != "Provincia di Parma") |>   # PR è già tra le province
-    mutate(territorio = as.character(territorio), eta = as.character(eta)) |>
-    select(territorio, anno, eta, totale)
-)
-
-previs_struttura_territori <- pop_eta_struttura |>
-  mutate(eta_num = as.integer(substr(eta, 1, 2))) |>
-  summarise(
-    pop_totale = sum(totale),
-    # numeri assoluti (per dimensionare la platea, es. non autosufficienza)
-    n0_14   = sum(totale[eta_num <= 10]),
-    n15_64  = sum(totale[eta_num >= 15 & eta_num <= 60]),
-    n65_piu = sum(totale[eta_num >= 65]),
-    n80_piu = sum(totale[eta_num >= 80]),
-    .by = c(territorio, anno)
-  ) |>
-  mutate(
-    # quote % e indice di dipendenza anziani (65+ su 100 in età attiva)
-    p0_14   = n0_14 / pop_totale * 100,
-    p15_64  = n15_64 / pop_totale * 100,
-    p65_piu = n65_piu / pop_totale * 100,
-    p80_piu = n80_piu / pop_totale * 100,
-    ind_dip_anziani = n65_piu / n15_64 * 100
-  )
+# 5) previs_struttura_territori: spostato in ingestione/03_prep_istat_previsioni.R
+#    il 2026-10-20 (serve anche ad anziani_non_autosuff)
 
 # 6) previs_indicatori_comuni_pr: comuni PR, nomi brevi ---------------------
 previs_indicatori_comuni_pr <- indic_comuni |>
@@ -174,7 +117,6 @@ previs_bilancio_territori <- bind_rows(
 salva <- list(
   previs_pop_totale           = previs_pop_totale,
   previs_piramide             = previs_piramide,
-  previs_struttura_territori  = previs_struttura_territori,
   previs_indicatori_comuni_pr = previs_indicatori_comuni_pr,
   previs_bilancio_territori   = previs_bilancio_territori
 )

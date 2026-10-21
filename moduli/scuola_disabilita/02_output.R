@@ -65,11 +65,11 @@ plot_disab_trend_prov_er <- disab_prov_prep |>
                         linewidth = rel(0.8)) +
   # linee spesse e pallini solo sulle serie evidenziate (regola trend multi-territorio)
   geom_line_interactive(
-    data = function(df) df |> filter(highlight),
+    data = function(df) df |> dplyr::filter(highlight),
     aes(tooltip = provincia, data_id = provincia), linewidth = rel(1.5)
   ) +
   geom_point_interactive(
-    data = function(df) df |> filter(highlight),
+    data = function(df) df |> dplyr::filter(highlight),
     aes(tooltip = glue("{provincia} {etichetta_as}: {scales::percent(quota_disab, accuracy = 0.1)} ({scales::number(alunni_disab, big.mark = '.', decimal.mark = ',')} alunni)")),
     size = 1.8
   ) +

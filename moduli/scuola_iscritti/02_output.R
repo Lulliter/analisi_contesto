@@ -73,7 +73,7 @@ plot_iscritti_ordine_pr <- iscritti_ordine_prep |>
                         linewidth = rel(1.2)) +
   geom_point_interactive(aes(tooltip = alunni), size = 1.6) +
   # (2026-10-15) nome dell'ordine scritto in fondo a ogni linea, al posto della legenda
-  geom_text(data = function(df) filter(df, anno_inizio == max(anno_inizio)),
+  geom_text(data = function(df) dplyr::filter(df, anno_inizio == max(anno_inizio)),
             aes(label = ordine_scuola), hjust = -0.08, size = 4, show.legend = FALSE) +
   scale_x_continuous(breaks = ANNO_PRIMO:ANNO_ULTIMO, labels = f_lab_as(ANNO_PRIMO:ANNO_ULTIMO), # etichette a.s. già calcolate (al render f_lab_as non c'è)
                      expand = expansion(mult = c(0.02, 0.25))) +
@@ -278,11 +278,11 @@ plot_stranieri_prov_er <- stranieri_prov_prep |>
   # geom_point_interactive(aes(tooltip = provincia, data_id = provincia),
   #                        size = 1) +
   geom_line_interactive(
-    data = function(df) df |> filter(highlight),
+    data = function(df) df |> dplyr::filter(highlight),
     aes(tooltip = provincia, data_id = provincia), linewidth = rel(1.5)
   ) +
   geom_point_interactive(
-    data = function(df) df |> filter(highlight),
+    data = function(df) df |> dplyr::filter(highlight),
     aes(tooltip = scales::percent(quota_stranieri, accuracy = 0.1)), size = 1.8
   ) +
   scale_x_continuous(breaks = ANNO_PRIMO:ANNO_ULTIMO, labels = f_lab_as(ANNO_PRIMO:ANNO_ULTIMO)) + # etichette a.s. già calcolate (al render f_lab_as non c'è)
@@ -370,9 +370,9 @@ f_plot_infanzia <- function(dati_prep, titolo, sottotitolo, suffisso, passo) {
   dati_prep |>
     ggplot(aes(x = anno_inizio, y = valore, color = territorio_display, alpha = highlight, group = territorio)) +
     geom_line_interactive(aes(tooltip = territorio, data_id = territorio), linewidth = rel(0.8)) +
-    geom_line_interactive(data = function(df) filter(df, highlight),
+    geom_line_interactive(data = function(df) dplyr::filter(df, highlight),
                           aes(tooltip = territorio, data_id = territorio), linewidth = rel(1.5)) +
-    geom_point_interactive(data = function(df) filter(df, highlight),
+    geom_point_interactive(data = function(df) dplyr::filter(df, highlight),
                            aes(tooltip = etichetta, data_id = territorio), size = 1.8) +
     scale_x_continuous(breaks = ANNI_INFANZIA[1]:ANNI_INFANZIA[2], labels = f_lab_as(ANNI_INFANZIA[1]:ANNI_INFANZIA[2])) +
     f_scale_y_tacche(dati_prep$valore, passo = passo,

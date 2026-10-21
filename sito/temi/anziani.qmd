@@ -1,0 +1,327 @@
+---
+title: "Anziani: una quota crescente di popolazione avrà bisogno di cura"
+# categories: [<priorità e linee d'azione del PS 24-27, dal foglio confronto di allineam_strategico>]
+description: "Dati ISTAT, censimento 2024 e previsioni 2024-2050; prevalenze di non autosufficienza da EHIS 2019 (metodo Osservatorio Long Term Care); estratti a ottobre 2026"
+lang: it
+
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+
+execute:
+  eval: true
+  echo: false
+  warning: false
+  error: false
+  output: false
+
+bibliography: ../../bib/CRP_analisi_contesto.bib
+csl: ../../bib/apa_7th.csl
+link-citations: true
+---
+
+```{r}
+#| label: anteprima
+#| eval: false
+# Anteprima: renderizza e apre nel browser (lancia a mano, ignorato nel render)
+pagina <- "anziani"   # nome pagina, senza estensione
+quarto::quarto_render(here::here("sito", "temi", paste0(pagina, ".qmd")))
+browseURL(here::here("docs", "sito", "temi", paste0(pagina, ".html")))
+```
+
+<!-- BOZZA 2026-10-19: pagina del tema Anziani, due domande (quanti sono e saranno gli over 65 e over 80; quanti non autosufficienti), glossario, demenze. La domanda di cura (accompagnamento, badanti, CRA, ADI) sta nel tema Assistenza. Modulo: anziani_non_autosuff (+ demo_trend_previs per i trend). -->
+
+```{r}
+#| label: setup
+library(here)
+library(ggplot2)
+library(ggiraph)
+library(ggtext)
+library(scales)
+library(downloadthis)
+library(flextable)   # tabelle salvate in rds (serve il pacchetto caricato per stamparle)
+library(glue)
+
+source(here::here("R", "sito.R"))     # bottoni CSV + Excel (f_scarica_dati, f_bottoni_dati)
+source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hover bordeaux)
+
+dir_anz <- here::here("moduli", "anziani_non_autosuff", "output")
+# dir_dem <- here::here("moduli", "demo_trend_previs", "output")   # dal 2026-10-20 il trend sta in anziani_non_autosuff
+```
+
+<!-- ::: {.callout-warning} -->
+<!-- ## Pagina in costruzione -->
+<!-- ::: -->
+
+## In sintesi
+
+<!-- 3-4 punti con i numeri di Parma: 65+ e 80+ oggi e nel 2036; non autosufficienti stimati oggi e nel 2036 (di cui con assistenza continuativa); il punto sul "dopo 2036" (gli 80+ crescono soprattutto tra 2036 e 2050); eventuale elemento di giudizio (urgenza) -->
+<!-- BOZZA TESTO 2026-10-19 (evidenziata con .mark finché Luisa non la rivede) -->
+
+- A Parma gli anziani sono 108 mila, di cui 36 mila hanno 80 anni o più. Si stima che l'"onda" dei _grandi anziani_ arriverà dopo il 2036, arrivando a rappresentare il 12% della popolazione del 2050. 
+<!-- fino al 2026-10-19 (larga = Tab. 1.2 CERGAS): - Oggi circa **32 mila anziani non sono autosufficienti (3 su 10) e 12 mila hanno bisogno di assistenza continuativa**. In proporzione, nel 2036 sarebbero rispettivamente 38 mila e 15 mila, nel 2050 49 mila e 19 mila. -->
+- Oggi, in provincia, circa **12.500 anziani sono non autosufficienti** nella cura della persona (~12%), che potrebbero diventare 14.600 nel 2036 e 19.300 nel 2050. Tra gli over 65 ci sono anche 14.700 persone che vivono con disabilità (13,6%), oltre ad altri che pur rimanendo autonomi necessitano di aiuto per svolgere qualche attività quotidiana o domestica. Le persone **con demenza sono circa 9 mila**, e potrebbero essere 14 mila nel 2050: è un'altra condizione che cresce con l'avanzare dell'età e affligge in particolare le donne.
+- In un contesto in cui la speranza di vita resta in crescita, occorre prestare grande attenzione allo stato di _fragilità_: un indicatore di rischio più complesso da tracciare, ma che sta sul crinale tra la conservazione dell'autonomia e la non autosufficienza.
+
+## Inquadramento demografico della popolazione "anziana"
+
+<!-- 1-2 frasi in parole comuni: "anziani" = 65 anni e più; "grandi anziani" = 80 e più; le soglie sono convenzioni ISTAT -->
+<!-- BOZZA TESTO -->
+
+Seguendo le soglie utilizzate da ISTAT, qui il termine "anziani" identifica le persone di 65 anni e più e "grandi anziani" quelle di 80 e più. A Parma rappresentano, rispettivamente il 23,6% e l'8% dei residenti, un po’ meno che in regione e in Italia.   
+In provincia, gli over 65 sono oggi 37 ogni 100 persone di di 15-64: questo indice arriverà a 50 ogni 100 intorno al 2035 in Italia e intorno al 2040 per Parma.  
+
+::: {.panel-tabset}
+
+### Parma
+
+```{r}
+#| label: tab_pop_pr
+#| output: true
+readRDS(file.path(dir_anz, "tab_pop_pr_ft.rds"))
+```
+
+### Emilia-Romagna
+
+```{r}
+#| label: tab_pop_er
+#| output: true
+readRDS(file.path(dir_anz, "tab_pop_er_ft.rds"))
+```
+
+### Italia
+
+```{r}
+#| label: tab_pop_it
+#| output: true
+readRDS(file.path(dir_anz, "tab_pop_it_ft.rds"))
+```
+
+:::
+
+::: {.text-end}
+```{r}
+#| label: dl_tab_pop
+#| output: true
+# csv unico dei tre territori; titolo e note dalla tabella di Parma (non esiste un tab_pop_ft.rds)
+f_bottoni_dati("tab_pop_ft", dir_anz, rds = "tab_pop_pr_ft")
+```
+:::
+
+<!-- trend 2024-2050 degli over 65 e over 80 di Parma: variante di p04_quota_anziani (demo_trend_previs) con le linee su 2036 e 2050, prodotta dal modulo anziani_non_autosuff: qui per far vedere che l'onda degli 80+ è dopo il 2036 -->
+<!-- BOZZA TESTO -->
+
+Come già mostrato nelle [previsioni demografiche](trend_demogr_previs.qmd), la dinamica prevista è simile anche se Parma "resta un po' più giovane" di regione e Italia. Per tutti la curva degli over 80 si impenna dopo il 2036. 
+
+```{r}
+#| label: plot_quota_anziani
+#| output: true
+#| fig-height: 6
+f_girafe(readRDS(file.path(dir_anz, "plot_quota_anziani.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_quota_anziani
+#| output: true
+f_bottoni_dati("plot_quota_anziani", dir_anz)
+```
+:::
+
+::: {.callout-note collapse="true"}
+#### Osservazioni
+<!-- Parma cresce fino al 2050 ma invecchia: 65+ dal 23,6% al 28,1% (2036) al ~32% (2050); 80+ +13% al 2036 ma +60% al 2050: l'onda dei grandi anziani è dopo il 2036; dipendenza anziani 37 → 46 → 56 -->
+<!-- BOZZA TESTO -->
+
+- Tra il 2024 e il 2036 entrano nella terza età le generazioni numerose nate tra il 1960 e il 1970: gli over 65 crescono di 26 mila (+25%), gli over 80 solo di 5 mila (+13%).
+- Tra il 2036 e il 2050 quelle stesse generazioni superano gli 80 anni: gli over 80 passano da 41 a 59 mila (+45% in quattordici anni).
+- L'indice di dipendenza degli anziani passa da 37 a 46 a 56: nel 2050 ogni 100 persone in età di lavoro ce ne saranno 56 di 65 anni e più, contro 37 oggi.
+
+_NB: 2024 = censimento al 31 dicembre; 2036 e 2050 = previsioni ISTAT, scenario mediano, base 1° gennaio 2024._
+:::
+
+## Stima della domanda di cure e/o assistenza
+
+<!--  Applicando alla popolazione di Parma le prevalenze nazionali per età, oggi circa 32 mila anziani non sono autosufficienti (29,9% degli over 65) e 12.500 hanno bisogno di assistenza continuativa (11,6%). Sono stime di ordine di grandezza, non conteggi: dicono quante persone ci si deve aspettare con quelle caratteristiche, non quante ne seguono i servizi. -->
+
+Quanti sono i residenti anziani della provincia di Parma che hanno bisogno di aiuto (e quanti saranno negli anni a venire)?  
+Innanzitutto, è utile fare chiarezza sugli approcci adottati dalle fonti più autorevoli. 
+
+<!-- - **Senza gravi difficoltà nelle attività quotidiane**: nessuna grave difficoltà nella cura della persona o in casa; possono esserci difficoltà moderate. -->
+- Con **disabilità (GALI grave)**: dichiara limitazioni gravi, da almeno 6 mesi, nelle attività che svolge abitualmente. 
+- Con **almeno una grave difficoltà nelle attività quotidiane (ADL o IADL)**: molta difficoltà o non riesce in almeno una attività di cura della persona o domestica (pasti, spesa, farmaci, soldi, lavori di casa).
+  - Di cui **non autosufficienti nella cura della persona (ADL)**: ha bisogno di aiuto per lavarsi, vestirsi, alzarsi, usare il bagno o mangiare.
+- Con **demenza**: Alzheimer e altre demenze; è una diagnosi, non una limitazione, e in gran parte si sovrappone alla non autosufficienza.
+- [**Fragilità** (non in tabella): non è una condizione di bisogno ma di rischio, per cui un evento banale (una caduta, un'influenza) può far perdere l'autonomia. È un concetto clinico e predittivo, misurato ad hoc dai servizi sanitari.]
+
+Nelle tabelle sotto, si riportano dati (e previsioni) sull'incidenza di queste condizioni sul territorio di riferimento. 
+
+
+::: {.panel-tabset}
+
+### Parma
+
+```{r}
+#| label: tab_quadro_pr
+#| output: true
+readRDS(file.path(dir_anz, "tab_quadro_pr_ft.rds"))
+```
+
+### Emilia-Romagna
+
+```{r}
+#| label: tab_quadro_er
+#| output: true
+readRDS(file.path(dir_anz, "tab_quadro_er_ft.rds"))
+```
+
+### Italia
+
+```{r}
+#| label: tab_quadro_it
+#| output: true
+readRDS(file.path(dir_anz, "tab_quadro_it_ft.rds"))
+```
+
+:::
+
+::: {.text-end}
+```{r}
+#| label: dl_tab_quadro
+#| output: true
+# csv unico dei tre territori; titolo e note dalla tabella di Parma (non esiste un tab_quadro_ft.rds)
+f_bottoni_dati("tab_quadro_ft", dir_anz, rds = "tab_quadro_pr_ft")
+```
+:::
+
+::: {.callout-note .metodo collapse=true}
+#### Come sono fatte le stime
+
+- [**Disabilità (GALI grave)**: è una sola domanda generale dell'indagine `ISTAT Aspetti della vita quotidiana` [@IndDisabilita26], sulla percezione della persona: misura la disabilità percepita, non l'autonomia in attività specifiche. 
+- **Non autosufficienza (ADL o IADL)** (in senso ampio): avere bisogno dell'aiuto di un'altra persona per qualcuna delle attività della vita quotidiana. `ISTAT, EHIS` [@IstatAnziani2019] la misura con due gruppi di attività: la cura della persona (ADL: lavarsi, vestirsi, mangiare, alzarsi dal letto, usare il bagno) e le attività domestiche (IADL: preparare i pasti, fare la spesa, prendere i farmaci, gestire i soldi, le faccende di casa). È la definizione usata dal `CERGAS` [@OLTC_8rapp_2026].
+- **Non autosufficienza nella cura della persona (ADL)** (in senso più stretto): l'ordine di grandezza dei beneficiari dell'indennità di accompagnamento. Contrariamente all'Osservatorio Long Term Care, qui la parola è riservata alla cura della persona (circa 1 su 10). È l'ordine di grandezza dei beneficiari dell'indennità di accompagnamento e la platea di strutture residenziali e assistenza domiciliare.
+- **Demenze**: malattie (Alzheimer e altre) che riguardano la memoria e le funzioni cognitive; chi ne è colpito è in gran parte non autosufficiente, ma non tutti i non autosufficienti hanno una demenza. Si stimano con tassi di prevalenza per sesso ed età da studi epidemiologici europei, quelli usati dall'`Istituto Superiore di Sanità` [@DemenzeReport24].
+- **Metodo**: per ogni classe di età si applica alla popolazione di Parma la quota rilevata dalle indagini, tenuta costante nel tempo [@IstatAnziani2019]. Dice quante persone ci si deve aspettare se la salute per età resta quella di oggi, non quante ne seguono i servizi.
+- **Classi di età**: tre (65-74, 75-84, 85 e più) per non autosufficienti e demenze; due (65-74, 75 e più) per le altre condizioni, che al 2050 risultano sottostimate.
+- **Territori**: a parità di età Emilia-Romagna e Italia hanno le stesse quote, quindi le differenze tra territori dipendono solo dall'età della popolazione; per la disabilità si usano le quote dell'Emilia-Romagna.
+- **Chi resta fuori**: le indagini intervistano solo chi vive in famiglia; chi vive in una struttura è escluso, quindi le stime sono per difetto.
+:::
+
+### Non autosufficienza per classi di età
+
+A Parma le persone _non autosufficienti_ in senso stretto (ADL) passano da circa 12.500 oggi a 14.600 nel 2036 e 19.300 nel 2050: la crescita più forte arriva dopo il 2036. Circa 7 su 10 sono donne: vivono più a lungo (a 65 anni hanno davanti in media 22 anni di vita, gli uomini 19) e, a parità di età, hanno più spesso gravi difficoltà nella cura della persona (3% contro 2% tra i 65-74 anni, 22% contro 13% dai 75 anni) [@IstatAnziani2019].
+
+```{r}
+#| label: plot_stima_classi_pr
+#| output: true
+#| fig-height: 6
+f_girafe(readRDS(file.path(dir_anz, "plot_stima_classi_pr.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_stima_classi_pr
+#| output: true
+f_bottoni_dati("plot_stima_classi_pr", dir_anz)
+```
+:::
+
+::: {.callout-note collapse="true"}
+#### Osservazioni
+<!-- fino al 2026-10-20:
+- Al 2036 i non autosufficienti crescono di circa 2 mila (+17%) ma la quota sugli over 65 scende (da 11,6% a 10,9%): entrano molti "giovani anziani", tra i quali la prevalenza è bassa (2,6%, contro 37% sopra gli 85 anni). È un aumento di volume, non di intensità.
+- Tra il 2036 e il 2050 la quota risale (12,5%) e i non autosufficienti arrivano a circa 19 mila: è l'effetto dell'onda degli over 80.
+- Quante di queste persone ricevono l'indennità di accompagnamento, sono seguite a domicilio o vivono in una struttura è il tema della pagina Assistenza (in preparazione).
+
+_NB: prevalenze nazionali 2019 tenute costanti; Emilia-Romagna e Italia, a parità di età, hanno la stessa prevalenza: le differenze tra territori qui dipendono solo da quanto sono vecchi._
+-->
+
+- Fino al 2036 crescono di circa 2 mila (+17%), ma la quota sugli over 65 scende (da 11,6% a 10,9%): entrano molti "giovani anziani", tra i quali la non autosufficienza è rara (circa 3 su 100, contro 37 su 100 sopra gli 85 anni). 
+- Dopo il 2036 le generazioni numerose superano gli 80 anni e la quota risale (12,5% nel 2050). 
+<!-- - Circa due terzi sono donne: vivono più a lungo e, a parità di età, hanno più spesso gravi difficoltà (circa 13% contro 7% degli uomini). -->
+
+_NB: stime con quote per età tenute costanti (v. "Come sono fatte le stime")._
+:::
+
+### Demenze per classi di età e sesso
+
+<!-- stessa logica: prevalenza per età × popolazione; fonte ISS (tassi Bacigalupo 2018). Apertura con il totale stimato a Parma: ~9.100 nel 2024, ~10.500 nel 2036, ~14.100 nel 2050; quattro su cinque sopra gli 80 anni. Maschi/femmine solo nel testo, 2024 (anziani_sesso_2024: a Parma ~2.800 uomini e ~6.300 donne, cioè 7 su 10 donne, perché vivono più a lungo e i tassi per età sono più alti) -->
+<!-- BOZZA TESTO -->
+
+Sempre usando i tassi di prevalenza per sesso ed età dell'Istituto Superiore di Sanità [@DemenzeReport24], a Parma si stimano circa 9 mila persone di 65 anni e più con demenza nel 2024 (8,4% degli over 65), 10.500 nel 2036 e 14 mila nel 2050. Quattro su cinque hanno più di 80 anni e sette su dieci sono donne. 
+In questo caso si tratta di una diagnosi, mentre la non autosufficienza è una condizione funzionale: possono sovrapporsi, ma sono misure distinte fatte con approcci diversi. 
+
+```{r}
+#| label: plot_demenze_classi_pr
+#| output: true
+#| fig-height: 6
+f_girafe(readRDS(file.path(dir_anz, "plot_demenze_classi_pr.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_demenze_classi_pr
+#| output: true
+f_bottoni_dati("plot_demenze_classi_pr", dir_anz)
+```
+:::
+
+::: {.callout-note collapse="true"}
+#### Osservazioni
+<!-- BOZZA TESTO 2026-10-21 (diviso dal callout unico sotto la piramide) -->
+
+- La crescita si concentra tra il 2036 e il 2050 (circa +34%, contro +16% nei dodici anni precedenti): è l'onda dei grandi anziani.
+- Più della metà dei casi riguarda persone di 85 anni e più, oggi come nel 2050.
+- Con i tassi più recenti di [@AlzheimerEurope2026] la stima al 2050 sarebbe circa un quinto più alta.
+:::
+
+```{r}
+#| label: plot_demenze_sesso_pr
+#| output: true
+#| fig-height: 5.5
+f_girafe(readRDS(file.path(dir_anz, "plot_demenze_sesso_pr.rds")))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_plot_demenze_sesso_pr
+#| output: true
+f_bottoni_dati("plot_demenze_sesso_pr", dir_anz)
+```
+:::
+
+::: {.callout-note collapse="true"}
+#### Osservazioni
+<!-- BOZZA TESTO; il punto su Alzheimer Europe (chiave bib da aggiungere) è passato al callout del grafico per classi -->
+
+- Il divario tra donne e uomini nasce da due fattori: le donne vivono più a lungo e, sopra gli 80 anni, hanno tassi di prevalenza più alti (26% contro 14% tra gli 85-89 anni).
+:::
+
+## Fragilità [🟡]{.content-hidden}
+
+<!-- DA SVILUPPARE (2026-10-21): più un riferimento bibliografico che dati disponibili; cercare le fonti -->
+La fragilità non è rilevata da fonti ufficiali sulla popolazione, quindi non si può stimare e proiettare come le altre condizioni di questa pagina. È una condizione di _rischio_: riguarda la persona anziana ancora autonoma ma con riserve ridotte (forza, equilibrio, peso, attività), per cui un evento banale, come una caduta o un'influenza, può farle perdere l'autonomia.
+
+Proprio per questo è un segnale utile per capire quando e come intervenire prima che l'autonomia si perda.
+
+Nelle politiche di assistenza è legata soprattutto al rafforzamento dell'assistenza domiciliare, uno dei pilastri della riforma per gli anziani [@L33del2023Aanziani] e successiva legislazione attuativa che tra le finalità indicava proprio la prevenzione della fragilità.
+
+`[Approfondimenti in corso]`
+   
+
+
+## Possibili approfondimenti
+
++ Pagina su offerta di assistenza: [in costruzione]
+
+<!-- 
+  - Quanti anziani non autosufficienti ricevono oggi un aiuto pubblico (indennità di accompagnamento, assistenza domiciliare, posti in struttura) e quanti restano a carico delle famiglie e delle badanti? 
+  - Legge delega 33
+  - Patto per la non autosufficienza
+  - Piano nazionale demenze
+-->
++ La fragilità: chi e come la misura e come può indirizzare gli interventi 
+<!-- - Dove vivono i grandi anziani: nei comuni di montagna e di pianura il peso degli over 80 è lo stesso del capoluogo? -->
+<!-- - Chi si prende cura: quanti caregiver familiari, e di che età, servono per i numeri stimati qui? -->

@@ -1,32 +1,31 @@
 # ___________________________________________________________________________
-# Modulo: anziani_non_autosuff — 00_prep_prevalenze_pdf.R
-# Scopo:  estrazione RIPRODUCIBILE delle prevalenze dai pdf (pdftools + regex). Tabelle lette:
-#         [A] CERGAS 8° Rapporto OLTC, Tab. 1.2 "Over65 con limitazioni funzionali per fascia di età"
-#             (stampata p. 19) e Tab. 1.1 "stima del bisogno potenziale" (stampate 18-19)
-#         [B] ISTAT report anziani 2019, "I numeri chiave" (p. 2): ADL gravi; le limitazioni
-#             della stessa tabella fanno da controllo incrociato con [A]
-#         [C] ISS Report Nazionale 2024, Tab. 1.1 "Casi prevalenti demenza ≥65 anni" (stampata p. 1 del cap. 1)
-#         Il numero di pagina del pdf dipende dalla copia (copertine, frontespizi): lo script trova la
-#         pagina dal titolo + righe della tabella e stampa il numero STAMPATO in fondo alla pagina,
-#         che è quello da confrontare col pdf aperto
-#         Per rivedere: lanciare riga per riga; ogni blocco stampa la pagina trovata, le righe
-#         catturate dalla regex e i numeri letti, da confrontare con il pdf aperto a quella pagina
-# Fonte:  CERGAS Bocconi, 8° Rapporto Osservatorio Long Term Care (bib OLTC_8rapp_2026),
-#         cap. 1, Tab. 1.1 e 1.2 (p. 18-19 stampate); ISTAT, "Le condizioni di salute della
-#         popolazione anziana in Italia, anno 2019" (bib IstatAnziani2019), p. 2 e 7;
-#         ISS, Report Nazionale 2024 del Fondo Alzheimer e demenze, Tab. 1.1 (p. 1 del cap. 1)
-# Input:  dati/grezzi/cergas_oltc/oltc_8_rapporto_2026.pdf
-#         dati/grezzi/iss_demenze/ReportNazionale_2024.pdf   (Tab. 1.1: demenza per sesso × età)
-#         dati/grezzi/istat_ehis_2019/istat_report_anziani_2019.pdf   (da scaricare:
-#           https://www.istat.it/it/files/2021/07/Report-anziani-2019.pdf)
-# Output: moduli/anziani_non_autosuff/output/prevalenze_pdf.rds (+ .csv)
-#           stesso formato del csv trascritto a mano (indicatore, classe_eta, sesso,
-#           territorio, valore, fonte, nota): 01_dati.R legge QUESTO e usa il csv a mano
-#           solo come controllo dell'estrazione
-# NB: pdftools::pdf_text restituisce il testo pagina per pagina con l'impaginazione
-#     conservata; le tabelle si leggono riga per riga con espressioni regolari. Se un
-#     pdf cambia impaginazione (nuova edizione) le regex vanno riviste: i controlli in
-#     coda devono tornare TRUE
+# Modulo: anziani_non_autosuff — 00_prep_prevalenze.R (fino al 2026-10-20: 00_prep_prevalenze_pdf.R)
+# Scopo:  prevalenze per età (e sesso) da 5 fonti → un'unica tabella letta da 01_dati.R.
+#         Una lettera per fonte, la stessa in Input, Parametri e titoli di sezione:
+#         [A] CERGAS, 8° Rapporto OLTC (pdf; bib OLTC_8rapp_2026): Tab. 1.2 prevalenze per età (p. 19),
+#             Tab. 1.1 totale 65+ (p. 18-19) = gravi limitazioni motorie, sensoriali e cognitive
+#         [B] ISTAT, report anziani 2019 (pdf; bib IstatAnziani2019): "I numeri chiave" p. 2, ADL gravi
+#         [C] ISS, Report Nazionale demenze 2024 (pdf): Tab. 1.1 tassi per sesso × classe quinquennale
+#         [D] ISTAT, EHIS 2019, tavole cap. 3 (xlsx): 3.2.1 ADL, 3.3.1 IADL, 3.4.1 ADL o IADL; solo 65-74 / 75+
+#         [E] ISTAT, Disabilità in cifre (xls): GALI 2023, Emilia-Romagna e Italia × 65-74 / 75+
+#         [R] riscontro: trascrizione a mano di [A] e [B]; NON una fonte, serve solo al controllo del § 6
+# Input:  [A] dati/grezzi/cergas_oltc/oltc_8_rapporto_2026.pdf
+#         [B] dati/grezzi/istat_ehis_2019/istat_report_anziani_2019.pdf
+#             (scaricato da https://www.istat.it/it/files/2021/07/Report-anziani-2019.pdf)
+#         [C] dati/grezzi/iss_demenze/ReportNazionale_2024.pdf
+#         [D] dati/grezzi/istat_ehis_2019/ehis2019_3_limitazioni.xlsx
+#         [E] dati/grezzi/istat_disab_cifre_gali_2023/gali_2023_eta_regione.xls
+#         [R] moduli/anziani_non_autosuff/riscontro_prevalenze_a_mano.csv (sta nel modulo, non in grezzi/)
+# Output: moduli/anziani_non_autosuff/output/prevalenze.rds (+ .csv) (fino al 2026-10-20: prevalenze_pdf)
+#           colonne: indicatore, classe_eta, sesso, territorio, valore, fonte, nota
+# Sezioni: 1 [A] · 2 [B] · 3 [C] · 4 [D] · 5 [E] · 6 unione e controlli · 7 salva
+# NB pdf ([A]-[C]): il numero di pagina del pdf dipende dalla copia (copertine, frontespizi): lo
+#     script trova la pagina dal titolo + righe della tabella e stampa il numero STAMPATO in fondo
+#     alla pagina, che è quello da confrontare col pdf aperto. Per rivedere: lanciare riga per riga;
+#     ogni blocco stampa la pagina trovata, le righe catturate dalla regex e i numeri letti.
+#     pdftools::pdf_text restituisce il testo pagina per pagina con l'impaginazione conservata; le
+#     tabelle si leggono riga per riga con espressioni regolari. Se un pdf cambia impaginazione
+#     (nuova edizione) le regex vanno riviste: i controlli in coda devono tornare TRUE
 # ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
@@ -37,15 +36,29 @@ library(purrr)
 library(readr)
 library(tidyr)
 library(pdftools)
+library(readxl)
 
 # Parametri ---------------------------------------------------------------
-dir_in  <- here("dati", "grezzi", "istat_ehis_2019")
 dir_out <- here("moduli", "anziani_non_autosuff", "output")
+
+# file di input: lettere come nell'intestazione e nei titoli di sezione
+# [A] CERGAS, 8° Rapporto OLTC (pdf)
 file_oltc  <- here("dati", "grezzi", "cergas_oltc", "oltc_8_rapporto_2026.pdf")
-file_istat <- file.path(dir_in, "istat_report_anziani_2019.pdf")
+# [B] ISTAT, report anziani 2019 (pdf)
+file_istat <- here("dati", "grezzi", "istat_ehis_2019", "istat_report_anziani_2019.pdf")
+# [C] ISS, Report Nazionale demenze 2024 (pdf)
 file_iss   <- here("dati", "grezzi", "iss_demenze", "ReportNazionale_2024.pdf")
-# trascrizione a mano (riscontro dell'estrazione, NON una fonte): sta nel modulo, non in grezzi/
+# [D] ISTAT, EHIS 2019, tavole cap. 3 (xlsx)
+file_ehis  <- here("dati", "grezzi", "istat_ehis_2019", "ehis2019_3_limitazioni.xlsx")
+# [E] ISTAT, Disabilità in cifre, GALI 2023 (xls)
+file_gali  <- here("dati", "grezzi", "istat_disab_cifre_gali_2023", "gali_2023_eta_regione.xls")
+# [R] riscontro a mano di [A] e [B] (NON una fonte)
 file_csv_mano <- here("moduli", "anziani_non_autosuff", "riscontro_prevalenze_a_mano.csv")
+
+# [D] tavole EHIS da leggere: foglio → tema
+TAVOLE_EHIS <- c(tavola3.2.1 = "adl", tavola3.3.1 = "iadl", tavola3.4.1 = "adl_o_iadl")
+# [E] territori GALI da tenere
+TERRITORI_GALI <- c("Emilia-Romagna", "Italia")
 
 # numeri italiani nel testo ("14,6" → 14.6; "6.913.692" → 6913692)
 f_num_it <- function(x) as.numeric(str_replace(str_remove_all(x, "\\."), ",", "."))
@@ -59,7 +72,7 @@ f_pag_stampata <- function(testo_pagina) {
   if (length(ult) == 1 && str_detect(ult, "^\\d{1,3}$")) as.integer(ult) else NA_integer_
 }
 
-# 1. [A] CERGAS: "dati/grezzi/cergas_oltc/oltc_8_rapporto_2026.pdf"  ----
+# 1. [A] CERGAS, 8° Rapporto OLTC (pdf) ----
 # ___ Tab. 1.2 p. 19 -----
 # (prevalenze per 3 classi d'età)  
 testo_oltc <- pdf_text(file_oltc)
@@ -118,14 +131,17 @@ prev_oltc <- bind_rows(
     transmute(indicatore = "gravi_limitazioni_funzionali", classe_eta, sesso = "Totale",
               territorio = "Italia", valore = prevalenza,
               fonte = glue::glue("OLTC_8rapp_2026 Tab. 1.2 (p. {f_pag_stampata(testo_oltc[pag_tab12])}; pdf p. {pag_tab12})"),
-              nota = "ADL o IADL gravi; il Rapporto cita ISTAT (2021) = IstatAnziani2019"),
+              # 2026-10-20: nel report ISTAT (p. 2) questi valori stanno nella colonna "gravi limitazioni
+              # motorie, sensoriali e cognitive", NON in ADL o IADL (tav. 3.4.1: 12,2 / 43,6 per 65-74 / 75+);
+              # il Rapporto li presenta come ADL o IADL gravi
+              nota = "gravi limitazioni motorie, sensoriali e cognitive (report ISTAT p. 2); il Rapporto le presenta come ADL o IADL gravi"),
   tibble(indicatore = "gravi_limitazioni_funzionali", classe_eta = "65+", sesso = "Totale",
          territorio = "Italia", valore = max(oltc_tot),
          fonte = glue::glue("OLTC_8rapp_2026 Tab. 1.1 (p. {str_c(sapply(testo_oltc[pag_tab11], f_pag_stampata), collapse = '-')}; pdf p. {str_c(pag_tab11, collapse = '-')})"),
          nota = "definizione CERGAS di anziani non autosufficienti")
 )
 
-# 2. [B] ISTAT report: "dati/grezzi/istat_ehis_2019/istat_report_anziani_2019.pdf" ----
+# 2. [B] ISTAT, report anziani 2019 (pdf) ----
 # p. 2 "I numeri chiave": una riga per classe d'età (65-74, 75-84, 75 e oltre, 85 e oltre),
 # Totale, Uomini, Donne; 7 colonne di tassi per 100. Qui servono:
 #   4ª colonna = gravi limitazioni motorie, sensoriali e cognitive → è la fonte della Tab. 1.2
@@ -180,7 +196,7 @@ if (file.exists(file_istat)) {
     filter(str_starts(fonte, "IstatAnziani2019"), territorio == "Italia")
 }
 
-# 3. [C] ISS demenze: "dati/grezzi/iss_demenze/ReportNazionale_2024.pdf" ----- 
+# 3. [C] ISS, Report Nazionale demenze 2024 (pdf) ----
 # ___ Tab. 1.1 "Casi prevalenti demenza ≥65 anni" (sesso × classi quinquennali) ----
 # ISS, Report Nazionale 2024, Tab. 1.1 (p. 1 del cap. 1): per ogni classe (65-69 … ≥90) e per sesso:
 # popolazione, tasso × 100, casi; poi colonne totale. Tassi di Bacigalupo et al. 2018
@@ -225,7 +241,80 @@ prev_iss <- iss_classi |>
          nota = "tassi di prevalenza Bacigalupo et al. 2018; demenza late onset (≥ 65 anni)") |>
   select(indicatore, classe_eta, sesso, territorio, valore, fonte, nota)
 
-# 4. Unione e controllo contro la trascrizione a mano ----------------------
+# 4. [D] ISTAT, EHIS 2019, tavole cap. 3 (xlsx) ----
+# legge una tavola EHIS del cap. 3: etichette in colonna 1, modalità (NO/SI oppure
+# Nessuna/Moderata/Grave) nella riga che contiene "Non indicato"; sesso nelle righe
+# "MASCHI" / "FEMMINE" / "MASCHI E FEMMINE" sopra le classi d'età
+f_leggi_tavola_ehis <- function(foglio) {
+  raw <- read_excel(file_ehis, sheet = foglio, col_names = FALSE, .name_repair = "minimal")
+  riga_mod <- which(apply(raw, 1, function(r) any(r %in% "Non indicato")))[1]
+  modalita <- as.character(unlist(raw[riga_mod, -1]))
+  modalita[is.na(modalita)] <- "Totale"
+  names(raw) <- c("etichetta", modalita)
+  raw |>
+    slice((riga_mod + 1):n()) |>
+    filter(!is.na(etichetta)) |>
+    mutate(across(-etichetta, as.character),
+           sesso = if_else(etichetta %in% c("MASCHI", "FEMMINE", "MASCHI E FEMMINE"), etichetta, NA_character_)) |>
+    fill(sesso) |>
+    filter(etichetta != sesso) |>
+    pivot_longer(-c(etichetta, sesso), names_to = "modalita", values_to = "valore") |>
+    mutate(valore = as.numeric(valore), foglio = foglio)
+}
+
+ehis_raw <- map(names(TAVOLE_EHIS), f_leggi_tavola_ehis) |>
+  list_rbind()
+
+# controllo: modalità e classi lette per foglio
+count(ehis_raw, foglio, modalita)
+count(ehis_raw, foglio, etichetta)
+
+# difficoltà gravi (Grave / SI), moderate e, per ADL o IADL, nessuna grave difficoltà (NO)
+prev_ehis <- ehis_raw |>
+  filter(modalita %in% c("Grave", "SI", "Moderata", "NO")) |>
+  mutate(
+    tema = TAVOLE_EHIS[foglio],
+    indicatore = case_when(
+      modalita == "Moderata" ~ paste0("moderate_difficolta_", tema),
+      modalita == "NO"       ~ paste0("nessuna_grave_difficolta_", tema),
+      TRUE                   ~ paste0("gravi_difficolta_", tema)
+    ),
+    classe_eta = recode(etichetta, "75 e più" = "75+", "Totale" = "65+"),
+    sesso = recode(sesso, "MASCHI" = "Maschi", "FEMMINE" = "Femmine", "MASCHI E FEMMINE" = "Totale"),
+    territorio = "Italia",
+    fonte = paste0("ISTAT EHIS 2019, tav. ", sub("tavola", "", foglio)),
+    nota = "gravi = molta difficoltà o non in grado; % su 100 persone di 65+ comprese le non risposte"
+  ) |>
+  select(indicatore, classe_eta, sesso, territorio, valore, fonte, nota)
+
+prev_ehis
+
+# valori attesi (letti a mano dalle tavole, 2026-10-20), maschi e femmine
+prev_ehis |>
+  filter(sesso == "Totale", indicatore %in% c("gravi_difficolta_adl_o_iadl", "gravi_difficolta_iadl",
+                                              "nessuna_grave_difficolta_adl_o_iadl")) |>
+  select(indicatore, classe_eta, valore) 
+# atteso: adl_o_iadl 12,2 / 43,6 / 28,2; iadl 12,1 / 42,9 / 27,7; nessuna grave 86,5 / 53,8 / 69,9
+
+# 5. [E] ISTAT, Disabilità in cifre, GALI 2023 (xls) ----
+# foglio per età assemblato nel vecchio repo (v. _metadati.md): controllo sul foglio scaricato al § 6
+gali_raw <- read_excel(file_gali, sheet = "2023_eta_regione")
+
+prev_gali <- gali_raw |>
+  filter(Territorio %in% TERRITORI_GALI,
+         livello_gravità_limitazioni %in% c("Limitazioni gravi", "Limitazioni non gravi")) |>
+  select(territorio = Territorio, livello = livello_gravità_limitazioni,
+         `65-74` = `65-74 anni`, `75+` = `75 anni e più`) |>
+  pivot_longer(c(`65-74`, `75+`), names_to = "classe_eta", values_to = "valore") |>
+  mutate(indicatore = if_else(livello == "Limitazioni gravi", "gali_grave", "gali_non_grave"),
+         sesso = "Totale",
+         fonte = "ISTAT Disabilità in cifre, tav. a.2 (2023)",
+         nota = "limitazioni da almeno 6 mesi nelle attività abitualmente svolte; solo persone in famiglia") |>
+  select(indicatore, classe_eta, sesso, territorio, valore, fonte, nota)
+
+prev_gali
+
+# 6. Unione e controlli: [R] vs [A]+[B], [D] vs [B], [E] per età vs [E] scaricato ----
 prevalenze_pdf <- bind_rows(prev_oltc, prev_istat, prev_iss) |>
   mutate(fonte = as.character(fonte))
 
@@ -243,7 +332,36 @@ confronto <- read_csv(file_csv_mano, show_col_types = FALSE) |>
 
 confronto |> filter(is.na(valore_mano) | is.na(valore_pdf) | valore_mano != valore_pdf)   # atteso: 0 righe
 
-# 5. Salva -----------------------------------------------------------------
+# ADL gravi dalla tav. 3.2.1 vs report (p. 2): atteso 1 riga, Maschi 65+ 7,1 (tavola) vs 7,5 (report):
+# vale la tavola, coerente con il totale 10,6
+prev_ehis |>
+  filter(indicatore == "gravi_difficolta_adl") |>
+  inner_join(prevalenze_pdf |> select(indicatore, classe_eta, sesso, territorio, valore_pdf = valore),
+             by = c("indicatore", "classe_eta", "sesso", "territorio")) |>
+  filter(valore != valore_pdf)
+
+# GALI: la media generale del foglio per età = foglio scaricato "2023" (tutte le età): atteso 0 righe
+gali_scaricato <- read_excel(file_gali, sheet = "2023", skip = 3) |>
+  select(territorio = REGIONI, grave_scaricato = `Limitazioni gravi`)
+
+gali_raw |>
+  filter(livello_gravità_limitazioni == "Limitazioni gravi") |>
+  select(territorio = Territorio, grave_eta = `media generale`) |>
+  inner_join(gali_scaricato, by = "territorio") |>
+  filter(grave_eta != grave_scaricato)
+
+# unione: ADL gravi dalla tavola per 65-74, 75+ e 65+ (anche per sesso); dal report solo 75-84 e 85+
+prevalenze <- bind_rows(
+  prevalenze_pdf |> filter(!(indicatore == "gravi_difficolta_adl" & classe_eta %in% c("65-74", "75+", "65+"))),
+  prev_ehis,
+  prev_gali
+)
+
+prevalenze
+
+# 7. Salva ----
 if (!dir.exists(dir_out)) dir.create(dir_out, recursive = TRUE)
-saveRDS(prevalenze_pdf, file.path(dir_out, "prevalenze_pdf.rds"))
-write_csv(prevalenze_pdf, file.path(dir_out, "prevalenze_pdf.csv"))
+# (fino al 2026-10-20 salvava solo prevalenze_pdf.rds / .csv)
+saveRDS(prevalenze, file.path(dir_out, "prevalenze.rds"))
+write_csv(prevalenze, file.path(dir_out, "prevalenze.csv"))
+
