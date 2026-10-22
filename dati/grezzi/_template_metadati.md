@@ -14,7 +14,9 @@
 
 - `<nome_file_originale.xlsx>` — <contenuto, particolarità es. header su 2 righe>
 
-**Note/insidie:** <codifiche strane, valori mancanti, cambi di classificazione, ecc.>
+**Note (come leggere i dati):** <definizioni, basi, geografie, denominatori>
+
+**Insidie (rotture di serie ed errori):** <codifiche strane, valori mancanti, cambi di classificazione, refusi nella fonte>
 
 **Storico aggiornamenti:**
 

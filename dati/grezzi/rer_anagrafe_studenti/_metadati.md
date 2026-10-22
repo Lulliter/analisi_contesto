@@ -2,7 +2,7 @@
 
 **Ente/fonte:** Regione Emilia-Romagna, Settore istruzione — anagrafe regionale degli studenti
 **Di cosa si tratta**: base dati individuale regionale su iscritti ed esiti di tutte le scuole dell'Emilia-Romagna, infanzia compresa; qui estrazioni aggregate chieste alla Regione (richiesta n. 3 in `dati/grezzi/_richieste_dati.md`) per provincia/comune di Parma. Serve ai moduli `scuola_iscritti` (infanzia), `scuola_disabilita` (validazione), `scuola_abband_neet` (regolarità, successo, ELET provinciale)
-**URL / API:** https://scuola.regione.emilia-romagna.it/anagrafi-regionali (pagina descrittiva; i dati non sono in open data)
+**URL / API:** https://scuola.regione.emilia-romagna.it/ (pagina descrittiva; i dati non sono in open data)
 **Come riscaricare:** non scaricabile: richiesta via email alla Regione, da ripetere a ogni aggiornamento annuale
 **Data ultimo download:** <in attesa>
 **Data di ultima pubblicazione:** <in attesa>

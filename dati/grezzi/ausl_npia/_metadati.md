@@ -16,8 +16,8 @@
 - `npia_diagnosi_2024.csv` — TRASCRIZIONE A MANO (2026-10-14) della tabella "Tipologia diagnosi principale" del report 2024 (p. 10): una riga = diagnosi, con n, %, età media, % femmine, % stranieri; unica modifica: maiuscole del report normalizzate. Fotografia di un solo anno: fino al 2021 le diagnosi in cartella non erano mutuamente esclusive, quindi un confronto con le edizioni precedenti è da verificare prima di farlo
 - `sma_diagnosi_2024.csv` — TRASCRIZIONE A MANO (2026-10-14) della tabella "Diagnosi primaria" della salute mentale ADULTI, report 2024 (p. 13): stessa struttura del csv NPIA; riferimento macro, solo scarico
 - `npia_sma_confronto_2024.csv` — sei indicatori 2024 minori (NPIA) vs adulti (SMA) come stampati nel report (p. 7, 9-10, 12-13; pagina e nota per riga): accessi, in carico, % sulla popolazione di riferimento, femmine, stranieri, prima diagnosi
-- `Report_2014.pdf` … `report_2024.pdf` — le 11 edizioni (2015 è una scansione senza testo: i suoi dati vengono dalle edizioni 2016-2017, che li riportano come anni precedenti)
-- `CARTA DEI SERVIZI DAISMDP rev02_2026-1.pdf`, `Quaderni_La casa della persona ... n 10.pdf` — descrittivi, nessun dato di serie
+- `report_2014.pdf` … `report_2024.pdf` — le 11 edizioni (nomi uniformati il 2026-10-22; in origine `Report_`, `REPORT_`, `report _2022`) (2015 è una scansione senza testo: i suoi dati vengono dalle edizioni 2016-2017, che li riportano come anni precedenti)
+- `CARTA_SERVIZI_DAISMDP_2026.pdf`, `Quaderni_la_casa_primo_luogo_cura.pdf` — descrittivi, nessun dato di serie
 
 **Note (come leggere i dati):**
 
@@ -35,7 +35,7 @@
 **Insidie (rotture di serie ed errori):**
 
 BTW, le edizioni rivedono gli anni precedenti: nel csv vale l'edizione più recente, le differenze sono nella colonna `nota` del csv. 
-- Revisione 2016 degli in carico 2013-14 (3.439/3.851 nell'edizione 2014 → 3.130/3.361 dal 2016, -9/-13%): la nota di metodo (p. 5 di entrambe) è identica, cambia solo la didascalia della tabella da "almeno una prestazione nell'anno" (Report_2014 p. 18, Tab. 10) a "almeno una prestazione nel progetto nell'anno" (REPORT_2016 p. 16, Tab. 11); motivo non dichiarato, da chiedere all'AUSL. Accessi 2012-2013 solo nella vecchia definizione, più bassa. In carico 2010-2012 solo nell'edizione 2014
+- Revisione 2016 degli in carico 2013-14 (3.439/3.851 nell'edizione 2014 → 3.130/3.361 dal 2016, -9/-13%): la nota di metodo (p. 5 di entrambe) è identica, cambia solo la didascalia della tabella da "almeno una prestazione nell'anno" (report_2014 p. 18, Tab. 10) a "almeno una prestazione nel progetto nell'anno" (report_2016 p. 16, Tab. 11); motivo non dichiarato, da chiedere all'AUSL. Accessi 2012-2013 solo nella vecchia definizione, più bassa. In carico 2010-2012 solo nell'edizione 2014
 <!-- Criterio di conteggio degli in carico. Tra il report 2014 (p. 18, Tab. 10, “progetti aperti con almeno una prestazione nell’anno”) e il report 2016 (p. 16, Tab. 11, “almeno una prestazione nel progetto nell’anno”) i minori in carico del 2013 e 2014 passano da 3.439 e 3.851 a 3.130 e 3.361. È cambiato il criterio di conteggio, e vale ancora oggi?-->
 - Dal 2022 cartella regionale CURE anche in NPIA: possibile rottura di serie (es. Valli Taro e Ceno in carico 2023 = 245, contro 450 nel 2022 e 349 nel 2024); dal 2022 le diagnosi contano la sola principale
 <!-- Valli Taro e Ceno 2023. Nel distretto i minori in carico passano da 450 (2022) a 245 (2023) e risalgono a 349 nel 2024 (report 2024, p. 9), con un calo più contenuto degli accessi (da 675 a 507). Il report non commenta il dato: c’è una spiegazione che possiamo riportare (organico del servizio, riorganizzazione, passaggio alla cartella clinica regionale)? E più in generale i dati 2022-2024 sono confrontabili con i precedenti? -->

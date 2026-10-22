@@ -19,20 +19,23 @@
 - `ferrovie.geojson` — "Livello cartografico delle linee ferroviarie di Parma" (SIT), WGS84. Scheda: https://opendata.comune.parma.it/dataset/livello-cartografico-delle-linee-ferroviarie-di-parma
 - `parchi_intitolati.geojson` — "Parchi intitolati" (poligoni con nome del parco), WGS84. Scheda: https://opendata.comune.parma.it/dataset/parchi-intitolati
 - `Grafo_stradale_PARMA_2025_RDN2008 (SHP).zip` + cartella `grafo_stradale_2025/` — "Livello cartografico del reticolo stradale di Parma 2025" (assi stradali, SIT), shapefile RDN2008 UTM32N (EPSG 7791). Scheda: https://opendata.comune.parma.it/dataset/livello-cartografico-del-reticolo-stradale-di-parma-2025
-- `Popolazione_residente_2026.csv` + `Descrizione_codifica_campi_2025.csv` — "Popolazione residente al 1 gennaio 2026" (anagrafe comunale, pubblicato 2026-02-20): 1 riga = 1 residente, 202.742 righe; campi `Tipores`, `Sesso`, `ETA`, `Cittad`, `Ncomp`, `Relpar`, `Quartiere` (nome per esteso, 13 quartieri), `SEZ21` (sezione di censimento 2021); csv `;`, codifica in latin1. In pulizia: anni compiuti = `ETA - 1` (`ETA` è 2026 meno l'anno di nascita; verificato sulle classi di età della Regione al 1/1/2026 in `rer_pop_residente/`, che coincidono). Scheda: https://opendata.comune.parma.it/dataset/popolazione-residente-al-1-gennaio-2026
+- `Popolazione_residente_2026.csv` + `Popolazione_residente_codifica_campi_2025.csv` — "Popolazione residente al 1 gennaio 2026" (anagrafe comunale, pubblicato 2026-02-20): 1 riga = 1 residente, 202.742 righe; campi `Tipores`, `Sesso`, `ETA`, `Cittad`, `Ncomp`, `Relpar`, `Quartiere` (nome per esteso, 13 quartieri), `SEZ21` (sezione di censimento 2021); csv `;`, codifica in latin1. In pulizia: anni compiuti = `ETA - 1` (`ETA` è 2026 meno l'anno di nascita; verificato sulle classi di età della Regione al 1/1/2026 in `rer_pop_residente/`, che coincidono). Scheda: https://opendata.comune.parma.it/dataset/popolazione-residente-al-1-gennaio-2026
 
-**Note/insidie:**
+**Note (come leggere i dati):**
 
 - il portale è DKAN: `package_search` non esiste e `package_show` restituisce il dataset dentro un elenco; il server MCP per CKAN non lo legge
 - campo "autore" compilato in circa metà dei dataset (spesso è l'email dell'ufficio); "gestore" sempre "Open Data Comune di Parma", quindi non informativo
 - immobili ACER: nessun numero di alloggi né quartiere nel dato (il quartiere si ricava con un join spaziale); aggiornamento del 2023-06-08 con dati 2022
+- gli stessi dati sono pubblicati anche come shapefile in RDN2008 UTM32N (EPSG 7791) e in UTMRER (EPSG 5659)
+- popolazione 2026: totale coerente con la Regione al 1/1/2026 (202.729)
+
+**Insidie (rotture di serie ed errori):**
+
 - immobili ACER: 21 indirizzi compaiono due volte con dati identici (cambia solo `IDE`, che è un progressivo di riga; anche nel csv `INDIR2` è vuoto): si tengono come nella fonte (639 righe), perché possono essere più unità allo stesso civico
 - quartieri: nella fonte due nomi abbreviati ("S.Leonardo", "C.S. Martino"); esiste anche la versione storica dei quartieri (dataset `quartieri-del-comune-di-parma-storico`), da non confondere
-- gli stessi dati sono pubblicati anche come shapefile in RDN2008 UTM32N (EPSG 7791) e in UTMRER (EPSG 5659)
 - popolazione 2026: `Relpar` nel dato ha solo i codici 1-11, mentre la codifica allegata (la stessa del 2022) va da 1 a 99: oltre a 1 = intestatario (affidabile, la somma di `Ncomp` torna) i codici non sono interpretabili
 - popolazione 2026: nelle convivenze anagrafiche (`Tipores == 2`, circa 3.100 residenti) `Ncomp` è la dimensione della convivenza (fino a 369): escluderle dagli indicatori sulle famiglie
 - popolazione 2026: `SEZ21` vuota per 166 residenti (il quartiere c'è sempre); `Cittad` 224, 998, 999 assenti dalla codifica (24 persone)
-- popolazione 2026: totale coerente con la Regione al 1/1/2026 (202.729)
 
 **Storico aggiornamenti:**
 

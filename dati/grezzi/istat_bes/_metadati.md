@@ -13,10 +13,12 @@
 **File:**
 
 - `Bes_2024_dati/` — Rapporto Bes 2024: `Indicatori_per_regione_sesso_REV.xlsx` (8.480 righe, 1 riga = indicatore × sesso × territorio, anni 2004→2025 in colonna, colonna `NOTA`), `Indicatori_per_eta_sesso.xlsx`, `Indicatori_per_titolo_studio.xlsx` (2 fogli), `Indicatori_per_titolo_studio_ripartizione.xlsx`, `Metadati.xlsx` (152 indicatori: dominio, codice, definizione, fonte)
-- `Bes_2024_dati_agg2026/` — Aggiornamento intermedio 2026, stessi 5 file (nomi in minuscolo) con un anno in più e 153 indicatori
+- `Bes_2024_dati_agg2026/` — Aggiornamento intermedio 2026, stessi 5 file con un anno in più e 153 indicatori; nomi diversi: `indicatori_regione_sesso.xlsx`, `indicatori_eta_sesso.xlsx`, `indicatori_titolo_di_studio.xlsx`, `indicatori_titolo_di_studio_ripartizione.xlsx`, `Metadati.xlsx` (sono quelli letti da `ingestione/05_prep_istat_bes_naz.R`)
 - `Bes_2024_report.pdf` — il rapporto
 
-**Note/insidie:** 12 domini, ~150 indicatori: molto più ricco del Bes dei territori (11 domini, 67 indicatori) ma solo regionale. Valori come testo con virgola decimale. Codici con suffisso (`-N22`, `-N23`, `-N25`) = serie ricostruite dopo revisioni della fonte (es. Forze di lavoro), che partono più tardi. Indicatori di interesse per il tema giovani e lavoro: `02IST005-N22` Uscita precoce dal sistema di istruzione e formazione (18-24 anni, dal 2018; NON c'è nel Bes dei territori) e `03LAV002-N22` Tasso di mancata partecipazione al lavoro (15-74 anni, dal 2018; questo c'è anche per provincia in `istat_bes_territori`, insieme alla versione giovanile 15-29). Entrambi da Forze di lavoro → stime campionarie. Due edizioni l'anno (Rapporto in primavera + aggiornamento intermedio): usare l'aggiornamento più recente, il Rapporto serve per il pdf.
+**Note (come leggere i dati):** 12 domini, ~150 indicatori: molto più ricco del Bes dei territori (11 domini, 67 indicatori) ma solo regionale. Indicatori di interesse per il tema giovani e lavoro: `02IST005-N22` Uscita precoce dal sistema di istruzione e formazione (18-24 anni, dal 2018; NON c'è nel Bes dei territori) e `03LAV002-N22` Tasso di mancata partecipazione al lavoro (15-74 anni, dal 2018; questo c'è anche per provincia in `istat_bes_territori`, insieme alla versione giovanile 15-29). Entrambi da Forze di lavoro → stime campionarie. Due edizioni l'anno (Rapporto in primavera + aggiornamento intermedio): usare l'aggiornamento più recente, il Rapporto serve per il pdf.
+
+**Insidie (rotture di serie ed errori):** Valori come testo con virgola decimale. Codici con suffisso (`-N22`, `-N23`, `-N25`) = serie ricostruite dopo revisioni della fonte (es. Forze di lavoro), che partono più tardi.
 
 **Storico aggiornamenti:**
 

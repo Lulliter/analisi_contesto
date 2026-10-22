@@ -1,5 +1,5 @@
 ---
-title: "Anziani: una quota crescente di popolazione avrà bisogno di cura"
+title: "Una quota crescente di popolazione"
 # categories: [<priorità e linee d'azione del PS 24-27, dal foglio confronto di allineam_strategico>]
 description: "Dati ISTAT, censimento 2024 e previsioni 2024-2050; prevalenze di non autosufficienza da EHIS 2019 (metodo Osservatorio Long Term Care); estratti a ottobre 2026"
 lang: it
@@ -63,14 +63,14 @@ dir_anz <- here::here("moduli", "anziani_non_autosuff", "output")
 - A Parma gli anziani sono 108 mila, di cui 36 mila hanno 80 anni o più. Si stima che l'"onda" dei _grandi anziani_ arriverà dopo il 2036, arrivando a rappresentare il 12% della popolazione del 2050. 
 <!-- fino al 2026-10-19 (larga = Tab. 1.2 CERGAS): - Oggi circa **32 mila anziani non sono autosufficienti (3 su 10) e 12 mila hanno bisogno di assistenza continuativa**. In proporzione, nel 2036 sarebbero rispettivamente 38 mila e 15 mila, nel 2050 49 mila e 19 mila. -->
 - Oggi, in provincia, circa **12.500 anziani sono non autosufficienti** nella cura della persona (~12%), che potrebbero diventare 14.600 nel 2036 e 19.300 nel 2050. Tra gli over 65 ci sono anche 14.700 persone che vivono con disabilità (13,6%), oltre ad altri che pur rimanendo autonomi necessitano di aiuto per svolgere qualche attività quotidiana o domestica. Le persone **con demenza sono circa 9 mila**, e potrebbero essere 14 mila nel 2050: è un'altra condizione che cresce con l'avanzare dell'età e affligge in particolare le donne.
-- In un contesto in cui la speranza di vita resta in crescita, occorre prestare grande attenzione allo stato di _fragilità_: un indicatore di rischio più complesso da tracciare, ma che sta sul crinale tra la conservazione dell'autonomia e la non autosufficienza.
+- Se da un lato aumenta la speranza di vita, dall'altro occorrono misure per prevenire la _fragilità_: una condizione dai connotati multidimensinoali che sta sul crinale tra la conservazione della qualità della vita e la perdita di autosufficienza.
 
 ## Inquadramento demografico della popolazione "anziana"
 
 <!-- 1-2 frasi in parole comuni: "anziani" = 65 anni e più; "grandi anziani" = 80 e più; le soglie sono convenzioni ISTAT -->
 <!-- BOZZA TESTO -->
 
-Seguendo le soglie utilizzate da ISTAT, qui il termine "anziani" identifica le persone di 65 anni e più e "grandi anziani" quelle di 80 e più. A Parma rappresentano, rispettivamente il 23,6% e l'8% dei residenti, un po’ meno che in regione e in Italia.   
+Per semplicità e coerenza con le soglie utilizzate da ISTAT, qui il termine "anziani" identifica le persone di 65 anni e più e "grandi anziani" quelle di 80 e più. A Parma rappresentano, rispettivamente il 23,6% e l'8% dei residenti, un po’ meno che in regione e in Italia.   
 In provincia, gli over 65 sono oggi 37 ogni 100 persone di di 15-64: questo indice arriverà a 50 ogni 100 intorno al 2035 in Italia e intorno al 2040 per Parma.  
 
 ::: {.panel-tabset}
@@ -146,15 +146,25 @@ _NB: 2024 = censimento al 31 dicembre; 2036 e 2050 = previsioni ISTAT, scenario 
 
 <!--  Applicando alla popolazione di Parma le prevalenze nazionali per età, oggi circa 32 mila anziani non sono autosufficienti (29,9% degli over 65) e 12.500 hanno bisogno di assistenza continuativa (11,6%). Sono stime di ordine di grandezza, non conteggi: dicono quante persone ci si deve aspettare con quelle caratteristiche, non quante ne seguono i servizi. -->
 
-Quanti sono i residenti anziani della provincia di Parma che hanno bisogno di aiuto (e quanti saranno negli anni a venire)?  
-Innanzitutto, è utile fare chiarezza sugli approcci adottati dalle fonti più autorevoli. 
+Quanti sono i residenti anziani della provincia di Parma che hanno bisogno di aiuto (e quanti saranno negli anni a venire)?   
+Il decreto attuativo [@DL2024Anziani] della riforma [@L33del2023Aanziani] definisce _non autosufficiente_ la persona di 65 anni e più che «presenta gravi limitazioni o perdita dell'autonomia nelle attività fondamentali della vita quotidiana», valutate con metodologie standardizzate che tengono conto anche di fragilità, multimorbilità e condizioni sociali. La definizione viene poi declinata in sintonia con il sistema di welfare regionale.
+
+::: {.callout-note .normativa collapse=true}
+#### Normativa: la definizione di non autosufficienza
+
+«Persona anziana non autosufficiente: la persona anziana che, anche in considerazione dell'età anagrafica e delle disabilità pregresse, presenta gravi limitazioni o perdita dell'autonomia nelle attività fondamentali della vita quotidiana e del funzionamento bio-psico-sociale, valutate sulla base di metodologie standardizzate, tenendo anche conto delle indicazioni fornite dalla Classificazione internazionale del funzionamento, della disabilità e della salute (ICF) dell'Organizzazione mondiale della sanità, dei livelli di stratificazione del rischio sulla base dei bisogni socioassistenziali e delle condizioni di fragilità, di multimorbilità e di vulnerabilità sociale, le quali concorrono alla complessità dei bisogni della persona, anche considerando le specifiche condizioni sociali, familiari e ambientali [...]» [@DL2024Anziani, art. 2, c. 1, lett. c)].
+
+_NB: per "persona anziana" il decreto intende chi ha compiuto 65 anni [@DL2024Anziani, art. 2, c. 1, lett. a)]._
+:::
+
+Sono quindi rilevanti i dati raccolti dalle fonti più autorevoli in materia, riportati nella tabella sotto:
 
 <!-- - **Senza gravi difficoltà nelle attività quotidiane**: nessuna grave difficoltà nella cura della persona o in casa; possono esserci difficoltà moderate. -->
-- Con **disabilità (GALI grave)**: dichiara limitazioni gravi, da almeno 6 mesi, nelle attività che svolge abitualmente. 
-- Con **almeno una grave difficoltà nelle attività quotidiane (ADL o IADL)**: molta difficoltà o non riesce in almeno una attività di cura della persona o domestica (pasti, spesa, farmaci, soldi, lavori di casa).
-  - Di cui **non autosufficienti nella cura della persona (ADL)**: ha bisogno di aiuto per lavarsi, vestirsi, alzarsi, usare il bagno o mangiare.
-- Con **demenza**: Alzheimer e altre demenze; è una diagnosi, non una limitazione, e in gran parte si sovrappone alla non autosufficienza.
-- [**Fragilità** (non in tabella): non è una condizione di bisogno ma di rischio, per cui un evento banale (una caduta, un'influenza) può far perdere l'autonomia. È un concetto clinico e predittivo, misurato ad hoc dai servizi sanitari.]
+- _Con **disabilità (GALI grave)**_: chi dichiara limitazioni gravi, da almeno 6 mesi, nelle attività che svolge abitualmente. 
+- _Con **almeno una grave difficoltà nelle attività quotidiane (ADL o IADL)**_: chi dichiara molta difficoltà o non riesce in almeno una attività di cura della persona o domestica (pasti, spesa, farmaci, soldi, lavori di casa).
+  - _Di cui **non autosufficienti nella cura della persona (ADL)**_: chi ha bisogno di aiuto per lavarsi, vestirsi, alzarsi, usare il bagno o mangiare.
+- _Con **demenza**_: Alzheimer e altre demenze; è una diagnosi, non una limitazione, e in gran parte si sovrappone alla non autosufficienza.
+- [_**Anziano fragile**_ (non in tabella): non è una condizione di bisogno ma di rischio, per cui un evento banale (una caduta, un'influenza) può far perdere l'autonomia. È un concetto clinico e predittivo, misurato ad hoc dai servizi sanitari.]
 
 Nelle tabelle sotto, si riportano dati (e previsioni) sull'incidenza di queste condizioni sul territorio di riferimento. 
 
@@ -199,12 +209,14 @@ f_bottoni_dati("tab_quadro_ft", dir_anz, rds = "tab_quadro_pr_ft")
 ::: {.callout-note .metodo collapse=true}
 #### Come sono fatte le stime
 
-- [**Disabilità (GALI grave)**: è una sola domanda generale dell'indagine `ISTAT Aspetti della vita quotidiana` [@IndDisabilita26], sulla percezione della persona: misura la disabilità percepita, non l'autonomia in attività specifiche. 
+- **Disabilità (GALI grave)**: è una sola domanda generale dell'indagine `ISTAT Aspetti della vita quotidiana` [@IndDisabilita26], sulla percezione della persona: misura la disabilità percepita, non l'autonomia in attività specifiche. 
 - **Non autosufficienza (ADL o IADL)** (in senso ampio): avere bisogno dell'aiuto di un'altra persona per qualcuna delle attività della vita quotidiana. `ISTAT, EHIS` [@IstatAnziani2019] la misura con due gruppi di attività: la cura della persona (ADL: lavarsi, vestirsi, mangiare, alzarsi dal letto, usare il bagno) e le attività domestiche (IADL: preparare i pasti, fare la spesa, prendere i farmaci, gestire i soldi, le faccende di casa). È la definizione usata dal `CERGAS` [@OLTC_8rapp_2026].
 - **Non autosufficienza nella cura della persona (ADL)** (in senso più stretto): l'ordine di grandezza dei beneficiari dell'indennità di accompagnamento. Contrariamente all'Osservatorio Long Term Care, qui la parola è riservata alla cura della persona (circa 1 su 10). È l'ordine di grandezza dei beneficiari dell'indennità di accompagnamento e la platea di strutture residenziali e assistenza domiciliare.
-- **Demenze**: malattie (Alzheimer e altre) che riguardano la memoria e le funzioni cognitive; chi ne è colpito è in gran parte non autosufficiente, ma non tutti i non autosufficienti hanno una demenza. Si stimano con tassi di prevalenza per sesso ed età da studi epidemiologici europei, quelli usati dall'`Istituto Superiore di Sanità` [@DemenzeReport24].
-- **Metodo**: per ogni classe di età si applica alla popolazione di Parma la quota rilevata dalle indagini, tenuta costante nel tempo [@IstatAnziani2019]. Dice quante persone ci si deve aspettare se la salute per età resta quella di oggi, non quante ne seguono i servizi.
-- **Classi di età**: tre (65-74, 75-84, 85 e più) per non autosufficienti e demenze; due (65-74, 75 e più) per le altre condizioni, che al 2050 risultano sottostimate.
+- **Demenze**: malattie (Alzheimer e altre) che riguardano la memoria e le funzioni cognitive; chi ne è colpito è spesso non autosufficiente, ma è una diagnosi distinta. Si stimano con tassi di prevalenza per sesso ed età da studi epidemiologici europei, quelli usati dall'`Istituto Superiore di Sanità` [@DemenzeReport24].
+
+Tutti i numeri di questa sezione (tabelle e grafici) sono stime: per ogni classe di età, l'incidenza di ciascuna condizione, presunta costante, è stimata in base alla popolazione residente del territorio di riferimento (censimento 2024, previsioni ISTAT per 2036 e 2050).
+
+- **Classi di età**: tre (65-74, 75-84, 85+) per non autosufficienti e demenze, due (65-74, 75+) per le altre condizioni, che al 2050 risultano sottostimate.
 - **Territori**: a parità di età Emilia-Romagna e Italia hanno le stesse quote, quindi le differenze tra territori dipendono solo dall'età della popolazione; per la disabilità si usano le quote dell'Emilia-Romagna.
 - **Chi resta fuori**: le indagini intervistano solo chi vive in famiglia; chi vive in una struttura è escluso, quindi le stime sono per difetto.
 :::
@@ -302,11 +314,10 @@ f_bottoni_dati("plot_demenze_sesso_pr", dir_anz)
 ## Fragilità [🟡]{.content-hidden}
 
 <!-- DA SVILUPPARE (2026-10-21): più un riferimento bibliografico che dati disponibili; cercare le fonti -->
-La fragilità non è rilevata da fonti ufficiali sulla popolazione, quindi non si può stimare e proiettare come le altre condizioni di questa pagina. È una condizione di _rischio_: riguarda la persona anziana ancora autonoma ma con riserve ridotte (forza, equilibrio, peso, attività), per cui un evento banale, come una caduta o un'influenza, può farle perdere l'autonomia.
+La **fragilità** non è rilevata da fonti ufficiali sulla popolazione, quindi non si può stimare e proiettare come le altre condizioni di questa pagina. È una condizione di _rischio_: riguarda la persona anziana ancora autonoma ma con riserve ridotte (forza, equilibrio, peso, attività), per cui un evento banale, come una caduta o un'influenza, può farle perdere l'autonomia. Per questo è un segnale utile per capire quando e come intervenire prima che l'autonomia si perda.
 
-Proprio per questo è un segnale utile per capire quando e come intervenire prima che l'autonomia si perda.
-
-Nelle politiche di assistenza è legata soprattutto al rafforzamento dell'assistenza domiciliare, uno dei pilastri della riforma per gli anziani [@L33del2023Aanziani] e successiva legislazione attuativa che tra le finalità indicava proprio la prevenzione della fragilità.
+La stessa riforma per gli anziani [@L33del2023Aanziani], e successiva legislazione attuativa, indicano il sostegno dell'autonomia, il contrasto alla solitudine e la continuità di vita e cure presso il proprio domicilio tra i cardini delle politiche di assistenza - elementi strettamente legati alla prevenzione della fragilità. 
+ 
 
 `[Approfondimenti in corso]`
    
@@ -314,7 +325,7 @@ Nelle politiche di assistenza è legata soprattutto al rafforzamento dell'assist
 
 ## Possibili approfondimenti
 
-+ Pagina su offerta di assistenza: [in costruzione]
++ Pagina su offerta di assistenza: `[in costruzione]`
 
 <!-- 
   - Quanti anziani non autosufficienti ricevono oggi un aiuto pubblico (indennità di accompagnamento, assistenza domiciliare, posti in struttura) e quanti restano a carico delle famiglie e delle badanti? 
@@ -323,5 +334,6 @@ Nelle politiche di assistenza è legata soprattutto al rafforzamento dell'assist
   - Piano nazionale demenze
 -->
 + La fragilità: chi e come la misura e come può indirizzare gli interventi 
++ La multimorbilità (più malattie croniche insieme): quanto pesa tra i grandi anziani e come cambia la domanda di cura
 <!-- - Dove vivono i grandi anziani: nei comuni di montagna e di pianura il peso degli over 80 è lo stesso del capoluogo? -->
 <!-- - Chi si prende cura: quanti caregiver familiari, e di che età, servono per i numeri stimati qui? -->

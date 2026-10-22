@@ -16,8 +16,11 @@
 - `young_adults_are_more_skeptical_about_ais_future_impact_older_adults_more_unsure_data_2026-06-17.csv` (+ `.png`) — impatto atteso dell'IA nei prossimi 20 anni, sulla società e su di sé, per età: negativo, positivo, non sa
 - `americans_predict_ais_impact_on_society_them_will_be_more_negative_than_positive_data_2026-06-17.csv` (+ `.png`) — la stessa domanda sul totale degli adulti, con anche "ugualmente positivo e negativo" (non usato per ora)
 - `PI_2026.06.17_Americans-and-AI_REPORT.pdf` — rapporto completo; metodologia e errori campionari a p. 65
+- `Ipsos-AI-Monitor-2026.pdf` — Ipsos, "AI Monitor 2026", indagine Global Advisor in 32 paesi (giugno 2026, 49 pp.): opinioni e fiducia verso l'IA, confronto internazionale; non ancora usato (l'Ipsos citato in `educ_ia.qmd` è l'indagine Ipsos-Telefono Azzurro per il Safer Internet Day, che non è in questa cartella)
 
-**Note/insidie:** i csv non sono tabelle pulite: 3 righe di titolo e sottotitolo prima dell'intestazione, note e fonte in coda, percentuali come testo ("16%"), prima colonna senza nome. Nella domanda sull'impatto la risposta "ugualmente positivo e negativo" (23-32% secondo l'età) non è nel csv per età: le tre risposte mostrate non sommano a 100. Negli NET arrotondati le parti possono non sommare al totale. Errore campionario: ±1,6 punti sul totale, ±4,3 punti tra i 18-29enni (723 intervistati).
+**Note (come leggere i dati):** Errore campionario: ±1,6 punti sul totale, ±4,3 punti tra i 18-29enni (723 intervistati).
+
+**Insidie (rotture di serie ed errori):** i csv non sono tabelle pulite: 3 righe di titolo e sottotitolo prima dell'intestazione, note e fonte in coda, percentuali come testo ("16%"), prima colonna senza nome. Nella domanda sull'impatto la risposta "ugualmente positivo e negativo" (23-32% secondo l'età) non è nel csv per età: le tre risposte mostrate non sommano a 100. Negli NET arrotondati le parti possono non sommare al totale.
 
 **Storico aggiornamenti:**
 

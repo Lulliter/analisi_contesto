@@ -1,5 +1,5 @@
 ---
-title: "Inspiration wall"
+title: "Idee x posizionamento / divulgazione sito analisi di contesto"
 # subtitle: "Nota di lavoro per la revisione di settembre 2026: cosa deve arrivare a chi legge"
 lang: it
 format:
@@ -15,61 +15,149 @@ link-citations: true
 #  @*
 ---
 
-# Ispirazione 
+ 
+ 
 
+[https://datiparma.it/](https://datiparma.it/)
+ 
+ 
 
-## Open data 
+## Open data
 
-- TOP! [Our World in Data](https://ourworldindata.org/) focus: economia dello sviluppo 
-- [Pew Research Center](https://www.pewresearch.org/) focus: opinioni politiche, sociali e culturali
-  - fantastico modo di presentare dati e contenuti (dati scaricabili e riutilizzabili)
+- **Our World in Data** — [Our World in Data](https://ourworldindata.org/)
+  - focus: economia dello sviluppo
+  - note: bello, forte presenza su social media
 
+- **Pew Research Center** — [Pew Research Center](https://www.pewresearch.org/)
+  - focus: opinioni politiche, sociali e culturali
+  - accesso: dati scaricabili e riutilizzabili
+  - note: fantastico modo di presentare dati e contenuti
 
-## Open e focus su mappe! 
+- **World Bank** - [Atlas of Global Development](https://data360.worldbank.org/en/atlas/)
+  - focus: sviluppo, tracciare SDGS
+  - accesso: dati scaricabili e riutilizzabili
+  - note: very cool data viz, ma WBG monta cose bellissime che poi però spariscono...
 
-- Mapping and Urban Data Lab (**MAUD-DAStU**) del **Politecnico di Milano** Osservatorio MAUD Milano [Milano che Cambia Public Tableu](https://public.tableau.com/app/profile/maud.lab/viz/MILANOCHECAMBIAUNVIAGGIOINTERATTIVOTRADATIPERSONEEQUARTIERI/INFO_descrizione)
-  - accessibile sito e mappe (ma non dati sottostanti)
-  - (contenuto stupendo ma fatto con Tableu 💩)
+- **Fondazione Openpolis + Gran Sasso Science Institute (GSSI)** — [Open PNRR](https://openpnrr.it/)
+  - focus: trasparenza, informazione, monitoraggio e valutazione del PNRR
+  - accesso: dati aperti, pubblicazioni, API
+  - note: bello e interattivo
+
+- **Fondazione Openpolis** — [altri osservatori](https://fondazione.openpolis.it/cosa-facciamo#I-nostri-progetti)
+  - focus: vari
+  - accesso: dati scaricabili e riutilizzabili
+
+## Open e focus geospatial
+
+- **IPEA** (centro di ricerca brasiliano), guidato da [Rafa Pereira](https://www.urbandemographics.org/) — [Access to Opportunities Lab (AOP-Lab)](https://www.ipea.gov.br/acessooportunidades/en/)
+  - focus: pianificazione urbana, mobilità, accessibilità ai servizi, disuguaglianze sociali
+  - accesso: dati aperti, pubblicazioni, software open source
+  - note: sarebbe fantastico replicare, se trovo chi fa cose simili in Italia/EU
+  
+- **Politecnico di Milano, Mapping and Urban Data Lab (MAUD-DAStU)** — [Milano che cambia (Tableau Public)](https://public.tableau.com/app/profile/maud.lab/viz/MILANOCHECAMBIAUNVIAGGIOINTERATTIVOTRADATIPERSONEEQUARTIERI/INFO_descrizione)
+  - focus: dati, persone e quartieri di Milano
+  - accesso: sito e mappe, ma NON i dati sottostanti
+  - note: contenuto bello ma fatto con Tableau 💩
 
 ## Dati di contesto
 
-+ **AICCON** (2026). Database proprietario per la lettura di contesto
-  - mi hanno fatto vedere la versione beta, molto simile alla mia selezione di dati ma con lettura di varie provincie
-  - NON accessibile al pubblico (uso interno o da vendere?) s
+- **AICCON** — database proprietario per la lettura di contesto (2026)
+  - focus: molto simile alla mia selezione di dati, ma con lettura di varie province
+  - accesso: NON pubblico (uso interno o da vendere?)
+  - note: versione beta dashboard fatta con Python + PowerBi o simili 
 
+- **Associazione per la ricerca sociale ETS (ARS)** — [Welforum.it](https://www.welforum.it/), Osservatorio nazionale sulle politiche sociali
+  - focus: welfare sociale
+  - accesso: dati aperti(?)
+  - note: riorganizza le informazioni per filoni tematici e rimanda a fonti diverse; li finanziamo anche noi?
 
-## Altre FOB? 
+- **Intesa Sanpaolo per il Sociale, AICCON e SRM** — Monitor per la geografia delle fragilità e delle disuguaglianze (2026)
+  - accesso: NON pubblico, hanno però pubblicato il [report](https://group.intesasanpaolo.com/content/dam/portalgroup/repository-documenti/eventi-e-progetti/progetti/Report_Banca_Intesa_Geo_Frag_Disuguaglianza_Monitor.pdf)
 
+## Altre FOB, simil centro studi?
 
-+ **Fondazione Cassa di Risparmio di Biella**, fatto con **Percorsi di Secondo Welfare**, da (2020-2026), [OsservaBiella – Osservatorio territoriale del Biellese](https://www.osservabiella.it/cose-osservabiella/)
-  - accessibile sia sito (con indicatori e dati scaricabili) che report annuale (pdf)  
+- **Fondazione CRC** (Cuneo) — [Ufficio Studi e Ricerche di Fondazione CRC](https://fondazionecrc.it/ricerche/)
+  - forma: struttura interna
+  - accesso: pubblica un [`Dossier socio economico annuale`](https://fondazionecrc.it/categorie_documenti/dossier-socio-economici/) (simile x contenuti) + vari studi e quaderni...
+  - note: bella iniziativa [Laboratori d’innovazione](https://fondazionecr), soprattutto l'edizione su LAboratorio `"Share your data"` con Openpolis
   
+  
+- **Fondazione Cassa di Risparmio di Biella**, con **Percorsi di Secondo Welfare** — [OsservaBiella – Osservatorio territoriale del Biellese](https://www.osservabiella.it/cose-osservabiella/) (2020-2026)
+  - forma: partner esterno
+  - accesso: sito (con indicatori e dati scaricabili) e report annuale (pdf)
 
-+ **Intesa Sanpaolo per il Sociale, AICCON, & SRM**. (2026). MONITOR PER LA GEOGRAFIA DELLE FRAGILITÀ E DELLE DISUGUAGLIANZE.
-  - accessibile [report](https://group.intesasanpaolo.com/content/dam/portalgroup/repository-documenti/eventi-e-progetti/progetti/Report_Banca_Intesa_Geo_Frag_Disuguaglianza_Monitor.pdf) ma NON accessibile banca dati 
+- **Fondazione Cariplo** (Milano) — [Attività di monitoraggio e valutazione](https://www.fondazionecariplo.it/it/la-fondazione/osservatorio-e-valutazione.html)
+  - forma: struttura partecipata Evaluation Lab di Fondazione Social Venture Giordano Dell’Amore (FSVGDA)
+  - accesso: non dati ma studi "Quaderni dell'Osservatorio"
 
+- **Fondazione Cassa di Risparmio di Lucca** (Lucca) — [Centro di Ricerca Maria Eletta Martini](https://centroricercamemartini.it/centro-di-ricerca/fondatori/)
+  - forma: centro di ricerca costituito con terzi
+  - accesso: no dati, studi e ricerche?
+  
+- **Fondazione Compagnia di San Paolo** (Torino) — [Direzione Learning](https://www.compagniadisanpaolo.it/it/fondazione/struttura/direzione-learning/)
+  - forma: direzione interna + enti strumentali
+  - accesso: non mi sembra dati ma [pubblicazioni e studi](https://www.compagniadisanpaolo.it/it/spazio-valutazione/learning-lab/) divisi in Learning, Foresight, Evidence
+  
+<!-- - **Fondazione CR Firenze** (Firenze) — [Enti strumentali con funzione di osservatorio](https://fondazionecrfirenze.it/cosa-facciamo/) -->
+<!--   - forma: enti strumentali, non ufficio interno -->
+<!--   - accesso:  -->
+  
+<!-- - **Fondazione Pisa** (Pisa) — [Fondazione Pisana per la Scienza](https://fondazionepisa.it/) -->
+<!--   - forma: ente strumentale, ambito non socio-economico -->
+<!--   - accesso:  -->
 
   
-Perimetro: parto da queste, per patrimonio decrescente, Nord-Centro:
+  
+<!-- Perimetro: parto da queste, per patrimonio decrescente, Nord-Centro: -->
 
-1. Cariplo (Milano)
-2.Compagnia di San Paolo (Torino)
-3. Cassa di Risparmio di Torino
-4. Cassa di Risparmio di Padova e Rovigo
-5. Cassa di Risparmio di Verona Vicenza Belluno e Ancona (Cariverona)
-6. Cassa di Risparmio in Bologna
-7. Cassa di Risparmio di Cuneo
-8. Cassa di Risparmio di Lucca
-9. Cassa di Risparmio di Modena
-10. Monte dei Paschi di Siena
-11. Cassa di Risparmio di Firenze
-12. Cassa di Risparmio di Trento e Rovereto (Caritro)
-13. Cassa di Risparmio di Parma (Cariparma)
-14. Cassa di Risparmio di Perugia
-15. Cassa di Risparmio di Pisa / Livorno / Pistoia (le toscane minori, se il budget di ricerca lo consente)
+<!-- 1. Cariplo (Milano) -->
+<!-- 2.Compagnia di San Paolo (Torino) -->
+<!-- 3. Cassa di Risparmio di Torino -->
+<!-- 4. Cassa di Risparmio di Padova e Rovigo -->
+<!-- 5. Cassa di Risparmio di Verona Vicenza Belluno e Ancona (Cariverona) -->
+<!-- 6. Cassa di Risparmio in Bologna -->
+<!-- 7. Cassa di Risparmio di Cuneo -->
+<!-- 8. Cassa di Risparmio di Lucca -->
+<!-- 9. Cassa di Risparmio di Modena -->
+<!-- 10. Monte dei Paschi di Siena -->
+<!-- 11. Cassa di Risparmio di Firenze -->
+<!-- 12. Cassa di Risparmio di Trento e Rovereto (Caritro) -->
+<!-- 13. Cassa di Risparmio di Parma (Cariparma) -->
+<!-- 14. Cassa di Risparmio di Perugia -->
+<!-- 15. Cassa di Risparmio di Pisa / Livorno / Pistoia (le toscane minori, se il budget di ricerca lo consente) -->
 
 
----- 
+<!-- ## Dal web (da smistare) -->
+
+<!-- - **Bertelsmann Stiftung** (Germania) — [Wegweiser Kommune](https://www.wegweiser-kommune.de/) -->
+<!--   - focus: oltre 400 indicatori in 25 temi (demografia, previsioni, migrazione, lavoro, casa, povertà degli anziani, finanze comunali) per comuni e circondari -->
+<!--   - accesso: sito, dati scaricabili (pdf, xls) con licenza aperta (Datenlizenz Deutschland 2.0) -->
+<!--   - note: nato nel 2006 come "Wegweiser Demographischer Wandel"; tipologie demografiche dei comuni -->
+
+<!-- - **Annie E. Casey Foundation** (USA) — [KIDS COUNT Data Center](https://datacenter.aecf.org/) -->
+<!--   - focus: infanzia, giovani e famiglie (demografia, benessere economico, istruzione, salute, sicurezza) -->
+<!--   - accesso: sito, dati gratuiti (download da verificare) -->
+
+<!-- - **Community Foundations of Canada** + fondazioni di comunità locali — [Vital Signs](https://communityfoundations.ca/initiatives/vital-signs/) -->
+<!--   - focus: report periodici sullo stato della comunità locale, usati per orientare le erogazioni -->
+<!--   - accesso: report locali (pdf) -->
+<!--   - note: modello replicato anche nel Regno Unito; affiancato da indagini e incontri con la comunità ("Vital Conversations") -->
+
+<!-- - **Urban Institute** (USA) — [National Neighborhood Indicators Partnership (NNIP)](https://www.neighborhoodindicators.org/) -->
+<!--   - focus: rete di "intermediari locali di dati" in circa 30 città, che raccolgono dati di quartiere per comunità, fondazioni e amministrazioni -->
+<!--   - note: modello organizzativo più che un sito di dati; tra i partner ci sono fondazioni di comunità -->
+
+<!-- - **Opportunity Insights** (Harvard, USA) — [The Opportunity Atlas](https://www.opportunityatlas.org/) -->
+<!--   - focus: mobilità sociale dei bambini secondo il quartiere in cui sono cresciuti -->
+<!--   - accesso: mappa interattiva; dati scaricabili (da verificare) -->
+
+<!-- - **Fondazione Openpolis + Con i Bambini** — [Osservatorio sulla povertà educativa](https://www.openpolis.it/poverta-educativa) -->
+<!--   - focus: povertà educativa, con dati comunali, per quartiere nelle città e per le aree interne -->
+<!--   - accesso: grafici scaricabili come immagine, licenza CC BY-NC 4.0; dati sottostanti non scaricabili dalla pagina -->
+<!--   - note: mappe regionali in pdf (c'è anche l'[Emilia-Romagna](https://www.conibambini.org/wp-content/uploads/2021/05/Le-mappe-della-poverta-educativa-in-Emilia-Romagna.pdf)) -->
+
+
+<!-- ----  -->
 
 
 
