@@ -15,8 +15,6 @@ link-citations: true
 #  @*
 ---
 
- 
- 
 
 [https://datiparma.it/](https://datiparma.it/)
  
@@ -58,6 +56,17 @@ link-citations: true
   - focus: dati, persone e quartieri di Milano
   - accesso: sito e mappe, ma NON i dati sottostanti
   - note: contenuto bello ma fatto con Tableau 💩
+  
+  
+- **Comune di Bologna** - [Atlante Statistico Metropolitano](https://www.cittametropolitana.bo.it/atlantemetropolitano/)
+  - focus: dati socio-economici e territoriali della Città Metropolitana di Bologna
+  - accesso: sito, mappe e dati scaricabili (csv, xls, pdf)
+  - note: contenuto bello molto ampio e chiaro (parte dashboard Tableau 💩)
+  
++ **Indicatori di fragilità ** (stesso di regione ma coi dati sotto) — [Indicatori Fragilità BOLOGNA](https://www.cittametropolitana.bo.it/atlantemetropolitano/fragilita)
+  - focus: indicatori di fragilità demografica, sociale ed economica
+  - accesso: sito, mappe e dati scaricabili (csv, xls, pdf)
+  - note: bellissimo, dovremmo replicare per PR
 
 ## Dati di contesto
 
@@ -73,6 +82,13 @@ link-citations: true
 
 - **Intesa Sanpaolo per il Sociale, AICCON e SRM** — Monitor per la geografia delle fragilità e delle disuguaglianze (2026)
   - accesso: NON pubblico, hanno però pubblicato il [report](https://group.intesasanpaolo.com/content/dam/portalgroup/repository-documenti/eventi-e-progetti/progetti/Report_Banca_Intesa_Geo_Frag_Disuguaglianza_Monitor.pdf)
+
+
+
+## Centri di ricerca 
+
+- **ASVAPP** - [Associazione per lo Sviluppo della Valutazione e l'Analisi delle Politiche Pubbliche](https://www.asvapp.org/) 
+
 
 ## Altre FOB, simil centro studi?
 
@@ -95,7 +111,17 @@ link-citations: true
   - accesso: no dati, studi e ricerche?
   
 - **Fondazione Compagnia di San Paolo** (Torino) — [Direzione Learning](https://www.compagniadisanpaolo.it/it/fondazione/struttura/direzione-learning/)
-  - forma: direzione interna + enti strumentali
+  - forma: direzione interna + 
+    + `Dati e Programmazione` 
+      - (Fulvio Bersanetti -Responsabile)
+      - Alessandro Di Antonio; Hilel Dridi; Elisa Pautasso
+    + `Valutazione` 
+      - (Simone Martino -Responsabile)
+      - Riccardo Pelosi; Lucia Schiavon
+    + `Innovazione` 
+      - (Michele Osella -Responsabile)
+      - Luca Fasolo; Piermatteo Morucci
+
   - accesso: non mi sembra dati ma [pubblicazioni e studi](https://www.compagniadisanpaolo.it/it/spazio-valutazione/learning-lab/) divisi in Learning, Foresight, Evidence
   
 <!-- - **Fondazione CR Firenze** (Firenze) — [Enti strumentali con funzione di osservatorio](https://fondazionecrfirenze.it/cosa-facciamo/) -->

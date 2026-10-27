@@ -163,7 +163,7 @@ ___
 
 - [ ] Al prossimo fact sheet USR-ER (uscita ~settembre): aggiungere le righe al csv, aggiornare `ANNO_ULTIMO` e il blurb
 - [ ] Anagrafe studenti [Regione ER](https://scuola.regione.emilia-romagna.it/anagrafi-regionali): successo/regolarità per provincia e iscritti all'infanzia → richiesta n. 3 (Richieste uffici)
-- [ ]  Percorsi di Secondo Welfare. A pieno titolo. Nessi [Internet]. 2026 [cited 2026 Oct 8];03. https://www.secondowelfare.it/wp-content/uploads/2026/09/Nessi-3_A-pieno-titolo.pdf. Accessed 8 Oct 2026
+- [~]  Percorsi di Secondo Welfare. A pieno titolo. Nessi [Internet-WOKe](https://www.secondowelfare.it/wp-content/uploads/2026/09/Nessi-3_A-pieno-titolo.pdf). 2026 [cited 2026 Oct 8];03 . Accessed 8 Oct 2026
 
 ### modulo `scuola_abband_neet`
 >(NEET/abbandoni/formazione continua PR vs province ER; fonte BES dei territori)
@@ -259,7 +259,7 @@ _5. Governare: risposte dei paesi e mappa locale_
 
 #### AVANZAMENTO giovani
 
-Stato al 2026-10-15: pagina `benessere_giovani.qmd` promossa con la sezione NPIA; infanzia da ISTAT (iscritti per gestione e cittadinanza) integrata in `scuola_iscritti` e `scuola.qmd`, con grafici di statali e paritarie rifatti a barre; prossimo passo: verificare `scuola.qmd` dopo `build.R`, poi fonti sul ritiro sociale e richiesta n. 5 all'AUSL
+Stato al 2026-10-27: nuovo modulo `pop_titolo_studio` (titolo di studio per età, sesso e comune, censimento 2018-2024), `01_dati.R` verificato; prossimo passo: lanciare `02_output.R` e scrivere la sezione "Dopo la scuola" di `giovani_lavoro.qmd`; restano da prima: verificare `scuola.qmd` dopo `build.R`, fonti sul ritiro sociale, richiesta n. 5 all'AUSL
 
 #### Pagine del tema
 
@@ -267,6 +267,21 @@ Stato al 2026-10-15: pagina `benessere_giovani.qmd` promossa con la sezione NPIA
 - `sito/temi/scuola_dispersione.qmd`: dispersione esplicita e implicita, NEET, ELET
 - `sito/temi/formaz_rientro.qmd`: IeFP, serali, CPIA (adulti), esiti
 - `sito/temi/educ_ia.qmd`: uso dei dispositivi, social e benessere mentale, IA, risposte dei paesi
+
+### ⏭️ modulo `pop_titolo_studio`
+>(titolo di studio dei residenti per classe d'età, sesso e cittadinanza: comuni PR, province ER, ER, Italia, 2018→; fonte ISTAT censimento permanente, download con `ingestione/11_get_istat_cens_istr.R`)
+
+**Ricognizione/Aggiornamento FONTI**:
+
+- [ ] Aggiornamento annuale del censimento permanente (`ANNO_FINE` in `ingestione/11`)
+- [ ] Zeri segnalati "JTEST" (2018-19) e celle assenti (dal 2020): chiedere conferma a ISTAT che siano zeri
+- [ ] Formazione professionale 14+ (censimento, solo 2024, province): scaricata, non usata; valutare per `formaz_e_rientro` dopo la [scheda metadati ISTAT](https://esploradati.istat.it/RefMeta/template/GenericMetadataTemplate.html?nodeId=DW&metadataSetId=MS_ISTAT_TOPMETA2&reportId=DCSS_LCAS_FRISC_C3&lang=it&BaseUrlMDA=https://esploradati.istat.it/METADATA_API)
+- [ ] Togliere `ingestione/11b_clean_istat_cens_istr.R` (sostituito da `pop_titolo_studio/01_dati.R`)
+
+**Sito**:
+
+- [ ] Lanciare `02_output.R` e verificare dumbbell per età e sesso, tabella di confronto e mappa dei laureati 25-49
+- [ ] Sezione "Dopo la scuola" di `giovani_lavoro.qmd` con i tre output
 
 ### modulo `ingresso_lavoro`
 > Ponte con tema lavoro e se il territorio sta perdendo terreno sull'innovazione (es. startup, brevetti, ecc.)
@@ -289,10 +304,11 @@ Stato al 2026-10-15: pagina `benessere_giovani.qmd` promossa con la sezione NPIA
   - [ ] INPS Osservatori: contratti dei giovani
   - [ ] ISTAT: cancellazioni per l'estero 20-34 anni per provincia
   - già in casa dal Bes: passaggio all'università, laureati 25-39, formazione continua, NEET per sesso, occupazione giovanile
+  - dal censimento: titolo di studio per età, sesso e comune → modulo `pop_titolo_studio`
 
 ___
 
-## ⏭️ 3. ANZIANI
+## 3. ANZIANI
 > Spunti CG: abbiamo 100 diagnosi di autismo e 1000 di demenza senile ... forse questo ci dice dove dovremmo guardare?!?!!?
 
 > Spunti CG: in prospettiva i (pochi) giovani di oggi sono gli stessi che dovranno occuparsi degli anziani di domani...
@@ -413,7 +429,7 @@ Fonti in casa: `istat_sae_glf_2019` ✓ (stime GLF provinciali), aree interne/zo
 - [ ] - CAPIRE COSA FARNE - `_acer_quartieri.qmd` (bozza con le 13 mappe di dettaglio): decidere se e come usarla; per pubblicarla semplificare anche le strade
 - [ ] spostare "Chi vive in strutture collettive" da `geogr_abitare.qmd` a un'altra pagina (la pagina supera i 3 MB)
 
-#### 🟡 AVANZAMENTO comune_pr_quartieri
+#### AVANZAMENTO comune_pr_quartieri
 
 Stato al 2026-10-09: pagina pubblicata (in costruzione) con sezione provincia; classi d'età e gradini uniformati città/provincia; prossimo passo: verifica in anteprima e testi
 

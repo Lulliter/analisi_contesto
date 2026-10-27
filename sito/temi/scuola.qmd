@@ -80,9 +80,9 @@ readRDS(here::here("moduli", "scuola_iscritti", "output", "iscritti_trend_pr.rds
 <!-- + Per chi interviene: il bisogno si concentra nel primo ciclo e in comuni precisi, pedecollina e bassa, dove presenza straniera e certificazioni crescono insieme. -->
  
 
-
 ## Gli iscritti: quanti sono e come cambiano
 
+Provincia e regione sono un po' meno colpite dagli effetti della denatalità rispetto alla media nazionale - si prevede, tra il 2026 e il 2040, la perdita di 2 milioni di studenti, con drastiche conseguenze sulla riduzione delle classi e chiusura delle scuole, anche se si osservano forti divergenze regionali [@20261006CorrieredellaSera].
 ```{r}
 #| label: plot_iscritti_ordine_pr
 #| output: true
