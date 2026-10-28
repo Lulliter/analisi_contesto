@@ -259,7 +259,7 @@ _5. Governare: risposte dei paesi e mappa locale_
 
 #### AVANZAMENTO giovani
 
-Stato al 2026-10-27: nuovo modulo `pop_titolo_studio` (titolo di studio per età, sesso e comune, censimento 2018-2024), `01_dati.R` verificato; prossimo passo: lanciare `02_output.R` e scrivere la sezione "Dopo la scuola" di `giovani_lavoro.qmd`; restano da prima: verificare `scuola.qmd` dopo `build.R`, fonti sul ritiro sociale, richiesta n. 5 all'AUSL
+Stato al 2026-10-28: `pop_titolo_studio` con barre per sesso, tabella di confronto e tre mappe 25-64 (laurea, diploma, licenza media), sezione "Dopo la scuola" in bozza in `giovani_lavoro.qmd`; prossimo passo: rivedere la sezione dopo il render e scrivere il blurb; restano da prima: verificare `scuola.qmd` dopo `build.R`, fonti sul ritiro sociale, richiesta n. 5 all'AUSL
 
 #### Pagine del tema
 
@@ -276,12 +276,13 @@ Stato al 2026-10-27: nuovo modulo `pop_titolo_studio` (titolo di studio per età
 - [ ] Aggiornamento annuale del censimento permanente (`ANNO_FINE` in `ingestione/11`)
 - [ ] Zeri segnalati "JTEST" (2018-19) e celle assenti (dal 2020): chiedere conferma a ISTAT che siano zeri
 - [ ] Formazione professionale 14+ (censimento, solo 2024, province): scaricata, non usata; valutare per `formaz_e_rientro` dopo la [scheda metadati ISTAT](https://esploradati.istat.it/RefMeta/template/GenericMetadataTemplate.html?nodeId=DW&metadataSetId=MS_ISTAT_TOPMETA2&reportId=DCSS_LCAS_FRISC_C3&lang=it&BaseUrlMDA=https://esploradati.istat.it/METADATA_API)
-- [ ] Togliere `ingestione/11b_clean_istat_cens_istr.R` (sostituito da `pop_titolo_studio/01_dati.R`)
+- [ ] `_metadati.md` di `istat_cens_diplomi_profess`: i rimandi a `11b_clean` diventano `pop_titolo_studio/01_dati.R`
 
 **Sito**:
 
-- [ ] Lanciare `02_output.R` e verificare dumbbell per età e sesso, tabella di confronto e mappa dei laureati 25-49
 - [ ] Sezione "Dopo la scuola" di `giovani_lavoro.qmd` con i tre output
+  - [ ] rivedere testi e Osservazioni dopo il render
+- [ ] `blurb.md`: scrivere il messaggio e aggiornare lo stato
 
 ### modulo `ingresso_lavoro`
 > Ponte con tema lavoro e se il territorio sta perdendo terreno sull'innovazione (es. startup, brevetti, ecc.)

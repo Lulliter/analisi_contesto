@@ -52,14 +52,17 @@ library(downloadthis)
 
 source(here::here("R", "sito.R"))     # bottoni CSV + Excel (f_scarica_dati, f_bottoni_dati)
 source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hover bordeaux)
+
+library(flextable)   # tabelle salvate in rds (serve il pacchetto caricato per stamparle)
+dir_tit <- here::here("moduli", "pop_titolo_studio", "output")
 ```
 
 ::: {.callout-warning}
-## Pagina in costruzione
+### Pagina in costruzione
 <!-- Questa pagina raccoglie le domande e la struttura dell'analisi sul passaggio dalla formazione al lavoro. Segue logicamente la pagina sui [giovani a rischio dispersione](scuola_dispersione.qmd). -->
 :::
 
-<!-- ## In sintesi -->
+## In sintesi
 
 <!-- 3-4 messaggi, da scrivere quando ci sono i dati. Attesi:
 + Quanti giovani, dopo la scuola, studiano ancora, lavorano o non fanno né l'uno né l'altro.
@@ -67,19 +70,116 @@ source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hov
 + Cosa non funziona: il mancato incontro tra le competenze formate e quelle richieste dalle imprese.
 + Chi resta fuori: profili e territori dove la transizione si interrompe. -->
 
-## Dopo la scuola: dove vanno i giovani
+## Titoli di studio per genere e classe d'età 
 
-Quanti diciottenni proseguono gli studi, quanti entrano nel lavoro e quanti si fermano: la fotografia della transizione a Parma rispetto a regione e Italia.
+```{r}
+#| label: plot_titoli_sesso_pr
+#| output: true
+#| fig-height: 6
+f_girafe(readRDS(file.path(dir_tit, "plot_titoli_sesso_pr.rds")))
+```
 
-<!-- grafici previsti:
-- passaggio all'università e laureati 25-39 anni, province ER (BES, in casa)
-- giovani 15-29 occupati / in formazione / NEET, trend (ISTAT forze di lavoro, BES)
-- iscritti ai percorsi professionali (IeFP) e agli ITS in provincia -->
+::: {.text-end}
+```{r}
+#| label: dl_plot_titoli_sesso_pr
+#| output: true
+f_bottoni_dati("titoli_sesso_pr", dir_tit, rds = "plot_titoli_sesso_pr")
+```
+:::
+
+::: {.callout-note collapse="true"}
+#### Osservazioni
+Tra il 2018 e il 2024 la quota di laureati è salita di circa 3 punti tra le donne (da 18% a 21%) e di 2 tra gli uomini (da 15% a 17%); cresce anche il diploma, la licenza media resta ferma. Le donne hanno più spesso la laurea e meno spesso la sola licenza media (25% contro 30%).
+
+_NB: Fonte ISTAT, censimento permanente della popolazione: stime arrotondate. La base comprende tutti i residenti dai 9 anni in su, anche chi è ancora a scuola e gli anziani, che hanno titoli mediamente più bassi: la crescita riflette in buona parte il ricambio tra generazioni. "Laurea o più" comprende lauree triennali, ITS, magistrali e dottorato; nessun titolo e licenza elementare non sono mostrati._
+:::
+
+```{r}
+#| label: titoli_confronto_ft
+#| output: true
+readRDS(file.path(dir_tit, "titoli_confronto_ft.rds"))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_titoli_confronto_ft
+#| output: true
+f_bottoni_dati("titoli_confronto", dir_tit, rds = "titoli_confronto_ft")
+```
+:::
+
+::: {.callout-note collapse="true"}
+#### Osservazioni
+Parma è vicina alla media regionale in tutte le classi d'età e poco sopra quella italiana: tra i 25 e i 49 anni i laureati sono il 32% (Italia 29%), tra i 50 e i 64 anni chi si è fermato alla licenza media è il 31% (Italia 35%). Le differenze tra i tre territori sono di pochi punti; quelle tra generazioni sono molto più ampie (laureati: 32% a 25-49 anni, 11% a 65 e più).
+
+_NB: Fonte ISTAT, censimento permanente della popolazione, 2024. Le classi d'età sono quelle pubblicate da ISTAT: non c'è 25-34 né 30-34, quindi il dato non si confronta con gli indicatori europei sui giovani laureati._
+:::
+
+
+## Titoli di studio e distribuzione sul territorio
+
+
+::: {.panel-tabset}
+
+## Laurea
+
+```{r}
+#| label: mappa_laurea_25_64_pr
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_tit, "mappa_laurea_25_64_pr.rds")))
+```
+
+## Diploma
+
+```{r}
+#| label: mappa_diploma_25_64_pr
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_tit, "mappa_diploma_25_64_pr.rds")))
+```
+
+## Licenza media
+
+```{r}
+#| label: mappa_licenza_media_25_64_pr
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_tit, "mappa_licenza_media_25_64_pr.rds")))
+```
+
+:::
+
+::: {.text-end}
+```{r}
+#| label: dl_mappe_titoli_25_64_pr
+#| output: true
+f_bottoni_dati("titoli_comuni_pr", dir_tit, rds = "mappa_laurea_25_64_pr")
+```
+:::
+
+::: {.callout-note collapse="true"}
+#### Osservazioni
+Il capoluogo si stacca da tutti: oltre un terzo dei residenti di 25-64 anni è laureato. Seguono, tra il 20 e il 25%, Fidenza e i comuni attorno a Parma (Collecchio, Montechiarugolo, Noceto, Traversetolo, Sala Baganza). Sotto il 15% stanno diversi comuni dell'Appennino (Palanzano, Varsi, Monchio delle Corti, Bardi, Corniglio) e Polesine Zibello, dove la sola licenza media arriva a un residente su tre. Il diploma è ovunque il titolo più diffuso e pesa di più in Val Taro e Val Ceno (Albareto e Bedonia oltre il 55%), meno a Parma, dove è più alta la quota di laureati.
+
+_NB: Fonte ISTAT, censimento permanente della popolazione, 2024. La classe 25-64 anni è la somma delle classi 25-49 e 50-64 pubblicate da ISTAT. Ogni mappa ha classi proprie (4 classi da 5 punti): i colori non si confrontano tra le schede. Nei comuni più piccoli (Valmozzola, Bore, Monchio delle Corti: meno di 400 residenti di 25-64 anni) bastano poche persone a spostare la quota; il numero di residenti è nel tooltip._
+:::
 
 <!-- ::: {.callout-note collapse="true"} -->
 <!-- ### Osservazioni -->
 <!-- commento dettagliato + _NB_ di metodo -->
 <!-- ::: -->
+
+# Dopo la scuola: dove vanno i giovani
+
+Quanti diciottenni proseguono gli studi, quanti entrano nel lavoro e quanti si fermano: la fotografia della transizione a Parma rispetto a regione e Italia.
+
+Tra i 25 e i 49 anni un residente su tre è laureato, come in regione e poco più che in Italia; i laureati si concentrano nel capoluogo e nella prima cintura.
+
+<!-- grafici previsti:
+- passaggio all'università e laureati 25-39 anni, province ER (BES, in casa)
+- giovani 15-29 occupati / in formazione / NEET, trend (ISTAT forze di lavoro, BES)
+- iscritti ai percorsi professionali (IeFP) e agli ITS in provincia -->
 
 ## Cosa funziona: le strade che portano al lavoro
 

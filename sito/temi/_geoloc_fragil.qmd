@@ -179,210 +179,43 @@ girafe(ggobj = combined_maps)
 
 :::
 
-***
+# Indici di fragilità
 
+- FONTI 
+  + **ISTAT**: indicatori demografici, sociali ed economici a livello comunale - dati aggiornati al 2023? [@Istat_IndiceDiFragilita]
+  - **Regione Emilia-Romagna**: studi sulla potenziale fragilità demografica, sociale ed economica dei territori regionali [@R_ER_Fragilita2025]  
+  - **Comune di Bologna**: report e `dashboard interattiva con mappe` sulla potenziale fragilità demografica, sociale ed economica dei comuni + quartieri cittadini  [@FragilitaBO_2026]
+  - **Intesa e Aiccon**: report sulla geografia della fragilità [@IntesaAiccon_MonFragil_2026]
 
-***
+Le prime 3 fonti riportano una stima della fragilità costruita con metodi simili. In particolare R-ER e Bologna che restituiscono un indice sintetico di potenziale fragilità osservabile a livello comunale (il quale combina indicatori demografici, sociali ed economici).
 
-# Edilizia residenziale pubblica: gli immobili ACER nel Comune di Parma
+ 
+::: {.callout-note .metodo collapse="true"}
+#### Nota metodologica
 
-<!-- Sezione aggiunta 2026-10-07: output del modulo comune_pr_quartieri -->
+Il report presenta 1 `indice sintetico` che è a sua volta costituito da altri `3 indici di potenziale fragilità (demografica, sociale ed economica)` stimati a livello di comune. 
 
-```{r}
-#| label: setup_acer
-library(sf)
-library(patchwork)    # la mappa sunto è un patchwork (riquadro della provincia)
-library(downloadthis) # bottoni di scarico dati
-source(here::here("R", "sito.R"))     # bottoni CSV + Excel (f_scarica_dati, f_bottoni_dati)
-source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hover bordeaux)
-dir_acer <- here::here("moduli", "comune_pr_quartieri", "output")
-```
++ 1. `Indice di potenziale fragilità demografica` -- misurato combinando: 
+  + `% 80ENNI E PIÙ`,
+  + `VARIAZIONE % POPOLAZIONE RESIDENTE`,
+  + `SALDO NATURALE MEDIO ANNUO (*1000)`
+ 
+> potenziale maggiore nella fascia appenninica, dal basso ferrarese fino alla pianura ravennate e in alcuni comuni vicini al confine con la Lombardia nelle province di Piacenza, Parma e Reggio nell'Emilia
 
-## Immobili ACER per quartiere
++ 2. `Indice di potenziale fragilità sociale` -- misurato combinando: 
+  + `% POPOLAZIONE RESIDENTE DI 65 ANNI E OLTRE IN FAMIGLIE UNIPERSONALI`,
+  + `RICAMBIO % MEDIO DELLA POPOLAZIONE STRANIERA`,
+  + `% POPOLAZIONE RESIDENTE STRANIERA IN ETÀ 0- 19 ANNI SULLA POPOLAZIONE RESIDENTE IN ETÀ 0-19 ANNI`,
+  + `% LAUREATI IN ETÀ 25-49 ANNI SULLA POPOLAZIONE RESIDENTE DI 25-49 ANNI`,
+  + `% MINORI IN FAMIGLIE MONOGENITORIALI SUL TOTALE DEI MINORI RESIDENTI IN FAMIGLIA`
 
-<1-2 frasi col messaggio principale, da scrivere>
+> livelli alti o medio alti nelle aree montane e a ridosso del Po.
+ 
++ 3. `Indice di potenziale fragilità economica` -- misurato combinando: 
+  + `% ABITAZIONI OCCUPATE IN AFFITTO`,
+  + `REDDITO IMPONIBILE MEDIO PER CONTRIBUENTE`,
+  + `% CONTRIBUENTI CON 0-10.000 EURO DI REDDITO COMPLESSIVO SU TOTALE CONTRIBUENTI`
 
-```{r}
-#| label: mappa_acer_quartieri
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_acer, "mappa_acer_quartieri.rds")))
-```
+> più intensa nelle province romagnole. 
 
-::: {.text-end}
-```{r}
-#| label: dl_mappa_acer_quartieri
-#| output: true
-f_bottoni_dati("acer_quartieri", dir_acer, rds = "mappa_acer_quartieri")
-```
-:::
-
-::: {.callout-note collapse="true"}
-## Osservazioni
-
-<da scrivere>
-
-_NB: 1 immobile = 1 edificio (indirizzo e civico), non 1 alloggio: la fonte non riporta il numero di alloggi. 21 indirizzi compaiono due volte con dati identici e si mantengono come nella fonte (possibili più unità allo stesso civico). I conteggi non tengono conto di superficie e abitanti dei quartieri. Dati 2022._
-:::
-
-```{r}
-#| label: plot_acer_quartieri
-#| output: true
-#| fig-height: 6
-f_girafe(readRDS(file.path(dir_acer, "plot_acer_quartieri.rds")))
-```
-
-::: {.text-end}
-```{r}
-#| label: dl_plot_acer_quartieri
-#| output: true
-f_bottoni_dati("acer_quartieri", dir_acer, rds = "plot_acer_quartieri")
-```
-:::
-
-::: {.callout-note collapse="true"}
-## Osservazioni
-
-<da scrivere>
-:::
-
-## Gli immobili quartiere per quartiere
-
-<1-2 frasi col messaggio principale, da scrivere>
-
-::: {.panel-tabset}
-
-### Montanara
-
-```{r}
-#| label: mappa_acer_montanara
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_acer, "mappa_acer_montanara.rds")))
-```
-
-### San Leonardo
-
-```{r}
-#| label: mappa_acer_san_leonardo
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_acer, "mappa_acer_san_leonardo.rds")))
-```
-
-### Lubiana
-
-```{r}
-#| label: mappa_acer_lubiana
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_acer, "mappa_acer_lubiana.rds")))
-```
-
-### Pablo
-
-```{r}
-#| label: mappa_acer_pablo
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_acer, "mappa_acer_pablo.rds")))
-```
-
-### Molinetto
-
-```{r}
-#| label: mappa_acer_molinetto
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_acer, "mappa_acer_molinetto.rds")))
-```
-
-### Cittadella
-
-```{r}
-#| label: mappa_acer_cittadella
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_acer, "mappa_acer_cittadella.rds")))
-```
-
-### Parma Centro
-
-```{r}
-#| label: mappa_acer_parma_centro
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_acer, "mappa_acer_parma_centro.rds")))
-```
-
-### Oltretorrente
-
-```{r}
-#| label: mappa_acer_oltretorrente
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_acer, "mappa_acer_oltretorrente.rds")))
-```
-
-### Golese
-
-```{r}
-#| label: mappa_acer_golese
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_acer, "mappa_acer_golese.rds")))
-```
-
-### San Pancrazio
-
-```{r}
-#| label: mappa_acer_san_pancrazio
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_acer, "mappa_acer_san_pancrazio.rds")))
-```
-
-### Vigatto
-
-```{r}
-#| label: mappa_acer_vigatto
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_acer, "mappa_acer_vigatto.rds")))
-```
-
-### Cortile San Martino
-
-```{r}
-#| label: mappa_acer_cortile_san_martino
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_acer, "mappa_acer_cortile_san_martino.rds")))
-```
-
-### San Lazzaro
-
-```{r}
-#| label: mappa_acer_san_lazzaro
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_acer, "mappa_acer_san_lazzaro.rds")))
-```
-
-:::
-
-::: {.text-end}
-```{r}
-#| label: dl_mappe_acer_quartiere
-#| output: true
-f_bottoni_dati("acer_immobili", dir_acer, rds = "mappa_acer_montanara")
-```
-:::
-
-::: {.callout-note collapse="true"}
-## Osservazioni
-
-<da scrivere>
-
-_NB: passando il mouse sui punti si leggono indirizzo e anno di costruzione, sulle strade il nome della via, sui parchi il nome del parco. Il file scaricabile contiene l'elenco completo degli immobili di tutti i quartieri, con le coordinate._
 :::

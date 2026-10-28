@@ -177,3 +177,17 @@ rcartocolor::carto_pal(9, name = "Safe")
 #[1] "#88CCEE" "#CC6677" "#DDCC77" "#117733" "#332288" "#AA4499" "#44AA99" "#999933" "#888888"
 rcartocolor::carto_pal(9, name = "Antique")
 #[1] "#855C75" "#D9AF6B" "#AF6458" "#736F4C" "#526A83" "#625377" "#68855C" "#9C9C5E" "#7C7C7C"
+rcartocolor::carto_pal(9, name = "TealRose")
+#"#D1EEEA" "#B2DFDD" "#96CFD1" "#7DBDC4" "#68ABB8" "#5596AA" "#45819A" "#366B88" "#2A5674"
+#ffc6c4,#f4a3a8,#e38191,#cc607d,#ad466c,#8b3058,#672044
+#"#009392" "#55A49D" "#91B8AA" "#C1CFB8" "#F1EAC8" "#E8C5B3" "#DFA0A0" "#D67C8E" "#D0587E"
+
+rcartocolor::carto_pal(15, name = "Sunset")
+ # "#F3E79B" "#F5D891" "#F9C987" "#F9B982" "#F8AA7F" "#F69B7F" "#F08D82" "#EB7F86" "#DE748B" "#D26991" "#C06296" "#AD5C9C" "#9658A0"
+ # "#7955A2" "#5C53A5"
+ rcartocolor::carto_pal(15, name = "BluYl")
+ # [1] "#F7FEAE" "#DBF3AA" "#C0E9A6" "#A6DEA4" "#8CD2A2" "#74C6A1" "#5DBAA0" "#46AEA0" "#2BA19D" "#10949A" "#058795" "#02798E" "#006C87"
+ # [14] "#025F7E" "#045275"
+ 
+ rcartocolor::carto_pal(7, "BluYl")
+ # "#F7FEAE" "#B7E6A5" "#7CCBA2" "#46AEA0" "#089099" "#00718B" "#045275"
