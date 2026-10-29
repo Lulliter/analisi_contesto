@@ -127,7 +127,7 @@ titoli_sesso_pr_prep
 
 plot_titoli_sesso_pr <- ggplot(titoli_sesso_pr_prep,
                                aes(x = gruppo, y = pct, fill = sesso, group = sesso)) +
-  geom_col_interactive(aes(tooltip = tooltip, data_id = tooltip),
+  geom_col_interactive(aes(tooltip = tooltip, data_id = tooltip, group = sesso),
                        position = position_dodge(width = 0.85), width = 0.8) +
   geom_text(aes(label = pct_lbl), position = position_dodge(width = 0.85),
             vjust = -0.4, size = 3.5) +

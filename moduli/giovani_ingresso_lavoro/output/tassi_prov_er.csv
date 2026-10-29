@@ -1,0 +1,67 @@
+territorio,indicatore,sesso,valore
+Emilia-Romagna,tasso_occupazione,Femmine,71.4
+Emilia-Romagna,tasso_occupazione,Maschi,87.8
+Emilia-Romagna,tasso_occupazione,Totale,79.9
+Italia,tasso_occupazione,Femmine,60.3
+Italia,tasso_occupazione,Maschi,76.3
+Italia,tasso_occupazione,Totale,68.5
+Emilia-Romagna,tasso_disoccupazione,Femmine,6.2
+Emilia-Romagna,tasso_disoccupazione,Maschi,3.9
+Emilia-Romagna,tasso_disoccupazione,Totale,4.9
+Italia,tasso_disoccupazione,Femmine,9.9
+Italia,tasso_disoccupazione,Maschi,8.3
+Italia,tasso_disoccupazione,Totale,9
+Bologna,tasso_disoccupazione,Femmine,4.7
+Bologna,tasso_occupazione,Femmine,76.4
+Bologna,tasso_disoccupazione,Maschi,5.2
+Bologna,tasso_occupazione,Maschi,88.4
+Bologna,tasso_disoccupazione,Totale,5
+Bologna,tasso_occupazione,Totale,82.3
+Ferrara,tasso_disoccupazione,Femmine,8.1
+Ferrara,tasso_occupazione,Femmine,68.1
+Ferrara,tasso_disoccupazione,Maschi,4.1
+Ferrara,tasso_occupazione,Maschi,87.9
+Ferrara,tasso_disoccupazione,Totale,5.9
+Ferrara,tasso_occupazione,Totale,77.8
+Forlì-Cesena,tasso_disoccupazione,Femmine,8
+Forlì-Cesena,tasso_occupazione,Femmine,64.1
+Forlì-Cesena,tasso_disoccupazione,Maschi,3.9
+Forlì-Cesena,tasso_occupazione,Maschi,90
+Forlì-Cesena,tasso_disoccupazione,Totale,5.5
+Forlì-Cesena,tasso_occupazione,Totale,78.1
+Modena,tasso_disoccupazione,Femmine,4.9
+Modena,tasso_occupazione,Femmine,74.2
+Modena,tasso_disoccupazione,Maschi,1.5
+Modena,tasso_occupazione,Maschi,94.2
+Modena,tasso_disoccupazione,Totale,3
+Modena,tasso_occupazione,Totale,84.3
+Parma,tasso_disoccupazione,Femmine,7.6
+Parma,tasso_occupazione,Femmine,68.3
+Parma,tasso_disoccupazione,Maschi,3.7
+Parma,tasso_occupazione,Maschi,84.6
+Parma,tasso_disoccupazione,Totale,5.3
+Parma,tasso_occupazione,Totale,77.2
+Piacenza,tasso_disoccupazione,Femmine,11.1
+Piacenza,tasso_occupazione,Femmine,68.4
+Piacenza,tasso_disoccupazione,Maschi,7.3
+Piacenza,tasso_occupazione,Maschi,89.3
+Piacenza,tasso_disoccupazione,Totale,9.1
+Piacenza,tasso_occupazione,Totale,78.4
+Ravenna,tasso_disoccupazione,Femmine,5.1
+Ravenna,tasso_occupazione,Femmine,72.6
+Ravenna,tasso_disoccupazione,Maschi,4.8
+Ravenna,tasso_occupazione,Maschi,86.3
+Ravenna,tasso_disoccupazione,Totale,4.9
+Ravenna,tasso_occupazione,Totale,79.7
+Reggio nell'Emilia,tasso_disoccupazione,Femmine,7.3
+Reggio nell'Emilia,tasso_occupazione,Femmine,68.1
+Reggio nell'Emilia,tasso_disoccupazione,Maschi,1.9
+Reggio nell'Emilia,tasso_occupazione,Maschi,81.1
+Reggio nell'Emilia,tasso_disoccupazione,Totale,4.2
+Reggio nell'Emilia,tasso_occupazione,Totale,75.1
+Rimini,tasso_disoccupazione,Femmine,3.4
+Rimini,tasso_occupazione,Femmine,70.6
+Rimini,tasso_disoccupazione,Maschi,4.2
+Rimini,tasso_occupazione,Maschi,86.6
+Rimini,tasso_disoccupazione,Totale,3.9
+Rimini,tasso_occupazione,Totale,80.3

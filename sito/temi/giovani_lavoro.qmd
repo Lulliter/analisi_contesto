@@ -2,7 +2,7 @@
 title: "Dalla scuola al lavoro"
 # categories: [P2 Persone e istituzioni, LA3 Capitale umano]
 # subtitle: "Cosa funziona nel passaggio tra formazione e lavoro, cosa non funziona, e chi resta fuori"
-description: "Pagina in costruzione: indice illustrativo..."
+description: "Titolo di studio, occupazione e disoccupazione, giovani residenti all’estero (dati 2024-2025)"
 lang: it
 
 format:
@@ -55,12 +55,13 @@ source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hov
 
 library(flextable)   # tabelle salvate in rds (serve il pacchetto caricato per stamparle)
 dir_tit <- here::here("moduli", "pop_titolo_studio", "output")
+# output del modulo giovani_ingresso_lavoro
+dir_lav <- here::here("moduli", "giovani_ingresso_lavoro", "output")
 ```
 
-::: {.callout-warning}
-### Pagina in costruzione
-<!-- Questa pagina raccoglie le domande e la struttura dell'analisi sul passaggio dalla formazione al lavoro. Segue logicamente la pagina sui [giovani a rischio dispersione](scuola_dispersione.qmd). -->
-:::
+<!-- ::: {.callout-warning} -->
+<!-- ### Pagina in costruzione -->
+<!-- ::: -->
 
 ## In sintesi
 
@@ -70,7 +71,42 @@ dir_tit <- here::here("moduli", "pop_titolo_studio", "output")
 + Cosa non funziona: il mancato incontro tra le competenze formate e quelle richieste dalle imprese.
 + Chi resta fuori: profili e territori dove la transizione si interrompe. -->
 
-## Titoli di studio per genere e classe d'età 
+
+Dopo aver analizzato le dimensioni dell'[istruzione](scuola.qmd) e [formazione professionale](formaz_rientro.qmd), tenendo anche lo sguardo su chi è a rischio di [dispersione scolastica](scuola_dispersione.qmd), questa pagina guarda a come i giovani si affacciano al lavoro.  
+
+
++ **Titoli di studio**: i giovani di Parma sono più istruiti delle generazioni precedenti. Tra i 25 e i 49 anni un residente su tre è laureato, come in regione e poco più che in Italia.
++ **Lavoro**: tra i 25 e i 34 anni lavora il 77% dei giovani, meno che in regione (80%) ma molto più che in Italia (meno del 70%). Tra le donne la disoccupazione è circa doppia rispetto agli uomini: intorno all’8% contro il 4%.
++ **Estero**: pur essendo l'Emilia Romagna una regione attrattiva, una parte crescente dei giovani vive all’estero. Per ogni 1.000 residenti di 19-34 anni, 92 sono iscritti all’anagrafe degli italiani all’estero di un comune parmense, un po’ più della media regionale e in aumento dal 2023.
+
+## Titoli di studio per classe d'età, genere, e territorio
+L'accesso a livelli alti di istruzione è un fattore chiave per la transizione verso il lavoro e la realizzazoine personale, oltre che una priorità per le politiche regionali [@ARTER_ReGiovani2026].  
+
+La provincia di Parma è in linea (dove non poco sopra) con la media regionale e nazionale per livelli di istruzione, ed evidenzia un aumento marcato del livello d'istruzione nelle generazioni più giovani. 
+```{r}
+#| label: titoli_confronto_ft
+#| output: true
+readRDS(file.path(dir_tit, "titoli_confronto_ft.rds"))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_titoli_confronto_ft
+#| output: true
+f_bottoni_dati("titoli_confronto", dir_tit, rds = "titoli_confronto_ft")
+```
+:::
+
+::: {.callout-note collapse="true"}
+#### Osservazioni
+<!-- Parma è vicina alla media regionale in tutte le classi d'età e poco sopra quella italiana: tra i 25 e i 49 anni i laureati sono il 32% (Italia 29%), tra i 50 e i 64 anni chi si è fermato alla licenza media è il 31% (Italia 35%).  -->
+Le differenze tra i tre territori sono di pochi punti; quelle tra generazioni sono molto più ampie (laureati: 32% a 25-49 anni, 11% a 65 e più).
+
+_NB: Fonte ISTAT, censimento permanente della popolazione, 2024. Le classi d'età sono quelle pubblicate da ISTAT: non c'è 25-34 né 30-34, quindi il dato non si confronta con gli indicatori europei sui giovani laureati._
+:::
+
+
+Come nel resto dell'Emilia Romagna, Parma registra un trend di scolarizzazione solido e una propensione all’iscrizione universitaria elevata soprattutto tra le ragazze.  
 
 ```{r}
 #| label: plot_titoli_sesso_pr
@@ -94,30 +130,8 @@ Tra il 2018 e il 2024 la quota di laureati è salita di circa 3 punti tra le don
 _NB: Fonte ISTAT, censimento permanente della popolazione: stime arrotondate. La base comprende tutti i residenti dai 9 anni in su, anche chi è ancora a scuola e gli anziani, che hanno titoli mediamente più bassi: la crescita riflette in buona parte il ricambio tra generazioni. "Laurea o più" comprende lauree triennali, ITS, magistrali e dottorato; nessun titolo e licenza elementare non sono mostrati._
 :::
 
-```{r}
-#| label: titoli_confronto_ft
-#| output: true
-readRDS(file.path(dir_tit, "titoli_confronto_ft.rds"))
-```
 
-::: {.text-end}
-```{r}
-#| label: dl_titoli_confronto_ft
-#| output: true
-f_bottoni_dati("titoli_confronto", dir_tit, rds = "titoli_confronto_ft")
-```
-:::
-
-::: {.callout-note collapse="true"}
-#### Osservazioni
-Parma è vicina alla media regionale in tutte le classi d'età e poco sopra quella italiana: tra i 25 e i 49 anni i laureati sono il 32% (Italia 29%), tra i 50 e i 64 anni chi si è fermato alla licenza media è il 31% (Italia 35%). Le differenze tra i tre territori sono di pochi punti; quelle tra generazioni sono molto più ampie (laureati: 32% a 25-49 anni, 11% a 65 e più).
-
-_NB: Fonte ISTAT, censimento permanente della popolazione, 2024. Le classi d'età sono quelle pubblicate da ISTAT: non c'è 25-34 né 30-34, quindi il dato non si confronta con gli indicatori europei sui giovani laureati._
-:::
-
-
-## Titoli di studio e distribuzione sul territorio
-
+La distribuzione territoriale per titolo di studio, in coerenza con le suddette differenze generazionali, riflette quella demografica, oltre a all'attrattività degli agglomerati urbani: i laureati si concentrano nel capoluogo e nella prima cintura.
 
 ::: {.panel-tabset}
 
@@ -162,7 +176,7 @@ f_bottoni_dati("titoli_comuni_pr", dir_tit, rds = "mappa_laurea_25_64_pr")
 #### Osservazioni
 Il capoluogo si stacca da tutti: oltre un terzo dei residenti di 25-64 anni è laureato. Seguono, tra il 20 e il 25%, Fidenza e i comuni attorno a Parma (Collecchio, Montechiarugolo, Noceto, Traversetolo, Sala Baganza). Sotto il 15% stanno diversi comuni dell'Appennino (Palanzano, Varsi, Monchio delle Corti, Bardi, Corniglio) e Polesine Zibello, dove la sola licenza media arriva a un residente su tre. Il diploma è ovunque il titolo più diffuso e pesa di più in Val Taro e Val Ceno (Albareto e Bedonia oltre il 55%), meno a Parma, dove è più alta la quota di laureati.
 
-_NB: Fonte ISTAT, censimento permanente della popolazione, 2024. La classe 25-64 anni è la somma delle classi 25-49 e 50-64 pubblicate da ISTAT. Ogni mappa ha classi proprie (4 classi da 5 punti): i colori non si confrontano tra le schede. Nei comuni più piccoli (Valmozzola, Bore, Monchio delle Corti: meno di 400 residenti di 25-64 anni) bastano poche persone a spostare la quota; il numero di residenti è nel tooltip._
+_NB: Fonte ISTAT, censimento permanente della popolazione, 2024. La classe 25-64 anni è la somma delle classi 25-49 e 50-64 pubblicate da ISTAT._
 :::
 
 <!-- ::: {.callout-note collapse="true"} -->
@@ -170,81 +184,199 @@ _NB: Fonte ISTAT, censimento permanente della popolazione, 2024. La classe 25-64
 <!-- commento dettagliato + _NB_ di metodo -->
 <!-- ::: -->
 
-# Dopo la scuola: dove vanno i giovani
+ 
+## Come cambia la condizione lavorativa dei giovani
 
-Quanti diciottenni proseguono gli studi, quanti entrano nel lavoro e quanti si fermano: la fotografia della transizione a Parma rispetto a regione e Italia.
+In regione le due fasce d'età vanno in direzioni opposte: tra i 15-24enni calano gli occupati e crescono gli inattivi, tra i 25-34enni crescono gli occupati e quelli in cerca di lavoro sono molti meno che nel 2019.
 
-Tra i 25 e i 49 anni un residente su tre è laureato, come in regione e poco più che in Italia; i laureati si concentrano nel capoluogo e nella prima cintura.
+::: {.panel-tabset}
 
-<!-- grafici previsti:
-- passaggio all'università e laureati 25-39 anni, province ER (BES, in casa)
-- giovani 15-29 occupati / in formazione / NEET, trend (ISTAT forze di lavoro, BES)
-- iscritti ai percorsi professionali (IeFP) e agli ITS in provincia -->
+## Rispetto al 2024
 
-## Cosa funziona: le strade che portano al lavoro
+```{r}
+#| label: plot_variazioni_su_2024_er
+#| output: true
+#| fig-height: 4.5
+f_girafe(readRDS(file.path(dir_lav, "plot_variazioni_su_2024_er.rds")))
+```
 
-Le filiere che a Parma funzionano meglio nel collegare formazione e occupazione: formazione professionale, istituti tecnici e ITS, università, apprendistato.
+## Rispetto al 2019
+
+```{r}
+#| label: plot_variazioni_su_2019_er
+#| output: true
+#| fig-height: 4.5
+f_girafe(readRDS(file.path(dir_lav, "plot_variazioni_su_2019_er.rds")))
+```
+
+:::
+
+::: {.text-end}
+```{r}
+#| label: dl_variazioni_condizione_er
+#| output: true
+f_bottoni_dati("variazioni_condizione_er", dir_lav, rds = "plot_variazioni_su_2019_er")
+```
+:::
+
+::: {.callout-note collapse="true"}
+#### Osservazioni
+La categoria _"inattivo"_ designa chi non lavora e non cerca lavoro: studenti, chi si occupa della famiglia, chi ha smesso di cercare. La creascita degli inattivi tra i più giovani può essere letta come maggiore permanenza negli studi.
+
+_NB: dato solo regionale. Le stime della rilevazione sulle forze di lavoro non coincidono con la popolazione residente._
+:::
+
+
+## Tassi di occupazione e disoccupazione giovanile
 
 <!-- grafici previsti:
 - esiti occupazionali per tipo di percorso (Regione ER / AlmaLaurea / AlmaDiploma, da acquisire)
 - tasso di occupazione 20-34 anni a 1-3 anni dal titolo, province ER (BES/Eurostat, da verificare)
-- seconda chance: iscritti a corsi serali, CPIA e IeFP (MIM, già in casa) -->
 
 <!-- ::: {.callout-note collapse="true"} -->
 <!-- ### Osservazioni -->
 <!-- ::: -->
 
-## Cosa non funziona: domanda e offerta che non si incontrano
+A Parma lavora il 77% dei giovani di 25-34 anni, meno che in regione (solo Reggio Emilia è più in basso) ma molto più che in Italia; cerca lavoro circa un giovane attivo su 20, come in regione.
 
-Quali profili le imprese del territorio cercano e non trovano, e quali competenze escono dal sistema formativo senza sbocco.  
+Il divario tra uomini e donne è ampio: lavora circa l'85% degli uomini e il 68% delle donne, e tra le donne la disoccupazione è circa doppia.
 
-Chi parte: quanti giovani lasciano Parma per studiare o lavorare altrove, e quanti tornano.
+::: {.panel-tabset}
+
+## Occupazione
+
+```{r}
+#| label: plot_occupazione_prov_er
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_lav, "plot_occupazione_prov_er.rds")))
+```
+
+## Disoccupazione
+
+```{r}
+#| label: plot_disoccupazione_prov_er
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_lav, "plot_disoccupazione_prov_er.rds")))
+```
+
+:::
+
+::: {.text-end}
+```{r}
+#| label: dl_tassi_prov_er
+#| output: true
+f_bottoni_dati("tassi_prov_er", dir_lav, rds = "plot_occupazione_prov_er")
+```
+:::
+
+::: {.callout-note collapse="true"}
+#### Osservazioni
+Il tasso di disoccupazione si calcola su chi lavora o cerca lavoro (forze di lavoro), non su tutti i giovani: chi studia o non cerca è escluso dal calcolo.
+
+_NB: per provincia e sesso le stime poggiano su campioni piccoli: le differenze di pochi punti vanno lette con cautela. Il dato per provincia è pubblicato solo per i 25-34 anni._
+:::
+
+Rispetto all'Europa, i 25-34enni della regione lavorano quanto la media UE e cercano lavoro meno spesso; i 15-24enni lavorano molto meno: uno su cinque, contro uno su tre nella UE.
+
+::: {.panel-tabset}
+
+## Occupazione
+
+```{r}
+#| label: plot_occupazione_territori
+#| output: true
+#| fig-height: 6
+f_girafe(readRDS(file.path(dir_lav, "plot_occupazione_territori.rds")))
+```
+
+## Disoccupazione
+
+```{r}
+#| label: plot_disoccupazione_territori
+#| output: true
+#| fig-height: 6
+f_girafe(readRDS(file.path(dir_lav, "plot_disoccupazione_territori.rds")))
+```
+
+:::
+
+::: {.text-end}
+```{r}
+#| label: dl_tassi_territori
+#| output: true
+f_bottoni_dati("tassi_territori", dir_lav, rds = "plot_occupazione_territori")
+```
+:::
+
+::: {.callout-note collapse="true"}
+#### Osservazioni
+_NB: Il confronto tra i più giovani risente di quanti sono ancora negli studi, che queste tabelle non distinguono._
+:::
 
 
-Il mismatch: quali competenze mancano davvero alle imprese di Parma, e quanto il sistema formativo locale può colmarle.
+## Giovani che vanno all'estero 
+<!-- Chi parte: quanti giovani lasciano Parma per studiare o lavorare altrove, e quanti tornano. -->
+<!-- (2026-10-29: frase di Luisa resa commento: con l'AIRE si vede chi vive all'estero, non chi parte e chi torna) -->
 
-<!-- grafici previsti:
-- difficoltà di reperimento per profilo e titolo di studio, provincia di Parma (Excelsior, da acquisire)
-- laureati e diplomati per indirizzo vs assunzioni previste per indirizzo
-- contratti dei giovani: tempo determinato, apprendistato, part-time involontario (INPS Osservatori) -->
+Per ogni 1.000 giovani di 19-34 anni residenti in provincia, 92 vivono all'estero e sono iscritti all'anagrafe di un comune parmense: circa 7.200 persone, un po' più della media regionale. In due anni il rapporto è salito di circa 11 ogni 1.000, come in regione.
 
-<!-- ::: {.callout-note collapse="true"} -->
-<!-- ### Osservazioni -->
-<!-- ::: -->
+```{r}
+#| label: aire_confronto_ft
+#| output: true
+readRDS(file.path(dir_lav, "aire_confronto_ft.rds"))
+```
 
-## Chi resta fuori
+::: {.text-end}
+```{r}
+#| label: dl_aire_confronto_ft
+#| output: true
+f_bottoni_dati("aire_confronto", dir_lav, rds = "aire_confronto_ft")
+```
+:::
 
-I giovani che la transizione lascia indietro: per titolo di studio, genere, origine e territorio; e chi se ne va.
+In regione, tra i 18-39enni italiani chi si trasferisce all'estero è più numeroso di chi rientra ogni anno dal 2005 (circa 2.700 in più nel 2025). I movimenti di residenza da e verso l'estero, per tutte le età, sono nella pagina sui [trend demografici](trend_demogr.qmd#trend-immigrazione).
 
-<!-- grafici previsti:
-- NEET per sesso e titolo di studio (BES per sesso già in casa; titolo da RCFL)
-- giovani con cittadinanza non italiana: dalla scuola al lavoro (RCFL / INPS)
-- emigrazione dei giovani: cancellazioni per l'estero 20-34 anni, Parma vs province ER (ISTAT, da acquisire) -->
-
-<!-- ::: {.callout-note collapse="true"} -->
-<!-- ### Osservazioni -->
-<!-- ::: -->
+::: {.callout-note collapse="true"}
+#### Osservazioni
+Per l'Emilia-Romagna il Report attribuisce la crescita degli iscritti in parte alle acquisizioni di cittadinanza in America latina (Brasile, Argentina), in parte agli espatri verso l'Europa (Regno Unito, Francia, Spagna). Chi si trasferisce senza iscriversi all'anagrafe degli italiani all'estero non è contato.
+:::
 
 
-<!-- ## Possibili approfondimenti -->
+## Cosa funziona (e cosa no) nell'incontro tra formazione e lavoro
+<!-- ## Riferimenti bibliografici -->
 
-<!-- 1. Il mismatch: quali competenze mancano davvero alle imprese di Parma, e quanto il sistema formativo locale può colmarle. -->
-<!-- 2. La rete: come istituti tecnici, ITS, università e imprese collaborano sul territorio, e con quali risultati per i ragazzi. -->
-<!-- 3. Chi parte: quanti giovani lasciano Parma per studiare o lavorare altrove, e quanti tornano. -->
-<!-- 4. L'innovazione: se il territorio attrae o perde talenti, e come si colloca su startup, brevetti e ricerca rispetto alle province vicine. -->
+<!-- Qui sotto alcune fonti selezionate da analizzare per dati e spunti di ispirazione: -->
 
-## Riferimenti bibliografici
+<!-- - BEllissimo !!! [ART-ER Attrattività Ricerca Territorio](https://www.art-er.it/) -->
+<!-- - [Regione Emilia-Romagna, istruzione e formazione professionale](https://formazionelavoro.regione.emilia-romagna.it/) e  -->
+<!-- - [ITS Academy](https://formazionelavoro.regione.emilia-romagna.it/entra-in-regione/bandi-regionali/2025/percorsi-biennali-fondazioni-its-academy-a-f-2025-2026-valutazione-e-selezione-della-potenziale-offerta-formativa). -->
+<!-- - [AlmaLaurea, Università di Parma](https://www.almalaurea.it/en/gli-atenei/universita-di-parma) (condizione occupazionale dei laureati dell'ateneo, per corso di studio). -->
+<!-- <!-- - **Cosa non funziona**:  --> 
+<!-- - [Sistema informativo Excelsior, Unioncamere](https://excelsior.unioncamere.net/) (profili richiesti dalle imprese e difficoltà di reperimento, anche per provincia);  -->
+<!-- - [INPS, Osservatorio sulle politiche occupazionali e del lavoro](https://www.inps.it/it/it/inps-comunica/notizie/dettaglio-news-page.news.2025.11.osservatorio-delle-politiche-occupazionali-e-del-lavoro-i-dati-2024.html) (contratti dei giovani). -->
+<!-- - Orientamento e futuro: [Associazione Futuri Probabili, "Allenarsi al futuro"](https://www.futuriprobabili.it/allenarsi-al-futuro) (percorsi per aiutare i ragazzi a immaginare e scegliere il proprio futuro). -->
+<!-- <!-- - Chi resta fuori:  --> 
+<!-- - [Istituto Toniolo, Rapporto Giovani 2026](https://www.istitutotoniolo.it/rapporto-giovani-2026-crescere-nellincertezza-e-costruire-il-futuro/);  -->
+<!-- - [Percorsi di Secondo Welfare, "Ripartenze possibili: NEET e transizioni interrotte tra i giovani adulti"](https://www.secondowelfare.it/studio/rapporto-fast-3-neet/). -->
 
-Qui sotto alcune fonti selezionate da analizzare per dati e spunti di ispirazione:
 
-- [Regione Emilia-Romagna, istruzione e formazione professionale](https://formazionelavoro.regione.emilia-romagna.it/) e 
-- [ITS Academy](https://formazionelavoro.regione.emilia-romagna.it/entra-in-regione/bandi-regionali/2025/percorsi-biennali-fondazioni-its-academy-a-f-2025-2026-valutazione-e-selezione-della-potenziale-offerta-formativa).
-- [AlmaLaurea, Università di Parma](https://www.almalaurea.it/en/gli-atenei/universita-di-parma) (condizione occupazionale dei laureati dell'ateneo, per corso di studio).
-<!-- - **Cosa non funziona**:  -->
-- [Sistema informativo Excelsior, Unioncamere](https://excelsior.unioncamere.net/) (profili richiesti dalle imprese e difficoltà di reperimento, anche per provincia); 
-- [INPS, Osservatorio sulle politiche occupazionali e del lavoro](https://www.inps.it/it/it/inps-comunica/notizie/dettaglio-news-page.news.2025.11.osservatorio-delle-politiche-occupazionali-e-del-lavoro-i-dati-2024.html) (contratti dei giovani).
-- Orientamento e futuro: [Associazione Futuri Probabili, "Allenarsi al futuro"](https://www.futuriprobabili.it/allenarsi-al-futuro) (percorsi per aiutare i ragazzi a immaginare e scegliere il proprio futuro).
-<!-- - Chi resta fuori:  -->
-- [Istituto Toniolo, Rapporto Giovani 2026](https://www.istitutotoniolo.it/rapporto-giovani-2026-crescere-nellincertezza-e-costruire-il-futuro/); 
-- [Percorsi di Secondo Welfare, "Ripartenze possibili: NEET e transizioni interrotte tra i giovani adulti"](https://www.secondowelfare.it/studio/rapporto-fast-3-neet/).
- 
+
+
+`[Approfondimenti in corso]`
+   
+
+
+<!-- Le filiere che a Parma funzionano meglio nel collegare formazione e occupazione: formazione professionale, istituti tecnici e ITS, università, apprendistato. -->
+<!-- Quali profili le imprese del territorio cercano e non trovano, e quali competenze escono dal sistema formativo senza sbocco.   -->
+<!-- Il mismatch: quali competenze mancano davvero alle imprese di Parma, e quanto il sistema formativo locale può colmarle. -->
+
+  
+## Possibili approfondimenti
+
++ Il mismatch: quali competenze mancano davvero alle imprese di Parma, e quanto il sistema formativo locale può colmarle.
++ L'innovazione: se il territorio attrae o perde talenti, e come si colloca su startup, brevetti e ricerca rispetto alle province vicine.
+<!-- + La rete: come istituti tecnici, ITS, università e imprese collaborano sul territorio, e con quali risultati per i ragazzi. -->
+<!-- + Chi parte: quanti giovani lasciano Parma per studiare o lavorare altrove, e quanti tornano. -->
+

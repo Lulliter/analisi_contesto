@@ -1,0 +1,55 @@
+territorio,classe_eta,indicatore,sesso,valore
+Emilia-Romagna,15-24,tasso_occupazione,Femmine,16.9
+Emilia-Romagna,15-24,tasso_occupazione,Maschi,24.6
+Emilia-Romagna,15-24,tasso_occupazione,Totale,20.9
+Emilia-Romagna,25-34,tasso_occupazione,Femmine,71.4
+Emilia-Romagna,25-34,tasso_occupazione,Maschi,87.8
+Emilia-Romagna,25-34,tasso_occupazione,Totale,79.9
+Italia,15-24,tasso_occupazione,Femmine,14.4
+Italia,15-24,tasso_occupazione,Maschi,21.2
+Italia,15-24,tasso_occupazione,Totale,17.9
+Italia,25-34,tasso_occupazione,Femmine,60.3
+Italia,25-34,tasso_occupazione,Maschi,76.3
+Italia,25-34,tasso_occupazione,Totale,68.5
+Nord-est,15-24,tasso_occupazione,Femmine,18.8
+Nord-est,15-24,tasso_occupazione,Maschi,26.1
+Nord-est,15-24,tasso_occupazione,Totale,22.6
+Nord-est,25-34,tasso_occupazione,Femmine,72.2
+Nord-est,25-34,tasso_occupazione,Maschi,87.9
+Nord-est,25-34,tasso_occupazione,Totale,80.3
+UE 27,15-24,tasso_occupazione,Femmine,32.4
+UE 27,15-24,tasso_occupazione,Maschi,36.6
+UE 27,15-24,tasso_occupazione,Totale,34.5
+UE 27,25-34,tasso_occupazione,Femmine,75
+UE 27,25-34,tasso_occupazione,Maschi,84
+UE 27,25-34,tasso_occupazione,Totale,79.6
+Emilia-Romagna,15-24,tasso_disoccupazione,Femmine,17.1
+Emilia-Romagna,15-24,tasso_disoccupazione,Maschi,17.5
+Emilia-Romagna,15-24,tasso_disoccupazione,Totale,17.4
+Emilia-Romagna,25-34,tasso_disoccupazione,Femmine,6.2
+Emilia-Romagna,25-34,tasso_disoccupazione,Maschi,3.9
+Emilia-Romagna,25-34,tasso_disoccupazione,Totale,4.9
+Italia,15-24,tasso_disoccupazione,Femmine,22.2
+Italia,15-24,tasso_disoccupazione,Maschi,19.5
+Italia,15-24,tasso_disoccupazione,Totale,20.6
+Italia,25-34,tasso_disoccupazione,Femmine,9.9
+Italia,25-34,tasso_disoccupazione,Maschi,8.3
+Italia,25-34,tasso_disoccupazione,Totale,9
+Nord-est,15-24,tasso_disoccupazione,Femmine,16.3
+Nord-est,15-24,tasso_disoccupazione,Maschi,12.7
+Nord-est,15-24,tasso_disoccupazione,Totale,14.2
+Nord-est,25-34,tasso_disoccupazione,Femmine,5.9
+Nord-est,25-34,tasso_disoccupazione,Maschi,3.2
+Nord-est,25-34,tasso_disoccupazione,Totale,4.4
+UE 27,15-24,tasso_disoccupazione,Femmine,15.1
+UE 27,15-24,tasso_disoccupazione,Maschi,15.3
+UE 27,15-24,tasso_disoccupazione,Totale,15.2
+UE 27,25-34,tasso_disoccupazione,Femmine,7.4
+UE 27,25-34,tasso_disoccupazione,Maschi,7.2
+UE 27,25-34,tasso_disoccupazione,Totale,7.3
+Parma,25-34,tasso_disoccupazione,Femmine,7.6
+Parma,25-34,tasso_occupazione,Femmine,68.3
+Parma,25-34,tasso_disoccupazione,Maschi,3.7
+Parma,25-34,tasso_occupazione,Maschi,84.6
+Parma,25-34,tasso_disoccupazione,Totale,5.3
+Parma,25-34,tasso_occupazione,Totale,77.2

@@ -296,8 +296,8 @@ _NB: Fonte ISTAT. ELET = 18-24enni con al più la licenza media e fuori da ogni 
 
 ## Possibili approfondimenti
 
-1. Dettagliare il profilo di chi abbandona davvero: età, genere, origine, indirizzo di studi.
-2. Ritardo e origine: capire meglio il nesso tra ritardo e origine straniera (interessante che c'è distinzione tra nati all'estero (che fanno più fatica) e nati in Italia da genitori stranieri).
-3. Esplorare la seconda chance: chi rientra in formazione attraverso corsi serali, centri per adulti e percorsi professionali, e con quali esiti.
-4. Il territorio: dove il rischio di dispersione si concentra, in relazione alla fragilità economica e sociale dei comuni.
- 
+1. Dettagliare il profilo di chi abbandona davvero: età, genere, origine, indirizzo di studi, territorio (cfr. nuovo indicatori Istat sulla `povertà educativa`). 
+2. Capire meglio il nesso tra ritardo e origine straniera (importante distinzione tra nati all'estero e nati in Italia da genitori stranieri).
+<!-- 3. Esplorare la seconda chance: chi rientra in formazione attraverso corsi serali, centri per adulti e percorsi professionali, e con quali esiti. -->
+<!-- 4. Il territorio: dove il rischio di dispersione si concentra, in relazione alla fragilità economica e sociale dei comuni. -->
+
