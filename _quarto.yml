@@ -70,8 +70,8 @@ website:
             href: sito/temi/scuola.qmd
           - text: "Rischio dispersione"
             href: sito/temi/scuola_dispersione.qmd
-          - text: "Formazione professionale"
-            href: sito/temi/formaz_rientro.qmd
+          # - text: "Formazione professionale"
+          #   href: sito/temi/formaz_rientro.qmd
           - text: "Giovani e lavoro"
             href: sito/temi/giovani_lavoro.qmd
           - text: "Crescere al tempo dell'IA"

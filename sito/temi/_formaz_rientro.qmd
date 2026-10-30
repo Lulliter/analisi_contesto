@@ -1,0 +1,205 @@
+---
+title: "Le altre strade: formazione professionale e rientri a scuola nella provincia di Parma"
+# categories: [P2 Persone e istituzioni, LA3 Capitale umano]
+# subtitle: "Chi lascia il percorso ordinario per una qualifica professionale e chi torna a scuola da adulto: quanti sono, chi sono, come cambia nel tempo"
+description: "Dati MIM (a.s. 2015/16-2024/25) e CPIA di Parma (2024/25), estratti a settembre 2026"
+lang: it
+
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+
+execute:
+  eval: true
+  echo: false
+  warning: false
+  error: false
+  output: false
+
+# --- Bibliografia (unica per il sito, esportata da Zotero): si cita con [@chiave]
+bibliography: ../../bib/CRP_analisi_contesto.bib
+csl: ../../bib/apa_7th.csl
+link-citations: true
+---
+
+```{r}
+#| label: anteprima
+#| eval: false
+# Anteprima: renderizza e apre nel browser (lancia a mano, ignorato nel render)
+pagina <- "formaz_rientro"   # nome pagina, senza estensione
+quarto::quarto_render(here::here("sito", "temi", paste0(pagina, ".qmd")))
+browseURL(here::here("docs", "sito", "temi", paste0(pagina, ".html")))
+```
+
+```{=html}
+<!-- Bozza (2026-09-23): composta dagli output del modulo formaz_e_rientro.
+     Con riserva di unificarla con giovani_lavoro (tema 2.b). Crescerà con
+     CPIA (iscritti per anno/età/cittadinanza) e IeFP (iscritti per provincia)
+     quando arrivano i dati richiesti. -->
+```
+
+```{r}
+#| label: setup
+library(here)
+library(dplyr)
+library(ggplot2)
+library(ggiraph)
+library(ggtext)    # element_textbox nei temi dei plot salvati
+library(scales)
+library(glue)
+library(downloadthis)
+library(flextable)   # tabelle salvate in rds (serve il pacchetto caricato per stamparle)
+
+dir_rientro <- here::here("moduli", "formaz_e_rientro", "output")
+
+source(here::here("R", "sito.R"))     # bottoni CSV + Excel (f_scarica_dati, f_bottoni_dati)
+source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hover bordeaux)
+```
+
+::: callout-warning
+## Pagina in completamento
+
+<!-- Mancano ancora la formazione professionale (IeFP) e gli esiti, in attesa dei dati regionali: le sezioni segnate con 🟡. -->
+ 
+:::
+
+## In sintesi
+
+- Dopo la terza media una parte dei ragazzi prende la via della formazione professionale. Con riferimento all'A.S. 2023/24:
+  - in **Emilia-Romagna** si stimano circa 42.400 iscritti all'Istruzione Professionale statale e 16.000 allievi nei percorsi regionali IeFP; 
+  - in **provincia di Parma**, si registrano complessivamente oltre 3.300 frequentanti negli istituti professionali (inclusi alcuni studenti dei percorsi IeFP attivati nelle scuole). A questi si aggiungono gli iscritti delle 7 sedi degli enti di formazione accreditati [numero stimato di 1.000 - 1.200]{.mark}.
+
+<!-- [ Parma l'offerta conta nove sedi tra enti e istituti, ma quanti la frequentano e quanti arrivano alla qualifica è il dato da acquisire.] -->
+
+
+## Studenti in formazione professionale [🟡]{.content-hidden}
+
+Dopo la terza media, una parte dei ragazzi intraprende percorsi professionalizzanti. I percorsi sono stati recentemente riformati -  [@DLgs2017n61]entrato in vigore a partire dall'anno scolastico 2018/2019.
+ 
+Oggi in Italia esistono due percorsi di formazione professionale:
+
+- `Istruzione professionale:` 5 anni (rari percorsi sperimentali di 4 anni) che porta al _Diploma di Stato_ (Maturità), ed è erogata da **Istituti Professionali Statali**. 
+  <!-- - Dal 2018/19 [D.Lgs. 61/2017]{.mark} è organizzata in 11 indirizzi che vogliono corrispondere meglio alsistema produttivo; prima era divisa in 2 settori (Servizi e Industria/Artigianato) con 6 indirizzi.  -->
+  
+- `IeFP (istruzione e formazione professionale):` 3 anni (più eventuale 4° anno) che porta a 
+	_Qualifica professionale_ (o _Diploma professionale_), ed è erogata da **Enti di formazione accreditati dalla Regione** o da **Istituti Professionali Statali (in sussidiarietà)**.
+ 
+
+::: {.callout-note collapse="true"}
+#### Norma
+**Fino al 2017/18 [@DPR87_2010 e accordi Stato-Regioni del 2011]**
+
++ **Istruzione professionale** in 2 settori (servizi; industria e artigianato), quinquennale, con diploma di Stato.
+Gli istituti professionali potevano dare anche la qualifica IeFP triennale in “sussidiarietà”, in due modi:
+
+  - _integrativa_: l’alunno è iscritto al quinquennale e al terzo anno prende   anche la qualifica;
+  - _complementare_: classi IeFP a parte.
+
+_NB: Per questo nei file MIM fino al 2017/18 la IeFP non si vede._
+
+**Dal 2018/19 (@DLgs2017n61, attuazione della L. 107/2015)**
+
++ L’**istruzione professionale** passa a 11 indirizzi (“Nuovi professionali”), partendo dalle classi prime e scorrendo un anno alla volta.
+
+- La sussidiarietà integrativa viene abolita. Le classi del vecchio ordinamento finiscono ad esaurimento: è la “IeFP ex integrativa” del MIM, 5.683 alunni in regione nel 2018/19, solo al 2° e 3° anno.
+
+- La IeFP negli istituti resta possibile solo con classi specifiche, se l’istituto è accreditato dalla Regione, secondo l’accordo USR-Regione ER del 2018, rinnovato nel 2022.
+- La scheda dell’Ufficio scolastico regionale dice anche che nel 2022/23 erano accreditati 43 istituti, 23 con classi IeFP attive. E che nel 2021/22 si erano qualificati 2.324 alunni in 42 istituti.
+
+ 
+_NB: Nei dati MIM la IeFP degli istituti risulta molto più piccola di quanto indicano le fonti regionali (nel 2021/22, 2.324 qualificati in 42 istituti della regione): per questo nella tabella professionali e IeFP sono sommati._
+
+_Fonti: [Ufficio scolastico regionale ER, IeFP negli istituti professionali in sussidiarietà (2023)](https://www.istruzioneer.gov.it/wp-content/uploads/2023/01/Percorsi-di-Istruzione-e-Formazione-Professionale-IeFP-erogati-dagli-Istituti-Professionali-in-regime-di-sussidiarieta.pdf); [Accordo Ufficio scolastico regionale - Regione ER (2022)](https://www.istruzioneer.gov.it/wp-content/uploads/2022/09/Accordo-USR-RER-5-8-22.pdf)_
+:::
+
+
+
+
+
+<!-- ---- -->
+
+<!-- In **Emilia-Romagna i percorsi IeFP contano circa 16 mila allievi** (a.f. 2023/24). Nella regione si può frequentare in 2 tipi di sede: -->
+
+<!-- 1.  **Istituti professionali**, che offrono il quinquennio ordinario (diploma) e, in sussidiarietà, i percorsi **IeFP**. -->
+<!-- 2.  **Enti di formazione accreditati** dalla Regione, che non sono scuole: i loro allievi li conta solo la Regione (SIFER). -->
+
+<!-- I dati del MIM accorpano tutti i frequentanti del primo tipo di sede, e non rilevano quelli del secondo tipo (rilevati dalla Regione). Per questo non è facile identificare quanti ragazzi frequentano IeFP a Parma, e quanti arrivano alla qualifica. -->
+
+
+## Studenti alla scuola secondaria di 2° grado in Regione e Provincia [🟡]{.content-hidden}
+
+La tabella sotto inquadra la distribuzione generale degli iscritti alle superiori, ma **i dati del MIM sottostimano la quota dei Professionali e IeFP**. Infatti, il MIM registra _solo_ gli iscritti IeFP presso gli Istituti Professionali statali. Non traccia gli iscritti presso gli Enti di Formazione Accreditati dalla Regione (pari a circa 16.000 allievi totali in Emilia-Romagna, censiti solo dal sistema regionale SIFER).
+
+ 
+```{r}
+#| label: tipi_scuola_ft
+#| output: true
+readRDS(file.path(dir_rientro, "tipi_scuola_ft.rds"))
+```
+
+::: {.text-end}
+```{r}
+#| label: dl_tipi_scuola_ft
+#| output: true
+f_bottoni_dati("tipi_scuola", dir_rientro, rds = "tipi_scuola_ft")
+```
+:::
+
+::: {.callout-note collapse="true"}
+### Osservazioni
+Gli alunni sono contati nella provincia della scuola; il dato comprende i corsi serali e le sezioni carcerarie. I dati MIM escludono a priori gli iscritti presso gli Enti di Formazione Accreditati, tracciati solo a livello regionale (circa 16.000 allievi totali in Emilia-Romagna). 
+
+*NB: LA componente IefP alla voce "Professionali e IeFP" è fortemente sottostimato rispetto alle rilevazioni dell'Ufficio Scolastico Regionale.*
+:::
+
+
+## Studenti IeFP nei dati SIFER [🟡]{.content-hidden}
+
+<!-- In **Emilia-Romagna i percorsi IeFP contano circa 16 mila allievi** (a.f. 2023/24). Nella regione si può frequentare in 2 tipi di sede: -->
+
+   
+<!-- L'offerta per il 2026/27 a Parma è proposta da **7 enti accreditati, 2 istituti professionali con percorsi IeFP, più 1 hub propedeutico** per chi non ha ancora scelto. -->
+
+`[Approfondimenti in corso]`
+
+
+```{=html}
+<!-- RICHIESTA DA FARE: (TODO / SIFER, richiesta 2.a-2). 
+
+    Da riempire quando arrivano gli iscritti IeFP per provincia dalla Regione
+     In casa oggi: offerta 2026/27 a Parma (7 enti
+     accreditati, 2 istituti professionali, 1 hub propedeutico) e i totali
+     regionali INAPP (ER 2023/24: 15.817 allievi, metà enti e metà istituti;
+     qualificati e diplomati). Possibile intanto: la mappa/tabella dell'offerta. -->
+```
+
+
+## Indirizzi Tecnici, Professionali e IeFP in Provincia  [🟡]{.content-hidden}
+
+
+`[Approfondimenti in corso]`
+
+
+
+## Gli esiti: chi arriva al titolo e sbocchi seguenti [🟡]{.content-hidden}
+
+ 
+<!-- Quanti dei serali arrivano al diploma, quanti dell'IeFP alla qualifica, e
+     quanti non arrivano da nessuna parte (il ponte con i NEET di
+     scuola_dispersione e con giovani_lavoro). 
+     
+     Fonti da verificare: esiti
+     scrutini/esami per scuola nel catalogo MIM (copre i percorsi di II
+     livello?), INAPP per l'IeFP (solo regionale), Regione ER (SIFER). -->
+ 
+
+`[Approfondimenti in corso]`
+
+
+
+## Possibili approfondimenti
+
++ Verificare se c'è maggiore dispersione scolastica tra i frequentanti di Istituti Professionali e IeFP
+ 

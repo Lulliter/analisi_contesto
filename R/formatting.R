@@ -1,5 +1,9 @@
-# formatting_core.R — v1.4 (2026-10-19) — canonico: repo metadati
+# formatting_core.R — v1.5 (2026-10-30) — canonico: repo metadati
 # Changelog:
+# v1.5: f_ft_titolo_note(rielaborazione = TRUE) aggiunge dopo la nota "Fonte..." (o in coda) la riga
+#       "Rielaborazione: Fondazione Cariparma - Osservatorio dei Dati Sociali", come
+#       f_caption_fonte() nei grafici; vale per ogni tabella del sito (deciso in formaz_e_rientro).
+#       Da riportare nel repo metadati insieme a v1.2-v1.4
 # v1.4: bg_previsione, sfondo azzurro pallido per le righe/celle di dati previsti o stimati
 #       nelle tabelle (anni di previsione con *), deciso in anziani_non_autosuff. Da riportare
 #       nel repo metadati insieme a v1.2 e v1.3
@@ -227,7 +231,16 @@ f_ft_totale <- function(ft, i = NULL, col_j = NULL, bg_color = "#CCCCCC") {
 #' valori calcolati (n, date, ecc.) -> note "dinamiche".
 #' NB: se si usa questa funzione NON usare anche `#| tbl-cap` nel chunk
 #' (doppio caption, vedi OKKIO sotto).
-f_ft_titolo_note <- function(ft, titolo, note = NULL) {
+#' `rielaborazione = TRUE` (v1.5): aggiunge dopo la nota che inizia con "Fonte" (o in coda) la riga
+#' "Rielaborazione: ...", come f_caption_fonte() nei grafici; FALSE per non metterla.
+#' (fino alla v1.4: function(ft, titolo, note = NULL), senza la riga)
+f_ft_titolo_note <- function(ft, titolo, note = NULL, rielaborazione = TRUE) {
+  if (rielaborazione) {
+    # subito dopo la nota che inizia con "Fonte", altrimenti in coda
+    pos_fonte <- which(str_detect(note, "^Fonte"))[1]
+    note <- append(note, "Rielaborazione: Fondazione Cariparma - Osservatorio dei Dati Sociali",
+                   after = if (is.na(pos_fonte)) length(note) else pos_fonte)
+  }
   # Titolo come prima riga DENTRO la tabella (non set_caption, che in
   # Quarto/RStudio può non essere renderizzato): si vede in tutti i formati
   # e resta nell'oggetto salvato su RDS

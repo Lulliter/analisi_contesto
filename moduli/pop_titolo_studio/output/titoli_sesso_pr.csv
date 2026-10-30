@@ -1,13 +1,17 @@
-territorio,sesso,gruppo,anno,valore,totale,pct
-Parma (provincia),Femmine,Licenza media,2018,52786,214648,24.59188997801051
-Parma (provincia),Femmine,Licenza media,2024,53303,215474,24.73755534310404
-Parma (provincia),Femmine,Diploma o qualifica,2018,75840,214648,35.33226491744624
-Parma (provincia),Femmine,Diploma o qualifica,2024,80387,215474,37.30705328717154
-Parma (provincia),Femmine,Laurea o più,2018,38018,214648,17.71178860273564
-Parma (provincia),Femmine,Laurea o più,2024,44947,215474,20.85959326879345
-Parma (provincia),Maschi,Licenza media,2018,61280,203061,30.178123815011254
-Parma (provincia),Maschi,Licenza media,2024,61971,208872,29.66936688498219
-Parma (provincia),Maschi,Diploma o qualifica,2018,75685,203061,37.27205125553405
-Parma (provincia),Maschi,Diploma o qualifica,2024,81740,208872,39.13401509058179
-Parma (provincia),Maschi,Laurea o più,2018,30535,203061,15.037353307626772
-Parma (provincia),Maschi,Laurea o più,2024,35534,208872,17.012332912022675
+territorio,sesso,anno,gruppo,valore,totale,pct
+Parma (provincia),Femmine,2018,Nessun titolo o licenza elementare,6405,123868,5.1708270093971
+Parma (provincia),Femmine,2024,Nessun titolo o licenza elementare,4612,122526,3.764099048365245
+Parma (provincia),Femmine,2018,Licenza media,29176,123868,23.554105983789196
+Parma (provincia),Femmine,2024,Licenza media,26279,122526,21.44769273460327
+Parma (provincia),Femmine,2018,Diploma o qualifica,55740,123868,44.999515613394905
+Parma (provincia),Femmine,2024,Diploma o qualifica,54384,122526,44.38568140639538
+Parma (provincia),Femmine,2018,Laurea o più,32547,123868,26.2755513934188
+Parma (provincia),Femmine,2024,Laurea o più,37251,122526,30.40252681063611
+Parma (provincia),Maschi,2018,Nessun titolo o licenza elementare,6159,123343,4.993392409784098
+Parma (provincia),Maschi,2024,Nessun titolo o licenza elementare,5653,125369,4.50908916877378
+Parma (provincia),Maschi,2018,Licenza media,37107,123343,30.08439879036508
+Parma (provincia),Maschi,2024,Licenza media,34897,125369,27.835429811197347
+Parma (provincia),Maschi,2018,Diploma o qualifica,55514,123343,45.00782371111453
+Parma (provincia),Maschi,2024,Diploma o qualifica,56620,125369,45.16267976932097
+Parma (provincia),Maschi,2018,Laurea o più,24563,123343,19.91438508873629
+Parma (provincia),Maschi,2024,Laurea o più,28199,125369,22.49280125070791

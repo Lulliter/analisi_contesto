@@ -1,0 +1,192 @@
+---
+title: "Adulti che tornano a scuola nella provincia di Parma"
+# categories: [P2 Persone e istituzioni, LA3 Capitale umano]
+description: "Dati MIM (a.s. 2015/16-2024/25) e CPIA di Parma (2024/25), estratti a settembre 2026"
+lang: it
+
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+
+execute:
+  eval: true
+  echo: false
+  warning: false
+  error: false
+  output: false
+
+# --- Bibliografia (unica per il sito, esportata da Zotero): si cita con [@chiave]
+bibliography: ../../bib/CRP_analisi_contesto.bib
+csl: ../../bib/apa_7th.csl
+link-citations: true
+---
+
+```{r}
+#| label: anteprima
+#| eval: false
+# Anteprima: renderizza e apre nel browser (lancia a mano, ignorato nel render)
+pagina <- "adulti_scuola"   # nome pagina, senza estensione
+quarto::quarto_render(here::here("sito", "temi", paste0(pagina, ".qmd")))
+browseURL(here::here("docs", "sito", "temi", paste0(pagina, ".html")))
+```
+
+```{=html}
+<!-- Bozza (2026-10-30): sezione "Adulti che tornano a scuola" spostata da _formaz_rientro.qmd,
+     dove confondeva il discorso sulle scuole superiori e la formazione professionale.
+     Output dal modulo formaz_e_rientro (sezione 5 di 02_output.R). Da decidere se usarla. -->
+```
+
+```{r}
+#| label: setup
+library(here)
+library(dplyr)
+library(ggplot2)
+library(ggiraph)
+library(ggtext)    # element_textbox nei temi dei plot salvati
+library(scales)
+library(glue)
+library(downloadthis)
+library(flextable)   # tabelle salvate in rds (serve il pacchetto caricato per stamparle)
+
+dir_rientro <- here::here("moduli", "formaz_e_rientro", "output")
+
+source(here::here("R", "sito.R"))     # bottoni CSV + Excel (f_scarica_dati, f_bottoni_dati)
+source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hover bordeaux)
+```
+
+## In sintesi
+
+- **Circa 500 adulti l'anno tornano a scuola nei corsi serali** della provincia, in otto sedi di istituti tecnici e professionali: erano 700 dieci anni fa, un calo di circa il 30%, di cui più di un terzo è straniero.
+<!-- - È una **controtendenza**: in Italia i serali crescono da dieci anni, e Parma, che partiva sopra la media nazionale, oggi è sotto (2,5% contro 3,2% della secondaria di II grado), pur restando sopra la media regionale. --> 
+
+<!-- - Il **centro per l'istruzione degli adulti (CPIA)**, con oltre 3.000 iscritti l'anno, è la porta più grande, ma risponde soprattutto all'inclusione degli adulti stranieri (italiano, licenza media): qui lo citiamo per l'ordine di grandezza, non lo approfondiamo.  -->
+
+## Adulti che tornano a scuola
+
+Il rientro in formazione coinvolge circa 3.500 persone l'anno, e passa da tre porte: i corsi serali delle scuole superiori, le sezioni scolastiche in carcere e il CPIA.
+
+```{r}
+#| label: plot_rientro_porte_pr
+#| output: true
+#| fig-height: 4.5
+
+f_girafe(readRDS(file.path(dir_rientro, "plot_rientro_porte_pr.rds")))
+```
+
+::: text-end
+```{r}
+#| label: dl_plot_rientro_porte_pr
+#| output: true
+f_bottoni_dati("rientro_trend_pr", dir_rientro, rds = "plot_rientro_porte_pr")
+```
+:::
+
+::: {.callout-note collapse="true"}
+### Osservazioni
+
+Gli ordini di grandezza sono molto diversi: oltre 3.000 iscritti al CPIA, circa 500 nei serali, 10-30 nelle sezioni carcerarie. Il CPIA risponde soprattutto all'inclusione degli adulti stranieri (italiano, licenza media, competenze di base): è un indicatore di inclusione più che di transizione scuola-lavoro, e qui compare per il peso che ha.
+
+*NB: Serali e sezioni carcerarie da dati MIM per singola scuola; il CPIA non è nei dati aperti del Ministero, il numero (3.058 nel 2024/25) viene dal bilancio di sostenibilità del Centro.*
+:::
+
+
+### Serali e sezioni carcerarie nel decennio
+
+I dati del Ministero, che non tracciano il CPIA, mostrano un rallentamento in atto.
+
+```{r}
+#| label: plot_rientro_trend_pr
+#| output: true
+#| fig-height: 6
+
+f_girafe(readRDS(file.path(dir_rientro, "plot_rientro_trend_pr.rds")))
+```
+
+::: text-end
+```{r}
+#| label: dl_plot_rientro_trend_pr
+#| output: true
+f_bottoni_dati("rientro_trend_pr", dir_rientro, rds = "plot_rientro_trend_pr")
+```
+:::
+
+::: {.callout-note collapse="true"}
+### Osservazioni
+
+Il calo non è lineare: picco nel 2019/20 e gradino in basso nel 2022/23, da cui i serali non sono più risaliti. Le sezioni carcerarie oscillano tra 10 e 30 studenti l'anno.
+
+*NB: Fonte MIM, a.s. 2015/16-2024/25. Corsi serali = percorsi di istruzione di II livello negli istituti statali; sezioni carcerarie rilevate dal 2017/18. Restano fuori le scuole private non paritarie ("recupero anni"), che non rilasciano titoli e non stanno nella fonte.*
+:::
+
+### I corsi serali
+
+#### Parma rispetto alle altre province
+
+Parma è tra le province con più iscritti ai serali in rapporto alla scuola ordinaria, ma sotto la media nazionale, che cresce.
+
+```{r}
+#| label: plot_rientro_incidenza_prov_er
+#| output: true
+#| fig-height: 6
+
+f_girafe(readRDS(file.path(dir_rientro, "plot_rientro_incidenza_prov_er.rds")))
+```
+
+::: text-end
+```{r}
+#| label: dl_plot_rientro_incidenza_prov_er
+#| output: true
+f_bottoni_dati("rientro_incidenza_prov_er", dir_rientro, rds = "plot_rientro_incidenza_prov_er")
+```
+:::
+
+::: {.callout-note collapse="true"}
+### Osservazioni
+
+Nel 2024/25 a Parma i serali valgono il 2,5% degli iscritti alla secondaria di II grado statale: seconda in regione dopo Rimini, sopra la media dell'Emilia-Romagna (1,9%). In Italia la stessa quota è al 3,2% ed è salita ogni anno dal 2,3% del 2015/16 (da 49 mila a 77 mila iscritti): il rientro a scuola degli adulti cresce nel paese e cala a Parma, che dieci anni fa stava al 4,2%, sopra la media nazionale.
+
+*NB: Fonte MIM, a.s. 2024/25. Rapporto tra iscritti ai corsi serali e iscritti alla secondaria di II grado ordinaria, solo scuole statali su entrambi i lati (i serali si identificano solo nelle statali; nelle paritarie non risultano corsi per adulti). I serali non sono compresi nel denominatore.*
+:::
+
+### Chi frequenta i serali?
+
+Quasi tutti maggiorenni, un terzo stranieri, soprattutto negli istituti professionali.
+
+```{r}
+#| label: plot_rientro_profilo_pr
+#| output: true
+#| fig-height: 7
+
+f_girafe(readRDS(file.path(dir_rientro, "plot_rientro_profilo_pr.rds")))
+```
+
+::: text-end
+```{r}
+#| label: dl_plot_rientro_profilo_pr
+#| output: true
+f_bottoni_dati("rientro_profilo_pr", dir_rientro, rds = "plot_rientro_profilo_pr")
+```
+:::
+
+::: {.callout-note collapse="true"}
+### Osservazioni
+
+Nel 2024/25 i 502 iscritti ai serali della provincia sono per il 90% oltre i 18 anni (solo 10 minorenni); 179 (36%) hanno cittadinanza non italiana, contro il 22% della scuola ordinaria. Gli istituti professionali (servizi commerciali, industria, agrario, alberghiero) raccolgono più della metà, i tecnici un terzo, l'istituto d'arte il resto. Sei sedi su otto sono nel comune di Parma, le altre a Fidenza e Salsomaggiore.
+
+*NB: Fonte MIM, a.s. 2024/25. Età al 31/12 dell'anno scolastico, per fasce. La cittadinanza viene dal file gemello del Ministero per le stesse sedi.*
+:::
+
+```{=html}
+<!-- CPIA (2026-09-23): tolto dalle sezioni principali, è un indicatore di
+     inclusione degli adulti stranieri, da ricollocare quando nasce quel tema.
+     Materiale in casa: totale 2024/25 (bilancio di sostenibilità) e corsi FAMI
+     2022-25 (744 iscritti, 271 certificazioni) in dati/grezzi/iefp_cpia_ER_PR/ -->
+```
+
+## Possibili approfondimenti
+
+1.  Gli esiti: quanti dei serali arrivano al diploma e cosa fanno dopo, tra lavoro e ulteriore formazione.
+2.  Perché Parma va in controtendenza rispetto all'Italia: offerta (sedi e indirizzi), domanda (mercato del lavoro che assorbe prima), o concorrenza di altri canali.
+3.  Il CPIA come indicatore di inclusione degli adulti stranieri: iscritti per anno, età, cittadinanza e tipo di percorso, da leggere insieme ai dati sulla popolazione straniera.

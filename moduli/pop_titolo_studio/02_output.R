@@ -1,20 +1,25 @@
 # ___________________________________________________________________________
 # Modulo: pop_titolo_studio — 02_output.R
 # Scopo:  titolo di studio dei residenti per la pagina "Dalla scuola al lavoro" (focus giovani):
-#         1) provincia di Parma: licenza media, diploma, laurea o più per sesso, tutte le età,
-#            2018 e 2024 (barre affiancate)
-#         2) confronto provincia di Parma / Emilia-Romagna / Italia, 2024 (tabella)
+#         1) provincia di Parma: i quattro livelli di titolo per sesso, 25-64 anni
+#            (età attiva), 2018 e 2024 (barre affiancate, un anno per riga)
+#         1b) idem, distribuzione completa con anche nessun titolo / licenza elementare
+#            (barre orizzontali che sommano a 100)
+#         2) confronto provincia di Parma / Emilia-Romagna / Italia, 2024 (tabella: quattro livelli
+#            che sommano a 100, per classe d'età e per 25 anni e più)
 #         3) comuni della provincia, 25-64 anni, 2024: tre mappe (laurea, diploma, licenza media)
 #         (2026-10-28: barre e mappe 25-64 al posto di dumbbell per età e mappa laureati 25-49,
 #          tenuti in coda come commento)
 # Input:  output/titolo_studio_eta.rds (da 01_dati.R)
 #         dati/puliti/istat_shp/PR_comuni_web_sf.rds (confini dei comuni PR, versione web)
 # Output: output/plot_titoli_sesso_pr.rds/.png + titoli_sesso_pr.csv
+#         output/plot_titoli_sesso_100_pr.rds/.png + titoli_sesso_100_pr.csv
 #         output/titoli_confronto_ft.rds (flextable) + titoli_confronto.csv
 #         output/mappa_laurea_25_64_pr, mappa_diploma_25_64_pr, mappa_licenza_media_25_64_pr (.rds/.png)
 #         + titoli_comuni_pr.csv (tabella condivisa dalle tre mappe)
-# NB: le tre categorie sono % sui residenti della stessa classe d'età (e sesso): non sommano a 100,
-#     perché "nessun titolo" e "licenza elementare" non si mostrano
+# NB: nelle mappe le tre categorie sono % sui residenti della stessa classe d'età e non sommano a 100,
+#     perché "nessun titolo" e "licenza elementare" non si mostrano; nei grafici per sesso e nella
+#     tabella di confronto ci sono anche loro
 # ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
@@ -28,6 +33,7 @@ library(ggplot2)
 library(ggiraph)
 library(ggtext)
 library(flextable)
+library(janitor)
 
 source(here("R", "_parma_colors.R"))
 source(here("R", "grafici.R"))      # f_theme_sito*, f_caption_fonte, f_aggiungi_classe, f_disegna_mappa, f_salva_plot
@@ -54,13 +60,28 @@ LIVELLI_GRUPPI <- c("Licenza media", "Diploma o qualifica", "Laurea o più")
 
 CLASSI_ETA <- c("Y9-24", "Y25-49", "Y50-64", "Y_GE65")
 
+# tabella di confronto: anche il livello più basso (così le righe sommano a 100) e una riga per
+# i 25 anni e più (fuori dall'età della formazione) = somma delle tre classi da 25 anni in su
+GRUPPI_TAB <- bind_rows(
+  tribble(
+    ~cod_titolo, ~gruppo,
+    "NED", "Nessun titolo o licenza elementare",
+    "PSE", "Nessun titolo o licenza elementare"
+  ),
+  GRUPPI
+)
+LIVELLI_GRUPPI_TAB <- c("Nessun titolo o licenza elementare", LIVELLI_GRUPPI)
+ETA_25PIU          <- c("Y25-49", "Y50-64", "Y_GE65")
+CLASSI_ETA_TAB     <- c(CLASSI_ETA, "Y_GE25")
+
 COL_SESSO <- c("Femmine" = femmine, "Maschi" = maschi)
 
 # sfondo delle righe della provincia di Parma: ylw_lg schiarito (30% del colore, 70% bianco)
 BG_PARMA <- "#FAECD1"
 
-# età dei grafici: barre = tutte le età (9 e più), mappe = età lavorativa (25-64 = somma di 25-49 e 50-64)
-ETA_BARRE <- "Y_GE9"
+# età dei grafici: barre e mappe = età attiva (25-64 = somma di 25-49 e 50-64)
+# (barre fino al 2026-10-30: ETA_BARRE <- "Y_GE9", tutte le età)
+ETA_BARRE <- c("Y25-49", "Y50-64")
 ETA_MAPPE <- c("Y25-49", "Y50-64")
 
 # palette delle tre mappe: 4 toni distanziati di CARTO "BluYl" (rcartocolor::carto_pal(15, "BluYl")[c(2, 6, 10, 15)])
@@ -107,13 +128,79 @@ titoli_gruppi <- titolo_studio_eta |>
 titoli_gruppi
 
 # 2. Grafici e tabelle -----------------------------------------------------
+# __ titoli_confronto_ft ----
+# provincia di Parma / Emilia-Romagna / Italia, ultimo anno, sesso totale: una riga per età × territorio,
+# quattro livelli + totale di controllo; in fondo i 25 anni e più insieme
+# (versione a tre livelli, fino al 2026-10-30, in coda come commento)
+
+# residenti per classe d'età × territorio × livello (le quattro classi pubblicate da ISTAT)
+titoli_confronto_eta <- titolo_studio_eta |>
+  filter(cod_territorio %in% c("ITD52", "ITD5", "IT"), cod_sesso == "T", cod_eta %in% CLASSI_ETA,
+         anno == ANNO_ULTIMO) |>
+  inner_join(GRUPPI_TAB, by = "cod_titolo") |>
+  summarise(valore = sum(valore), .by = c(cod_territorio, territorio, eta, cod_eta, gruppo, totale)) |>
+  mutate(eta = as.character(eta))
+
+# 25 anni e più: somma di residenti e totali delle tre classi da 25 in su
+titoli_confronto_25piu <- titoli_confronto_eta |>
+  filter(cod_eta %in% ETA_25PIU) |>
+  summarise(valore = sum(valore), totale = sum(totale), .by = c(cod_territorio, territorio, gruppo)) |>
+  mutate(eta = "25 e più", cod_eta = "Y_GE25")
+
+titoli_confronto <- bind_rows(titoli_confronto_eta, titoli_confronto_25piu) |>
+  mutate(
+    pct        = 100 * valore / totale,
+    gruppo     = factor(gruppo, levels = LIVELLI_GRUPPI_TAB),
+    territorio = case_when(cod_territorio == "ITD52" ~ "Provincia di Parma",
+                           .default = territorio),
+    territorio = factor(territorio, levels = c("Provincia di Parma", "Emilia-Romagna", "Italia")),
+    eta        = paste(eta, "anni")
+  ) |>
+  select(eta, cod_eta, territorio, gruppo, pct) |>
+  pivot_wider(names_from = gruppo, values_from = pct) |>
+  # controllo: le quattro colonne devono sommare a 100
+  mutate(Totale = rowSums(across(all_of(LIVELLI_GRUPPI_TAB)))) |>
+  arrange(match(cod_eta, CLASSI_ETA_TAB), territorio) |>
+  # ordine esplicito delle colonne (v. skill formatting-r)
+  select(`Classe d'età` = eta, Territorio = territorio, all_of(LIVELLI_GRUPPI_TAB), Totale)
+
+titoli_confronto
+
+titoli_confronto_ft <- titoli_confronto |>
+  f_ft() |>
+  colformat_double(j = c(LIVELLI_GRUPPI_TAB, "Totale"), digits = 1, suffix = "%") |>
+  merge_v(j = "Classe d'età") |>
+  valign(j = "Classe d'età", valign = "top") |>
+  # provincia di Parma in giallo pallido (non la colonna dell'età, che è unita su tre righe)
+  bg(i = ~ Territorio == "Provincia di Parma", j = c("Territorio", LIVELLI_GRUPPI_TAB, "Totale"),
+     bg = BG_PARMA, part = "body") |>
+  # laurea a 9-24 anni in grigio: quasi nessuno ha l'età per averla
+  color(i = ~ `Classe d'età` == "9-24 anni", j = "Laurea o più", color = grey_md1, part = "body") |>
+  # bold per il totale 9 e piu 
+  bold(i = ~ `Classe d'età` == "25 e più anni",   bold = TRUE ) |>
+  
+  f_ft_titolo_note(
+    titolo = paste0("Titolo di studio più alto per età: Parma, Emilia-Romagna e Italia (", ANNO_ULTIMO, ")"),
+    note   = c(paste0("Fonte: ISTAT, Censimento permanente della popolazione (", ANNO_ULTIMO, ")"),
+               "% su tot. dei residenti della stessa classe d'età",
+               "In grigio la laurea a 9-24 anni: la classe comprende soprattutto chi non ha ancora l'età per laurearsi")
+  )
+
+titoli_confronto_ft
 
 # __ plot_titoli_sesso_pr ----
-# provincia di Parma, tutte le età, femmine/maschi, 2018 e 2024
-titoli_sesso_pr <- titoli_gruppi |>
-  filter(cod_territorio == "ITD52", cod_sesso %in% c("F", "M"), cod_eta == ETA_BARRE,
+# provincia di Parma, 25-64 anni (somma di 25-49 e 50-64), femmine/maschi, 2018 e 2024
+# (quattro livelli dal 2026-10-30: prima partiva da titoli_gruppi, senza nessun titolo / licenza elementare)
+titoli_sesso_pr <- titolo_studio_eta |>
+  filter(cod_territorio == "ITD52", cod_sesso %in% c("F", "M"), cod_eta %in% ETA_BARRE,
          anno %in% c(ANNO_PRIMO, ANNO_ULTIMO)) |>
-  select(territorio, sesso, gruppo, anno, valore, totale, pct)
+  inner_join(GRUPPI_TAB, by = "cod_titolo") |>
+  # residenti per livello in ciascuna classe d'età (il totale è uno per classe)
+  summarise(valore = sum(valore), .by = c(territorio, sesso, cod_eta, anno, gruppo, totale)) |>
+  # poi sommati sulle due classi d'età
+  summarise(valore = sum(valore), totale = sum(totale), .by = c(territorio, sesso, anno, gruppo)) |>
+  mutate(pct    = 100 * valore / totale,
+         gruppo = factor(gruppo, levels = LIVELLI_GRUPPI_TAB))
 
 # etichette e tooltip già pronti (il grafico si rilegge dal sito)
 titoli_sesso_pr_prep <- titoli_sesso_pr |>
@@ -132,55 +219,76 @@ plot_titoli_sesso_pr <- ggplot(titoli_sesso_pr_prep,
   geom_text(aes(label = pct_lbl), position = position_dodge(width = 0.85),
             vjust = -0.4, size = 3.5) +
   scale_fill_manual(values = COL_SESSO) +
-  # etichette lunghe a capo, altrimenti con due riquadri si sovrappongono
-  scale_x_discrete(labels = scales::label_wrap(10)) +
+  # etichette lunghe a capo
+  scale_x_discrete(labels = scales::label_wrap(14)) +
   scale_y_continuous(labels = scales::label_number(suffix = "%"), expand = expansion(mult = c(0, 0.1))) +
-  facet_wrap(~ anno) +
+  # un anno per riga, stessa scala: le barre dei due anni si confrontano in verticale
+  facet_wrap(~ anno, ncol = 1) +
   f_theme_sito() +
   labs(
-    title    = paste0("Max titolo di studio per sesso, provincia di Parma (", ANNO_PRIMO, " e ", ANNO_ULTIMO, ")"),
-    subtitle = "Indicatore: % su tot. dei residenti di 9 anni e più dello stesso sesso; nessun titolo e licenza elementare non mostrati",
+    title    = paste0("Titolo di studio più alto per sesso, 25-64 anni, provincia di Parma (", ANNO_PRIMO, " e ", ANNO_ULTIMO, ")"),
+    subtitle = "Indicatore: % su tot. dei residenti di 25-64 anni dello stesso sesso",
     caption  = FONTE, x = "", y = "", fill = ""
   )
 
 plot_titoli_sesso_pr
 
-# __ titoli_confronto_ft ----
-# provincia di Parma / Emilia-Romagna / Italia, ultimo anno, sesso totale: una riga per età × territorio
-titoli_confronto <- titoli_gruppi |>
-  filter(cod_territorio %in% c("ITD52", "ITD5", "IT"), cod_sesso == "T", cod_eta %in% CLASSI_ETA,
-         anno == ANNO_ULTIMO) |>
+# __ plot_titoli_sesso_100_pr ----
+# provincia di Parma, 25-64 anni, femmine/maschi, 2018 e 2024: i quattro livelli, che sommano a 100
+titoli_sesso_100_pr <- titolo_studio_eta |>
+  filter(cod_territorio == "ITD52", cod_sesso %in% c("F", "M"), cod_eta %in% ETA_BARRE,
+         anno %in% c(ANNO_PRIMO, ANNO_ULTIMO)) |>
+  inner_join(GRUPPI_TAB, by = "cod_titolo") |>
+  # residenti per livello in ciascuna classe d'età (il totale è uno per classe)
+  summarise(valore = sum(valore), .by = c(territorio, sesso, cod_eta, anno, gruppo, totale)) |>
+  # poi sommati sulle due classi d'età
+  summarise(valore = sum(valore), totale = sum(totale), .by = c(territorio, sesso, anno, gruppo)) |>
+  mutate(pct    = 100 * valore / totale,
+         gruppo = factor(gruppo, levels = LIVELLI_GRUPPI_TAB))
+
+titoli_sesso_100_pr
+
+# controllo: per sesso e anno la somma deve essere 100
+titoli_sesso_100_pr |> summarise(tot_pct = sum(pct), .by = c(sesso, anno))
+
+# etichette, colori del testo e tooltip già pronti (il grafico si rilegge dal sito)
+titoli_sesso_100_pr_prep <- titoli_sesso_100_pr |>
+  # filter(anno %in% c( ANNO_ULTIMO)) |>
   mutate(
-    territorio = case_when(cod_territorio == "ITD52" ~ "Provincia di Parma",
-                           .default = territorio),
-    territorio = factor(territorio, levels = c("Provincia di Parma", "Emilia-Romagna", "Italia")),
-    eta        = paste(droplevels(eta), "anni")
-  ) |>
-  select(eta, cod_eta, territorio, gruppo, pct) |>
-  pivot_wider(names_from = gruppo, values_from = pct) |>
-  arrange(match(cod_eta, CLASSI_ETA), territorio) |>
-  # ordine esplicito delle colonne (v. skill formatting-r)
-  select(`Classe d'età` = eta, Territorio = territorio, all_of(LIVELLI_GRUPPI))
-
-titoli_confronto
-
-titoli_confronto_ft <- titoli_confronto |>
-  f_ft() |>
-  colformat_double(j = LIVELLI_GRUPPI, digits = 1, suffix = "%") |>
-  merge_v(j = "Classe d'età") |>
-  valign(j = "Classe d'età", valign = "top") |>
-  # provincia di Parma in giallo pallido (non la colonna dell'età, che è unita su tre righe)
-  bg(i = ~ Territorio == "Provincia di Parma", j = c("Territorio", LIVELLI_GRUPPI), bg = BG_PARMA, part = "body") |>
-  # laurea a 9-24 anni in grigio: quasi nessuno ha l'età per averla
-  color(i = ~ `Classe d'età` == "9-24 anni", j = "Laurea o più", color = grey_md1, part = "body") |>
-  f_ft_titolo_note(
-    titolo = paste0("Titolo di studio più alto per età: Parma, Emilia-Romagna e Italia (", ANNO_ULTIMO, ")"),
-    note   = c(paste0("Fonte: ISTAT, Censimento permanente della popolazione (", ANNO_ULTIMO, ")"),
-               "% su tot. dei residenti della stessa classe d'età; nessun titolo e licenza elementare non mostrati",
-               "In grigio la laurea a 9-24 anni: la classe comprende soprattutto chi non ha ancora l'età per laurearsi")
+    # 2024 sopra, femmine sopra i maschi
+    anno       = factor(anno, levels = c(ANNO_ULTIMO, ANNO_PRIMO)),
+    sesso      = factor(sesso, levels = c("Maschi", "Femmine")),
+    # etichetta solo sui segmenti di almeno il 5%, gli altri si leggono nel tooltip
+    pct_lbl    = if_else(pct >= 5, paste0(scales::number(pct, accuracy = 1), "%"), ""),
+    # testo bianco sui due toni scuri
+    colore_lbl = if_else(gruppo %in% c("Diploma o qualifica", "Laurea o più"), "white", "black"),
+    tooltip    = paste0(sesso, ", ", anno, "<br>", gruppo, ": ",
+                        scales::number(pct, accuracy = 0.1, decimal.mark = ","), "%")
   )
 
-titoli_confronto_ft
+titoli_sesso_100_pr_prep
+
+plot_titoli_sesso_100_pr <- ggplot(titoli_sesso_100_pr_prep,
+                                   aes(x = pct, y = sesso, fill = gruppo, group = gruppo)) +
+  # reverse = TRUE: il livello più basso a sinistra, la laurea a destra
+  geom_col_interactive(aes(tooltip = tooltip, data_id = tooltip, group = gruppo),
+                       position = position_stack(reverse = TRUE), width = 0.75) +
+  geom_text(aes(label = pct_lbl, colour = colore_lbl),
+            position = position_stack(vjust = 0.5, reverse = TRUE), size = 3.5) +
+  scale_fill_manual(values = setNames(PAL_TITOLI, LIVELLI_GRUPPI_TAB),
+                    labels = scales::label_wrap(20)) +
+  scale_colour_identity() +
+  scale_x_continuous(labels = scales::label_number(suffix = "%"), expand = expansion(mult = c(0, 0.01))) +
+  facet_wrap(~ anno, ncol = 1) +
+  f_theme_sito() +
+  labs(
+    title    = paste0("Titolo di studio più alto per sesso, 25-64 anni, provincia di Parma (", ANNO_PRIMO, " e ", ANNO_ULTIMO, ")"),
+    subtitle = "Indicatore: % su tot. dei residenti di 25-64 anni dello stesso sesso",
+    caption  = FONTE, x = "", y = "", fill = ""
+  )
+
+plot_titoli_sesso_100_pr
+
 
 # __ mappe_titoli_25_64_pr ----
 # comuni della provincia, 25-64 anni (somma di 25-49 e 50-64), sesso totale, ultimo anno
@@ -246,8 +354,10 @@ mappe_titoli_25_64_pr$mappa_laurea_25_64_pr
  
 
 # 3. Salva (rds per il sito + png; csv per i bottoni di scarico; nome file = oggetto) ----
-f_salva_plot(plot_titoli_sesso_pr, "plot_titoli_sesso_pr", dir_out = dir_mod, height = 6)
+f_salva_plot(plot_titoli_sesso_pr, "plot_titoli_sesso_pr", dir_out = dir_mod, height = 8)
 write_csv(titoli_sesso_pr, file.path(dir_mod, "titoli_sesso_pr.csv"))
+f_salva_plot(plot_titoli_sesso_100_pr, "plot_titoli_sesso_100_pr", dir_out = dir_mod, height = 5)
+write_csv(titoli_sesso_100_pr, file.path(dir_mod, "titoli_sesso_100_pr.csv"))
 
 saveRDS(titoli_confronto_ft, file.path(dir_mod, "titoli_confronto_ft.rds"))
 write_csv(titoli_confronto, file.path(dir_mod, "titoli_confronto.csv"))
@@ -381,3 +491,40 @@ map(mappe_titoli_25_64_pr, function(p) count(sf::st_drop_geometry(p$layers[[1]]$
 #
 # # comuni per classe: con questi gradini attesi circa 9 | 12 | 9 | 7 | 7
 # count(sf::st_drop_geometry(mappa_laurea_25_49_prep), classe_pct_laurea)
+
+# # __ titoli_confronto_ft, versione a tre livelli (fino al 2026-10-30) ----
+# # provincia di Parma / Emilia-Romagna / Italia, ultimo anno, sesso totale: una riga per età × territorio
+# titoli_confronto <- titoli_gruppi |>
+#   filter(cod_territorio %in% c("ITD52", "ITD5", "IT"), cod_sesso == "T", cod_eta %in% CLASSI_ETA,
+#          anno == ANNO_ULTIMO) |>
+#   mutate(
+#     territorio = case_when(cod_territorio == "ITD52" ~ "Provincia di Parma",
+#                            .default = territorio),
+#     territorio = factor(territorio, levels = c("Provincia di Parma", "Emilia-Romagna", "Italia")),
+#     eta        = paste(droplevels(eta), "anni")
+#   ) |>
+#   select(eta, cod_eta, territorio, gruppo, pct) |>
+#   pivot_wider(names_from = gruppo, values_from = pct) |>
+#   arrange(match(cod_eta, CLASSI_ETA), territorio) |>
+#   # ordine esplicito delle colonne (v. skill formatting-r)
+#   select(`Classe d'età` = eta, Territorio = territorio, all_of(LIVELLI_GRUPPI))
+#
+# titoli_confronto
+#
+# titoli_confronto_ft <- titoli_confronto |>
+#   f_ft() |>
+#   colformat_double(j = LIVELLI_GRUPPI, digits = 1, suffix = "%") |>
+#   merge_v(j = "Classe d'età") |>
+#   valign(j = "Classe d'età", valign = "top") |>
+#   # provincia di Parma in giallo pallido (non la colonna dell'età, che è unita su tre righe)
+#   bg(i = ~ Territorio == "Provincia di Parma", j = c("Territorio", LIVELLI_GRUPPI), bg = BG_PARMA, part = "body") |>
+#   # laurea a 9-24 anni in grigio: quasi nessuno ha l'età per averla
+#   color(i = ~ `Classe d'età` == "9-24 anni", j = "Laurea o più", color = grey_md1, part = "body") |>
+#   f_ft_titolo_note(
+#     titolo = paste0("Titolo di studio più alto per età: Parma, Emilia-Romagna e Italia (", ANNO_ULTIMO, ")"),
+#     note   = c(paste0("Fonte: ISTAT, Censimento permanente della popolazione (", ANNO_ULTIMO, ")"),
+#                "% su tot. dei residenti della stessa classe d'età; nessun titolo e licenza elementare non mostrati",
+#                "In grigio la laurea a 9-24 anni: la classe comprende soprattutto chi non ha ancora l'età per laurearsi")
+#   )
+#
+# titoli_confronto_ft

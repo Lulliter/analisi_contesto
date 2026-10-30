@@ -1,0 +1,193 @@
+territorio,anno_inizio,gestione,tipo_scuola,utenza,alunni,alunni_femmine
+Provincia di Parma,2016,paritaria,Licei,diurno,168,77
+Provincia di Parma,2016,paritaria,Tecnici,diurno,49,22
+Provincia di Parma,2017,paritaria,Tecnici,diurno,53,23
+Provincia di Parma,2017,paritaria,Licei,diurno,152,54
+Provincia di Parma,2018,paritaria,Tecnici,diurno,47,21
+Provincia di Parma,2018,paritaria,Licei,diurno,147,57
+Provincia di Parma,2019,paritaria,Tecnici,diurno,35,20
+Provincia di Parma,2019,paritaria,Licei,diurno,158,57
+Provincia di Parma,2020,paritaria,Tecnici,diurno,36,23
+Provincia di Parma,2020,paritaria,Licei,diurno,152,51
+Provincia di Parma,2021,paritaria,Licei,diurno,193,59
+Provincia di Parma,2021,paritaria,Tecnici,diurno,42,26
+Provincia di Parma,2022,paritaria,Licei,diurno,205,61
+Provincia di Parma,2022,paritaria,Tecnici,diurno,39,24
+Provincia di Parma,2023,paritaria,Licei,diurno,233,64
+Provincia di Parma,2023,paritaria,Tecnici,diurno,38,21
+Provincia di Parma,2024,paritaria,Licei,diurno,237,72
+Provincia di Parma,2024,paritaria,Tecnici,diurno,61,32
+Provincia di Parma,2016,statale,Tecnici,diurno,6573,2429
+Provincia di Parma,2016,statale,Professionali,diurno,3183,1364
+Provincia di Parma,2016,statale,Licei,diurno,8187,5172
+Provincia di Parma,2016,statale,Tecnici,serale,325,72
+Provincia di Parma,2016,statale,Professionali,serale,340,176
+Provincia di Parma,2016,statale,Licei,serale,59,30
+Provincia di Parma,2017,statale,Tecnici,diurno,6698,2437
+Provincia di Parma,2017,statale,Professionali,diurno,3221,1334
+Provincia di Parma,2017,statale,Licei,diurno,8393,5295
+Provincia di Parma,2017,statale,Professionali,serale,336,170
+Provincia di Parma,2017,statale,Tecnici,serale,279,63
+Provincia di Parma,2017,statale,Tecnici,carcere,11,0
+Provincia di Parma,2017,statale,Licei,serale,71,40
+Provincia di Parma,2017,statale,Professionali,carcere,22,0
+Provincia di Parma,2018,statale,Licei,diurno,8591,5382
+Provincia di Parma,2018,statale,Professionali,diurno,2792,1175
+Provincia di Parma,2018,statale,Tecnici,diurno,6825,2488
+Provincia di Parma,2018,statale,Tecnici,serale,294,57
+Provincia di Parma,2018,statale,Professionali,serale,308,167
+Provincia di Parma,2018,statale,Professionali,carcere,14,0
+Provincia di Parma,2018,statale,Tecnici,carcere,5,0
+Provincia di Parma,2018,statale,IeFP nei professionali,diurno,338,109
+Provincia di Parma,2018,statale,Licei,serale,71,43
+Provincia di Parma,2019,statale,Tecnici,diurno,6879,2542
+Provincia di Parma,2019,statale,Licei,diurno,8812,5459
+Provincia di Parma,2019,statale,Licei,serale,86,50
+Provincia di Parma,2019,statale,Professionali,diurno,2833,1147
+Provincia di Parma,2019,statale,IeFP nei professionali,diurno,238,74
+Provincia di Parma,2019,statale,Professionali,serale,401,208
+Provincia di Parma,2019,statale,Tecnici,serale,283,63
+Provincia di Parma,2019,statale,Professionali,carcere,30,0
+Provincia di Parma,2020,statale,Tecnici,diurno,7184,2625
+Provincia di Parma,2020,statale,Licei,diurno,9067,5605
+Provincia di Parma,2020,statale,Professionali,diurno,2950,1133
+Provincia di Parma,2020,statale,Professionali,carcere,11,0
+Provincia di Parma,2020,statale,Tecnici,serale,248,51
+Provincia di Parma,2020,statale,Professionali,serale,373,203
+Provincia di Parma,2020,statale,Licei,serale,70,42
+Provincia di Parma,2021,statale,Professionali,diurno,2919,1153
+Provincia di Parma,2021,statale,Professionali,serale,333,196
+Provincia di Parma,2021,statale,Licei,diurno,9372,5810
+Provincia di Parma,2021,statale,Tecnici,diurno,7195,2547
+Provincia di Parma,2021,statale,Tecnici,serale,228,48
+Provincia di Parma,2021,statale,Licei,serale,69,43
+Provincia di Parma,2021,statale,Professionali,carcere,25,0
+Provincia di Parma,2022,statale,Licei,diurno,9599,6010
+Provincia di Parma,2022,statale,Professionali,diurno,2738,1095
+Provincia di Parma,2022,statale,Tecnici,diurno,7256,2593
+Provincia di Parma,2022,statale,IeFP nei professionali,diurno,141,29
+Provincia di Parma,2022,statale,Tecnici,serale,180,42
+Provincia di Parma,2022,statale,Professionali,serale,288,171
+Provincia di Parma,2022,statale,Professionali,carcere,9,0
+Provincia di Parma,2022,statale,Licei,serale,48,30
+Provincia di Parma,2023,statale,Professionali,diurno,2908,1169
+Provincia di Parma,2023,statale,Licei,diurno,9717,6120
+Provincia di Parma,2023,statale,Tecnici,diurno,7384,2646
+Provincia di Parma,2023,statale,Tecnici,serale,184,49
+Provincia di Parma,2023,statale,IeFP nei professionali,diurno,84,0
+Provincia di Parma,2023,statale,Professionali,serale,253,172
+Provincia di Parma,2023,statale,Licei,serale,73,50
+Provincia di Parma,2023,statale,Professionali,carcere,18,0
+Provincia di Parma,2024,statale,Professionali,diurno,3035,1160
+Provincia di Parma,2024,statale,Tecnici,diurno,7540,2755
+Provincia di Parma,2024,statale,Licei,diurno,9745,6182
+Provincia di Parma,2024,statale,Tecnici,serale,170,41
+Provincia di Parma,2024,statale,Professionali,serale,269,169
+Provincia di Parma,2024,statale,Professionali,carcere,27,0
+Provincia di Parma,2024,statale,Licei,serale,63,39
+Emilia-Romagna,2016,paritaria,Licei,diurno,2915,1420
+Emilia-Romagna,2016,paritaria,Tecnici,diurno,657,206
+Emilia-Romagna,2016,paritaria,Professionali,diurno,306,98
+Emilia-Romagna,2017,paritaria,Licei,diurno,2926,1387
+Emilia-Romagna,2017,paritaria,Tecnici,diurno,672,192
+Emilia-Romagna,2017,paritaria,Professionali,diurno,310,93
+Emilia-Romagna,2018,paritaria,Tecnici,diurno,673,177
+Emilia-Romagna,2018,paritaria,Licei,diurno,3058,1480
+Emilia-Romagna,2018,paritaria,Professionali,diurno,295,88
+Emilia-Romagna,2019,paritaria,Tecnici,diurno,643,168
+Emilia-Romagna,2019,paritaria,Licei,diurno,3142,1530
+Emilia-Romagna,2019,paritaria,Professionali,diurno,312,92
+Emilia-Romagna,2020,paritaria,Tecnici,diurno,594,143
+Emilia-Romagna,2020,paritaria,Licei,diurno,3076,1468
+Emilia-Romagna,2020,paritaria,Professionali,diurno,336,92
+Emilia-Romagna,2021,paritaria,Licei,diurno,3455,1633
+Emilia-Romagna,2021,paritaria,Tecnici,diurno,625,161
+Emilia-Romagna,2021,paritaria,Professionali,diurno,379,108
+Emilia-Romagna,2022,paritaria,Tecnici,diurno,676,180
+Emilia-Romagna,2022,paritaria,Licei,diurno,3791,1818
+Emilia-Romagna,2022,paritaria,Professionali,diurno,388,119
+Emilia-Romagna,2023,paritaria,Professionali,diurno,439,156
+Emilia-Romagna,2023,paritaria,Licei,diurno,4033,1895
+Emilia-Romagna,2023,paritaria,Tecnici,diurno,743,204
+Emilia-Romagna,2024,paritaria,Licei,diurno,4140,1914
+Emilia-Romagna,2024,paritaria,Tecnici,diurno,810,204
+Emilia-Romagna,2024,paritaria,Professionali,diurno,446,154
+Emilia-Romagna,2016,statale,Licei,diurno,77347,48693
+Emilia-Romagna,2016,statale,Tecnici,diurno,60499,20843
+Emilia-Romagna,2016,statale,Professionali,diurno,38653,16869
+Emilia-Romagna,2016,statale,Professionali,serale,2572,1244
+Emilia-Romagna,2016,statale,Tecnici,serale,2150,704
+Emilia-Romagna,2016,statale,Professionali,carcere,54,0
+Emilia-Romagna,2016,statale,Tecnici,carcere,53,10
+Emilia-Romagna,2016,statale,Licei,serale,74,40
+Emilia-Romagna,2017,statale,Tecnici,diurno,61464,21065
+Emilia-Romagna,2017,statale,Professionali,diurno,38226,16506
+Emilia-Romagna,2017,statale,Licei,diurno,79371,50181
+Emilia-Romagna,2017,statale,Professionali,carcere,155,0
+Emilia-Romagna,2017,statale,Professionali,serale,2363,1137
+Emilia-Romagna,2017,statale,Tecnici,serale,1981,690
+Emilia-Romagna,2017,statale,Tecnici,carcere,70,11
+Emilia-Romagna,2017,statale,Licei,serale,99,57
+Emilia-Romagna,2018,statale,Licei,diurno,81045,51482
+Emilia-Romagna,2018,statale,Tecnici,diurno,62622,21326
+Emilia-Romagna,2018,statale,IeFP nei professionali,diurno,5683,2173
+Emilia-Romagna,2018,statale,Tecnici,serale,1970,657
+Emilia-Romagna,2018,statale,Professionali,serale,2173,1074
+Emilia-Romagna,2018,statale,Professionali,diurno,32011,13880
+Emilia-Romagna,2018,statale,Tecnici,carcere,70,10
+Emilia-Romagna,2018,statale,Professionali,carcere,104,0
+Emilia-Romagna,2018,statale,Licei,serale,118,75
+Emilia-Romagna,2019,statale,Tecnici,diurno,63834,21776
+Emilia-Romagna,2019,statale,Professionali,diurno,34769,14962
+Emilia-Romagna,2019,statale,Licei,diurno,82066,52172
+Emilia-Romagna,2019,statale,Licei,serale,176,109
+Emilia-Romagna,2019,statale,Professionali,serale,2334,1111
+Emilia-Romagna,2019,statale,Tecnici,serale,1870,609
+Emilia-Romagna,2019,statale,IeFP nei professionali,diurno,2779,1015
+Emilia-Romagna,2019,statale,Professionali,carcere,149,0
+Emilia-Romagna,2019,statale,Tecnici,carcere,83,15
+Emilia-Romagna,2020,statale,Licei,diurno,84569,53595
+Emilia-Romagna,2020,statale,Professionali,diurno,36547,15567
+Emilia-Romagna,2020,statale,Tecnici,diurno,66986,22688
+Emilia-Romagna,2020,statale,Professionali,serale,2199,1056
+Emilia-Romagna,2020,statale,Tecnici,serale,1694,584
+Emilia-Romagna,2020,statale,Professionali,carcere,123,0
+Emilia-Romagna,2020,statale,IeFP nei professionali,diurno,697,153
+Emilia-Romagna,2020,statale,Licei,serale,150,92
+Emilia-Romagna,2020,statale,Tecnici,carcere,46,13
+Emilia-Romagna,2021,statale,Licei,diurno,85376,54290
+Emilia-Romagna,2021,statale,Professionali,diurno,36829,15834
+Emilia-Romagna,2021,statale,Tecnici,diurno,67335,22679
+Emilia-Romagna,2021,statale,Professionali,serale,2041,989
+Emilia-Romagna,2021,statale,Tecnici,serale,1574,569
+Emilia-Romagna,2021,statale,IeFP nei professionali,diurno,708,142
+Emilia-Romagna,2021,statale,Licei,serale,114,75
+Emilia-Romagna,2021,statale,Tecnici,carcere,51,10
+Emilia-Romagna,2021,statale,Professionali,carcere,177,0
+Emilia-Romagna,2022,statale,Licei,diurno,86042,54802
+Emilia-Romagna,2022,statale,Tecnici,diurno,67408,22794
+Emilia-Romagna,2022,statale,Professionali,diurno,36933,16028
+Emilia-Romagna,2022,statale,Tecnici,serale,1581,607
+Emilia-Romagna,2022,statale,Professionali,serale,1898,951
+Emilia-Romagna,2022,statale,IeFP nei professionali,diurno,834,183
+Emilia-Romagna,2022,statale,Professionali,carcere,146,0
+Emilia-Romagna,2022,statale,Licei,serale,76,51
+Emilia-Romagna,2022,statale,Tecnici,carcere,45,7
+Emilia-Romagna,2023,statale,Licei,diurno,86461,55110
+Emilia-Romagna,2023,statale,Tecnici,diurno,67585,23012
+Emilia-Romagna,2023,statale,Tecnici,serale,1556,598
+Emilia-Romagna,2023,statale,Professionali,diurno,37931,16615
+Emilia-Romagna,2023,statale,Professionali,serale,1921,1001
+Emilia-Romagna,2023,statale,IeFP nei professionali,diurno,775,158
+Emilia-Romagna,2023,statale,Licei,serale,139,99
+Emilia-Romagna,2023,statale,Professionali,carcere,219,11
+Emilia-Romagna,2023,statale,Tecnici,carcere,61,9
+Emilia-Romagna,2024,statale,Tecnici,diurno,67850,23231
+Emilia-Romagna,2024,statale,Licei,diurno,86241,55019
+Emilia-Romagna,2024,statale,Professionali,diurno,39218,17231
+Emilia-Romagna,2024,statale,Professionali,carcere,211,0
+Emilia-Romagna,2024,statale,Professionali,serale,2007,1064
+Emilia-Romagna,2024,statale,Tecnici,serale,1673,645
+Emilia-Romagna,2024,statale,IeFP nei professionali,diurno,556,145
+Emilia-Romagna,2024,statale,Licei,serale,122,82
+Emilia-Romagna,2024,statale,Tecnici,carcere,57,10

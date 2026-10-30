@@ -182,7 +182,7 @@ ___
   - [ ] dispersione implicita ed ELET per provincia: nei dati aperti non ci sono; esistono solo come grafici INVALSI (mappa ELET 2024-25, cartogramma fig. 8.2.3) → richiesta n. 4 (Richieste uffici)
   - [ ] ritardo × cittadinanza e dopo-Covid alle medie → incrocio per plesso di età e cittadinanza (iscritti MIM); coorti → anagrafe RER + iscritti IeFP; seconda chance → modulo `formaz_e_rientro`
 
-### modulo `formaz_e_rientro`
+###  ⏭️  modulo `formaz_e_rientro`
 (le altre strade: IeFP dopo la terza media, corsi serali e sezioni carcerarie, esiti; il CPIA solo come ordine di grandezza. Da MIM `percorso == "seconda_chance"` + fonti proprie in `dati/grezzi/iefp_cpia_ER_PR/`)
 
 **Ricognizione/Aggiornamento FONTI**:
@@ -268,7 +268,7 @@ Stato al 2026-10-28: `pop_titolo_studio` con barre per sesso, tabella di confron
 - `sito/temi/formaz_rientro.qmd`: IeFP, serali, CPIA (adulti), esiti
 - `sito/temi/educ_ia.qmd`: uso dei dispositivi, social e benessere mentale, IA, risposte dei paesi
 
-### ⏭️ modulo `pop_titolo_studio`
+###modulo `pop_titolo_studio`
 >(titolo di studio dei residenti per classe d'età, sesso e cittadinanza: comuni PR, province ER, ER, Italia, 2018→; fonte ISTAT censimento permanente, download con `ingestione/11_get_istat_cens_istr.R`)
 
 **Ricognizione/Aggiornamento FONTI**:

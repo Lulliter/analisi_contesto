@@ -8,6 +8,9 @@
 #         dati/puliti/mim_iscritti/iscritti_it_percorso.rds (totali Italia, per la riga ITALIA)
 #         dati/puliti/mim_iscritti/scuole_iscritti_cittadinanza_er.rds
 #         dati/puliti/mim_iscritti/scuole_anagrafe_er.rds (caratteristica, grado, comune)
+#         dati/grezzi/mim_open_data/ALUSECGRADOIND{STA,PAR}<a.s.>.csv (iscritti sec. II grado per
+#             tipo di percorso, percorso e indirizzo, statali e paritarie; dal 2018/19)
+#         dati/puliti/mim_iscritti/scuole_anagrafe_storico_er.rds (plessi ER per a.s., per la provincia)
 #         dati/grezzi/iefp_cpia_ER_PR/cpia_parma_iscritti.csv (a mano)
 # Output: moduli/formaz_e_rientro/output/<oggetto>.rds + .csv (nome file = oggetto):
 #         rientro_trend_pr          (anno × tipo [serale / carcere / CPIA]: alunni, PR)
@@ -17,6 +20,12 @@
 #                                    [età / cittadinanza / tipo istituto / anno di corso] e valore)
 #         rientro_sedi_pr           (ultimo a.s.: le sedi serali PR con comune,
 #                                    tipo istituto, alunni, pro_com_t)
+#         iscritti_tipo_scuola      (Parma / ER × a.s. × gestione × tipo di scuola, + di cui licei
+#                                    scientifici e classici: alunni, femmine; dal 2018/19)
+#         iscritti_indirizzi        (Parma / ER × a.s. × gestione × utenza × tipo di scuola × settore
+#                                    × indirizzo, tutti i tipi di scuola: alunni, femmine)
+#         iscritti_tipo_utenza      (Parma / ER × a.s. × gestione × tipo di scuola × utenza
+#                                    [diurno / serale / carcere]: alunni, femmine)
 # NB: "seconda chance" = chi rientra in formazione da adulto. Nei dati MIM ci
 #     sono SOLO i serali e il carcere; il CPIA (alfabetizzazione, licenza media,
 #     ~3.000 iscritti) non compare nei file studenti open data (0 alunni in tutta
@@ -43,15 +52,102 @@ ANNO_ULTIMO <- 2024 # a.s. 2024/25, per profilo e sedi
 # da `caratteristica` (anagrafe MIM) al tipo di seconda chance
 TIPO_RIENTRO <- c("PERCORSO II LIVELLO" = "serale", "SPEC. PER CARCERARI" = "carcere")
 
+dir_mim        <- here("dati", "grezzi", "mim_open_data")
+# iscritti per indirizzo (MIM): dal 2016/17; fino al 2017/18 la classificazione è diversa
+# ("ISTITUTO TECNICO", "ISTITUTO PROFESSIONALE" con dentro la IeFP), quindi professionali e IeFP
+# si confrontano nel tempo solo sommati (fino al 2026-10-30: ANNO_PRIMO_IND <- 2018)
+ANNO_PRIMO_IND <- 2016
+# tipo di percorso MIM → tipo di scuola (come nella Tab. 5 del Report giovani ER); le prime due
+# etichette sono quelle fino al 2017/18
+TIPI_SCUOLA <- c("ISTITUTO TECNICO" = "Tecnici", "ISTITUTO PROFESSIONALE" = "Professionali",
+                 "LICEO" = "Licei", "TECNICO" = "Tecnici", "PROFESSIONALE" = "Professionali",
+                 "PROFESSIONALE IeFP" = "IeFP nei professionali")
+# "di cui" dei licei mostrati nella Tab. 5
+LICEI_DI_CUI <- c("SCIENTIFICO" = "di cui scientifici", "CLASSICO" = "di cui classici")
+
 # 1. Carica input (già puliti dall'ingestione) -----------------------------
 scuole_iscritti_er <- readRDS(here("dati", "puliti", "mim_iscritti", "scuole_iscritti_er.rds"))
 scuole_iscritti_cittadinanza_er <- readRDS(here("dati", "puliti", "mim_iscritti", "scuole_iscritti_cittadinanza_er.rds"))
 scuole_anagrafe_er <- readRDS(here("dati", "puliti", "mim_iscritti", "scuole_anagrafe_er.rds"))
 iscritti_it_percorso <- readRDS(here("dati", "puliti", "mim_iscritti", "iscritti_it_percorso.rds"))
+scuole_anagrafe_storico_er <- readRDS(here("dati", "puliti", "mim_iscritti", "scuole_anagrafe_storico_er.rds"))
 cpia_parma_iscritti <- read_csv(file_cpia, col_types = cols(.default = col_character())) |>
   mutate(across(c(anno_inizio, alunni), as.integer))
 
-# 2. Seconda chance nei dati MIM ------------------------------------------
+# 2. Iscritti alla secondaria di II grado per tipo di scuola (MIM, dal 2016/17) ----
+# file MIM "per indirizzo", statali e paritarie, uno per a.s.; si tengono gli a.s. da ANNO_PRIMO_IND
+files_indirizzo <- list.files(dir_mim, pattern = "^ALUSECGRADOIND(STA|PAR)\\d{14}\\.csv$", full.names = TRUE)
+files_indirizzo <- files_indirizzo[as.integer(str_sub(basename(files_indirizzo), 18, 21)) >= ANNO_PRIMO_IND]
+files_indirizzo   # attesi 18 file (9 a.s. × statali e paritarie)
+
+iscritti_indirizzo_tutti <- files_indirizzo |>
+  set_names() |>
+  map(function(f) read_csv(f, col_types = cols(.default = col_character()))) |>
+  list_rbind(names_to = "file") |>
+  clean_names() |>
+  mutate(gestione    = if_else(str_detect(file, "INDPAR"), "paritaria", "statale"),
+         anno_inizio = as.integer(annoscolastico) %/% 100,
+         across(c(annocorso, alunnimaschi, alunnifemmine), as.integer))
+
+# solo plessi ER, con provincia e caratteristica dall'anagrafe dello stesso a.s. (i plessi cambiano
+# codice negli anni). utenza: diurno (ragazzi), serale o carcere (adulti), dalla caratteristica del
+# plesso; le paritarie non hanno caratteristica e restano "diurno"
+iscritti_indirizzo_er <- iscritti_indirizzo_tutti |>
+  inner_join(scuole_anagrafe_storico_er |> select(anno_inizio, codice_scuola, gestione, provincia, caratteristica),
+             by = c("anno_inizio", "codicescuola" = "codice_scuola", "gestione")) |>
+  transmute(anno_inizio, gestione, provincia, codice_scuola = codicescuola,
+            utenza      = coalesce(unname(TIPO_RIENTRO[caratteristica]), "diurno"),
+            anno_corso  = annocorso,
+            tipo_scuola = unname(TIPI_SCUOLA[tipopercorso]),
+            settore     = percorso,
+            indirizzo,
+            alunni_femmine = alunnifemmine,
+            alunni         = alunnimaschi + alunnifemmine)
+
+# tutti i tipi di percorso riconosciuti
+stopifnot(!anyNA(iscritti_indirizzo_er$tipo_scuola))
+count(iscritti_indirizzo_er, utenza, wt = alunni)   # serale e carcere pochi rispetto al diurno
+
+# provincia di Parma ed Emilia-Romagna (somma delle province), per le variabili in `per`
+f_somma_territori <- function(df, per) {
+  bind_rows(
+    df |> filter(provincia == "PARMA") |> mutate(territorio = "Provincia di Parma"),
+    df |> mutate(territorio = "Emilia-Romagna")
+  ) |>
+    summarise(alunni = sum(alunni), alunni_femmine = sum(alunni_femmine),
+              .by = all_of(c("territorio", per)))
+}
+
+# __ a) tipi di scuola, tutti gli iscritti ----
+# territorio × a.s. × gestione × tipo di scuola, più i "di cui" dei licei
+iscritti_tipo_scuola <- bind_rows(
+  f_somma_territori(iscritti_indirizzo_er, c("anno_inizio", "gestione", "tipo_scuola")),
+  iscritti_indirizzo_er |>
+    filter(tipo_scuola == "Licei", settore %in% names(LICEI_DI_CUI)) |>
+    mutate(tipo_scuola = unname(LICEI_DI_CUI[settore])) |>
+    f_somma_territori(c("anno_inizio", "gestione", "tipo_scuola"))
+)
+iscritti_tipo_scuola
+
+# __ b) settori e indirizzi, tutti i tipi di scuola ----
+# territorio × a.s. × gestione × utenza × tipo di scuola × settore × indirizzo
+# (per i professionali: settore "NUOVI PROFESSIONALI" = ordinamento dal 2018/19; gli altri settori =
+# vecchio ordinamento, che resta soprattutto nei serali; per i tecnici: economico / tecnologico)
+# (fino al 2026-10-30 solo professionali e IeFP, il filtro ora si fa in 02_output.R:)
+# iscritti_professionali <- iscritti_indirizzo_er |>
+#   filter(tipo_scuola %in% c("Professionali", "IeFP nei professionali")) |>
+#   f_somma_territori(c("anno_inizio", "gestione", "utenza", "tipo_scuola", "settore", "indirizzo"))
+iscritti_indirizzi <- iscritti_indirizzo_er |>
+  f_somma_territori(c("anno_inizio", "gestione", "utenza", "tipo_scuola", "settore", "indirizzo"))
+iscritti_indirizzi
+
+# __ c) adulti negli istituti professionali (e negli altri tipi di scuola) ----
+# territorio × a.s. × gestione × tipo di scuola × utenza (diurno / serale / carcere)
+iscritti_tipo_utenza <- f_somma_territori(iscritti_indirizzo_er,
+                                          c("anno_inizio", "gestione", "tipo_scuola", "utenza"))
+iscritti_tipo_utenza
+
+# 3. Adulti che tornano a scuola (seconda chance) nei dati MIM -------------
 # Il "grado" dell'anagrafe (es. "IST PROF INDUSTRIA E ARTIGIANATO") → tipo istituto
 f_tipo_istituto <- function(grado) {
   case_when(
@@ -168,12 +264,15 @@ rientro_sedi_pr <- serali_ultimo_pr |>
   arrange(desc(alunni))
 rientro_sedi_pr
 
-# 3. Salva nel proprio output/ (rds + csv, nome file = oggetto) ------------
+# 4. Salva nel proprio output/ (rds + csv, nome file = oggetto) ------------
 lista_out <- list(
   rientro_trend_pr = rientro_trend_pr,
   rientro_incidenza_prov_er = rientro_incidenza_prov_er,
   rientro_profilo_pr = rientro_profilo_pr,
-  rientro_sedi_pr = rientro_sedi_pr
+  rientro_sedi_pr = rientro_sedi_pr,
+  iscritti_tipo_scuola = iscritti_tipo_scuola,
+  iscritti_indirizzi = iscritti_indirizzi,
+  iscritti_tipo_utenza = iscritti_tipo_utenza
 )
 
 iwalk(lista_out, function(df, nome) {
@@ -189,3 +288,9 @@ rientro_incidenza_prov_er |> filter(anno_inizio == ANNO_ULTIMO) |> arrange(desc(
 rientro_incidenza_prov_er |> filter(provincia == "ITALIA")                     # Italia in crescita: 2,3% (2015) → 3,2% (2024)
 rientro_profilo_pr |> filter(dimensione == "cittadinanza")                  # 2024: 323 italiani, 179 stranieri
 rientro_sedi_pr                                                            # 8 sedi, 6 a Parma + Fidenza + Salsomaggiore
+# riscontro con la Tab. 5 del Report giovani ER 2026 (statali, 2024/25):
+# licei 86.363, tecnici 69.580, professionali 41.436, IeFP 556, totale 197.935
+iscritti_tipo_scuola |> filter(gestione == "statale", territorio == "Emilia-Romagna", anno_inizio == 2024) |> count(tipo_scuola, wt = alunni)
+# Parma statali 2024/25: licei 9.808, tecnici 7.710, professionali 3.331, IeFP nessuno
+iscritti_tipo_scuola |> filter(gestione == "statale", territorio == "Provincia di Parma", anno_inizio == 2024) |> count(tipo_scuola, wt = alunni)
+

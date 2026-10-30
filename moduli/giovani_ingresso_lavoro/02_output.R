@@ -231,13 +231,20 @@ f_plot_variazioni <- function(prep, conf, titolo) {
     geom_col_interactive(aes(tooltip = tooltip, data_id = id), width = 0.75) +
     geom_text(aes(label = valore_lbl, hjust = hjust), size = 3.2) +
     facet_wrap(~ pannello) +
-    scale_x_continuous(breaks = tacche_var, limits = range(tacche_var),
-                       labels = scales::label_number(suffix = "%", decimal.mark = ",", style_positive = "plus")) +
+    # niente tacche sull'asse x: ogni barra ha la sua etichetta, resta la linea dello zero
+    # (fino al 2026-10-30, etichette sovrapposte tra i riquadri:)
+    # scale_x_continuous(breaks = tacche_var, limits = range(tacche_var),
+    #                    labels = scales::label_number(suffix = "%", decimal.mark = ",", style_positive = "plus")) +
+    scale_x_continuous(limits = range(tacche_var), expand = expansion(mult = 0.05)) +
     # Forze di lavoro in alto (rev: l'ultimo livello sta in cima)
     scale_y_discrete(limits = rev) +
     scale_fill_manual(values = COL_CONDIZIONI, guide = "none") +
+    # etichette libere di uscire dal riquadro (es. +24,7%)
+    coord_cartesian(clip = "off") +
     f_theme_sito() +
-    theme(panel.grid.major.y = element_blank(), panel.spacing.x = unit(1.2, "lines")) +
+    # (fino al 2026-10-30: theme(panel.grid.major.y = element_blank(), panel.spacing.x = unit(1.2, "lines")))
+    theme(panel.grid.major.y = element_blank(), panel.grid.major.x = element_blank(),
+          axis.text.x = element_blank(), panel.spacing.x = unit(2, "lines")) +
     labs(
       title = str_wrap(titolo, 60),
       subtitle = glue("Indicatore: variazione % delle persone in ciascuna condizione (tra parentesi la popolazione {ANNO}); per 15 anni e oltre, inattivi di 15-64 anni"),

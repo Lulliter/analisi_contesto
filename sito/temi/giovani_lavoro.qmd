@@ -72,7 +72,7 @@ dir_lav <- here::here("moduli", "giovani_ingresso_lavoro", "output")
 + Chi resta fuori: profili e territori dove la transizione si interrompe. -->
 
 
-Dopo aver analizzato le dimensioni dell'[istruzione](scuola.qmd) e [formazione professionale](formaz_rientro.qmd), tenendo anche lo sguardo su chi è a rischio di [dispersione scolastica](scuola_dispersione.qmd), questa pagina guarda a come i giovani si affacciano al lavoro.  
+Dopo aver osservato le dimensioni dell'istruzione e formazione professionale, questa pagina guarda a come i giovani si affacciano al lavoro. Si rimanda anche ai recenti rapporti condotti dalla regione  attraverso ART-ER Attrattività Ricerca Territorio [@ARTER_ReGiovani2026; @ARTER_ReportgNEETott2024].  
 
 
 + **Titoli di studio**: i giovani di Parma sono più istruiti delle generazioni precedenti. Tra i 25 e i 49 anni un residente su tre è laureato, come in regione e poco più che in Italia.
@@ -80,7 +80,7 @@ Dopo aver analizzato le dimensioni dell'[istruzione](scuola.qmd) e [formazione p
 + **Estero**: pur essendo l'Emilia Romagna una regione attrattiva, una parte crescente dei giovani vive all’estero. Per ogni 1.000 residenti di 19-34 anni, 92 sono iscritti all’anagrafe degli italiani all’estero di un comune parmense, un po’ più della media regionale e in aumento dal 2023.
 
 ## Titoli di studio per classe d'età, genere, e territorio
-L'accesso a livelli alti di istruzione è un fattore chiave per la transizione verso il lavoro e la realizzazoine personale, oltre che una priorità per le politiche regionali [@ARTER_ReGiovani2026].  
+L'accesso a livelli alti di istruzione è un fattore chiave per la transizione verso il lavoro e la realizzazoine personale, oltre che una priorità per le politiche regionali.  
 
 La provincia di Parma è in linea (dove non poco sopra) con la media regionale e nazionale per livelli di istruzione, ed evidenzia un aumento marcato del livello d'istruzione nelle generazioni più giovani. 
 ```{r}
@@ -100,18 +100,17 @@ f_bottoni_dati("titoli_confronto", dir_tit, rds = "titoli_confronto_ft")
 ::: {.callout-note collapse="true"}
 #### Osservazioni
 <!-- Parma è vicina alla media regionale in tutte le classi d'età e poco sopra quella italiana: tra i 25 e i 49 anni i laureati sono il 32% (Italia 29%), tra i 50 e i 64 anni chi si è fermato alla licenza media è il 31% (Italia 35%).  -->
-Le differenze tra i tre territori sono di pochi punti; quelle tra generazioni sono molto più ampie (laureati: 32% a 25-49 anni, 11% a 65 e più).
+Le differenze tra i tre territori sono di pochi punti; quelle tra generazioni sono molto più ampie (laureati: 32% a 25-49 anni, 11% a 65 e più). Sull'insieme dei residenti in età attiva, i laureati sono il 22% a Parma, il 21% in regione e il 19% in Italia; chi ha al massimo la licenza elementare è il 13% (Italia 15%), quasi tutto tra gli over 65.
 
-_NB: Fonte ISTAT, censimento permanente della popolazione, 2024. Le classi d'età sono quelle pubblicate da ISTAT: non c'è 25-34 né 30-34, quindi il dato non si confronta con gli indicatori europei sui giovani laureati._
+_NB: Fonte ISTAT, censimento permanente della popolazione, 2024. Le classi d'età sono quelle pubblicate da ISTAT: non c'è 25-34 né 30-34, quindi il dato non si confronta con gli indicatori europei sui giovani laureati. La riga "25 e più anni" somma le tre classi da 25 anni in su._
 :::
 
-
-Come nel resto dell'Emilia Romagna, Parma registra un trend di scolarizzazione solido e una propensione all’iscrizione universitaria elevata soprattutto tra le ragazze.  
+La distribuzione per titoli di studio mostra che, tra gli adulti in età attiva, le donne sono più spesso laureate degli uomini, e il divario è cresciuto dal 2018.
 
 ```{r}
 #| label: plot_titoli_sesso_pr
 #| output: true
-#| fig-height: 6
+#| fig-height: 8
 f_girafe(readRDS(file.path(dir_tit, "plot_titoli_sesso_pr.rds")))
 ```
 
@@ -124,10 +123,10 @@ f_bottoni_dati("titoli_sesso_pr", dir_tit, rds = "plot_titoli_sesso_pr")
 :::
 
 ::: {.callout-note collapse="true"}
-#### Osservazioni
-Tra il 2018 e il 2024 la quota di laureati è salita di circa 3 punti tra le donne (da 18% a 21%) e di 2 tra gli uomini (da 15% a 17%); cresce anche il diploma, la licenza media resta ferma. Le donne hanno più spesso la laurea e meno spesso la sola licenza media (25% contro 30%).
+<!-- versione su 9 anni e più, fino al 2026-10-30: Tra il 2018 e il 2024 la quota di laureati è salita di circa 3 punti tra le donne (da 18% a 21%) e di 2 tra gli uomini (da 15% a 17%); cresce anche il diploma, la licenza media resta ferma. Le donne hanno più spesso la laurea e meno spesso la sola licenza media (25% contro 30%). -->
+Tra i 25 e i 64 anni le laureate sono passate da circa il 26% al 30%, i laureati dal 20% al 22%: lo scarto a favore delle donne si allarga, da 6 a 8 punti. Gli uomini restano più spesso con la sola licenza media (28% contro 21%); il diploma riguarda quasi metà dei residenti di entrambi i sessi ed è stabile.
 
-_NB: Fonte ISTAT, censimento permanente della popolazione: stime arrotondate. La base comprende tutti i residenti dai 9 anni in su, anche chi è ancora a scuola e gli anziani, che hanno titoli mediamente più bassi: la crescita riflette in buona parte il ricambio tra generazioni. "Laurea o più" comprende lauree triennali, ITS, magistrali e dottorato; nessun titolo e licenza elementare non sono mostrati._
+_NB: Fonte ISTAT, censimento permanente della popolazione: stime arrotondate. Residenti di 25-64 anni (somma delle classi 25-49 e 50-64 pubblicate da ISTAT). Il cambiamento riflette in parte il ricambio tra generazioni: chi compie 25 anni è più istruito di chi supera i 64. "Laurea o più" comprende lauree triennali, ITS, magistrali e dottorato._
 :::
 
 
