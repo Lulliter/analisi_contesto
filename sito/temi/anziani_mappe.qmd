@@ -27,7 +27,7 @@ link-citations: true
 #| label: anteprima
 #| eval: false
 # Anteprima: renderizza e apre nel browser (lancia a mano, ignorato nel render)
-pagina <- "_anziani_mappe"   # nome pagina, senza estensione
+pagina <- "anziani_mappe"   # nome pagina, senza estensione
 quarto::quarto_render(here::here("sito", "temi", paste0(pagina, ".qmd")))
 browseURL(here::here("docs", "sito", "temi", paste0(pagina, ".html")))
 ```
@@ -161,6 +161,16 @@ _NB: Censimento permanente ISTAT, edizione 2024; un anno indietro rispetto ai da
 
 
 ## Anziani che vivono soli per comune [🟡]{.content-hidden}
+
+<!-- STIMA DA FARE (non implementata): anziani soli per comune
+Dati osservati: per comune il censimento dà solo le famiglie di 1 persona di tutte le età (`pop_famiglie_comuni`); la Regione dà gli anziani soli per età solo fino al distretto sanitario.
+Stima indiretta (stessa logica "prevalenze × popolazione" dei non autosufficienti):
+1. % di persone sole per singola età nel Comune di Parma (anagrafe 2026, `comune_pr_open`, escluse le convivenze)
+2. persone sole "attese" per comune = popolazione per età del comune (censimento 2024) × % di Parma città
+3. fattore del comune = persone sole osservate (famiglie di 1 persona, censimento) / attese
+4. anziani soli stimati = anziani soli attesi (65+, poi 80+) × fattore
+Ipotesi da dichiarare: lo scarto del comune da Parma città è uguale a tutte le età; anni e fonti diversi (censimento 2024, anagrafe 2026).
+Riscontro: somme per distretto confrontate con il dato regionale per distretto. -->
 
 
 `[Approfondimenti in corso]`

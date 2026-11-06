@@ -96,6 +96,7 @@ Dati che non stanno negli open data e vanno chiesti agli enti (bozze in `dati/gr
 - [ ] Nomi delle funzioni `f_...`: criterio e lessico comune (rimandato 2026-10-09)
 - [ ] grafico di trend multi-territorio (province ER grigie, Parma / ER / Italia evidenziate) ripetuto in `demo_trend_previs` e `anziani_non_autosuff`: promuovere una funzione in `R/grafici.R`?
 - [ ] Export dati: in `f_bottoni_dati()` smistare per riga, "Fonte…" nel campo Fonte e il resto in Nota (oggi alcune fonti escono come Nota)
+- [ ] tooltip delle mappe: una regola coerente (chiarire, non affaticare) da rivedere in `anziani_mappe.qmd` e `geogr_abitare.qmd` (famiglie e residenti)
 - [ ] asse y sopra il massimo (`f_scale_y_tacche`, `f_scale_y_sopra` in `R/grafici.R`): estendere agli altri grafici di trend del sito
 - [ ] `ausl_npia/npia_pr_serie.csv`: trascrizione a mano da convertire con la regola Fonti in pdf (`dati/README.md`)
 - [ ] **pdf in `dati/grezzi/` tracciati da git** (regola `!dati/grezzi/**/*.pdf` dal 2026-07-17, probabilmente per tenere le note metodologiche ISTAT e le fonti non riscaricabili): oggi 85 pdf, 205 MB, `.git` 600 MB. Decidere: tenere solo i pdf piccoli/necessari (escludere es. `iss_hbsc/..._webinar_2024_vieno.pdf` 66 MB, `ausl_npia/report_2015.pdf` 32 MB), smettere di tracciarli, o Git LFS
@@ -322,7 +323,11 @@ Due domande, pagina asciutta (deciso 2026-10-19): 1) quanti sono gli over 65 e o
 - [ ] (forse) ISS profilo Emilia-Romagna / CDCD: utenti in carico, per confronto con la stima
 - [ ] (forse) indennità di accompagnamento INPS per provincia e classe d'età: controllo della stima → tema Assistenza
 - [ ] Multimorbilità: Bes `01SAL021` "Multicronicità e limitazioni gravi (75+)" già in `dati/puliti/istat_bes/` (Italia per età, regioni); verificare definizione ("e"/"o") e rottura di serie 2021
-- [ ] anziani soli per comune: verificare su Esplora Dati censimento (famiglie / persone sole per età); se c'è, ingestione + sesto indicatore in `pop_mappe_tematiche`
+- [x] anziani soli per comune: verificare su Esplora Dati censimento (famiglie / persone sole per età); se c'è, ingestione + sesto indicatore in `pop_mappe_tematiche`
+  - [ ] censimento: per comune solo famiglie di 1 persona, senza età (`istat_cens_famiglie`); Regione: età solo fino al distretto → stima commentata in `anziani_mappe.qmd`
+- [ ] ISTAT censimento, Convivenze anagrafiche: residenti in case di riposo per età (provincia) e per comune (senza età) → `anziani.qmd` (stima EHIS per difetto) e mappe
+  - [ ] scaricati in `istat_cens_famiglie`: residenti in convivenza per comune, per tipo (anche case di riposo) e sesso, senza età; manca la tavola per età (provincia)
+- [ ] (forse) Regione ER, Famiglie anagrafiche per distretto sanitario: anziani soli per età → tema Assistenza
 - [ ] ospedali, case della comunità, centri diurni: fonti con coordinate (open data Ministero della Salute; anagrafe regionale delle strutture socio-sanitarie), altrimenti geocodifica degli indirizzi
 - [ ] (forse) epoca di costruzione degli edifici per sezione di censimento → verifica dell'ipotesi "periferie invecchiate" per quartiere
 
@@ -346,11 +351,12 @@ Due domande, pagina asciutta (deciso 2026-10-19): 1) quanti sono gli over 65 e o
 
 **Sito**:
 
-- [ ] `_anziani_mappe.qmd` (bozza, Anziani › Dove vivono: tabset Numero | Quota per 65+, 80+, anziani soli 65+/80+, comuni e quartieri): Osservazioni e messaggi, poi promozione (togliere `_`, voce navbar, sostituire il link segnaposto in `geogr_abitare.qmd`)
+- [ ] `anziani_mappe.qmd` (Anziani › Dove vivono, pubblicata 2026-11-06): Osservazioni e messaggi
+- [ ] rivedere metadati, blurb e testi delle parti nuove: `istat_cens_famiglie/_metadati.md`, `pop_famiglie_comuni/blurb.md`, sezione Famiglie per comune in `geogr_abitare.qmd`, `anziani_mappe.qmd`
 
 #### AVANZAMENTO anziani
 
-Stato al 2026-11-06: mappe di conteggio 65+/80+ per comune (`pop_mappe_tematiche`) e per quartiere con anziani soli 65+/80+ (`comune_pr_quartieri`); bozza `_anziani_mappe.qmd` con segnaposto per anziani soli per comune, non autosufficienti, ospedali e centri diurni; prossimo passo: Osservazioni della bozza, poi verifica del censimento sulle persone sole per comune
+Stato al 2026-11-06: pagina `anziani_mappe.qmd` pubblicata (Anziani › Dove vivono), con mappe di numero e quota di 65+/80+ per comune e per quartiere e anziani soli per quartiere; anziani soli per comune non disponibili per età (censimento e Regione), stima indiretta commentata nella pagina; nuovo modulo `pop_famiglie_comuni` (famiglie, componenti medi, persone sole, famiglie numerose per comune) nella sezione Famiglie per comune di `geogr_abitare.qmd`; convivenze per comune scaricate; prossimo passo: revisione di metadati, blurb e testi nuovi, poi Osservazioni di `anziani_mappe.qmd`
 
 Stato al 2026-10-21: pagina promossa (`sito/temi/anziani.qmd`, menu Anziani › Bisogno di cura); tabelle per territorio di popolazione e condizioni (definizioni e fonti in tabella), grafici di non autosufficienti e demenze per classe d'età, sezione fragilità da sviluppare; prossimo passo: `build.R` e render del sito, poi blurb e fonti sulla fragilità
 
@@ -424,6 +430,11 @@ Fonti in casa: `istat_sae_glf_2019` ✓ (stime GLF provinciali), aree interne/zo
 - [ ] soglie di `quota_0_14` (7,5 / 10 / 12,5 / 15) e `quota_18_29` (classi alte vuote in PR: verificare ER); aggiungere il controllo delle classi dei conteggi
 - [ ] mappe ER non usate dal sito (48 MB di rds): salvare solo png o generarle a richiesta
 - [ ] `blurb.md`: note di metodo ferme ai quintili (classi fisse dal 2026-10-09); Messaggio da rileggere
+
+### modulo `pop_famiglie_comuni`
+(famiglie di una persona e famiglie numerose per comune, censimento 2024; sezione Famiglie per comune in `geogr_abitare.qmd`)
+
+- [ ] `blurb.md`: Messaggio
 
 ### modulo `indic_fragil`
 > inspo: [MILANO CHE CAMBIA/Indicatori composti](https://public.tableau.com/app/profile/maud.lab/viz/MILANOCHECAMBIAUNVIAGGIOINTERATTIVOTRADATIPERSONEEQUARTIERI/INFO_descrizione)

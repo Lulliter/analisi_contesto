@@ -85,6 +85,8 @@ website:
         menu:
           - text: "Bisogno di cura"
             href: sito/temi/anziani.qmd
+          - text: "Dove vivono"
+            href: sito/temi/anziani_mappe.qmd
       - text: "<span class='nav-spenta' title='in preparazione'>Assistenza socio-sanitaria</span>"
         href: "#"
       # - text: "<span class='nav-spenta' title='in preparazione'>Mappe</span>"

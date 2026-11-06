@@ -372,10 +372,8 @@ f_mappa_pop <- function(var, titolo, indicatore, legenda, suffisso, gruppo, tono
                             if (var == "famiglie") {
                               paste0(" famiglie (", scales::number(comp_per_famiglia, accuracy = 0.01, decimal.mark = ","), " componenti in media)")
                             } else if (var %in% c("pct_famiglie_1", "pct_famiglie_numerose")) {
-                              paste0(" (", scales::number(famiglie, big.mark = ".", decimal.mark = ","), " famiglie)")
-                            # conteggi di anziani: tra parentesi la % corrispondente
-                            } else if (var %in% c("anziani_65", "anziani_80", "anziani_soli", "anziani_80_soli")) {
-                              paste0(" (", scales::number(.data[[paste0("pct_", var)]], accuracy = 0.1, decimal.mark = ","), "%)")
+                              paste0(" di ", scales::number(famiglie, big.mark = ".", decimal.mark = ","), " famiglie")
+                            # conteggi di anziani: solo quartiere e numero (la % è nella scheda accanto; 2026-11-06)
                             } else ""))
 
   mappa <- f_disegna_mappa(

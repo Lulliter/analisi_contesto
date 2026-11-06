@@ -92,9 +92,9 @@ pop_mappe_sf <- pop_mappe_sf |>
          tt_quota_18_29     = paste0(COMUNE, ": ", lab_pct(quota_18_29)),
          tt_quota_0_14      = paste0(COMUNE, ": ", lab_pct(quota_0_14)),
          tt_quota_minorenni = paste0(COMUNE, ": ", lab_pct(quota_minorenni)),
-         # conteggi: tra parentesi la quota corrispondente
-         tt_pop_65p         = paste0(COMUNE, ": ", lab_num(pop_65p), " (", lab_pct(quota_65p), ")"),
-         tt_pop_80p         = paste0(COMUNE, ": ", lab_num(pop_80p), " (", lab_pct(quota_80p), ")"))
+         # conteggi: solo comune e numero (la quota è nella scheda accanto; 2026-11-06)
+         tt_pop_65p         = paste0(COMUNE, ": ", lab_num(pop_65p)),
+         tt_pop_80p         = paste0(COMUNE, ": ", lab_num(pop_80p)))
 
 
 # comuni PR per lo zoom: geometria di dettaglio semplificata per il web (da 00b, 2026-10-09;

@@ -49,6 +49,7 @@ source(here::here("R", "sito.R"))     # bottoni CSV + Excel (f_scarica_dati, f_b
 source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hover bordeaux)
 dir_mod <- here::here("moduli", "comune_pr_quartieri", "output")
 dir_pop <- here::here("moduli", "pop_mappe_tematiche", "output")   # mappe per comune (sezione La provincia)
+dir_fam <- here::here("moduli", "pop_famiglie_comuni", "output")   # famiglie per comune (sezione La provincia)
 
 # totali del comune per le frasi di apertura delle sezioni (si aggiornano con i dati)
 pop_comune <- readRDS(file.path(dir_mod, "pop_quartieri.rds")) |>
@@ -208,6 +209,59 @@ Il 14,8% dei residenti ha cittadinanza straniera (ER 12,7%); 12 comuni su 44 sta
 _NB: Censimento permanente ISTAT, edizione 2024; un anno indietro rispetto ai dati per quartiere del Comune (1/1/2026). Classi = quintili dei 330 comuni dell'Emilia-Romagna._
 ::::
 
+## Famiglie per comune
+
+In provincia le famiglie "anagrafiche" (i.e. persone che vivono insieme legate da matrimonio, parentela, affinità, adozione, tutela o vincoli affettivi; anche una persona sola è una famiglia) sono 211 mila, con 2,1 componenti in media: 86 mila sono di una sola persona (41%, Italia 38%) e 9 mila hanno 5 o più componenti (4%).
+
+<!-- <1-2 frasi col messaggio principale, da scrivere> -->
+
+:::: {.panel-tabset}
+
+### Famiglie anagrafiche
+
+```{r}
+#| label: mappa_famiglie_pr
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_fam, "mappa_famiglie_pr.rds")))
+```
+
+### Famiglie numerose
+
+```{r}
+#| label: mappa_pct_famiglie_numerose_pr
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_fam, "mappa_pct_famiglie_numerose_pr.rds")))
+```
+
+### Famiglie di una sola persona
+
+```{r}
+#| label: mappa_pct_famiglie_1_pr
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_fam, "mappa_pct_famiglie_1_pr.rds")))
+```
+
+::::
+
+:::: {.text-end}
+```{r}
+#| label: dl_mappe_famiglie_comuni
+#| output: true
+f_bottoni_dati("famiglie_comuni", dir_fam, rds = "mappa_pct_famiglie_1_pr")
+```
+::::
+
+:::: {.callout-note collapse="true"}
+### Osservazioni
+
+<!-- <da scrivere> -->
+
+_NB: Censimento permanente ISTAT, edizione 2024 (famiglie al 31 dicembre), escluse le convivenze; un anno indietro rispetto ai dati per quartiere del Comune (1/1/2026). Le famiglie di una persona comprendono chi vive solo a qualsiasi età: per comune il censimento non dà l'età dei componenti._
+::::
+
 # Il Comune
 
 È interessante osservare la distribuzione della popolazione anche all'interno del comune. Il sito [Open Data del comune di Parma](https://opendata.comune.parma.it/), consente di disaggregare molti indicatori demografici e sociali fino al livello dei quartieri. 
@@ -310,7 +364,7 @@ _NB: dati dell'anagrafe comunale al 1° gennaio 2026, solo residenti (non chi vi
 
 ## Famiglie per quartiere
 
-Le famiglie "anagrafiche" (i.e. persone che vivono insieme legate da matrimonio, parentela, affinità, adozione, tutela o vincoli affettivi; anche una persona sola è una famiglia) sono `r f_n(pop_comune$famiglie)`, con `r f_n(pop_comune$comp_per_famiglia)` componenti in media. Ben `r f_n(pop_comune$famiglie_1)` sono di fatto nuclei di una sola persona (`r f_n(pop_comune$pct_famiglie_1)`%), mentre solo `r f_n(pop_comune$famiglie_numerose)` hanno 5 o più componenti (`r f_n(pop_comune$pct_famiglie_numerose)`%). Tra le persone di 65 anni e oltre che vivono in famiglia, ne vive sola il `r f_n(pop_comune$pct_anziani_soli)`%.
+Le famiglie anagrafiche sono `r f_n(pop_comune$famiglie)`, con `r f_n(pop_comune$comp_per_famiglia)` componenti in media. Ben `r f_n(pop_comune$famiglie_1)` sono di fatto nuclei di una sola persona (`r f_n(pop_comune$pct_famiglie_1)`%), mentre solo `r f_n(pop_comune$famiglie_numerose)` hanno 5 o più componenti (`r f_n(pop_comune$pct_famiglie_numerose)`%). Tra le persone di 65 anni e oltre che vivono in famiglia, ne vive sola il `r f_n(pop_comune$pct_anziani_soli)`%.
 
 <!-- <1-2 frasi col messaggio principale, da scrivere> -->
 
@@ -367,11 +421,11 @@ f_bottoni_dati("pop_quartieri", dir_mod, rds = "mappa_pop_famiglie")
 
 <!-- <da scrivere> -->
 
-_NB: famiglie anagrafiche nel senso del regolamento anagrafico (DPR 223/1989, art. 4), escluse le convivenze (residenze per anziani, comunità, istituti). Famiglie numerose: 5 o più componenti. "Anziano solo" è chi ha 65 anni o più in una famiglia anagrafica di una persona, che non vuol dire necessariamente vivere da solo. Quanti sono gli anziani e i grandi anziani che vivono soli, quartiere per quartiere, lo conta la pagina [Dove vivono gli anziani](#){.link-futuro}._
-<!-- link-futuro: sostituire # con anziani_mappe.qmd quando la pagina sarà promossa (oggi bozza _anziani_mappe.qmd) -->
+_NB: famiglie anagrafiche nel senso del regolamento anagrafico (DPR 223/1989, art. 4), escluse le convivenze (residenze per anziani, comunità, istituti). Famiglie numerose: 5 o più componenti. "Anziano solo" è chi ha 65 anni o più in una famiglia anagrafica di una persona, che non vuol dire necessariamente vivere da solo. Quanti sono gli anziani e i grandi anziani che vivono soli, quartiere per quartiere, lo conta la pagina [Dove vivono gli anziani](anziani_mappe.qmd)._
+<!-- link-futuro: fatto (2026-11-06), pagina promossa in anziani_mappe.qmd -->
 ::::
 
-<!-- Sezione confluita nel tabset Famiglie (scheda "...di cui anziani") il 2026-11-06; numeri assoluti e grandi anziani soli in _anziani_mappe.qmd -->
+<!-- Sezione confluita nel tabset Famiglie (scheda "...di cui anziani") il 2026-11-06; numeri assoluti e grandi anziani soli in anziani_mappe.qmd -->
 <!--
 ## Anziani che vivono soli
 
