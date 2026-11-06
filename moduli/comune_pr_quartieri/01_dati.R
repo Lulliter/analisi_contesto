@@ -77,6 +77,9 @@ f_indicatori_pop <- function(df) {
       # anziani in famiglia anagrafica di 1 persona (convivenze escluse)
       anziani_soli = sum(eta >= 65 & !in_convivenza & n_comp == 1),
       anziani_in_famiglia = sum(eta >= 65 & !in_convivenza),
+      # stessa cosa per i grandi anziani (80+)
+      anziani_80_soli = sum(eta >= 80 & !in_convivenza & n_comp == 1),
+      anziani_80_in_famiglia = sum(eta >= 80 & !in_convivenza),
       famiglie = sum(intestatario),
       famiglie_1 = sum(intestatario & n_comp == 1),
       famiglie_numerose = sum(intestatario & n_comp >= 5),
@@ -92,6 +95,7 @@ f_indicatori_pop <- function(df) {
       pct_anziani_65 = round(anziani_65 / residenti * 100, 1),
       pct_anziani_80 = round(anziani_80 / residenti * 100, 1),
       pct_anziani_soli = round(anziani_soli / anziani_in_famiglia * 100, 1),
+      pct_anziani_80_soli = round(anziani_80_soli / anziani_80_in_famiglia * 100, 1),
       pct_famiglie_1 = round(famiglie_1 / famiglie * 100, 1),
       pct_famiglie_numerose = round(famiglie_numerose / famiglie * 100, 1),
       # dimensione media delle famiglie anagrafiche (residenti in famiglia / famiglie)

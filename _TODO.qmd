@@ -322,6 +322,9 @@ Due domande, pagina asciutta (deciso 2026-10-19): 1) quanti sono gli over 65 e o
 - [ ] (forse) ISS profilo Emilia-Romagna / CDCD: utenti in carico, per confronto con la stima
 - [ ] (forse) indennità di accompagnamento INPS per provincia e classe d'età: controllo della stima → tema Assistenza
 - [ ] Multimorbilità: Bes `01SAL021` "Multicronicità e limitazioni gravi (75+)" già in `dati/puliti/istat_bes/` (Italia per età, regioni); verificare definizione ("e"/"o") e rottura di serie 2021
+- [ ] anziani soli per comune: verificare su Esplora Dati censimento (famiglie / persone sole per età); se c'è, ingestione + sesto indicatore in `pop_mappe_tematiche`
+- [ ] ospedali, case della comunità, centri diurni: fonti con coordinate (open data Ministero della Salute; anagrafe regionale delle strutture socio-sanitarie), altrimenti geocodifica degli indirizzi
+- [ ] (forse) epoca di costruzione degli edifici per sezione di censimento → verifica dell'ipotesi "periferie invecchiate" per quartiere
 
 ### modulo `anziani_non_autosuff`
 (stima del numero di anziani non autosufficienti a Parma oggi e nel 2036: prevalenze per età e sesso (EHIS 2019, ER o Nord-Est) × popolazione 2024 e prevista 2036; GLF per provincia come dato osservato; demenze con la stessa logica)
@@ -336,7 +339,18 @@ Due domande, pagina asciutta (deciso 2026-10-19): 1) quanti sono gli over 65 e o
 - [ ] fragilità: cercare fonti (letteratura, servizi sanitari) per la sezione in fondo a `anziani.qmd`
 - [ ] tabelle per territorio (popolazione 7 colonne, condizioni 8): leggibilità su telefono
 
+### modulo `anziani_non_autosuff_comuni` (forse)
+(stima per comune e per quartiere di non autosufficienti e persone con disabilità: prevalenze per età di `anziani_non_autosuff` × popolazione per età; dichiarata come stima, dati amministrativi INPS/FRNA/ADI per distretto come riscontro)
+
+- [ ] decidere se farla e con quali prevalenze
+
+**Sito**:
+
+- [ ] `_anziani_mappe.qmd` (bozza, Anziani › Dove vivono: tabset Numero | Quota per 65+, 80+, anziani soli 65+/80+, comuni e quartieri): Osservazioni e messaggi, poi promozione (togliere `_`, voce navbar, sostituire il link segnaposto in `geogr_abitare.qmd`)
+
 #### AVANZAMENTO anziani
+
+Stato al 2026-11-06: mappe di conteggio 65+/80+ per comune (`pop_mappe_tematiche`) e per quartiere con anziani soli 65+/80+ (`comune_pr_quartieri`); bozza `_anziani_mappe.qmd` con segnaposto per anziani soli per comune, non autosufficienti, ospedali e centri diurni; prossimo passo: Osservazioni della bozza, poi verifica del censimento sulle persone sole per comune
 
 Stato al 2026-10-21: pagina promossa (`sito/temi/anziani.qmd`, menu Anziani › Bisogno di cura); tabelle per territorio di popolazione e condizioni (definizioni e fonti in tabella), grafici di non autosufficienti e demenze per classe d'età, sezione fragilità da sviluppare; prossimo passo: `build.R` e render del sito, poi blurb e fonti sulla fragilità
 
@@ -400,10 +414,16 @@ Fonti in casa: `istat_sae_glf_2019` ✓ (stime GLF provinciali), aree interne/zo
 - [x] [Popolazione residente al 1 gennaio 2026](https://opendata.comune.parma.it/dataset/popolazione-residente-al-1-gennaio-2026) in `ingestione/09`; età = anni compiuti con `ETA - 1`, v. `_metadati.md` (2026-10-08)
 - [ ] reddito sotto il livello comunale: verificare MEF IRPEF per CAP
 - [ ] disabilità per quartiere e domande bando affitto / ERP per quartiere: non nei dati aperti del Comune → richieste n. 6 e 7 (Richieste uffici)
-- [ ] anziani soli per comune: verificare su Esplora Dati censimento (famiglie / persone sole per età); se c'è, aggiungerlo a `pop_mappe_tematiche` come sesto indicatore
 
 
 **Ripensamento MODULI (connessi a fonti)**:
+
+### modulo `pop_mappe_tematiche`
+(mappe comunali ER/PR a classi fisse: quote per età, stranieri, densità; dal 2026-11-06 anche conteggi 65+/80+)
+
+- [ ] soglie di `quota_0_14` (7,5 / 10 / 12,5 / 15) e `quota_18_29` (classi alte vuote in PR: verificare ER); aggiungere il controllo delle classi dei conteggi
+- [ ] mappe ER non usate dal sito (48 MB di rds): salvare solo png o generarle a richiesta
+- [ ] `blurb.md`: note di metodo ferme ai quintili (classi fisse dal 2026-10-09); Messaggio da rileggere
 
 ### modulo `indic_fragil`
 > inspo: [MILANO CHE CAMBIA/Indicatori composti](https://public.tableau.com/app/profile/maud.lab/viz/MILANOCHECAMBIAUNVIAGGIOINTERATTIVOTRADATIPERSONEEQUARTIERI/INFO_descrizione)
@@ -427,10 +447,13 @@ Fonti in casa: `istat_sae_glf_2019` ✓ (stime GLF provinciali), aree interne/zo
 **Sito**:
 
 - [ ] CAPIRE COME REDISTRIBUIRE `_geoloc_fragil.qmd` e`geogr_abitare.qmd`, (forse qualcosa lo tolgo da qui e lo metto in `_geoloc_fragil.qmd`) 
-- [ ] - CAPIRE COSA FARNE - `_acer_quartieri.qmd` (bozza con le 13 mappe di dettaglio): decidere se e come usarla; per pubblicarla semplificare anche le strade
-- [ ] spostare "Chi vive in strutture collettive" da `geogr_abitare.qmd` a un'altra pagina (la pagina supera i 3 MB)
+- [ ] - CAPIRE COSA FARNE - `_abitare_acer_offerta_x_quart.qmd` (bozza con le 13 mappe di dettaglio): decidere se e come usarla; per pubblicarla semplificare anche le strade
+- [ ] `_abitare_coll_offerta.qmd` (bozza-parcheggio: convivenze + ACER sunto, lato offerta): decidere se e come usarla; le convivenze mescolano tutto (dal carcere agli istituti religiosi)
+- [ ] `geogr_abitare.qmd`: 18 grafici e ~4 MB, sopra soglia: misurare il peso dei singoli widget (geometrie, tooltip) prima di tagliare sezioni
 
 #### AVANZAMENTO comune_pr_quartieri
+
+Stato al 2026-11-06: `anziani_80_soli` e mappe di conteggio in tono tenue; scheda "...di cui anziani" nel tabset famiglie di `geogr_abitare.qmd`; strutture collettive e ACER parcheggiati in `_abitare_coll_offerta.qmd`
 
 Stato al 2026-10-09: pagina pubblicata (in costruzione) con sezione provincia; classi d'età e gradini uniformati città/provincia; prossimo passo: verifica in anteprima e testi
 

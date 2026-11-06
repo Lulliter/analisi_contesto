@@ -331,7 +331,12 @@ mappe_pop_def <- tibble::tribble(
   "pct_stranieri_minori",  "Stranieri tra i minori",               "Indicatore: % di stranieri su tot. residenti di 0-17 anni",         "% sui minori",                   "%",       "stranieri",    "pieno",  seq_factor_purple, CAP_POP, 5,
   "pct_anziani_65",        "Residenti di 65 anni e oltre",         "Indicatore: % di 65+ su tot. residenti",                            "% sui residenti",                "%",       "anziani_65",   "pieno",  seq_factor_red,    CAP_POP, 2.5,
   "pct_anziani_80",        "Residenti di 80 anni e oltre",         "Indicatore: % di 80+ su tot. residenti",                            "% sui residenti",                "%",       "anziani_80",   "pieno",  seq_factor_red,    CAP_POP, 2.5,
-  "pct_anziani_soli",      "Anziani che vivono soli",              "Indicatore: % in famiglia di 1 persona su tot. 65+ in famiglia",    "% sugli anziani\nin famiglia",   "%",       "anziani_soli", "pieno",  seq_factor_red,    CAP_FAMIGLIE, 5,
+  "pct_anziani_soli",      "Anziani che vivono soli",              "Indicatore: % di 65+ in famiglia di 1 persona su tot. 65+ in famiglia",    "% sugli anziani\nin famiglia",   "%",       "anziani_soli", "pieno",  seq_factor_red,    CAP_FAMIGLIE, 5,
+  "pct_anziani_80_soli",   "Grandi anziani che vivono soli",       "Indicatore: % di 80+ in famiglia di 1 persona su tot. 80+ in famiglia",    "% sui grandi anziani\nin famiglia", "%",    "anziani_soli", "pieno",  seq_factor_red,    CAP_FAMIGLIE, 5,
+  "anziani_65",            "Residenti di 65 anni e oltre",         "Indicatore: n. di residenti di 65+",                    "residenti 65+",                  "",        "anziani_65_n", "tenue",  seq_factor_red,    CAP_POP, NA,
+  "anziani_80",            "Residenti di 80 anni e oltre",         "Indicatore: n. di residenti di 80+",                    "residenti 80+",                  "",        "anziani_80_n", "tenue",  seq_factor_red,    CAP_POP, NA,
+  "anziani_soli",          "Anziani che vivono soli",              "Indicatore: n. di 65+ in famiglia di 1 persona",                    "anziani soli",                   "",        "anziani_soli_n", "tenue", seq_factor_red,   CAP_FAMIGLIE, NA,
+  "anziani_80_soli",       "Grandi anziani che vivono soli",       "Indicatore: n. di 80+ in famiglia di 1 persona",                    "grandi anziani soli",            "",        "anziani_80_soli_n", "tenue", seq_factor_red, CAP_FAMIGLIE, NA,
   "famiglie",              "Famiglie anagrafiche",                 "Indicatore: n. di famiglie anagrafiche (stesso stato di famiglia; escluse le convivenze)", "famiglie", "", "famiglie_n", "tenue", seq_factor_blue, CAP_FAMIGLIE, NA,
   "pct_famiglie_1",        "Famiglie di una sola persona",         "Indicatore: % di famiglie di 1 persona su tot. famiglie",           "% sulle famiglie",               "%",       "famiglie_1",   "pieno",  seq_factor_blue,   CAP_FAMIGLIE, 5,
   "pct_famiglie_numerose", "Famiglie numerose",                    "Indicatore: % di famiglie con 5 o più componenti su tot. famiglie", "% sulle famiglie",               "%",       "famiglie",     "tenue",  seq_factor_blue ,  CAP_FAMIGLIE, 0.5,
@@ -368,6 +373,9 @@ f_mappa_pop <- function(var, titolo, indicatore, legenda, suffisso, gruppo, tono
                               paste0(" famiglie (", scales::number(comp_per_famiglia, accuracy = 0.01, decimal.mark = ","), " componenti in media)")
                             } else if (var %in% c("pct_famiglie_1", "pct_famiglie_numerose")) {
                               paste0(" (", scales::number(famiglie, big.mark = ".", decimal.mark = ","), " famiglie)")
+                            # conteggi di anziani: tra parentesi la % corrispondente
+                            } else if (var %in% c("anziani_65", "anziani_80", "anziani_soli", "anziani_80_soli")) {
+                              paste0(" (", scales::number(.data[[paste0("pct_", var)]], accuracy = 0.1, decimal.mark = ","), "%)")
                             } else ""))
 
   mappa <- f_disegna_mappa(
@@ -412,6 +420,11 @@ mappe_pop$mappa_pop_pct_famiglie_numerose
 mappe_pop$mappa_pop_pct_anziani_soli
 mappe_pop$mappa_pop_pct_anziani_65
 mappe_pop$mappa_pop_pct_anziani_80
+mappe_pop$mappa_pop_pct_anziani_80_soli
+mappe_pop$mappa_pop_anziani_65
+mappe_pop$mappa_pop_anziani_80
+mappe_pop$mappa_pop_anziani_soli
+mappe_pop$mappa_pop_anziani_80_soli
 
 mappe_pop$mappa_pop_convivenza_per_1000
 mappe_pop$mappa_pop_acer_per_1000

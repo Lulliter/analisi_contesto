@@ -1,0 +1,342 @@
+---
+title: "Dove vivono gli anziani"
+# categories: [P1 Disuguaglianze, LA2 Territorio]
+description: "Residenti anziani per comune della provincia (Censimento ISTAT 2024) e per quartiere nel Comune di Parma (anagrafe comunale al 1/1/2026)"
+lang: it
+
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+
+execute:
+  eval: true
+  echo: false
+  warning: false
+  error: false
+  output: false
+
+# --- Bibliografia (unica per il sito, esportata da Zotero): si cita con [@chiave]
+bibliography: ../../bib/CRP_analisi_contesto.bib
+csl: ../../bib/apa_7th.csl
+link-citations: true
+---
+
+```{r}
+#| label: anteprima
+#| eval: false
+# Anteprima: renderizza e apre nel browser (lancia a mano, ignorato nel render)
+pagina <- "_anziani_mappe"   # nome pagina, senza estensione
+quarto::quarto_render(here::here("sito", "temi", paste0(pagina, ".qmd")))
+browseURL(here::here("docs", "sito", "temi", paste0(pagina, ".html")))
+```
+
+<!-- Pagina bozza (2026-11-06), voce prevista nel menu Anziani accanto a "Bisogno di cura".
+     Raccoglie le mappe sugli anziani prima in geogr_abitare (quote per comune e per quartiere,
+     anziani soli) e aggiunge i numeri assoluti e i grandi anziani soli: servono a stimare bisogni
+     localizzati (es. trasporto sociale). Moduli: pop_mappe_tematiche (comuni), comune_pr_quartieri (quartieri).
+     Ogni classe di età ha un tabset con due schede: Numero (quanti) e Quota (%). -->
+
+```{r}
+#| label: setup
+library(here)
+library(dplyr)
+library(ggplot2)
+library(ggiraph)
+library(ggtext)       # registra element_textbox usato nei temi dei plot
+library(sf)
+library(downloadthis) # bottoni di scarico dati
+source(here::here("R", "sito.R"))     # bottoni CSV + Excel (f_scarica_dati, f_bottoni_dati)
+source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hover bordeaux)
+dir_mod <- here::here("moduli", "comune_pr_quartieri", "output")   # mappe per quartiere
+dir_pop <- here::here("moduli", "pop_mappe_tematiche", "output")   # mappe per comune
+
+f_n <- function(x) format(x, big.mark = ".", decimal.mark = ",")
+
+# totali del comune per le frasi di apertura delle sezioni (si aggiornano con i dati)
+pop_comune <- readRDS(file.path(dir_mod, "pop_quartieri.rds")) |>
+  filter(quartiere == "Comune di Parma")
+
+# totali della provincia (somma dei 44 comuni)
+pop_prov <- readRDS(file.path(dir_pop, "pop_mappe_sf.rds")) |>
+  sf::st_drop_geometry() |>
+  filter(COD_PROV %in% c("34", 34)) |>
+  summarise(n_comuni = n(), pop_tot = sum(pop_tot), pop_65p = sum(pop_65p), pop_80p = sum(pop_80p)) |>
+  mutate(across(c(pop_65p, pop_80p), function(x) round(100 * x / pop_tot, 1), .names = "pct_{.col}"))
+```
+
+
+# In sintesi
+<!-- + In provincia le persone di 65 anni e oltre sono `r f_n(pop_prov$pop_65p)` (`r f_n(pop_prov$pct_pop_65p)`% dei residenti), di cui `r f_n(pop_prov$pop_80p)` di 80 anni e oltre.  -->
+Capire _dove_ risiedono gli anziani (solo gli over 80 sono ~36 mila su scala provinciale) è fondamentale perchè i servizi rivolti a questa fascia crescente di popolazione siano modellati in coerenza coi principi di **autonomia** e **prossimità** della cura al proprio domicilio. 
+
+È interessante osservare come la distribuzione sul territorio cambia radicalmente in base alla metrica di lettura: 
+
++ la `numerosità` funge da variabile _proxy_ per predire l'entità del bisogno e dimensionare i presidi territoriali (ADI, Case della Comunità, trasporto sociale). 
++ la `percentuale` sulla popolazione invece rivela i gradienti di invecchiamento locale e l'attrattività demografica differenziale dei diversi contesti urbani e rurali.
+ 
+
+<!-- ::: {.callout-note .metodo collapse=true} -->
+<!-- #### Nota metodologica: le classi d'età e le due fonti -->
+<!-- "Anziani" sono le persone di 65 anni e oltre e "grandi anziani" quelle di 80 e oltre, secondo le convenzioni ISTAT. Per i comuni della provincia la fonte è il Censimento permanente ISTAT (edizione 2024); per i quartieri del Comune di Parma l'anagrafe comunale al 1° gennaio 2026, che permette anche di contare chi vive in una famiglia anagrafica di una sola persona. Le due fonti non sono confrontabili alla cifra: differiscono per anno e per definizione di popolazione. -->
+<!-- ::: -->
+
+
+# La provincia
+
+Nei 44 comuni quota e numero non coincidono: la quota di anziani è più alta dove i residenti sono pochi e i servizi lontani, ma la numerosità assoluta evidenzia i bacini ad alta densità di domanda, necessari a definire la capacità operativa delle reti di cura.
+
+## Anziani per comune
+
+In provincia, le persone di 65 anni e oltre sono circa 108 mila (24% dei residenti), di cui circa 36 mila "grandi anziani" (8% dei residenti).   
+
+Gli anziani sono quasi la metà dei residenti in diversi comuni di montagna; la cintura del capoluogo è tra le aree più giovani della regione. 
+ 
+### 65 anni e oltre
+
+:::: {.panel-tabset}
+
+#### Numero
+
+```{r}
+#| label: mappa_pop_65p_pr
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_pop, "mappa_pop_65p_pr.rds")))
+```
+
+#### Quota
+
+```{r}
+#| label: mappa_quota_65p_pr
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_pop, "mappa_quota_65p_pr.rds")))
+```
+
+::::
+
+### 80 anni e oltre
+
+:::: {.panel-tabset}
+
+#### Numero
+
+```{r}
+#| label: mappa_pop_80p_pr
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_pop, "mappa_pop_80p_pr.rds")))
+```
+
+#### Quota
+
+```{r}
+#| label: mappa_quota_80p_pr
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_pop, "mappa_quota_80p_pr.rds")))
+```
+
+::::
+
+:::: {.text-end}
+```{r}
+#| label: dl_mappe_anziani_comuni
+#| output: true
+f_bottoni_dati("pop_mappe_comuni", dir_pop, rds = "mappa_pop_65p_pr")
+```
+::::
+
+:::: {.callout-note collapse="true"}
+#### Osservazioni
+
+Persone di 65 anni e oltre: `r f_n(pop_prov$pop_65p)` (`r f_n(pop_prov$pct_pop_65p)`% dei `r f_n(pop_prov$pop_tot)` residenti), di cui `r f_n(pop_prov$pop_80p)` di 80 anni e oltre (`r f_n(pop_prov$pct_pop_80p)`%). La quota di 65 anni e oltre in provincia (23,6%) è sotto quella regionale (24,9%), ma 14 comuni, tutti in montagna, stanno nel quinto più vecchio dell'ER (Bore 47%, Monchio 44%, Tornolo 42%, Palanzano 41%) e 12 nel quinto più giovane: la cintura del capoluogo e la pedecollina (Torrile 18,3%, Colorno, Langhirano, Lesignano, Sala Baganza).
+
+<!-- <da scrivere: lettura dei numeri assoluti — il capoluogo da solo, poi Fidenza e i comuni della cintura; la montagna pesa in quota ma poco in numero> -->
+
+_NB: Censimento permanente ISTAT, edizione 2024; un anno indietro rispetto ai dati per quartiere del Comune (1/1/2026). Le classi delle quote sono le stesse in tutte le mappe del sito (stesso colore = stessa percentuale); per i numeri la classe più alta raccoglie il capoluogo._
+::::
+
+
+## Anziani che vivono soli per comune [🟡]{.content-hidden}
+
+
+`[Approfondimenti in corso]`
+
+## Anziani non autosufficienti e con disabilità per comune [🟡]{.content-hidden}
+
+
+`[Approfondimenti in corso]`
+
+# Il Comune di Parma
+
+Nel capoluogo vive il 42% degli anziani della provincia e ogni quartiere ne conta migliaia. La distanza dai servizi pesa meno che in montagna, ma non per tutti allo stesso modo. Un'ipotesi da verificare: i quartieri di prima periferia hanno accolto decenni fa le famiglie oggi invecchiate, e lì casa, vicinato e possibilità di muoversi a piedi o con i mezzi fanno la differenza.
+
+## Anziani per quartiere
+
+Nel Comune di Parma gli anziani sono 46 mila, quasi uno su quattro dei 203 mila residenti; i grandi anziani (80 anni e oltre) sono 16 mila, l'8% (anagrafe al 1° gennaio 2026).
+
+<!-- <1-2 frasi col messaggio principale, da scrivere> -->
+
+### 65 anni e oltre
+
+:::: {.panel-tabset}
+
+#### Numero
+
+```{r}
+#| label: mappa_pop_anziani_65
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_anziani_65.rds")))
+```
+
+#### Quota
+
+```{r}
+#| label: mappa_pop_pct_anziani_65
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_anziani_65.rds")))
+```
+
+::::
+
+### 80 anni e oltre
+
+:::: {.panel-tabset}
+
+#### Numero
+
+```{r}
+#| label: mappa_pop_anziani_80
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_anziani_80.rds")))
+```
+
+#### Quota
+
+```{r}
+#| label: mappa_pop_pct_anziani_80
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_anziani_80.rds")))
+```
+
+::::
+
+:::: {.text-end}
+```{r}
+#| label: dl_mappe_anziani_quartieri
+#| output: true
+f_bottoni_dati("pop_quartieri", dir_mod, rds = "mappa_pop_anziani_65")
+```
+::::
+
+:::: {.callout-note collapse="true"}
+#### Osservazioni
+
+Persone di 65 anni e oltre: `r f_n(pop_comune$anziani_65)` (`r f_n(pop_comune$pct_anziani_65)`% dei `r f_n(pop_comune$residenti)` residenti), di cui `r f_n(pop_comune$anziani_80)` di 80 anni e oltre (`r f_n(pop_comune$pct_anziani_80)`%).
+
+<!-- <da scrivere> -->
+
+_NB: dati dell'anagrafe comunale al 1° gennaio 2026, solo residenti (non chi vive in città senza residenza, come gli studenti fuori sede); età in anni compiuti. Le mappe delle quote usano la stessa scala di colori delle altre mappe per quartiere (stesso colore = stessa percentuale); le mappe dei numeri hanno toni più chiari e una scala propria._
+::::
+
+## Anziani che vivono soli
+
+Gli anziani che vivono soli sono 15 mila, uno su tre; tra i grandi anziani sono 6.700, quasi uno su due.
+
+Chi vive solo, per un bisogno quotidiano, dipende dalla rete esterna: è l'indicatore più vicino alla domanda di accompagnamento e trasporto sociale.
+
+<!-- <1-2 frasi col messaggio principale, da scrivere> -->
+
+### 65 anni e oltre
+
+:::: {.panel-tabset}
+
+#### Numero
+
+```{r}
+#| label: mappa_pop_anziani_soli
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_anziani_soli.rds")))
+```
+
+#### Quota
+
+```{r}
+#| label: mappa_pop_pct_anziani_soli
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_anziani_soli.rds")))
+```
+
+::::
+
+### 80 anni e oltre
+
+:::: {.panel-tabset}
+
+#### Numero
+
+```{r}
+#| label: mappa_pop_anziani_80_soli
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_anziani_80_soli.rds")))
+```
+
+#### Quota
+
+```{r}
+#| label: mappa_pop_pct_anziani_80_soli
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_anziani_80_soli.rds")))
+```
+
+::::
+
+:::: {.text-end}
+```{r}
+#| label: dl_mappe_anziani_soli
+#| output: true
+f_bottoni_dati("pop_quartieri", dir_mod, rds = "mappa_pop_anziani_soli")
+```
+::::
+
+:::: {.callout-note collapse="true"}
+#### Osservazioni
+
+Anziani in famiglia anagrafica di una sola persona: `r f_n(pop_comune$anziani_soli)` (`r f_n(pop_comune$pct_anziani_soli)`% dei `r f_n(pop_comune$anziani_in_famiglia)` anziani in famiglia); grandi anziani soli: `r f_n(pop_comune$anziani_80_soli)` (`r f_n(pop_comune$pct_anziani_80_soli)`%).
+
+<!-- <da scrivere> -->
+
+_NB: "anziano solo" è chi ha 65 anni o più in una famiglia anagrafica di una persona, che non vuol dire necessariamente vivere da solo. Esclusi i residenti in convivenze (residenze per anziani, comunità, istituti). La quota è calcolata sugli anziani che vivono in famiglia._
+::::
+
+
+## Anziani non autosufficienti e con disabilità per quartiere [🟡]{.content-hidden}
+
+
+
+`[Approfondimenti in corso]`
+
+***
+
+
+<!-- # lato offerta di servizi FORSE NO VA QUA MA NELLA PAGINA DEDICATA ? -->
+<!-- # Ospedali, centri diurni e distanze [🟡]{.content-hidden} -->
+
+
+<!-- `[Approfondimenti in corso]` -->
+
+
+# Possibili approfondimenti
+
++ ...

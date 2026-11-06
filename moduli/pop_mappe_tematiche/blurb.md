@@ -4,8 +4,8 @@
 (via API SDMX, vedi `dati/grezzi/istat_cens/_metadati.md`); confini ISTAT al
 01/01/2026, versione generalizzata
 **Anno dati:** 2024 (popolazione); 2026 (confini — nessuna variazione di comuni ER dal 2019)
-**Ultimo aggiornamento:** 2026-09-11 (scritto il Messaggio dai dati di `pop_mappe_sf`)
-**Output principali:** `output/mappa_<quota_stranieri|dens_km2|quota_65p|quota_0_14|quota_minorenni>_<er|pr>.png/.rds` (versione ER e versione solo provincia di Parma, stesse classi)
+**Ultimo aggiornamento:** 2026-11-06 (mappe di conteggio 65+ e 80+; Messaggio del 2026-09-11)
+**Output principali:** `output/mappa_<quota_stranieri|dens_km2|quota_65p|quota_80p|quota_0_14|quota_18_29|quota_minorenni|pop_65p|pop_80p>_<er|pr>.png/.rds` (versione ER e versione solo provincia di Parma, stesse classi; i conteggi `pop_*` in tono tenue)
 
 # Messaggio
 

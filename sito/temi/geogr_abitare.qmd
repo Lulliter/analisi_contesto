@@ -310,7 +310,7 @@ _NB: dati dell'anagrafe comunale al 1° gennaio 2026, solo residenti (non chi vi
 
 ## Famiglie per quartiere
 
-Le famiglie "anagrafiche" (i.e. persone che vivono insieme legate da matrimonio, parentela, affinità, adozione, tutela o vincoli affettivi; anche una persona sola è una famiglia) sono `r f_n(pop_comune$famiglie)`, con `r f_n(pop_comune$comp_per_famiglia)` componenti in media. Ben `r f_n(pop_comune$famiglie_1)` sono di fatto nuclei di una sola persona (`r f_n(pop_comune$pct_famiglie_1)`%), mentre solo `r f_n(pop_comune$famiglie_numerose)` hanno 5 o più componenti (`r f_n(pop_comune$pct_famiglie_numerose)`%).
+Le famiglie "anagrafiche" (i.e. persone che vivono insieme legate da matrimonio, parentela, affinità, adozione, tutela o vincoli affettivi; anche una persona sola è una famiglia) sono `r f_n(pop_comune$famiglie)`, con `r f_n(pop_comune$comp_per_famiglia)` componenti in media. Ben `r f_n(pop_comune$famiglie_1)` sono di fatto nuclei di una sola persona (`r f_n(pop_comune$pct_famiglie_1)`%), mentre solo `r f_n(pop_comune$famiglie_numerose)` hanno 5 o più componenti (`r f_n(pop_comune$pct_famiglie_numerose)`%). Tra le persone di 65 anni e oltre che vivono in famiglia, ne vive sola il `r f_n(pop_comune$pct_anziani_soli)`%.
 
 <!-- <1-2 frasi col messaggio principale, da scrivere> -->
 
@@ -325,6 +325,15 @@ Le famiglie "anagrafiche" (i.e. persone che vivono insieme legate da matrimonio,
 f_girafe(readRDS(file.path(dir_mod, "mappa_pop_famiglie.rds")))
 ```
 
+### Famiglie numerose
+
+```{r}
+#| label: mappa_pop_pct_famiglie_numerose
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_famiglie_numerose.rds")))
+```
+
 ### Famiglie di una sola persona
 
 ```{r}
@@ -334,13 +343,13 @@ f_girafe(readRDS(file.path(dir_mod, "mappa_pop_famiglie.rds")))
 f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_famiglie_1.rds")))
 ```
 
-### Famiglie numerose
+### ...di cui anziani
 
 ```{r}
-#| label: mappa_pop_pct_famiglie_numerose
+#| label: mappa_pop_pct_anziani_soli
 #| output: true
 #| fig-height: 7
-f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_famiglie_numerose.rds")))
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_anziani_soli.rds")))
 ```
 
 ::::
@@ -358,17 +367,21 @@ f_bottoni_dati("pop_quartieri", dir_mod, rds = "mappa_pop_famiglie")
 
 <!-- <da scrivere> -->
 
-_NB: famiglie anagrafiche nel senso del regolamento anagrafico (DPR 223/1989, art. 4), escluse le convivenze (residenze per anziani, comunità, istituti). Famiglie numerose: 5 o più componenti._
+_NB: famiglie anagrafiche nel senso del regolamento anagrafico (DPR 223/1989, art. 4), escluse le convivenze (residenze per anziani, comunità, istituti). Famiglie numerose: 5 o più componenti. "Anziano solo" è chi ha 65 anni o più in una famiglia anagrafica di una persona, che non vuol dire necessariamente vivere da solo. Quanti sono gli anziani e i grandi anziani che vivono soli, quartiere per quartiere, lo conta la pagina [Dove vivono gli anziani](#){.link-futuro}._
+<!-- link-futuro: sostituire # con anziani_mappe.qmd quando la pagina sarà promossa (oggi bozza _anziani_mappe.qmd) -->
 ::::
 
+<!-- Sezione confluita nel tabset Famiglie (scheda "...di cui anziani") il 2026-11-06; numeri assoluti e grandi anziani soli in _anziani_mappe.qmd -->
+<!--
 ## Anziani che vivono soli
 
 Le persone di 65 anni e oltre che vivono in una famiglia anagrafica di una sola persona sono `r f_n(pop_comune$anziani_soli)`, ovvero il `r f_n(pop_comune$pct_anziani_soli)`% dei `r f_n(pop_comune$anziani_in_famiglia)` anziani residenti in famiglia.
-
+-->
 <!-- <1-2 frasi col messaggio principale, da scrivere> -->
-
+<!--
 ```{r}
-#| label: mappa_pop_pct_anziani_soli
+#| eval: false
+#| label: mappa_pop_pct_anziani_soli_spostato
 #| output: true
 #| fig-height: 7
 f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_anziani_soli.rds")))
@@ -376,7 +389,8 @@ f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_anziani_soli.rds")))
 
 :::: {.text-end}
 ```{r}
-#| label: dl_mappa_pop_anziani_soli
+#| eval: false
+#| label: dl_mappa_pop_anziani_soli_spostato
 #| output: true
 f_bottoni_dati("pop_quartieri", dir_mod, rds = "mappa_pop_pct_anziani_soli")
 ```
@@ -384,11 +398,12 @@ f_bottoni_dati("pop_quartieri", dir_mod, rds = "mappa_pop_pct_anziani_soli")
 
 :::: {.callout-note collapse="true"}
 ### Osservazioni
-
+-->
 <!-- <da scrivere> -->
-
+<!--
 _NB: "anziano solo" è chi ha 65 anni o più in una famiglia anagrafica di una persona, che non vuol dire necessariamente vivere da solo. Esclusi i residenti in convivenze (residenze per anziani, comunità, istituti)._
 ::::
+-->
 
 ## Stranieri per quartiere
 
@@ -437,10 +452,13 @@ _NB: dati dell'anagrafe comunale al 1° gennaio 2026, solo residenti (non chi vi
 ___
 
 
+<!-- Blocco "Strutture collettive e case popolari" spostato in _abitare_coll_offerta.qmd il 2026-11-06
+     (lato offerta; qui resta la domanda). Testo lasciato qui in commento (chunk con eval: false). -->
+<!--
 # Strutture collettive e case popolari
-
+-->
 <!-- <1-2 frasi col messaggio principale, da scrivere> -->
-
+<!--
 Gli open data del Comune di Parma registrano anche quanti residenti vivono in strutture collettive (residenze per anziani, comunità, istituti) e quanti immobili appartengono ad ACER, l'azienda regionale delle case popolari: due forme di residenza particolari localizzate qui per quartiere.
 
 ## Chi vive in strutture collettive
@@ -452,6 +470,7 @@ Le "convivenze anagrafiche" sono gruppi di persone che vivono abitualmente insie
 _NB: il dato non distingue purtoppo il tipo di struttura._
 
 ```{r}
+#| eval: false
 #| label: mappa_pop_convivenza_per_1000
 #| output: true
 #| fig-height: 7
@@ -461,6 +480,7 @@ f_girafe(readRDS(file.path(dir_mod, "mappa_pop_convivenza_per_1000.rds")))
 
 :::: {.text-end}
 ```{r}
+#| eval: false
 #| label: dl_mappa_pop_convivenza_per_1000
 #| output: true
 f_bottoni_dati("pop_quartieri", dir_mod, rds = "mappa_pop_convivenza_per_1000")
@@ -469,8 +489,9 @@ f_bottoni_dati("pop_quartieri", dir_mod, rds = "mappa_pop_convivenza_per_1000")
 
 :::: {.callout-note collapse="true"}
 ### Osservazioni
-
+-->
 <!-- <da scrivere> -->
+<!--
 ::::
 
 ## Le case popolari (ACER)
@@ -482,6 +503,7 @@ Gli immobili ACER censiti nel 2022 sono `r f_n(pop_comune$n_immobili)`, `r f_n(p
 ### Quanti risiedono in immobili ACER per quartiere? 
 
 ```{r}
+#| eval: false
 #| label: mappa_pop_acer_per_1000
 #| output: true
 #| fig-height: 7
@@ -490,6 +512,7 @@ f_girafe(readRDS(file.path(dir_mod, "mappa_pop_acer_per_1000.rds")))
 
 :::: {.text-end}
 ```{r}
+#| eval: false
 #| label: dl_mappa_pop_acer_per_1000
 #| output: true
 f_bottoni_dati("pop_quartieri", dir_mod, rds = "mappa_pop_acer_per_1000")
@@ -498,16 +521,18 @@ f_bottoni_dati("pop_quartieri", dir_mod, rds = "mappa_pop_acer_per_1000")
 
 :::: {.callout-note collapse="true"}
 ### Osservazioni
-
+-->
 <!-- <da scrivere> -->
-
+<!--
 _NB: immobili ACER del 2022 rapportati ai residenti al 1° gennaio 2026._
 ::::
 
 ### Quanti sono e dove sono gli immobili ACER? 
-
+-->
 <!-- <1-2 frasi col messaggio principale, da scrivere> -->
+<!--
 ```{r}
+#| eval: false
 #| label: mappa_acer_punti
 #| output: true
 #| fig-height: 6
@@ -516,6 +541,7 @@ f_girafe(readRDS(file.path(dir_mod, "mappa_acer_punti.rds")))
 
 :::: {.text-end}
 ```{r}
+#| eval: false
 #| label: dl_mappa_acer_punti
 #| output: true
 f_bottoni_dati("acer_immobili", dir_mod, rds = "mappa_acer_punti")
@@ -524,13 +550,15 @@ f_bottoni_dati("acer_immobili", dir_mod, rds = "mappa_acer_punti")
 
 :::: {.callout-note collapse="true"}
 ### Osservazioni
-
+-->
 <!-- <da scrivere> -->
-
+<!--
 _NB: 1 immobile ACER = 1 edificio (indirizzo e civico), non 1 alloggio: la fonte non riporta il numero di alloggi. 21 indirizzi compaiono due volte con dati identici e si mantengono come nella fonte (possibili più unità allo stesso civico). Dati 2022._
 ::::
+-->
 
 # Possibili approfondimenti
 
 <!-- <da scrivere> -->
-+ Fotografare la povertà abitativa oggi, incrociando i dati disponibili (immobili ACER ≈ povertà strutturale e storica) con dati da recuperare su mancanza di offerta e/o affitti insostenibili (e.g. OMI dell'Agenzia delle Entrate, IRPEF per CAP, dati sugli sfratti,...)
+<!-- + Fotografare la povertà abitativa oggi, incrociando i dati disponibili (immobili ACER ≈ povertà strutturale e storica) con dati da recuperare su mancanza di offerta e/o affitti insostenibili (e.g. OMI dell'Agenzia delle Entrate, IRPEF per CAP, dati sugli sfratti,...) -->
++ ...

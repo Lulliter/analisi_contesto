@@ -7,7 +7,7 @@
 #         dati/puliti/istat_cens/pop_com_er_eta_2024.rds        (singole età)
 #         dati/puliti/istat_cens/pop_com_er_minorenni_2024.rds  (0-17 anni)
 # Output: output/pop_mappe_sf.rds — sf dei 330 comuni ER con indicatori:
-#         pop_tot, quota_stranieri, dens_km2, quota_65p, quota_80p, quota_0_14, quota_18_29, quota_minorenni
+#         pop_tot, pop_65p, pop_80p, quota_stranieri, dens_km2, quota_65p, quota_80p, quota_0_14, quota_18_29, quota_minorenni
 # ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------

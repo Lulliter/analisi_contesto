@@ -2,8 +2,8 @@
 
 **Fonte:** Comune di Parma, open data — "Immobili ACER di Parma 2022" (Politiche abitative, CC BY 4.0) e "Quartieri del Comune di Parma vigenti" (Uffici SIT e Toponomastica, CC BY 4.0)
 **Anno dati:** 2022 (pubblicazione 2023-06-08); quartieri vigenti aggiornati al 2023-07-24
-**Ultimo aggiornamento:** 2026-10-07 (prima versione del modulo, da collaudare)
-**Output principali:** `output/mappa_acer_quartieri` (sunto per quartiere con riquadro della provincia), `output/plot_acer_quartieri`, `output/mappa_acer_<quartiere>` (13 mappe, una per quartiere) (+ `acer_immobili.csv`, `acer_quartieri.csv`)
+**Ultimo aggiornamento:** 2026-11-06 (mappe di conteggio degli anziani 65+/80+ e degli anziani soli 65+/80+; prima versione 2026-10-07)
+**Output principali:** `output/mappa_acer_quartieri` (sunto per quartiere con riquadro della provincia), `output/plot_acer_quartieri`, `output/mappa_acer_<quartiere>` (13 mappe, una per quartiere) (+ `acer_immobili.csv`, `acer_quartieri.csv`); `output/mappa_pop_<indicatore>` (mappe per quartiere degli indicatori di popolazione: quote in tono pieno, conteggi in tono tenue; + `pop_quartieri.csv`)
 
 <Lettura del dato da scrivere dopo il primo giro di 01_dati.R / 02_output.R.>
 

@@ -1,12 +1,18 @@
 ---
-title: "Idee x posizionamento / divulgazione sito analisi di contesto"
+title: "Idee e ispirazione x posizionamento e divulgazione del sito analisi di contesto"
 # subtitle: "Nota di lavoro per la revisione di settembre 2026: cosa deve arrivare a chi legge"
+subtitle: "Documento in progrss: ogni versione sovrascrive precedente"
+# date: "Ultimo aggiornamento: `r format(Sys.Date(), '%d/%m/%Y')`"
+date: today
+date-format: "[Ultimo aggiornamento:] D MMMM YYYY"
 lang: it
 format:
   html:
     toc: true
+    embed-resources: true
   docx:
     toc: false
+    reference-doc: assets/reference_memo.docx
 
 bibliography: bib/CRP_analisi_contesto.bib
 csl: bib/apa_7th.csl
@@ -15,6 +21,33 @@ link-citations: true
 #  @*
 ---
 
+```{r}
+#| label: copia_onedrive
+#| eval: false
+#| echo: false
+
+# Render e copia in OneDrive ----
+dir_onedrive <- file.path(
+  "/Users/luisamimmi/Library/CloudStorage",
+  "OneDrive-FondazioneCassadiRisparmiodiParmaeMontediCreditosuPegnodiBusseto",
+  "sito_x_comms"
+)
+
+# render solo in Word
+quarto::quarto_render(here::here("_note_x_COMMS.qmd"), output_format = "docx")
+
+# file prodotto accanto al .qmd
+file_out <- here::here("_note_x_COMMS.docx")
+
+# nome del file per chi lo riceve
+nome_copia <- "idee_divulgazione_sito.docx"
+
+# copia sovrascrivendo (crea la cartella se manca); TRUE = copiato
+dir.create(dir_onedrive, showWarnings = FALSE, recursive = TRUE)
+file.copy(file_out, file.path(dir_onedrive, nome_copia), overwrite = TRUE)
+```
+
+## [Sito]
 
 [https://datiparma.it/](https://datiparma.it/)
  
@@ -45,19 +78,23 @@ link-citations: true
   - focus: vari
   - accesso: dati scaricabili e riutilizzabili
 
-## Open e focus geospatial
+## Open data e focus geospatial
 
 - **IPEA** (centro di ricerca brasiliano), guidato da [Rafa Pereira](https://www.urbandemographics.org/) — [Access to Opportunities Lab (AOP-Lab)](https://www.ipea.gov.br/acessooportunidades/en/)
   - focus: pianificazione urbana, mobilità, accessibilità ai servizi, disuguaglianze sociali
-  - accesso: dati aperti, pubblicazioni, software open source
-  - note: sarebbe fantastico replicare, se trovo chi fa cose simili in Italia/EU
+  - accesso: dati aperti, pubblicazioni, software open source (R❗)
+  - note: 🥇 sarebbe fantastico replicare, se trovo chi fa cose simili in Italia/EU
   
+- **Fondazione Transform Transport ETS** (Milano) — [Transform Transport](https://transformtransport.org/)
+  - focus: metriche mobilità urbana, mobilità inclusiva, strade vivibili
+  - accesso: dati aperti, pubblicazioni, software open source (Python)
+  - note: da sentire! 
+    
 - **Politecnico di Milano, Mapping and Urban Data Lab (MAUD-DAStU)** — [Milano che cambia (Tableau Public)](https://public.tableau.com/app/profile/maud.lab/viz/MILANOCHECAMBIAUNVIAGGIOINTERATTIVOTRADATIPERSONEEQUARTIERI/INFO_descrizione)
   - focus: dati, persone e quartieri di Milano
   - accesso: sito e mappe, ma NON i dati sottostanti
   - note: contenuto bello ma fatto con Tableau 💩
-  
-  
+
 - **Comune di Bologna** - [Atlante Statistico Metropolitano](https://www.cittametropolitana.bo.it/atlantemetropolitano/)
   - focus: dati socio-economici e territoriali della Città Metropolitana di Bologna
   - accesso: sito, mappe e dati scaricabili (csv, xls, pdf)
@@ -68,7 +105,7 @@ link-citations: true
   - accesso: sito, mappe e dati scaricabili (csv, xls, pdf)
   - note: bellissimo, dovremmo replicare per PR
 
-## Dati di contesto
+## Altro dati di contesto
 
 - **AICCON** — database proprietario per la lettura di contesto (2026)
   - focus: molto simile alla mia selezione di dati, ma con lettura di varie province
@@ -88,9 +125,11 @@ link-citations: true
 ## Centri di ricerca 
 
 - **ASVAPP** - [Associazione per lo Sviluppo della Valutazione e l'Analisi delle Politiche Pubbliche](https://www.asvapp.org/) 
+  - forma: associazione di ricerca
+  - accesso: pubblicazioni e studi, non dati (credo)
 
 
-## Altre FOB, simil centro studi?
+## Altre FOB, simil-centro studi?
 
 - **Fondazione CRC** (Cuneo) — [Ufficio Studi e Ricerche di Fondazione CRC](https://fondazionecrc.it/ricerche/)
   - forma: struttura interna
@@ -101,6 +140,11 @@ link-citations: true
 - **Fondazione Cassa di Risparmio di Biella**, con **Percorsi di Secondo Welfare** — [OsservaBiella – Osservatorio territoriale del Biellese](https://www.osservabiella.it/cose-osservabiella/) (2020-2026)
   - forma: partner esterno
   - accesso: sito (con indicatori e dati scaricabili) e report annuale (pdf)
+
+- **Fondazione CariTRO Trento e Rovereto**, con **Percorsi di Secondo Welfare**, Prof. Franca Maino —  `OsservaTrentino - Osservatorio territoriale dei bisogni sociali` (avviato nel 2026)
+  - forma: partner esterno + interlocuzione con tavoli tematici fatti con enti del territorio che ha dettato la scelta di temi e indicatori 🤝🏻
+  - accesso: per ora è un report annuale (pdf)
+
 
 - **Fondazione Cariplo** (Milano) — [Attività di monitoraggio e valutazione](https://www.fondazionecariplo.it/it/la-fondazione/osservatorio-e-valutazione.html)
   - forma: struttura partecipata Evaluation Lab di Fondazione Social Venture Giordano Dell’Amore (FSVGDA)
