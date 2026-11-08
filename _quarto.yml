@@ -56,7 +56,7 @@ website:
         href: index.qmd
       - text: "Demografia"
         menu:
-          - text: "Trend demografici"
+          - text: "Trend"
             href: sito/temi/trend_demogr.qmd
           - text: "Previsioni al 2050"
             href: sito/temi/trend_demogr_previs.qmd
@@ -68,13 +68,13 @@ website:
         menu:
           - text: "Scuola e istruzione"
             href: sito/temi/scuola.qmd
-          - text: "Rischio dispersione"
+          - text: "Dispersione e NEET"
             href: sito/temi/scuola_dispersione.qmd
           # - text: "Formazione professionale"
           #   href: sito/temi/formaz_rientro.qmd
-          - text: "Giovani e lavoro"
+          - text: "Lavoro"
             href: sito/temi/giovani_lavoro.qmd
-          - text: "Crescere al tempo dell'IA"
+          - text: "Digitale e IA"
             href: sito/temi/educ_ia.qmd
           - text: "Benessere e salute mentale" 
             href: sito/temi/benessere_giovani.qmd
@@ -85,16 +85,16 @@ website:
         menu:
           - text: "Bisogno di cura"
             href: sito/temi/anziani.qmd
-          - text: "Dove vivono"
+          - text: "Sul territorio"
             href: sito/temi/anziani_mappe.qmd
-      - text: "<span class='nav-spenta' title='in preparazione'>Assistenza socio-sanitaria</span>"
-        href: "#"
-      # - text: "<span class='nav-spenta' title='in preparazione'>Mappe</span>"
-      #   href: "#"
       - text: "Mappe"
         menu:
           - text: "Geografia dell'abitare"
             href: sito/temi/geogr_abitare.qmd
+      - text: "<span class='nav-spenta' title='in preparazione'>Assistenza socio-sanitaria</span>"
+        href: "#"
+      # - text: "<span class='nav-spenta' title='in preparazione'>Mappe</span>"
+      #   href: "#"
       - text: "<span class='nav-spenta' title='in preparazione'>Approfondimenti</span>"
         href: "#"
       # ⭐Gruppi da attivare quando c'è la prima pagina⭐:

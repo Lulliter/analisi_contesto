@@ -1,5 +1,5 @@
 ---
-title: "Una quota crescente di popolazione"
+title: "Invecchiamento e bisogno di cura"
 # categories: [<priorità e linee d'azione del PS 24-27, dal foglio confronto di allineam_strategico>]
 description: "Dati ISTAT, censimento 2024 e previsioni 2024-2050; prevalenze di non autosufficienza da EHIS 2019 (metodo Osservatorio Long Term Care); estratti a ottobre 2026"
 lang: it

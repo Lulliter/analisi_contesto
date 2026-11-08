@@ -1,5 +1,5 @@
 ---
-title: "Dove vivono gli anziani"
+title: "Gli anziani sul territorio"
 # categories: [P1 Disuguaglianze, LA2 Territorio]
 description: "Residenti anziani per comune della provincia (Censimento ISTAT 2024) e per quartiere nel Comune di Parma (anagrafe comunale al 1/1/2026)"
 lang: it
@@ -73,25 +73,30 @@ Capire _dove_ risiedono gli anziani (solo gli over 80 sono ~36 mila su scala pro
 
 È interessante osservare come la distribuzione sul territorio cambia radicalmente in base alla metrica di lettura: 
 
-+ la `numerosità` funge da variabile _proxy_ per predire l'entità del bisogno e dimensionare i presidi territoriali (ADI, Case della Comunità, trasporto sociale). 
-+ la `percentuale` sulla popolazione invece rivela i gradienti di invecchiamento locale e l'attrattività demografica differenziale dei diversi contesti urbani e rurali.
++ il **numero in assoluto** funge da variabile _proxy_ per predire l'entità del bisogno e dimensionare i presidi territoriali (ADI, Case della Comunità, trasporto sociale). 
++ la **quota percentuale** sulla popolazione invece rivela i gradienti di invecchiamento locale e l'attrattività demografica differenziale dei diversi contesti urbani e rurali.
  
 
-<!-- ::: {.callout-note .metodo collapse=true} -->
-<!-- #### Nota metodologica: le classi d'età e le due fonti -->
-<!-- "Anziani" sono le persone di 65 anni e oltre e "grandi anziani" quelle di 80 e oltre, secondo le convenzioni ISTAT. Per i comuni della provincia la fonte è il Censimento permanente ISTAT (edizione 2024); per i quartieri del Comune di Parma l'anagrafe comunale al 1° gennaio 2026, che permette anche di contare chi vive in una famiglia anagrafica di una sola persona. Le due fonti non sono confrontabili alla cifra: differiscono per anno e per definizione di popolazione. -->
-<!-- ::: -->
 
 
 # La provincia
 
-Nei 44 comuni quota e numero non coincidono: la quota di anziani è più alta dove i residenti sono pochi e i servizi lontani, ma la numerosità assoluta evidenzia i bacini ad alta densità di domanda, necessari a definire la capacità operativa delle reti di cura.
+Nei 44 comuni di Parma la quota % di anziani è più alta dove i residenti sono pochi e i servizi lontani, mentre la numerosità assoluta evidenzia i bacini ad alta densità di domanda, necessari a definire la capacità operativa delle reti di cura.
 
 ## Anziani per comune
 
-In provincia, le persone di 65 anni e oltre sono circa 108 mila (24% dei residenti), di cui circa 36 mila "grandi anziani" (8% dei residenti).   
+In provincia, **le persone di 65 anni e oltre sono circa 108 mila** (24% dei residenti), di cui **circa 36 mila "grandi anziani"** (8% dei residenti).   
 
 Gli anziani sono quasi la metà dei residenti in diversi comuni di montagna; la cintura del capoluogo è tra le aree più giovani della regione. 
+ 
+ 
+
+::: {.callout-note .metodo collapse=true}
+#### Nota metodologica: le classi d'età e le due fonti
+In coerenza con le soglie dell'ISTAT, "anziani" sono le persone di 65 anni e oltre e "grandi anziani" quelle di 80 e oltre. 
+
+Per i comuni della provincia la fonte è il Censimento permanente ISTAT (edizione 2024); per i quartieri del Comune di Parma l'anagrafe comunale al 1° gennaio 2026, che permette anche di contare chi vive in una famiglia anagrafica di una sola persona.
+:::
  
 ### 65 anni e oltre
 
@@ -115,6 +120,14 @@ f_girafe(readRDS(file.path(dir_pop, "mappa_pop_65p_pr.rds")))
 f_girafe(readRDS(file.path(dir_pop, "mappa_quota_65p_pr.rds")))
 ```
 
+::::
+
+:::: {.callout-note collapse="true"}
+#### Osservazioni
+
+Persone di 65 anni e oltre: `r f_n(pop_prov$pop_65p)` (`r f_n(pop_prov$pct_pop_65p)`% dei `r f_n(pop_prov$pop_tot)` residenti). La quota in provincia (23,6%) è sotto quella regionale (24,9%), ma 14 comuni, 12 di montagna più Pellegrino Parmense e Terenzo in collina, stanno nel quinto più vecchio dell'ER (Bore 47%, Monchio 44%, Tornolo 42%, Palanzano 41%) e 12 nel quinto più giovane: la cintura del capoluogo e la pedecollina (Torrile 18,3%, Colorno, Langhirano, Lesignano, Sala Baganza).
+
+_NB: Censimento permanente ISTAT, edizione 2024; un anno indietro rispetto ai dati per quartiere del Comune (1/1/2026)._
 ::::
 
 ### 80 anni e oltre
@@ -152,11 +165,11 @@ f_bottoni_dati("pop_mappe_comuni", dir_pop, rds = "mappa_pop_65p_pr")
 :::: {.callout-note collapse="true"}
 #### Osservazioni
 
-Persone di 65 anni e oltre: `r f_n(pop_prov$pop_65p)` (`r f_n(pop_prov$pct_pop_65p)`% dei `r f_n(pop_prov$pop_tot)` residenti), di cui `r f_n(pop_prov$pop_80p)` di 80 anni e oltre (`r f_n(pop_prov$pct_pop_80p)`%). La quota di 65 anni e oltre in provincia (23,6%) è sotto quella regionale (24,9%), ma 14 comuni, tutti in montagna, stanno nel quinto più vecchio dell'ER (Bore 47%, Monchio 44%, Tornolo 42%, Palanzano 41%) e 12 nel quinto più giovane: la cintura del capoluogo e la pedecollina (Torrile 18,3%, Colorno, Langhirano, Lesignano, Sala Baganza).
+Persone di 80 anni e oltre: `r f_n(pop_prov$pop_80p)` (`r f_n(pop_prov$pct_pop_80p)`% dei residenti, 8,3% in regione). Il disegno è lo stesso dei 65 e oltre, ma più marcato: 16 comuni, 13 di montagna più tre di collina (Neviano degli Arduini, Pellegrino Parmense, Terenzo), stanno nel quinto più vecchio dell'ER (Bore 21%, Valmozzola, Tornolo e Bardi 15%) e 8 nel quinto più giovane, tra cintura e pedecollina (Torrile 5%, Lesignano, Fontevivo, Langhirano, Colorno).
 
-<!-- <da scrivere: lettura dei numeri assoluti — il capoluogo da solo, poi Fidenza e i comuni della cintura; la montagna pesa in quota ma poco in numero> -->
+In numero il quadro si rovescia: il capoluogo da solo raccoglie il 43% degli over 80 della provincia (circa 15.600), seguito a distanza da Fidenza (2.300) e Salsomaggiore (1.800); i comuni di montagna, con le quote più alte, pesano poco in numero.
 
-_NB: Censimento permanente ISTAT, edizione 2024; un anno indietro rispetto ai dati per quartiere del Comune (1/1/2026). Le classi delle quote sono le stesse in tutte le mappe del sito (stesso colore = stessa percentuale); per i numeri la classe più alta raccoglie il capoluogo._
+_NB: come sopra, Censimento permanente ISTAT, edizione 2024._
 ::::
 
 
@@ -182,11 +195,11 @@ Riscontro: somme per distretto confrontate con il dato regionale per distretto. 
 
 # Il Comune di Parma
 
-Nel capoluogo vive il 42% degli anziani della provincia e ogni quartiere ne conta migliaia. La distanza dai servizi pesa meno che in montagna, ma non per tutti allo stesso modo. Un'ipotesi da verificare: i quartieri di prima periferia hanno accolto decenni fa le famiglie oggi invecchiate, e lì casa, vicinato e possibilità di muoversi a piedi o con i mezzi fanno la differenza.
+Nel capoluogo vive il 42% degli anziani della provincia e ogni quartiere ne conta migliaia. La distanza dai servizi pesa meno che in montagna, ma non per tutti allo stesso modo. È plausibile che i quartieri di prima periferia abbiano accolto decenni fa le famiglie oggi invecchiate, e lì casa, vicinato e possibilità di muoversi a piedi o con i mezzi fanno la differenza.
 
 ## Anziani per quartiere
 
-Nel Comune di Parma gli anziani sono 46 mila, quasi uno su quattro dei 203 mila residenti; i grandi anziani (80 anni e oltre) sono 16 mila, l'8% (anagrafe al 1° gennaio 2026).
+Nel Comune di Parma gli **over 65 sono 46 mila**, quasi uno su quattro dei 203 mila residenti; i **grandi anziani (80 anni e oltre) sono 16 mila**, l'8% (anagrafe al 1° gennaio 2026).
 
 <!-- <1-2 frasi col messaggio principale, da scrivere> -->
 
@@ -212,6 +225,14 @@ f_girafe(readRDS(file.path(dir_mod, "mappa_pop_anziani_65.rds")))
 f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_anziani_65.rds")))
 ```
 
+::::
+
+:::: {.callout-note collapse="true"}
+#### Osservazioni
+
+Persone di 65 anni e oltre: `r f_n(pop_comune$anziani_65)` (`r f_n(pop_comune$pct_anziani_65)`% dei `r f_n(pop_comune$residenti)` residenti). La quota varia poco tra i quartieri: dal 20% circa di Parma Centro, Oltretorrente, Vigatto, Golese e Pablo al 28% di Montanara; sopra la media cittadina anche Lubiana, Cittadella e San Lazzaro (circa 25%). In numero pesano soprattutto Lubiana (6.800) e Cittadella (6.200), che insieme raccolgono più di un anziano su quattro della città (28%).
+
+_NB: dati dell'anagrafe comunale al 1° gennaio 2026, solo residenti (non chi vive in città senza residenza, come gli studenti fuori sede); età in anni compiuti._
 ::::
 
 ### 80 anni e oltre
@@ -249,18 +270,17 @@ f_bottoni_dati("pop_quartieri", dir_mod, rds = "mappa_pop_anziani_65")
 :::: {.callout-note collapse="true"}
 #### Osservazioni
 
-Persone di 65 anni e oltre: `r f_n(pop_comune$anziani_65)` (`r f_n(pop_comune$pct_anziani_65)`% dei `r f_n(pop_comune$residenti)` residenti), di cui `r f_n(pop_comune$anziani_80)` di 80 anni e oltre (`r f_n(pop_comune$pct_anziani_80)`%).
+Persone di 80 anni e oltre: `r f_n(pop_comune$anziani_80)` (`r f_n(pop_comune$pct_anziani_80)`% dei residenti). La graduatoria è simile: Montanara resta il quartiere con più grandi anziani in proporzione (10%), seguita da Cittadella e Lubiana (circa 9%); in coda Vigatto (5,5%), Golese, Parma Centro e Oltretorrente (6-7%). In numero, Lubiana e Cittadella contano insieme 4.600 grandi anziani, quasi un terzo della città (29%).
 
-<!-- <da scrivere> -->
-
-_NB: dati dell'anagrafe comunale al 1° gennaio 2026, solo residenti (non chi vive in città senza residenza, come gli studenti fuori sede); età in anni compiuti. Le mappe delle quote usano la stessa scala di colori delle altre mappe per quartiere (stesso colore = stessa percentuale); le mappe dei numeri hanno toni più chiari e una scala propria._
+_NB: come sopra, anagrafe comunale al 1° gennaio 2026._
 ::::
 
 ## Anziani che vivono soli
 
-Gli anziani che vivono soli sono 15 mila, uno su tre; tra i grandi anziani sono 6.700, quasi uno su due.
+Vivere soli non è di per sé un bisogno, e tra gli over 65 la gran parte delle persone, non solo è autonoma, ma è spesso una risorsa per la famiglia (e.g. nonni che accudiscono nipoti) e la comunità.  
+Con l'avanzare dell'età però l’autonomia può ridursi (la condizione di fragilità): allora anche la spesa o una visita medica possono richiedere il supporto di qualcuno da fuori casa. Per questo la riforma per gli anziani mette il contrasto alla solitudine tra i suoi cardini, accanto al sostegno dell’autonomia e alla vita al proprio domicilio [@L33del2023Aanziani].
 
-Chi vive solo, per un bisogno quotidiano, dipende dalla rete esterna: è l'indicatore più vicino alla domanda di accompagnamento e trasporto sociale.
+Gli over 65 in famiglia anagrafica di una sola persona sono `r f_n(pop_comune$anziani_soli)` (`r f_n(pop_comune$pct_anziani_soli)`% dei `r f_n(pop_comune$anziani_in_famiglia)` anziani in famiglia).
 
 <!-- <1-2 frasi col messaggio principale, da scrivere> -->
 
@@ -287,6 +307,9 @@ f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_anziani_soli.rds")))
 ```
 
 ::::
+
+Gli over 80 che vivono soli sono circa 6.700, più di 4 su 10 di quelli in famiglia. 
+
 
 ### 80 anni e oltre
 
@@ -320,15 +343,8 @@ f_bottoni_dati("pop_quartieri", dir_mod, rds = "mappa_pop_anziani_soli")
 ```
 ::::
 
-:::: {.callout-note collapse="true"}
-#### Osservazioni
+ 
 
-Anziani in famiglia anagrafica di una sola persona: `r f_n(pop_comune$anziani_soli)` (`r f_n(pop_comune$pct_anziani_soli)`% dei `r f_n(pop_comune$anziani_in_famiglia)` anziani in famiglia); grandi anziani soli: `r f_n(pop_comune$anziani_80_soli)` (`r f_n(pop_comune$pct_anziani_80_soli)`%).
-
-<!-- <da scrivere> -->
-
-_NB: "anziano solo" è chi ha 65 anni o più in una famiglia anagrafica di una persona, che non vuol dire necessariamente vivere da solo. Esclusi i residenti in convivenze (residenze per anziani, comunità, istituti). La quota è calcolata sugli anziani che vivono in famiglia._
-::::
 
 
 ## Anziani non autosufficienti e con disabilità per quartiere [🟡]{.content-hidden}

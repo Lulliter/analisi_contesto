@@ -96,6 +96,7 @@ Dati che non stanno negli open data e vanno chiesti agli enti (bozze in `dati/gr
 - [ ] Nomi delle funzioni `f_...`: criterio e lessico comune (rimandato 2026-10-09)
 - [ ] grafico di trend multi-territorio (province ER grigie, Parma / ER / Italia evidenziate) ripetuto in `demo_trend_previs` e `anziani_non_autosuff`: promuovere una funzione in `R/grafici.R`?
 - [ ] Export dati: in `f_bottoni_dati()` smistare per riga, "Fonte…" nel campo Fonte e il resto in Nota (oggi alcune fonti escono come Nota)
+- [ ] `_git_track_AND_rsynch.sh`: spostare il controllo del volume Windows dopo `git push` (oggi se il volume non è montato non parte neanche il commit)
 - [ ] tooltip delle mappe: una regola coerente (chiarire, non affaticare) da rivedere in `anziani_mappe.qmd` e `geogr_abitare.qmd` (famiglie e residenti)
 - [ ] asse y sopra il massimo (`f_scale_y_tacche`, `f_scale_y_sopra` in `R/grafici.R`): estendere agli altri grafici di trend del sito
 - [ ] `ausl_npia/npia_pr_serie.csv`: trascrizione a mano da convertire con la regola Fonti in pdf (`dati/README.md`)
