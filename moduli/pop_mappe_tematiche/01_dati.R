@@ -7,7 +7,10 @@
 #         dati/puliti/istat_cens/pop_com_er_eta_2024.rds        (singole età)
 #         dati/puliti/istat_cens/pop_com_er_minorenni_2024.rds  (0-17 anni)
 # Output: output/pop_mappe_sf.rds — sf dei 330 comuni ER con indicatori:
-#         pop_tot, pop_65p, pop_80p, quota_stranieri, dens_km2, quota_65p, quota_80p, quota_0_14, quota_18_29, quota_minorenni
+#         conteggi: pop_tot, pop_65p, pop_80p, pop_0_14, pop_18_29, minorenni, minori_stranieri, pop_stranieri
+#         quote: quota_stranieri, quota_65p, quota_80p, quota_0_14, quota_18_29, quota_minorenni,
+#                quota_stranieri_minori (su tot. minorenni, dal 2026-11-09)
+#         superficie e densità: sup_km2, dens_km2
 # ___________________________________________________________________________
 
 # Setup -------------------------------------------------------------------
@@ -66,10 +69,18 @@ ind_stran <- pop_cl |>
   mutate(quota_stranieri = FRGAPO / TOTAL) |>
   select(PRO_COM_T, pop_stranieri = FRGAPO, quota_stranieri)
 
-# 3c. minorenni (0-17): indicatore dedicato RESPOP_MIN_AV
-ind_min <- pop_min |>
-  filter(sesso == sesso_tot, cittadinanza == "TOTAL") |>
-  select(PRO_COM_T, minorenni)
+# 3c. minorenni (0-17): indicatore dedicato RESPOP_MIN_AV, totale e stranieri (stranieri dal 2026-11-09)
+#     FRGAPO manca dove i minori stranieri sono 0 (10 righe ER, nessuna in PR; v. Ispezioni in coda)
+ind_min_cit <- pop_min |>
+  filter(sesso == sesso_tot, cittadinanza %in% c("TOTAL", "ITL", "FRGAPO")) |>
+  pivot_wider(id_cols = PRO_COM_T, names_from = cittadinanza, values_from = minorenni)
+
+# CONTROLLO: dove manca FRGAPO gli italiani sono tutti i minorenni (quindi 0 stranieri)
+stopifnot(with(ind_min_cit, all(ITL[is.na(FRGAPO)] == TOTAL[is.na(FRGAPO)])))
+
+ind_min <- ind_min_cit |>
+  mutate(FRGAPO = tidyr::replace_na(FRGAPO, 0L)) |>
+  select(PRO_COM_T, minorenni = TOTAL, minori_stranieri = FRGAPO)
 
 # 3d. unisci e calcola le quote
 ind_com <- ind_eta |>
@@ -80,11 +91,15 @@ ind_com <- ind_eta |>
     quota_80p       = pop_80p / pop_tot,
     quota_0_14      = pop_0_14 / pop_tot,
     quota_18_29     = pop_18_29 / pop_tot,
-    quota_minorenni = minorenni / pop_tot
+    quota_minorenni = minorenni / pop_tot,
+    quota_stranieri_minori = minori_stranieri / minorenni
   )
 
 # CONTROLLO di plausibilità: 0-14 <= minorenni (0-17) per ogni comune
 stopifnot(all(ind_com$pop_0_14 <= ind_com$minorenni))
+
+# CONTROLLO: minori stranieri <= minorenni
+stopifnot(all(ind_com$minori_stranieri <= ind_com$minorenni))
 
 # CONTROLLO: i totali delle due vie (età singole vs classi) devono coincidere
 chk_tot <- pop_cl |>
@@ -113,5 +128,21 @@ saveRDS(pop_mappe_sf, file.path(dir_out, "pop_mappe_sf.rds"))
 message("Salvato: output/pop_mappe_sf.rds (", nrow(pop_mappe_sf), " comuni)")
 # (le linee province il 02_output le legge direttamente da dati/puliti/istat_shp/)
 
-# Ispezioni utili (a mano):
-# summary(select(st_drop_geometry(pop_mappe_sf), pop_tot:dens_km2))
+# Ispezioni utili (a mano) ----
+summary(select(st_drop_geometry(pop_mappe_sf), pop_tot:dens_km2))
+
+# Cittadinanze disponibili nei due input con le età (2026-11-09: servono i MINORI STRANIERI per comune)
+# atteso da ingestione/01b: ITL / FRGAPO / TOTAL in pop_min; da verificare in pop_eta (singole età)
+count(pop_min, cittadinanza)   # 2026-11-09: FRGAPO 980 | ITL 990 | TOTAL 990
+count(pop_eta, cittadinanza)   # 2026-11-09: FRGAPO 71396 | ITL 97617 | TOTAL 97729
+# → FRGAPO ha meno righe: probabilmente le combinazioni con 0 stranieri non sono riportate.
+#   Prima di trattarle come 0, controllare che lì ITL = TOTAL:
+pop_min |>
+  tidyr::pivot_wider(id_cols = c(PRO_COM_T, sesso), names_from = cittadinanza, values_from = minorenni) |>
+  filter(is.na(FRGAPO))                   # quali comuni × sesso mancano
+# 2026-11-09: 10 righe, comuni 033015, 033017, 033028, 033030, 033047 (Piacenza) e 099021 (Rimini); nessuno in PR
+
+pop_min |>
+  tidyr::pivot_wider(id_cols = c(PRO_COM_T, sesso), names_from = cittadinanza, values_from = minorenni) |>
+  filter(is.na(FRGAPO), ITL != TOTAL)     # atteso: 0 righe (allora NA = 0 stranieri)
+# 2026-11-09: 0 righe → FRGAPO mancante = 0 minori stranieri (gestito nella sezione 3c)

@@ -1,0 +1,379 @@
+---
+title: "I giovani sul territorio"
+# categories: [P1 Disuguaglianze, LA2 Territorio]   # come anziani_mappe: da decidere
+description: "Residenti minorenni e di 18-29 anni per comune della provincia (Censimento ISTAT 2024) e per quartiere nel Comune di Parma (anagrafe comunale al 1/1/2026)"
+lang: it
+
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+
+execute:
+  eval: true
+  echo: false
+  warning: false
+  error: false
+  output: false
+
+# --- Bibliografia (unica per il sito, esportata da Zotero): si cita con [@chiave]
+bibliography: ../../bib/CRP_analisi_contesto.bib
+csl: ../../bib/apa_7th.csl
+link-citations: true
+---
+
+```{r}
+#| label: anteprima
+#| eval: false
+# Anteprima: renderizza e apre nel browser (lancia a mano, ignorato nel render)
+pagina <- "giovani_mappe"   # nome pagina, senza estensione
+quarto::quarto_render(here::here("sito", "temi", paste0(pagina, ".qmd")))
+browseURL(here::here("docs", "sito", "temi", paste0(pagina, ".html")))
+```
+
+<!-- Pagina bozza (2026-11-09), voce prevista nel menu Giovani: "Sul territorio".
+     Stesso impianto di anziani_mappe: per ogni classe d'età un tabset con due schede,
+     Numero (quanti: entità del bisogno) e Quota (%: composizione del territorio).
+     Classi: minorenni 0-17 e giovani adulti 18-29 (lo 0-14 resta in geogr_abitare).
+     Moduli: pop_mappe_tematiche (comuni), comune_pr_quartieri (quartieri). -->
+
+```{r}
+#| label: setup
+library(here)
+library(dplyr)
+library(ggplot2)
+library(ggiraph)
+library(ggtext)       # registra element_textbox usato nei temi dei plot
+library(sf)
+library(downloadthis) # bottoni di scarico dati
+source(here::here("R", "sito.R"))     # bottoni CSV + Excel (f_scarica_dati, f_bottoni_dati)
+source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hover bordeaux)
+dir_mod <- here::here("moduli", "comune_pr_quartieri", "output")   # mappe per quartiere
+dir_pop <- here::here("moduli", "pop_mappe_tematiche", "output")   # mappe per comune
+
+f_n <- function(x) format(x, big.mark = ".", decimal.mark = ",")
+
+# totali del comune per le Osservazioni (si aggiornano con i dati)
+pop_comune <- readRDS(file.path(dir_mod, "pop_quartieri.rds")) |>
+  filter(quartiere == "Comune di Parma")
+
+# totali della provincia (somma dei 44 comuni)
+pop_prov <- readRDS(file.path(dir_pop, "pop_mappe_sf.rds")) |>
+  sf::st_drop_geometry() |>
+  filter(COD_PROV %in% c("34", 34)) |>
+  summarise(n_comuni = n(), pop_tot = sum(pop_tot), minorenni = sum(minorenni), pop_18_29 = sum(pop_18_29),
+            minori_stranieri = sum(minori_stranieri)) |>
+  mutate(across(c(minorenni, pop_18_29), function(x) round(100 * x / pop_tot, 1), .names = "pct_{.col}"),
+         # minori stranieri: % sui minorenni, non sul totale dei residenti
+         pct_minori_stranieri = round(100 * minori_stranieri / minorenni, 1))
+```
+
+
+# In sintesi
+
+<!-- <3-4 punti, numeri tondi in chiaro, da scrivere> -->
+
+Sapere _dove_ vivono bambini, ragazzi e giovani adulti aiuta a mettere scuole e servizi vicino a chi li usa. In provincia **i minorenni sono circa 70 mila** (15% dei residenti; 14 mila con cittadinanza straniera) e **i giovani di 18-29 anni circa 55 mila** (12%).
+
+Numero e quota dicono cose diverse: il numero dice _quanti_ utenti ha un servizio, la quota dice _dove_ i giovani pesano di più sulla popolazione.
+
++ **Minorenni**: in numero stanno soprattutto a Parma (più di 4 su 10), in proporzione nella bassa e nella cintura (circa 17%, contro il 15% di Parma).
++ **18-29 anni**: Parma ne ha quasi la metà ed è tra i primi comuni anche in proporzione (13%).
++ **Minori stranieri**: metà a Parma, ma la quota più alta è in pedecollina e in montagna (fino al 30% a Calestano).
+
+Vedi anche: [Anziani › Dove vivono](anziani_mappe.qmd)
+
+<!-- versione precedente della sintesi (2026-11-09), sostituita dalla versione breve qui sopra:
+Analizzare _dove_ vivono bambini, ragazzi e giovani adulti serve a collocare scuole, servizi educativi, spazi di aggregazione e servizi per l'orientamento e il lavoro vicino a chi li usa. In provincia **i minorenni sono circa 70 mila** (15% dei residenti), di cui circa **14 mila con cittadinanza straniera**. **I giovani di 18-29 anni circa 55 mila** (12%).
+
+La distribuzione sul territorio cambia a seconda della metrica di lettura: il **numero in assoluto** dice dove si concentra l'entità del bisogno, cioè quanti utenti potenziali ha un servizio; la **quota percentuale** sulla popolazione dice in quali territori i giovani pesano di più, un segnale della capacità di trattenere o attirare famiglie. 
+
++ Parma capoluogo accoglie quasi la metà dei _minorenni_ della provincia, ma in proporzione ai residenti è nella media (15%); la quota più alta è nella bassa e nella cintura del capoluogo (San Secondo, Torrile, Colorno, Collecchio, Fidenza) e a Langhirano, intorno al 17%.
++ Per i giovani di _18-29 anni_ le due metriche (numerosità e quota sui residenti) mostrano distribuzioni più coerenti: il capoluogo ne ha quasi la metà ed è anche tra i comuni dove pesano di più (13%).
++ Tra minori con cittadinanza straniera, quasi la metà vive a Parma, ma la quota in percentuale più alta è in pedecollina e in alcuni comuni di montagna (Calestano 30%, Langhirano, Tizzano, Bedonia, Palanzano tra 24 e 28%).
+-->
+
+<!-- + ... -->
+
+
+# La provincia
+
+In provincia i minorenni sono circa 70 mila e i giovani di 18-29 anni circa 55 mila (Censimento ISTAT 2024).
+
+<!-- <totale dei minorenni e dei 18-29 in provincia, numeri tondi in chiaro, + 1-2 frasi, da scrivere> -->
+ 
+## Giovani per comune
+
+Nei 44 comuni la quota di minorenni va dal 5% a quasi il 18% dei residenti; in numero pesano soprattutto il capoluogo e i centri maggiori (Fidenza, Salsomaggiore, Collecchio, Noceto).
+
+### 0-17 anni
+
+I servizi per l'infanzia, la scuola e i servizi educativi si rivolgono a loro. Vedi anche: [Scuola e istruzione](scuola.qmd)
+
+<!-- versione precedente: I minorenni rappresentano il bacino di utenza di servizi per l'infanzia, scuole e servizi educativi. -->
+
+:::: {.panel-tabset}
+
+#### Numero
+
+```{r}
+#| label: mappa_minorenni_pr
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_pop, "mappa_minorenni_pr.rds")))
+```
+
+#### Quota
+
+```{r}
+#| label: mappa_quota_minorenni_pr
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_pop, "mappa_quota_minorenni_pr.rds")))
+```
+
+::::
+
+:::: {.callout-note collapse="true"}
+#### Osservazioni
+
+I "minorenni", ovvero le persone di 0-17 anni, sono: `r f_n(pop_prov$minorenni)` (`r f_n(pop_prov$pct_minorenni)`% dei `r f_n(pop_prov$pop_tot)` residenti).
+
+<!-- <da scrivere> -->
+
+_NB: Censimento permanente ISTAT, edizione 2024; un anno indietro rispetto ai dati per quartiere del Comune (1/1/2026)._
+::::
+
+### 18-29 anni
+
+È l'età della formazione e dell'università, del primo lavoro e della prima casa. Vedi anche: [Lavoro](giovani_lavoro.qmd)
+
+<!-- versione precedente: I giovani adulti rappresentano invece il bacino di utenza per la formazione e l'università, e la loro presenza è strettamente connessa alla disponibilità di lavoro e abitazione. -->
+
+:::: {.panel-tabset}
+
+#### Numero
+
+```{r}
+#| label: mappa_pop_18_29_pr
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_pop, "mappa_pop_18_29_pr.rds")))
+```
+
+#### Quota
+
+```{r}
+#| label: mappa_quota_18_29_pr
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_pop, "mappa_quota_18_29_pr.rds")))
+```
+
+::::
+
+:::: {.text-end}
+```{r}
+#| label: dl_mappe_giovani_comuni
+#| output: true
+f_bottoni_dati("pop_mappe_comuni", dir_pop, rds = "mappa_minorenni_pr")
+```
+::::
+
+:::: {.callout-note collapse="true"}
+#### Osservazioni
+
+I "giovani adulti", ovvero le persone di 18-29 sono `r f_n(pop_prov$pop_18_29)` (`r f_n(pop_prov$pct_pop_18_29)`% dei residenti) - dati dal censimento permanente ISTAT, edizione 2024.
+
+_NB: importante ricordare che si contano solo i residenti: chi vive in un comune senza esserci residente (per esempio gli studenti fuori sede) non compare._
+::::
+
+
+### Minori stranieri
+
+Compresi i nati in Italia, sono i ragazzi che a scuola possono avere bisogno di supporto linguistico e di percorsi di inclusione. Vedi anche: [Alunni con cittadinanza non italiana](scuola.qmd#gli-alunni-con-cittadinanza-non-italiana) <!-- , [Immigrati › Dove vivono](stranieri_mappe.qmd): da riattivare quando la pagina sugli stranieri è promossa -->
+
+:::: {.panel-tabset}
+
+#### Numero
+
+```{r}
+#| label: mappa_minori_stranieri_pr
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_pop, "mappa_minori_stranieri_pr.rds")))
+```
+
+#### Quota
+
+```{r}
+#| label: mappa_quota_stranieri_minori_pr
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_pop, "mappa_quota_stranieri_minori_pr.rds")))
+```
+
+::::
+
+:::: {.text-end}
+```{r}
+#| label: dl_mappe_minori_stranieri_comuni
+#| output: true
+f_bottoni_dati("pop_mappe_comuni", dir_pop, rds = "mappa_minori_stranieri_pr")
+```
+::::
+
+:::: {.callout-note collapse="true"}
+#### Osservazioni
+
+Minorenni con cittadinanza straniera (o apolidi): `r f_n(pop_prov$minori_stranieri)` (`r f_n(pop_prov$pct_minori_stranieri)`% dei minorenni).
+
+<!-- <da scrivere> -->
+
+_NB: conta la cittadinanza, non il luogo di nascita: sono compresi i nati in Italia da genitori stranieri, non i ragazzi diventati italiani. Censimento permanente ISTAT, edizione 2024._
+::::
+
+
+# Il Comune di Parma
+
+Nel capoluogo vive più di 4 minorenni su 10 della provincia (43%) e quasi la metà dei giovani di 18-29 anni (46%).
+
+<!-- <1-2 frasi col messaggio principale, da scrivere> -->
+
+## Giovani per quartiere
+
+Nel Comune di Parma i minorenni sono circa 30 mila (15% dei 203 mila residenti) e i giovani di 18-29 anni circa 26 mila (13%) (anagrafe al 1° gennaio 2026).
+
+<!-- <totale dei minorenni e dei 18-29 nel Comune, numeri tondi in chiaro, + 1-2 frasi, da scrivere> -->
+
+### 0-17 anni
+
+In numero i minorenni si concentrano a Lubiana e Cittadella, che insieme ne contano più di un quarto della città; in proporzione pesano di più nei quartieri esterni (Vigatto, San Pancrazio, Golese, intorno al 16%) e meno in Parma Centro e Oltretorrente (13%).
+
+:::: {.panel-tabset}
+
+#### Numero
+
+```{r}
+#| label: mappa_pop_minori
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_minori.rds")))
+```
+
+#### Quota
+
+```{r}
+#| label: mappa_pop_pct_minori_0_17
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_minori_0_17.rds")))
+```
+
+::::
+
+:::: {.callout-note collapse="true"}
+#### Osservazioni
+
+Persone di 0-17 anni: `r f_n(pop_comune$minori)` (`r f_n(pop_comune$pct_minori_0_17)`% dei `r f_n(pop_comune$residenti)` residenti).
+
+<!-- <da scrivere> -->
+
+_NB: dati dell'anagrafe comunale al 1° gennaio 2026, solo residenti; età in anni compiuti._
+::::
+
+### 18-29 anni
+
+Al contrario dei minorenni, i giovani adulti pesano di più nei quartieri centrali (Pablo, Parma Centro, Oltretorrente, intorno al 15%); in numero Lubiana e Parma Centro ne contano circa 3.200 ciascuno.
+
+:::: {.panel-tabset}
+
+#### Numero
+
+```{r}
+#| label: mappa_pop_giovani_18_29
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_giovani_18_29.rds")))
+```
+
+#### Quota
+
+```{r}
+#| label: mappa_pop_pct_giovani_18_29
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_giovani_18_29.rds")))
+```
+
+::::
+
+:::: {.text-end}
+```{r}
+#| label: dl_mappe_giovani_quartieri
+#| output: true
+f_bottoni_dati("pop_quartieri", dir_mod, rds = "mappa_pop_minori")
+```
+::::
+
+:::: {.callout-note collapse="true"}
+#### Osservazioni
+
+Persone di 18-29 anni: `r f_n(pop_comune$giovani_18_29)` (`r f_n(pop_comune$pct_giovani_18_29)`% dei residenti).
+
+<!-- <da scrivere> -->
+
+_NB: anagrafe comunale al 1° gennaio 2026, solo residenti: non comprende gli studenti fuori sede non residenti._
+::::
+
+
+### Minori stranieri
+
+In Oltretorrente e San Leonardo i minori stranieri sono più di un terzo dei minorenni (37-38%), contro il 13% di Cittadella e Vigatto; in numero San Leonardo da solo ne conta quasi 1.200, il 18% della città.
+
+:::: {.panel-tabset}
+
+#### Numero
+
+```{r}
+#| label: mappa_pop_minori_stranieri
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_minori_stranieri.rds")))
+```
+
+#### Quota
+
+```{r}
+#| label: mappa_pop_pct_stranieri_minori
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_stranieri_minori.rds")))
+```
+
+::::
+
+:::: {.text-end}
+```{r}
+#| label: dl_mappe_minori_stranieri_quartieri
+#| output: true
+f_bottoni_dati("pop_quartieri", dir_mod, rds = "mappa_pop_minori_stranieri")
+```
+::::
+
+:::: {.callout-note collapse="true"}
+#### Osservazioni
+
+Minorenni con cittadinanza straniera: `r f_n(pop_comune$minori_stranieri)` (`r f_n(pop_comune$pct_stranieri_minori)`% dei minorenni).
+
+<!-- <da scrivere> -->
+
+_NB: conta la cittadinanza, non il luogo di nascita: sono compresi i nati in Italia da genitori stranieri, non i ragazzi diventati italiani. Anagrafe comunale al 1° gennaio 2026._
+::::
+
+
+# Possibili approfondimenti
+
++ Approfondire meglio la correlazione tra la disponibilità di servizi e opportunitò e la distribuzione delle diverse fasce d'età sul territorio per apprezzare la facilità di accesso e le eventuali sacche di esclusione. 
+ 

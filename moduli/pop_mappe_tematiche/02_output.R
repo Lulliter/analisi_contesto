@@ -1,8 +1,9 @@
 # ___________________________________________________________________________
 # Modulo: pop_mappe_tematiche — 02_output.R
 # Scopo:  mappe tematiche comunali a classi, in DUE versioni: ER e solo PR.
-#         Indicatori: % stranieri, densità ab/km2, % 65+, % 80+, % 0-14, % 18-29, % minorenni;
-#         conteggi 65+ e 80+ (dal 2026-11-06)
+#         Indicatori: % stranieri, densità ab/km2, % 65+, % 80+, % 0-14, % 18-29, % minorenni,
+#         % minori stranieri sui minorenni (dal 2026-11-09);
+#         conteggi 65+ e 80+ (dal 2026-11-06); conteggi 0-17, 18-29, stranieri, minori stranieri (dal 2026-11-09)
 #         NB: classi a gradini FISSI (dal 2026-10-09; prima quintili ER), uguali in
 #         ER, PR e quartieri del Comune; solo la densità resta a quintili ER
 # Input:  output/pop_mappe_sf.rds                          (da 01_dati.R)
@@ -39,7 +40,93 @@ parma_prov_sf   <- filter(er_provincie_sf, COD_PROV %in% c("34", 34))
 FONTE <- f_caption_fonte(paste0("ISTAT, Censimento permanente della popolazione 2024; ",
                                 "confini ISTAT al 01/01/2026 (versione generalizzata)"))
 
-# --- 1) Classi -------------------------------------------------------------------
+# --- 1) Scelta delle classi (esplorazione, da rileggere all'aggiornamento) -----
+# Perché le soglie della sezione 2 sono quelle: campo dei valori nei comuni e quanti
+# comuni cadono in ciascuna classe. Esiti e scelte annotati sotto ogni blocco.
+pop_com <- st_drop_geometry(pop_mappe_sf) |>
+  mutate(is_pr = COD_PROV %in% c("34", 34))
+
+## __ Quintili ER (fino al 2026-10-09 le soglie di tutte le mappe; oggi solo della densità) ----
+pop_com |>
+  select(quota_stranieri, dens_km2, quota_65p, quota_0_14, quota_minorenni) |>
+  summarise(across(everything(), function(x) list(round(quantile(x, c(.2, .4, .6, .8)), 3)))) |>
+  tidyr::pivot_longer(everything(), names_to = "indicatore", values_to = "soglie") |>
+  tidyr::unnest_wider(soglie) # attesi (in %): stranieri 7,9|9,9|11,6|13,9; 65+ 22,8|24,4|26,2|30,6; 0-14 9,8|11,3|12,1|12,9; dens 39|100|180|292
+
+## __ Quote: passo delle classi (2026-10-09) ----
+# Scelta del passo delle classi (2026-10-09): campo dei valori nei 44 comuni PR, in %,
+# e quanti comuni cadono in ciascuna classe con un dato passo
+# (confrontare con l'analogo blocco in comune_pr_quartieri/02_output.R)
+pop_pr_pct <- pop_com |>
+  filter(is_pr) |>
+  mutate(across(c(quota_stranieri, quota_65p, quota_80p, quota_0_14, quota_18_29, quota_minorenni, quota_stranieri_minori), function(x) 100 * x))
+
+pop_pr_pct |>
+  summarise(across(c(quota_stranieri, quota_65p, quota_80p, quota_0_14, quota_18_29, quota_minorenni, quota_stranieri_minori),
+                   function(x) paste(round(range(x), 1), collapse = " – "))) |>
+  tidyr::pivot_longer(everything(), names_to = "indicatore", values_to = "campo")
+
+f_prova_passo <- function(var, passo, df = pop_pr_pct) {
+  x    <- df[[var]]
+  brks <- seq(floor(min(x) / passo) * passo, ceiling(max(x) / passo) * passo, by = passo)
+  table(cut(x, brks, include.lowest = TRUE))
+}
+f_prova_passo("quota_0_14", 2)
+f_prova_passo("quota_0_14", 2.5)
+f_prova_passo("quota_65p", 5)
+f_prova_passo("quota_stranieri", 5)
+f_prova_passo("quota_stranieri", 2.5)
+f_prova_passo("quota_80p", 2.5)   # soglie provvisorie in classi_fisse_perc: 7,5 | 10 | 12,5 | 15
+f_prova_passo("quota_18_29", 2)   # soglie provvisorie in classi_fisse_perc: 10 | 12 | 14 | 16
+# minori stranieri sul tot. minorenni (2026-11-09): passo da scegliere (nei quartieri: 5)
+f_prova_passo("quota_stranieri_minori", 5)
+f_prova_passo("quota_stranieri_minori", 10)
+# esito (2026-11-09): campo 2,5 – 29,9; passo 5 → 2|3|9|16|10|4; passo 10 → 5|25|14
+#   (nei quartieri passo 5, stessa scala di pct_stranieri; qui il campo è più ampio di quota_stranieri)
+# SCELTA (2026-11-09): passo 5, prime due classi unite (meno di 10%): 5|9|16|10|4
+
+## __ Conteggi di giovani e stranieri (2026-11-09) ----
+# Per le mappe di numero accanto a quelle in % (pagine "Sul territorio" per gruppo):
+# campo dei valori nei comuni PR ed ER, pop_65p come riferimento (classi già scelte il 2026-11-06)
+conteggi <- pop_com |>
+  summarise(across(c(pop_65p, minorenni, pop_18_29, pop_stranieri, minori_stranieri),
+                   function(x) paste(round(quantile(x, c(0, .25, .5, .75, .9, 1))), collapse = " | ")),
+            .by = is_pr)
+# attesi (2026-11-09), comuni PR: 65+ 211 | 577 | 1114 | 2036 | 2932 | 44816; 0-17 31 | 187 | 776 | 1465 | 2156 | 30045;
+#   18-29 44 | 161 | 560 | 1114 | 1610 | 25404; stranieri 32 | 156 | 500 | 1112 | 1567 | 34021
+#   → i tre conteggi hanno campi simili tra loro (circa metà/due terzi dei 65+): candidati a una scala comune
+#   minori stranieri: molto più piccoli, v. candidata C
+
+# quanti comuni PR per classe con un dato set di soglie (stesso uso di f_prova_passo, ma soglie libere)
+f_prova_soglie <- function(var, soglie, df = filter(pop_com, is_pr)) {
+  table(cut(df[[var]], c(-Inf, soglie, Inf), right = FALSE, dig.lab = 6))
+}
+f_prova_soglie("pop_65p", c(500, 1000, 2000, 5000, 10000))   # riferimento: classi in uso
+# atteso: 10 | 9 | 13 | 9 | 2 | 1
+
+# candidata A: come i 65+ ma un gradino più in basso
+f_prova_soglie("minorenni",     c(200, 500, 1000, 2000, 5000))
+f_prova_soglie("pop_18_29",     c(200, 500, 1000, 2000, 5000))
+f_prova_soglie("pop_stranieri", c(200, 500, 1000, 2000, 5000))
+f_prova_soglie("minori_stranieri", c(200, 500, 1000, 2000, 5000))
+# esito A (2026-11-09), comuni PR per classe: 0-17 12|9|6|11|5|1; 18-29 14|7|11|9|2|1; stranieri 13|9|8|10|3|1;
+#   minori stranieri 28|12|3|0|0|1 → per i tre ok, Parma da sola nella classe alta come per i 65+; minori stranieri no
+# candidata B: classi più fitte in basso, capoluogo e grandi comuni insieme nella classe alta
+f_prova_soglie("minorenni",     c(100, 250, 500, 1000, 2000))
+f_prova_soglie("pop_18_29",     c(100, 250, 500, 1000, 2000))
+f_prova_soglie("pop_stranieri", c(100, 250, 500, 1000, 2000))
+f_prova_soglie("minori_stranieri", c(100, 250, 500, 1000, 2000))
+# esito B (2026-11-09): 0-17 5|9|7|6|11|6; 18-29 7|9|5|11|9|3; stranieri 9|6|7|8|10|4; minori stranieri 22|12|6|3|0|1
+#   → classi più equilibrate, ma Parma finisce con 3-6 comuni nella classe alta; minori stranieri ancora schiacciati in basso
+
+# candidata C, solo minori stranieri (conteggi molto più piccoli degli altri tre): scala sua
+f_prova_soglie("minori_stranieri", c(50, 100, 250, 500, 1000))
+f_prova_soglie("minori_stranieri", c(25, 50, 100, 250, 500))
+# esito C (2026-11-09): 50…1000 → 15|7|12|6|3|1 (Parma da sola in alto); 25…500 → 11|4|7|12|6|4
+# SCELTA (2026-11-09): A per 0-17, 18-29 e stranieri (coerente con i 65+: Parma da sola nella classe alta);
+#   C 50…1000 per i minori stranieri (stessa logica)
+
+# --- 2) Classi -------------------------------------------------------------------
 # Gradini tondi e FISSI, uguali per ER, PR e (dove possibile) per i quartieri del Comune:
 # stesso colore = stessa %. Classi estreme aperte dove i comuni sono pochi.
 # Densità: quintili ER (distribuzione troppo asimmetrica per gradini uguali).
@@ -55,20 +142,26 @@ f_etichette <- function(brks, lab) {
                    is.infinite(hi) ~ paste(lab(lo), "e oltre"),
                    .default = paste(lab(lo), lab(hi), sep = " – "))
 }
-# soglie (quote): da aggiornare se cambiano i campi di valori (verifiche in coda allo script)
+# soglie (quote): da aggiornare se cambiano i campi di valori (v. sezione 1)
 classi_fisse_perc <- list(
   quota_0_14      = c(-Inf, .08, .10, .12, .14, Inf),
   quota_minorenni = c(-Inf, .10, .12, .14, .16, Inf),
   quota_18_29     = c(-Inf, .10, .12, .14, .16, Inf),
   quota_65p       = c(-Inf, .20, .25, .30, .35, .40, Inf),
   quota_80p       = c(-Inf, .075, .10, .125, .15, Inf),
-  quota_stranieri = c(-Inf, .05, .10, .15, .20, Inf)
+  quota_stranieri = c(-Inf, .05, .10, .15, .20, Inf),
+  quota_stranieri_minori = c(-Inf, .10, .15, .20, .25, Inf)   # dal 2026-11-09 (v. sezione 1)
 )
 
 # soglie (conteggi, dal 2026-11-06): classe alta aperta, assorbe il capoluogo (Parma ~45 mila 65+)
+# giovani e stranieri dal 2026-11-09 (v. sezione 1)
 classi_fisse_n <- list(
-  pop_65p = c(-Inf, 500, 1000, 2000, 5000, 10000, Inf),
-  pop_80p = c(-Inf, 200, 400, 800, 2000, 5000, Inf)
+  pop_65p          = c(-Inf, 500, 1000, 2000, 5000, 10000, Inf),
+  pop_80p          = c(-Inf, 200, 400, 800, 2000, 5000, Inf),
+  minorenni        = c(-Inf, 200, 500, 1000, 2000, 5000, Inf),
+  pop_18_29        = c(-Inf, 200, 500, 1000, 2000, 5000, Inf),
+  pop_stranieri    = c(-Inf, 200, 500, 1000, 2000, 5000, Inf),
+  minori_stranieri = c(-Inf, 50, 100, 250, 500, 1000, Inf)
 )
 
 pop_mappe_sf <- reduce(names(classi_fisse_perc), function(df, var) {
@@ -92,9 +185,14 @@ pop_mappe_sf <- pop_mappe_sf |>
          tt_quota_18_29     = paste0(COMUNE, ": ", lab_pct(quota_18_29)),
          tt_quota_0_14      = paste0(COMUNE, ": ", lab_pct(quota_0_14)),
          tt_quota_minorenni = paste0(COMUNE, ": ", lab_pct(quota_minorenni)),
+         tt_quota_stranieri_minori = paste0(COMUNE, ": ", lab_pct(quota_stranieri_minori)),
          # conteggi: solo comune e numero (la quota è nella scheda accanto; 2026-11-06)
          tt_pop_65p         = paste0(COMUNE, ": ", lab_num(pop_65p)),
-         tt_pop_80p         = paste0(COMUNE, ": ", lab_num(pop_80p)))
+         tt_pop_80p         = paste0(COMUNE, ": ", lab_num(pop_80p)),
+         tt_minorenni        = paste0(COMUNE, ": ", lab_num(minorenni)),
+         tt_pop_18_29        = paste0(COMUNE, ": ", lab_num(pop_18_29)),
+         tt_pop_stranieri    = paste0(COMUNE, ": ", lab_num(pop_stranieri)),
+         tt_minori_stranieri = paste0(COMUNE, ": ", lab_num(minori_stranieri)))
 
 
 # comuni PR per lo zoom: geometria di dettaglio semplificata per il web (da 00b, 2026-10-09;
@@ -113,7 +211,7 @@ if (file.exists(file_dett)) {
 # bordo provincia PR coerente con la geometria usata (unione dei comuni)
 pr_bordo_sf <- pr_comuni_sf |> summarise()
 
-# --- 2) Funzioni di disegno ---------------------------------------------------
+# --- 3) Funzioni di disegno ---------------------------------------------------
 # (f_disegna_mappa: ora in R/; qui restano solo i wrapper er/pr)
 
 # palette interpolata sulla sequenziale per il numero di classi dell'indicatore con `grDevices::colorRampPalette`:
@@ -158,7 +256,7 @@ f_mappa_pr <- function(var, titolo, indicatore, seq8, nota_classi, tono = "pieno
 
 # (f_salva_plot: in R/grafici.R)
 
-# --- 3) Definizione degli indicatori -----------------------------------------
+# --- 4) Definizione degli indicatori -----------------------------------------
 # seq8 = sequenziale a 8 toni (R/_parma_colors.R); nota_classi = coda del sottotitolo,
 # solo dove le classi non sono i gradini fissi
 
@@ -172,12 +270,17 @@ indicatori <- tibble::tribble(
   "pop_80p",         "Popolazione di 80 anni e oltre (2024)",            "Indicatore: n. di residenti di 80 anni e oltre",                   seq_factor_red,    "",
   "quota_18_29",     "Giovani adulti di 18-29 anni (2024)",              "Indicatore: % della popolazione di 18-29 anni",                    seq_factor_green,  "",
   "quota_0_14",      "Popolazione di 0-14 anni (2024)",                  "Indicatore: % della popolazione di 0-14 anni",                     seq_factor_green,  "",
-  "quota_minorenni", "Popolazione minorenne, 0-17 anni (2024)",          "Indicatore: % della popolazione di 0-17 anni",                     seq_factor_green,  ""
+  "quota_minorenni", "Popolazione minorenne, 0-17 anni (2024)",          "Indicatore: % della popolazione di 0-17 anni",                     seq_factor_green,  "",
+  "quota_stranieri_minori", "Stranieri e apolidi tra i minorenni (2024)", "Indicatore: % di stranieri e apolidi su tot. residenti di 0-17 anni", seq_factor_purple, "",
+  "minorenni",        "Popolazione minorenne, 0-17 anni (2024)",         "Indicatore: n. di residenti di 0-17 anni",                         seq_factor_green,  "",
+  "pop_18_29",        "Giovani adulti di 18-29 anni (2024)",             "Indicatore: n. di residenti di 18-29 anni",                        seq_factor_green,  "",
+  "pop_stranieri",    "Residenti stranieri e apolidi (2024)",            "Indicatore: n. di residenti stranieri e apolidi",                  seq_factor_purple, "",
+  "minori_stranieri", "Minorenni stranieri e apolidi (2024)",            "Indicatore: n. di residenti di 0-17 anni stranieri e apolidi",     seq_factor_purple, ""
 ) |>
-  # conteggi (pop_*) in tono tenue, quote in tono pieno
-  mutate(tono = if_else(startsWith(var, "pop_"), "tenue", "pieno"))
+  # conteggi (pop_*, minorenni, minori_stranieri) in tono tenue, quote in tono pieno
+  mutate(tono = if_else(startsWith(var, "pop_") | var %in% c("minorenni", "minori_stranieri"), "tenue", "pieno"))
 
-# --- 4) Genera e salva (purrr) ------------------------------------------------
+# --- 5) Genera e salva (purrr) ------------------------------------------------
 mappe_er <- indicatori |> pmap(f_mappa_er) |> set_names(indicatori$var)
 mappe_pr <- indicatori |> pmap(f_mappa_pr) |> set_names(indicatori$var)
 mappe_er$quota_stranieri # anteprima di una; tutte: mappe_er
@@ -189,26 +292,28 @@ mappe_pr$pop_80p
 mappe_er$pop_65p
 mappe_er$pop_80p
 
+## __ mappa_minorenni / mappa_pop_18_29 / mappa_pop_stranieri / mappa_minori_stranieri (conteggi, tono tenue; dal 2026-11-09) ----
+mappe_pr$minorenni
+mappe_pr$pop_18_29
+mappe_pr$pop_stranieri
+mappe_pr$minori_stranieri
+mappe_pr$quota_stranieri_minori
+
 iwalk(mappe_er, function(m, nm) f_salva_plot(m, paste0("mappa_", nm, "_er"), dir_out = file.path(dir_mod, "output")))
 iwalk(mappe_pr, function(m, nm) f_salva_plot(m, paste0("mappa_", nm, "_pr"), dir_out = file.path(dir_mod, "output")))
 
-# --- 5) Tabella per i bottoni di scarico del sito (una sola per tutte le mappe) --
+# --- 6) Tabella per i bottoni di scarico del sito (una sola per tutte le mappe) --
 pop_mappe_comuni <- st_drop_geometry(pop_mappe_sf) |>
-  select(PRO_COM_T, COMUNE, COD_PROV, pop_tot, pop_65p, pop_80p, sup_km2, dens_km2,
-         quota_stranieri, quota_65p, quota_80p, quota_0_14, quota_18_29, quota_minorenni)
+  select(PRO_COM_T, COMUNE, COD_PROV, pop_tot, pop_65p, pop_80p, minorenni, pop_18_29, pop_stranieri, minori_stranieri,
+         sup_km2, dens_km2, quota_stranieri, quota_65p, quota_80p, quota_0_14, quota_18_29, quota_minorenni,
+         quota_stranieri_minori)
 readr::write_csv(pop_mappe_comuni, file.path(dir_mod, "output", "pop_mappe_comuni.csv"))
 
-# Verifiche rapide (da eseguire a mano) ------------------------------------
-# I numeri del blurb (Messaggio, 2026-09-11): quintili ER, Parma vs ER, comuni PR agli estremi
-pop_com <- st_drop_geometry(pop_mappe_sf) |>
+# Verifiche dei risultati (da eseguire a mano) ------------------------------
+# I numeri del blurb (Messaggio, 2026-09-11): Parma vs ER, comuni PR per classe, comuni PR agli estremi
+# (pop_com: v. sezione 1; qui serve anche con le colonne classe_<var> della sezione 2)
+pop_com_classi <- st_drop_geometry(pop_mappe_sf) |>
   mutate(is_pr = COD_PROV %in% c("34", 34))
-
-# quintili ER (le soglie delle classi delle mappe) per ogni indicatore
-pop_com |>
-  select(quota_stranieri, dens_km2, quota_65p, quota_0_14, quota_minorenni) |>
-  summarise(across(everything(), function(x) list(round(quantile(x, c(.2, .4, .6, .8)), 3)))) |>
-  tidyr::pivot_longer(everything(), names_to = "indicatore", values_to = "soglie") |>
-  tidyr::unnest_wider(soglie) # attesi (in %): stranieri 7,9|9,9|11,6|13,9; 65+ 22,8|24,4|26,2|30,6; 0-14 9,8|11,3|12,1|12,9; dens 39|100|180|292
 
 # Parma vs ER: quote sul totale dei residenti (non media dei comuni)
 pop_com |>
@@ -219,7 +324,7 @@ pop_com |>
   mutate(across(c(stranieri, anziani, bambini, minorenni), function(x) round(100 * x, 1)), dens = round(dens)) # attesi PR: 456 mila, stranieri 14,8%, 65+ 23,6%, 0-14 12,4%, 132 ab/km2; ER: 12,7%, 24,9%, 11,8%, 198
 
 # comuni PR per classe (colonne classe_<var>; 1 = più bassa): dal 2026-10-09 gradini fissi, non più quintili, tranne la densità
-pop_com |>
+pop_com_classi |>
   filter(is_pr) |>
   select(COMUNE, starts_with("classe_")) |>
   # da fattore a intero PRIMA del pivot: altrimenti pivot_longer fonde i livelli dei 5 fattori
@@ -246,29 +351,3 @@ f_estremi("quota_stranieri") # alto: Calestano 20,7; Langhirano 20,6; Parma 17,1
 f_estremi("quota_65p")       # alto: Bore 47; Monchio 44; Tornolo 42; Palanzano 41 — basso: Torrile 18,3; Colorno 20,6
 f_estremi("quota_0_14")      # alto: San Secondo 14,4; Langhirano 14,0; Colorno/Fidenza 13,7 — basso: Bore 3,7; Tornolo 3,8
 f_estremi("dens_km2")        # alto: Parma 764; Fidenza 289 — basso: Valmozzola 8; Bardi 10
-
-
-# Scelta del passo delle classi (2026-10-09): campo dei valori nei 44 comuni PR, in %,
-# e quanti comuni cadono in ciascuna classe con un dato passo
-# (confrontare con l'analogo blocco in comune_pr_quartieri/02_output.R)
-pop_pr_pct <- pop_com |>
-  filter(is_pr) |>
-  mutate(across(c(quota_stranieri, quota_65p, quota_80p, quota_0_14, quota_18_29, quota_minorenni), function(x) 100 * x))
-
-pop_pr_pct |>
-  summarise(across(c(quota_stranieri, quota_65p, quota_80p, quota_0_14, quota_18_29, quota_minorenni),
-                   function(x) paste(round(range(x), 1), collapse = " – "))) |>
-  tidyr::pivot_longer(everything(), names_to = "indicatore", values_to = "campo")
-
-f_prova_passo <- function(var, passo, df = pop_pr_pct) {
-  x    <- df[[var]]
-  brks <- seq(floor(min(x) / passo) * passo, ceiling(max(x) / passo) * passo, by = passo)
-  table(cut(x, brks, include.lowest = TRUE))
-}
-f_prova_passo("quota_0_14", 2)
-f_prova_passo("quota_0_14", 2.5)
-f_prova_passo("quota_65p", 5)
-f_prova_passo("quota_stranieri", 5)
-f_prova_passo("quota_stranieri", 2.5)
-f_prova_passo("quota_80p", 2.5)   # soglie provvisorie in classi_fisse_perc: 7,5 | 10 | 12,5 | 15
-f_prova_passo("quota_18_29", 2)   # soglie provvisorie in classi_fisse_perc: 10 | 12 | 14 | 16

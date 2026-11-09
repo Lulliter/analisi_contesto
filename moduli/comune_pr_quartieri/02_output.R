@@ -9,6 +9,7 @@
 # Output: output/mappa_acer_quartieri.rds|.png, plot_acer_quartieri.rds|.png, mappa_acer_punti.rds|.png,
 #         output/mappa_acer_<quartiere>.rds|.png (13 mappe)
 #         output/mappa_pop_<indicatore>.rds|.png, plot_pop_quartieri_eta.rds|.png
+#         output/famiglie_quartieri_ft.rds + .csv (tabella delle % delle famiglie, dal 2026-11-09)
 #         (csv per i bottoni: acer_immobili.csv, acer_quartieri.csv, pop_quartieri.csv
 #         e pop_quartieri_eta.csv, da 01_dati.R)
 # NB: punti e conteggi = EDIFICI, non alloggi (la fonte non riporta il n. di alloggi)
@@ -26,9 +27,11 @@ library(ggrepel)   # numeri dei quartieri che non si sovrappongono
 library(glue)      # caption con il link al portale
 library(sf)
 library(patchwork) # mappa a punti + barre affiancate (mappa_acer_punti)
+library(flextable) # tabella delle % delle famiglie (dal 2026-11-09)
 
 source(here("R", "_parma_colors.R"))
 source(here("R", "grafici.R"))   # temi, caption, classi, salvataggio
+source(here("R", "formatting.R"))   # f_ft, f_ft_titolo_note
 
 # Parametri ---------------------------------------------------------------
 dir_mod <- here("moduli", "comune_pr_quartieri", "output")
@@ -317,6 +320,104 @@ f_gradini <- function(vars, passo = NA) {
   seq(floor(campo[1] / passo) * passo, ceiling(campo[2] / passo) * passo, by = passo)
 }
 
+## __ Scelta delle classi (esplorazione, da rileggere all'aggiornamento) ----
+# Perché i passi e i gradini della tribble sono quelli: campo dei valori nei 13 quartieri e
+# quanti quartieri cadono in ciascuna classe. Esiti e scelte annotati sotto ogni blocco.
+# (spostato dalla coda dello script il 2026-11-09; confrontare con la sezione 1 di pop_mappe_tematiche/02_output.R)
+
+### __ Quote: passo delle classi (2026-10-09) ----
+# Scelta del passo delle classi delle mappe per quartiere (2026-10-09): campo dei
+# valori per indicatore e, per i passi candidati, quante classi escono e quanti
+# quartieri cadono in ciascuna (confrontare con l'analogo blocco in pop_mappe_tematiche)
+vars_pct <- c("pct_bambini_0_14", "pct_minori_0_17", "pct_giovani_18_29",
+              "pct_anziani_65", "pct_anziani_80", "pct_anziani_soli",
+              "pct_stranieri", "pct_stranieri_minori",
+              "pct_famiglie_1", "pct_famiglie_numerose")
+
+# campo min – max per indicatore (quartieri, senza il totale comunale)
+pop_soli_quartieri |>
+  summarise(across(all_of(vars_pct), function(x) paste(round(range(x), 1), collapse = " – "))) |>
+  tidyr::pivot_longer(everything(), names_to = "indicatore", values_to = "campo")
+
+# quartieri per classe con un dato passo (gradini = multipli del passo che contengono il campo)
+f_prova_passo <- function(var, passo, df = pop_soli_quartieri) {
+  x    <- df[[var]]
+  brks <- seq(floor(min(x) / passo) * passo, ceiling(max(x) / passo) * passo, by = passo)
+  table(cut(x, brks, include.lowest = TRUE))
+}
+f_prova_passo("pct_bambini_0_14", 2)
+f_prova_passo("pct_bambini_0_14", 2.5)
+f_prova_passo("pct_anziani_65", 5)
+f_prova_passo("pct_anziani_65", 2.5)
+f_prova_passo("pct_stranieri", 5)
+f_prova_passo("pct_stranieri", 2.5)
+
+### __ Conteggi di giovani e stranieri (2026-11-09) ----
+# Per le mappe di numero accanto a quelle in % (pagine "Sul territorio" per gruppo);
+# anziani_65 come riferimento (gradini automatici, passo NA in tribble)
+vars_n <- c("anziani_65", "minori", "giovani_18_29", "stranieri", "minori_stranieri")
+
+# min | mediana | max per indicatore (quartieri, senza il totale comunale)
+pop_soli_quartieri |>
+  summarise(across(all_of(vars_n), function(x) paste(round(quantile(x, c(0, .5, 1))), collapse = " | "))) |>
+  tidyr::pivot_longer(everything(), names_to = "indicatore", values_to = "min_mediana_max")
+# esito (2026-11-09): 65+ 1388 | 3221 | 6835; 0-17 866 | 1956 | 4164; 18-29 792 | 1710 | 3198;
+#   stranieri 996 | 2533 | 5629; minori stranieri 187 | 483 | 1179
+
+# gradini automatici (pretty, come con passo NA): scala propria o comune ai tre conteggi
+f_gradini("anziani_65")   # riferimento: gradini in uso
+f_gradini("minori")
+f_gradini("giovani_18_29")
+f_gradini("stranieri")
+f_gradini("minori_stranieri")
+f_gradini(c("minori", "giovani_18_29", "stranieri"))   # scala comune ai tre
+# esito (2026-11-09): 65+ 1000…7000 (passo 1000); 0-17 500…4500 (passo 500, 8 classi); 18-29 500…3500 (passo 500);
+#   stranieri 0…6000 (passo 1000); minori stranieri 0…1200 (passo 200); comune ai tre 0…6000 (passo 1000)
+
+# quartieri per classe con dati gradini (stesso uso di f_prova_passo, ma gradini liberi)
+f_prova_gradini <- function(var, gradini, df = pop_soli_quartieri) {
+  table(cut(df[[var]], gradini, include.lowest = TRUE, dig.lab = 6))
+}
+f_prova_gradini("anziani_65", f_gradini("anziani_65"))   # riferimento
+# scala propria
+f_prova_gradini("minori",           f_gradini("minori"))
+f_prova_gradini("giovani_18_29",    f_gradini("giovani_18_29"))
+f_prova_gradini("stranieri",        f_gradini("stranieri"))
+f_prova_gradini("minori_stranieri", f_gradini("minori_stranieri"))
+# scala comune ai tre
+f_prova_gradini("minori",        f_gradini(c("minori", "giovani_18_29", "stranieri")))
+f_prova_gradini("giovani_18_29", f_gradini(c("minori", "giovani_18_29", "stranieri")))
+f_prova_gradini("stranieri",     f_gradini(c("minori", "giovani_18_29", "stranieri")))
+# esito (2026-11-09), quartieri per classe: riferimento 65+ 3|3|2|3|0|2
+#   scala propria: 0-17 1|1|5|1|2|1|1|1 (troppe classi); 18-29 1|5|1|1|3|2; stranieri 1|4|3|2|1|2; minori stranieri 1|4|4|3|0|1
+#   scala comune (0…6000, passo 1000): 0-17 1|6|3|2|1|0; 18-29 1|6|4|2|0|0; stranieri 1|4|3|2|1|2
+# SCELTA (2026-11-09): scala comune ai tre (passo 1000, come i 65+: stesso colore = stesso numero);
+#   minori stranieri con scala propria (gradini automatici, passo 200)
+
+### __ Conteggi delle famiglie (2026-11-09) ----
+# Per le mappe di numero al posto di quelle in % (in geogr_abitare le % vanno in tabella);
+# famiglie e anziani soli (n.) come riferimento: gradini automatici, passo NA in tribble
+vars_fam <- c("famiglie", "famiglie_1", "famiglie_numerose", "anziani_soli")
+
+# min | mediana | max per indicatore (quartieri, senza il totale comunale)
+pop_soli_quartieri |>
+  summarise(across(all_of(vars_fam), function(x) paste(round(quantile(x, c(0, .5, 1))), collapse = " | "))) |>
+  tidyr::pivot_longer(everything(), names_to = "indicatore", values_to = "min_mediana_max")
+# esito (2026-11-09): famiglie 2888 | 6779 | 12481; di 1 persona 1157 | 3104 | 6892; numerose 133 | 279 | 488;
+#   anziani soli 407 | 1230 | 2141
+
+# gradini automatici (pretty) e quartieri per classe
+f_gradini("famiglie")            # riferimento: gradini in uso
+f_gradini("anziani_soli")        # riferimento: gradini in uso
+f_gradini("famiglie_1")
+f_gradini("famiglie_numerose")
+f_prova_gradini("famiglie_1",        f_gradini("famiglie_1"))
+f_prova_gradini("famiglie_numerose", f_gradini("famiglie_numerose"))
+# esito (2026-11-09): famiglie 2000…14000 (passo 2000); anziani soli 0…2500 (passo 500);
+#   di 1 persona 1000…7000 (passo 1000) → 4|1|2|5|0|1; numerose 100…500 (passo 100) → 4|3|3|3
+# SCELTA (2026-11-09): gradini automatici per tutti e due (passo NA in tribble)
+
+## __ mappe_pop (1 riga = 1 mappa) ----
 # 1 riga = 1 mappa. Le mappe dello stesso "gruppo" hanno la STESSA scala (gradini
 # calcolati sui valori di tutto il gruppo): stesso colore = stessa %.
 # legenda = titolo breve della legenda (la base della misura);
@@ -337,7 +438,13 @@ mappe_pop_def <- tibble::tribble(
   "anziani_80",            "Residenti di 80 anni e oltre",         "Indicatore: n. di residenti di 80+",                    "residenti 80+",                  "",        "anziani_80_n", "tenue",  seq_factor_red,    CAP_POP, NA,
   "anziani_soli",          "Anziani che vivono soli",              "Indicatore: n. di 65+ in famiglia di 1 persona",                    "anziani soli",                   "",        "anziani_soli_n", "tenue", seq_factor_red,   CAP_FAMIGLIE, NA,
   "anziani_80_soli",       "Grandi anziani che vivono soli",       "Indicatore: n. di 80+ in famiglia di 1 persona",                    "grandi anziani soli",            "",        "anziani_80_soli_n", "tenue", seq_factor_red, CAP_FAMIGLIE, NA,
+  "minori",                "Residenti minorenni",                  "Indicatore: n. di residenti di 0-17 anni",                          "residenti 0-17",                 "",        "giovani_stranieri_n", "tenue", seq_factor_green,  CAP_POP, 1000,
+  "giovani_18_29",         "Giovani adulti di 18-29 anni",         "Indicatore: n. di residenti di 18-29 anni (solo residenti, esclusi studenti fuori sede)", "residenti 18-29", "", "giovani_stranieri_n", "tenue", seq_factor_green, CAP_POP, 1000,
+  "stranieri",             "Stranieri residenti",                  "Indicatore: n. di residenti stranieri",                             "residenti stranieri",            "",        "giovani_stranieri_n", "tenue", seq_factor_purple, CAP_POP, 1000,
+  "minori_stranieri",      "Stranieri tra i minori",               "Indicatore: n. di residenti stranieri di 0-17 anni",                "minori stranieri",               "",        "minori_stranieri_n",  "tenue", seq_factor_purple, CAP_POP, NA,
   "famiglie",              "Famiglie anagrafiche",                 "Indicatore: n. di famiglie anagrafiche (stesso stato di famiglia; escluse le convivenze)", "famiglie", "", "famiglie_n", "tenue", seq_factor_blue, CAP_FAMIGLIE, NA,
+  "famiglie_1",            "Famiglie di una sola persona",         "Indicatore: n. di famiglie di 1 persona",                           "famiglie di 1 persona",          "",        "famiglie_1_n", "tenue",  seq_factor_blue,   CAP_FAMIGLIE, NA,
+  "famiglie_numerose",     "Famiglie numerose",                    "Indicatore: n. di famiglie con 5 o più componenti",                 "famiglie numerose",              "",        "famiglie_numerose_n", "tenue", seq_factor_blue, CAP_FAMIGLIE, NA,
   "pct_famiglie_1",        "Famiglie di una sola persona",         "Indicatore: % di famiglie di 1 persona su tot. famiglie",           "% sulle famiglie",               "%",       "famiglie_1",   "pieno",  seq_factor_blue,   CAP_FAMIGLIE, 5,
   "pct_famiglie_numerose", "Famiglie numerose",                    "Indicatore: % di famiglie con 5 o più componenti su tot. famiglie", "% sulle famiglie",               "%",       "famiglie",     "tenue",  seq_factor_blue ,  CAP_FAMIGLIE, 0.5,
   "acer_per_1000",         "Immobili ACER ogni 1.000 residenti",   "Indicatore: immobili ACER (edifici, 2022) ogni 1.000 residenti (‰)", "‰ sui residenti",               "‰",       "acer",         "tenue",  seq_factor_peach,  f_caption_fonte(glue("{FONTE_OPENDATA} (immobili ACER 2022; popolazione al 1/1/2026; quartieri vigenti)")), NA,
@@ -412,8 +519,14 @@ mappe_pop$mappa_pop_pct_stranieri_minori
 mappe_pop$mappa_pop_pct_bambini_0_14
 mappe_pop$mappa_pop_pct_minori_0_17
 mappe_pop$mappa_pop_pct_giovani_18_29
+mappe_pop$mappa_pop_minori
+mappe_pop$mappa_pop_giovani_18_29
+mappe_pop$mappa_pop_stranieri
+mappe_pop$mappa_pop_minori_stranieri
 
 mappe_pop$mappa_pop_pct_famiglie_numerose
+mappe_pop$mappa_pop_famiglie_1
+mappe_pop$mappa_pop_famiglie_numerose
 
 mappe_pop$mappa_pop_pct_anziani_soli
 mappe_pop$mappa_pop_pct_anziani_65
@@ -432,6 +545,43 @@ mappe_pop$mappa_pop_acer_per_1000
 iwalk(mappe_pop, function(p, nome) {
   f_salva_plot(p, nome, dir_out = dir_mod, width = 9, height = 7)
 })
+
+# 5b. Tabella delle % delle famiglie per quartiere (2026-11-09) -----------
+
+## __ famiglie_quartieri_tab_prep ----
+# tabella delle % per quartiere (dal 2026-11-09): accompagna le mappe di numero delle famiglie;
+# Comune in testa, poi i quartieri in ordine alfabetico
+BG_PARMA <- "#FAECD1"   # giallo pallido di Parma, come in pop_titolo_studio e giovani_ingresso_lavoro
+
+famiglie_quartieri_tab_prep <- pop_quartieri |>
+  mutate(ordine = if_else(quartiere == "Comune di Parma", 0, 1),
+         famiglie = as.integer(famiglie)) |>
+  arrange(ordine, quartiere) |>
+  # ordine esplicito delle colonne (v. skill formatting-r)
+  select(Quartiere = quartiere, Famiglie = famiglie,
+         `% di 1 persona` = pct_famiglie_1, `% numerose (5+)` = pct_famiglie_numerose,
+         `% anziani soli` = pct_anziani_soli)
+
+famiglie_quartieri_tab_prep
+
+## __ famiglie_quartieri_ft ----
+famiglie_quartieri_ft <- famiglie_quartieri_tab_prep |>
+  f_ft() |>
+  colformat_double(j = c("% di 1 persona", "% numerose (5+)", "% anziani soli"), digits = 1, suffix = "%") |>
+  # Comune in grassetto e giallo pallido
+  bold(i = ~ Quartiere == "Comune di Parma", part = "body") |>
+  bg(i = ~ Quartiere == "Comune di Parma", bg = BG_PARMA, part = "body") |>
+  f_ft_titolo_note(
+    titolo = paste0("Famiglie di una persona, famiglie numerose e anziani soli per quartiere (", ANNO_POP, ")"),
+    note   = c("Fonte: Comune di Parma, anagrafe al 1° gennaio 2026 (open data)",
+               "% di 1 persona e % numerose (5 o più componenti) su tot. famiglie; % anziani soli su tot. persone di 65 anni e oltre in famiglia; escluse le convivenze")
+  )
+
+famiglie_quartieri_ft
+
+saveRDS(famiglie_quartieri_ft, file.path(dir_mod, "famiglie_quartieri_ft.rds"))
+# dati della tabella per i bottoni di scarico (stesso nome dell'rds, come le altre tabelle del sito)
+readr::write_csv(famiglie_quartieri_tab_prep, file.path(dir_mod, "famiglie_quartieri_ft.csv"))
 
 # 6. Classi di età per quartiere -------------------------------------------
 
@@ -476,30 +626,3 @@ plot_pop_quartieri_eta
 f_salva_plot(plot_pop_quartieri_eta, "plot_pop_quartieri_eta",
              dir_out = dir_mod, width = 9, height = 7)
 
-
-# Verifiche rapide (da eseguire a mano) ------------------------------------
-# Scelta del passo delle classi delle mappe per quartiere (2026-10-09): campo dei
-# valori per indicatore e, per i passi candidati, quante classi escono e quanti
-# quartieri cadono in ciascuna (confrontare con l'analogo blocco in pop_mappe_tematiche)
-vars_pct <- c("pct_bambini_0_14", "pct_minori_0_17", "pct_giovani_18_29",
-              "pct_anziani_65", "pct_anziani_80", "pct_anziani_soli",
-              "pct_stranieri", "pct_stranieri_minori",
-              "pct_famiglie_1", "pct_famiglie_numerose")
-
-# campo min – max per indicatore (quartieri, senza il totale comunale)
-pop_soli_quartieri |>
-  summarise(across(all_of(vars_pct), function(x) paste(round(range(x), 1), collapse = " – "))) |>
-  tidyr::pivot_longer(everything(), names_to = "indicatore", values_to = "campo")
-
-# quartieri per classe con un dato passo (gradini = multipli del passo che contengono il campo)
-f_prova_passo <- function(var, passo, df = pop_soli_quartieri) {
-  x    <- df[[var]]
-  brks <- seq(floor(min(x) / passo) * passo, ceiling(max(x) / passo) * passo, by = passo)
-  table(cut(x, brks, include.lowest = TRUE))
-}
-f_prova_passo("pct_bambini_0_14", 2)
-f_prova_passo("pct_bambini_0_14", 2.5)
-f_prova_passo("pct_anziani_65", 5)
-f_prova_passo("pct_anziani_65", 2.5)
-f_prova_passo("pct_stranieri", 5)
-f_prova_passo("pct_stranieri", 2.5)

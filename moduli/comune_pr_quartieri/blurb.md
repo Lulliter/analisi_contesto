@@ -1,8 +1,8 @@
-# Immobili ACER nei quartieri di Parma
+# Il Comune di Parma per quartiere: popolazione e immobili ACER
 
-**Fonte:** Comune di Parma, open data — "Immobili ACER di Parma 2022" (Politiche abitative, CC BY 4.0) e "Quartieri del Comune di Parma vigenti" (Uffici SIT e Toponomastica, CC BY 4.0)
-**Anno dati:** 2022 (pubblicazione 2023-06-08); quartieri vigenti aggiornati al 2023-07-24
-**Ultimo aggiornamento:** 2026-11-06 (mappe di conteggio degli anziani 65+/80+ e degli anziani soli 65+/80+; prima versione 2026-10-07)
+**Fonte:** Comune di Parma, open data — "Immobili ACER di Parma 2022" (Politiche abitative, CC BY 4.0), "Quartieri del Comune di Parma vigenti" (Uffici SIT e Toponomastica, CC BY 4.0) e "Popolazione residente al 1 gennaio 2026" (anagrafe comunale, pubblicato 2026-02-20)
+**Anno dati:** 2022 (pubblicazione 2023-06-08); quartieri vigenti aggiornati al 2023-07-24; popolazione al 1/1/2026
+**Ultimo aggiornamento:** 2026-11-09 (mappe di conteggio di minorenni, 18-29, stranieri e minori stranieri, famiglie di 1 persona e numerose); 2026-11-06 (mappe di conteggio degli anziani 65+/80+ e degli anziani soli 65+/80+); prima versione 2026-10-07
 **Output principali:** `output/mappa_acer_quartieri` (sunto per quartiere con riquadro della provincia), `output/plot_acer_quartieri`, `output/mappa_acer_<quartiere>` (13 mappe, una per quartiere) (+ `acer_immobili.csv`, `acer_quartieri.csv`); `output/mappa_pop_<indicatore>` (mappe per quartiere degli indicatori di popolazione: quote in tono pieno, conteggi in tono tenue; + `pop_quartieri.csv`)
 
 <Lettura del dato da scrivere dopo il primo giro di 01_dati.R / 02_output.R.>
@@ -13,3 +13,4 @@ Avvertenze:
 - Gli immobili ACER descrivono dove si trova l'offerta di edilizia pubblica gestita da ACER, non dove si concentra il bisogno abitativo: per il bisogno servirebbero altri dati (domande e graduatorie ERP, sfratti, contributi affitto). Da verificare se l'elenco comprenda solo alloggi ERP o anche altre tipologie gestite da ACER.
 - Il conteggio per quartiere non tiene conto né della superficie né degli abitanti dei quartieri.
 - 21 indirizzi compaiono due volte nella fonte con dati identici (11 a Montanara, tra via Po e largo Otto Marzo): si mantengono come li conta la fonte, perché possono essere più unità allo stesso civico (scale, corpi di fabbrica).
+- Classi delle mappe di popolazione: gradini di ampiezza uguale, comuni alle mappe dello stesso gruppo (stesso colore = stesso valore); la scelta di passi e gradini è documentata all'inizio della sezione 5 di `02_output.R`. I conteggi di minorenni, 18-29 e stranieri hanno una scala comune con passo 1.000, come i 65+; i minori stranieri una scala propria (passo 200); i conteggi delle famiglie hanno gradini automatici (passo 1.000 per le famiglie di 1 persona, 100 per le numerose).

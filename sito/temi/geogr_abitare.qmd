@@ -1,5 +1,6 @@
 ---
-title: "Geografia dell'abitare: età, cittadinanza e famiglie"
+title: "Geografia dell'abitare: famiglie e case"
+# titolo fino al 2026-11-09: "Geografia dell'abitare: età, cittadinanza e famiglie"
 # categories: [P1 Disuguaglianze, P3 Trasformazioni del territorio, LA2 Territorio]
 description: "Popolazione residente per comune della provincia (Censimento ISTAT 2024) e per quartiere nel Comune di Parma (anagrafe comunale al 1/1/2026), immobili ACER (2022) dal portale open data del Comune"
 lang: it
@@ -45,6 +46,7 @@ library(ggiraph)
 library(ggtext)       # registra element_textbox usato nei temi dei plot
 library(sf)
 library(downloadthis) # bottoni di scarico dati
+library(flextable)    # tabelle delle % delle famiglie, rilette da rds
 source(here::here("R", "sito.R"))     # bottoni CSV + Excel (f_scarica_dati, f_bottoni_dati)
 source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hover bordeaux)
 dir_mod <- here::here("moduli", "comune_pr_quartieri", "output")
@@ -71,7 +73,7 @@ pop_prov <- readRDS(file.path(dir_pop, "pop_mappe_sf.rds")) |>
 
 + Giovani e anziani vivono in posti diversi della provincia. La cintura del capoluogo e la pedecollina sono tra le zone più giovani dell'Emilia-Romagna. In diversi comuni di montagna invece chi ha 65 anni e oltre è più del 40% dei residenti (Bore 47%).
 
-+ I residenti stranieri sono il 14,8% in provincia (12,7% in regione) con forte iresenza lla pedecollina della filiera alimentare (Calestano e Langhirano, circa 21%). In città sono un quarto o più dei residenti in Oltretorrente, San Leonardo, Pablo e Parma Centro.
++ I residenti stranieri sono il 14,8% in provincia (12,7% in regione) con forte presenza nella pedecollina della filiera alimentare (Calestano e Langhirano, circa 21%). In città sono un quarto o più dei residenti in Oltretorrente, San Leonardo, Pablo e Parma Centro.
 
 + Nel Comune di Parma, in Oltretorrente e Parma Centro circa 6 famiglie su 10 sono di una sola persona (45% in città). In questi due quartieri vive solo anche più di 4 anziani su 10 (34% in città).
 
@@ -89,8 +91,12 @@ La provincia conta `r f_n(pop_prov$n_comuni)` comuni e `r f_n(pop_prov$pop_tot)`
 <!-- Le classi delle mappe sono le stesse usate per i quartieri del Comune, più sotto: un colore uguale vuol dire una percentuale uguale, in città come in provincia. -->
 
 
-## Giovani per comune
+## Giovani e anzianiper comune
 
+Vedi anche: [Giovani › Dove vivono](giovani_mappe.qmd), con numero e quota di minorenni, giovani di 18-29 anni e minori stranieri per comune.
+
+<!-- Sezione spostata in giovani_mappe.qmd il 2026-11-09 (lo 0-14 è stato tolto) -->
+<!--
 I bambini di 0-14 anni sono `r f_n(pop_prov$pop_0_14)` (`r f_n(pop_prov$pct_pop_0_14)`% dei residenti), su un totale di `r f_n(pop_prov$minorenni)` minorenni (`r f_n(pop_prov$pct_minorenni)`%), i giovani di 18-29 anni `r f_n(pop_prov$pop_18_29)` (`r f_n(pop_prov$pct_pop_18_29)`%). I bambini si concentrano nella bassa e nella pedecollina; in montagna sono il 4-6% dei residenti.
 
 :::: {.panel-tabset}
@@ -98,7 +104,8 @@ I bambini di 0-14 anni sono `r f_n(pop_prov$pop_0_14)` (`r f_n(pop_prov$pct_pop_
 ### 0-14 anni
 
 ```{r}
-#| label: mappa_quota_0_14_pr
+#| eval: false
+#| label: mappa_quota_0_14_pr_spostato
 #| output: true
 #| fig-height: 7
 f_girafe(readRDS(file.path(dir_pop, "mappa_quota_0_14_pr.rds")))
@@ -107,7 +114,8 @@ f_girafe(readRDS(file.path(dir_pop, "mappa_quota_0_14_pr.rds")))
 ### 0-17 anni
 
 ```{r}
-#| label: mappa_quota_minorenni_pr
+#| eval: false
+#| label: mappa_quota_minorenni_pr_spostato
 #| output: true
 #| fig-height: 7
 f_girafe(readRDS(file.path(dir_pop, "mappa_quota_minorenni_pr.rds")))
@@ -116,7 +124,8 @@ f_girafe(readRDS(file.path(dir_pop, "mappa_quota_minorenni_pr.rds")))
 ### 18-29 anni
 
 ```{r}
-#| label: mappa_quota_18_29_pr
+#| eval: false
+#| label: mappa_quota_18_29_pr_spostato
 #| output: true
 #| fig-height: 7
 f_girafe(readRDS(file.path(dir_pop, "mappa_quota_18_29_pr.rds")))
@@ -126,7 +135,8 @@ f_girafe(readRDS(file.path(dir_pop, "mappa_quota_18_29_pr.rds")))
 
 :::: {.text-end}
 ```{r}
-#| label: dl_mappa_quota_0_14
+#| eval: false
+#| label: dl_mappa_quota_0_14_spostato
 #| output: true
 f_bottoni_dati("pop_mappe_comuni", dir_pop, rds = "mappa_quota_0_14_pr")
 ```
@@ -139,9 +149,14 @@ La provincia è un po' più giovane della regione, ma la media nasconde due estr
 
 _NB: Censimento permanente ISTAT, edizione 2024; un anno indietro rispetto ai dati per quartiere del Comune (1/1/2026). Classi = quintili dei 330 comuni dell'Emilia-Romagna._
 ::::
+-->
 
 ## Anziani per comune
 
+Vedi anche: [Anziani › Dove vivono](anziani_mappe.qmd), con numero e quota di persone di 65 e di 80 anni e oltre per comune.
+
+<!-- Sezione spostata in anziani_mappe.qmd il 2026-11-09 -->
+<!--
 In provincia, le persone di 65 anni e oltre sono `r f_n(pop_prov$pop_65p)` (`r f_n(pop_prov$pct_pop_65p)`% dei residenti), di cui `r f_n(pop_prov$pop_80p)` "grandi anziani" (`r f_n(pop_prov$pct_pop_80p)`%). Gli anziani sono quasi la metà dei residenti in diversi comuni di montagna; la cintura del capoluogo è tra le aree più giovani della regione.
 
 :::: {.panel-tabset}
@@ -149,7 +164,8 @@ In provincia, le persone di 65 anni e oltre sono `r f_n(pop_prov$pop_65p)` (`r f
 ### 65 anni e oltre
 
 ```{r}
-#| label: mappa_quota_65p_pr
+#| eval: false
+#| label: mappa_quota_65p_pr_spostato
 #| output: true
 #| fig-height: 7
 f_girafe(readRDS(file.path(dir_pop, "mappa_quota_65p_pr.rds")))
@@ -158,7 +174,8 @@ f_girafe(readRDS(file.path(dir_pop, "mappa_quota_65p_pr.rds")))
 ### 80 anni e oltre
 
 ```{r}
-#| label: mappa_quota_80p_pr
+#| eval: false
+#| label: mappa_quota_80p_pr_spostato
 #| output: true
 #| fig-height: 7
 f_girafe(readRDS(file.path(dir_pop, "mappa_quota_80p_pr.rds")))
@@ -168,7 +185,8 @@ f_girafe(readRDS(file.path(dir_pop, "mappa_quota_80p_pr.rds")))
 
 :::: {.text-end}
 ```{r}
-#| label: dl_mappa_quota_65p
+#| eval: false
+#| label: dl_mappa_quota_65p_spostato
 #| output: true
 f_bottoni_dati("pop_mappe_comuni", dir_pop, rds = "mappa_quota_65p_pr")
 ```
@@ -181,6 +199,7 @@ La quota di 65 anni e oltre in provincia (23,6%) è sotto quella regionale (24,9
 
 _NB: Censimento permanente ISTAT, edizione 2024; un anno indietro rispetto ai dati per quartiere del Comune (1/1/2026). Classi = quintili dei 330 comuni dell'Emilia-Romagna._
 ::::
+-->
 
 ## Stranieri per comune
 
@@ -229,19 +248,21 @@ f_girafe(readRDS(file.path(dir_fam, "mappa_famiglie_pr.rds")))
 ### Famiglie numerose
 
 ```{r}
-#| label: mappa_pct_famiglie_numerose_pr
+#| label: mappa_famiglie_numerose_pr
 #| output: true
 #| fig-height: 7
-f_girafe(readRDS(file.path(dir_fam, "mappa_pct_famiglie_numerose_pr.rds")))
+# fino al 2026-11-09 la mappa della %: ora le quote sono nella tabella sotto il tabset
+f_girafe(readRDS(file.path(dir_fam, "mappa_famiglie_numerose_pr.rds")))
 ```
 
 ### Famiglie di una sola persona
 
 ```{r}
-#| label: mappa_pct_famiglie_1_pr
+#| label: mappa_famiglie_1_pr
 #| output: true
 #| fig-height: 7
-f_girafe(readRDS(file.path(dir_fam, "mappa_pct_famiglie_1_pr.rds")))
+# fino al 2026-11-09 la mappa della %: ora le quote sono nella tabella sotto il tabset
+f_girafe(readRDS(file.path(dir_fam, "mappa_famiglie_1_pr.rds")))
 ```
 
 ::::
@@ -250,7 +271,23 @@ f_girafe(readRDS(file.path(dir_fam, "mappa_pct_famiglie_1_pr.rds")))
 ```{r}
 #| label: dl_mappe_famiglie_comuni
 #| output: true
-f_bottoni_dati("famiglie_comuni", dir_fam, rds = "mappa_pct_famiglie_1_pr")
+f_bottoni_dati("famiglie_comuni", dir_fam, rds = "mappa_famiglie_pr")
+```
+::::
+
+Le stesse famiglie in percentuale, comune per comune:
+
+```{r}
+#| label: tab_famiglie_comuni
+#| output: true
+readRDS(file.path(dir_fam, "famiglie_comuni_ft.rds"))
+```
+
+:::: {.text-end}
+```{r}
+#| label: dl_tab_famiglie_comuni
+#| output: true
+f_bottoni_dati("famiglie_comuni_ft", dir_fam)
 ```
 ::::
 
@@ -271,6 +308,83 @@ _NB: Da tenere presente il fatto che **i dati escludono i non residenti** (come 
 ## Giovani e anziani per quartiere
 
 Al 1° gennaio 2026 i residenti nel Comune di Parma sono `r f_n(pop_comune$residenti)`: i minorenni `r f_n(pop_comune$minori)` (`r f_n(pop_comune$pct_minori_0_17)`%), i giovani di 18-29 anni `r f_n(pop_comune$giovani_18_29)` (`r f_n(pop_comune$pct_giovani_18_29)`%), le persone di 65 anni e oltre `r f_n(pop_comune$anziani_65)` (`r f_n(pop_comune$pct_anziani_65)`%), di cui `r f_n(pop_comune$anziani_80)` di 80 anni e oltre.
+
+Vedi anche: le mappe per quartiere di [Giovani › Dove vivono](giovani_mappe.qmd) e [Anziani › Dove vivono](anziani_mappe.qmd), con numero e quota per classe d'età.
+
+<!-- Mappe per classe d'età spostate in giovani_mappe.qmd e anziani_mappe.qmd il 2026-11-09 (lo 0-14 è stato tolto) -->
+<!--
+:::: {.panel-tabset}
+
+### 0-14 anni
+
+```{r}
+#| eval: false
+#| label: mappa_pop_pct_bambini_0_14_spostato
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_bambini_0_14.rds")))
+```
+
+### 0-17 anni
+
+```{r}
+#| eval: false
+#| label: mappa_pop_pct_minori_0_17_spostato
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_minori_0_17.rds")))
+```
+
+### 18-29 anni
+
+```{r}
+#| eval: false
+#| label: mappa_pop_pct_giovani_18_29_spostato
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_giovani_18_29.rds")))
+```
+
+### 65 anni e oltre
+
+```{r}
+#| eval: false
+#| label: mappa_pop_pct_anziani_65_spostato
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_anziani_65.rds")))
+```
+
+### 80 anni e oltre
+
+```{r}
+#| eval: false
+#| label: mappa_pop_pct_anziani_80_spostato
+#| output: true
+#| fig-height: 7
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_anziani_80.rds")))
+```
+
+::::
+
+:::: {.text-end}
+```{r}
+#| eval: false
+#| label: dl_mappe_pop_eta_spostato
+#| output: true
+f_bottoni_dati("pop_quartieri", dir_mod, rds = "mappa_pop_pct_bambini_0_14")
+```
+::::
+
+:::: {.callout-note collapse="true"}
+### Osservazioni
+
+<da scrivere>
+
+_NB: dati dell'anagrafe comunale al 1° gennaio 2026, solo residenti (non chi vive in città senza residenza, come gli studenti fuori sede); età in anni compiuti. Le mappe dello stesso tipo (giovani, anziani, stranieri) usano la stessa scala di colori, quindi lo stesso colore indica lo stesso valore._
+::::
+-->
+
 
 <!-- <1-2 frasi col messaggio principale, da scrivere> -->
 
@@ -297,70 +411,6 @@ f_bottoni_dati("pop_quartieri_eta", dir_mod, rds = "plot_pop_quartieri_eta")
 _NB: dati dell'anagrafe comunale al 1° gennaio 2026, solo residenti (non chi vive in città senza residenza, come gli studenti fuori sede); età in anni compiuti. Le mappe dello stesso tipo (giovani, anziani, stranieri) usano la stessa scala di colori, quindi lo stesso colore indica lo stesso valore._
 ::::
 
-:::: {.panel-tabset}
-
-### 0-14 anni
-
-```{r}
-#| label: mappa_pop_pct_bambini_0_14
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_bambini_0_14.rds")))
-```
-
-### 0-17 anni
-
-```{r}
-#| label: mappa_pop_pct_minori_0_17
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_minori_0_17.rds")))
-```
-
-### 18-29 anni
-
-```{r}
-#| label: mappa_pop_pct_giovani_18_29
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_giovani_18_29.rds")))
-```
-
-### 65 anni e oltre
-
-```{r}
-#| label: mappa_pop_pct_anziani_65
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_anziani_65.rds")))
-```
-
-### 80 anni e oltre
-
-```{r}
-#| label: mappa_pop_pct_anziani_80
-#| output: true
-#| fig-height: 7
-f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_anziani_80.rds")))
-```
-
-::::
-
-:::: {.text-end}
-```{r}
-#| label: dl_mappe_pop_eta
-#| output: true
-f_bottoni_dati("pop_quartieri", dir_mod, rds = "mappa_pop_pct_bambini_0_14")
-```
-::::
-
-:::: {.callout-note collapse="true"}
-### Osservazioni
-
-<!-- <da scrivere> -->
-
-_NB: dati dell'anagrafe comunale al 1° gennaio 2026, solo residenti (non chi vive in città senza residenza, come gli studenti fuori sede); età in anni compiuti. Le mappe dello stesso tipo (giovani, anziani, stranieri) usano la stessa scala di colori, quindi lo stesso colore indica lo stesso valore._
-::::
 
 ## Famiglie per quartiere
 
@@ -382,28 +432,31 @@ f_girafe(readRDS(file.path(dir_mod, "mappa_pop_famiglie.rds")))
 ### Famiglie numerose
 
 ```{r}
-#| label: mappa_pop_pct_famiglie_numerose
+#| label: mappa_pop_famiglie_numerose
 #| output: true
 #| fig-height: 7
-f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_famiglie_numerose.rds")))
+# fino al 2026-11-09 la mappa della %: ora le quote sono nella tabella sotto il tabset
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_famiglie_numerose.rds")))
 ```
 
 ### Famiglie di una sola persona
 
 ```{r}
-#| label: mappa_pop_pct_famiglie_1
+#| label: mappa_pop_famiglie_1
 #| output: true
 #| fig-height: 7
-f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_famiglie_1.rds")))
+# fino al 2026-11-09 la mappa della %: ora le quote sono nella tabella sotto il tabset
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_famiglie_1.rds")))
 ```
 
 ### ...di cui anziani
 
 ```{r}
-#| label: mappa_pop_pct_anziani_soli
+#| label: mappa_pop_anziani_soli
 #| output: true
 #| fig-height: 7
-f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_anziani_soli.rds")))
+# fino al 2026-11-09 la mappa della %: ora le quote sono nella tabella sotto il tabset
+f_girafe(readRDS(file.path(dir_mod, "mappa_pop_anziani_soli.rds")))
 ```
 
 ::::
@@ -413,6 +466,22 @@ f_girafe(readRDS(file.path(dir_mod, "mappa_pop_pct_anziani_soli.rds")))
 #| label: dl_mappe_pop_famiglie
 #| output: true
 f_bottoni_dati("pop_quartieri", dir_mod, rds = "mappa_pop_famiglie")
+```
+::::
+
+Le stesse famiglie in percentuale, quartiere per quartiere:
+
+```{r}
+#| label: tab_famiglie_quartieri
+#| output: true
+readRDS(file.path(dir_mod, "famiglie_quartieri_ft.rds"))
+```
+
+:::: {.text-end}
+```{r}
+#| label: dl_tab_famiglie_quartieri
+#| output: true
+f_bottoni_dati("famiglie_quartieri_ft", dir_mod)
 ```
 ::::
 
@@ -610,6 +679,13 @@ f_bottoni_dati("acer_immobili", dir_mod, rds = "mappa_acer_punti")
 _NB: 1 immobile ACER = 1 edificio (indirizzo e civico), non 1 alloggio: la fonte non riporta il numero di alloggi. 21 indirizzi compaiono due volte con dati identici e si mantengono come nella fonte (possibili più unità allo stesso civico). Dati 2022._
 ::::
 -->
+
+# L'offerta di case [🟡]{.content-hidden}
+
+<!-- Lato offerta (2026-11-09): case popolari e strutture collettive (bozza _abitare_coll_offerta.qmd,
+     mappe ACER in _abitare_acer_offerta_x_quart.qmd); da cercare: canoni di locazione per zona OMI, sfratti (v. _TODO.qmd, tema Mappe) -->
+
+`[Approfondimenti in corso]`
 
 # Possibili approfondimenti
 
