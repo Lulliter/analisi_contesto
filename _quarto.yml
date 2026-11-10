@@ -68,10 +68,10 @@ website:
         menu:
           - text: "Scuola e istruzione"
             href: sito/temi/scuola.qmd
+          - text: "Formazione professionale"   # promossa il 2026-11-10, in costruzione
+            href: sito/temi/formaz_prof.qmd
           - text: "Dispersione e NEET"
             href: sito/temi/scuola_dispersione.qmd
-          # - text: "Formazione professionale"
-          #   href: sito/temi/formaz_rientro.qmd
           - text: "Lavoro"
             href: sito/temi/giovani_lavoro.qmd
           - text: "Digitale e IA"

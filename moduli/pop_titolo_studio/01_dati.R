@@ -30,6 +30,8 @@ library(purrr)
 library(tidyr)
 library(stringr)
 library(jsonlite)
+library(janitor)
+
 source(here("R", "istat.R"))   # f_codelist()
 
 # Parametri ---------------------------------------------------------------

@@ -65,13 +65,14 @@ dir_previs <- here::here("moduli", "demo_trend_previs", "output")
 
 <!-- frasi dal blurb di moduli/demo_trend_previs -->
 
+I dati di questa pagina vengono dalle **previsioni ISTAT della popolazione 2024-2050** (base 1.1.2024, solo scenario mediano), a livello provinciale. L'analisi confronta la provincia di Parma con le altre province della regione, con l'Emilia-Romagna e con l'Italia. Come tutte le proiezioni, l'incertezza cresce allontanandosi dall'anno base. Le serie storiche osservate (2002-2026) sono nella pagina [Demografia > Trend](trend_demogr.qmd).
+
+
 ::: {.callout-note .metodo collapse="true"}
 #### Nota metodologica
 Previsioni ISTAT base 1.1.2024, **solo scenario mediano** (i file pubblicati per comuni e province non riportano gli scenari alternativi). Gli aggregati Emilia-Romagna e Italia sono somme delle province (i file ISTAT non contengono totali). I dati comunali esistono solo per i comuni con almeno 5.000 abitanti (22 su 44 in provincia di Parma) e non sono usati in questa pagina.
 :::
 
-
-I dati di questa pagina vengono dalle **previsioni ISTAT della popolazione 2024-2050** (base 1.1.2024, solo scenario mediano), a livello provinciale. L'analisi confronta la provincia di Parma con le altre province della regione, con l'Emilia-Romagna e con l'Italia. Come tutte le proiezioni, l'incertezza cresce allontanandosi dall'anno base. Le serie storiche osservate (2002-2026) sono nella pagina [**Trend Demografici**](trend_demogr.qmd).
 
 ```{r}
 #| label: p01_pop_indice

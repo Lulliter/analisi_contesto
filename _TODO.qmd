@@ -102,6 +102,8 @@ Dati che non stanno negli open data e vanno chiesti agli enti (bozze in `dati/gr
 - [ ] `ausl_npia/npia_pr_serie.csv`: trascrizione a mano da convertire con la regola Fonti in pdf (`dati/README.md`)
 - [ ] **pdf in `dati/grezzi/` tracciati da git** (regola `!dati/grezzi/**/*.pdf` dal 2026-07-17, probabilmente per tenere le note metodologiche ISTAT e le fonti non riscaricabili): oggi 85 pdf, 205 MB, `.git` 600 MB. Decidere: tenere solo i pdf piccoli/necessari (escludere es. `iss_hbsc/..._webinar_2024_vieno.pdf` 66 MB, `ausl_npia/report_2015.pdf` 32 MB), smettere di tracciarli, o Git LFS
 - [ ] `_metadati.md`: separare Note e Insidie (come nel template dal 2026-10-22) nei 18 md ancora col campo unico, man mano che si tocca la fonte; descrivere i file non ancora elencati (`iefp_cpia_ER_PR`, `rer_pop_residente`, `cergas_oltc` pdf IA) e i campi del template mancanti nei md più vecchi (`istat_cens`, `istat_codici_comuni`, `istat_sae_glf_2019`, `istat_shp`, `istat_trend_demog`, `mim_open_data`, `rer_pop_residente`)
+- [ ] note metodologiche vicino alla sintesi in `trend_demogr`, `trend_demogr_previs`, `educ_ia`: spostarle vicino a ciò che spiegano o toglierle
+- [ ] testi con "quinto più alto/basso dell'ER" (`geogr_abitare`, `anziani_mappe`): valutare se riscriverli con le classi delle mappe
 
 **Sito e piano strategico (2026-10-12)**:
 
@@ -155,7 +157,7 @@ ___
 
 **Ricognizione/Aggiornamento FONTI**: 
 - [ ] iscritti alla scuola dell'infanzia **PER COMUNE** vedi richiesta # 3 (Richieste uffici)
-- [ ] verificare in pagina i grafici rifatti (barre 2×2, etichette sulle linee) e i testi aggiornati con l'infanzia
+- [x] verificare in pagina i grafici rifatti (barre 2×2, etichette sulle linee) e i testi aggiornati con l'infanzia
  
 
 ### modulo `scuola_disabilita`
@@ -197,6 +199,7 @@ ___
 
 - [ ] Sezione IeFP: tabella/mappa dell'offerta 2026/27 a Parma dagli allegati regionali; iscritti per provincia quando arriva la richiesta n. 2
 - [ ] Sezione esiti, quando ci sono le fonti
+- [ ] (forse) rinominare il modulo: la pagina è ora `formaz_prof.qmd`, gli adulti in `_adulti_scuola.qmd`
 
 ### modulo `giovani_ict_social`
 >(nazionale + confronto UE, niente Parma: internet e pc per età 2001-2025, social e amici a 11-19 anni, IA generativa Italia vs UE.)
@@ -261,14 +264,19 @@ _5. Governare: risposte dei paesi e mappa locale_
 
 #### AVANZAMENTO giovani
 
+Stato al 2026-11-10: sezione "Dopo la scuola" di `giovani_lavoro.qmd` rivista e blurb di `pop_titolo_studio` scritto; `scuola.qmd` verificata dopo `build.R`; nuova pagina `giovani_mappe.qmd` (Giovani › Dove vivono); `formaz_rientro` diventa `formaz_prof.qmd` (solo ragazzi), promossa in costruzione nel menu Giovani; prossimo passo: Osservazioni di `giovani_mappe.qmd`; restano da prima: fonti sul ritiro sociale, richiesta n. 5 all'AUSL
+
 Stato al 2026-10-28: `pop_titolo_studio` con barre per sesso, tabella di confronto e tre mappe 25-64 (laurea, diploma, licenza media), sezione "Dopo la scuola" in bozza in `giovani_lavoro.qmd`; prossimo passo: rivedere la sezione dopo il render e scrivere il blurb; restano da prima: verificare `scuola.qmd` dopo `build.R`, fonti sul ritiro sociale, richiesta n. 5 all'AUSL
 
 #### Pagine del tema
 
 - `sito/temi/scuola.qmd`: iscritti, geografia, stranieri, disabilità
 - `sito/temi/scuola_dispersione.qmd`: dispersione esplicita e implicita, NEET, ELET
-- `sito/temi/formaz_rientro.qmd`: IeFP, serali, CPIA (adulti), esiti
+- `sito/temi/formaz_prof.qmd`: istruzione professionale e IeFP, esiti (gli adulti in `_adulti_scuola.qmd`)
 - `sito/temi/educ_ia.qmd`: uso dei dispositivi, social e benessere mentale, IA, risposte dei paesi
+- `sito/temi/giovani_mappe.qmd`: minorenni, 18-29 anni e minori stranieri per comune e per quartiere
+
+- [ ] `giovani_mappe.qmd`: Osservazioni e messaggi
 
 ###modulo `pop_titolo_studio`
 >(titolo di studio dei residenti per classe d'età, sesso e cittadinanza: comuni PR, province ER, ER, Italia, 2018→; fonte ISTAT censimento permanente, download con `ingestione/11_get_istat_cens_istr.R`)
@@ -282,9 +290,9 @@ Stato al 2026-10-28: `pop_titolo_studio` con barre per sesso, tabella di confron
 
 **Sito**:
 
-- [ ] Sezione "Dopo la scuola" di `giovani_lavoro.qmd` con i tre output
-  - [ ] rivedere testi e Osservazioni dopo il render
-- [ ] `blurb.md`: scrivere il messaggio e aggiornare lo stato
+- [x] Sezione "Dopo la scuola" di `giovani_lavoro.qmd` con i tre output
+  - [x] rivedere testi e Osservazioni dopo il render
+- [x] `blurb.md`: scrivere il messaggio e aggiornare lo stato
 
 ### modulo `ingresso_lavoro`
 > Ponte con tema lavoro e se il territorio sta perdendo terreno sull'innovazione (es. startup, brevetti, ecc.)
@@ -300,7 +308,7 @@ Stato al 2026-10-28: `pop_titolo_studio` con barre per sesso, tabella di confron
 + [ ] PMI che introducono innovazione ( Fonte: dati European Commission, 2023)
 + [ ] Investimenti in R&D OECD? 
 + [ ] [Secondo Welfare, "Ripartenze possibili: NEET e transizioni interrotte tra i giovani adulti" (2026)](https://www.secondowelfare.it/wp-content/uploads/2026/07/Rapporto-FAST-3_Neet_Percorsi-di-Secondo-Welfare-e-Fondazione-Lottomatica.pdf)
-- [ ] Fonti per `sito/temi/_giovani_lavoro.qmd` (IeFP e serali stanno in `formaz_rientro.qmd`, con riserva di unificare):
+- [ ] Fonti per `sito/temi/_giovani_lavoro.qmd` (IeFP e serali stanno in `formaz_prof.qmd`, con riserva di unificare):
   - [ ] Excelsior: difficoltà di reperimento per profilo, Parma
   - [ ] AlmaLaurea/AlmaDiploma o Regione ER: esiti occupazionali per percorso
   - [ ] Regione ER: iscritti ITS e IeFP
@@ -352,10 +360,12 @@ Due domande, pagina asciutta (deciso 2026-10-19): 1) quanti sono gli over 65 e o
 
 **Sito**:
 
-- [ ] `anziani_mappe.qmd` (Anziani › Dove vivono, pubblicata 2026-11-06): Osservazioni e messaggi
-- [ ] rivedere metadati, blurb e testi delle parti nuove: `istat_cens_famiglie/_metadati.md`, `pop_famiglie_comuni/blurb.md`, sezione Famiglie per comune in `geogr_abitare.qmd`, `anziani_mappe.qmd`
+- [x] `anziani_mappe.qmd` (Anziani › Dove vivono, pubblicata 2026-11-06): Osservazioni e messaggi
+- [x] rivedere metadati, blurb e testi delle parti nuove: `istat_cens_famiglie/_metadati.md`, `pop_famiglie_comuni/blurb.md`, sezione Famiglie per comune in `geogr_abitare.qmd`, `anziani_mappe.qmd`
 
 #### AVANZAMENTO anziani
+
+Stato al 2026-11-10: `anziani_mappe.qmd` con sintesi breve, messaggi di sezione e Osservazioni (anche anziani soli per quartiere); metadati di `istat_cens_famiglie` riorganizzati per tavola; prossimo passo: `anziani_non_autosuff` (prevalenze per sesso, `ingestione/03`, render di `anziani.qmd`)
 
 Stato al 2026-11-06: pagina `anziani_mappe.qmd` pubblicata (Anziani › Dove vivono), con mappe di numero e quota di 65+/80+ per comune e per quartiere e anziani soli per quartiere; anziani soli per comune non disponibili per età (censimento e Regione), stima indiretta commentata nella pagina; nuovo modulo `pop_famiglie_comuni` (famiglie, componenti medi, persone sole, famiglie numerose per comune) nella sezione Famiglie per comune di `geogr_abitare.qmd`; convivenze per comune scaricate; prossimo passo: revisione di metadati, blurb e testi nuovi, poi Osservazioni di `anziani_mappe.qmd`
 
@@ -430,12 +440,12 @@ Fonti in casa: `istat_sae_glf_2019` ✓ (stime GLF provinciali), aree interne/zo
 
 - [ ] soglie di `quota_0_14` (7,5 / 10 / 12,5 / 15) e `quota_18_29` (classi alte vuote in PR: verificare ER); aggiungere il controllo delle classi dei conteggi
 - [ ] mappe ER non usate dal sito (48 MB di rds): salvare solo png o generarle a richiesta
-- [ ] `blurb.md`: note di metodo ferme ai quintili (classi fisse dal 2026-10-09); Messaggio da rileggere
+- [x] `blurb.md`: note di metodo ferme ai quintili (classi fisse dal 2026-10-09); Messaggio da rileggere
 
 ### modulo `pop_famiglie_comuni`
 (famiglie di una persona e famiglie numerose per comune, censimento 2024; sezione Famiglie per comune in `geogr_abitare.qmd`)
 
-- [ ] `blurb.md`: Messaggio
+- [x] `blurb.md`: Messaggio
 
 ### modulo `indic_fragil`
 > inspo: [MILANO CHE CAMBIA/Indicatori composti](https://public.tableau.com/app/profile/maud.lab/viz/MILANOCHECAMBIAUNVIAGGIOINTERATTIVOTRADATIPERSONEEQUARTIERI/INFO_descrizione)
@@ -461,9 +471,11 @@ Fonti in casa: `istat_sae_glf_2019` ✓ (stime GLF provinciali), aree interne/zo
 - [ ] CAPIRE COME REDISTRIBUIRE `_geoloc_fragil.qmd` e`geogr_abitare.qmd`, (forse qualcosa lo tolgo da qui e lo metto in `_geoloc_fragil.qmd`) 
 - [ ] - CAPIRE COSA FARNE - `_abitare_acer_offerta_x_quart.qmd` (bozza con le 13 mappe di dettaglio): decidere se e come usarla; per pubblicarla semplificare anche le strade
 - [ ] `_abitare_coll_offerta.qmd` (bozza-parcheggio: convivenze + ACER sunto, lato offerta): decidere se e come usarla; le convivenze mescolano tutto (dal carcere agli istituti religiosi)
-- [ ] `geogr_abitare.qmd`: 18 grafici e ~4 MB, sopra soglia: misurare il peso dei singoli widget (geometrie, tooltip) prima di tagliare sezioni
+- [x] `geogr_abitare.qmd`: 18 grafici e ~4 MB, sopra soglia: misurare il peso dei singoli widget (geometrie, tooltip) prima di tagliare sezioni
 
 #### AVANZAMENTO comune_pr_quartieri
+
+Stato al 2026-11-10: `geogr_abitare.qmd` sotto soglia di peso (2,2 MB, 11 grafici interattivi); sezione Famiglie per comune con messaggio, Osservazioni e tabella con i comuni sopra il 50% di famiglie di una persona; tolta la nota sulle classi d'età
 
 Stato al 2026-11-06: `anziani_80_soli` e mappe di conteggio in tono tenue; scheda "...di cui anziani" nel tabset famiglie di `geogr_abitare.qmd`; strutture collettive e ACER parcheggiati in `_abitare_coll_offerta.qmd`
 

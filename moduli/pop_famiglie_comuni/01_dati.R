@@ -2,7 +2,7 @@
 # Modulo: pop_famiglie_comuni — 01_dati.R
 # Fonte:  ISTAT censimento permanente 2024, "Famiglie per numero di componenti - comuni"
 #         (DF_DCSS_FAMIGLIE_TV_1); confini ISTAT al 01/01/2026
-# Input:  dati/grezzi/istat_cens_famiglie/Famiglie per numero di componenti - comuni (IT1,DF_DCSS_FAMIGLIE_TV_1,1.0)(1).csv
+# Input:  dati/grezzi/istat_cens_famiglie/Famiglie per numero di componenti - comuni (IT1,DF_DCSS_FAMIGLIE_TV_1,1.0)_codici.csv
 #         dati/grezzi/istat_cens_famiglie/Numero di famiglie e popolazione residente in famiglia - comuni (IT1,DF_DCSS_FAM_POP_TV_1,1.0).csv
 #         (SDMX-CSV solo codici, scaricati a mano: vedi _metadati.md della cartella)
 #         dati/puliti/istat_shp/PR_comuni_web_sf.rds   (44 comuni PR, geometria per il web)
@@ -21,7 +21,7 @@ library(sf)
 # Parametri -----------------------------------------------------------------
 ANNO_CENS <- "2024"
 file_in   <- here("dati", "grezzi", "istat_cens_famiglie",
-                  "Famiglie per numero di componenti - comuni (IT1,DF_DCSS_FAMIGLIE_TV_1,1.0)(1).csv")
+                  "Famiglie per numero di componenti - comuni (IT1,DF_DCSS_FAMIGLIE_TV_1,1.0)_codici.csv")
 file_in_pop <- here("dati", "grezzi", "istat_cens_famiglie",
                     "Numero di famiglie e popolazione residente in famiglia - comuni (IT1,DF_DCSS_FAM_POP_TV_1,1.0).csv")
 dir_out  <- here("moduli", "pop_famiglie_comuni", "output")

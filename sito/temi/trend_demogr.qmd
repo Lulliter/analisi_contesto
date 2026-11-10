@@ -640,7 +640,7 @@ f_bottoni_dati("p14_saldo_migratorio_con_l_estero", dir_demo)
 ## Possibili approfondimenti
 
 1. Dentro la provincia: quali comuni crescono e quali si spopolano, e cosa distingue la montagna dalla pianura e dalla città.
-2. Chi arriva: da dove vengono i nuovi residenti, quanti sono giovani e famiglie, e quanto pesano le seconde generazioni nate qui.
-3. Vivere soli: quanti anziani vivono soli e dove, e come cambia la domanda di cura e di prossimità.
-4. La natalità: perché continua a scendere anche dove la popolazione cresce, e cosa dicono i confronti con le province vicine.
+2. Chi arriva: da dove vengono i nuovi residenti e cosa li attira, quanti sono giovani e famiglie, e quanto pesano le seconde generazioni nate qui.
+<!-- 3. Vivere soli: quanti anziani vivono soli e dove, e come cambia la domanda di cura e di prossimità. -->
+<!-- 4. La natalità: perché continua a scendere anche dove la popolazione cresce, e cosa dicono i confronti con le province vicine. -->
 

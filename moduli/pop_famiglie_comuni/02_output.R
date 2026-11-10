@@ -94,7 +94,7 @@ indicatori <- tibble::tribble(
 
 # 3) Funzione di disegno ----------------------------------------------------
 # valori solo nel tooltip, niente etichette in mappa:
-# famiglie → n. famiglie e componenti medi; quote → "% di N famiglie"; altri conteggi → solo il numero
+# famiglie → n. famiglie e componenti medi; quote → "% di N famiglie"; altri conteggi → solo il numero (senza "famiglie")
 f_mappa_famiglie <- function(var, titolo, indicatore, gradini, tono) {
   lab_gradino <- if (startsWith(var, "pct_")) {
     scales::label_number(accuracy = 1, suffix = "%")
@@ -120,8 +120,8 @@ f_mappa_famiglie <- function(var, titolo, indicatore, gradini, tono) {
              scales::number(.data[[var]], accuracy = 0.1, decimal.mark = ",", suffix = "%"),
              " di ", scales::number(famiglie, big.mark = ".", decimal.mark = ","), " famiglie")
     } else {
-      # conteggi: solo comune e numero (2026-11-09)
-      paste0(COMUNE, ": ", scales::number(.data[[var]], big.mark = ".", decimal.mark = ","), " famiglie")
+      # conteggi: solo comune e numero, senza "famiglie" (si confondeva col totale; 2026-11-09)
+      paste0(COMUNE, ": ", scales::number(.data[[var]], big.mark = ".", decimal.mark = ","))
     })
 
   f_disegna_mappa(
@@ -159,6 +159,9 @@ readr::write_csv(famiglie_comuni, file.path(dir_out, "famiglie_comuni.csv"))
 # 6) Tabella delle % per comune (dal 2026-11-09) -----------------------------
 # accompagna le mappe di numero nella pagina: le quote stanno qui, non in mappa
 BG_PARMA <- "#FAECD1"   # giallo pallido di Parma, come in pop_titolo_studio e giovani_ingresso_lavoro
+# famiglie di una persona oltre questa quota: sfondo rosso pallido della riga (dal 2026-11-10)
+SOGLIA_SOLI <- 50
+BG_SOLI <- seq_dummy_red[1]   # "#fee0d2", il rosso più chiaro di R/_parma_colors.R
 
 ## __ famiglie_comuni_tab_prep ----
 # confronti in testa (provincia, regione, Italia), poi i 44 comuni in ordine alfabetico
@@ -179,10 +182,13 @@ famiglie_comuni_ft <- famiglie_comuni_tab_prep |>
   # confronti in grassetto, provincia di Parma in giallo pallido
   bold(i = ~ Territorio %in% c("Provincia di Parma", "Emilia-Romagna", "Italia"), part = "body") |>
   bg(i = ~ Territorio == "Provincia di Parma", bg = BG_PARMA, part = "body") |>
+  # comuni dove le famiglie di una persona sono più della metà
+  bg(i = ~ `% di 1 persona` > SOGLIA_SOLI, bg = BG_SOLI, part = "body") |>
   f_ft_titolo_note(
     titolo = "Famiglie di una persona e famiglie numerose per comune (2024)",
     note   = c("Fonte: ISTAT, Censimento permanente della popolazione 2024",
-               "% su tot. famiglie del territorio; famiglie numerose = 5 o più componenti")
+               "% su tot. famiglie del territorio; famiglie numerose = 5 o più componenti",
+               "su sfondo rosso i comuni dove le famiglie di una persona sono più della metà")
   )
 
 famiglie_comuni_ft

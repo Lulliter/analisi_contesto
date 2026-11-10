@@ -199,7 +199,8 @@ plessi_gestione_prep
 plot_plessi_ordine_gestione_pr <- f_barre_gestione(
   plessi_gestione_prep, seq(min(plessi_trend_pr$anno_inizio), max(plessi_trend_pr$anno_inizio), by = 3)) +
   labs(
-    title = str_wrap("Plessi scolastici a Parma: statali e paritarie (infanzia inclusa)", 55),
+    # fino al 2026-11-10: "Plessi scolastici a Parma: statali e paritarie (infanzia inclusa)" (infanzia già in caption)
+    title = str_wrap(glue("Plessi scolastici a Parma: statali e paritarie (trend a.s. {f_lab_as(min(plessi_trend_pr$anno_inizio))}-{f_lab_as(max(plessi_trend_pr$anno_inizio))})"), 55),
     subtitle = "Indicatore: numero di sedi in anagrafe per a.s., statali e paritarie; scala dell'asse y diversa per ogni ordine",
     caption = CAP_ANAGRAFE, x = "", y = ""
   )

@@ -2,7 +2,7 @@
 title: "Geografia dell'abitare: famiglie e case"
 # titolo fino al 2026-11-09: "Geografia dell'abitare: età, cittadinanza e famiglie"
 # categories: [P1 Disuguaglianze, P3 Trasformazioni del territorio, LA2 Territorio]
-description: "Popolazione residente per comune della provincia (Censimento ISTAT 2024) e per quartiere nel Comune di Parma (anagrafe comunale al 1/1/2026), immobili ACER (2022) dal portale open data del Comune"
+description: "Popolazione residente per comune della provincia (Censimento ISTAT 2024) e per quartiere nel Comune di Parma (anagrafe comunale al 1/1/2026)"
 lang: it
 
 format:
@@ -78,10 +78,12 @@ pop_prov <- readRDS(file.path(dir_pop, "pop_mappe_sf.rds")) |>
 + Nel Comune di Parma, in Oltretorrente e Parma Centro circa 6 famiglie su 10 sono di una sola persona (45% in città). In questi due quartieri vive solo anche più di 4 anziani su 10 (34% in città).
 
 
+<!-- nota metodologica tolta il 2026-11-10: le mappe per classe d'età sono in giovani_mappe e anziani_mappe (definizioni nel NB dei 65+ di anziani_mappe)
 ::: {.callout-note .metodo collapse=true}
 #### Nota metodologica: le classi d'età
 Le classi d'età seguono le convenzioni ISTAT: "bambini e ragazzi" 0-14 anni, minorenni 0-17, giovani adulti 18-29, "anziani" 65 anni e oltre, "grandi anziani" 80 e oltre. La soglia dei 65 anni è una convenzione statistica (è quella degli indici di vecchiaia e di dipendenza), non una definizione di anzianità.
 :::
+-->
 
 
 # La provincia
@@ -91,9 +93,9 @@ La provincia conta `r f_n(pop_prov$n_comuni)` comuni e `r f_n(pop_prov$pop_tot)`
 <!-- Le classi delle mappe sono le stesse usate per i quartieri del Comune, più sotto: un colore uguale vuol dire una percentuale uguale, in città come in provincia. -->
 
 
-## Giovani e anzianiper comune
+## Giovani per comune
 
-Vedi anche: [Giovani › Dove vivono](giovani_mappe.qmd), con numero e quota di minorenni, giovani di 18-29 anni e minori stranieri per comune.
+Vedi: [Giovani › Dove vivono](giovani_mappe.qmd), con numero e quota di minorenni, giovani di 18-29 anni e minori stranieri per comune.
 
 <!-- Sezione spostata in giovani_mappe.qmd il 2026-11-09 (lo 0-14 è stato tolto) -->
 <!--
@@ -147,13 +149,13 @@ f_bottoni_dati("pop_mappe_comuni", dir_pop, rds = "mappa_quota_0_14_pr")
 
 La provincia è un po' più giovane della regione, ma la media nasconde due estremi: la cintura del capoluogo e la pedecollina stanno nel quinto più giovane dell'ER, la montagna nel quinto più vecchio. I bambini 0-14 pesano di più nella bassa e nella pedecollina (San Secondo, Langhirano, Colorno, Fidenza intorno al 14%); Parma città è nella media regionale (12,3%, ER 11,8%).
 
-_NB: Censimento permanente ISTAT, edizione 2024; un anno indietro rispetto ai dati per quartiere del Comune (1/1/2026). Classi = quintili dei 330 comuni dell'Emilia-Romagna._
+_NB: Censimento permanente ISTAT, edizione 2024; un anno indietro rispetto ai dati per quartiere del Comune (1/1/2026). Classi a gradini fissi, uguali in tutta la regione; "quinto più alto/basso" = quintili dei 330 comuni ER._
 ::::
 -->
 
 ## Anziani per comune
 
-Vedi anche: [Anziani › Dove vivono](anziani_mappe.qmd), con numero e quota di persone di 65 e di 80 anni e oltre per comune.
+Vedi: [Anziani › Dove vivono](anziani_mappe.qmd), con numero e quota di persone di 65 e di 80 anni e oltre per comune.
 
 <!-- Sezione spostata in anziani_mappe.qmd il 2026-11-09 -->
 <!--
@@ -197,7 +199,7 @@ f_bottoni_dati("pop_mappe_comuni", dir_pop, rds = "mappa_quota_65p_pr")
 
 La quota di 65 anni e oltre in provincia (23,6%) è sotto quella regionale (24,9%), ma 14 comuni, 12 di montagna più Pellegrino Parmense e Terenzo in collina, stanno nel quinto più vecchio dell'ER (Bore 47%, Monchio 44%, Tornolo 42%, Palanzano 41%) e 12 nel quinto più giovane: la cintura del capoluogo e la pedecollina (Torrile 18,3%, Colorno, Langhirano, Lesignano, Sala Baganza).
 
-_NB: Censimento permanente ISTAT, edizione 2024; un anno indietro rispetto ai dati per quartiere del Comune (1/1/2026). Classi = quintili dei 330 comuni dell'Emilia-Romagna._
+_NB: Censimento permanente ISTAT, edizione 2024; un anno indietro rispetto ai dati per quartiere del Comune (1/1/2026). Classi a gradini fissi, uguali in tutta la regione; "quinto più alto/basso" = quintili dei 330 comuni ER._
 ::::
 -->
 
@@ -225,14 +227,14 @@ f_bottoni_dati("pop_mappe_comuni", dir_pop, rds = "mappa_quota_stranieri_pr")
 
 Il 14,8% dei residenti ha cittadinanza straniera (ER 12,7%); 12 comuni su 44 stanno nel quinto più alto dell'ER, e in testa non c'è Parma (17,1%) ma la pedecollina della filiera alimentare (Calestano 20,7%, Langhirano 20,6%, Fornovo e Salsomaggiore 16,6%). In fondo l'Appennino interno, con il 3-4% (Albareto, Monchio, Corniglio, Tornolo).
 
-_NB: Censimento permanente ISTAT, edizione 2024; un anno indietro rispetto ai dati per quartiere del Comune (1/1/2026). Classi = quintili dei 330 comuni dell'Emilia-Romagna._
+_NB: Censimento permanente ISTAT, edizione 2024; un anno indietro rispetto ai dati per quartiere del Comune (1/1/2026). Classi a gradini fissi, uguali in tutta la regione; "quinto più alto/basso" = quintili dei 330 comuni ER._
 ::::
 
 ## Famiglie per comune
 
-In provincia le famiglie "anagrafiche" (i.e. persone che vivono insieme legate da matrimonio, parentela, affinità, adozione, tutela o vincoli affettivi; anche una persona sola è una famiglia) sono 211 mila, con 2,1 componenti in media: 86 mila sono di una sola persona (41%, Italia 38%) e 9 mila hanno 5 o più componenti (4%).
+Con famiglia "anagrafica", si identificano persone che vivono insieme legate da matrimonio, parentela, affinità, adozione, tutela o vincoli affettivi; anche una persona sola viene conteggiata come una famiglia.  
 
-<!-- <1-2 frasi col messaggio principale, da scrivere> -->
+In provincia le famiglie sonno 211 mila, con 2,1 componenti in media. Queste risiedono soprattutto a Parma, che ha quasi la metà di chi vive solo in provincia; in proporzione chi vive solo pesa di più nei comuni di montagna, dove le famiglie hanno in media meno di 2 componenti.
 
 :::: {.panel-tabset}
 
@@ -293,8 +295,9 @@ f_bottoni_dati("famiglie_comuni_ft", dir_fam)
 
 :::: {.callout-note collapse="true"}
 ### Osservazioni
+Famiglie di una persona: quasi la metà della provincia sta a Parma (42 mila, 49%), poi Fidenza e Salsomaggiore (4.400 ciascuno). In proporzione superano la metà delle famiglie in 13 comuni di montagna, fino al 61-64% a Bore e Monchio delle Corti; a Parma sono il 44%, nella Bassa intorno a un terzo (Sissa Trecasali 27%).
 
-<!-- <da scrivere> -->
+Famiglie numerose: 3.600 a Parma (39% della provincia); in proporzione sono più frequenti a Langhirano (8%), Sissa Trecasali (7%) e Colorno (6%), quasi assenti in alta montagna (meno dell'1% a Monchio e Tornolo). I componenti medi vanno da 1,6 (Monchio, Bore) a 2,5 (Sissa Trecasali).
 
 _NB: Censimento permanente ISTAT, edizione 2024 (famiglie al 31 dicembre), escluse le convivenze; un anno indietro rispetto ai dati per quartiere del Comune (1/1/2026). Le famiglie di una persona comprendono chi vive solo a qualsiasi età: per comune il censimento non dà l'età dei componenti._
 ::::
@@ -303,7 +306,7 @@ _NB: Censimento permanente ISTAT, edizione 2024 (famiglie al 31 dicembre), esclu
 
 È interessante osservare la distribuzione della popolazione anche all'interno del comune. Il sito [Open Data del comune di Parma](https://opendata.comune.parma.it/), consente di disaggregare molti indicatori demografici e sociali fino al livello dei quartieri. 
 
-_NB: Da tenere presente il fatto che **i dati escludono i non residenti** (come gli studenti fuori sede), che in una città come Parma sono una quota significativa._
+Da tenere presente il fatto che **i dati escludono i non residenti** (come gli studenti fuori sede), che in una città come Parma sono una quota significativa.
 
 ## Giovani e anziani per quartiere
 
@@ -408,7 +411,7 @@ f_bottoni_dati("pop_quartieri_eta", dir_mod, rds = "plot_pop_quartieri_eta")
 
 <!-- <da scrivere> -->
 
-_NB: dati dell'anagrafe comunale al 1° gennaio 2026, solo residenti (non chi vive in città senza residenza, come gli studenti fuori sede); età in anni compiuti. Le mappe dello stesso tipo (giovani, anziani, stranieri) usano la stessa scala di colori, quindi lo stesso colore indica lo stesso valore._
+_NB: dati dell'anagrafe comunale al 1° gennaio 2026, solo residenti (non chi vive in città senza residenza, come gli studenti fuori sede); età in anni compiuti._
 ::::
 
 

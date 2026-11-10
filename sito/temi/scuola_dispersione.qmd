@@ -291,7 +291,7 @@ _NB: Fonte ISTAT. ELET = 18-24enni con al più la licenza media e fuori da ogni 
 :::
 
 <!-- ::: {.callout-tip title="" collapse="true"} -->
-<!-- La pagina [Formazione professionale](formaz_rientro.qmd) osserva chi lascia il percorso ordinario per una qualifica professionale o torna a scuola da adulto. -->
+<!-- La pagina [Formazione professionale](formaz_prof.qmd) osserva chi lascia il percorso ordinario per una qualifica professionale. -->
 <!-- ::: -->
 
 ## Possibili approfondimenti

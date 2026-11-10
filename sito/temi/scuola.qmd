@@ -150,7 +150,7 @@ f_bottoni_dati("plessi_trend_pr", dir_scuola, rds = "plot_plessi_ordine_gestione
 ::: {.callout-note collapse="true"}
 ### Osservazioni
 
-La rete dei plessi è rimasta stabile per tutto il decennio (la serie, dall'anagrafe scuole, include l'infanzia e arriva all'a.s. 2026/27): le statali sono quasi immobili, con un lieve calo di primarie e superiori dal 2022, e le ~80 materne paritarie sono costanti. Il calo degli iscritti, per ora, non si è tradotto in chiusure di scuole.
+La rete dei plessi è rimasta stabile per tutto il decennio (la serie, dall'anagrafe scuole, include l'infanzia e arriva all'a.s. 2026/27): le statali sono quasi immobili (due primarie in meno dal 2023/24), e le ~80 materne paritarie sono costanti. Il calo degli iscritti, per ora, non si è tradotto in chiusure di scuole.
 
 _NB: Infanzia inclusa. "Plessi" = sedi registrate in anagrafe, anche senza iscritti._
 :::

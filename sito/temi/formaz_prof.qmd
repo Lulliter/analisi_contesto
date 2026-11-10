@@ -1,8 +1,9 @@
 ---
-title: "Le altre strade: formazione professionale e rientri a scuola nella provincia di Parma"
+title: "La formazione professionale nella provincia di Parma"
+# titolo fino al 2026-11-10: "Le altre strade: formazione professionale e rientri a scuola nella provincia di Parma"
 # categories: [P2 Persone e istituzioni, LA3 Capitale umano]
-# subtitle: "Chi lascia il percorso ordinario per una qualifica professionale e chi torna a scuola da adulto: quanti sono, chi sono, come cambia nel tempo"
-description: "Dati MIM (a.s. 2015/16-2024/25) e CPIA di Parma (2024/25), estratti a settembre 2026"
+# fino al 2026-11-10: # subtitle: "Chi lascia il percorso ordinario per una qualifica professionale e chi torna a scuola da adulto: quanti sono, chi sono, come cambia nel tempo"
+description: "Dati MIM (a.s. 2015/16-2024/25) e fonti regionali sulla formazione professionale (a.s. 2023/24); aggiornamento novembre 2026"
 lang: it
 
 format:
@@ -28,16 +29,18 @@ link-citations: true
 #| label: anteprima
 #| eval: false
 # Anteprima: renderizza e apre nel browser (lancia a mano, ignorato nel render)
-pagina <- "formaz_rientro"   # nome pagina, senza estensione
+pagina <- "formaz_prof"   # nome pagina, senza estensione
 quarto::quarto_render(here::here("sito", "temi", paste0(pagina, ".qmd")))
 browseURL(here::here("docs", "sito", "temi", paste0(pagina, ".html")))
 ```
 
 ```{=html}
-<!-- Bozza (2026-09-23): composta dagli output del modulo formaz_e_rientro.
-     Con riserva di unificarla con giovani_lavoro (tema 2.b). Crescerà con
-     CPIA (iscritti per anno/età/cittadinanza) e IeFP (iscritti per provincia)
-     quando arrivano i dati richiesti. -->
+<!-- Promossa il 2026-11-10 (in costruzione). Output dal modulo formaz_e_rientro
+     (nome storico: la parte sugli adulti è in _adulti_scuola.qmd). Crescerà con
+     gli iscritti IeFP per provincia (Regione ER) quando arrivano i dati richiesti.
+     Fino al 2026-11-10: "Bozza (2026-09-23): composta dagli output del modulo formaz_e_rientro.
+     Con riserva di unificarla con giovani_lavoro (tema 2.b). Crescerà con CPIA
+     (iscritti per anno/età/cittadinanza) e IeFP (iscritti per provincia)". -->
 ```
 
 ```{r}
@@ -61,7 +64,9 @@ source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hov
 ::: callout-warning
 ## Pagina in completamento
 
-<!-- Mancano ancora la formazione professionale (IeFP) e gli esiti, in attesa dei dati regionali: le sezioni segnate con 🟡. -->
+Mancano ancora gli iscritti agli enti di formazione di Parma e gli esiti (qualifiche e diplomi), in attesa dei dati regionali.
+
+<!-- testo fino al 2026-11-10: Mancano ancora la formazione professionale (IeFP) e gli esiti, in attesa dei dati regionali: le sezioni segnate con 🟡. -->
  
 :::
 
@@ -69,7 +74,7 @@ source(here::here("R", "grafici.R"))  # f_girafe: girafe standard (tooltip + hov
 
 - Dopo la terza media una parte dei ragazzi prende la via della formazione professionale. Con riferimento all'A.S. 2023/24:
   - in **Emilia-Romagna** si stimano circa 42.400 iscritti all'Istruzione Professionale statale e 16.000 allievi nei percorsi regionali IeFP; 
-  - in **provincia di Parma**, si registrano complessivamente oltre 3.300 frequentanti negli istituti professionali (inclusi alcuni studenti dei percorsi IeFP attivati nelle scuole). A questi si aggiungono gli iscritti delle 7 sedi degli enti di formazione accreditati [numero stimato di 1.000 - 1.200]{.mark}.
+  - in **provincia di Parma**, si registrano complessivamente oltre 3.300 frequentanti negli istituti professionali (inclusi alcuni studenti dei percorsi IeFP attivati nelle scuole). A questi si aggiungono gli iscritti delle 7 sedi degli enti di formazione accreditati, stimati tra 1.000 e 1.200.
 
 <!-- [ Parma l'offerta conta nove sedi tra enti e istituti, ma quanti la frequentano e quanti arrivano alla qualifica è il dato da acquisire.] -->
 
@@ -149,9 +154,9 @@ f_bottoni_dati("tipi_scuola", dir_rientro, rds = "tipi_scuola_ft")
 
 ::: {.callout-note collapse="true"}
 ### Osservazioni
-Gli alunni sono contati nella provincia della scuola; il dato comprende i corsi serali e le sezioni carcerarie. I dati MIM escludono a priori gli iscritti presso gli Enti di Formazione Accreditati, tracciati solo a livello regionale (circa 16.000 allievi totali in Emilia-Romagna). 
+Gli alunni sono contati nella provincia della scuola; solo corsi diurni, esclusi i serali e le sezioni carcerarie, frequentati soprattutto da adulti. I dati MIM escludono a priori gli iscritti presso gli Enti di Formazione Accreditati, tracciati solo a livello regionale (circa 16.000 allievi totali in Emilia-Romagna). 
 
-*NB: LA componente IefP alla voce "Professionali e IeFP" è fortemente sottostimato rispetto alle rilevazioni dell'Ufficio Scolastico Regionale.*
+*NB: La componente IeFP alla voce "Professionali e IeFP" è fortemente sottostimata rispetto alle rilevazioni dell'Ufficio Scolastico Regionale.*
 :::
 
 
@@ -186,7 +191,7 @@ Gli alunni sono contati nella provincia della scuola; il dato comprende i corsi 
 ## Gli esiti: chi arriva al titolo e sbocchi seguenti [🟡]{.content-hidden}
 
  
-<!-- Quanti dei serali arrivano al diploma, quanti dell'IeFP alla qualifica, e
+<!-- Quanti dei professionali arrivano al diploma, quanti dell'IeFP alla qualifica, e
      quanti non arrivano da nessuna parte (il ponte con i NEET di
      scuola_dispersione e con giovani_lavoro). 
      

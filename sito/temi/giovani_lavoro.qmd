@@ -79,10 +79,10 @@ Dopo aver osservato le dimensioni dell'istruzione e formazione professionale, qu
 + **Lavoro**: tra i 25 e i 34 anni lavora il 77% dei giovani, meno che in regione (80%) ma molto più che in Italia (meno del 70%). Tra le donne la disoccupazione è circa doppia rispetto agli uomini: intorno all’8% contro il 4%.
 + **Estero**: pur essendo l'Emilia Romagna una regione attrattiva, una parte crescente dei giovani vive all’estero. Per ogni 1.000 residenti di 19-34 anni, 92 sono iscritti all’anagrafe degli italiani all’estero di un comune parmense, un po’ più della media regionale e in aumento dal 2023.
 
-## Titoli di studio per classe d'età, genere, e territorio
-L'accesso a livelli alti di istruzione è un fattore chiave per la transizione verso il lavoro e la realizzazoine personale, oltre che una priorità per le politiche regionali.  
+## Titoli di studio per età, sesso e territorio
+L'accesso a livelli alti di istruzione è un fattore chiave per la transizione verso il lavoro e la realizzazione personale, oltre che una priorità per le politiche regionali.  
 
-La provincia di Parma è in linea (dove non poco sopra) con la media regionale e nazionale per livelli di istruzione, ed evidenzia un aumento marcato del livello d'istruzione nelle generazioni più giovani. 
+La provincia di Parma è in linea (se non poco sopra) con la media regionale e nazionale per livelli di istruzione, ed evidenzia un aumento marcato del livello d'istruzione nelle generazioni più giovani. 
 ```{r}
 #| label: titoli_confronto_ft
 #| output: true
@@ -100,7 +100,7 @@ f_bottoni_dati("titoli_confronto", dir_tit, rds = "titoli_confronto_ft")
 ::: {.callout-note collapse="true"}
 #### Osservazioni
 <!-- Parma è vicina alla media regionale in tutte le classi d'età e poco sopra quella italiana: tra i 25 e i 49 anni i laureati sono il 32% (Italia 29%), tra i 50 e i 64 anni chi si è fermato alla licenza media è il 31% (Italia 35%).  -->
-Le differenze tra i tre territori sono di pochi punti; quelle tra generazioni sono molto più ampie (laureati: 32% a 25-49 anni, 11% a 65 e più). Sull'insieme dei residenti in età attiva, i laureati sono il 22% a Parma, il 21% in regione e il 19% in Italia; chi ha al massimo la licenza elementare è il 13% (Italia 15%), quasi tutto tra gli over 65.
+Le differenze tra i tre territori sono di pochi punti; quelle tra generazioni sono molto più ampie (laureati: 32% a 25-49 anni, 11% a 65 e più). Sull'insieme dei residenti di 25 anni e più, i laureati sono il 22% a Parma, il 21% in regione e il 19% in Italia; chi ha al massimo la licenza elementare è il 13% (Italia 15%), quasi tutto tra gli over 65.
 
 _NB: Fonte ISTAT, censimento permanente della popolazione, 2024. Le classi d'età sono quelle pubblicate da ISTAT: non c'è 25-34 né 30-34, quindi il dato non si confronta con gli indicatori europei sui giovani laureati. La riga "25 e più anni" somma le tre classi da 25 anni in su._
 :::
@@ -123,6 +123,7 @@ f_bottoni_dati("titoli_sesso_pr", dir_tit, rds = "plot_titoli_sesso_pr")
 :::
 
 ::: {.callout-note collapse="true"}
+#### Osservazioni
 <!-- versione su 9 anni e più, fino al 2026-10-30: Tra il 2018 e il 2024 la quota di laureati è salita di circa 3 punti tra le donne (da 18% a 21%) e di 2 tra gli uomini (da 15% a 17%); cresce anche il diploma, la licenza media resta ferma. Le donne hanno più spesso la laurea e meno spesso la sola licenza media (25% contro 30%). -->
 Tra i 25 e i 64 anni le laureate sono passate da circa il 26% al 30%, i laureati dal 20% al 22%: lo scarto a favore delle donne si allarga, da 6 a 8 punti. Gli uomini restano più spesso con la sola licenza media (28% contro 21%); il diploma riguarda quasi metà dei residenti di entrambi i sessi ed è stabile.
 
@@ -130,7 +131,7 @@ _NB: Fonte ISTAT, censimento permanente della popolazione: stime arrotondate. Re
 :::
 
 
-La distribuzione territoriale per titolo di studio, in coerenza con le suddette differenze generazionali, riflette quella demografica, oltre a all'attrattività degli agglomerati urbani: i laureati si concentrano nel capoluogo e nella prima cintura.
+I laureati si concentrano nel capoluogo e nei comuni vicini, che attraggono residenti qualificati; in Appennino e nella Bassa è più diffusa la sola licenza media.
 
 ::: {.panel-tabset}
 
@@ -173,7 +174,7 @@ f_bottoni_dati("titoli_comuni_pr", dir_tit, rds = "mappa_laurea_25_64_pr")
 
 ::: {.callout-note collapse="true"}
 #### Osservazioni
-Il capoluogo si stacca da tutti: oltre un terzo dei residenti di 25-64 anni è laureato. Seguono, tra il 20 e il 25%, Fidenza e i comuni attorno a Parma (Collecchio, Montechiarugolo, Noceto, Traversetolo, Sala Baganza). Sotto il 15% stanno diversi comuni dell'Appennino (Palanzano, Varsi, Monchio delle Corti, Bardi, Corniglio) e Polesine Zibello, dove la sola licenza media arriva a un residente su tre. Il diploma è ovunque il titolo più diffuso e pesa di più in Val Taro e Val Ceno (Albareto e Bedonia oltre il 55%), meno a Parma, dove è più alta la quota di laureati.
+Il capoluogo si stacca da tutti: oltre un terzo dei residenti di 25-64 anni è laureato. Seguono, tra il 20 e il 25%, Fidenza, Borgo Val di Taro e i comuni attorno a Parma (Collecchio, Montechiarugolo, Noceto, Traversetolo, Sala Baganza, Lesignano de' Bagni, Felino). Sotto il 15% stanno diversi comuni dell'Appennino (Palanzano, Varsi, Monchio delle Corti, Bardi, Corniglio, Bore, Solignano, Compiano) e Polesine Zibello, dove la sola licenza media arriva a un residente su tre. Il diploma è ovunque il titolo più diffuso e pesa di più in Val Taro e Val Ceno (Albareto e Bedonia oltre il 55%), meno a Parma, dove è più alta la quota di laureati.
 
 _NB: Fonte ISTAT, censimento permanente della popolazione, 2024. La classe 25-64 anni è la somma delle classi 25-49 e 50-64 pubblicate da ISTAT._
 :::
