@@ -380,3 +380,16 @@ Per l'Emilia-Romagna il Report attribuisce la crescita degli iscritti in parte a
 <!-- + La rete: come istituti tecnici, ITS, università e imprese collaborano sul territorio, e con quali risultati per i ragazzi. -->
 <!-- + Chi parte: quanti giovani lasciano Parma per studiare o lavorare altrove, e quanti tornano. -->
 
+## Fonti da esplorare {.content-hidden}
+
+Ponte con il tema lavoro: se il territorio sta perdendo terreno sull'innovazione (startup, brevetti); rete istruzione superiore / università / aziende; mismatch domanda-formazione; chi va all'estero (quanti, come e perché). IeFP e serali stanno in `formaz_prof.qmd`, con riserva di unificare.
+
+- Istituto Giuseppe Toniolo: orientamento dei giovani, formazione professionale e transizione scuola-lavoro
+- Secondo Welfare, [Ripartenze possibili: NEET e transizioni interrotte tra i giovani adulti](https://www.secondowelfare.it/wp-content/uploads/2026/07/Rapporto-FAST-3_Neet_Percorsi-di-Secondo-Welfare-e-Fondazione-Lottomatica.pdf) (2026)
+- Excelsior: difficoltà di reperimento per profilo, Parma; nuove forme con cui si cerca lavoro (anche Osservatori INPS)
+- AlmaLaurea/AlmaDiploma o Regione ER: esiti occupazionali per percorso
+- Regione ER: iscritti ITS e IeFP
+- INPS Osservatori: contratti dei giovani
+- ISTAT: cancellazioni per l'estero 20-34 anni per provincia
+- startup, brevetti, cervelli in fuga e attrattività (Regione e bandi?); PMI che introducono innovazione (European Commission, 2023); investimenti in R&D (OCSE?)
+- già in casa dal Bes: passaggio all'università, laureati 25-39, formazione continua, NEET per sesso, occupazione giovanile; dal censimento: titolo di studio per età, sesso e comune (modulo `pop_titolo_studio`)

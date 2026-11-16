@@ -393,3 +393,10 @@ _NB: anagrafe comunale al 1° gennaio 2026; "soli" = in famiglia anagrafica di u
 + Quanti sono gli anziani non autosufficienti o con disabilità, per comune e per quartiere?
 + Quanto distano ospedali, Case della Comunità e centri diurni da dove vivono gli anziani?
 + I quartieri con più anziani sono quelli costruiti negli stessi anni, dove case e residenti sono invecchiati insieme?
+
+## Fonti da esplorare {.content-hidden}
+
+- anziani soli per comune: censimento solo famiglie di 1 persona senza età (`istat_cens_famiglie`), Regione età solo fino al distretto → stima indiretta commentata nella pagina (verificato)
+- ISTAT censimento, convivenze anagrafiche per comune e tipo (anche case di riposo), senza età: scaricate in `istat_cens_famiglie`, da mappare
+- ospedali, case della comunità, centri diurni: fonti con coordinate (open data Ministero della Salute; anagrafe regionale delle strutture socio-sanitarie), altrimenti geocodifica degli indirizzi
+- epoca di costruzione degli edifici per sezione di censimento → verifica dell'ipotesi "periferie invecchiate" per quartiere (forse)

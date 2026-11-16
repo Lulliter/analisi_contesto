@@ -695,3 +695,9 @@ _NB: 1 immobile ACER = 1 edificio (indirizzo e civico), non 1 alloggio: la fonte
 <!-- <da scrivere> -->
 <!-- + Fotografare la povertà abitativa oggi, incrociando i dati disponibili (immobili ACER ≈ povertà strutturale e storica) con dati da recuperare su mancanza di offerta e/o affitti insostenibili (e.g. OMI dell'Agenzia delle Entrate, IRPEF per CAP, dati sugli sfratti,...) -->
 + ...
+
+## Fonti da esplorare {.content-hidden}
+
+- MEF, redditi IRPEF per CAP: verificare per il reddito sotto il livello comunale
+- disabilità per quartiere e domande bando affitto / ERP per quartiere: non nei dati aperti del Comune → richieste n. 5 e 6 (Richieste uffici in `_TODO.qmd`)
+- già in uso (open data Comune di Parma): [immobili ACER 2022](https://opendata.comune.parma.it/dataset/immobili-acer-di-parma-2022), [quartieri vigenti](https://opendata.comune.parma.it/dataset/quartieri-del-comune-di-parma-vigenti), [popolazione residente al 1 gennaio 2026](https://opendata.comune.parma.it/dataset/popolazione-residente-al-1-gennaio-2026), sfondo (strade 2025, torrenti, ferrovie, parchi), tutti via `ingestione/09`

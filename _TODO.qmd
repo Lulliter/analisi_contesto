@@ -67,17 +67,23 @@ dati/grezzi/ ──▶ ingestione/ ──▶ dati/puliti/ ──▶ moduli/*/out
 
 Dati che non stanno negli open data e vanno chiesti agli enti (bozze in `dati/grezzi/_richieste_dati.md`, 2026-09-23). Una riga per richiesta; annotare qui data di invio ed esito.
 
+ _fatte_ 
+ 
 - [ ] 1) ~~CPIA Parma: iscritti per anno, percorso, età, cittadinanza, esiti~~
 - [x] 2) Regione ER (SIFER): iscritti IeFP per provincia
-- [ ] 3) Regione ER: anagrafe regionale degli studenti (infanzia, esiti, passaggi IeFP, ELET provinciale, disabilità) → serve a `scuola_iscritti`, `scuola_disabilita`, `scuola_abband_neet` → risposta 2026-10-15: rimanda a IstatData «Scuole» (dati provinciali); per ciò che manca, referenti regionali per infanzia e per gli altri ordini (contatti nella mail); suggerito anche l'Ufficio IX, AT Parma dell'USR
-  - [x] infanzia: su IstatData solo indicatori per provincia (stranieri, femmine, disabili, % scuole pubbliche, iscritti per classe), scaricati con `ingestione/10_prep_istat_scuole.R`; bastano
-  - [ ] infanzia per comune (gestione, cittadinanza, disabilità): chiesta alla referente regionale per l'infanzia il 2026-10-15
-  - [ ] verificare su IstatData esiti, passaggi IeFP, uscite precoci, disabilità negli altri ordini
-- [ ] 4) INVALSI, Servizio statistico: tabelle sotto la mappa ELET provinciale e il cartogramma dispersione implicita (fig. 8.2.3)
-- [ ] 5) AUSL Parma, DAISMDP: richiesta SOSPESA dopo la scoperta dei report annuali del Dipartimento (2014-2024, in `dati/grezzi/ausl_npia/`); se serve, chiedere all'Ufficio sistema informativo le tabelle 2023-24 mancanti (accessi residenti 0-17, nuovi in carico, classi d'età)
-- [ ] 6) Comune di Parma, servizi sociali / AUSL: persone con disabilità per quartiere → `comune_pr_quartieri`
-- [ ] 7) Comune di Parma, ufficio casa: domande al bando affitto (e morosità incolpevole, domande ERP) per quartiere o CAP, per anno → mappa del rischio abitativo nel mercato privato, accanto agli immobili ACER (`comune_pr_quartieri`)
-  - in attesa, proxy da fonti aperte: canoni OMI per zona (Agenzia delle Entrate) rapportati ai redditi IRPEF per CAP (MEF) e sfratti per provincia (Ministero dell'Interno) → voci nel tema 5
+  - [x] sollecitata ~~**Sabrina Loddo (INFANZIA😬)**~~ (aveva promesso dati a fine ottobre)
+  - [ ] IeFP iscritti in provincia (Enti REg non su MIM), qualificati, uscite precoci, ecc. 
+    - Resp RER `azioni e opportunità del sistema di istruzione e formazione professionale iefp` BALLABENI SILVIA | telefono: 0515278186 | email: silvia.ballabeni@regione.emilia-romagna.it
+    - Resp RER `azioni e opportunità della filiera terziaria professionalizzante` BERTI GILDA | telefono: 0515273909 | email: gilda.berti@regione.emilia-romagna.it
+  - [x] **Nadia Bertozzi/ Sabrina Loddo** infanzia: su IstatData solo indicatori per provincia (stranieri, femmine, disabili, % scuole pubbliche, iscritti per classe), scaricati con `ingestione/10_prep_istat_scuole.R`; bastano
+  - [ ] Sabrina Loddo dice che dal MIM *non arrivano i dati 2025/2026*
+- [ ] 4) INVALSI, chiesti dati provinciali per tabelle sottostanti mappa ELET e il cartogramma dispersione implicita (fig. 8.2.3)
+
+ _future_ 
+ 
+- [ ] 5) Comune di Parma, servizi sociali / AUSL: persone con disabilità per quartiere → `comune_pr_quartieri`
+- [ ] 6) Comune di Parma, ufficio casa: domande al bando affitto (e morosità incolpevole, domande ERP) per quartiere o CAP, per anno → mappa del rischio abitativo nel mercato privato, accanto agli immobili ACER (`comune_pr_quartieri`)
+  - [ ] proxy da fonti aperte: canoni OMI per zona (Agenzia delle Entrate) rapportati ai redditi IRPEF per CAP (MEF) e sfratti per provincia (Ministero dell'Interno) → voci nel tema 5
 
 ---
 
@@ -85,25 +91,28 @@ Dati che non stanno negli open data e vanno chiesti agli enti (bozze in `dati/gr
 
 # Trasversale
 
-- [ ] revamp `_targets.R` (nel repo vecchio)?
-- [ ] **renv** (aperta 2026-09-29): decidere tra `renv.lock` versionato e una fotografia `sessioninfo` a ogni pubblicazione del sito
-- [ ] **Formato numeri italiano** nei grafici (aperta 2026-09-18; oggi punto e virgola mescolati nelle legende)
-  - [ ] 1) un solo set di formattatori in `R/` (`num_it()`, `pct_it()`, `lab_num_it`, `lab_pct_it`)
-  - [ ] 2) sostituire le chiamate dirette a `scales::` nei `02_output.R`, rilanciare `build.R` e aggiungere lì il controllo sulle chiamate dirette
-  - [ ] 3) aggiornare la skill `formatting-r`
-- [ ] Riportare nel repo metadati la v1.4 di `R/formatting.R` (header tabelle grigio 2026-09-25; N.D. in rosso pallido dentro `f_ft()` 2026-10-14; font fisso "Roboto Condensed" per il sito 2026-10-15; `bg_previsione` azzurro per gli anni previsti 2026-10-19) e dire "aggiorna la skill formatting-r"
-- [x] **Font del sito**: fatto e sfrutta `assets/fonts/` (non piu googleapi): portare ad altri repos?
-- [ ] Nomi delle funzioni `f_...`: criterio e lessico comune (rimandato 2026-10-09)
-- [ ] grafico di trend multi-territorio (province ER grigie, Parma / ER / Italia evidenziate) ripetuto in `demo_trend_previs` e `anziani_non_autosuff`: promuovere una funzione in `R/grafici.R`?
-- [ ] Export dati: in `f_bottoni_dati()` smistare per riga, "Fonte…" nel campo Fonte e il resto in Nota (oggi alcune fonti escono come Nota)
+**Repo e riproducibilità**  
+
 - [ ] `_git_track_AND_rsynch.sh`: spostare il controllo del volume Windows dopo `git push` (oggi se il volume non è montato non parte neanche il commit)
-- [ ] tooltip delle mappe: una regola coerente (chiarire, non affaticare) da rivedere in `anziani_mappe.qmd` e `geogr_abitare.qmd` (famiglie e residenti)
-- [ ] asse y sopra il massimo (`f_scale_y_tacche`, `f_scale_y_sopra` in `R/grafici.R`): estendere agli altri grafici di trend del sito
-- [ ] `ausl_npia/npia_pr_serie.csv`: trascrizione a mano da convertire con la regola Fonti in pdf (`dati/README.md`)
+- [ ] revamp `_targets.R` (nel repo vecchio)?
+- [ ] **renv**: decidere tra `renv.lock` versionato e una fotografia `sessioninfo` a ogni pubblicazione del sito
 - [ ] **pdf in `dati/grezzi/` tracciati da git** (regola `!dati/grezzi/**/*.pdf` dal 2026-07-17, probabilmente per tenere le note metodologiche ISTAT e le fonti non riscaricabili): oggi 85 pdf, 205 MB, `.git` 600 MB. Decidere: tenere solo i pdf piccoli/necessari (escludere es. `iss_hbsc/..._webinar_2024_vieno.pdf` 66 MB, `ausl_npia/report_2015.pdf` 32 MB), smettere di tracciarli, o Git LFS
 - [ ] `_metadati.md`: separare Note e Insidie (come nel template dal 2026-10-22) nei 18 md ancora col campo unico, man mano che si tocca la fonte; descrivere i file non ancora elencati (`iefp_cpia_ER_PR`, `rer_pop_residente`, `cergas_oltc` pdf IA) e i campi del template mancanti nei md più vecchi (`istat_cens`, `istat_codici_comuni`, `istat_sae_glf_2019`, `istat_shp`, `istat_trend_demog`, `mim_open_data`, `rer_pop_residente`)
-- [ ] note metodologiche vicino alla sintesi in `trend_demogr`, `trend_demogr_previs`, `educ_ia`: spostarle vicino a ciò che spiegano o toglierle
-- [ ] testi con "quinto più alto/basso dell'ER" (`geogr_abitare`, `anziani_mappe`): valutare se riscriverli con le classi delle mappe
+- [ ] spostare le fonti suggerite da qui a `## Fonti da esplorare {.content-hidden}` in coda a ogni pagina (dopo Possibili approfondimenti), tema per tema quando lo si riprende; le sezioni `#### AVANZAMENTO` si tolgono alla stessa occasione
+
+**Funzioni in `R/` (formatting + grafici + sito)**    
+
+- [ ] **Formato numeri italiano e pulizia di `R/formatting.R` + `R/grafici.R`** (aperta 2026-09-18; oggi punto e virgola mescolati nelle legende)
+  - 1) un solo set di formattatori (`num_it()`, `pct_it()`, `lab_num_it`, `lab_pct_it`)
+  - 2) sostituire le chiamate dirette a `scales::` nei `02_output.R`, rilanciare `build.R` e aggiungere lì il controllo sulle chiamate dirette
+  - 3) via i controlli `f_has_font()` che girano a ogni `source()` e i resti (`slides_formatting.R`, funzioni usate solo in altri repo)
+  - 4) skill `formatting-r` allineata alla v1.5 e a `f_theme_sito()`; v1.2-v1.5 riportate nel repo metadati
+- [ ] asse y sopra il massimo (`f_scale_y_tacche`, `f_scale_y_sopra`): estendere agli altri grafici di trend del sito
+- [ ] grafico di trend multi-territorio (province ER grigie, Parma / ER / Italia evidenziate) ripetuto in `demo_trend_previs` e `anziani_non_autosuff`: promuovere una funzione in `R/grafici.R`?
+- [ ] Export dati: in `f_bottoni_dati()` smistare per riga, "Fonte…" nel campo Fonte e il resto in Nota (oggi alcune fonti escono come Nota)
+- [ ] Nomi delle funzioni `f_...`: criterio e lessico comune (rimandato 2026-10-09)
+- [x] **Font del sito**: fatto e sfrutta `assets/fonts/` (non piu googleapi): portare ad altri repos?
+
 
 **Sito e piano strategico (2026-10-12)**:
 
@@ -114,7 +123,7 @@ Dati che non stanno negli open data e vanno chiesti agli enti (bozze in `dati/gr
 {{< pagebreak >}}
 
 
-# ⭐ Spunti commissione CG e Aaltri stakeholders
+# ⭐ Spunti CG e  stakeholders
 
 + SITO/`Natalità`: come cambia il **desiderio di figli** a 14 anni e 25
 + SITO/`Dispersione`: 
@@ -124,8 +133,10 @@ Dati che non stanno negli open data e vanno chiesti agli enti (bozze in `dati/gr
 + SITO/`Giovani e lavoro`: **attrattività** di Parma (arrivano o partono?)
 + SITO/`Giovani e lavoro`: il **mismatch** non è Domanda oggi v. Offerta oggi ma **Domanda futura v. Offerta oggi** (es. laureati in discipline STEM, laureati in discipline umanistiche, ecc.) 
 
-**Mauro Pinardi**:
-+ SITO/`Mappe`: ci servirebbe vedere la mobilità e anche dove sono gli ATS ETS  e anche come sono cresciuti certi comuni nel tempo 
+
++ SITO/`Mappe`: **Mauro Pinardi**: ci servirebbe vedere la mobilità e anche dove sono gli ATS ETS (e i loro traffici), capire se gli ospedali (AUSL) hanno fatto studi con il loro mobility manager; ragionare se serve maggiore capillarizzazione dei servizi e/o migliori opportunità di trasporto; vedere come sono cresciuti certi comuni nel tempo (e correlare % pop anziana e servizio )
+
+
 
 # Temi 
 
@@ -137,185 +148,41 @@ I macro temi corrispondono + o - ai tab principali del `sito/`. GLi item elencat
 
 **Ripensamento MODULI (connessi a fonti)**:
 
-- [x] Modulo `moduli/demo_trend_previs/`
-  - [ ] (possibile?) age 80+ storico per il confronto con le previsioni: serve la popolazione per singole età da demo.istat.it
-  - [ ] (possibile?) speranza di vita prevista al 2050: c'è solo a livello regionale, tra le ipotesi delle previsioni ISTAT
 - [ ] **Popolazione per comune × età × anno (2018→)** da IstatData (flusso `DF_DCSS_POPRES_SERIES_TV_1`, prova a mano in `dati/grezzi/istat_cens/popres_com_PR_amano_…xlsx`, solo totali e solo dal 2018; anni precedenti forse in altro flusso): script `get_`/`clean_` in `ingestione/`, verificare se il flusso ha la dimensione età; serve a `npia_utenti` (0-17 per distretto), a mappe e trend per comune e per distretto sanitario
 - [ ] Tabella comune → distretto sanitario AUSL PR (44 righe) in `dati/grezzi/`, da sito AUSL
 
 ___
 
- 
+
 ## 2 GIOVANI
 > Non affrontato nello strategico PS 2024-2027, ma da presentare come "Driver di crescita e realizzazione delle persone" 
 
-**Ripensamento MODULI (connessi a fonti)**: (fragilità: abbandoni, NEET, formazione continua, % stranieri per comune, studenti disabili; mismatch domanda-formazione):
-
-
-### modulo `scuola_iscritti` 
->(trend PR per ordine scuola, italiani E stranieri incl. % per comune; fonte MIM)
-
-**Ricognizione/Aggiornamento FONTI**: 
+### modulo `scuola_iscritti`
 - [ ] iscritti alla scuola dell'infanzia **PER COMUNE** vedi richiesta # 3 (Richieste uffici)
-- [x] verificare in pagina i grafici rifatti (barre 2×2, etichette sulle linee) e i testi aggiornati con l'infanzia
- 
 
-### modulo `scuola_disabilita`
->(regionale, dati in casa + USR-ER prov.)
-
-**Ricognizione/Aggiornamento FONTI**: 
-
-- [ ] Al prossimo fact sheet USR-ER (uscita ~settembre): aggiungere le righe al csv, aggiornare `ANNO_ULTIMO` e il blurb
-- [ ] Anagrafe studenti [Regione ER](https://scuola.regione.emilia-romagna.it/anagrafi-regionali): successo/regolarità per provincia e iscritti all'infanzia → richiesta n. 3 (Richieste uffici)
-- [~]  Percorsi di Secondo Welfare. A pieno titolo. Nessi [Internet-WOKe](https://www.secondowelfare.it/wp-content/uploads/2026/09/Nessi-3_A-pieno-titolo.pdf). 2026 [cited 2026 Oct 8];03 . Accessed 8 Oct 2026
 
 ### modulo `scuola_abband_neet`
->(NEET/abbandoni/formazione continua PR vs province ER; fonte BES dei territori)
-
-**Ricognizione/Aggiornamento FONTI**: 
-
-+ [ ] Abbandono scolastico [Eurostat? / Openpolis](https://www.openpolis.it/labbandono-scolastico-un-problema-in-crescita-per-alcuni-paesi-ue/)
-+ [ ] Profilo di chi abbandona (dalla pagina, approfondimento 1): [articolo Openpolis, abbandono in Italia, UE e città](https://www.openpolis.it/labbandono-scolastico-in-italia-in-europa-e-nelle-citta/)
-+ [ ] Dispersione scolastica e NEET [Studio IPRASE Trentino ma bello](https://www.iprase.tn.it/news/comunicati/dispersione-scolastica-e-giovani-neet-presentati-i-risultati-della-ricerca-sullalto)
-+ [x] BLog "Welfare" su [orientamento a 14 anni](https://www.secondowelfare.it/giovani/a-14-anni-davanti-al-futuro-quanto-pesano-scuola-famiglia-e-contesto/)
-
-+ [ ] Il ruolo della scuola come sussidio al welfare territoriale
-
 - [ ] Approfondimenti (vedi domande in pagina): 
   - [ ] ELET/**abbandono** provinciale → Vedi Richieste RER + risposte varie... anagrafe studenti RER (regolarità, successo) o esiti scrutini per scuola nel catalogo MIM (da verificare)
   - [ ] dispersione implicita ed ELET per provincia: nei dati aperti non ci sono; esistono solo come grafici INVALSI (mappa ELET 2024-25, cartogramma fig. 8.2.3) → richiesta n. 4 (Richieste uffici)
   - [ ] ritardo × cittadinanza e dopo-Covid alle medie → incrocio per plesso di età e cittadinanza (iscritti MIM); coorti → anagrafe RER + iscritti IeFP; seconda chance → modulo `formaz_e_rientro`
 
-###  ⏭️  modulo `formaz_e_rientro`
-(le altre strade: IeFP dopo la terza media, corsi serali e sezioni carcerarie, esiti; il CPIA solo come ordine di grandezza. Da MIM `percorso == "seconda_chance"` + fonti proprie in `dati/grezzi/iefp_cpia_ER_PR/`)
-
-**Ricognizione/Aggiornamento FONTI**:
-
-- [ ] Iscritti IeFP per provincia (Regione ER, SIFER) → richiesta n. 2 (Richieste uffici)
-- [ ] CPIA iscritti per anno/percorso/età/cittadinanza → richiesta n. 1; indicatore di inclusione degli adulti stranieri, da ricollocare quando nasce quel tema
-- [ ] Esiti (diplomati dei serali, qualificati IeFP): verificare "esiti scrutini/esami" per scuola nel catalogo MIM; INAPP; SIFER
-
-**Sito**:
-
+### modulo `formaz_e_rientro`
 - [ ] Sezione IeFP: tabella/mappa dell'offerta 2026/27 a Parma dagli allegati regionali; iscritti per provincia quando arriva la richiesta n. 2
 - [ ] Sezione esiti, quando ci sono le fonti
 - [ ] (forse) rinominare il modulo: la pagina è ora `formaz_prof.qmd`, gli adulti in `_adulti_scuola.qmd`
 
-### modulo `giovani_ict_social`
->(nazionale + confronto UE, niente Parma: internet e pc per età 2001-2025, social e amici a 11-19 anni, IA generativa Italia vs UE.)
-
-**Ricognizione/Aggiornamento FONTI**:
-
-- [ ] Aggiornamento annuale _ISTAT internet e pc_ in `dati/grezzi/istat_cittadini_ict/`
-- [ ] Aggiornamento annuale _Eurostat IA_ in `dati/grezzi/eurostat_isoc_ai/`
-- [ ] Aggiornamento ? _ISTAT Bambini e ragazzi_: (edizioni 2021 e 2023): 
-- [ ] grafico HBSC social e videogiochi: nella caption la legenda dei colori al posto della fonte
-
 ### modulo `educ_ia`
-(approfondimento "crescere al tempo dell'IA"; dati solo nazionali o regionali, Parma raggiungibile solo per gli accessi NPIA)
-
-**Ricognizione/Aggiornamento FONTI** (per indicatore)
-
-_1. Uso dell'IA per età e scopo_
-
-- [ ] ITT Rondani (Parma), indagine interna 2025: spunto per una rilevazione propria [Casco Learning](https://cascolearning.it/magazine/2025/05/12/giovani-e-intelligenza-artificiale-una-indagine-allitt-rondani-di-parma/)
-
-_2. Schermo e uso problematico dei social_
-
-- [ ] OCSE, "How's Life for Children in the Digital Age?" (2025): per la scelta degli indicatori [OECD](https://www.oecd.org/en/publications/how-s-life-for-children-in-the-digital-age_0854b900-en.html)
-- [ ] HBSC: controllare se l'onda 2026 include l'IA
-- [ ] ISTAT, volume "Relazioni, opinioni e comportamenti dei giovanissimi" (2026): da leggere [Istat](https://www.istat.it/produzione-editoriale/relazioni-opinioni-e-comportamenti-dei-giovanissimi/)
-- [ ] Eurostat regionale `isoc_r_iuse_i` (16-74, senza età): verificare l'Emilia-Romagna [Statistics Explained](https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Digital_society_statistics_at_regional_level)
-
-
-_3. Rendimento e device_
-
-- [ ] OCSE PISA (2024 su 2022), "Students, digital devices and success" (l'ER c'è) [OECD pdf](https://eeb2.be/swfiles/files/OECD-Report-2024.pdf)
-- [ ] [Futuri probabili](https://www.futuriprobabili.it/manifesto-allenarsi-al-futuro)
-
-_4. ➡️ Benessere mentale 14-19 e Accessi NPIA (unico indicatore con Parma)_  
-
-- [ ] Nazionale: Bambino Gesù, accessi PS neuropsichiatrici 2011-2021 (via Openpolis)
-- [ ] Consumo di psicofarmaci in età pediatrica (rapporto OsMed, AIFA): da verificare
- 
-
-_5. Governare: risposte dei paesi e mappa locale_
-
-- [ ] ➡️ Politiche da verificare: smartphone a scuola (Italia, Danimarca, Francia), libri di carta in Svezia, social sotto i 16 anni in Australia
-- [ ] ➡️ Regione ER (zotero) [Report Observa "L'IA in Emilia-Romagna" (2026)](https://digitale.regione.emilia-romagna.it/dati/report-nuova-ader-2025-2029/report-observa-ai-emilia-romagna.pdf/@@download/file)
-- [ ] ➡️ Openpolis, "IA: una sfida educativa" (2026): proxy comunale delle aule informatiche [Openpolis](https://www.openpolis.it/intelligenza-artificiale-una-sfida-educativa/)
-- [ ] Mappa locale delle realtà educanti: catalogo del Comune di Parma, Corecom ER [Newsistruzione](https://www.newsistruzione.it/2026/09/10/parma-catalogo-progetti-in-comune-2026) [Assemblea ER](https://www.assemblea.emr.it/comunicati-stampa/diritti-corecom-in-campo-per-leducazione-ai-media-in-un-anno-112-incontri-nelle-scuole-12-laboratori-sullia-e-27-contro-fake-news-e-cyberbullismo)
-
-**Moduli/output previsti**: cruscotto di 5-6 indicatori; restano 3) PISA, 5) NPIA, 6) tabella "risposte dei paesi"
-
-### modulo `npia_utenti`
-(minori con accesso e in carico ai servizi di neuropsichiatria infantile, provincia di Parma per distretto, 2010-2024; fonte report DAISMDP AUSL, trascritti in `npia_pr_serie.csv`)
-
-- [ ] richiesta n. 5 all'AUSL: le domande sono nei commenti di `_metadati.md` (geografia, VTC 2023, tabelle 2023-24, criterio 2016, refusi, definizione di "stranieri"); da comporre in `_richieste_dati.md`
-- [ ] popolazione 0-17 per distretto da ISTAT (somma di comuni) al posto di `pop_calc`: dipende dalla serie per comune × età e dalla tabella comune → distretto (vedi Demografia)
+- [ ] cruscotto di 5-6 indicatori: restano 3) PISA, 5) NPIA, 6) tabella "risposte dei paesi"
 
 ### modulo `hikikomori` (forse)
-(ritiro sociale e hikikomori: le fonti misurano cose diverse, casi noti ai servizi, autodefinizione, assenza di relazioni fuori da scuola; da pensare quale messaggio regge)
-
-- [ ] Regione ER, rilevazione sul ritiro sociale (giugno 2023, dati per distretto): verificare i numeri dei distretti di Parma [Ricerca sul ritiro sociale 2024](https://sociale.regione.emilia-romagna.it/novita/prodotti-editoriali/2024/il-ritiro-sociale-in-adolescenza/@@download/publicationFile/Ricerca%20sul%20ritiro%20sociale%202024.pdf)
-- [ ] CNR-IFC e Gruppo Abele, hikikomori tra gli studenti di 15-19 anni da ESPAD (2023), solo nazionale [report](https://www.gruppoabele.org/documenti/schede/02_02_cnr_ifc_abele_ns_report_hikikomori.pdf)
-- [ ] CNR-IRPPS, ritirati sociali 14-19 anni nel 2019 e 2022 (Scientific Reports, 2025) [Sky TG24](https://tg24.sky.it/salute-e-benessere/2025/01/28/hikikomori-fattori-scatenanti-adolescenti-studio)
 - [ ] decidere indicatore e posto nella pagina `benessere_giovani.qmd`
 
-#### AVANZAMENTO giovani
-
-Stato al 2026-11-10: sezione "Dopo la scuola" di `giovani_lavoro.qmd` rivista e blurb di `pop_titolo_studio` scritto; `scuola.qmd` verificata dopo `build.R`; nuova pagina `giovani_mappe.qmd` (Giovani › Dove vivono); `formaz_rientro` diventa `formaz_prof.qmd` (solo ragazzi), promossa in costruzione nel menu Giovani; prossimo passo: Osservazioni di `giovani_mappe.qmd`; restano da prima: fonti sul ritiro sociale, richiesta n. 5 all'AUSL
-
-Stato al 2026-10-28: `pop_titolo_studio` con barre per sesso, tabella di confronto e tre mappe 25-64 (laurea, diploma, licenza media), sezione "Dopo la scuola" in bozza in `giovani_lavoro.qmd`; prossimo passo: rivedere la sezione dopo il render e scrivere il blurb; restano da prima: verificare `scuola.qmd` dopo `build.R`, fonti sul ritiro sociale, richiesta n. 5 all'AUSL
-
-#### Pagine del tema
-
-- `sito/temi/scuola.qmd`: iscritti, geografia, stranieri, disabilità
-- `sito/temi/scuola_dispersione.qmd`: dispersione esplicita e implicita, NEET, ELET
-- `sito/temi/formaz_prof.qmd`: istruzione professionale e IeFP, esiti (gli adulti in `_adulti_scuola.qmd`)
-- `sito/temi/educ_ia.qmd`: uso dei dispositivi, social e benessere mentale, IA, risposte dei paesi
-- `sito/temi/giovani_mappe.qmd`: minorenni, 18-29 anni e minori stranieri per comune e per quartiere
-
-- [ ] `giovani_mappe.qmd`: Osservazioni e messaggi
-
-###modulo `pop_titolo_studio`
->(titolo di studio dei residenti per classe d'età, sesso e cittadinanza: comuni PR, province ER, ER, Italia, 2018→; fonte ISTAT censimento permanente, download con `ingestione/11_get_istat_cens_istr.R`)
-
-**Ricognizione/Aggiornamento FONTI**:
-
-- [ ] Aggiornamento annuale del censimento permanente (`ANNO_FINE` in `ingestione/11`)
-- [ ] Zeri segnalati "JTEST" (2018-19) e celle assenti (dal 2020): chiedere conferma a ISTAT che siano zeri
-- [ ] Formazione professionale 14+ (censimento, solo 2024, province): scaricata, non usata; valutare per `formaz_e_rientro` dopo la [scheda metadati ISTAT](https://esploradati.istat.it/RefMeta/template/GenericMetadataTemplate.html?nodeId=DW&metadataSetId=MS_ISTAT_TOPMETA2&reportId=DCSS_LCAS_FRISC_C3&lang=it&BaseUrlMDA=https://esploradati.istat.it/METADATA_API)
+### modulo `pop_titolo_studio`
 - [ ] `_metadati.md` di `istat_cens_diplomi_profess`: i rimandi a `11b_clean` diventano `pop_titolo_studio/01_dati.R`
 
-**Sito**:
-
-- [x] Sezione "Dopo la scuola" di `giovani_lavoro.qmd` con i tre output
-  - [x] rivedere testi e Osservazioni dopo il render
-- [x] `blurb.md`: scrivere il messaggio e aggiornare lo stato
-
 ### modulo `ingresso_lavoro`
-> Ponte con tema lavoro e se il territorio sta perdendo terreno sull'innovazione (es. startup, brevetti, ecc.)
-> PS 2024:2027 imprescindibile saper fare rete tra istruzione superiore / università / aziende e comunità 
-  > - Focus sui giovani (Parma capitale dei giovani 2026) e sul mismatch domanda-formazione 
-  > - sguardo su chi va all'estero (quanti come e perchè) 
-
-**Ricognizione/Aggiornamento FONTI**: 
-
-+ [ ] Orientamento dei giovani e formazione professionale e transizione scuola-lavoro - Istituto Giuseppe Toniolo 
-- [ ] startup, brevetti, cervelli in fuga e attrattività, ecc. (Regione e bandi?) 
-- [ ] mismatch domanda-formazione, nuove forme con cui si cerca il lavoro (es. Excelsior, Osservatori INPS, ecc.)
-+ [ ] PMI che introducono innovazione ( Fonte: dati European Commission, 2023)
-+ [ ] Investimenti in R&D OECD? 
-+ [ ] [Secondo Welfare, "Ripartenze possibili: NEET e transizioni interrotte tra i giovani adulti" (2026)](https://www.secondowelfare.it/wp-content/uploads/2026/07/Rapporto-FAST-3_Neet_Percorsi-di-Secondo-Welfare-e-Fondazione-Lottomatica.pdf)
-- [ ] Fonti per `sito/temi/_giovani_lavoro.qmd` (IeFP e serali stanno in `formaz_prof.qmd`, con riserva di unificare):
-  - [ ] Excelsior: difficoltà di reperimento per profilo, Parma
-  - [ ] AlmaLaurea/AlmaDiploma o Regione ER: esiti occupazionali per percorso
-  - [ ] Regione ER: iscritti ITS e IeFP
-  - [ ] INPS Osservatori: contratti dei giovani
-  - [ ] ISTAT: cancellazioni per l'estero 20-34 anni per provincia
-  - già in casa dal Bes: passaggio all'università, laureati 25-39, formazione continua, NEET per sesso, occupazione giovanile
-  - dal censimento: titolo di studio per età, sesso e comune → modulo `pop_titolo_studio`
+> PS 2024-2027: imprescindibile saper fare rete tra istruzione superiore / università / aziende e comunità; focus sui giovani (Parma capitale dei giovani 2026) e sul mismatch domanda-formazione; sguardo su chi va all'estero
 
 ___
 
@@ -324,25 +191,7 @@ ___
 
 > Spunti CG: in prospettiva i (pochi) giovani di oggi sono gli stessi che dovranno occuparsi degli anziani di domani...
 
-Due domande, pagina asciutta (deciso 2026-10-19): 1) quanti sono gli over 65 e over 80 a Parma / ER / Italia nel 2024 e quanti saranno nel 2036 e 2050; 2) quale quota è non autosufficiente, oggi e nel 2036 e 2050 (stima per prevalenze × popolazione), con glossario disabilità / non autosufficienza / fragilità e un passaggio sulle demenze. La domanda di cura (accompagnamento INPS, badanti, CRA, ADI) va nel tema Assistenza. Materiali del vecchio repo in `temp/analisi_contesto_old/` (tenere solo EHIS "3. Limitazioni" e GALI 2023).
-
-**Ricognizione/Aggiornamento FONTI**:
-- [ ] ISTAT Disabilità in cifre, GALI per regione ed età (2023, in `temp/`): "gravi limitazioni" annuale, confronto con EHIS
-- [x] Demenze: tassi ISS (Report Nazionale 2024) in `dati/grezzi/iss_demenze/`; Alzheimer Europe solo come confronto
-- [ ] (forse) ISS profilo Emilia-Romagna / CDCD: utenti in carico, per confronto con la stima
-- [ ] (forse) indennità di accompagnamento INPS per provincia e classe d'età: controllo della stima → tema Assistenza
-- [ ] Multimorbilità: Bes `01SAL021` "Multicronicità e limitazioni gravi (75+)" già in `dati/puliti/istat_bes/` (Italia per età, regioni); verificare definizione ("e"/"o") e rottura di serie 2021
-- [x] anziani soli per comune: verificare su Esplora Dati censimento (famiglie / persone sole per età); se c'è, ingestione + sesto indicatore in `pop_mappe_tematiche`
-  - [ ] censimento: per comune solo famiglie di 1 persona, senza età (`istat_cens_famiglie`); Regione: età solo fino al distretto → stima commentata in `anziani_mappe.qmd`
-- [ ] ISTAT censimento, Convivenze anagrafiche: residenti in case di riposo per età (provincia) e per comune (senza età) → `anziani.qmd` (stima EHIS per difetto) e mappe
-  - [ ] scaricati in `istat_cens_famiglie`: residenti in convivenza per comune, per tipo (anche case di riposo) e sesso, senza età; manca la tavola per età (provincia)
-- [ ] (forse) Regione ER, Famiglie anagrafiche per distretto sanitario: anziani soli per età → tema Assistenza
-- [ ] ospedali, case della comunità, centri diurni: fonti con coordinate (open data Ministero della Salute; anagrafe regionale delle strutture socio-sanitarie), altrimenti geocodifica degli indirizzi
-- [ ] (forse) epoca di costruzione degli edifici per sezione di censimento → verifica dell'ipotesi "periferie invecchiate" per quartiere
-
 ### modulo `anziani_non_autosuff`
-(stima del numero di anziani non autosufficienti a Parma oggi e nel 2036: prevalenze per età e sesso (EHIS 2019, ER o Nord-Est) × popolazione 2024 e prevista 2036; GLF per provincia come dato osservato; demenze con la stessa logica)
-
 - [ ] `istat_ehis_2019/_metadati.md`, Insidie: EHIS esclude chi vive in struttura → stima per difetto
 - [ ] prevalenze larghe per sesso (ISTAT p. 2) in `prevalenze` e `anziani_sesso_2024`
 - [ ] lanciare `ingestione/03`, `build.R` e render; verificare `anziani.qmd` (grafico quota con 2036 e 2050, tabella quadro, testi con le nuove definizioni) e le tacche di `trend_demogr_previs`
@@ -354,25 +203,36 @@ Due domande, pagina asciutta (deciso 2026-10-19): 1) quanti sono gli over 65 e o
 - [ ] tabelle per territorio (popolazione 7 colonne, condizioni 8): leggibilità su telefono
 
 ### modulo `anziani_non_autosuff_comuni` (forse)
-(stima per comune e per quartiere di non autosufficienti e persone con disabilità: prevalenze per età di `anziani_non_autosuff` × popolazione per età; dichiarata come stima, dati amministrativi INPS/FRNA/ADI per distretto come riscontro)
-
-- [ ] decidere se farla e con quali prevalenze
-
-**Sito**:
-
-- [x] `anziani_mappe.qmd` (Anziani › Dove vivono, pubblicata 2026-11-06): Osservazioni e messaggi
-- [x] rivedere metadati, blurb e testi delle parti nuove: `istat_cens_famiglie/_metadati.md`, `pop_famiglie_comuni/blurb.md`, sezione Famiglie per comune in `geogr_abitare.qmd`, `anziani_mappe.qmd`
-
-#### AVANZAMENTO anziani
-
-Stato al 2026-11-10: `anziani_mappe.qmd` con sintesi breve, messaggi di sezione e Osservazioni (anche anziani soli per quartiere); metadati di `istat_cens_famiglie` riorganizzati per tavola; prossimo passo: `anziani_non_autosuff` (prevalenze per sesso, `ingestione/03`, render di `anziani.qmd`)
-
-Stato al 2026-11-06: pagina `anziani_mappe.qmd` pubblicata (Anziani › Dove vivono), con mappe di numero e quota di 65+/80+ per comune e per quartiere e anziani soli per quartiere; anziani soli per comune non disponibili per età (censimento e Regione), stima indiretta commentata nella pagina; nuovo modulo `pop_famiglie_comuni` (famiglie, componenti medi, persone sole, famiglie numerose per comune) nella sezione Famiglie per comune di `geogr_abitare.qmd`; convivenze per comune scaricate; prossimo passo: revisione di metadati, blurb e testi nuovi, poi Osservazioni di `anziani_mappe.qmd`
-
-Stato al 2026-10-21: pagina promossa (`sito/temi/anziani.qmd`, menu Anziani › Bisogno di cura); tabelle per territorio di popolazione e condizioni (definizioni e fonti in tabella), grafici di non autosufficienti e demenze per classe d'età, sezione fragilità da sviluppare; prossimo passo: `build.R` e render del sito, poi blurb e fonti sulla fragilità
+- [ ] decidere se farla e con quali prevalenze (prevalenze per età di `anziani_non_autosuff` × popolazione per età di comuni e quartieri; dichiarata come stima, INPS/FRNA/ADI per distretto come riscontro)
+- [ ] testi con "quinto più alto/basso dell'ER" (`anziani_mappe`): valutare se riscriverli con le classi delle mappe
 
 
-## ⏭️ 4. ASSISTENZA SOCIO-SANITARIA (tutto da fare)
+## 4. IMMIGRATI (futura)
+- [ ] CPIA: iscritti per anno/percorso/età/cittadinanza come indicatore di inclusione degli adulti stranieri (richiesta n. 1; v. anche Fonti da esplorare in `formaz_prof.qmd`)
+
+___
+
+## 5. TERRITORIO
+> PS 2024-2027: Un settore che fornisce un punto di osservazione privilegiato è l'abitare / i bisogni e le risorse si concentrano in alcune aree del territorio
+
+### modulo `pop_mappe_tematiche`
+- [ ] soglie di `quota_0_14` (7,5 / 10 / 12,5 / 15) e `quota_18_29` (classi alte vuote in PR: verificare ER); aggiungere il controllo delle classi dei conteggi
+- [ ] mappe ER non usate dal sito (48 MB di rds): salvare solo png o generarle a richiesta
+
+### modulo `pop_famiglie_comuni`
+
+### modulo `indic_fragil`
+- [ ] indicatori per il tabset provincia / comune: attrattività migratoria, dipendenza anziani e/o indice di fragilità demografica, famiglie numerose, redditi medi, povertà abitativa e/o dinamica immobiliare (canoni OMI, sfratti, immobili ACER), pendolarismo/mobilità per lavoro
+
+### modulo `comune_pr_quartieri`
+- [ ] CAPIRE COME REDISTRIBUIRE `_geoloc_fragil.qmd` e `geogr_abitare.qmd` (forse qualcosa lo tolgo da qui e lo metto in `_geoloc_fragil.qmd`)
+- [ ] CAPIRE COSA FARNE: `_abitare_acer_offerta_x_quart.qmd` (bozza con le 13 mappe di dettaglio): decidere se e come usarla; per pubblicarla semplificare anche le strade
+- [ ] `_abitare_coll_offerta.qmd` (bozza-parcheggio: convivenze + ACER sunto, lato offerta): decidere se e come usarla; le convivenze mescolano tutto (dal carcere agli istituti religiosi)
+- [ ] testi con "quinto più alto/basso dell'ER" (`geogr_abitare`): valutare se riscriverli con le classi delle mappe
+
+___
+
+## 6. ASSISTENZA SOCIO-SANITARIA (tutto da fare)
 > C'è un nesso potenziale con trasporto sociale / welfare connesso 
 
 Spunti nelle 4 DIRETTRICI [FORUM PA Sanità 2026](https://www.forumpa.it/sanita/forum-pa-sanita-2026-quattro-direttrici-per-costruire-il-sistema-salute-del-futuro/)
@@ -388,106 +248,20 @@ Il Regolamento sull’European Health Data Space è entrato in vigore il 26 marz
   
 4. Strutture Sanitarie del futuro: ripensare `spazi e servizi a partire dall’esperienza del paziente`
 
-**Ricognizione/Aggiornamento FONTI**: 
-- [ ] xxxx
-
-
-
-**Ripensamento MODULI (connessi a fonti)**:
-
-- [ ] xxxx
-
+- [ ] ricognizione fonti
+- [ ] moduli da definire
 
 ___
 
 
-## ⏭️ 5. MAPPE 
-
-
-La fragilità e i bisogni sul territorio meglio se rappresentati da indici sintetici, disaggregabili nello spazio
-
-> PS 2024-2027: Un settore che fornisce un punto di osservazione privilegiato è l'abitare / i bisogni e le risorse si concentrano in alcune aree del territorio
-> QUI VOGLIO METTERE TANTE MAPPE E ANALISI GEOLOCALIZZATE con un tabset PROVINCIA(e comuni) e/o COMUNE(e quartieri) 
-
-> ... inspiration [MILANO CHE CAMBIA/MAPPE](https://public.tableau.com/app/profile/maud.lab/viz/MILANOCHECAMBIAUNVIAGGIOINTERATTIVOTRADATIPERSONEEQUARTIERI/INFO_descrizione)
- 
-Fonti in casa: `istat_sae_glf_2019` ✓ (stime GLF provinciali), aree interne/zone altimetriche/DEGURBA (già in anagrafica SITUAS ✓), singole età censimento (anziani); nel backup: EHIS 2019 (ADL/IADL), GALI 2023, ISTAT_DISAB_CIFRE. Da cercare: ReportER (ADI, SMAC), INPS AUU figli disabili.
- 
-**Ricognizione/Aggiornamento FONTI**: 
-
-- [ ] RECUPERARE/CERCARE: spopolamento dei comuni e aree interne 
-- [ ] RECUPERARE/CERCARE: assenza/economicità dei servizi in certi comuni 
-- [ ] RECUPERARE/CERCARE: trasporto pubblico sociale
-- [ ] RECUPERARE/CERCARE: PRESIDI TERRITORIALI di prossimità e ricomposizione sociale
-- [ ] verde urbano e spazi pubblici, comportamenti sostenibili
-- [ ] RECUPERARE: canoni di locazione per zona OMI (Agenzia delle Entrate, semestrale) da rapportare ai redditi IRPEF per CAP → indice di sforzo per l'affitto sotto il livello comunale
-- [ ] RECUPERARE: sfratti per provincia (Ministero dell'Interno, procedure di rilascio: emessi, eseguiti, per morosità), serie annuale
-
-
-**Ricognizione/Aggiornamento FONTI**:
-
-- [x] [Immobili ACER 2022](https://opendata.comune.parma.it/dataset/immobili-acer-di-parma-2022) e [quartieri vigenti](https://opendata.comune.parma.it/dataset/quartieri-del-comune-di-parma-vigenti) (2026-10-07)
-- [x] sfondo delle mappe per quartiere: strade 2025, torrenti, ferrovie, parchi, con `ingestione/09` (2026-10-07)
-- [x] [Popolazione residente al 1 gennaio 2026](https://opendata.comune.parma.it/dataset/popolazione-residente-al-1-gennaio-2026) in `ingestione/09`; età = anni compiuti con `ETA - 1`, v. `_metadati.md` (2026-10-08)
-- [ ] reddito sotto il livello comunale: verificare MEF IRPEF per CAP
-- [ ] disabilità per quartiere e domande bando affitto / ERP per quartiere: non nei dati aperti del Comune → richieste n. 6 e 7 (Richieste uffici)
-
-
-**Ripensamento MODULI (connessi a fonti)**:
-
-### modulo `pop_mappe_tematiche`
-(mappe comunali ER/PR a classi fisse: quote per età, stranieri, densità; dal 2026-11-06 anche conteggi 65+/80+)
-
-- [ ] soglie di `quota_0_14` (7,5 / 10 / 12,5 / 15) e `quota_18_29` (classi alte vuote in PR: verificare ER); aggiungere il controllo delle classi dei conteggi
-- [ ] mappe ER non usate dal sito (48 MB di rds): salvare solo png o generarle a richiesta
-- [x] `blurb.md`: note di metodo ferme ai quintili (classi fisse dal 2026-10-09); Messaggio da rileggere
-
-### modulo `pop_famiglie_comuni`
-(famiglie di una persona e famiglie numerose per comune, censimento 2024; sezione Famiglie per comune in `geogr_abitare.qmd`)
-
-- [x] `blurb.md`: Messaggio
-
-### modulo `indic_fragil`
-> inspo: [MILANO CHE CAMBIA/Indicatori composti](https://public.tableau.com/app/profile/maud.lab/viz/MILANOCHECAMBIAUNVIAGGIOINTERATTIVOTRADATIPERSONEEQUARTIERI/INFO_descrizione)
-
-- Una sorta di TABSET per vedere PROVINCIA (x comune) e COMUNE (x quartieri) che illustrino nello spaziopgli indicatori di fragilità e i bisogni del territorio, con mappe e tabelle. 
-  - [ ] attratttività migratoria 
-  - [ ] dipendenza anziani e/o 
-  - [ ] ... indice di fragilità demografica 
-  - [ ] famiglie numerose 
-  - [ ] redditi medi 
-  - [ ] povertà abitativa  e/o 
-  - [ ] ... dinamica immobiliare (canoni OMI, sfratti, immobili ACER)  
-  - [ ] dinamica pendolarismo/mobilità per lavoro, ...  
- 
-
-
-### modulo `comune_pr_quartieri`
-> (Comune di Parma per quartiere: popolazione residente e immobili ACER; pagina bozza `sito/temi/_geogr_abitare.qmd`, voce prevista "Geografia dell'abitare" nel menu Demografia)
-
-
-**Sito**:
-
-- [ ] CAPIRE COME REDISTRIBUIRE `_geoloc_fragil.qmd` e`geogr_abitare.qmd`, (forse qualcosa lo tolgo da qui e lo metto in `_geoloc_fragil.qmd`) 
-- [ ] - CAPIRE COSA FARNE - `_abitare_acer_offerta_x_quart.qmd` (bozza con le 13 mappe di dettaglio): decidere se e come usarla; per pubblicarla semplificare anche le strade
-- [ ] `_abitare_coll_offerta.qmd` (bozza-parcheggio: convivenze + ACER sunto, lato offerta): decidere se e come usarla; le convivenze mescolano tutto (dal carcere agli istituti religiosi)
-- [x] `geogr_abitare.qmd`: 18 grafici e ~4 MB, sopra soglia: misurare il peso dei singoli widget (geometrie, tooltip) prima di tagliare sezioni
-
-#### AVANZAMENTO comune_pr_quartieri
-
-Stato al 2026-11-10: `geogr_abitare.qmd` sotto soglia di peso (2,2 MB, 11 grafici interattivi); sezione Famiglie per comune con messaggio, Osservazioni e tabella con i comuni sopra il 50% di famiglie di una persona; tolta la nota sulle classi d'età
-
-Stato al 2026-11-06: `anziani_80_soli` e mappe di conteggio in tono tenue; scheda "...di cui anziani" nel tabset famiglie di `geogr_abitare.qmd`; strutture collettive e ACER parcheggiati in `_abitare_coll_offerta.qmd`
-
-Stato al 2026-10-09: pagina pubblicata (in costruzione) con sezione provincia; classi d'età e gradini uniformati città/provincia; prossimo passo: verifica in anteprima e testi
-
-
-___
-
-## ⏭️ 6. Approfondimenti 
+## 7. Approfondimenti (blog)
 
 Eventuali pagine di approfondimento, magari con analisi meno esplorativa e piu statstica che sia composta da temi auto contenuti (as opposed to temi che stanno bene spezzettati in sotto pagine) 
 
+
++ SITO/`Approfondimenti`: 
+  - **datiparma.it: the origin story**...
+  - **Comune di Parma Fragilità** ...
 
 
 ___
@@ -495,7 +269,7 @@ ___
 
 # DA CAPIRE SE FAR RIENTRARE NELLE PRECEDENTI E COME 
 
-## 7. Lavoro e redditi da lavoro (tutto da fare)
+## 8. Lavoro e redditi da lavoro (tutto da fare)
 > Non affrontato nello strategico PS 2024-2027, ma da presentare come "Driver di riscatto economico-sociale" 
 
 Fonti candidate: ISTAT RCFL (occupati/disoccupati, livello prov), Osservatori INPS (dipendenti, precariato, retribuzioni), MEF dichiarazioni IRPEF per comune, ISTAT ASIA (imprese/addetti), CCIAA/Excelsior (domanda di lavoro).
@@ -510,7 +284,7 @@ Fonti candidate: ISTAT RCFL (occupati/disoccupati, livello prov), Osservatori IN
 
 - [ ] xxxx
 
-## 8. Fragilità economica 
+## 9. Fragilità economica 
 
 > Da PS 2024-2027 si citano le nuove forme (oltre a povertà materiale) di 
   - povertà lavorativa
@@ -532,7 +306,7 @@ Fonti candidate: INPS (AUU, ADI/sostegni), MEF IRPEF (distribuzione, redditi bas
 
  
 
-## 9. Capitale istituzionale e sociale (istituzioni pubbliche, terzo settore, capitale relazionale)
+## 10. Capitale istituzionale e sociale (istituzioni pubbliche, terzo settore, capitale relazionale)
 > PS 2024-2027: La formazione, la crescita e la valorizzazione del capitale umano sono strettamente collegate alla rete di istituzioni di un dato territorio 
 
 Fonti candidate: ISTAT spesa servizi sociali comuni (grezzi nel backup, ISTAT_SERVSOC), BDAP/OpenCivitas (bilanci comuni), RUNTS + ISTAT censimento nonprofit (terzo settore), BES (partecipazione civica, relazioni). Salvabile: `analysis/03_carica_bes.qmd` dal backup.

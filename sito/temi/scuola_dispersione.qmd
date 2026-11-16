@@ -301,3 +301,10 @@ _NB: Fonte ISTAT. ELET = 18-24enni con al più la licenza media e fuori da ogni 
 <!-- 3. Esplorare la seconda chance: chi rientra in formazione attraverso corsi serali, centri per adulti e percorsi professionali, e con quali esiti. -->
 <!-- 4. Il territorio: dove il rischio di dispersione si concentra, in relazione alla fragilità economica e sociale dei comuni. -->
 
+## Fonti da esplorare {.content-hidden}
+
+- Openpolis, [L'abbandono scolastico, un problema in crescita per alcuni paesi UE](https://www.openpolis.it/labbandono-scolastico-un-problema-in-crescita-per-alcuni-paesi-ue/) (Eurostat)
+- Openpolis, [L'abbandono scolastico in Italia, in Europa e nelle città](https://www.openpolis.it/labbandono-scolastico-in-italia-in-europa-e-nelle-citta/): profilo di chi abbandona (approfondimento 1)
+- IPRASE Trentino, [Dispersione scolastica e giovani NEET](https://www.iprase.tn.it/news/comunicati/dispersione-scolastica-e-giovani-neet-presentati-i-risultati-della-ricerca-sullalto)
+- Secondo Welfare, [A 14 anni davanti al futuro: quanto pesano scuola, famiglia e contesto](https://www.secondowelfare.it/giovani/a-14-anni-davanti-al-futuro-quanto-pesano-scuola-famiglia-e-contesto/) (già letto)
+- Il ruolo della scuola come sussidio al welfare territoriale (tema, senza fonte)

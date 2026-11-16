@@ -440,3 +440,7 @@ _NB: Grafico: Ufficio scolastico regionale ER, a.s. 2024/25, solo statali. Dati 
 3. Il sostegno e la riduzione del N. di alunni: come si può rendere più efficace il sostegno, anche in ragione delle classi che diventano meno numerose, ma con crescente % di certificazioni?  
 4. La numerosità delle classi in certi anni chiave per le scelte di orientamento: e.g. inizio superiori. 
  
+
+## Fonti da esplorare {.content-hidden}
+
+- Regione ER, [Anagrafe studenti](https://scuola.regione.emilia-romagna.it/anagrafi-regionali): successo/regolarità per provincia e iscritti all'infanzia → richiesta n. 3 (Richieste uffici in `_TODO.qmd`)

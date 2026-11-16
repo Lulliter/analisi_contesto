@@ -165,3 +165,8 @@ La dotazione del Piano (FNA) sia a anzani che giovani e adulti con disab
 ## Possibili approfondimenti
 
 + Stato di approvazione degli atti del D. Lgs. 29/2024 sull’invecchiamento attivo: vedi [qui](https://www.welforum.it/invecchiamento-attivo/)
+
+## Fonti da esplorare {.content-hidden}
+
+- INPS, indennità di accompagnamento per provincia e classe d'età: controllo della stima di non autosufficienti di `anziani.qmd` (forse)
+- Regione ER, famiglie anagrafiche per distretto sanitario: anziani soli per età (forse)

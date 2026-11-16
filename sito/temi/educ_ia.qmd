@@ -477,3 +477,8 @@ Le regole arrivano più lente della tecnologia: il Ministero ha avviato le "Line
 1. Cosa succede a Parma/Emilia-Romagna (mancano ancora informazioni locali)  
 2. Mappare cosa stanno facendo le realtà locali della comunità educante (scuole, famiglie, terzo settore, enti locali e fondazioni) per accompagnare la crescita dei ragazzi immersi in questo contesto?   
 3. IA e povertà educativa: vedi [indagine Openpolis e Con i bambini](https://www.openpolis.it/intelligenza-artificiale-una-sfida-educativa/)
+
+## Fonti da esplorare {.content-hidden}
+
+- ISTAT, [Relazioni, opinioni e comportamenti dei giovanissimi](https://www.istat.it/produzione-editoriale/relazioni-opinioni-e-comportamenti-dei-giovanissimi/) (2026): da leggere
+- OCSE PISA, [Students, digital devices and success](https://eeb2.be/swfiles/files/OECD-Report-2024.pdf) (2024 su dati 2022; l'ER c'è)

@@ -463,3 +463,11 @@ _NB: Quota per fascie d'età che si dichiarano "molto soddisfatti" delle relazio
 - La crescita dei presi in carico in neuropsichiatria infantile è dovuta a più bisogno, a più capacità di riconoscerlo o a un diverso modo di registrarlo? Servono i dati per età e per distretto del 2023 e 2024, che i report non riportano più.
 - Chi sono gli "stranieri" nei servizi: per cittadinanza o per origine? La risposta cambia il confronto con la popolazione residente.
 - Che legame c'è tra la presa in carico sanitaria (6-10 anni) e le certificazioni e i disturbi dell'apprendimento riconosciuti a scuola?
+
+## Fonti da esplorare {.content-hidden}
+
+Ritiro sociale e hikikomori: le fonti misurano cose diverse (casi noti ai servizi, autodefinizione, assenza di relazioni fuori da scuola); da pensare quale messaggio regge.
+
+- Regione ER, [Ricerca sul ritiro sociale in adolescenza](https://sociale.regione.emilia-romagna.it/novita/prodotti-editoriali/2024/il-ritiro-sociale-in-adolescenza/@@download/publicationFile/Ricerca%20sul%20ritiro%20sociale%202024.pdf) (2024; rilevazione giugno 2023, dati per distretto): verificare i numeri dei distretti di Parma
+- CNR-IFC e Gruppo Abele, [hikikomori tra gli studenti di 15-19 anni da ESPAD](https://www.gruppoabele.org/documenti/schede/02_02_cnr_ifc_abele_ns_report_hikikomori.pdf) (2023, solo nazionale)
+- CNR-IRPPS, ritirati sociali 14-19 anni nel 2019 e 2022 (Scientific Reports, 2025) [via Sky TG24](https://tg24.sky.it/salute-e-benessere/2025/01/28/hikikomori-fattori-scatenanti-adolescenti-studio)

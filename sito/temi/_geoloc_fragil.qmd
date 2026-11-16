@@ -219,3 +219,21 @@ Il report presenta 1 `indice sintetico` che è a sua volta costituito da altri `
 > più intensa nelle province romagnole. 
 
 :::
+
+## Possibili approfondimenti
+
++ ...
+
+## Fonti da esplorare {.content-hidden}
+
+La fragilità e i bisogni sul territorio meglio se rappresentati da indici sintetici, disaggregabili nello spazio; tabset provincia (comuni) e comune (quartieri) con mappe e tabelle. Ispirazione: [Milano che cambia, mappe e indicatori composti](https://public.tableau.com/app/profile/maud.lab/viz/MILANOCHECAMBIAUNVIAGGIOINTERATTIVOTRADATIPERSONEEQUARTIERI/INFO_descrizione).
+
+Fonti in casa: `istat_sae_glf_2019` (stime GLF provinciali), aree interne / zone altimetriche / DEGURBA (anagrafica SITUAS), singole età censimento; nel backup: EHIS 2019 (ADL/IADL), GALI 2023, ISTAT Disabilità in cifre.
+
+- ReportER (ADI, SMAC); INPS AUU figli disabili
+- spopolamento dei comuni e aree interne
+- assenza/economicità dei servizi in certi comuni; presidi territoriali di prossimità e ricomposizione sociale
+- trasporto pubblico sociale
+- verde urbano e spazi pubblici, comportamenti sostenibili
+- Agenzia delle Entrate, canoni di locazione per zona OMI (semestrale) da rapportare ai redditi IRPEF per CAP (MEF) → indice di sforzo per l'affitto sotto il livello comunale
+- Ministero dell'Interno, sfratti per provincia (procedure di rilascio: emessi, eseguiti, per morosità), serie annuale

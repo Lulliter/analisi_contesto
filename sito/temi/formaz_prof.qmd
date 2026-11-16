@@ -208,3 +208,10 @@ Gli alunni sono contati nella provincia della scuola; solo corsi diurni, esclusi
 
 + Verificare se c'è maggiore dispersione scolastica tra i frequentanti di Istituti Professionali e IeFP
  
+
+## Fonti da esplorare {.content-hidden}
+
+- Regione ER (SIFER): iscritti IeFP per provincia → richiesta n. 2 (Richieste uffici in `_TODO.qmd`)
+- CPIA: iscritti per anno/percorso/età/cittadinanza → richiesta n. 1; indicatore di inclusione degli adulti stranieri, da ricollocare quando nasce quel tema
+- Esiti (diplomati dei serali, qualificati IeFP): "esiti scrutini/esami" per scuola nel catalogo MIM; INAPP; SIFER
+- ISTAT censimento, formazione professionale 14+ (solo 2024, province): scaricata in `istat_cens_diplomi_profess`, non usata; [scheda metadati ISTAT](https://esploradati.istat.it/RefMeta/template/GenericMetadataTemplate.html?nodeId=DW&metadataSetId=MS_ISTAT_TOPMETA2&reportId=DCSS_LCAS_FRISC_C3&lang=it&BaseUrlMDA=https://esploradati.istat.it/METADATA_API)

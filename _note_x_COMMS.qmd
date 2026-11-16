@@ -134,7 +134,8 @@ file.copy(file_out, file.path(dir_onedrive, nome_copia), overwrite = TRUE)
 - **Fondazione CRC** (Cuneo) — [Ufficio Studi e Ricerche di Fondazione CRC](https://fondazionecrc.it/ricerche/)
   - forma: struttura interna
   - accesso: pubblica un [`Dossier socio economico annuale`](https://fondazionecrc.it/categorie_documenti/dossier-socio-economici/) (simile x contenuti) + vari studi e quaderni...
-  - note: bella iniziativa [Laboratori d’innovazione](https://fondazionecr), soprattutto l'edizione su LAboratorio `"Share your data"` con Openpolis
+  - 🆕 coming soon (feb 2027): lancio di [OpenCuneo](https://fondazionecrc.it/materia-viva/) la nuova piattaforma on line a disposizione di decisori e cittadini, che Fondazione metterà a disposizione dal 5 febbraio per interagire in modo innovativo e libero con i dati e la conoscenza prodotta.
+  - note: bella iniziativa [Laboratori d’innovazione](https://fondazionecr), soprattutto l'edizione su Laboratorio `"Share your data"` con Openpolis
   
   
 - **Fondazione Cassa di Risparmio di Biella**, con **Percorsi di Secondo Welfare** — [OsservaBiella – Osservatorio territoriale del Biellese](https://www.osservabiella.it/cose-osservabiella/) (2020-2026)

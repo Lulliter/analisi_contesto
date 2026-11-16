@@ -337,3 +337,11 @@ La stessa riforma per gli anziani [@L33del2023Aanziani], e successiva legislazio
 + La multimorbilità (più malattie croniche insieme): quanto pesa tra i grandi anziani e come cambia la domanda di cura
 <!-- - Dove vivono i grandi anziani: nei comuni di montagna e di pianura il peso degli over 80 è lo stesso del capoluogo? -->
 <!-- - Chi si prende cura: quanti caregiver familiari, e di che età, servono per i numeri stimati qui? -->
+
+## Fonti da esplorare {.content-hidden}
+
+- ISTAT, Disabilità in cifre: GALI per regione ed età (2023, in `temp/`), "gravi limitazioni" annuale, confronto con EHIS
+- ISS, profilo Emilia-Romagna / CDCD: utenti in carico, per confronto con la stima (forse)
+- ISTAT Bes `01SAL021`, multicronicità e limitazioni gravi 75+ (già in `dati/puliti/istat_bes/`, Italia per età e regioni): verificare definizione ("e"/"o") e rottura di serie 2021
+- ISTAT censimento, convivenze anagrafiche: residenti in case di riposo per età (provincia) → correzione della stima EHIS, per difetto; scaricata finora solo la tavola per comune (senza età) in `istat_cens_famiglie`
+- Demenze: tassi ISS (Report nazionale 2024) in `dati/grezzi/iss_demenze/`, Alzheimer Europe solo come confronto (già usata)
